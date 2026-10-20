@@ -1,0 +1,50 @@
+{
+  "utc": "2026-10-19T05:47:32Z",
+  "task": "K1_Stand_Up",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+  "checkpoint_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "load_mode": "torchscript",
+  "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+  "adaptation_sha256": "5bc4e94fa29a6d9ed3aeaf2aa28e0f0bf4a0be707140d1d76b1d9253edb47053",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v2-public-standup/K1_Stand_Up_actor.pt",
+    "sha256": "b88c04a1c41ce04caeb8eef223cda598cabacf360c0fcde64e73912e570ce795"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v2-public-standup/K1_Stand_Up_actor.onnx",
+    "sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "opset": 11,
+    "input": "input: [batch, 73]",
+    "output": "output: [batch, 22]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "random_batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 5.364418029785156e-07,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "random_batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 4.76837158203125e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "recorded_observations": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 2.384185791015625e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  },
+  "deployment_status": "NOT_VALIDATED_ON_ROBOT",
+  "intended_use": "PUBLIC_REFERENCE_POLICY",
+  "formal_model_sha256_identical": true
+}

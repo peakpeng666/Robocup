@@ -1,0 +1,15 @@
+<!-- 摄像头跟踪球 -->
+
+<root BTCPP_format="4" >
+  <BehaviorTree ID="FindBall">
+     <Fallback name="root">
+        <Timeout msec="12000">
+            <RobotFindBall vyaw_limit="1.6" />
+        </Timeout>
+
+        <KeepRunningUntilFailure>
+            <GoToReadyPosition vx_limit="0.7" />
+        </KeepRunningUntilFailure>
+     </Fallback>
+  </BehaviorTree>
+</root>

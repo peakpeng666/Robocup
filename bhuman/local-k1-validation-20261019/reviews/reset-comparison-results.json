@@ -1,0 +1,292 @@
+{
+  "acceptance": "PASS",
+  "runs": [
+    {
+      "seed": 42,
+      "variant": "baseline",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181558-baseline-s42-HybOxa",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 2,
+        "reference_complete_without_fall": 3
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.08872545510530472,
+      "max_dof_velocity_rad_s": 22.65683937072754,
+      "inputs_consistent": false,
+      "reset_input_errors": {
+        "gravity_error": 1.934601068496704,
+        "angular_velocity_error": 5.744278430938721,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "baseline",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 42,
+      "variant": "cache",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181623-cache-s42-Ioom1R",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 0,
+        "reference_complete_without_fall": 4
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.053895898163318634,
+      "max_dof_velocity_rad_s": 17.71480941772461,
+      "inputs_consistent": false,
+      "reset_input_errors": {
+        "gravity_error": 1.7267662286758423,
+        "angular_velocity_error": 9.562202453613281,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "cache",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 42,
+      "variant": "fixed",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181649-fixed-s42-NaXvFh",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 0,
+        "reference_complete_without_fall": 4
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.009186167269945145,
+      "max_dof_velocity_rad_s": 17.86498260498047,
+      "inputs_consistent": true,
+      "reset_input_errors": {
+        "gravity_error": 0.0,
+        "angular_velocity_error": 0.0,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "fixed",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 7,
+      "variant": "baseline",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181756-baseline-s7-3ZpejB",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 1,
+        "reference_complete_without_fall": 4
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.037090688943862915,
+      "max_dof_velocity_rad_s": 18.323684692382812,
+      "inputs_consistent": false,
+      "reset_input_errors": {
+        "gravity_error": 1.8668186664581299,
+        "angular_velocity_error": 6.7560272216796875,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "baseline",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 7,
+      "variant": "fixed",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181821-fixed-s7-7bklwN",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 0,
+        "reference_complete_without_fall": 4
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.011045170947909355,
+      "max_dof_velocity_rad_s": 17.642353057861328,
+      "inputs_consistent": true,
+      "reset_input_errors": {
+        "gravity_error": 0.0,
+        "angular_velocity_error": 0.0,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "fixed",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 123,
+      "variant": "baseline",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181846-baseline-s123-f3TJ0Z",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 4,
+        "reference_complete_without_fall": 4
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.05250796675682068,
+      "max_dof_velocity_rad_s": 35.32280731201172,
+      "inputs_consistent": false,
+      "reset_input_errors": {
+        "gravity_error": 1.950472116470337,
+        "angular_velocity_error": 7.016437530517578,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "baseline",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    },
+    {
+      "seed": 123,
+      "variant": "fixed",
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/reset-compare-20261019_181911-fixed-s123-p7qRNs",
+      "exit_code": 0,
+      "num_envs": 4,
+      "policy_steps": 300,
+      "terminations": {
+        "fall_detected": 0,
+        "reference_complete_without_fall": 6
+      },
+      "finite": true,
+      "joint_limit_overshoot_rad": 0.022503672167658806,
+      "max_dof_velocity_rad_s": 24.924707412719727,
+      "inputs_consistent": true,
+      "reset_input_errors": {
+        "gravity_error": 0.0,
+        "angular_velocity_error": 0.0,
+        "dof_history_error": 0.0
+      },
+      "manifest": {
+        "variant": "fixed",
+        "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+        "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+        "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+        "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+        "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+        "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+        "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+      }
+    }
+  ],
+  "paired_initialization": [
+    {
+      "seed": 7,
+      "initial_samples_match": true,
+      "checks": {
+        "env_ids": true,
+        "initial_dof_before_probe": true,
+        "direction_keyframe": true,
+        "rng_before_root_reset_sha256": true
+      },
+      "baseline_initial_root_z": [
+        0.6844381093978882,
+        0.6419775485992432,
+        0.643418550491333,
+        0.6332160830497742
+      ],
+      "fixed_initial_root_z": [
+        0.5921413898468018,
+        0.16264505684375763,
+        0.6056434512138367,
+        0.41506993770599365
+      ]
+    },
+    {
+      "seed": 42,
+      "initial_samples_match": true,
+      "checks": {
+        "env_ids": true,
+        "initial_dof_before_probe": true,
+        "direction_keyframe": true,
+        "rng_before_root_reset_sha256": true
+      },
+      "baseline_initial_root_z": [
+        0.6262931823730469,
+        0.6618602275848389,
+        0.6334123015403748,
+        0.6332640051841736
+      ],
+      "fixed_initial_root_z": [
+        0.5894762873649597,
+        0.608381986618042,
+        0.14044207334518433,
+        0.39714688062667847
+      ]
+    },
+    {
+      "seed": 123,
+      "initial_samples_match": true,
+      "checks": {
+        "env_ids": true,
+        "initial_dof_before_probe": true,
+        "direction_keyframe": true,
+        "rng_before_root_reset_sha256": true
+      },
+      "baseline_initial_root_z": [
+        0.6124362945556641,
+        0.6173244118690491,
+        0.6334863901138306,
+        0.6334621906280518
+      ],
+      "fixed_initial_root_z": [
+        0.18997181951999664,
+        0.32036617398262024,
+        0.591596782207489,
+        0.48354411125183105
+      ]
+    }
+  ],
+  "scope": "Finite simulation and reset-input consistency, not policy convergence or robot acceptance.",
+  "limits": "Initial keyframes, DOF samples and pre-root RNG are paired. Physical reset states intentionally differ. Later reset times change random sampling; event counts are not a matched-episode success rate."
+}

@@ -1,0 +1,13 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_132948_391662_frozen_walk_timeout_rollout/frozen_rollout.pth",
+  "sha256": "42ba84f6b7b9ed7bb9b47ad931173056a862a9a2020182f7642d380236a73fba",
+  "source_sha256": "1e08341095498a92c04373eaaef4620eaa73e8a9e8a08d9406e7ba4842ec769d",
+  "num_envs": 64,
+  "horizon": 24,
+  "warmup_policy_steps": 440,
+  "optimization_steps": 0,
+  "model_unchanged": true,
+  "done_events": 1,
+  "timeout_events": 0,
+  "physics_state_serialized": false
+}

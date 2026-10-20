@@ -1,0 +1,115 @@
+{
+  "task": "K1_Stand_Up",
+  "policy_steps": 300,
+  "num_envs": 4,
+  "policy_dt_s": 0.02,
+  "physics_dt_s": 0.0020000000949949026,
+  "gpu_physx": true,
+  "gpu_pipeline": true,
+  "tensor_device": "cuda:0",
+  "resets": 4,
+  "timeout_resets": 0,
+  "non_timeout_resets": 4,
+  "termination_counts": {
+    "fall_detected": 0,
+    "reference_complete_without_fall": 4
+  },
+  "mean_reward_per_step": 1.260020933151245,
+  "max_abs": {
+    "observation": 4.600780010223389,
+    "reward": 2.018519639968872,
+    "dof_pos": 2.974593162536621,
+    "dof_vel": 17.642353057861328,
+    "root_states": 64.68516540527344,
+    "preclip_mean_torques": 134.0584259033203,
+    "last_substep_applied_torques": 40.0
+  },
+  "finite_checks_pass": true,
+  "dof_names": [
+    "AAHead_yaw",
+    "Head_pitch",
+    "ALeft_Shoulder_Pitch",
+    "Left_Shoulder_Roll",
+    "Left_Elbow_Pitch",
+    "Left_Elbow_Yaw",
+    "ARight_Shoulder_Pitch",
+    "Right_Shoulder_Roll",
+    "Right_Elbow_Pitch",
+    "Right_Elbow_Yaw",
+    "Left_Hip_Pitch",
+    "Left_Hip_Roll",
+    "Left_Hip_Yaw",
+    "Left_Knee_Pitch",
+    "Left_Ankle_Pitch",
+    "Left_Ankle_Roll",
+    "Right_Hip_Pitch",
+    "Right_Hip_Roll",
+    "Right_Hip_Yaw",
+    "Right_Knee_Pitch",
+    "Right_Ankle_Pitch",
+    "Right_Ankle_Roll"
+  ],
+  "asset_configuration": {
+    "file": "resources/K1/K1_locomotion_all_joints_simple_2.urdf",
+    "file_mesh": "resources/K1/K1_locomotion_all_joints_mesh.urdf",
+    "mujoco_file": "resources/K1/K1_locomotion.xml",
+    "name": "K1",
+    "base_name": "Trunk",
+    "foot_names": [
+      "left_foot_link",
+      "right_foot_link"
+    ],
+    "lower_body_names": [
+      "Left_Hip_Pitch",
+      "Right_Hip_Pitch"
+    ],
+    "head_name": [
+      "Head_2"
+    ],
+    "disable_gravity": false,
+    "default_dof_drive_mode": 3,
+    "collapse_fixed_joints": true,
+    "fix_base_link": false,
+    "self_collisions": 0,
+    "replace_cylinder_with_capsule": false,
+    "flip_visual_attachments": false,
+    "density": 0.001,
+    "angular_damping": 0.0,
+    "linear_damping": 0.0,
+    "max_angular_velocity": 1000.0,
+    "max_linear_velocity": 1000.0,
+    "armature": 0.0,
+    "thickness": 0.01,
+    "feet_edge_pos": [
+      [
+        0.1185,
+        0.035,
+        -0.038
+      ],
+      [
+        0.1185,
+        -0.035,
+        -0.038
+      ],
+      [
+        -0.0665,
+        0.035,
+        -0.038
+      ],
+      [
+        -0.0665,
+        -0.035,
+        -0.038
+      ]
+    ],
+    "feet_sole_pos": [
+      0,
+      0,
+      -0.038
+    ],
+    "ankle_ids": []
+  },
+  "max_measured_joint_limit_overshoot_rad": 0.011045170947909355,
+  "torque_clamp_check": "PASS (sampled final physics substep of each policy step)",
+  "note": "Non-timeout reset is not necessarily a fall; task-specific termination applies. No real-robot validation."
+}

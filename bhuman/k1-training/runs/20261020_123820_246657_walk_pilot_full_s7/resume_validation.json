@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_123755_634053_walk_pilot_warm-start_s7/nn/model_final.pth",
+  "sha256": "5f39f58691a5ae444651f2df9500d5df6a046ec20fddf28676b58cb2e3ffc547",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 5,
+  "env_steps": 7680,
+  "lr": 0.0001,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "2e33e63b869f7a6aabf7b31eafd15d623c75a3291b95b47497d60843ce674ca4",
+  "current_source_sha256": "2e33e63b869f7a6aabf7b31eafd15d623c75a3291b95b47497d60843ce674ca4",
+  "environment_state_restored": false
+}

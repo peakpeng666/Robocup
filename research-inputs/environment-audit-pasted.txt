@@ -1,0 +1,136 @@
+收到。本轮严格只读：不装包、不动环境、不 fetch、不碰机器人。我先并行做四件事——系统/环境快照复核、远端提交核对、模型哈希与结构核验，同时派一个只读探查代理去提取训练侧的观测/动作契约，我自己读正式比赛库的执行侧代码。
+
+训练侧契约已由探查代理完成提取(结论详实，含行号)。现在并行完成：两个 venv 的包元数据核验、conda/uv/Python3.8/IsaacGym 缺失项核验、全部模型 SHA256 + 本地 tag 解引用。
+
+Tag 谜团解开了:`coderelease2026` 是**附注标签**(标签对象 18794a78 → 解引用到提交 2e3374ba = 本地 HEAD = 远端 master),所以**两仓库上游均无变化**。模型哈希链全部对上。还剩三件：warp 的发行名复查(`warp-lang`)、ONNX 结构核验、正式库执行侧代码抽查。
+
+核验基本齐了。最后补两个小项：MachineLearning 本地最新提交标题、真机侧 PD/执行频率参数的来源位置。
+
+复核与契约提取全部完成，以下为本轮只读报告。
+
+---
+
+# K1 运控训练流程 · 只读审计报告(2026-10-19)
+
+**本轮执行性质**：仅只读操作(系统/GPU/包元数据查询、git ls-remote、sha256、CPU 侧 ONNX 结构解析、源码阅读)。未安装、未建环境、未 fetch/pull、未写文件、未启动仿真、未初始化 GPU 计算(包版本经 `importlib.metadata` 读取，比快照的 import 更轻)、未连接机器人。
+
+---
+
+## 1. 交接快照复核：无实质变化，两处“假象”已解释
+
+| 快照项 | 复核结果 | 状态 |
+|---|---|---|
+| OS/内核/CPU/内存 | Ubuntu 22.04.5,6.8.0-138,24 逻辑 CPU,62GiB(可用 52GiB) | 一致 |
+| 磁盘 | 根=工作区同一 ext4 分区，可用 88GiB | 一致 |
+| GPU | RTX 5090 Laptop,24463MiB,CC 12.0,驱动 595.99.02,当前仅桌面负载 | 一致 |
+| nvcc / /usr/local/cuda* | 均无 | 一致(无 Toolkit) |
+| isaaclab venv | py3.11.15;isaaclab 0.44.9、isaacsim 5.0.0.0、torch 2.7.0+cu128、torchvision 0.22.0、numpy 1.26.0、warp-lang 1.8.1、rsl-rl-lib 2.3.3、gymnasium 1.2.0、onnx 1.18.0;无 onnxruntime/mujoco/isaacgym | 一致 |
+| isaacsim-gui venv | py3.12.13;isaacsim 6.0.1.0、torch 2.11.0+cu130、numpy 2.3.1、warp-lang 1.13.0、mujoco 3.8.0;无 onnx/isaaclab | 一致 |
+| 用户级 torch | ~/.local/.../torch-2.11.0+cu128.dist-info 存在 | 一致 |
+| conda/uv | 仅 base;uv 已装 3.11/3.12/3.13,**无 3.8** | 一致 |
+| Isaac Gym | 常见位置无目录、两 venv 无该包；~/.local/share/isaacsim 仅 launcher 日志 | 一致 |
+| IsaacLab 仓库 | v2.2.0 @ 46dff135;本地修改仍在(setup.py、未跟踪 lab.sh、tools/local/) | 一致，未触碰 |
+| Ant 基准日志 | Isaac-Ant-Direct-v0,32768 envs,100 iters,exit 0 | 一致【历史记录】 |
+| 两 B-Human 仓库 | master 均与快照同 SHA;工作区干净 | **上游无更新** |
+| robocup/ 其他项目 | 存在，`M src/vision` 修改仍在 | 一致，未触碰 |
+
+**两处容易误判的“变化”**【已观察+解释】：
+- `git ls-remote` 显示 `coderelease2026` 标签指向 `18794a78…`,与提交 `2e3374ba…` 不同——这是**附注标签(annotated tag)对象**的 SHA,本地解引用 `coderelease2026^{commit}` = `2e3374ba` = master = 本地 HEAD。不是上游变更。
+- 两个 venv 中查包名 `warp` 会得到“未安装”——PyPI 发行名是 **`warp-lang`**(1.8.1 / 1.13.0),与快照一致。
+
+MachineLearning 最新提交确认:`c3fed81` "Add more robust fast standup policies"(2026-10-15)。
+
+**模型哈希链(全部本轮实测)**【已观察】：
+
+| 文件 | SHA256(前16) | 与源关系 |
+|---|---|---|
+| 比赛库 Walk/K1_walk.onnx | 9d1ec185… | ≡ ML pre-trained/WalkAndKick/K1_walk.onnx(同一文件) |
+| 比赛库 Walk/K1_kick_inner.onnx | 7fb9ea33… | ≡ ML 同名 |
+| 比赛库 Walk/K1_kick_inner_soft.onnx | 7943b41c… | 仅比赛库有；ML 的 cfg 引用它但**文件缺失** |
+| 比赛库 GetUpEngine/K1.onnx | 44ee5ddb… | ≡ ML pre-trained/GetUp/K1.onnx |
+| 比赛库 GetUpEngine/K1_fast_standup.onnx | **adae2f00**… | ≡ ML GetUp/K1_fast.onnx(与您给的完整哈希一致) |
+| ML Additional Policies/K1_fast_standup.onnx | **7be4ba07**… | 另一份权重(与您给的一致) |
+| K1_kick_90degree.onnx | — | 被 ML 参考cfg 的 ballStealNetworkParameters 引用，**两仓库均不存在** |
+
+**ONNX 结构实测**(CPU 侧解析，未跑推理)：K1_walk `(batch,344)→(batch,13)`、K1_kick_inner 与 _soft `(59)→(13)`(同形不同权)、K1.onnx `(73)→(22)`、K1_fast_standup `(72)→(22)`;**全部 opset 11**、动态 batch。注意 fast 模型输入输出名为 `obs`/`action`(其余是 `input`/`output`),佐证其来自另一训练框架(mjlab_playground,envs/readme.md:64)。
+
+---
+
+## 2. 项目分类表：可复用 / 需适配 / 需安装下载 / 未验证
+
+| 类别 | 项目 | 依据 |
+|---|---|---|
+| **可直接复用** | isaaclab venv(Sim5+Lab2.2+torch2.7cu128,sm_120 已含)；K1 URDF/网格(ML resources/K1);公开契约源码与权重；robocup_demo/SDK(参考)；26 裁判机；本机 clang++/CMake/Ninja/mold、ML 仓库自带 ARM sysroot | 【已观察】 |
+| **需适配** | export_model.py(只出 TorchScript .pt,且默认扫 logs 取最新，不可作严格追踪)；convert.py(写死 T1_walk.pt/T1_walk.onnx/(1,62),62 实为 T1_Ball 观测数，与文件名矛盾)；踢球环境步频动作用上一步值(与行走环境差一个延迟)；ML 参考 WalkingEngine 有主库没有的 steal-kick 分支 | 【已观察·源码】 |
+| **需安装/下载**(待授权) | Python 3.8(uv 可建)；IsaacGym Preview 4(NVIDIA 归档，约 2GB);B-Human 链接的 cp38 torch wheel(约 2-3GB,第三方构建，需哈希/来源核验)；onnxruntime(跨仿真验证用，当前**所有环境都没有**) | 【已观察·缺失】 |
+| **尚未验证** | IsaacGym 在 RTX 5090/Blackwell 上的原生绑定与 PhysX GPU;B-Human 交叉构建链(本机工具齐但未跑通)；onnx 权重≠训练配方(actor/critic/optimizer/checkpoint 不在)；快速起身的完整训练环境(仓库内无，外部 mjlab_playground);真机 motorParameters.cfg 与训练 YAML PD 的逐项对应；`Runner_History` 引用的 `model.reset_logstd()` 在 model.py 中**不存在**(NaN 时会 AttributeError) | 【待验证】 |
+
+---
+
+## 3. 三层代码的主要差异(正式比赛 / 公开训练 / 训练参考)
+
+1. **WalkingEngine.cpp:约 173 行实质差异**。ML 参考版多出：第三踢球网络(steal-kick,`K1_kick_90degree.onnx`,模型缺失)、球位外推与踢球延迟、steal-kick 时观测第 49 维为 ±1(主库恒 0)、历史更新防重入守卫、球速度按里程计旋转。**观测布局/缩放/频率参数两者一致**(ML WalkingEngine.cpp:821-1003 与主库逐段对应)。
+2. **GetUpEngine.cpp:仅 1 行差异**——主库在 breakUp 状态额外有“感知数据超时 1000ms 中止”。
+3. **cfg 差异**：主库无 `ballStealNetworkParameters`/`maxKickDelay`;`shiftBallPosition` 主库 false vs ML true;fast 起身模型名主库 `K1_fast_standup.onnx` vs ML `K1_fast.onnx`(同一文件改名的哈希已证)。
+4. **语义差异(关键安全项)**：普通起身输出 = clip(output)+offset(**绝对目标**)；快速起身输出 = clip(output)+**当前关节角(增量式)**，且偏置含肩肘、gyro/gravity 顺序互换、无 phase 维——两份 fast 权重不可混换，控制参数必须成套。
+
+---
+
+## 4. 原装 K1 软件接口适用性判断(带源码位置)
+
+- **低层接管是纯用户态 DDS,不动固件**：BoosterProvider 经 `kTopicJointCtrl` 发关节级 LowCmd(`BoosterProvider.cpp:41,58-59`),`cmd_type=SERIAL`,playDead 时发 damping(头注释 ：5-8)。22 关节映射在 `Config/Robots/Default/K1/boosterProvider.cfg`(headYaw…rAnkleRoll),真机 PD/力矩在 `motorParameters.cfg`,限位在 `jointLimits.cfg`——阶段 1 需逐项列表核对(本轮未展开)。
+- **安全前置**：接管前有肩关节位置区间检查(`shoulderPitchRangeAtStart`),越界会语音报警 "Wrong Arm Position"(`BoosterProvider.cpp:166-174`)。
+- **策略节拍**：训练侧 sim.dt=0.002 × decimation=10 → 控制周期 0.02s(50Hz)【已观察·YAML】;与真机执行节拍的一致性要在阶段 1 用主库 Motion 线程实际调用频率对齐【待验证】。
+- **观测/动作契约(冻结候选)**：
+
+**行走 344 = 10 帧×32 历史帧(旧→新)+ 24 尾段**(t1.py:768-824;主库 WalkingEngine.cpp:821-887 布局一致)：
+- 每帧 32 = 重力投影3(机体系) + 机体角速度3 + 12 腿关节(角度−默认−offset) + 12(上一步已 clip 动作) + 球占位0×2
+- 尾段 24 = 速度指令3(m/s,rad/s) + cos/sin(2π·步态相位)2 + 12 关节速度×0.1(位置差分，非内插值) + 第13维步频(clip±0.5)1 + 球flag占位0×3 + 方向sin,cos×2 + 距离×0.1×1
+- 历史更新：先左移丢最旧、再写当前帧；写入发生在物理步后、动作更新前(pre-action 语义)
+
+**踢球 59**(t1_ball.py:1520-1585):重力3 + 角速度3 + 球xy×0.1(**两脚底中点为原点、按机器人 yaw 旋转的水平系**，README.md:214) + 方向角/π 1 + 相位cos/sin 2 + 12关节角 + 12关节速度×0.1 + 13动作 + strong/placeholder3标志 + 球速xy×0.1 + 占位1 + 方向sin,cos 2 + 期望末速×0.1 1 + 上步球位×0.1×2
+
+**普通起身 73**(t1_stand_up.py:792-810):重力3 + 角速度3 + phase1 + 22关节角 + 22速度×0.1 + 22上步动作(clip±3);成功=关键帧走完后 gait≥1.5 再保持 5 步；失败=躯干角偏差>0.75rad;**靠重力方向判，不靠高度**
+
+**动作语义**：13 维 = 12 腿关节目标(`clip(默认+offset+1.0·a[:12], 限位)`,左腿在前，顺序 HipPitch,HipRoll,HipYaw,Knee,AnklePitch,AnkleRoll)+ 第 13 维步频偏移(1.5Hz 基频)；22 维起身为全关节目标。仿真内 PD 手动施加(effort 模式，每子步)，目标有 0-9 步随机延迟。**13 维不是 13 个电机命令**——第 13 维是步频。
+- 网络固定为 Linear344→256→256→128→128→128→13(ELU),独立 critic,可学 logstd(初值−2.0);PPO 全批更新(无 minibatch),自适应 lr,熵下限机制；`--history` 开启镜像对称损失(系数 0.01,环境翻倍)。
+
+---
+
+## 5. 两条路线的成本与风险
+
+| 维度 | 原版 Isaac Gym 路线 | Isaac Lab 迁移路线 |
+|---|---|---|
+| 环境成本 | 新建隔离 py3.8 venv + 第三方 torch wheel(约 3GB)+ IsaacGym Preview 4(约 2GB) | 零新环境(复用 isaaclab venv) |
+| 代码成本 | 零改动，直接是 B-Human 原配方 | 重写 3 个环境(每个 2000+ 行 IsaacGym API)+ 迁移自定义 PPO/对称损失；rsl-rl 默认 PPO **不等价** |
+| 主要风险 | Blackwell(sm_120)上 Preview 4 原生绑定/PhysX GPU 兼容性未知；wheel 来源非 B-Human 构建；py3.8 EOL | 物理/接触/地形语义差异引入隐性偏差；工作量以天计；结果只能标“迁移实现” |
+| 可信度 | 若通过=直接对齐公开配方 | 永远是“近似复现” |
+| 回退性 | venv 可整删，零系统污染 | 不影响原栈，但投入大 |
+
+## 6. 推荐路线与停止/回退条件
+
+**按您预设的关卡走**：阶段 2 先做原版 Gym **最小兼容验证**(独立 venv、记录来源与哈希、先 CPU 级绑定验证再有限无界面物理步)；**停止条件**：需动现有环境/驱动、依赖来源不可核验、或修复超出批准预算(建议：时间 ≤1 个工作日、下载 ≤6GB、磁盘 ≤15GB)。未过 → 转入 Lab 迁移(阶段 5)作为主线，Gym 侧只保留 CPU 语义对照；**两条路都不动原厂驱动与现有 Isaac 环境**。
+
+## 7. 最小操作清单(按阶段；本轮仅阶段 0/1 的只读部分已执行)
+
+| # | 操作 | 类型 | 命令/脚本 | 触碰路径 | 下载/安装/仿真/训练/真机 | 资源 | 验收 | 失败替代 |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 冻结基线与契约文档 | **写文件** | 汇总本报告为 `bhuman/docs/baseline-v1.md` 等 | 新建 docs 目录，不改两仓库 | 否 | <1MB | 表格齐全、哈希可复核 | — |
+| 2 | Gym 隔离环境 | **安装+下载** | `uv venv --python 3.8 ~/.venvs/isaacgym-bh`;装核验后的 cp38 torch wheel;解压 IsaacGym Preview 4 | 仅新 venv 与 ~/isaacgym-bh | 是(约 5-6GB) | 磁盘 ≤15GB | torch 导入+`import isaacgym` 成功 | 放弃 Gym 路线 |
+| 3 | Gym 绑定+物理冒烟 | **仿真(GPU)** | 短脚本：创建 4 env、跑 100 步、查 NaN | 无写入 | 是(有限步) | 分钟级 | 识别 5090、无原生库错误、数值有限、明确记录 GPU/CPU | CPU 语义验证或转 Lab |
+| 4 | K1 策略回放+小训练 | **仿真+训练** | `play.py --task=K1`;短 PPO | logs/(可删) | 是 | ≤1h、显存 ≤16GB | 回放无 NaN/越界；ckpt 保存恢复连续 | 降 env 数或转 Lab |
+| 5 | 自有基线(行→踢→起身) | **训练** | `train.py --history --task=K1` 等 | logs/、实验目录 | 是 | 数天级、磁盘上限另批 | 冻结配置+多 seed 评估指标 | — |
+| 6 | 导出+跨仿真验证 | **写文件(+装 onnxruntime 待批)** | 修 export/convert 脚本副本(不覆盖原件) | 独立实验目录 | 否(推理 CPU) | 小 | 固定输入集数值一致；MuJoCo 侧依赖先核对 | 仅 ONNX 一致性 |
+| 7 | 交叉构建+.run 封装 | **打包** | 用 ML 自带 sysroot + 本机 clang/ninja;清单化 | 构建输出目录 | 否 | 中 | aarch64 产物、哈希清单、回滚脚本 | — |
+| 8 | 真机部署 | **真机** | 另行单独授权，含服务停止方案 | 机器人 | 连接 | — | — | — |
+
+## 8. 请先确认的最小操作包(不是全项目授权)
+
+- **A(写文件)**：仅新建 `bhuman/docs/` 写入基线/契约/差异三份文档(≤1MB,不触碰任何现有文件)。
+- **B(安装+下载，可单独批)**：创建独立 `~/.venvs/isaacgym-bh`(py3.8,可整删)+ 下载并核验 cp38 torch wheel 与 IsaacGym Preview 4(约 5-6GB)。A 通过后再批 B,B 通过后再批 C(GPU 冒烟)。
+
+**缺项替代说明**：快速起身无公开训练环境——按“独立研究项”处理，先以部署侧契约(GetUpEngine.cpp:244-282)为准做真机前安全审查；跨仿真验证缺 onnxruntime——阶段 6 时以“装到独立 venv”为最小方案再报批。
+
+---
+
+**事实分级声明**：本文全部哈希/维度/版本/差异结论为【已观察】；Ant 训练成功、Sim6 app ready 为【历史记录】；“50Hz 真机节拍一致”“motorParameters 与训练 PD 对应”为【待验证】；其余架构性判断(如 Gym 在 Blackwell 的风险)为【源码/生态推断】。公开代码+公开权重 ≠ B-Human 内部训练环境，凡涉“复现”表述均以可检查证据为限。

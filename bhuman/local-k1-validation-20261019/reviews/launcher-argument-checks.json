@@ -1,0 +1,23 @@
+{
+  "concurrent_launcher_refused": {
+    "exit_code": 2,
+    "expected": 2,
+    "message_present": true
+  },
+  "zero_duration": {
+    "exit_code": 2,
+    "expected": 2
+  },
+  "conflicting_capture": {
+    "exit_code": 2,
+    "expected": 2
+  },
+  "negative_timeout": {
+    "exit_code": 2,
+    "expected": 2
+  },
+  "real_running_gait_lock": {
+    "exit_code": 2,
+    "expected": 2
+  }
+}

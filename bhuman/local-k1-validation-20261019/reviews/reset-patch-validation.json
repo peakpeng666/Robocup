@@ -1,0 +1,14 @@
+{
+  "status": "STATIC_CHECKS_ONLY_GPU_NOT_RUN",
+  "changed_methods": [
+    "_reset_root_states"
+  ],
+  "termination_AST_unchanged": true,
+  "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+  "fixed_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+  "unchanged_files": {
+    "envs/K1_Stand_Up.yaml": true,
+    "pre-trained/GetUp/K1_stand_up.pt": true,
+    "resources/K1/K1_locomotion_all_joints_simple_2.urdf": true
+  }
+}

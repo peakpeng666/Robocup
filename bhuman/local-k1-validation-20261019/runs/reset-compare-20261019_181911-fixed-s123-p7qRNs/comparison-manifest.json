@@ -1,0 +1,10 @@
+{
+  "variant": "fixed",
+  "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+  "cache_candidate_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+  "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+  "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+  "diagnostic_sha256": "6457de873c1f87d84b9e8ee1d7d0e90c29fbaa580b1178a14848c38ce948d5aa",
+  "observation": "Same tracer and instrumentation in all arms; probe advances all actors; no claim of nonintrusive timing or long-term success."
+}

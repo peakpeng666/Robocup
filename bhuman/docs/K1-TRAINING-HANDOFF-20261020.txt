@@ -1,0 +1,249 @@
+B-Human K1 本机训练交接提示词
+编制日期：2026-10-20（Asia/Tokyo）
+
+以下内容可完整交给能访问本机项目的 AI。这里的“已验证”来自保存的实际运行记录及本次轻量复查；后面的步骤是要求接手 AI 执行的工作，不能写成已经完成。
+
+========== 提示词开始 ==========
+
+你现在接手我本机已有的 B-Human K1 强化学习与比赛仿真项目。请直接检查代码、做必要修改、运行有界实验并交付结果，不要只写研究报告或重复搭环境。
+
+一、目标、优先级与权限
+
+1. 机器人是原装加速进化 Booster K1，不改硬件和电机固件。本阶段只做本地训练与仿真，不连接真实机器人，不执行机器人安装脚本或 .run，不改原厂服务、网络、DDS 或通信配置。
+2. 首要目标是沿用 B-Human 公开 K1 行走策略及训练代码，建立“公开 actor 暖启动 → 自有 PPO 检查点 → 独立评估 → 导出 → B-Human 仿真验证”的可复现流程，并真正完成一轮有界试训。不是另外实现一种步态来替代 B-Human，也不是重新做一套无视觉的演示。
+3. 优先级：行走训练闭环第一；普通起身 reset 时序和起身→行走交接第二；踢球保留基线、后续单独训练。快速起身单独研究，不能阻塞已公开的行走训练路线。
+4. 已授权你在本地训练副本及独立实验目录修改代码、增加脚本、编译、执行有资源上限的仿真和小规模训练。可自行处理正常的可回滚修复，不要每个小步骤都问我确认。先读适用的 AGENTS.md，保留用户现有修改，不做破坏性清理。
+5. 默认复用现有安装，不另起一套重复 Conda/venv，不升级系统驱动、CUDA、PyTorch、Isaac Lab/Sim。确有依赖故障时先诊断和给出最小修复理由，优先从已有归档恢复到专用前缀，不以重装整套环境代替排错。
+6. 本轮工作范围是把训练流程推进到可评估、可恢复、可继续扩大，并完成有界 pilot；不要直接开几万迭代、无人看管的通宵长训。公开代码不等于 B-Human 未公开的内部训练配方，GPU 能跑也不等于策略已经合格。
+7. 下面是交接时的快照。如果机器、目录、源码已经更新，以实际文件、当前源码和可追溯日志为准。先理解差异，不要为了匹配旧哈希而回退用户的新成果；路径缺失时只在相关目录定向查找，不递归扫描整个硬盘，不读取凭证或无关文件。
+
+二、已存在的目录与版本
+
+工作根目录：
+/home/peakpeng/Desktop/Robocup
+
+本地训练主线：
+/home/peakpeng/Desktop/Robocup/bhuman/k1-training
+
+训练代码：
+/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL
+
+训练解释器：
+/home/peakpeng/.venvs/bh-gym/bin/python
+
+Isaac Gym 实际 Python 包源码：
+/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym
+
+保留的原始比赛仓库：
+/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease
+固定提交：2e3374ba896da8288607f9a1881b876642fe18b8
+
+保留的原始训练仓库：
+/home/peakpeng/Desktop/Robocup/bhuman/MachineLearning
+固定提交：c3fed817e6e8fd06418bea824b1f1ab0157379d2
+
+已适配的比赛仿真工程与历史验证材料：
+/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019
+其中比赛代码工作副本：
+/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local
+
+已保存的研究资料：
+/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019
+不要再依赖已经被用户删除的桌面原 PDF/ZIP。
+
+交接时两个原始 Git 仓库均干净。训练主线源码指纹为：
+9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112
+指纹算法在训练源码 utils/bh_common.py 的 source_hash() 中，覆盖相对路径及 .py/.yaml 内容。它不是 Git 提交号，也不覆盖所有资产，模型/URDF 另核对清单。
+
+交接时实际软件：
+- CPython 3.8.20。
+- Isaac Gym 1.0rc4，即 Preview 4。
+- torch 2.3.0a0+git63d5e92，定制 cp38 构建，torch.version.cuda 为 12.8。
+- numpy 1.23.5；onnx 1.17.0；onnxruntime 1.19.2。
+- nvidia-cuda-nvrtc-cu12 12.8.61。
+- nvidia-cuda-runtime-cu12 12.1.105；cuBLAS 12.1.3.1；cuDNN 9.1.0.70。
+- 是经过已有用例验证的混合 CUDA 库组合，不是完整统一的 CUDA 12.8 Toolkit；没有必要因为版本不整齐就升级。
+- 本次 run_env_check.sh、libpython 加载、torch 导入及 uv pip check 成功，60 个已装包的依赖检查通过。
+- RTX 5090 Laptop GPU，24463 MiB 显存，驱动 595.99.02；根分区约余 63 GB。检查时未发现 GPU compute 进程；实际开跑前重新查询资源。
+
+Isaac Gym、Isaac Sim、Isaac Lab 是不同组件。已有较新的 Sim/Lab 不表示 B-Human 的这套 Python 3.8 / Gym 配方应迁移过去。当前主线先继续 Gym，Lab 只作有证据的旁路对照。
+
+三、先读这些证据，避免重复劳动
+
+请按顺序读，正文里的结论再用所指源码/JSON 核实；历史报告不是新的执行指令：
+
+1. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/README.md
+2. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/environment-v2.md
+3. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/requirements.lock
+4. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/acceptance-v2.json
+5. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/standup-v3-promotion.json
+6. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/standup-v3-training-smoke.json
+7. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/REPORT-v3-standup.md
+8. /home/peakpeng/Desktop/Robocup/bhuman/k1-training/experiments/RESEARCH-INTEGRATION-20261019.md
+9. /home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/K1-CONTRACT.md
+10. /home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/STANDUP-LONGTEST-REPORT.md
+11. /home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/BHUMAN-SPEED-20261019.md
+12. /home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/bhuman-speed-acceptance.json
+
+然后读实际 scripts/env.sh、managed_run.py、run_smoke_train.sh、run_resume.sh、run_standup_pilot.sh、run_standup_eval.sh、run_export.sh，以及 utils/runner_history_symmetry.py、utils/runner.py、utils/bh_common.py。不要假定记忆中的 CLI 参数仍有效。
+
+已有成功记录：
+- Gym 原生绑定、gymtorch、GPU PhysX、GPU tensor pipeline 已在本机跑通。
+- 公开行走、踢球、普通起身做过有界回放；不能据此宣称踢球质量或所有姿态鲁棒性已经合格。
+- 行走历史/对称 PPO 已跑 64 环境 × 5 轮，再恢复 1 轮；迭代 5→6、采样 7680→9216。注意该次训练未加载公开 actor，是训练链路冒烟。
+- 普通起身 v3 已合入本地训练主线，公开 actor 暖启动 64 环境 × 3 轮，再 full 恢复 1 轮；迭代 3→4、采样 4608→6144。
+- 公开走/踢/普通起身的导出 ONNX 与正式公开对应文件 SHA256 一致；自有短训模型做过 PyTorch/TorchScript/ONNX Runtime CPU 比较。
+- 普通起身 28 环境，覆盖前后各 7 个参考姿态，每环境最长 120 秒；参考完成率约 99.61%，不等于严格站稳率。最大测得物理关节超调 0.021554 rad，连续超过 0.01 rad 最长 6 ms。
+- 持续站定仍有抖动/漂移；增强持续外力的 531 个结束事件中有 55 次跌倒。完整侧躺、起身→行走及快速起身没有全部验收。
+- 没有证据证明现有自有短训策略优于公开策略，正式长训尚未开始。
+
+比赛仿真是另一条已经成功的链路：保留 B-Human 步态和正常视觉，6 机器人场景录制 660 秒仿真，用时约 549.5 秒，实时倍率约 1.20。包括比赛准备和停赛等阶段，PLAYING 约 367.5 秒，只完成一个半场；当次未触发跌倒/起身。不要把它说成完整双半场、起身新验收或 PPO 训练吞吐量。
+其优化为 Release 构建及专门的视觉 ONNX Runtime GPU 1.22.0，运动模型仍走 CPU。比赛启动器仅在自身进程复用 Isaac Lab 的 CUDA/cuDNN 库，不能把这些环境变量或包安装进 bh-gym。
+
+四、必须保持正确的接口和恢复语义
+
+1. 四个策略不能混用：行走 344→13；踢球 59→13；普通起身 73→22；快速起身 72→22。输出维度相同也不代表契约相同。行走 actor 为 344→256→128→128→13；快速起身为 72→512→256→128→22。网络结构不同不能单独证明其训练引擎来源。
+2. 行走公开 K1_walk.pth 的 actor 可用，critic 输入 359 与当前配置 360 不一致。使用严格 actor 暖启动，critic/logstd/优化器重新初始化、计数归零；不要把 num_privileged_obs 从 16 改成 15 来迁就旧 critic。
+3. 现有 run_smoke_train.sh 没有 checkpoint 参数，不能称为“公开步态续训入口”。需要新增明确的行走 pilot 入口或等效可复现命令。
+4. full 仅用于本项目兼容的 bh-k1-ckpt-v2 检查点，验证模型、优化器、学习率、计数、配置及 RNG。源码不同会被通用加载器记录，但不保证配方连续性；不要把“加载器允许加载”当成跨版本验收通过。最清晰的恢复测试是使用本轮同源码、同配置新产生的 checkpoint。
+5. 不保存 PhysX 内部状态、全部环境/课程状态、完整 rollout；恢复后环境会重建/reset。不能声称轨迹逐步无缝或确定性复现了 B-Human 原训练。
+6. 保持 weights_only=True，不通过关闭安全加载绕过旧 pickle 兼容问题。NaN 应记录诊断并失败退出，保留最后有效 checkpoint；不要 nan_to_num 后继续，也不要静默覆盖好模型。
+7. 本地主线已经修复 headless 的 type=bool 陷阱，以及上游 reset_logstd 缺失方法的 NaN 分支。先确认当前实现，不要把历史问题重新当成未修复问题。
+8. 训练仓附带的 WalkingEngine 参考代码与正式比赛版有差异，还涉及未配套找到的 K1_kick_90degree.onnx。不要整份覆盖正式 WalkingEngine。默认保存正式代码、模型、参数的对应关系。
+9. 保留物理 dt、策略 decimation、传感更新、C++ motion 帧和相机周期各自的语义，不因为数值接近就合并。不通过增大物理步长、禁视觉、注入球真值或移动机器人位姿来“跑通”。
+
+五、第一阶段：确认现状、补行走入口和独立评估
+
+A. 建立最小快照。
+- 记录当前解释器、包版本、Git 状态、源码/资产/模型哈希、显存和磁盘；只查相关目录。
+- 用官方来源只读查看 BHumanCodeRelease 和 MachineLearning 的远端 HEAD/相关变更，并记录查询日期。交接提交是固定基线，不自动等于今天最新。发现更新先看差异，必要时建独立候选，不直接 pull/reset 覆盖两原始仓或工作副本。网络不可用应标记未核验，不阻塞本地已有基线。
+- 已存在的环境检查可直接复用：
+  bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_env_check.sh
+- 如当前无可信的同环境近期 GPU 验证或环境有变化，再通过 managed_run.py 有界运行 scripts/probe_runtime.py。不必为证明安装存在启动完整 Isaac Sim。
+
+B. 补齐行走公开 actor 暖启动入口。
+- 优先复用 train.py --history 和现有 runner，保留当前公开配方、观测历史、对称处理。
+- 新增独立、参数明确、可重复的 run_walk_pilot.sh 或等价入口，不直接删除旧 smoke 的限制。
+- 必须显式指定公开 checkpoint 和 --load_mode warm-start。
+- 在第一次 PPO 更新前核对 actor 参数与公开文件一致、实际加载了哪个文件、critic/logstd/优化器为新状态、迭代和采样计数为零。记录初始评估，避免训练后才发现根本没加载公开权重。
+- 第一轮 64 环境 × 5 迭代，然后从该轮自己生成的 checkpoint full 恢复 1 迭代。先读源码确认 max_iterations 表示本次新增轮数。
+
+可参考下面的已有 CLI 组合；这是待执行示例，不是已完成的训练。实现正式入口前核对当前参数与资源包装器：
+
+K1_WORK=/home/peakpeng/Desktop/Robocup/bhuman/k1-training
+source "$K1_WORK/scripts/env.sh"
+"$BH_PY" -B "$K1_WORK/scripts/managed_run.py" --name walk_warmstart_s7 --timeout 900 -- \
+  "$BH_PY" "$K1_WORK/src/IsaacGymRL/train.py" --history --task K1 \
+  --num_envs 64 --max_iterations 5 --save_interval 1 --headless true --seed 7 \
+  --checkpoint "$K1_WORK/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth" \
+  --load_mode warm-start
+
+managed_run.py 会为 train.py 创建并追加独立 output_dir；不要再手工覆盖历史输出。
+恢复时从本次 execution.json 定位新产生的 model_final.pth，传给 run_resume.sh；不要用模糊的“最新文件”猜路径。
+
+C. 建立独立的行走评估入口，公开 actor 和候选使用同一条件。
+- 使用显式模型路径、固定命令日程、独立评估种子；先验证确定性 actor/推理模式，不把探索噪声差异混入模型比较。
+- 覆盖静止、前后走、左右走、双向转弯、组合速度、启动/急停/换向；命令范围由公开配置与部署契约确定，超范围压力测试单列。
+- 先标准场景，再分组增加摩擦、初态和外力/延迟扰动，记录实际扰动量纲、方向、时刻和持续时间，不一开始叠加所有因素。
+- 指标至少包括：身体坐标系 vx/vy/wz 跟踪误差、跌倒率/终止原因、位移与转角、停稳耗时、滑移、关节位置超调及持续时间、力矩峰值与饱和比例、非有限值。
+- 不把所有非 timeout reset 都叫跌倒；不把 rollout 不报错或奖励上涨当成质量通过。
+- 关节与力矩极值尽量在每个物理步在线统计，另存少量代表轨迹；不要用 10 Hz 视频或策略步末端样本代表 500 Hz 最坏值。不允许裁剪测量 qpos 来隐藏超调。
+- 每个结果同时提供 execution_status、coverage_status、quality_verdict；超时、采样不足、失败都保留。构造一个明显失败的反例确认验收器不会把失败日志判为成功。
+
+本阶段通过标准：公开 actor 确实加载；PPO 参数发生有限更新；5+1 的计数增量正确；恢复前模型/优化器/RNG 验证通过；评估能区分成功、失败和样本不足；可以根据实际轨迹解释结果。它不要求 5 轮就学得更好。
+
+六、第二阶段：生产接口对照与 reset 时间问题
+
+A. 对齐真实使用的观测与控制契约。
+- 从正式 B-Human C++、当前 SimRobot 适配及 Python 环境逐段列出 observation 的 [start,end)、单位、坐标系、关节顺序/符号、历史顺序与初始化、滤波/裁剪、上一 action/上一请求、命令缩放、相位。
+- 13 维行走输出中每一维的含义必须由源码确认，不能当成 13 个电机直接发送。
+- 同一份带时间戳的传感记录走 Python 与 C++ 预处理，比较原始 actor 输出、动作映射、关节目标与 PD。模型数值相同不等于预处理和闭环控制相同。
+- 有意存在的训练/比赛 PD、力矩限制和机器人资产差异单列，先解释用途，再做单变量对照，不能凭直觉把参数全部统一。
+- 在候选接入比赛之前完成对应行走契约验证。普通起身的契约验证独立进行，不能因为起身未完成就无限搁置不受影响的行走 pilot。
+
+B. 定位普通起身 reset 的额外全局物理步。
+- 当前 t1_stand_up.py 的 _reset_root_states() 通过 gym.simulate() 获取几何，会额外推进全局 2 ms，影响同一 sim 中未 reset 的环境。缓存刷新已经修复，但额外时间仍存在；该额外步的力矩提交语义需要实际核验，不能先假定为零力矩或正确保持。
+- 先核对这是否也存在于行走所用类/路径。当前普通行走 t1.py 的 reset 与起身并非同一个实现，禁止把起身问题未经核查推广为所有任务阻塞。
+- 用固定动作、固定种子对比“目标环境继续运行、其他环境频繁 reset”和对照组；统计真实 simulate 次数、策略间隔、施力覆盖、首次观测、历史更新和状态偏差。不要只用配置 0.002×10 宣称严格 50 Hz。
+- 优先研究不推进共享 sim 的初始化几何方案，例如基于模型的前向运动学/局部几何计算；采用哪种方案必须以正确坐标、地形、资产和接触验证为依据，不要简单删除 simulate 后读取过期缓存。
+- 修复在实验副本进行，保留 v3 基线，回归通过才合入本地主线并更新证据。不要先改 promotion 哈希来绕过验收。
+- 若暂时无法彻底消除，输出已量化偏差、并行度适用边界和可继续的替代实验；不要直接宣称整个项目做不了，也不要将它标为已修复。
+
+C. 普通起身补齐评估边界。
+- 保留既有前/后 14 参考姿态回归；新增完整侧躺、关键帧初始相位语义与起身→行走交接，分别建实验。
+- 交接后至少观察 5 秒的零速度、前进和转向；记录动作/历史重置、目标和力矩跳变及再次跌倒。
+- 不把持续运行起身 actor 120 秒当成比赛站定行为，因为比赛逻辑会切到行走阶段。
+- 现有 body_in_soles 奖励关闭且有上游索引疑点，不要顺手启用；任何奖励修改独立记录。
+- 保留既有起身环境回归阈值：reset/目标越界 ≤1e-6 rad，力矩 clamp 越界 ≤1e-5 Nm，物理超调 ≤0.05 rad，连续超调 >0.01 rad 的时间 ≤0.1 s；安静参考完成率总体 ≥95%、分层 ≥90%，公开扰动总体 ≥90%、分层 ≥80%。这些只用于对应仿真环境回归，不能写成真机安全标准或最终站稳要求。
+- 严格站稳率、姿态分层、恢复耗时和扰动失败率另报；每分层至少 20 个结束事件是初步覆盖要求，不是统计充分性保证。按独立运行/种子考虑相关性并报告区间，不把连续 episode 全当独立样本。
+
+七、第三阶段：有界 pilot、导出与候选比赛验证
+
+1. 先以行走为对象。在前面适用门槛通过后，开始 64 环境 × 最多 100 迭代的 pilot，单进程墙钟上限先 900 秒，显存采样上限沿用 12 GiB。不要把这个阶段称为收敛训练。
+2. 最少先完成一个训练种子；资源与结果正常后按 7、42、123 等三个种子顺序运行。训练、调参与最终留出评估种子分开登记。2026 已用于旧评估冒烟，不能再声称它是从未见过的留出集。不要基于最终留出集反复选超参。
+3. 公开 actor、训练前暖启动 actor、每个候选 checkpoint 用相同评估日程比较。critic 新初始化可能带来早期退化，需观察 actor 变化、KL、学习率、entropy/logstd、value/policy loss 与梯度有限性。确需 critic 预热或更保守更新时另立单因素实验，不静默改配方。
+4. 保存 last 与按明确评估标准选择的候选，禁止只按训练 reward 选 best。候选退化就保留公开 baseline，不能为显示进度强行替换。
+5. 先做 64→128→256 的有界吞吐/时序/显存对照；只有各自通过才能扩规模。现有脚本允许到 256 不代表 256 已验收，不能直接上 4096。改变并行数也会改变 PPO batch 和配置契约，不能把 full 恢复失败通过绕过配置检查解决；明确是新实验还是兼容恢复。
+6. 报告真实采样 steps/s、每轮耗时、PPO 与 PhysX 时间占比、峰值显存采样和实际 physics/control 时间；不要引用比赛实时倍率估算训练时间。
+7. 导出到新的 exports 子目录，复用 run_export.sh；走/踢/普通起身各自显式模型。核对 ONNX 输入输出、opset、归一化是否在图内、资产与配置哈希。
+8. 使用随机输入和实际采集 observation 做 PyTorch、TorchScript、ONNX Runtime CPU 数值对照；原有阈值 atol=1e-5、rtol=1e-4 可作基线。再验证本机比赛实际采用的 C++ ONNX 执行路径和预处理，不能把 Python ORT 通过说成原版 CompiledNN 或真机路径已通过。
+9. 候选通过数值和独立步态门槛后，才能在独立场景/参数配置中接入比赛。给官方模型与候选显式选择入口、各自哈希和回退方式；不覆盖正式默认模型。确认日志显示实际加载候选，防止“看起来在测新模型，实际仍是旧模型”。
+10. 先做单机器人前进/侧移/转弯/急停，再做正常视觉、6 机器人同条件比赛。至少复现一次 660 秒仿真场景作为接入回归；正式声称比赛质量提升需多种子/固定对手，完整两半场另行实现并核验。保持正常视觉、原有步态接口和物理时间设置。
+11. 如果候选质量尚未达门槛，保留官方比赛版本，交付真实的失败分析与可恢复 pilot。不要为凑齐比赛视频而部署明显退化策略，也不要为了等待训练收敛无限延长本轮。
+
+八、已有入口的正确使用方式
+
+公开行走有界回放：
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_replay.sh K1 4 500
+
+普通起身暖启动入口（先满足源码验收检查）：
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_standup_pilot.sh 64 3 42 warm-start
+
+普通起身 full 恢复入口格式：
+run_standup_pilot.sh ENVS 新增迭代数 SEED full 自有检查点绝对路径
+使用本次产生、源码与配置相符的文件，不盲目挑旧文件。
+
+普通起身独立评估格式：
+run_standup_eval.sh ACTOR_PT PROFILE SEED STEPS ENVS [public|sustained]
+PROFILE 为 quiet/published/stress/hold；sustained 仅用于 stress；ENVS 必须是 14 的倍数。
+它支持普通起身 73→22，不支持快速起身 72→22。
+
+通用导出格式：
+run_export.sh TASK CHECKPOINT 新输出目录 [actor|torchscript] [observations.npy]
+TASK 使用 K1、K1_Ball、K1_Stand_Up 中对应任务，不能互相串用。
+
+已验证官方比赛基线入口：
+bash /home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh match --seconds 660 --record --unthrottled
+此命令默认测试官方模型，不代表已经切换到你的新候选。unthrottled 只是解除墙钟节流，不允许改变物理 dt 或运动/视觉语义。
+
+九、运行管理与可复现性
+
+- 一次只运行一个 GPU 重负载训练或比赛任务；先查看已有进程，不杀死不属于本次工作的任务。
+- 当前 managed_run.py 默认超时 600 秒；起身 pilot 900 秒；起身评估 1200 秒。显存上限是按进程采样检查，并非绝对瞬时硬限额。沿用并改善必要监控，别把删除限制当优化。
+- 开跑前可用磁盘至少 30 GiB；在运行中增加必要的空间检查，避免视频/checkpoint 填满。保留原始日志、模型和资料，不自动删除用户文件来腾空间。
+- 每次唯一目录保存完整命令、工作目录、有效配置、源码/依赖/模型/资产身份、seed、负载与时钟口径、退出码、墙钟时间、资源采样、metrics、checkpoint、导出 manifest、失败诊断。
+- 区分真实采样量与对称数据扩增量；报告总环境步、单环境时间、策略步、物理步，避免混用。
+- 超时/OOM/NaN 按失败或未完成报告，保留最后有效检查点和日志；修复后另开 run，不能删失败样本再重算成功率。
+- 修改源码后用可回滚补丁或快照留档；先回归再更新验收清单。不要未经验证把新哈希写进 promotion 当成合格。
+- 不重复执行已经充分通过且本轮未受影响的昂贵检查；根据改动范围选择回归。允许根据源码和实测调整顺序，但说明理由。
+- 环境遇到不兼容先给局部修复、现有 CPU/MuJoCo 对照或保持已知可用版本等替代路径；备选路线不自动等同于已完成原 GPU/比赛目标。
+
+十、交付要求与完成边界
+
+请实际完成工作后给我简洁中文结论，并把完整证据保存在项目内。至少交付：
+
+1. 当前训练环境是否可复用、实际软件版本与变更；没有变更就明确说没有重装。
+2. 新增的行走公开 actor 暖启动入口、参数说明、完整可复制命令。
+3. 行走 5+1 的训练/恢复证据，以及至少一个有界 pilot 的执行结果；若前置门槛失败，给出具体失败证据和已完成的修复，不虚报 pilot。
+4. 独立评估工具、冻结的场景/种子/指标、公开策略与候选的同条件比较；区分“流程跑通”“环境回归合格”“策略质量合格”。
+5. ordinary-getup reset 时序问题的归属、实测偏差、修复/未解决状态与适用边界；不要将未解决的起身问题隐藏在行走通过报告里。
+6. 导出文件、哈希、三方数值校验；如做了 C++/比赛候选接入，给实际加载证据及可回退入口。未通过候选门槛则明确不接入。
+7. 原始两仓状态、官方模型与成功比赛基线的保护检查；新改动列表与回滚方式。
+8. 正式长训建议：任务、初始化方式、并行数、批量/学习率、预计采样量与墙钟预算、评估周期、停止/回退条件。预算依据实际测量，不许用 5 轮短训或比赛倍率推断收敛。
+9. 最终明确回答：哪些可以进入下一阶段正式训练，哪些只能做 pilot，哪些仍未验证。快速起身配方、真机可靠性和正式 .run 部署未完成就写未完成。
+
+请先从读取当前主线与已有证据开始，随后推进适用的修复、行走暖启动和有界 pilot。不要只返回“可以做”、安装清单或下一步计划，也不要为了追求表面成功牺牲 B-Human 的实际步态、正常视觉和可复现性。
+
+========== 提示词结束 ==========
+
+本次交接编制所做操作：只读核对源码/清单/Git 状态/资源，执行轻量解释器和依赖检查，创建本提示词。没有启动新训练、完整仿真、安装包或机器人连接。

@@ -1,0 +1,217 @@
+#pragma once
+
+#include <string>
+#include <mutex>
+#include <tuple>
+
+#include <sensor_msgs/msg/image.hpp>
+#include "booster_interface/msg/odometer.hpp"
+#include <Eigen/Dense> 
+
+#include "types.h"
+#include "RoboCupGameControlData.h"
+
+using namespace std;
+
+/**
+ * `BrainData` stores runtime (dynamic) data used by `Brain` during decision-making.
+ * This is separate from `BrainConfig` which holds static configuration.
+ * Utility functions for data processing can also be placed here.
+ */
+class BrainData
+{
+public:
+    BrainData();
+    /* ------------------------------------ Match-related state variables ------------------------------------ */
+
+    int score = 0;
+    int oppoScore = 0;
+    int secsRemaining = 0;  // Remaining match time (seconds)
+    int penalty[HL_MAX_NUM_PLAYERS]; 
+    int oppoPenalty[HL_MAX_NUM_PLAYERS]; 
+    bool isKickingOff = false; 
+    rclcpp::Time kickoffStartTime; 
+    bool isFreekickKickingOff = false; 
+    bool freekickOffenseKickerActive = false;
+    bool freekickKickerTouchArmed = false;
+    bool freekickKickerTouchCostPenaltyActive = false;
+    rclcpp::Time freekickKickerTouchCostPenaltyStartTime;
+    rclcpp::Time freekickKickoffStartTime; 
+    int liveCount = 0; 
+    int oppoLiveCount = 0; 
+    string realGameSubState; 
+    // Local phase machine for ball-out free kicks (throw-in / goal-kick / corner-kick).
+    string localFreekickPhase = "NONE";
+    string localFreekickLastGcSubState = "NONE";
+    rclcpp::Time localFreekickPhaseStartTime;
+    rclcpp::Time localFreekickStableStartTime;
+    rclcpp::Time localFreekickLastPoseSampleTime;
+    rclcpp::Time localFreekickTargetUpdateTime;
+    Pose2D localFreekickLastPoseSample;
+    bool localFreekickPoseSampleInitialized = false;
+    bool localFreekickSeenStop = false;
+    bool waitForOpponentKickoffByFreekick = false;
+
+    /* ------------------------------------ Whistle detection ------------------------------------ */
+    bool whistleTriggeredPlay = false; // 是否通过哨声检测触发 PLAY 状态
+    rclcpp::Time whistleDetectedTime; // 哨声检测的时间戳
+    bool opponentKickoffWhistlePending = false; // 对方普通开球 SET 阶段听到哨声后，等待本地释放条件
+    rclcpp::Time opponentKickoffWhistleTime; // 对方普通开球哨声时间
+    Point opponentKickoffWhistleBallPosToRobot{0.0, 0.0, 0.0}; // 对方普通开球本地释放时用于判断球明显移动的基准
+    Point opponentKickoffWhistleFilteredBallPosToRobot{0.0, 0.0, 0.0};
+    bool opponentKickoffWhistleBallInitialized = false;
+    bool opponentKickoffWhistleSawBallInsideCenter = false;
+    int opponentKickoffWhistleMoveCount = 0;
+    int opponentKickoffWhistleOutsideAfterInsideCount = 0;
+    int opponentKickoffWhistleOutsideAnyCount = 0;
+    bool opponentKickoffLocalPlayOverride = false; // 本地判定对方已开球后，防止 GC SET 把状态拉回
+    rclcpp::Time opponentKickoffLocalPlayOverrideTime; // 本地 PLAY override 的开始时间
+
+    /* ------------------------------------ Data recording ------------------------------------ */
+
+   
+    Pose2D robotPoseToOdom;  
+    Pose2D odomToField;      
+    Pose2D robotPoseToField; 
+
+    double headPitch; 
+    double headYaw;  
+    Eigen::Matrix4d camToRobot = Eigen::Matrix4d::Identity(); 
+
+
+    bool ballDetected = false;   
+    GameObject ball;              
+    GameObject tmBall;           
+    double robotBallAngleToField; 
+    bool lose_ball = false;
+
+    inline vector<GameObject> getRobots() const {
+        std::lock_guard<std::mutex> lock(_robotsMutex);
+        return _robots;
+    }
+    inline void setRobots(const vector<GameObject>& newVec) {
+        std::lock_guard<std::mutex> lock(_robotsMutex);
+        _robots = newVec;
+    }
+
+
+    inline vector<GameObject> getGoalposts() const {
+        std::lock_guard<std::mutex> lock(_goalpostsMutex);
+        return _goalposts;
+    }
+    inline void setGoalposts(const vector<GameObject>& newVec) {
+        std::lock_guard<std::mutex> lock(_goalpostsMutex);
+        _goalposts = newVec;
+    }
+
+
+    inline vector<GameObject> getMarkings() const {
+        std::lock_guard<std::mutex> lock(_markingsMutex);
+        return _markings;
+    }
+    inline void setMarkings(const vector<GameObject>& newVec) {
+        std::lock_guard<std::mutex> lock(_markingsMutex);
+        _markings = newVec;
+    }
+
+    inline vector<FieldLine> getFieldLines() const {
+        std::lock_guard<std::mutex> lock(_fieldLinesMutex);
+        return _fieldLines;
+    }
+    inline void setFieldLines(const vector<FieldLine>& newVec) {
+        std::lock_guard<std::mutex> lock(_fieldLinesMutex);
+        _fieldLines = newVec;
+    }
+
+
+    inline vector<GameObject> getObstacles() const {
+        std::lock_guard<std::mutex> lock(_obstaclesMutex);
+        return _obstacles;
+    }
+    inline void setObstacles(const vector<GameObject>& newVec) {
+        std::lock_guard<std::mutex> lock(_obstaclesMutex);
+        _obstacles = newVec;
+    }
+
+
+    double kickDir = 0.; 
+    string kickType = "shoot"; 
+    bool isDirectShoot = false; 
+
+
+    TMStatus tmStatus[HL_MAX_NUM_PLAYERS]; 
+    int tmCmdId = 0; 
+    rclcpp::Time tmLastCmdChangeTime; 
+    int tmMyCmd = 0; 
+    int tmMyCmdId = 0; 
+    int tmReceivedCmd = 0; 
+    bool tmImLead = true; 
+    bool tmImAlive = true; 
+    double tmMyCost = 0.;
+    int tmMyCostRank = 0; // Rank of my cost to reach the ball, used for multi-robot coordination. Cost roughly equals seconds to reach/kick the ball.
+    int myStrikerIDRank = 0; // My ID rank among strikers, used for multi-robot coordination.
+    bool tmImInVisualKick = false; // Whether I am currently in VisualKick mode, used to coordinate with teammates and avoid conflicts.
+
+    bool shouldExitRLVisionKick = false; // Whether to exit RL-based vision kick mode, used to coordinate with brain tree and ensure smooth transition back to normal behavior after visual kick.
+
+    int discoveryMsgId = 0;
+    rclcpp::Time discoveryMsgTime;
+    int sendId = 0;
+    rclcpp::Time sendTime;
+    int receiveId[HL_MAX_NUM_PLAYERS];
+    rclcpp::Time receiveTime[HL_MAX_NUM_PLAYERS]; 
+    string tmIP;
+    
+
+    RobotRecoveryState recoveryState = RobotRecoveryState::IS_READY;
+    bool isRecoveryAvailable = false; 
+    int currentRobotModeIndex = -1;
+    int recoveryPerformedRetryCount = 0; 
+    bool recoveryPerformed = false;
+
+
+    rclcpp::Time timeLastDet; 
+    bool camConnected = false; 
+    rclcpp::Time timeLastLineDet; 
+    rclcpp::Time lastSuccessfulLocalizeTime;
+    rclcpp::Time timeLastGamecontrolMsg; 
+    rclcpp::Time timeLastLogSave; 
+    VisionBox visionBox;  
+    rclcpp::Time lastTick; 
+
+
+    /**
+     * @brief Get markings by type
+     *
+     * @param types set<string>, empty set means all types; otherwise specify types such as "LCross", "TCross", "XCross", "PenaltyPoint"
+     *
+     * @return vector<GameObject> markings that match the specified types
+     */
+    vector<GameObject> getMarkingsByType(set<string> types={});
+
+
+    vector<FieldMarker> getMarkersForLocator();
+
+
+    Pose2D robot2field(const Pose2D &poseToRobot);
+
+
+    Pose2D field2robot(const Pose2D &poseToField);
+
+private:
+    vector<GameObject> _robots = {}; 
+    mutable std::mutex _robotsMutex;
+
+    vector<GameObject> _goalposts = {}; 
+    mutable std::mutex _goalpostsMutex;
+
+    vector<GameObject> _markings = {};                             
+    mutable std::mutex _markingsMutex;
+
+    vector<FieldLine> _fieldLines = {};
+    mutable std::mutex _fieldLinesMutex;
+
+    vector<GameObject> _obstacles = {};
+    mutable std::mutex _obstaclesMutex;
+
+};

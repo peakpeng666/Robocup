@@ -1,0 +1,26 @@
+[
+  {
+    "case": "short",
+    "arg_chars": 2,
+    "exit_code": 0,
+    "output_tail": "m_38' (/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)\nSetting GYM_USD_PLUG_INFO_PATH to /home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json\nIMPORT_OK\n"
+  },
+  {
+    "case": "pretty",
+    "arg_chars": 524,
+    "exit_code": -11,
+    "output_tail": "Importing module 'gym_38' (/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)\n"
+  },
+  {
+    "case": "compact",
+    "arg_chars": 457,
+    "exit_code": 0,
+    "output_tail": "m_38' (/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)\nSetting GYM_USD_PLUG_INFO_PATH to /home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json\nIMPORT_OK\n"
+  },
+  {
+    "case": "padding",
+    "arg_chars": 1500,
+    "exit_code": 0,
+    "output_tail": "m_38' (/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)\nSetting GYM_USD_PLUG_INFO_PATH to /home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json\nIMPORT_OK\n"
+  }
+]

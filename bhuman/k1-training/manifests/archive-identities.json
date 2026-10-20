@@ -1,0 +1,12 @@
+[
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/downloads/torch-2.3.0a0+git63d5e92-cp38-cp38-linux_x86_64.whl",
+    "bytes": 673351088,
+    "sha256": "6a9707962e83ededded35df45df0149951b8276df37035761ba61173428c1512"
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/downloads/IsaacGym_Preview_4_Package.tar.gz",
+    "bytes": 201141673,
+    "sha256": "c51d77ac1144b91b356f439c7313d8d59468147e37187ebffe7cdbc3154fdb8f"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "created": "2026-10-19T18:28:51.597525+09:00",
+  "scope": "simulation only; no robot; no formal training",
+  "poses": "front/back x all 7 reference keyframes; 28 envs give 2 initial replicas per stratum",
+  "profiles": {
+    "quiet": "published terrain/noise/PD, external kicks and pushes set to zero",
+    "published": "unchanged public perturbation recipe",
+    "stress": "external perturbations x1.5 and initial torso sigma 0.2; exploratory",
+    "hold": "published perturbations; suppress reference-complete reset only to measure continued standing",
+    "stress_sustained": "Additional exploratory run before any such results: same 1.5x/torso-sigma-0.2 stress recipe, but submit body force in EVERY physics step (public submits once per ten substeps). Record separately, not a public-recipe pass/fail."
+  },
+  "merge_gates": {
+    "numerical": "all state/action finite; all applied torques within URDF clamp; reset-input error <=1e-5",
+    "initialization_and_commands": "requested reset q and held/commanded targets within URDF limits <=1e-6",
+    "physical_joint_limits": "max sampled physical overshoot <=0.05 rad; continuous >0.01 rad excursion <=0.10 s; engineering simulation gate, not a robot safety certification",
+    "nominal_quality": "quiet reference completion >=95% overall and >=90% per completed posture stratum",
+    "published_quality": "reference completion >=90% overall and >=80% per posture stratum; terminal stable-stance check recorded separately",
+    "hold": "Report failures and post-getup upright coverage separately. This prolongs the getup actor beyond production phase transition, so it cannot certify the production getup-to-walk handoff. Primary merge gates remain numerical, initialization/targets, physical joint limits, quiet and published posture completion.",
+    "stress": "characterization only; failures cannot be presented as passing published conditions"
+  },
+  "stance_check": "root relative terrain >=0.45 m, |roll| and |pitch| <=0.35 rad, linear speed <=0.5 m/s, angular speed <=1.5 rad/s, continuously >=0.2 s",
+  "rule": "Do not loosen termination/reward or widen gates to get a pass. If quality gates fail, retain candidate and block unconditional mainline promotion.",
+  "hold_gate_predeclared_at": "2026-10-19T18:41:09.865785+09:00",
+  "hold_gate_revision_before_first_hold_run": {
+    "time": "2026-10-19T18:45:17.794183+09:00",
+    "reason": "Production GetUpPhase::createNextPhase forces a walking phase (GetUpEngine.cpp:542-547); holding the getup actor for 120 s exceeds its production motion contract. Retain the predeclared hold criterion as an exploratory pass/fail, not a substitute for testing the getup-to-walk handoff. No hold results exist yet.",
+    "source": "BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp:343-376,542-547"
+  },
+  "hold_characterization_criterion": "Before first hold run: no episode termination through whole window, post-getup upright coverage >=95% overall and >=90% for every environment; record partial initial episode exposure.",
+  "stress_sustained_added_at": "2026-10-19T18:47:22.619525+09:00"
+}

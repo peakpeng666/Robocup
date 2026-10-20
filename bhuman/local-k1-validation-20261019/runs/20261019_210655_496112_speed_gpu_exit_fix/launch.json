@@ -1,0 +1,45 @@
+{
+  "arguments": {
+    "tag": "gpu_exit_fix",
+    "seconds": 6,
+    "build": "Release",
+    "ort_threads": 1,
+    "ort_spin": 0,
+    "headless": false,
+    "vision_cuda": true,
+    "capture_inputs": false,
+    "profile": false,
+    "timeout": 300
+  },
+  "command": [
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalMatch.ros3"
+  ],
+  "controller_sha256": "d52ee5f0f2fb669f30c37f255b4efb542d4e29ca1056fa73979f7da357aab75c",
+  "simulator_sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157",
+  "core3_sha256": "b8f34083939149d5d9fd9a49705ba1522d7690b85808843df668aad4fe3dca92",
+  "public_files": {
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp": "704186f83378272931ccc785095a9d6776bf1963cab572af9797b66943a5a1b2",
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h": "86020512522fe0afbb2792f20913215fa08952b63bcd85f443f31a0ce73d3c6c",
+    "Config/Robots/Default/K1/walkingEngine.cfg": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+    "Config/Robots/Default/K1/motorParameters.cfg": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+    "Config/Robots/SimulatedK1/walkingEngine.cfg": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+    "Config/Robots/SimulatedK1/motorParameters.cfg": "9dd2a3d1030b3729c5acc8f53c34d1126f9c0d0f9c72e5e131b8879f604b1948",
+    "Config/Robots/SimulatedK1/odometryDataPreviewProvider.cfg": "bebcb08d58ed78243c72e692f5d31c637fc9cf5bd8beea09adece4edefdfeb04",
+    "Config/Locations/MField/setupPosesProvider.cfg": "3b4db7e855f86efd601ec264d498512c3421f2fccb9197ff7ac5ee40d9b71786",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/GetUpEngine/K1.onnx": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa",
+    "Config/Robots/Default/K1/cameraResolution.cfg": "dd46e8fc9d28fbcc5c4f1f2d69a19775b89384227cf67dc47017d2441fe66700",
+    "Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+    "Config/NeuralNets/RobotBallPerceptor/ball_robot_640.onnx": "99970cad7d913ec8ddb2c283992be51ad63d4c38ab44906fde2d97df56827986",
+    "Src/Modules/Perception/MultiPerceptors/RobotBallPerceptor.cpp": "5a0849a77b19bffc14c83f6865a7c6bcbf882148ed7c159c4f3e7a16dc10c7ae",
+    "Src/Modules/Perception/MultiPerceptors/RobotBallPerceptor.h": "3c3c21bf7052cf72e3464150d40628c0f5f18b0d69d4565dea3ea894217ecb12"
+  },
+  "normal_vision": true,
+  "recording": false,
+  "physics_dt_s": 0.002
+}

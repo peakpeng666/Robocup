@@ -1,0 +1,10 @@
+{
+  "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "snapshot": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/source-snapshots/efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c.zip",
+  "snapshot_sha256": "2c937f398379c9ae4a5e2451e914d011ec2fa769f949ae07f13f8c1e4a9f98be",
+  "patch": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/patches/0002-current-adaptation.patch",
+  "patch_sha256": "10b2eb903045185c039cec4879d31b6eda625eff57116e8f1737f76718820eb7",
+  "source_files": 31,
+  "patch_applies_to_upstream": true,
+  "original_patches_preserved": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/experiments/walk-diagnosis-20261020/0002-before-codex.patch"
+}

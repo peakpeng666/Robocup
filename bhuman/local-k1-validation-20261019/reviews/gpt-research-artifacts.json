@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/home/peakpeng/Desktop/k1_baseline_cpu_smoke.mp4",
+    "bytes": 821602,
+    "sha256": "4fa45db1acb5f06ae36df7cced2ec0e8307a239b6a0ddca3af9a6a11103fbb0b",
+    "executed": false
+  },
+  {
+    "path": "/home/peakpeng/Desktop/k1-soccer-tooling-0.1.0.run",
+    "bytes": 101524,
+    "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64",
+    "executed": false
+  },
+  {
+    "path": "/home/peakpeng/Desktop/k1-soccer-lab-0.1.0.zip",
+    "bytes": 1260454,
+    "sha256": "9ecc809ff015ce753083fa8214ba6c1586a34fa8dc140ccbe5241555e6ffe97c",
+    "executed": false
+  },
+  {
+    "path": "/home/peakpeng/Desktop/K1_RoboCup_Research_and_Implementation_2026-10-19.pdf",
+    "bytes": 572543,
+    "sha256": "c77229145600bdd344dedb5b35b605298eb8b0328b9b699f979fe73e98a4a708",
+    "executed": false
+  }
+]

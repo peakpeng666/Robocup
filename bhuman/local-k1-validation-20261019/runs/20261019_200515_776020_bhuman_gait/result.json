@@ -1,0 +1,46 @@
+{
+  "status": "FAIL",
+  "mode": "gait",
+  "scope": "Public B-Human K1 controller in normal 3D SimRobot; local simulation only; not a full regulation match or hardware qualification",
+  "requested_simulation_s": 30.0,
+  "checks": {
+    "process_exit_zero": false,
+    "completed_requested_steps": false,
+    "no_console_errors": false,
+    "all_robots_reported": false,
+    "all_robots_have_camera_perception_cognition": false,
+    "finite_all_recorded_frames": true,
+    "all_robots_execute_walk": false,
+    "no_fall_or_getup": true,
+    "robot_traveled_over_1m": false,
+    "complete_frame_capture": false
+  },
+  "robots": {
+    "robot5": {
+      "physics_samples": 0,
+      "motion_samples": 0,
+      "unique_camera_timestamps_sampled": 0,
+      "perception_samples": 0,
+      "ball_seen_samples": 0,
+      "cognition_samples": 0,
+      "skills": [],
+      "walk_frames": 0,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 0.0,
+      "max_sampled_abs_roll_pitch_rad": null,
+      "first_pose": null,
+      "last_pose": null
+    }
+  },
+  "game_states": [],
+  "last_game": null,
+  "ball_contacts_logged": 0,
+  "ball_path_m_from_2hz_samples": 0.0,
+  "errors": [
+    "AUDIT ERROR rejected_schedule_command"
+  ],
+  "measurement_note": "Joint/pose finite counters run each available frame; trajectories sampled at 2 Hz. Ball path includes automatic-referee placement. Contacts are rate-limited at 10 Hz."
+}

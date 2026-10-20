@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-20T05:14:26.061574+00:00",
+  "reason": "Walk fresh post-step KL, timeout tensor identity fix, optional critic/reference experiments; shared checkpoint helper preserves optimizer group LR. Standup physics code unchanged.",
+  "new_mainline_source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "regression": {
+    "warm": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141315_554903_standup_kl_regression_warm",
+    "full": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141325_828339_standup_kl_regression_full",
+    "both_status": "PASS",
+    "restored_iteration": 3,
+    "restored_env_steps": 4608,
+    "state_equality_verified": true,
+    "rng_restored": true,
+    "environment_state_restored": false
+  },
+  "env_code_t1_stand_up_unchanged": true,
+  "model_deployment_approved": false
+}

@@ -1,0 +1,312 @@
+{
+  "utc": "2026-10-20T03:37:15Z",
+  "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+  "policy_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+  "actor_checkpoint_mode": "actor",
+  "load_info": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+    "mode": "actor",
+    "format": "upstream",
+    "iteration": null,
+    "env_steps": null,
+    "lr": null,
+    "rng_restored": false
+  },
+  "source_sha256": "2e33e63b869f7a6aabf7b31eafd15d623c75a3291b95b47497d60843ce674ca4",
+  "seed": 2027,
+  "num_envs": 8,
+  "seg_steps": 100,
+  "schedule": [
+    "still",
+    "forward",
+    "backward",
+    "left",
+    "right",
+    "turn_left",
+    "turn_right",
+    "diag_fwd_left",
+    "diag_fwd_right",
+    "stop_settle",
+    "reverse",
+    "final_still"
+  ],
+  "sampling_note": "joint/torque extremes sampled at policy rate (50 Hz, final physics substep); not a 500 Hz worst-case guarantee",
+  "planned_steps": 1200,
+  "executed_steps": 1200,
+  "termination_events_total": {},
+  "settle_after_stop_steps": null,
+  "settle_after_stop_seconds": null,
+  "max_joint_overshoot_rad": 1.0758638381958008e-05,
+  "overshoot_gt_10mrad_max_consecutive_policy_steps": 0,
+  "overshoot_gt_10mrad_max_consecutive_seconds": 0.0,
+  "max_abs_applied_torque_nm": 52.18132019042969,
+  "torque_saturation_ratio": 7.211538461538462e-05,
+  "segments": {
+    "still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.12096996605396271,
+        0.19975505769252777,
+        0.2571738660335541
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.1883547455072403,
+        0.2376370131969452,
+        0.37862861156463623
+      ],
+      "mean_step_disp_m": 0.004614636969054117,
+      "mean_step_yaw_rad": 0.004850752055644989,
+      "max_step_drift_m": 0.020631864666938782,
+      "termination_events": {}
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.15191613137722015,
+        0.15583695471286774,
+        0.3647240698337555
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.35841104388237,
+        0.15858708322048187,
+        0.35135984420776367
+      ],
+      "mean_step_disp_m": 0.01615160654298961,
+      "mean_step_yaw_rad": 0.004955844283103943,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.14552882313728333,
+        0.17921970784664154,
+        0.3073522746562958
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.5281525254249573,
+        0.20594918727874756,
+        0.3888813257217407
+      ],
+      "mean_step_disp_m": 0.011286730668507517,
+      "mean_step_yaw_rad": 0.004719556868076324,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.07815983146429062,
+        0.24766521155834198,
+        0.26154065132141113
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.2033984661102295,
+        0.28680577874183655,
+        0.29205095767974854
+      ],
+      "mean_step_disp_m": 0.00877921496052295,
+      "mean_step_yaw_rad": 0.0036682045459747316,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "right": {
+      "command_vx_vy_wz": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.19183345139026642,
+        0.24694621562957764,
+        0.2623271048069
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.16966572403907776,
+        0.3655817210674286,
+        0.28015169501304626
+      ],
+      "mean_step_disp_m": 0.007632883652113378,
+      "mean_step_yaw_rad": 0.0035106515884399414,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "turn_left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.11909828335046768,
+        0.18069714307785034,
+        0.3306999206542969
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.12091401219367981,
+        0.2420405000448227,
+        0.373261958360672
+      ],
+      "mean_step_disp_m": 0.004470747578889132,
+      "mean_step_yaw_rad": 0.012691912055015565,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "turn_right": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.11426888406276703,
+        0.16660520434379578,
+        0.2537631690502167
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.10992176085710526,
+        0.17961686849594116,
+        0.3688577115535736
+      ],
+      "mean_step_disp_m": 0.003579544681124389,
+      "mean_step_yaw_rad": 0.01294200986623764,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "diag_fwd_left": {
+      "command_vx_vy_wz": [
+        0.6,
+        0.3,
+        0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.12356730550527573,
+        0.1884903907775879,
+        0.2938690483570099
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.2075403481721878,
+        0.19551418721675873,
+        0.4019450843334198
+      ],
+      "mean_step_disp_m": 0.011854742777068168,
+      "mean_step_yaw_rad": 0.00680875301361084,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "diag_fwd_right": {
+      "command_vx_vy_wz": [
+        0.6,
+        -0.3,
+        -0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.1324404776096344,
+        0.18324261903762817,
+        0.4807112514972687
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.1491253674030304,
+        0.23755984008312225,
+        0.5514070391654968
+      ],
+      "mean_step_disp_m": 0.011602795301005244,
+      "mean_step_yaw_rad": 0.007051549851894379,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "stop_settle": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.10921025276184082,
+        0.17303292453289032,
+        0.22489085793495178
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.17631614208221436,
+        0.20283527672290802,
+        0.2654596269130707
+      ],
+      "mean_step_disp_m": 0.004283791750203818,
+      "mean_step_yaw_rad": 0.002879317104816437,
+      "max_step_drift_m": 0.019975103437900543,
+      "termination_events": {}
+    },
+    "reverse": {
+      "command_vx_vy_wz": [
+        -0.6,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.14562851190567017,
+        0.1947496384382248,
+        0.3475768268108368
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.2080819457769394,
+        0.18973387777805328,
+        0.34840571880340576
+      ],
+      "mean_step_disp_m": 0.011994521231390536,
+      "mean_step_yaw_rad": 0.004413040280342102,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "final_still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.0963740348815918,
+        0.17581747472286224,
+        0.1995786428451538
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.22539864480495453,
+        0.18097132444381714,
+        0.23216518759727478
+      ],
+      "mean_step_disp_m": 0.004543002364225685,
+      "mean_step_yaw_rad": 0.002834760844707489,
+      "max_step_drift_m": 0.018073970451951027,
+      "termination_events": {}
+    }
+  },
+  "finite_checks_pass": true
+}

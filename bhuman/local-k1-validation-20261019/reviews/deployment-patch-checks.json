@@ -1,0 +1,16 @@
+[
+  {
+    "patch": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/patches/bhuman-local-deployment-20261019.patch",
+    "base": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease",
+    "exit_code": 0,
+    "diagnostic": "",
+    "sha256": "8d0ed02a32d876ab0c3ce4b4600ff04b16431f51fbc7a8d34e305fc8f78b8aa5"
+  },
+  {
+    "patch": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/patches/simrobot-local-deployment-20261019.patch",
+    "base": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Util/SimRobot",
+    "exit_code": 0,
+    "diagnostic": "",
+    "sha256": "f103e66cce9282b8d3ffc6600b6235d2a8346d9f33f80f1fd2a15ae6c8ffec59"
+  }
+]

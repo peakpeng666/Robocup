@@ -1,0 +1,19 @@
+ball_tracker_node:
+  ros__parameters:
+    intrinsics:
+      fx: 643.898
+      fy: 643.216
+      cx: 649.038
+      cy: 357.21
+    eye2head_extrin: 
+      matrix: [0.05659255, 0.03014561, 0.99794215, 0.04217854,
+               -0.99839673, 0.00283376, 0.05653273, 0.01405556,
+               -0.00112372,-0.9995415 , 0.03025765,-0.01538294,
+               0.0, 0.0, 0.0, 1.0]
+    detection_time_tolerance: 0.1           #单位是s 目前使用
+    pysot_confidence_threshold: 0.15
+    video_output:
+      enable: false # 设置为 false 以禁用视频输出
+      filename: "output.avi"
+      fourcc: "MJPG"
+      fps: 15.00

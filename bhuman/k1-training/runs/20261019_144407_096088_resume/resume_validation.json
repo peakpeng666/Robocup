@@ -1,0 +1,12 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144253_625962_smoke_train/nn/model_final.pth",
+  "sha256": "0cbdc22e43930ebf3729d81fbfb7ecd27ea338c93ba1f612a36f38a2cdfbb099",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 5,
+  "env_steps": 7680,
+  "lr": 0.0001,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "environment_state_restored": false
+}

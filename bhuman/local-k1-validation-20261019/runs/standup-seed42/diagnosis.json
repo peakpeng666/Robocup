@@ -1,0 +1,1007 @@
+{
+  "exit_code": 0,
+  "record_count": 1210,
+  "old_metrics": {
+    "task": "K1_Stand_Up",
+    "policy_steps": 300,
+    "num_envs": 4,
+    "policy_dt_s": 0.02,
+    "physics_dt_s": 0.0020000000949949026,
+    "gpu_physx": true,
+    "gpu_pipeline": true,
+    "tensor_device": "cuda:0",
+    "resets": 5,
+    "timeout_resets": 0,
+    "non_timeout_resets": 5,
+    "termination_counts": {
+      "fall_detected": 2,
+      "reference_complete_without_fall": 3
+    },
+    "mean_reward_per_step": 1.1655337154865264,
+    "max_abs": {
+      "observation": 8.52535343170166,
+      "reward": 4.4672346115112305,
+      "dof_pos": 2.999177932739258,
+      "dof_vel": 23.68764305114746,
+      "root_states": 63.91181564331055,
+      "preclip_mean_torques": 155.1669158935547,
+      "last_substep_applied_torques": 40.0
+    },
+    "finite_checks_pass": true,
+    "dof_names": [
+      "AAHead_yaw",
+      "Head_pitch",
+      "ALeft_Shoulder_Pitch",
+      "Left_Shoulder_Roll",
+      "Left_Elbow_Pitch",
+      "Left_Elbow_Yaw",
+      "ARight_Shoulder_Pitch",
+      "Right_Shoulder_Roll",
+      "Right_Elbow_Pitch",
+      "Right_Elbow_Yaw",
+      "Left_Hip_Pitch",
+      "Left_Hip_Roll",
+      "Left_Hip_Yaw",
+      "Left_Knee_Pitch",
+      "Left_Ankle_Pitch",
+      "Left_Ankle_Roll",
+      "Right_Hip_Pitch",
+      "Right_Hip_Roll",
+      "Right_Hip_Yaw",
+      "Right_Knee_Pitch",
+      "Right_Ankle_Pitch",
+      "Right_Ankle_Roll"
+    ],
+    "asset_configuration": {
+      "file": "resources/K1/K1_locomotion_all_joints_simple_2.urdf",
+      "file_mesh": "resources/K1/K1_locomotion_all_joints_mesh.urdf",
+      "mujoco_file": "resources/K1/K1_locomotion.xml",
+      "name": "K1",
+      "base_name": "Trunk",
+      "foot_names": [
+        "left_foot_link",
+        "right_foot_link"
+      ],
+      "lower_body_names": [
+        "Left_Hip_Pitch",
+        "Right_Hip_Pitch"
+      ],
+      "head_name": [
+        "Head_2"
+      ],
+      "disable_gravity": false,
+      "default_dof_drive_mode": 3,
+      "collapse_fixed_joints": true,
+      "fix_base_link": false,
+      "self_collisions": 0,
+      "replace_cylinder_with_capsule": false,
+      "flip_visual_attachments": false,
+      "density": 0.001,
+      "angular_damping": 0.0,
+      "linear_damping": 0.0,
+      "max_angular_velocity": 1000.0,
+      "max_linear_velocity": 1000.0,
+      "armature": 0.0,
+      "thickness": 0.01,
+      "feet_edge_pos": [
+        [
+          0.1185,
+          0.035,
+          -0.038
+        ],
+        [
+          0.1185,
+          -0.035,
+          -0.038
+        ],
+        [
+          -0.0665,
+          0.035,
+          -0.038
+        ],
+        [
+          -0.0665,
+          -0.035,
+          -0.038
+        ]
+      ],
+      "feet_sole_pos": [
+        0,
+        0,
+        -0.038
+      ],
+      "ankle_ids": []
+    },
+    "max_measured_joint_limit_overshoot_rad": 0.04003887623548508,
+    "torque_clamp_check": "PASS (sampled final physics substep of each policy step)",
+    "note": "Non-timeout reset is not necessarily a fall; task-specific termination applies. No real-robot validation."
+  },
+  "new_metrics": {
+    "task": "K1_Stand_Up",
+    "policy_steps": 300,
+    "num_envs": 4,
+    "policy_dt_s": 0.02,
+    "physics_dt_s": 0.0020000000949949026,
+    "gpu_physx": true,
+    "gpu_pipeline": true,
+    "tensor_device": "cuda:0",
+    "resets": 6,
+    "timeout_resets": 0,
+    "non_timeout_resets": 6,
+    "termination_counts": {
+      "fall_detected": 3,
+      "reference_complete_without_fall": 3
+    },
+    "mean_reward_per_step": 1.051165227194627,
+    "max_abs": {
+      "observation": 14.137410163879395,
+      "reward": 10.676847457885742,
+      "dof_pos": 2.9986140727996826,
+      "dof_vel": 22.65683937072754,
+      "root_states": 63.942779541015625,
+      "preclip_mean_torques": 120.14598846435547,
+      "last_substep_applied_torques": 40.0
+    },
+    "finite_checks_pass": true,
+    "dof_names": [
+      "AAHead_yaw",
+      "Head_pitch",
+      "ALeft_Shoulder_Pitch",
+      "Left_Shoulder_Roll",
+      "Left_Elbow_Pitch",
+      "Left_Elbow_Yaw",
+      "ARight_Shoulder_Pitch",
+      "Right_Shoulder_Roll",
+      "Right_Elbow_Pitch",
+      "Right_Elbow_Yaw",
+      "Left_Hip_Pitch",
+      "Left_Hip_Roll",
+      "Left_Hip_Yaw",
+      "Left_Knee_Pitch",
+      "Left_Ankle_Pitch",
+      "Left_Ankle_Roll",
+      "Right_Hip_Pitch",
+      "Right_Hip_Roll",
+      "Right_Hip_Yaw",
+      "Right_Knee_Pitch",
+      "Right_Ankle_Pitch",
+      "Right_Ankle_Roll"
+    ],
+    "asset_configuration": {
+      "file": "resources/K1/K1_locomotion_all_joints_simple_2.urdf",
+      "file_mesh": "resources/K1/K1_locomotion_all_joints_mesh.urdf",
+      "mujoco_file": "resources/K1/K1_locomotion.xml",
+      "name": "K1",
+      "base_name": "Trunk",
+      "foot_names": [
+        "left_foot_link",
+        "right_foot_link"
+      ],
+      "lower_body_names": [
+        "Left_Hip_Pitch",
+        "Right_Hip_Pitch"
+      ],
+      "head_name": [
+        "Head_2"
+      ],
+      "disable_gravity": false,
+      "default_dof_drive_mode": 3,
+      "collapse_fixed_joints": true,
+      "fix_base_link": false,
+      "self_collisions": 0,
+      "replace_cylinder_with_capsule": false,
+      "flip_visual_attachments": false,
+      "density": 0.001,
+      "angular_damping": 0.0,
+      "linear_damping": 0.0,
+      "max_angular_velocity": 1000.0,
+      "max_linear_velocity": 1000.0,
+      "armature": 0.0,
+      "thickness": 0.01,
+      "feet_edge_pos": [
+        [
+          0.1185,
+          0.035,
+          -0.038
+        ],
+        [
+          0.1185,
+          -0.035,
+          -0.038
+        ],
+        [
+          -0.0665,
+          0.035,
+          -0.038
+        ],
+        [
+          -0.0665,
+          -0.035,
+          -0.038
+        ]
+      ],
+      "feet_sole_pos": [
+        0,
+        0,
+        -0.038
+      ],
+      "ankle_ids": []
+    },
+    "max_measured_joint_limit_overshoot_rad": 0.04003887623548508,
+    "torque_clamp_check": "PASS (sampled final physics substep of each policy step)",
+    "note": "Non-timeout reset is not necessarily a fall; task-specific termination applies. No real-robot validation."
+  },
+  "failures": [
+    {
+      "initial_state": {
+        "event": "reset",
+        "step": 0,
+        "env": 1,
+        "direction": 1,
+        "start_keyframe": 6,
+        "root_xyz": [
+          31.658599853515625,
+          4.7939133644104,
+          0.6618602275848389
+        ],
+        "root_quat": [
+          -0.08356180787086487,
+          0.01672404818236828,
+          0.8907189965248108,
+          0.44649457931518555
+        ],
+        "dof_pos": [
+          -0.025396952405571938,
+          -0.1330312341451645,
+          0.02084544487297535,
+          -1.4585731029510498,
+          1.5165597200393677,
+          -0.04508617892861366,
+          -0.006650248076766729,
+          1.439668893814087,
+          1.6110962629318237,
+          0.014950855635106564,
+          -0.6700895428657532,
+          0.042827486991882324,
+          0.0013983834069222212,
+          0.7387468814849854,
+          -0.2661537826061249,
+          0.009301724843680859,
+          -0.6442205905914307,
+          -0.02594425342977047,
+          -0.012241536751389503,
+          0.7865407466888428,
+          -0.27207881212234497,
+          0.002446172758936882
+        ],
+        "delay_steps": 5
+      },
+      "onset": {
+        "event": "step",
+        "step": 26,
+        "env": 1,
+        "episode_step": 26,
+        "direction": 1,
+        "keyframe": 6,
+        "gait_process": 0.9974425435066223,
+        "measured_roll_pitch": [
+          0.1241922527551651,
+          -1.6502153873443604
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          0.0
+        ],
+        "error_roll_pitch": [
+          0.1241922527551651,
+          -1.6502153873443604
+        ],
+        "root_z": 0.09831637889146805,
+        "root_velocity_squared": 11.736468315124512,
+        "fall_onset": true,
+        "fall_latched": true,
+        "terminate_counter": 1,
+        "reset": false,
+        "timeout": false,
+        "action_absmax": 2.5702788829803467
+      },
+      "termination": {
+        "event": "step",
+        "step": 31,
+        "env": 1,
+        "episode_step": 31,
+        "direction": 1,
+        "keyframe": 6,
+        "gait_process": 1.029002070426941,
+        "measured_roll_pitch": [
+          -0.27072203159332275,
+          -1.6349951028823853
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          0.0
+        ],
+        "error_roll_pitch": [
+          -0.27072203159332275,
+          -1.6349951028823853
+        ],
+        "root_z": 0.12158733606338501,
+        "root_velocity_squared": 5.0120015144348145,
+        "fall_onset": false,
+        "fall_latched": true,
+        "terminate_counter": 6,
+        "reset": true,
+        "timeout": false,
+        "action_absmax": 2.3862016201019287
+      }
+    },
+    {
+      "initial_state": {
+        "event": "reset",
+        "step": 113,
+        "env": 0,
+        "direction": 0,
+        "start_keyframe": 0,
+        "root_xyz": [
+          16.581462860107422,
+          5.248392105102539,
+          0.13143494725227356
+        ],
+        "root_quat": [
+          -0.678087055683136,
+          -0.03299783542752266,
+          0.7332924008369446,
+          -0.03730045631527901
+        ],
+        "dof_pos": [
+          0.08887433260679245,
+          -0.03848760575056076,
+          0.36839139461517334,
+          -1.376036286354065,
+          0.08192285895347595,
+          -0.0027767398860305548,
+          0.4391598701477051,
+          1.358074426651001,
+          0.06792278587818146,
+          0.062457114458084106,
+          -0.007287480868399143,
+          -0.014453333802521229,
+          -0.04193376749753952,
+          0.023722559213638306,
+          -0.015699440613389015,
+          -0.03850790858268738,
+          -0.051415812224149704,
+          0.024331873282790184,
+          -0.02518649958074093,
+          -0.04003887623548508,
+          -0.04567520320415497,
+          -0.005380493588745594
+        ],
+        "delay_steps": 3
+      },
+      "onset": {
+        "event": "step",
+        "step": 244,
+        "env": 0,
+        "episode_step": 131,
+        "direction": 0,
+        "keyframe": 5,
+        "gait_process": 0.7905727624893188,
+        "measured_roll_pitch": [
+          -0.35710257291793823,
+          1.505656123161316
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          0.7492879629135132
+        ],
+        "error_roll_pitch": [
+          -0.35710257291793823,
+          0.7563681602478027
+        ],
+        "root_z": 0.30247125029563904,
+        "root_velocity_squared": 1.0803073644638062,
+        "fall_onset": true,
+        "fall_latched": true,
+        "terminate_counter": 1,
+        "reset": false,
+        "timeout": false,
+        "action_absmax": 2.794922113418579
+      },
+      "termination": {
+        "event": "step",
+        "step": 249,
+        "env": 0,
+        "episode_step": 136,
+        "direction": 0,
+        "keyframe": 6,
+        "gait_process": 0.8207474946975708,
+        "measured_roll_pitch": [
+          -0.3360643684864044,
+          1.6220495700836182
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          0.5740557909011841
+        ],
+        "error_roll_pitch": [
+          -0.3360643684864044,
+          1.047993779182434
+        ],
+        "root_z": 0.32350465655326843,
+        "root_velocity_squared": 0.3026428818702698,
+        "fall_onset": false,
+        "fall_latched": true,
+        "terminate_counter": 6,
+        "reset": true,
+        "timeout": false,
+        "action_absmax": 1.916555404663086
+      }
+    },
+    {
+      "initial_state": {
+        "event": "reset",
+        "step": 249,
+        "env": 0,
+        "direction": 1,
+        "start_keyframe": 5,
+        "root_xyz": [
+          16.61988067626953,
+          4.169336795806885,
+          0.1340220421552658
+        ],
+        "root_quat": [
+          0.23759767413139343,
+          0.6781760454177856,
+          0.2292204648256302,
+          -0.6565688252449036
+        ],
+        "dof_pos": [
+          0.05078441649675369,
+          0.2948310971260071,
+          -0.8105511665344238,
+          1.417780876159668,
+          1.634682536125183,
+          0.02931053750216961,
+          -0.870115339756012,
+          -1.4346702098846436,
+          1.5826390981674194,
+          0.01846734993159771,
+          1.5457003116607666,
+          0.005187557078897953,
+          0.030210871249437332,
+          0.8609700202941895,
+          -0.5063551068305969,
+          0.004408527165651321,
+          1.5661263465881348,
+          -0.015643009915947914,
+          0.07442613691091537,
+          0.7355943918228149,
+          -0.5528838634490967,
+          -0.02678234688937664
+        ],
+        "delay_steps": 3
+      },
+      "onset": {
+        "event": "step",
+        "step": 289,
+        "env": 0,
+        "episode_step": 40,
+        "direction": 1,
+        "keyframe": 6,
+        "gait_process": 0.9607899785041809,
+        "measured_roll_pitch": [
+          -0.518666684627533,
+          -1.132049560546875
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          -0.3693434000015259
+        ],
+        "error_roll_pitch": [
+          -0.518666684627533,
+          -0.7627061605453491
+        ],
+        "root_z": 0.1806628257036209,
+        "root_velocity_squared": 8.233466148376465,
+        "fall_onset": true,
+        "fall_latched": true,
+        "terminate_counter": 1,
+        "reset": false,
+        "timeout": false,
+        "action_absmax": 2.3587615489959717
+      },
+      "termination": {
+        "event": "step",
+        "step": 294,
+        "env": 0,
+        "episode_step": 45,
+        "direction": 1,
+        "keyframe": 6,
+        "gait_process": 0.9923470616340637,
+        "measured_roll_pitch": [
+          -0.7469019889831543,
+          -1.0220112800598145
+        ],
+        "reference_roll_pitch": [
+          0.0,
+          -0.07207381725311279
+        ],
+        "error_roll_pitch": [
+          -0.7469019889831543,
+          -0.9499374628067017
+        ],
+        "root_z": 0.20618432760238647,
+        "root_velocity_squared": 7.102675914764404,
+        "fall_onset": false,
+        "fall_latched": true,
+        "terminate_counter": 6,
+        "reset": true,
+        "timeout": false,
+        "action_absmax": 2.4968109130859375
+      }
+    }
+  ],
+  "reference_completions": [
+    {
+      "event": "step",
+      "step": 113,
+      "env": 0,
+      "episode_step": 113,
+      "direction": 0,
+      "keyframe": 6,
+      "gait_process": 1.5371649265289307,
+      "measured_roll_pitch": [
+        0.028563352301716805,
+        -0.008576761931180954
+      ],
+      "reference_roll_pitch": [
+        0.0,
+        0.0
+      ],
+      "error_roll_pitch": [
+        0.028563352301716805,
+        -0.008576761931180954
+      ],
+      "root_z": 0.49208518862724304,
+      "root_velocity_squared": 0.027013879269361496,
+      "fall_onset": false,
+      "fall_latched": false,
+      "terminate_counter": 6,
+      "reset": true,
+      "timeout": false,
+      "action_absmax": 1.6932696104049683
+    },
+    {
+      "event": "step",
+      "step": 147,
+      "env": 3,
+      "episode_step": 147,
+      "direction": 1,
+      "keyframe": 6,
+      "gait_process": 1.535831332206726,
+      "measured_roll_pitch": [
+        -0.030491480603814125,
+        -0.11050717532634735
+      ],
+      "reference_roll_pitch": [
+        0.0,
+        0.0
+      ],
+      "error_roll_pitch": [
+        -0.030491480603814125,
+        -0.11050717532634735
+      ],
+      "root_z": 0.5053624510765076,
+      "root_velocity_squared": 0.019001422449946404,
+      "fall_onset": false,
+      "fall_latched": false,
+      "terminate_counter": 6,
+      "reset": true,
+      "timeout": false,
+      "action_absmax": 1.6550018787384033
+    },
+    {
+      "event": "step",
+      "step": 242,
+      "env": 2,
+      "episode_step": 242,
+      "direction": 1,
+      "keyframe": 6,
+      "gait_process": 1.5319527387619019,
+      "measured_roll_pitch": [
+        -0.007440356072038412,
+        -0.13146524131298065
+      ],
+      "reference_roll_pitch": [
+        0.0,
+        0.0
+      ],
+      "error_roll_pitch": [
+        -0.007440356072038412,
+        -0.13146524131298065
+      ],
+      "root_z": 0.4865759313106537,
+      "root_velocity_squared": 0.051036037504673004,
+      "fall_onset": false,
+      "fall_latched": false,
+      "terminate_counter": 6,
+      "reset": true,
+      "timeout": false,
+      "action_absmax": 1.655936598777771
+    }
+  ],
+  "saved_observation_comparison": [
+    {
+      "policy_step": 0,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "new_phase": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "policy_step": 18,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.9254311919212341,
+        0.9469473958015442,
+        0.11394673585891724,
+        0.6999652981758118
+      ],
+      "new_phase": [
+        0.9254311919212341,
+        0.9469473958015442,
+        0.11394673585891724,
+        0.6999652981758118
+      ]
+    },
+    {
+      "policy_step": 36,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        1.0,
+        0.027204157784581184,
+        0.2278934121131897,
+        0.8165977597236633
+      ],
+      "new_phase": [
+        1.0,
+        0.027204157784581184,
+        0.2278934121131897,
+        0.8165977597236633
+      ]
+    },
+    {
+      "policy_step": 54,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        1.0,
+        0.12513913214206696,
+        0.34184011816978455,
+        0.9332302212715149
+      ],
+      "new_phase": [
+        1.0,
+        0.12513913214206696,
+        0.34184011816978455,
+        0.9332302212715149
+      ]
+    },
+    {
+      "policy_step": 72,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        1.0,
+        0.22307409346103668,
+        0.455786794424057,
+        1.0
+      ],
+      "new_phase": [
+        1.0,
+        0.22307409346103668,
+        0.455786794424057,
+        1.0
+      ]
+    },
+    {
+      "policy_step": 90,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        1.0,
+        0.3210090696811676,
+        0.5697334408760071,
+        1.0
+      ],
+      "new_phase": [
+        1.0,
+        0.3210090696811676,
+        0.5697334408760071,
+        1.0
+      ]
+    },
+    {
+      "policy_step": 108,
+      "max_abs_difference_by_env": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        1.0,
+        0.41894403100013733,
+        0.6836802363395691,
+        1.0
+      ],
+      "new_phase": [
+        1.0,
+        0.41894403100013733,
+        0.6836802363395691,
+        1.0
+      ]
+    },
+    {
+      "policy_step": 126,
+      "max_abs_difference_by_env": [
+        1.3456239700317383,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.07845382392406464,
+        0.5168790221214294,
+        0.7976276278495789,
+        1.0
+      ],
+      "new_phase": [
+        0.07845382392406464,
+        0.5168790221214294,
+        0.7976276278495789,
+        1.0
+      ]
+    },
+    {
+      "policy_step": 144,
+      "max_abs_difference_by_env": [
+        2.5978736877441406,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.1870821714401245,
+        0.6148139834403992,
+        0.9115750193595886,
+        1.0
+      ],
+      "new_phase": [
+        0.1870821714401245,
+        0.6148139834403992,
+        0.9115750193595886,
+        1.0
+      ]
+    },
+    {
+      "policy_step": 162,
+      "max_abs_difference_by_env": [
+        2.638838052749634,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.2957107126712799,
+        0.7127492427825928,
+        1.0,
+        0.09629298746585846
+      ],
+      "new_phase": [
+        0.2957107126712799,
+        0.7127492427825928,
+        1.0,
+        0.09629298746585846
+      ]
+    },
+    {
+      "policy_step": 180,
+      "max_abs_difference_by_env": [
+        0.7441892623901367,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.40433916449546814,
+        0.8106849193572998,
+        1.0,
+        0.2118445634841919
+      ],
+      "new_phase": [
+        0.40433916449546814,
+        0.8106849193572998,
+        1.0,
+        0.2118445634841919
+      ]
+    },
+    {
+      "policy_step": 198,
+      "max_abs_difference_by_env": [
+        0.6152316927909851,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.5129672884941101,
+        0.9086205959320068,
+        1.0,
+        0.3273959755897522
+      ],
+      "new_phase": [
+        0.5129672884941101,
+        0.9086205959320068,
+        1.0,
+        0.3273959755897522
+      ]
+    },
+    {
+      "policy_step": 216,
+      "max_abs_difference_by_env": [
+        2.375023365020752,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.6215954422950745,
+        1.0,
+        1.0,
+        0.4429475665092468
+      ],
+      "new_phase": [
+        0.6215954422950745,
+        1.0,
+        1.0,
+        0.4429475665092468
+      ]
+    },
+    {
+      "policy_step": 234,
+      "max_abs_difference_by_env": [
+        3.1922268867492676,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "old_phase": [
+        0.730223536491394,
+        1.0,
+        1.0,
+        0.5584993958473206
+      ],
+      "new_phase": [
+        0.730223536491394,
+        1.0,
+        1.0,
+        0.5584993958473206
+      ]
+    },
+    {
+      "policy_step": 252,
+      "max_abs_difference_by_env": [
+        3.387242317199707,
+        1.769792914390564,
+        1.949319839477539,
+        0.5208487510681152
+      ],
+      "old_phase": [
+        0.0,
+        1.0,
+        0.637084424495697,
+        0.6740511655807495
+      ],
+      "new_phase": [
+        0.7272675633430481,
+        1.0,
+        0.637084424495697,
+        0.6740511655807495
+      ]
+    },
+    {
+      "policy_step": 270,
+      "max_abs_difference_by_env": [
+        2.7642135620117188,
+        0.24067161977291107,
+        3.3481967449188232,
+        0.9810870885848999
+      ],
+      "old_phase": [
+        0.1277153193950653,
+        1.0,
+        0.733836829662323,
+        0.7896028161048889
+      ],
+      "new_phase": [
+        0.8408730626106262,
+        1.0,
+        0.733836829662323,
+        0.7896028161048889
+      ]
+    }
+  ],
+  "file_hashes": {
+    "envs/K1_Stand_Up.yaml": {
+      "sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+      "matches_original": true
+    },
+    "envs/t1_stand_up.py": {
+      "sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+      "matches_original": true
+    },
+    "envs/k1_stand_up.py": {
+      "sha256": "792e6086ec2862eddcc94b2ffde05966088681e91b0e55adc3cb4440f48a27ff",
+      "matches_original": true
+    },
+    "envs/base_task.py": {
+      "sha256": "ab198980c84017ed0d454db7e969cc3d7d1ea341bdd564059a3a4ec5036fe513",
+      "matches_original": true
+    },
+    "utils/runner.py": {
+      "sha256": "7148b5d6ad0a80ae926158ab56f03c00472b88da2a9ebc0b5c3ec932ec3278bc",
+      "matches_original": true
+    },
+    "utils/validation.py": {
+      "sha256": "d5907c708d4d898e4930826deafe13076235e10a7c40a6dbd455521abd7baf4c",
+      "matches_original": true
+    },
+    "pre-trained/GetUp/K1_stand_up.pt": {
+      "sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+      "matches_original": true
+    },
+    "resources/K1/K1_locomotion_all_joints_simple_2.urdf": {
+      "sha256": "a8fd3600fb415806cc06e59dfa8f1d411eebf06e745a808124fbfa1f78b88610",
+      "matches_original": true
+    }
+  },
+  "limits": "Same seed does not yield identical post-reset trajectory. All saved samples through step108 match exactly; only env0 differs at samples126 through234. Historical run lacks per-step events; exact historical second-failure angle/onset cannot be recovered from these samples."
+}

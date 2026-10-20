@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "preserved_files_and_zip_entries": 51,
+  "historical_test_source_hashes_verified": 13,
+  "run_and_video_match_prior_original_hashes": true,
+  "mainline_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "local_document_links_verified": 25,
+  "original_repositories": {
+    "BHumanCodeRelease": "clean",
+    "MachineLearning": "clean"
+  },
+  "pdf_preservation": "19-page extracted text; pages 4,8,9 renders; original PDF unavailable"
+}

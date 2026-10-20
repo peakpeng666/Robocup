@@ -1,0 +1,26 @@
+whistle_detection:
+  ros__parameters:
+    audio:
+      pcm_device: "hw:3,0"              # ALSA capture device. On current robots the XFM USB mic is hw:3,0.
+      channels: 1                       # Use 1 for mono USB mic; use 6 for the Duerwen mic array path.
+      sample_rate: 16000                # Hz. Current detector coefficients are tuned for 16 kHz audio.
+      processing_frame_samples: 1024    # Samples per channel processed as one detector block.
+      use_duerwen_aec: false            # true for 6ch Duerwen array; false for mono USB mic.
+
+    detection:
+      topic: "/whistle_detected"
+      publish_message: "whistle_detected"
+      threshold: 0.995                  # Higher is stricter; lower is more sensitive.
+      score_bias: 0.6050399             # Logistic model intercept.
+      noise_scale: 10.0                 # Noise normalization factor used by the score model.
+      log_scores: false                 # Enable only for short tuning sessions; it is very verbose.
+      mono_spectral:
+        enable: true                    # Extra detector for mono USB mic path.
+        min_rms: 0.049788114438677791                   # Mono whistle energy threshold after normalization.
+        min_peak_hz: 2500.0             # Observed whistle band on hw:3,0 is roughly 2.6-2.8 kHz.
+        max_peak_hz: 3250.0
+        min_peak_magnitude: 0.0025032451655715706
+        min_band_ratio: 0.1139555753185402
+        required_blocks: 2              # 3 * 1024 / 16000 ~= 192 ms.
+        cooldown_blocks: 20             # Suppress repeat publishes for about 1.3 seconds.
+        log_features: false             # Prints mono RMS/peak/band values for tuning.

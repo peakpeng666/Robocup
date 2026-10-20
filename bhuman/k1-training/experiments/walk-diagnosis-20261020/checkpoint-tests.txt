@@ -1,0 +1,12 @@
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth mode=actor
+[load] actor strictly loaded and equality with source file verified (8 tensors); critic, logstd and optimizer retain fresh initialization
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/tmp/tmpg087mxph/checkpoint.pth mode=full
+[load] model/optimizer/RNG equality verified; environment will reset
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/tmp/tmpg087mxph/checkpoint.pth mode=full
+[load] SOURCE CHANGE: state compatibility verified below; recipe continuity is not certified
+[load] model/optimizer/RNG equality verified; environment will reset
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/tmp/tmpg087mxph/checkpoint.pth mode=full
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/tmp/tmpg087mxph/checkpoint.pth mode=actor
+[load] checkpoint=/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/tmp/tmpg087mxph/checkpoint.pth mode=full
+[load] model/optimizer/RNG equality verified; environment will reset
+{"public_actor_strict": "PASS", "critic_preserved": "PASS", "v2_weights_only": "PASS", "model_optimizer_rng_equality": "PASS", "config_rejection": "PASS", "no_unsafe_fallback": "PASS", "separate_group_lr_resume": "PASS"}

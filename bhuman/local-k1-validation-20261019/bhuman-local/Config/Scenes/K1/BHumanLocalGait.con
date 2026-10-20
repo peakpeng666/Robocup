@@ -1,0 +1,4 @@
+call ../Includes/Normal
+ar off
+ar trueGameState on
+gc playing

@@ -1,0 +1,7 @@
+{
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134330_740696_walkF_criticwarm20_actor50/nn/model_20.pth",
+  "iteration": 20,
+  "actor_exact_equal_to_public": true,
+  "logstd_exact_initial": true,
+  "optimizer_parameter_states": 8
+}

@@ -1,0 +1,2374 @@
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/base_task.py src/IsaacGymRL/envs/base_task.py
+--- /tmp/pristine_ml3/IsaacGymRL/envs/base_task.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/base_task.py	2026-10-19 14:39:19.581821429 +0900
+@@ -139,3 +139,12 @@
+             self.gym.render_all_camera_sensors(self.sim)
+             img = self.gym.get_camera_image(self.sim, self.envs[self.cfg["viewer"]["record_env_idx"]], self.camera, gymapi.IMAGE_COLOR)
+             self.camera_frames.append(img.reshape(img.shape[0], -1, 4))
++
++    def close(self):
++        """Release native resources explicitly in bounded headless jobs."""
++        if getattr(self, "viewer", None) is not None:
++            self.gym.destroy_viewer(self.viewer)
++            self.viewer = None
++        if getattr(self, "sim", None) is not None:
++            self.gym.destroy_sim(self.sim)
++            self.sim = None
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/K1_Ball.yaml src/IsaacGymRL/envs/K1_Ball.yaml
+--- /tmp/pristine_ml3/IsaacGymRL/envs/K1_Ball.yaml	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/K1_Ball.yaml	2026-10-19 12:52:35.028758223 +0900
+@@ -1,6 +1,6 @@
+ basic:
+   checkpoint: null # set to -1 to load last saved model
+-  headless: false
++  headless: true
+   max_iterations: 200000 # set the maximum number of learning iterations to train for
+   sim_device: "cuda:0" # device for physics simulation
+   rl_device: "cuda:0" # device for the RL algorithm
+@@ -18,7 +18,7 @@
+   horizon_length: 24
+   mini_epochs: 20
+   save_interval: 100
+-  use_wandb: true
++  use_wandb: false
+ 
+ viewer:
+   pos: [36., 5., 2.]  # [m]
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/K1_Stand_Up.yaml src/IsaacGymRL/envs/K1_Stand_Up.yaml
+--- /tmp/pristine_ml3/IsaacGymRL/envs/K1_Stand_Up.yaml	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/K1_Stand_Up.yaml	2026-10-19 12:52:35.030757662 +0900
+@@ -1,6 +1,6 @@
+ basic:
+   checkpoint: null # set to -1 to load last saved model
+-  headless: false
++  headless: true
+   max_iterations: 10000 # set the maximum number of learning iterations to train for
+   sim_device: "cuda:0" # device for physics simulation
+   rl_device: "cuda:0" # device for the RL algorithm
+@@ -18,7 +18,7 @@
+   horizon_length: 24
+   mini_epochs: 20
+   save_interval: 100
+-  use_wandb: true
++  use_wandb: false
+ 
+ viewer:
+   pos: [36., 5., 2.]  # [m]
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/K1.yaml src/IsaacGymRL/envs/K1.yaml
+--- /tmp/pristine_ml3/IsaacGymRL/envs/K1.yaml	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/K1.yaml	2026-10-19 12:52:35.026758785 +0900
+@@ -1,6 +1,6 @@
+ basic:
+   checkpoint: null # set to -1 to load last saved model
+-  headless: false
++  headless: true
+   max_iterations: 20000 # set the maximum number of learning iterations to train for
+   sim_device: "cuda:0" # device for physics simulation
+   rl_device: "cuda:0" # device for the RL algorithm
+@@ -21,7 +21,7 @@
+   horizon_length: 24
+   mini_epochs: 20
+   save_interval: 100
+-  use_wandb: true
++  use_wandb: false
+ 
+ viewer:
+   pos: [36., 5., 2.]  # [m]
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/base_task.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/base_task.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/__init__.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/__init__.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/k1_ball.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/k1_ball.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/k1.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/k1.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/k1_stand_up.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/k1_stand_up.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/t1_ball.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/t1_ball.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/t1.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/t1.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/envs/__pycache__/t1_stand_up.cpython-38.pyc 和 src/IsaacGymRL/envs/__pycache__/t1_stand_up.cpython-38.pyc 不同
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/t1_ball.py src/IsaacGymRL/envs/t1_ball.py
+--- /tmp/pristine_ml3/IsaacGymRL/envs/t1_ball.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/t1_ball.py	2026-10-19 14:42:53.526740469 +0900
+@@ -987,6 +987,8 @@
+             dof_torques = dof_torques - friction
+             dof_torques_clipped = torch.clip(dof_torques, min=-self.torque_clipping, max=self.torque_clipping)
+             self.torques += dof_torques
++            # Diagnostics only: preserve the exact torque sent to PhysX.
++            self.last_applied_torques = dof_torques_clipped
+             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(dof_torques_clipped))
+             self.gym.simulate(self.sim)
+             if self.device == "cpu":
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/t1.py src/IsaacGymRL/envs/t1.py
+--- /tmp/pristine_ml3/IsaacGymRL/envs/t1.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/t1.py	2026-10-19 14:42:53.525740249 +0900
+@@ -603,6 +603,8 @@
+             dof_torques = dof_torques - friction
+             dof_torques_clipped = torch.clip(dof_torques, min=-self.torque_clipping, max=self.torque_clipping)
+             self.torques += dof_torques
++            # Diagnostics only: preserve the exact torque sent to PhysX.
++            self.last_applied_torques = dof_torques_clipped
+             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(dof_torques_clipped))
+             self.gym.simulate(self.sim)
+             if self.device == "cpu":
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/envs/t1_stand_up.py src/IsaacGymRL/envs/t1_stand_up.py
+--- /tmp/pristine_ml3/IsaacGymRL/envs/t1_stand_up.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/envs/t1_stand_up.py	2026-10-19 18:37:46.855715392 +0900
+@@ -485,8 +485,11 @@
+         self._reset_dofs(env_ids)
+         self._reset_root_states(env_ids)
+ 
+-        self.last_dof_targets[env_ids] = self.dof_pos[env_ids]
+-        self.executed_dof_targets[env_ids] = self.dof_pos[env_ids]
++        # The physical probe can cross a soft joint limit slightly. Keep that
++        # measured state, but never send an out-of-range delayed PD target.
++        reset_targets = torch.clip(self.dof_pos[env_ids], min=self.dof_pos_limits[:, 0], max=self.dof_pos_limits[:, 1])
++        self.last_dof_targets[env_ids] = reset_targets
++        self.executed_dof_targets[env_ids] = reset_targets
+         self.last_root_vel[env_ids] = self.root_states[env_ids, 7:13]
+         self.episode_length_buf[env_ids] = 0
+         self.filtered_lin_vel[env_ids] = 0.0
+@@ -499,6 +502,13 @@
+ 
+         self.delay_steps[env_ids] = torch.randint(0, self.cfg["control"]["decimation"], (len(env_ids),), device=self.device)
+         self.extras["time_outs"] = self.time_out_buf
++        # The reset probe advances the entire simulation. Rebuild derived policy
++        # inputs from the refreshed root/DOF state before returning an observation.
++        # No Gym refresh is allowed here: the final root setter is still pending.
++        self.base_lin_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 7:10])
++        self.base_ang_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 10:13])
++        self.projected_gravity[:] = quat_rotate_inverse(self.base_quat, self.gravity_vec)
++        self._calc_torso_rot()
+ 
+     def _reset_dofs(self, env_ids):
+         # Use the modified start_joint_poses with spawn variants applied to them if spawn variants are enabled, otherwise use the original start_joint_poses
+@@ -507,6 +517,9 @@
+             self.dof_pos[env_ids] = apply_randomization(base_poses, self.cfg["randomization"].get("init_dof_pos"))
+         else:
+             self.dof_pos[env_ids] = apply_randomization(self.get_up_poses[self.current_stand_up_info[env_ids, 0], self.current_stand_up_info[env_ids, 1], :self.num_actions], self.cfg["randomization"].get("init_dof_pos"))
++        # Randomization around a boundary pose must not teleport a joint beyond
++        # its URDF limits; PhysX would correct that penetration impulsively.
++        self.dof_pos[env_ids] = torch.clip(self.dof_pos[env_ids], min=self.dof_pos_limits[:, 0], max=self.dof_pos_limits[:, 1])
+         self.dof_vel[env_ids] = 0.0
+         self.prev_dof_pos[env_ids] = self.dof_pos[env_ids]
+         self.last_dof_vel[env_ids] = 0.0
+@@ -524,6 +537,10 @@
+         self.root_states[env_ids, :2] += self.env_origins[env_ids, :2]
+         self.root_states[env_ids, :2] = apply_randomization(self.root_states[env_ids, :2], self.cfg["randomization"].get("init_base_pos_xy"))
+         self.root_states[env_ids, 2] += self.terrain.terrain_heights(self.root_states[env_ids, :2])
++        # Obtain fresh geometry above the ground. Probing at root z=terrain
++        # embeds the legs/body in the ground and injects a collision impulse
++        # before the policy has taken its first action.
++        self.root_states[env_ids, 2] += 1.0
+         x_rot = torch.zeros(len(env_ids), dtype=torch.float, device=self.device)
+         y_rot = torch.zeros(len(env_ids), dtype=torch.float, device=self.device)
+         x_rot[:] = self.get_up_poses[self.current_stand_up_info[env_ids, 0], self.current_stand_up_info[env_ids, 1], -4]
+@@ -536,16 +553,36 @@
+             torch.rand(len(env_ids), device=self.device) * (2 * torch.pi),
+         )
+ 
+-        # dynamic spawn height
+-        self.gym.set_actor_root_state_tensor(self.sim, gymtorch.unwrap_tensor(self.root_states))
++        # One robot actor per environment; keep the int32 index tensor alive
++        # until the indexed setters have consumed it.
++        env_ids_int32 = env_ids.to(dtype=torch.int32)
++        self.gym.set_actor_root_state_tensor_indexed(
++            self.sim, gymtorch.unwrap_tensor(self.root_states),
++            gymtorch.unwrap_tensor(env_ids_int32), len(env_ids_int32)
++        )
+         self.gym.simulate(self.sim)
++        self.gym.fetch_results(self.sim, True)
++        # Gym tensors are caches. Refresh after simulate and before any setter;
++        # use root and body states from the same completed probe step.
++        self.gym.refresh_actor_root_state_tensor(self.sim)
++        self.gym.refresh_rigid_body_state_tensor(self.sim)
++        self.gym.refresh_dof_state_tensor(self.sim)
++        # Account for the extra probe step in the finite-difference velocity
++        # history, including actors that were not selected for reset.
++        self.custom_dof_vel[:] = (self.dof_pos - self.prev_dof_pos) / self.sim_params.dt
++        self.filtered_custom_dof_vel[:] = self.filtered_custom_dof_vel * 0.78 + self.custom_dof_vel * 0.22
++        self.prev_dof_pos[:] = self.dof_pos
+         self.render()
+-        min_z = torch.min(self.body_states[env_ids, :, 2], dim=1).values
+-        # compute per-env spawn height: if the deepest point of the robot is below 0, lift by -min_z + offset, otherwise just offset
+-        spawn_height = torch.where(min_z < 0, -min_z + self.spawn_height_offset, self.spawn_height_offset)
+-        self.root_states[env_ids, 2] += spawn_height
+-  
+-        self.gym.set_actor_root_state_tensor(self.sim, gymtorch.unwrap_tensor(self.root_states))
++        body_pos = self.body_states[env_ids, :, :3]
++        ground = self.terrain.terrain_heights(body_pos.reshape(-1, 3)).reshape(len(env_ids), self.num_bodies)
++        clearance = torch.min(body_pos[:, :, 2] - ground, dim=1).values
++        self.root_states[env_ids, 2] += self.spawn_height_offset - clearance
++
++        # Do not write an old root-state snapshot back to unaffected actors.
++        self.gym.set_actor_root_state_tensor_indexed(
++            self.sim, gymtorch.unwrap_tensor(self.root_states),
++            gymtorch.unwrap_tensor(env_ids_int32), len(env_ids_int32)
++        )
+ 
+     def _teleport_robot(self):
+         if self.terrain.type == "plane":
+@@ -602,6 +639,8 @@
+             dof_torques = dof_torques - friction
+             dof_torques_clipped = torch.clip(dof_torques, min=-self.torque_limits, max=self.torque_limits)
+             self.torques += dof_torques
++            # Diagnostics only: preserve the exact torque sent to PhysX.
++            self.last_applied_torques = dof_torques_clipped
+             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(dof_torques_clipped))
+             self.gym.simulate(self.sim)
+             if self.device == "cpu":
+@@ -648,6 +687,11 @@
+         self._kick_robots()
+         self._push_robots()
+         self._check_termination()
++        # Diagnostic snapshots before reset clears the episode's termination cause.
++        self.extras["termination_flags"] = {
++            "fall_detected": (self.reset_buf & self.fall_detected).clone(),
++            "reference_complete_without_fall": (self.reset_buf & (self.gait_process >= 1.5) & ~self.fall_detected).clone(),
++        }
+         self._compute_reward()
+         env_ids = self.reset_buf.nonzero(as_tuple=False).flatten()
+         self._reset_idx(env_ids)
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/export_model.py src/IsaacGymRL/export_model.py
+--- /tmp/pristine_ml3/IsaacGymRL/export_model.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/export_model.py	2026-10-19 14:41:54.114530048 +0900
+@@ -1,30 +1,121 @@
+-import os
+-import glob
+-import yaml
++"""Parameterized actor export (k1-training patch; replaces upstream export_model.py).
++
++Upstream issues fixed here:
++- outputs TorchScript only and scans logs/ for the newest .pth when no
++  checkpoint is given -> now requires an explicit --checkpoint;
++- no way to choose input dims or output paths -> driven by --task YAML dims;
++- convert.py hardcodes T1 names and (1,62) -> not used anymore.
++
++Fast standup (72->22) is a different actor family and is NOT exportable
++through the plain ActorCritic exporter; it is rejected explicitly.
++"""
+ import argparse
++import hashlib
++import json
++import os
++import sys
++import time
++
+ import torch
+-from utils.model import *
++import yaml
+ 
+-if __name__ == "__main__":
++from utils.model import ActorCritic
++from utils.bh_common import load_checkpoint, source_hash, SOURCE_ID
++
++IO_NAMES = {
++    "K1": ("input", "output"),
++    "K1_Ball": ("input", "output"),
++    "K1_Stand_Up": ("input", "output"),
++    "T1": ("input", "output"),
++    "T1_Ball": ("input", "output"),
++    "T1_Stand_Up": ("input", "output"),
++}
++FAST_TASKS = ("fast_standup", "FastStandup")
++
++
++def sha256(path):
++    h = hashlib.sha256()
++    with open(path, "rb") as f:
++        for chunk in iter(lambda: f.read(1 << 20), b""):
++            h.update(chunk)
++    return h.hexdigest()
++
++
++def main():
+     parser = argparse.ArgumentParser()
+-    parser.add_argument("--task", required=True, type=str, help="Name of the task to run.")
+-    parser.add_argument("--checkpoint", type=str, help="Path of model checkpoint to load. Overrides config file if provided.")
++    parser.add_argument("--task", required=True, choices=sorted(IO_NAMES))
++    parser.add_argument("--checkpoint", required=True)
++    parser.add_argument("--load_mode", default="actor", choices=["actor", "torchscript"])
++    parser.add_argument("--out_dir", required=True)
++    parser.add_argument("--opset", type=int, default=11)
+     args = parser.parse_args()
+-    cfg_file = os.path.join("envs", "{}.yaml".format(args.task))
++    if any(t in args.task for t in FAST_TASKS):
++        raise SystemExit("fast standup (72->22) uses a different actor family; refusing plain ActorCritic export")
++
++    cfg_file = os.path.join(os.path.dirname(__file__), "envs", args.task + ".yaml")
+     with open(cfg_file, "r", encoding="utf-8") as f:
+-        cfg = yaml.load(f.read(), Loader=yaml.FullLoader)
+-    if args.checkpoint is not None:
+-        cfg["basic"]["checkpoint"] = args.checkpoint
+-
+-    model = ActorCritic(cfg["env"]["num_actions"], cfg["env"]["num_observations"], cfg["env"]["num_privileged_obs"])
+-    if not cfg["basic"]["checkpoint"] or (cfg["basic"]["checkpoint"] == "-1") or (cfg["basic"]["checkpoint"] == -1):
+-        cfg["basic"]["checkpoint"] = sorted(glob.glob(os.path.join("logs", "**/*.pth"), recursive=True), key=os.path.getmtime)[-1]
+-    print("Loading model from {}".format(cfg["basic"]["checkpoint"]))
+-    model_dict = torch.load(cfg["basic"]["checkpoint"], map_location="cpu", weights_only=True)
+-    model.load_state_dict(model_dict["model"])
+-
+-    model.eval()
+-    script_module = torch.jit.script(model.actor)
+-    save_path = os.path.splitext(cfg["basic"]["checkpoint"])[0] + ".pt"
+-    script_module.save(save_path)
+-    print(f"Saved model to {save_path}")
++        cfg = yaml.safe_load(f)
++    num_act = cfg["env"]["num_actions"]
++    num_obs = cfg["env"]["num_observations"]
++    num_priv = cfg["env"]["num_privileged_obs"]
++
++    model = ActorCritic(num_act, num_obs, num_priv)
++    if args.load_mode == "torchscript":
++        # k1-training extension: some public artifacts (e.g. GetUp K1_stand_up.pt)
++        # are TorchScript archives rather than training checkpoints.
++        actor_module = torch.jit.load(args.checkpoint, map_location="cpu").eval()
++        print("[load] TorchScript module loaded:", args.checkpoint)
++    else:
++        load_checkpoint(model, None, args.checkpoint, "actor", device="cpu")
++        model.eval()
++        actor_module = model.actor
++
++    if os.path.exists(os.path.join(args.out_dir, args.task + "_actor_manifest.json")):
++        raise ValueError("export destination already contains a manifest; choose a new directory")
++    os.makedirs(args.out_dir, exist_ok=True)
++    with torch.no_grad():
++        actual = actor_module(torch.zeros(1, num_obs))
++    if tuple(actual.shape) != (1, num_act) or not torch.isfinite(actual).all():
++        raise ValueError("actor does not satisfy the task contract")
++    stem = "%s_actor" % args.task
++    pt_path = os.path.join(args.out_dir, stem + ".pt")
++    onnx_path = os.path.join(args.out_dir, stem + ".onnx")
++
++    scripted = torch.jit.script(actor_module) if not isinstance(actor_module, torch.jit.ScriptModule) else actor_module
++    scripted.save(pt_path)
++
++    in_name, out_name = IO_NAMES[args.task]
++    dummy = torch.zeros(1, num_obs)
++    torch.onnx.export(
++        actor_module,
++        dummy,
++        onnx_path,
++        input_names=[in_name],
++        output_names=[out_name],
++        opset_version=args.opset,
++        dynamic_axes={in_name: {0: "batch_size"}, out_name: {0: "batch_size"}},
++    )
++
++    import onnx
++    onnx.checker.check_model(onnx.load(onnx_path))
++    manifest = {
++        "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
++        "task": args.task,
++        "checkpoint": os.path.abspath(args.checkpoint),
++        "checkpoint_sha256": sha256(args.checkpoint),
++        "load_mode": args.load_mode,
++        "config_sha256": sha256(cfg_file),
++        "adaptation_sha256": source_hash(),
++        "torchscript": {"path": pt_path, "sha256": sha256(pt_path)},
++        "onnx": {"path": onnx_path, "sha256": sha256(onnx_path), "opset": args.opset,
++                 "input": "%s: [batch, %d]" % (in_name, num_obs),
++                 "output": "%s: [batch, %d]" % (out_name, num_act)},
++        "source_id": SOURCE_ID,
++    }
++    with open(os.path.join(args.out_dir, stem + "_manifest.json"), "w") as f:
++        json.dump(manifest, f, indent=2)
++    print(json.dumps(manifest, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/config.yaml src/IsaacGymRL/logs/2026-10-19-14-27-05/config.yaml
+--- /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/config.yaml	1970-01-01 09:00:00.000000000 +0900
++++ src/IsaacGymRL/logs/2026-10-19-14-27-05/config.yaml	2026-10-19 14:27:05.853364604 +0900
+@@ -0,0 +1,578 @@
++algorithm:
++  bound_coef: 1.0
++  desired_kl: 0.01
++  e_clip: 0.2
++  entropy_coef: -0.01
++  entropy_range:
++    max: -10
++    min: -11
++  gamma: 0.98
++  lam: 0.95
++  learn_ball: false
++  learning_rate: 1.0e-08
++  learning_rate_range:
++    max: 0.01
++    min: 0.0001
++  symmetry_coef: 0.01
++  use_waist: false
++asset:
++  angular_damping: 0.0
++  armature: 0.0
++  base_name: Trunk
++  collapse_fixed_joints: true
++  default_dof_drive_mode: 3
++  density: 0.001
++  disable_gravity: false
++  feet_edge_pos:
++  - - 0.1185
++    - 0.035
++    - -0.038
++  - - 0.1185
++    - -0.035
++    - -0.038
++  - - -0.0665
++    - 0.035
++    - -0.038
++  - - -0.0665
++    - -0.035
++    - -0.038
++  file: resources/K1/K1_locomotion.urdf
++  file2: resources/K1/K1_locomotion_feet_box.urdf
++  fix_base_link: false
++  flip_visual_attachments: false
++  foot_names:
++  - left_foot_link
++  - right_foot_link
++  linear_damping: 0.0
++  max_angular_velocity: 1000.0
++  max_linear_velocity: 1000.0
++  mujoco_file: resources/K1/K1_locomotion.xml
++  name: K1
++  origin_names:
++  - Left_Hip_Pitch
++  - Right_Hip_Pitch
++  replace_cylinder_with_capsule: false
++  self_collisions: 0
++  thickness: 0.01
++basic:
++  checkpoint: null
++  description: ''
++  headless: true
++  max_iterations: 5
++  rl_device: cuda:0
++  seed: 7
++  sim_device: cuda:0
++  task: K1
++commands:
++  ang_vel_yaw:
++  - -1.5
++  - 1.5
++  gait_frequency:
++  - 1.0
++  - 2.0
++  lin_vel_x:
++  - -1.0
++  - 2.0
++  lin_vel_y:
++  - -1.0
++  - 1.0
++  num_commands: 3
++  proportion_correction: 0.2
++  resampling_time_s:
++  - 8.0
++  - 12.0
++  slow_proportion: 0.1
++  slow_walk_range: 0.2
++  still_proportion: 0.1
++control:
++  action_scale: 1.0
++  allow_unknown_joints: true
++  armature:
++    Ankle: 0.0565056
++    Hip_Pitch: 0.0478125
++    Hip_Roll: 0.0339552
++    Hip_Yaw: 0.0282528
++    Knee: 0.095625
++  damping:
++    Ankle_Pitch: 2
++    Ankle_Roll: 2
++    Default: 1
++    Hip_Pitch: 4
++    Hip_Roll: 4
++    Hip_Yaw: 4
++    Knee: 4
++  decimation: 10
++  stiffness:
++    Ankle_Pitch: 50.0
++    Ankle_Roll: 60.0
++    Default: 10
++    Hip_Pitch: 80.0
++    Hip_Roll: 80.0
++    Hip_Yaw: 80.0
++    Knee: 80.0
++  torque_clipping:
++  - 40
++  - 50
++  - 30
++  - 56
++  - 36
++  - 36
++  - 40
++  - 50
++  - 30
++  - 56
++  - 36
++  - 36
++env:
++  env_spacing: 1.0
++  history_size: 10
++  num_actions: 13
++  num_base_observations: 32
++  num_envs: 64
++  num_last_observations: 24
++  num_observations: 344
++  num_privileged_obs: 16
++init_state:
++  ang_vel:
++  - 0.0
++  - 0.0
++  - 0.0
++  default_joint_angles:
++    Ankle_Pitch: -0.25
++    Hip_Pitch: -0.2
++    Knee_Pitch: 0.4
++    default: 0.0
++  lin_vel:
++  - 0.0
++  - 0.0
++  - 0.0
++  pos:
++  - 0.0
++  - 0.0
++  - 0.58
++  rot:
++  - 0.0
++  - 0.0
++  - 0.0
++  - 1.0
++noise:
++  ang_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  ang_vel_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.15
++  dof_pos:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.01
++  dof_pos_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  dof_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  dof_vel_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  gravity:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.01
++  gravity_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  height:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  lin_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.05
++normalization:
++  action_frequence_limit:
++  - -0.5
++  - 0.5
++  ang_vel: 1.0
++  ball_kick_range: 0.1
++  ball_pos: 0.1
++  ball_vel: 0.1
++  clip_actions: 2.0
++  dof_pos: 1.0
++  dof_vel: 0.1
++  filter_weight: 0.1
++  filter_weight_low_speed: 0.3
++  filter_weight_speed_range: 0.1
++  gravity: 1.0
++  lin_vel: 1.0
++  push_force: 0.1
++  push_torque: 0.5
++randomization:
++  base_com:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.1
++    - 0.1
++  base_com_x:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.15
++    - 0.1
++  base_mass:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  compliance:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.5
++    - 1.5
++  dof_ankle_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_ankle_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.7
++    - 1.3
++  dof_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.95
++    - 1.05
++  dof_friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.0
++    - 2.0
++  dof_hiproll_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_hiproll_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_pos_offset_other:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.025
++  dof_pos_offset_pitch:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.05
++  dof_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.95
++    - 1.05
++  friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.3
++    - 1.5
++  init_base_ang_vel_xyz:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 1.0
++  init_base_lin_vel_xy:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.3
++  init_base_lin_vel_z:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  init_base_pos_xy:
++    distribution: uniform
++    operation: additive
++    range:
++    - -1.0
++    - 1.0
++  init_dof_pos:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_ang_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_interval_s: 3.0
++  kick_lin_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_lin_vel_strong:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  kick_lin_vel_z:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  other_com:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.005
++    - 0.005
++  other_mass:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.98
++    - 1.02
++  push_duration_s: 2.0
++  push_force:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 10.0
++  push_interval_s: 5.0
++  push_torque:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 2.0
++  restitution:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.1
++    - 0.9
++rewards:
++  base_height_target: 0.52
++  episode_length_s: 30.0
++  feet_distance_ref: 0.192
++  feet_height_ref: 0.03
++  only_positive_rewards: false
++  penalize_contacts_on:
++  - Trunk
++  - H1
++  - H2
++  - AL
++  - AR
++  - Waist
++  - Hip
++  - Shank
++  - Ankle
++  penalize_sole_contacts:
++  - left_foot_link
++  - right_foot_link
++  scales:
++    action_pos_limits: -1
++    action_rate: -1.0
++    actions_in_range: -1
++    ang_vel_xy: -0.2
++    base_height: -40.0
++    collision: -2.0
++    dof_acc: -1.0e-07
++    dof_pos_limits: -1
++    dof_vel: -0.0001
++    dof_vel_limits: -0.0
++    feet_distance: -1
++    feet_height: -0.25
++    feet_roll: -0.1
++    feet_slip: -0.1
++    feet_swing: 3.0
++    feet_yaw_diff: -1
++    feet_yaw_mean: -1
++    gait_phase_factor: -0.1
++    ground_pressure: -0.1
++    hip_roll: -1.0
++    lin_vel_z: -2.0
++    orientation: -5.0
++    power: -0.002
++    root_acc: -0.0001
++    terminate: -100
++    torque_limits: -0.01
++    torque_tiredness: -0.01
++    torques: -0.0002
++    tracking_ang_vel: 0.375
++    tracking_lin_vel_x: 0.75
++    tracking_lin_vel_y: 0.75
++  soft_dof_pos_limit: 0.95
++  soft_dof_vel_limit: 1.0
++  soft_torque_limit: 1.0
++  swing_period: 0.2
++  target_frequence: 1.5
++  terminate_contacts_on: []
++  terminate_height: 0.2
++  terminate_height_range:
++  - 0.3
++  - 0.45
++  terminate_time: 0.1
++  terminate_vel: 400.0
++  tracking_reward_x_factor:
++  - 1.0
++  - 1.33
++  - 3.5
++  tracking_reward_x_speed:
++  - 0.5
++  - 2.0
++  tracking_reward_y_factor:
++  - 1.0
++  - 1.33
++  - 2.0
++  tracking_reward_y_speed:
++  - 0.5
++  - 2.0
++  tracking_reward_yaw_factor:
++  - 1.0
++  - 1.33
++  - 2.5
++  tracking_reward_yaw_speed:
++  - 0.5
++  - 2.0
++  tracking_sigma:
++  - 0.25
++  - 0.25
++  - 0.25
++  tracking_sigma_speed:
++  - 0.5
++  - 2.0
++  tracking_sigma_stand: 0.25
++  tracking_stand_factor:
++  - 1.33
++  - 1.33
++  - 0.5
++  tracking_yaw_sigma:
++  - 0.25
++  - 0.25
++  - 0.25
++  use_swing_reward_scaling: false
++runner:
++  horizon_length: 24
++  mini_epochs: 20
++  save_interval: 1
++  use_wandb: false
++sim:
++  dt: 0.002
++  gravity:
++  - 0.0
++  - 0.0
++  - -9.81
++  physics_engine: physx
++  physx:
++    bounce_threshold_velocity: 0.2
++    contact_collection: 1
++    contact_offset: 0.02
++    default_buffer_size_multiplier: 5.0
++    max_depenetration_velocity: 1.0
++    max_gpu_contact_pairs: 8388608
++    num_position_iterations: 4
++    num_subscenes: 8
++    num_threads: 4
++    num_velocity_iterations: 1
++    rest_offset: 0.0
++    solver_type: 1
++  substeps: 1
++  up_axis: z
++terrain:
++  border_size: 5.0
++  discrete_height: 0.02
++  dynamic_friction: 1.0
++  friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.3
++    - 1.0
++  horizontal_scale: 0.1
++  num_terrains: 8
++  patch_size: 5
++  random_height: 0.1
++  restitution: 0.0
++  slope: 0.1
++  slope_threshold: 2.0
++  stairs_width: 0.5
++  static_friction: 1.0
++  step_height: -0.1
++  terrain_length: 20.0
++  terrain_proportions:
++  - 0.0
++  - 0.0
++  - 0.5
++  - 0.5
++  - 0.0
++  terrain_width: 10.0
++  type: trimesh
++  vertical_scale: 0.005
++viewer:
++  lookat:
++  - 50.0
++  - 5.0
++  - 0.0
++  pos:
++  - 36.0
++  - 5.0
++  - 2.0
++  record_env_idx: 0
++  record_interval: 5.0
++  record_video: false
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_1.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_1.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_2.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_2.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_3.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_3.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_4.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_4.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_5.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_5.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_final.pth 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_final.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-27-05/summaries/events.out.tfevents.1792387625.peakpeng-YAOSHI-Series.55234.0 和 src/IsaacGymRL/logs/2026-10-19-14-27-05/summaries/events.out.tfevents.1792387625.peakpeng-YAOSHI-Series.55234.0 不同
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-28-03/config.yaml src/IsaacGymRL/logs/2026-10-19-14-28-03/config.yaml
+--- /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-28-03/config.yaml	1970-01-01 09:00:00.000000000 +0900
++++ src/IsaacGymRL/logs/2026-10-19-14-28-03/config.yaml	2026-10-19 14:28:03.416927348 +0900
+@@ -0,0 +1,579 @@
++algorithm:
++  bound_coef: 1.0
++  desired_kl: 0.01
++  e_clip: 0.2
++  entropy_coef: -0.01
++  entropy_range:
++    max: -10
++    min: -11
++  gamma: 0.98
++  lam: 0.95
++  learn_ball: false
++  learning_rate: 1.0e-08
++  learning_rate_range:
++    max: 0.01
++    min: 0.0001
++  symmetry_coef: 0.01
++  use_waist: false
++asset:
++  angular_damping: 0.0
++  armature: 0.0
++  base_name: Trunk
++  collapse_fixed_joints: true
++  default_dof_drive_mode: 3
++  density: 0.001
++  disable_gravity: false
++  feet_edge_pos:
++  - - 0.1185
++    - 0.035
++    - -0.038
++  - - 0.1185
++    - -0.035
++    - -0.038
++  - - -0.0665
++    - 0.035
++    - -0.038
++  - - -0.0665
++    - -0.035
++    - -0.038
++  file: resources/K1/K1_locomotion.urdf
++  file2: resources/K1/K1_locomotion_feet_box.urdf
++  fix_base_link: false
++  flip_visual_attachments: false
++  foot_names:
++  - left_foot_link
++  - right_foot_link
++  linear_damping: 0.0
++  max_angular_velocity: 1000.0
++  max_linear_velocity: 1000.0
++  mujoco_file: resources/K1/K1_locomotion.xml
++  name: K1
++  origin_names:
++  - Left_Hip_Pitch
++  - Right_Hip_Pitch
++  replace_cylinder_with_capsule: false
++  self_collisions: 0
++  thickness: 0.01
++basic:
++  checkpoint: /home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/logs/2026-10-19-14-27-05/nn/model_final.pth
++  description: ''
++  headless: true
++  load_mode: full
++  max_iterations: 1
++  rl_device: cuda:0
++  seed: 7
++  sim_device: cuda:0
++  task: K1
++commands:
++  ang_vel_yaw:
++  - -1.5
++  - 1.5
++  gait_frequency:
++  - 1.0
++  - 2.0
++  lin_vel_x:
++  - -1.0
++  - 2.0
++  lin_vel_y:
++  - -1.0
++  - 1.0
++  num_commands: 3
++  proportion_correction: 0.2
++  resampling_time_s:
++  - 8.0
++  - 12.0
++  slow_proportion: 0.1
++  slow_walk_range: 0.2
++  still_proportion: 0.1
++control:
++  action_scale: 1.0
++  allow_unknown_joints: true
++  armature:
++    Ankle: 0.0565056
++    Hip_Pitch: 0.0478125
++    Hip_Roll: 0.0339552
++    Hip_Yaw: 0.0282528
++    Knee: 0.095625
++  damping:
++    Ankle_Pitch: 2
++    Ankle_Roll: 2
++    Default: 1
++    Hip_Pitch: 4
++    Hip_Roll: 4
++    Hip_Yaw: 4
++    Knee: 4
++  decimation: 10
++  stiffness:
++    Ankle_Pitch: 50.0
++    Ankle_Roll: 60.0
++    Default: 10
++    Hip_Pitch: 80.0
++    Hip_Roll: 80.0
++    Hip_Yaw: 80.0
++    Knee: 80.0
++  torque_clipping:
++  - 40
++  - 50
++  - 30
++  - 56
++  - 36
++  - 36
++  - 40
++  - 50
++  - 30
++  - 56
++  - 36
++  - 36
++env:
++  env_spacing: 1.0
++  history_size: 10
++  num_actions: 13
++  num_base_observations: 32
++  num_envs: 64
++  num_last_observations: 24
++  num_observations: 344
++  num_privileged_obs: 16
++init_state:
++  ang_vel:
++  - 0.0
++  - 0.0
++  - 0.0
++  default_joint_angles:
++    Ankle_Pitch: -0.25
++    Hip_Pitch: -0.2
++    Knee_Pitch: 0.4
++    default: 0.0
++  lin_vel:
++  - 0.0
++  - 0.0
++  - 0.0
++  pos:
++  - 0.0
++  - 0.0
++  - 0.58
++  rot:
++  - 0.0
++  - 0.0
++  - 0.0
++  - 1.0
++noise:
++  ang_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  ang_vel_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.15
++  dof_pos:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.01
++  dof_pos_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  dof_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  dof_vel_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  gravity:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.01
++  gravity_stand:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  height:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.02
++  lin_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.05
++normalization:
++  action_frequence_limit:
++  - -0.5
++  - 0.5
++  ang_vel: 1.0
++  ball_kick_range: 0.1
++  ball_pos: 0.1
++  ball_vel: 0.1
++  clip_actions: 2.0
++  dof_pos: 1.0
++  dof_vel: 0.1
++  filter_weight: 0.1
++  filter_weight_low_speed: 0.3
++  filter_weight_speed_range: 0.1
++  gravity: 1.0
++  lin_vel: 1.0
++  push_force: 0.1
++  push_torque: 0.5
++randomization:
++  base_com:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.1
++    - 0.1
++  base_com_x:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.15
++    - 0.1
++  base_mass:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  compliance:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.5
++    - 1.5
++  dof_ankle_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_ankle_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.7
++    - 1.3
++  dof_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.95
++    - 1.05
++  dof_friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.0
++    - 2.0
++  dof_hiproll_damping:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_hiproll_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.8
++    - 1.2
++  dof_pos_offset_other:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.025
++  dof_pos_offset_pitch:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.05
++  dof_stiffness:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.95
++    - 1.05
++  friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.3
++    - 1.5
++  init_base_ang_vel_xyz:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 1.0
++  init_base_lin_vel_xy:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.3
++  init_base_lin_vel_z:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  init_base_pos_xy:
++    distribution: uniform
++    operation: additive
++    range:
++    - -1.0
++    - 1.0
++  init_dof_pos:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_ang_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_interval_s: 3.0
++  kick_lin_vel:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  kick_lin_vel_strong:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.5
++  kick_lin_vel_z:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 0.1
++  other_com:
++    distribution: uniform
++    operation: additive
++    range:
++    - -0.005
++    - 0.005
++  other_mass:
++    distribution: uniform
++    operation: scaling
++    range:
++    - 0.98
++    - 1.02
++  push_duration_s: 2.0
++  push_force:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 10.0
++  push_interval_s: 5.0
++  push_torque:
++    distribution: gaussian
++    operation: additive
++    range:
++    - 0.0
++    - 2.0
++  restitution:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.1
++    - 0.9
++rewards:
++  base_height_target: 0.52
++  episode_length_s: 30.0
++  feet_distance_ref: 0.192
++  feet_height_ref: 0.03
++  only_positive_rewards: false
++  penalize_contacts_on:
++  - Trunk
++  - H1
++  - H2
++  - AL
++  - AR
++  - Waist
++  - Hip
++  - Shank
++  - Ankle
++  penalize_sole_contacts:
++  - left_foot_link
++  - right_foot_link
++  scales:
++    action_pos_limits: -1
++    action_rate: -1.0
++    actions_in_range: -1
++    ang_vel_xy: -0.2
++    base_height: -40.0
++    collision: -2.0
++    dof_acc: -1.0e-07
++    dof_pos_limits: -1
++    dof_vel: -0.0001
++    dof_vel_limits: -0.0
++    feet_distance: -1
++    feet_height: -0.25
++    feet_roll: -0.1
++    feet_slip: -0.1
++    feet_swing: 3.0
++    feet_yaw_diff: -1
++    feet_yaw_mean: -1
++    gait_phase_factor: -0.1
++    ground_pressure: -0.1
++    hip_roll: -1.0
++    lin_vel_z: -2.0
++    orientation: -5.0
++    power: -0.002
++    root_acc: -0.0001
++    terminate: -100
++    torque_limits: -0.01
++    torque_tiredness: -0.01
++    torques: -0.0002
++    tracking_ang_vel: 0.375
++    tracking_lin_vel_x: 0.75
++    tracking_lin_vel_y: 0.75
++  soft_dof_pos_limit: 0.95
++  soft_dof_vel_limit: 1.0
++  soft_torque_limit: 1.0
++  swing_period: 0.2
++  target_frequence: 1.5
++  terminate_contacts_on: []
++  terminate_height: 0.2
++  terminate_height_range:
++  - 0.3
++  - 0.45
++  terminate_time: 0.1
++  terminate_vel: 400.0
++  tracking_reward_x_factor:
++  - 1.0
++  - 1.33
++  - 3.5
++  tracking_reward_x_speed:
++  - 0.5
++  - 2.0
++  tracking_reward_y_factor:
++  - 1.0
++  - 1.33
++  - 2.0
++  tracking_reward_y_speed:
++  - 0.5
++  - 2.0
++  tracking_reward_yaw_factor:
++  - 1.0
++  - 1.33
++  - 2.5
++  tracking_reward_yaw_speed:
++  - 0.5
++  - 2.0
++  tracking_sigma:
++  - 0.25
++  - 0.25
++  - 0.25
++  tracking_sigma_speed:
++  - 0.5
++  - 2.0
++  tracking_sigma_stand: 0.25
++  tracking_stand_factor:
++  - 1.33
++  - 1.33
++  - 0.5
++  tracking_yaw_sigma:
++  - 0.25
++  - 0.25
++  - 0.25
++  use_swing_reward_scaling: false
++runner:
++  horizon_length: 24
++  mini_epochs: 20
++  save_interval: 1
++  use_wandb: false
++sim:
++  dt: 0.002
++  gravity:
++  - 0.0
++  - 0.0
++  - -9.81
++  physics_engine: physx
++  physx:
++    bounce_threshold_velocity: 0.2
++    contact_collection: 1
++    contact_offset: 0.02
++    default_buffer_size_multiplier: 5.0
++    max_depenetration_velocity: 1.0
++    max_gpu_contact_pairs: 8388608
++    num_position_iterations: 4
++    num_subscenes: 8
++    num_threads: 4
++    num_velocity_iterations: 1
++    rest_offset: 0.0
++    solver_type: 1
++  substeps: 1
++  up_axis: z
++terrain:
++  border_size: 5.0
++  discrete_height: 0.02
++  dynamic_friction: 1.0
++  friction:
++    distribution: uniform
++    operation: additive
++    range:
++    - 0.3
++    - 1.0
++  horizontal_scale: 0.1
++  num_terrains: 8
++  patch_size: 5
++  random_height: 0.1
++  restitution: 0.0
++  slope: 0.1
++  slope_threshold: 2.0
++  stairs_width: 0.5
++  static_friction: 1.0
++  step_height: -0.1
++  terrain_length: 20.0
++  terrain_proportions:
++  - 0.0
++  - 0.0
++  - 0.5
++  - 0.5
++  - 0.0
++  terrain_width: 10.0
++  type: trimesh
++  vertical_scale: 0.005
++viewer:
++  lookat:
++  - 50.0
++  - 5.0
++  - 0.0
++  pos:
++  - 36.0
++  - 5.0
++  - 2.0
++  record_env_idx: 0
++  record_interval: 5.0
++  record_video: false
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-28-03/nn/model_6.pth 和 src/IsaacGymRL/logs/2026-10-19-14-28-03/nn/model_6.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-28-03/nn/model_final.pth 和 src/IsaacGymRL/logs/2026-10-19-14-28-03/nn/model_final.pth 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/logs/2026-10-19-14-28-03/summaries/events.out.tfevents.1792387683.peakpeng-YAOSHI-Series.55414.0 和 src/IsaacGymRL/logs/2026-10-19-14-28-03/summaries/events.out.tfevents.1792387683.peakpeng-YAOSHI-Series.55414.0 不同
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/play.py src/IsaacGymRL/play.py
+--- /tmp/pristine_ml3/IsaacGymRL/play.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/play.py	2026-10-19 14:39:19.581821429 +0900
+@@ -20,5 +20,11 @@
+     else:
+         runner = Runner(test=True)
+ 
+-    runner.play()
++    try:
++        runner.play()
++    finally:
++        if hasattr(runner, "recorder"):
++            runner.recorder.writer.flush()
++            runner.recorder.writer.close()
++        runner.env.close()
+ 
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/train.py src/IsaacGymRL/train.py
+--- /tmp/pristine_ml3/IsaacGymRL/train.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/train.py	2026-10-19 14:39:19.581821429 +0900
+@@ -20,5 +20,11 @@
+     else:
+         runner = Runner(test=False)
+ 
+-    runner.train()
++    try:
++        runner.train()
++    finally:
++        if hasattr(runner, "recorder"):
++            runner.recorder.writer.flush()
++            runner.recorder.writer.close()
++        runner.env.close()
+ 
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/utils/bh_common.py src/IsaacGymRL/utils/bh_common.py
+--- /tmp/pristine_ml3/IsaacGymRL/utils/bh_common.py	1970-01-01 09:00:00.000000000 +0900
++++ src/IsaacGymRL/utils/bh_common.py	2026-10-20 12:53:29.926022303 +0900
+@@ -0,0 +1,223 @@
++"""Reproducibility helpers for the isolated B-Human training adaptation.
++
++Only tensors and Python primitives are stored: loading always uses
++weights_only=True. Old v1 checkpoints using pickled NumPy RNG arrays are
++preserved, but never silently loaded through unrestricted pickle.
++"""
++import argparse
++import hashlib
++import json
++import os
++import random
++import sys
++import time
++from pathlib import Path
++
++import numpy as np
++import torch
++
++CKPT_FORMAT = "bh-k1-ckpt-v2"
++SOURCE_ID = "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2"
++
++
++def str2bool(value):
++    if isinstance(value, bool):
++        return value
++    value = str(value).lower()
++    if value in ("1", "true", "yes", "on"):
++        return True
++    if value in ("0", "false", "no", "off"):
++        return False
++    raise argparse.ArgumentTypeError("expected true/false or 1/0")
++
++
++def file_hash(path):
++    digest = hashlib.sha256()
++    with open(path, "rb") as stream:
++        for data in iter(lambda: stream.read(1024 * 1024), b""):
++            digest.update(data)
++    return digest.hexdigest()
++
++
++def source_hash():
++    root = Path(__file__).resolve().parents[1]
++    files = sorted(p for p in root.rglob("*") if p.suffix in (".py", ".yaml") and "logs" not in p.parts)
++    digest = hashlib.sha256()
++    for p in files:
++        digest.update(str(p.relative_to(root)).encode())
++        digest.update(p.read_bytes())
++    return digest.hexdigest()
++
++
++def apply_config_patch(cfg, patch):
++    """Deep-merge a JSON dict onto the effective config (single-factor studies).
++
++    Patched values are part of the effective config and therefore included in
++    config_contract; they are also echoed into the run's config.yaml.
++    """
++    for k, v in patch.items():
++        if isinstance(v, dict) and isinstance(cfg.get(k), dict):
++            apply_config_patch(cfg[k], v)
++        else:
++            cfg[k] = v
++    return cfg
++
++
++def config_contract(cfg):
++    # Runtime bookkeeping can vary between sessions. Algorithm, assets,
++    # rewards, physics and observation configuration must remain identical.
++    contract = {k: v for k, v in cfg.items() if k not in ("basic", "viewer", "runner")}
++    contract["runner"] = {k: v for k, v in cfg.get("runner", {}).items() if k not in ("save_interval", "use_wandb")}
++    contract["task"] = cfg.get("basic", {}).get("task")
++    return hashlib.sha256(json.dumps(contract, sort_keys=True, allow_nan=False).encode()).hexdigest()
++
++
++def assert_tree_equal(a, b, path="state"):
++    if isinstance(a, torch.Tensor):
++        if not isinstance(b, torch.Tensor) or not torch.equal(a.cpu(), b.cpu()):
++            raise ValueError("restored tensor differs: " + path)
++    elif isinstance(a, dict):
++        if not isinstance(b, dict) or a.keys() != b.keys():
++            raise ValueError("restored keys differ: " + path)
++        for k in a:
++            assert_tree_equal(a[k], b[k], path + "." + str(k))
++    elif isinstance(a, (tuple, list)):
++        if type(a) != type(b) or len(a) != len(b):
++            raise ValueError("restored sequence differs: " + path)
++        for i, (x, y) in enumerate(zip(a, b)):
++            assert_tree_equal(x, y, path + "." + str(i))
++    elif a != b:
++        raise ValueError("restored value differs: " + path)
++
++
++def rng_snapshot():
++    name, keys, position, has_gauss, cached_gauss = np.random.get_state()
++    snap = {"torch": torch.get_rng_state(), "python": random.getstate(),
++            "numpy": [name, keys.tolist(), int(position), int(has_gauss), float(cached_gauss)]}
++    if torch.cuda.is_initialized():
++        snap["cuda"] = torch.cuda.get_rng_state_all()
++    return snap
++
++
++def restore_rng(snap):
++    torch.set_rng_state(snap["torch"].cpu())
++    name, keys, pos, has_gauss, cached = snap["numpy"]
++    np.random.set_state((name, np.asarray(keys, dtype=np.uint32), pos, has_gauss, cached))
++    random.setstate(snap["python"])
++    if snap.get("cuda"):
++        torch.cuda.set_rng_state_all([state.cpu() for state in snap["cuda"]])
++
++
++def load_checkpoint(model, optimizer, path, mode, device="cpu", cfg=None):
++    if mode not in ("actor", "warm-start", "full"):
++        raise ValueError("unknown checkpoint load mode: " + mode)
++    print("[load] checkpoint=%s mode=%s" % (path, mode))
++    # CPU map preserves CPU RNG state type, even when the model is on CUDA.
++    sd = torch.load(path, map_location="cpu", weights_only=True)
++    if not isinstance(sd, dict) or "model" not in sd:
++        raise ValueError("not a state_dict checkpoint; use torchscript mode for .pt actors")
++    mstate = sd["model"]
++    actor = {k[len("actor."):]: v for k, v in mstate.items() if k.startswith("actor.")}
++    ref_actor = model.actor.state_dict()
++    if actor.keys() != ref_actor.keys():
++        raise ValueError("actor keys do not match")
++    for k, v in actor.items():
++        if v.shape != ref_actor[k].shape or not torch.isfinite(v).all():
++            raise ValueError("invalid actor tensor: " + k)
++    info = {"path": os.path.abspath(path), "sha256": file_hash(path), "mode": mode,
++            "format": sd.get("format", "upstream"), "iteration": sd.get("iteration"),
++            "env_steps": sd.get("env_steps"), "lr": sd.get("lr"), "rng_restored": False}
++    if mode != "full":
++        model.actor.load_state_dict(actor, strict=True)
++        # Re-read the source file and compare tensor by tensor so a warm start
++        # provably begins from the published weights (and nothing mutated them
++        # between load and the first update).
++        sd2 = torch.load(path, map_location="cpu", weights_only=True)
++        loaded = model.actor.state_dict()
++        for k, v in ((k, v) for k, v in sd2["model"].items() if k.startswith("actor.")):
++            if not torch.equal(loaded[k[len("actor."):]].cpu(), v.cpu()):
++                raise ValueError("actor diverged from checkpoint file after load: " + k)
++        print("[load] actor strictly loaded and equality with source file verified (%d tensors); critic, logstd and optimizer retain fresh initialization" % len(loaded))
++        return info
++    if sd.get("format") != CKPT_FORMAT or optimizer is None or cfg is None:
++        raise ValueError("full resume requires a v2 checkpoint, optimizer, and effective config")
++    for k in ("optimizer", "rng", "iteration", "env_steps", "lr", "config_contract", "adaptation_sha256"):
++        if k not in sd:
++            raise ValueError("resume checkpoint missing " + k)
++    if sd["config_contract"] != config_contract(cfg):
++        raise ValueError("resume configuration differs in training semantics")
++    source_matches = sd["adaptation_sha256"] == source_hash()
++    if not source_matches:
++        print("[load] SOURCE CHANGE: state compatibility verified below; recipe continuity is not certified")
++    for k, v in mstate.items():
++        if not torch.isfinite(v).all():
++            raise ValueError("non-finite checkpoint parameter: " + k)
++    model.load_state_dict(mstate, strict=True)
++    optimizer.load_state_dict(sd["optimizer"])
++    assert_tree_equal(mstate, model.state_dict(), "model")
++    assert_tree_equal(sd["optimizer"], optimizer.state_dict(), "optimizer")
++    if any(group["lr"] != sd["lr"] for group in optimizer.param_groups):
++        raise ValueError("checkpoint learning rate differs from optimizer")
++    restore_rng(sd["rng"])
++    assert_tree_equal(sd["rng"], rng_snapshot(), "rng")
++    info.update(rng_restored=True, state_equality_verified=True, source_matches=source_matches,
++                checkpoint_source_sha256=sd["adaptation_sha256"], current_source_sha256=source_hash(),
++                environment_state_restored=False)
++    print("[load] model/optimizer/RNG equality verified; environment will reset")
++    return info
++
++
++def save_checkpoint_v2(recorder, model, optimizer, iteration, env_steps, lr, cfg, tag, extra=None):
++    payload = {"format": CKPT_FORMAT, "source_id": SOURCE_ID,
++               "adaptation_sha256": source_hash(), "config_contract": config_contract(cfg),
++               "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
++               "iteration": int(iteration), "env_steps": int(env_steps), "lr": float(lr),
++               "model": model.state_dict(), "optimizer": optimizer.state_dict(),
++               "rng": rng_snapshot(), "config": cfg,
++               "not_serialized": ["PhysX internal state", "per-environment reset/terrain/curriculum state",
++                                  "rollout buffer; resumed session begins with env.reset()"]}
++    if extra:
++        payload.update(extra)
++    recorder.save(payload, tag)
++    return payload
++
++
++def guard_finite(model, scalars, diag_path):
++    """Raise SystemExit(2) after dumping diagnostics if anything is non-finite.
++
++    Replaces the upstream reset_logstd NaN branch: we fail loudly, keep the
++    last valid checkpoint untouched (this guard runs before any save) and
++    never silently zero out NaNs.
++    """
++    bad = []
++    for k, v in scalars.items():
++        if v is None:
++            continue
++        try:
++            f = float(v)
++        except (TypeError, ValueError):
++            continue
++        if not np.isfinite(f):
++            bad.append("scalar:%s=%s" % (k, f))
++    with torch.no_grad():
++        for k, p in model.named_parameters():
++            if not torch.isfinite(p).all():
++                bad.append("param:%s" % k)
++            if p.grad is not None and not torch.isfinite(p.grad).all():
++                bad.append("grad:%s" % k)
++    if not bad:
++        return
++    diag = {
++        "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
++        "bad": bad[:200],
++        "n_bad": len(bad),
++        "scalars": {k: (float(v) if v is not None else None) for k, v in scalars.items()},
++        "logstd": model.logstd.detach().cpu().flatten().tolist(),
++        "hint": "non-finite state detected; training halted before checkpoint overwrite",
++    }
++    os.makedirs(os.path.dirname(diag_path), exist_ok=True)
++    with open(diag_path, "w") as f:
++        json.dump(diag, f, indent=2)
++    print("[guard_finite] NON-FINITE STATE detected -> %s" % diag_path, file=sys.stderr)
++    print("[guard_finite] first issues: %s" % bad[:10], file=sys.stderr)
++    sys.exit(2)
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/bh_common.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/bh_common.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/buffer.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/buffer.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/__init__.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/__init__.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/model.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/model.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/recorder.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/recorder.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/runner.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/runner.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/runner_history_symmetry.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/runner_history_symmetry.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/terrain.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/terrain.cpython-38.pyc 不同
+二进制文件 /tmp/pristine_ml3/IsaacGymRL/utils/__pycache__/utils.cpython-38.pyc 和 src/IsaacGymRL/utils/__pycache__/utils.cpython-38.pyc 不同
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/utils/recorder.py src/IsaacGymRL/utils/recorder.py
+--- /tmp/pristine_ml3/IsaacGymRL/utils/recorder.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/utils/recorder.py	2026-10-19 14:39:19.581821429 +0900
+@@ -2,21 +2,27 @@
+ from torch.utils.tensorboard import SummaryWriter
+ import os
+ import time
+-import wandb
+ import yaml
+ 
++try:
++    import wandb
++except ImportError:  # k1-training patch: wandb is optional; use_wandb must be false
++    wandb = None
++
+ 
+ class Recorder:
+ 
+     def __init__(self, cfg):
+         self.cfg = cfg
+         name = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+-        self.dir = os.path.join("logs", name)
+-        os.makedirs(self.dir)
++        self.dir = cfg["basic"].get("output_dir") or os.path.join(os.environ["K1_TRAINING_ROOT"], "runs", name)
++        os.makedirs(self.dir, exist_ok=True)
+         self.model_dir = os.path.join(self.dir, "nn")
+-        os.mkdir(self.model_dir)
++        os.makedirs(self.model_dir, exist_ok=True)
+         self.writer = SummaryWriter(os.path.join(self.dir, "summaries"))
+         if self.cfg["runner"]["use_wandb"]:
++            if wandb is None:
++                raise RuntimeError("use_wandb is true but wandb is not installed; set runner.use_wandb: false")
+             wandb.init(
+                 project=self.cfg["basic"]["task"],
+                 dir=self.dir,
+@@ -57,20 +63,25 @@
+                 path = ("" if key == "steps" or key == "reward" else "episode/") + key
+                 value = self._mean(self.last_episode[key])
+                 self.writer.add_scalar(path, value, it)
+-                if self.cfg["runner"]["use_wandb"]:
++                if self.cfg["runner"]["use_wandb"] and wandb is not None:
+                     wandb.log({path: value}, step=it)
+                 self.last_episode[key].clear()
+ 
+     def record_statistics(self, statistics, it):
++        import json
++        with open(os.path.join(self.dir, "metrics.jsonl"), "a") as stream:
++            stream.write(json.dumps({"iteration": int(it + 1), **{k: float(v) for k, v in statistics.items()}}) + "\n")
+         for key, value in statistics.items():
+             self.writer.add_scalar(key, float(value), it)
+-            if self.cfg["runner"]["use_wandb"]:
++            if self.cfg["runner"]["use_wandb"] and wandb is not None:
+                 wandb.log({key: float(value)}, step=it)
+ 
+     def save(self, model_dict, it):
+         path = os.path.join(self.model_dir, "model_{}.pth".format(it))
+         print("Saving model to {}".format(path))
+-        torch.save(model_dict, path)
++        temporary = path + ".tmp"
++        torch.save(model_dict, temporary)
++        os.replace(temporary, path)
+ 
+     def _mean(self, data):
+         if len(data) == 0:
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/utils/runner_history_symmetry.py src/IsaacGymRL/utils/runner_history_symmetry.py
+--- /tmp/pristine_ml3/IsaacGymRL/utils/runner_history_symmetry.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/utils/runner_history_symmetry.py	2026-10-20 13:00:28.577106598 +0900
+@@ -1,5 +1,6 @@
+ import os
+ import glob
++import sys
+ import yaml
+ import argparse
+ import numpy as np
+@@ -14,6 +15,7 @@
+ from utils.buffer import ExperienceBuffer
+ from utils.utils import discount_values, surrogate_loss
+ from utils.recorder import Recorder
++from utils.bh_common import str2bool, load_checkpoint, save_checkpoint_v2, guard_finite, apply_config_patch
+ 
+ 
+ class Runner_History:
+@@ -31,6 +33,8 @@
+         self.learning_rate = self.cfg["algorithm"]["learning_rate"]
+         self.model = ActorCritic(self.env.num_actions, self.env.num_obs, self.env.num_privileged_obs).to(self.device)
+         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
++        self.start_iteration = 0
++        self.env_steps = 0
+         self._load()
+ 
+         self.buffer = ExperienceBuffer(self.cfg["runner"]["horizon_length"], self.env.num_envs*2, self.device)
+@@ -46,11 +50,16 @@
+         parser.add_argument("--task", required=True, type=str, help="Name of the task to run.")
+         parser.add_argument("--checkpoint", type=str, help="Path of the model checkpoint to load. Overrides config file if provided.")
+         parser.add_argument("--num_envs", type=int, help="Number of environments to create. Overrides config file if provided.")
+-        parser.add_argument("--headless", type=bool, help="Run headless without creating a viewer window. Overrides config file if provided.")
++        parser.add_argument("--headless", type=str2bool, help="Run headless without creating a viewer window. Accepts true/false/1/0. Overrides config file if provided.")
+         parser.add_argument("--sim_device", type=str, help="Device for physics simulation. Overrides config file if provided.")
+         parser.add_argument("--rl_device", type=str, help="Device for the RL algorithm. Overrides config file if provided.")
+         parser.add_argument("--seed", type=int, help="Random seed. Overrides config file if provided.")
+         parser.add_argument("--max_iterations", type=int, help="Maximum number of training iterations. Overrides config file if provided.")
++        parser.add_argument("--load_mode", choices=["actor", "warm-start", "full", "torchscript"], help="Checkpoint load mode: actor (replay/export/warm-start) or full (resume own v2 checkpoints), torchscript (replay only).")
++        parser.add_argument("--max_policy_steps", type=int, help="Bounded number of policy steps for play(); prevents the upstream infinite loop.")
++        parser.add_argument("--save_interval", type=int, help="Save a checkpoint every N iterations. Overrides config file if provided.")
++        parser.add_argument("--output_dir", type=str, help="Absolute directory for this run")
++        parser.add_argument("--config_patch", type=str, help="JSON dict deep-merged onto the effective config for single-factor studies (e.g. lr floor).")
+         self.args = parser.parse_args()
+ 
+     # Override config file with args if needed
+@@ -62,8 +71,18 @@
+             if getattr(self.args, arg) is not None:
+                 if arg == "num_envs":
+                     self.cfg["env"][arg] = getattr(self.args, arg)
++                elif arg == "save_interval":
++                    self.cfg["runner"][arg] = getattr(self.args, arg)
+                 else:
+                     self.cfg["basic"][arg] = getattr(self.args, arg)
++        if getattr(self.args, "config_patch", None):
++            import json as _json
++            patch = _json.loads(self.args.config_patch)
++            if not isinstance(patch, dict):
++                raise ValueError("config_patch must be a JSON object")
++            apply_config_patch(self.cfg, patch)
++            self.cfg["basic"]["config_patch"] = patch
++            print("[cfg] config_patch applied: %s" % patch)
+         if not self.test:
+             self.cfg["viewer"]["record_video"] = False
+ 
+@@ -80,24 +99,45 @@
+         torch.cuda.manual_seed_all(self.cfg["basic"]["seed"])
+ 
+     def _load(self):
+-        if not self.cfg["basic"]["checkpoint"]:
++        ckpt = self.cfg["basic"].get("checkpoint")
++        if not ckpt:
++            if self.test:
++                raise ValueError("replay requires an explicit checkpoint")
+             return
+-        if (self.cfg["basic"]["checkpoint"] == "-1") or (self.cfg["basic"]["checkpoint"] == -1):
+-            self.cfg["basic"]["checkpoint"] = sorted(glob.glob(os.path.join("logs", "**/*.pth"), recursive=True), key=os.path.getmtime)[-1]
+-        print("Loading model from {}".format(self.cfg["basic"]["checkpoint"]))
+-        model_dict = torch.load(self.cfg["basic"]["checkpoint"], map_location=self.device, weights_only=True)
+-        self.model.load_state_dict(model_dict["model"], strict=False)
+-        try:
+-            self.optimizer.load_state_dict(model_dict["optimizer"])
+-        except Exception as e:
+-            print(f"Failed to load optimizer: {e}")
++        if str(ckpt) == "-1":
++            raise ValueError("checkpoint=-1 (scan logs/ for newest .pth) is disabled for reproducible runs; pass an explicit path")
++        mode = self.cfg["basic"].get("load_mode") or ("actor" if self.test else "full")
++        if mode == "torchscript":
++            if not self.test:
++                raise ValueError("TorchScript policy is replay-only; training requires state_dict")
++            self.model.actor = torch.jit.load(ckpt, map_location=self.device).eval()
++            return
++        info = load_checkpoint(self.model, self.optimizer, ckpt, mode, self.device, self.cfg)
++        self.load_info = info
++        if mode == "full" and info.get("iteration") is not None:
++            self.start_iteration = int(info["iteration"])
++            self.env_steps = int(info["env_steps"])
++            if info.get("lr") is not None:
++                self.learning_rate = float(info["lr"])
++                for group in self.optimizer.param_groups:
++                    group["lr"] = self.learning_rate
++            print("[load] resuming bookkeeping: start_iteration=%d env_steps=%s lr=%.3e"
++                  % (self.start_iteration, info.get("env_steps"), self.learning_rate))
+ 
+     def train(self):
+         self.recorder = Recorder(self.cfg)
++        if hasattr(self, "load_info"):
++            import json
++            with open(os.path.join(self.recorder.dir, "resume_validation.json"), "w") as stream:
++                json.dump(self.load_info, stream, indent=2)
+         obs, infos = self.env.reset()
+         obs = obs.to(self.device)
+         privileged_obs = infos["privileged_obs"].to(self.device)
+-        for it in range(self.cfg["basic"]["max_iterations"]):
++        for it in range(self.start_iteration, self.start_iteration + self.cfg["basic"]["max_iterations"]):
++            print("iteration %d | python=%s cwd=%s task=%s device=%s num_envs=%d seed=%s checkpoint=%s load_mode=%s"
++                  % (it, sys.executable, os.getcwd(), self.cfg["basic"]["task"], self.device,
++                     self.env.num_envs, self.cfg["basic"]["seed"],
++                     self.cfg["basic"].get("checkpoint"), self.cfg["basic"].get("load_mode")))
+             # within horizon_length, env.step() is called with same act
+             for n in range(self.cfg["runner"]["horizon_length"]):
+                 if self.cfg["algorithm"]["learn_ball"]:
+@@ -123,6 +163,7 @@
+                 ep_info = {"reward": rew}
+                 ep_info.update(infos["rew_terms"])
+                 self.recorder.record_episode_statistics(done, ep_info, it, n == (self.cfg["runner"]["horizon_length"] - 1))
++            self.env_steps += self.env.num_envs * self.cfg["runner"]["horizon_length"]
+ 
+             with torch.no_grad():
+                 old_dist = self.model.act(self.buffer["obses"])
+@@ -191,13 +232,20 @@
+                 )
+ 
+                 self.optimizer.zero_grad()
++                guard_finite(self.model, {"loss": loss}, os.path.join(self.recorder.dir, "nan_diag.json"))
+                 loss.backward()
++                guard_finite(self.model, {"loss": loss}, os.path.join(self.recorder.dir, "nan_diag.json"))
+                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
+                 self.optimizer.step()
+-                
+-                if torch.isnan(self.model.logstd).any():
+-                    self.model.reset_logstd()
+-                    print("reset logstd")
++                # upstream called self.model.reset_logstd() here on NaN (method does not
++                # exist); replaced by a loud diagnostic failure that never overwrites
++                # the last valid checkpoint.
++                guard_finite(
++                    self.model,
++                    {"value_loss": value_loss, "actor_loss": actor_loss, "sym_loss": sym_loss,
++                     "entropy": entropy.mean(), "loss": loss},
++                    os.path.join(self.recorder.dir, "nan_diag.json"),
++                )
+ 
+                 with torch.no_grad():
+                     kl = torch.sum(
+@@ -238,14 +286,17 @@
+             )
+ 
+             if (it + 1) % self.cfg["runner"]["save_interval"] == 0:
+-                self.recorder.save(
+-                    {
+-                        "model": self.model.state_dict(),
+-                        "optimizer": self.optimizer.state_dict(),
+-                    },
+-                    it + 1,
++                save_checkpoint_v2(
++                    self.recorder, self.model, self.optimizer,
++                    iteration=it + 1, env_steps=self.env_steps, lr=self.learning_rate,
++                    cfg=self.cfg, tag=it + 1,
+                 )
+-            print("epoch: {}/{}".format(it + 1, self.cfg["basic"]["max_iterations"]))
++            print("epoch: {}/{}".format(it + 1, self.start_iteration + self.cfg["basic"]["max_iterations"]))
++        save_checkpoint_v2(
++            self.recorder, self.model, self.optimizer,
++            iteration=self.start_iteration + self.cfg["basic"]["max_iterations"],
++            env_steps=self.env_steps, lr=self.learning_rate, cfg=self.cfg, tag="final",
++        )
+ 
+     def _mirror_obs_batch_walk(self, obs_batch):
+         """
+@@ -634,30 +685,8 @@
+         return out.reshape(orig_shape).clone()
+ 
+     def play(self):
+-        obs, infos = self.env.reset()
+-        obs = obs.to(self.device)
+-        if self.cfg["viewer"]["record_video"]:
+-            os.makedirs("videos", exist_ok=True)
+-            name = time.strftime("%Y-%m-%d-%H-%M-%S.mp4", time.localtime())
+-            record_time = self.cfg["viewer"]["record_interval"]
+-        while True:
+-            with torch.no_grad():
+-                dist = self.model.act(obs)
+-                act = dist.loc
+-                obs, rew, done, infos = self.env.step(act)
+-                obs, rew, done = obs.to(self.device), rew.to(self.device), done.to(self.device)
+-            if self.cfg["viewer"]["record_video"]:
+-                record_time -= self.env.dt
+-                if record_time < 0:
+-                    record_time += self.cfg["viewer"]["record_interval"]
+-                    self.interrupt = False
+-                    signal.signal(signal.SIGINT, self.interrupt_handler)
+-                    with imageio.get_writer(os.path.join("videos", name), fps=int(1.0 / self.env.dt)) as self.writer:
+-                        for frame in self.env.camera_frames:
+-                            self.writer.append_data(frame)
+-                    if self.interrupt:
+-                        raise KeyboardInterrupt
+-                    signal.signal(signal.SIGINT, signal.default_int_handler)
++        from utils.validation import replay
++        return replay(self)
+ 
+     def interrupt_handler(self, signal, frame):
+         print("\nInterrupt received, waiting for video to finish...")
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/utils/runner.py src/IsaacGymRL/utils/runner.py
+--- /tmp/pristine_ml3/IsaacGymRL/utils/runner.py	2026-10-16 03:01:57.000000000 +0900
++++ src/IsaacGymRL/utils/runner.py	2026-10-20 13:00:28.577106598 +0900
+@@ -1,5 +1,6 @@
+ import os
+ import glob
++import sys
+ import yaml
+ import argparse
+ import numpy as np
+@@ -14,6 +15,7 @@
+ from utils.buffer import ExperienceBuffer
+ from utils.utils import discount_values, surrogate_loss
+ from utils.recorder import Recorder
++from utils.bh_common import str2bool, load_checkpoint, save_checkpoint_v2, guard_finite, apply_config_patch
+ 
+ 
+ class Runner:
+@@ -31,6 +33,8 @@
+         self.learning_rate = self.cfg["algorithm"]["learning_rate"]
+         self.model = ActorCritic(self.env.num_actions, self.env.num_obs, self.env.num_privileged_obs).to(self.device)
+         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
++        self.start_iteration = 0
++        self.env_steps = 0
+         self._load()
+ 
+         self.buffer = ExperienceBuffer(self.cfg["runner"]["horizon_length"], self.env.num_envs, self.device)
+@@ -46,11 +50,16 @@
+         parser.add_argument("--task", required=True, type=str, help="Name of the task to run.")
+         parser.add_argument("--checkpoint", type=str, help="Path of the model checkpoint to load. Overrides config file if provided.")
+         parser.add_argument("--num_envs", type=int, help="Number of environments to create. Overrides config file if provided.")
+-        parser.add_argument("--headless", type=bool, help="Run headless without creating a viewer window. Overrides config file if provided.")
++        parser.add_argument("--headless", type=str2bool, help="Run headless without creating a viewer window. Accepts true/false/1/0. Overrides config file if provided.")
+         parser.add_argument("--sim_device", type=str, help="Device for physics simulation. Overrides config file if provided.")
+         parser.add_argument("--rl_device", type=str, help="Device for the RL algorithm. Overrides config file if provided.")
+         parser.add_argument("--seed", type=int, help="Random seed. Overrides config file if provided.")
+         parser.add_argument("--max_iterations", type=int, help="Maximum number of training iterations. Overrides config file if provided.")
++        parser.add_argument("--load_mode", choices=["actor", "warm-start", "full", "torchscript"], help="Checkpoint load mode: actor (replay/export/warm-start) or full (resume own v2 checkpoints), torchscript (replay only).")
++        parser.add_argument("--max_policy_steps", type=int, help="Bounded number of policy steps for play(); prevents the upstream infinite loop.")
++        parser.add_argument("--save_interval", type=int, help="Save a checkpoint every N iterations. Overrides config file if provided.")
++        parser.add_argument("--output_dir", type=str, help="Absolute directory for this run")
++        parser.add_argument("--config_patch", type=str, help="JSON dict deep-merged onto the effective config for single-factor studies (e.g. lr floor).")
+         self.args = parser.parse_args()
+ 
+     # Override config file with args if needed
+@@ -62,8 +71,18 @@
+             if getattr(self.args, arg) is not None:
+                 if arg == "num_envs":
+                     self.cfg["env"][arg] = getattr(self.args, arg)
++                elif arg == "save_interval":
++                    self.cfg["runner"][arg] = getattr(self.args, arg)
+                 else:
+                     self.cfg["basic"][arg] = getattr(self.args, arg)
++        if getattr(self.args, "config_patch", None):
++            import json as _json
++            patch = _json.loads(self.args.config_patch)
++            if not isinstance(patch, dict):
++                raise ValueError("config_patch must be a JSON object")
++            apply_config_patch(self.cfg, patch)
++            self.cfg["basic"]["config_patch"] = patch
++            print("[cfg] config_patch applied: %s" % patch)
+         if not self.test:
+             self.cfg["viewer"]["record_video"] = False
+ 
+@@ -80,25 +99,46 @@
+         torch.cuda.manual_seed_all(self.cfg["basic"]["seed"])
+ 
+     def _load(self):
+-        if not self.cfg["basic"]["checkpoint"]:
++        ckpt = self.cfg["basic"].get("checkpoint")
++        if not ckpt:
++            if self.test:
++                raise ValueError("replay requires an explicit checkpoint")
+             return
+-        if (self.cfg["basic"]["checkpoint"] == "-1") or (self.cfg["basic"]["checkpoint"] == -1):
+-            self.cfg["basic"]["checkpoint"] = sorted(glob.glob(os.path.join("logs", "**/*.pth"), recursive=True), key=os.path.getmtime)[-1]
+-        print("Loading model from {}".format(self.cfg["basic"]["checkpoint"]))
+-        model_dict = torch.load(self.cfg["basic"]["checkpoint"], map_location=self.device, weights_only=True)
+-        self.model.load_state_dict(model_dict["model"], strict=False)
+-        try:
+-            self.optimizer.load_state_dict(model_dict["optimizer"])
+-        except Exception as e:
+-            print(f"Failed to load optimizer: {e}")
++        if str(ckpt) == "-1":
++            raise ValueError("checkpoint=-1 (scan logs/ for newest .pth) is disabled for reproducible runs; pass an explicit path")
++        mode = self.cfg["basic"].get("load_mode") or ("actor" if self.test else "full")
++        if mode == "torchscript":
++            if not self.test:
++                raise ValueError("TorchScript policy is replay-only; training requires state_dict")
++            self.model.actor = torch.jit.load(ckpt, map_location=self.device).eval()
++            return
++        info = load_checkpoint(self.model, self.optimizer, ckpt, mode, self.device, self.cfg)
++        self.load_info = info
++        if mode == "full" and info.get("iteration") is not None:
++            self.start_iteration = int(info["iteration"])
++            self.env_steps = int(info["env_steps"])
++            if info.get("lr") is not None:
++                self.learning_rate = float(info["lr"])
++                for group in self.optimizer.param_groups:
++                    group["lr"] = self.learning_rate
++            print("[load] resuming bookkeeping: start_iteration=%d env_steps=%s lr=%.3e"
++                  % (self.start_iteration, info.get("env_steps"), self.learning_rate))
+ 
+     def train(self):
+         self.recorder = Recorder(self.cfg)
++        if hasattr(self, "load_info"):
++            import json
++            with open(os.path.join(self.recorder.dir, "resume_validation.json"), "w") as stream:
++                json.dump(self.load_info, stream, indent=2)
+         obs, infos = self.env.reset()
+         obs = obs.to(self.device)
+         privileged_obs = infos["privileged_obs"].to(self.device)
+         deadzone = torch.tensor([0.0001] * self.env.num_actions, device=self.device)
+-        for it in range(self.cfg["basic"]["max_iterations"]):
++        for it in range(self.start_iteration, self.start_iteration + self.cfg["basic"]["max_iterations"]):
++            print("iteration %d | python=%s cwd=%s task=%s device=%s num_envs=%d seed=%s checkpoint=%s load_mode=%s"
++                  % (it, sys.executable, os.getcwd(), self.cfg["basic"]["task"], self.device,
++                     self.env.num_envs, self.cfg["basic"]["seed"],
++                     self.cfg["basic"].get("checkpoint"), self.cfg["basic"].get("load_mode")))
+             # within horizon_length, env.step() is called with same act
+             for n in range(self.cfg["runner"]["horizon_length"]):
+                 self.buffer.update_data("obses", n, obs)
+@@ -116,6 +156,7 @@
+                 ep_info = {"reward": rew}
+                 ep_info.update(infos["rew_terms"])
+                 self.recorder.record_episode_statistics(done, ep_info, it, n == (self.cfg["runner"]["horizon_length"] - 1))
++            self.env_steps += self.env.num_envs * self.cfg["runner"]["horizon_length"]
+ 
+             with torch.no_grad():
+                 old_dist = self.model.act(self.buffer["obses"])
+@@ -183,9 +224,17 @@
+                 )
+ 
+                 self.optimizer.zero_grad()
++                guard_finite(self.model, {"loss": loss}, os.path.join(self.recorder.dir, "nan_diag.json"))
+                 loss.backward()
++                guard_finite(self.model, {"loss": loss}, os.path.join(self.recorder.dir, "nan_diag.json"))
+                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
+                 self.optimizer.step()
++                guard_finite(
++                    self.model,
++                    {"value_loss": value_loss, "actor_loss": actor_loss, "bound_loss": bound_loss,
++                     "entropy": entropy.mean(), "loss": loss},
++                    os.path.join(self.recorder.dir, "nan_diag.json"),
++                )
+ 
+                 with torch.no_grad():
+                     kl = torch.sum(
+@@ -226,14 +275,17 @@
+             )
+ 
+             if (it + 1) % self.cfg["runner"]["save_interval"] == 0:
+-                self.recorder.save(
+-                    {
+-                        "model": self.model.state_dict(),
+-                        "optimizer": self.optimizer.state_dict(),
+-                    },
+-                    it + 1,
++                save_checkpoint_v2(
++                    self.recorder, self.model, self.optimizer,
++                    iteration=it + 1, env_steps=self.env_steps, lr=self.learning_rate,
++                    cfg=self.cfg, tag=it + 1,
+                 )
+-            print("epoch: {}/{}".format(it + 1, self.cfg["basic"]["max_iterations"]))
++            print("epoch: {}/{}".format(it + 1, self.start_iteration + self.cfg["basic"]["max_iterations"]))
++        save_checkpoint_v2(
++            self.recorder, self.model, self.optimizer,
++            iteration=self.start_iteration + self.cfg["basic"]["max_iterations"],
++            env_steps=self.env_steps, lr=self.learning_rate, cfg=self.cfg, tag="final",
++        )
+ 
+     def _symmetry_loss_with_deadzone(self, pred, target, deadzone):
+         """
+@@ -400,30 +452,8 @@
+         return out.reshape(orig_shape).clone()
+ 
+     def play(self):
+-        obs, infos = self.env.reset()
+-        obs = obs.to(self.device)
+-        if self.cfg["viewer"]["record_video"]:
+-            os.makedirs("videos", exist_ok=True)
+-            name = time.strftime("%Y-%m-%d-%H-%M-%S.mp4", time.localtime())
+-            record_time = self.cfg["viewer"]["record_interval"]
+-        while True:
+-            with torch.no_grad():
+-                dist = self.model.act(obs)
+-                act = dist.loc
+-                obs, rew, done, infos = self.env.step(act)
+-                obs, rew, done = obs.to(self.device), rew.to(self.device), done.to(self.device)
+-            if self.cfg["viewer"]["record_video"]:
+-                record_time -= self.env.dt
+-                if record_time < 0:
+-                    record_time += self.cfg["viewer"]["record_interval"]
+-                    self.interrupt = False
+-                    signal.signal(signal.SIGINT, self.interrupt_handler)
+-                    with imageio.get_writer(os.path.join("videos", name), fps=int(1.0 / self.env.dt)) as self.writer:
+-                        for frame in self.env.camera_frames:
+-                            self.writer.append_data(frame)
+-                    if self.interrupt:
+-                        raise KeyboardInterrupt
+-                    signal.signal(signal.SIGINT, signal.default_int_handler)
++        from utils.validation import replay
++        return replay(self)
+ 
+     def interrupt_handler(self, signal, frame):
+         print("\nInterrupt received, waiting for video to finish...")
+diff -ruN /tmp/pristine_ml3/IsaacGymRL/utils/validation.py src/IsaacGymRL/utils/validation.py
+--- /tmp/pristine_ml3/IsaacGymRL/utils/validation.py	1970-01-01 09:00:00.000000000 +0900
++++ src/IsaacGymRL/utils/validation.py	2026-10-19 14:49:13.420888172 +0900
+@@ -0,0 +1,70 @@
++"""Finite replay metrics; numerical health does not establish policy quality."""
++import json
++from pathlib import Path
++
++import numpy as np
++import torch
++
++
++def replay(runner):
++    env, cfg = runner.env, runner.cfg
++    steps = cfg["basic"].get("max_policy_steps") or 500
++    if steps <= 0:
++        raise ValueError("max_policy_steps must be positive")
++    out = Path(cfg["basic"]["output_dir"])
++    out.mkdir(parents=True, exist_ok=True)
++    obs, _ = env.reset()
++    samples, resets, timeouts, reward_sum = [], 0, 0, 0.0
++    max_joint_overshoot = 0.0
++    termination_counts = {}
++    torque_bound = env.torque_clipping if hasattr(env, "torque_clipping") else env.torque_limits
++    peaks, tracking, tracking_count = {}, torch.zeros(3, device=runner.device), 0
++    runner.model.eval()
++    for step in range(steps):
++        obs = obs.to(runner.device)
++        with torch.no_grad():
++            action = runner.model.actor(obs)
++            if not torch.isfinite(action).all() or not torch.isfinite(obs).all():
++                raise FloatingPointError("non-finite policy input/output at step %d" % step)
++            if len(samples) < 64 and step % max(1, steps // 16) == 0:
++                samples.extend(obs[:4].cpu().numpy())
++            obs, reward, done, infos = env.step(action)
++        for name, value in (("observation", obs), ("reward", reward),
++                            ("dof_pos", env.dof_pos), ("dof_vel", env.dof_vel),
++                            ("root_states", env.root_states), ("preclip_mean_torques", env.torques),
++                            ("last_substep_applied_torques", env.last_applied_torques)):
++            if not torch.isfinite(value).all():
++                raise FloatingPointError("non-finite %s at step %d" % (name, step))
++            peaks[name] = max(peaks.get(name, 0.0), float(value.abs().max()))
++        if not (env.last_applied_torques.abs() <= torque_bound + 1e-5).all():
++            raise ValueError("applied torque exceeds the configured clamp")
++        joint_overshoot = torch.maximum(env.dof_pos - env.dof_pos_limits[:, 1], env.dof_pos_limits[:, 0] - env.dof_pos)
++        max_joint_overshoot = max(max_joint_overshoot, float(joint_overshoot.max()))
++        for name, flags in infos.get("termination_flags", {}).items():
++            termination_counts[name] = termination_counts.get(name, 0) + int(flags.sum())
++        resets += int(done.sum())
++        timeouts += int((infos["time_outs"] & done).sum())
++        reward_sum += float(reward.mean())
++        if cfg["basic"]["task"] == "K1":
++            measured = torch.cat((env.base_lin_vel[:, :2], env.base_ang_vel[:, 2:3]), dim=1)
++            tracking += (measured - env.commands[:, :3]).square().sum(dim=0)
++            tracking_count += env.num_envs
++    torch.cuda.synchronize() if torch.cuda.is_initialized() else None
++    report = {"task": cfg["basic"]["task"], "policy_steps": steps, "num_envs": env.num_envs,
++              "policy_dt_s": env.dt, "physics_dt_s": env.sim_params.dt,
++              "gpu_physx": env.sim_params.physx.use_gpu,
++              "gpu_pipeline": env.sim_params.use_gpu_pipeline, "tensor_device": str(obs.device),
++              "resets": resets, "timeout_resets": timeouts,
++              "non_timeout_resets": resets - timeouts, "termination_counts": termination_counts,
++              "mean_reward_per_step": reward_sum / steps, "max_abs": peaks,
++              "finite_checks_pass": True,
++              "dof_names": list(env.dof_names), "asset_configuration": cfg["asset"],
++              "max_measured_joint_limit_overshoot_rad": max_joint_overshoot,
++              "torque_clamp_check": "PASS (sampled final physics substep of each policy step)",
++              "note": "Non-timeout reset is not necessarily a fall; task-specific termination applies. No real-robot validation."}
++    if tracking_count:
++        report["velocity_tracking_rmse_vx_vy_wz"] = (tracking / tracking_count).sqrt().cpu().tolist()
++    np.save(out / "observations.npy", np.asarray(samples, dtype=np.float32), allow_pickle=False)
++    (out / "replay_metrics.json").write_text(json.dumps(report, indent=2))
++    print("[replay] " + json.dumps(report), flush=True)
++    return report

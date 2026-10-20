@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "official_repositories": {
+    "BHumanCodeRelease": {
+      "head": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "status_porcelain": ""
+    },
+    "MachineLearning": {
+      "head": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "status_porcelain": ""
+    }
+  },
+  "files": {
+    "/home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh": "df7d8530a37d1e8836cfad25bd382d60e582ab8e6667bf471c52dc7dc477a51c",
+    "/home/peakpeng/Desktop/Robocup/bhuman/BHUMAN-K1-运行说明.md": "3b4c92ddf20b613da77f43d25076d64dfd87c285215461e02a98ad547d72ff19",
+    "/home/peakpeng/Desktop/Robocup/README.md": "8c9dbeecd158dfb87acba01ea6e5ee100e2b04e026e7f90c8481d720b8a569a8",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/STATUS.md": "0cc611b5a326ac597f897ec99c6e21c727833ea623eccb4ec8493eebb2f35111",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/SYNC-README.md": "45f55ab46ad87240285cff8248dd36e2940d86677de3894e35686f27c5e4172d",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/run-bhuman-k1.py": "77ff526aeae6b7ed4dc4daaad144dd4199a19b2d476c8100caed4512f15e3be0",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/summarize-bhuman-evidence.py": "f2d207b5af8b720e2f856fb2e6bbed2215ca1ee1ceee168b123799e716cd25a6",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/configure-desktop.sh": "7213f0d29e20c44cfa7b152dda9bcc6123eb27b8302ea1d9456465b303bfcdbb",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/BHUMAN-DEPLOYMENT-20261019.md": "17bb1ab2fa53e469bb35aca19aaff8a16bb05c067b8f213f105166c95bdc14ea",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/bhuman-deployment-acceptance.json": "e72d0cb27ccf6762770ef7b1e919155321a216dde5685b329fe4ca8fc5e824c3",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/local-deployment-gate-tests.json": "9d1e39359447547436e970146f304f736531a67c577cd6a257f891887dcc4da2",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/launcher-argument-checks.json": "688bfdf325581151025762d873fbf9e3043b476fd487542fa048bc63503d9071",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/deployment-patch-checks.json": "1e25121626d1d7df1f488dafa85d3878dc7ddc4f75fed6e4c88da37dc3e1951c",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/patches/bhuman-local-deployment-20261019.patch": "8d0ed02a32d876ab0c3ce4b4600ff04b16431f51fbc7a8d34e305fc8f78b8aa5",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/patches/simrobot-local-deployment-20261019.patch": "f103e66cce9282b8d3ffc6600b6235d2a8346d9f33f80f1fd2a15ae6c8ffec59",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Make/CMake/SimulatedRobot.cmake": "9133bbe77f4727e2bee26d4fbbb29c0616b2c096cab70be0c43402a7e4ec23ce",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp": "dba041b0531bc1ddeed0f939a40ebe96a5a21d354d66098baef3f9911184c66f",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Libs/SimulatedRobot/LocalConsole.cpp": "a7e16e3137d18dc6b9d75bdd821a21bf8f994cd96bf49c7e6c43ccd4f1e666ca",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp": "b2436190fff720586eaa8ba47240a3effbb79319fc6d81f9af2790b373a110fa",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Libs/SimulatedRobot/TestController.cpp": "864d58e017310cecc8b705d0ce30528aef82389639687805243d3109ccea0f97",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Libs/SimulatedRobot/TestUtils.cpp": "b49c3230a650170d7659b66e2957e2f086ff4450be436f41fb740328a43beb0b",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Threads/Cognition.cpp": "c51a03c1368c40c6682027ea569b72c99cebd37098ea51c26fbbc8fc68719449",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Threads/Motion.cpp": "b3cbe21d9be4bf1f7af1db0cde78b29d2f74bf541249bc74b73f3b91f320ce75",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Src/Threads/Perception.cpp": "5c432da20984e9bacb87fa11c2fd06dde519ad63f7f6dece27ffef2e4f7775fc",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalGait.con": "d79e23e69a3803d2c2f02f04f9a9223f45ab387a42d88766a011a17aba4d4ff8",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalGait.ros3": "1e8870ebec87e51de767f58d9288aaeb68b9de6f0985fabcaf291a54c9845e83",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalMatch.con": "903d5940fddd78b1ea58443ea373d5e25afbc690a6e44265c284235d465519f5",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalMatch.ros3": "be1567b62d677a46e45fbec2f329919b6494d14796d990bcfc482dbe80d99f79",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Util/SimRobot/Src/SimRobot/MainWindow.cpp": "bdd7de9816579e3650886dcc642d2607a8553d8a1890d822a240b48b949be3cb"
+  },
+  "source_bundle": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/patches/bhuman-local-deployment-20261019-source.zip",
+    "sha256": "9159884090f07c33b4d644f3e8f67499b8232cca8241c86ed0bd0ae9058cd4ba",
+    "files": 29
+  },
+  "verified_local_document_links": 23,
+  "acceptance": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/bhuman-deployment-acceptance.json",
+  "original_public_models_unchanged": {
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp": "704186f83378272931ccc785095a9d6776bf1963cab572af9797b66943a5a1b2",
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h": "86020512522fe0afbb2792f20913215fa08952b63bcd85f443f31a0ce73d3c6c",
+    "Config/Robots/Default/K1/walkingEngine.cfg": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+    "Config/Robots/Default/K1/motorParameters.cfg": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+    "Config/Robots/SimulatedK1/walkingEngine.cfg": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+    "Config/Robots/SimulatedK1/motorParameters.cfg": "9dd2a3d1030b3729c5acc8f53c34d1126f9c0d0f9c72e5e131b8879f604b1948",
+    "Config/Robots/SimulatedK1/odometryDataPreviewProvider.cfg": "bebcb08d58ed78243c72e692f5d31c637fc9cf5bd8beea09adece4edefdfeb04",
+    "Config/Locations/MField/setupPosesProvider.cfg": "3b4db7e855f86efd601ec264d498512c3421f2fccb9197ff7ac5ee40d9b71786",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/GetUpEngine/K1.onnx": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa"
+  },
+  "no_robot_connection": true,
+  "full_training_started": false
+}

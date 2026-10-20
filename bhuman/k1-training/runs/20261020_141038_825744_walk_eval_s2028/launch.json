@@ -1,0 +1,17 @@
+{
+  "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+    "--policy",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--seed",
+    "2028",
+    "--seg-steps",
+    "100",
+    "--num-envs",
+    "8"
+  ],
+  "utc": "2026-10-20T05:10:38.838461+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "scope": "CPU-only mechanism audit; no simulator, GPU job, persisted optimizer update or training-source edit.",
+  "torch_version": "2.3.0a0+git63d5e92",
+  "observation_file": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144115_108387_replay_K1/observations.npy",
+  "observation_sha256": "4bc3ff9036319632f0272a2173af8d710a50fc75ea09452a79c7d8fd741ea99c",
+  "observations_shape": [
+    64,
+    344
+  ],
+  "public_checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+  "source_file_sha256": {
+    "utils/model.py": "babcf81c4f7c23654bfa0af0455e3f600df4abdc326ae0b9b9cb85806073fec8",
+    "utils/runner_history_symmetry.py": "361cf176c7288b173efb21aacf133e703a9aad7bd1801cb70254ade8056d066c",
+    "envs/K1.yaml": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+  },
+  "entropy_initial": -7.553798198699951,
+  "entropy_term_gradient_groups": {
+    "actor": {
+      "tensors_with_gradient": 0,
+      "gradient_l2": 0.0
+    },
+    "critic": {
+      "tensors_with_gradient": 0,
+      "gradient_l2": 0.0
+    },
+    "logstd": {
+      "tensors_with_gradient": 1,
+      "gradient_l2": 0.1403426297677834
+    }
+  },
+  "entropy_only_one_step": [
+    {
+      "learning_rate": 0.0,
+      "actor_max_parameter_delta": 0.0,
+      "logstd_max_parameter_delta": 0.0
+    },
+    {
+      "learning_rate": 1e-06,
+      "actor_max_parameter_delta": 0.0,
+      "logstd_max_parameter_delta": 9.5367431640625e-07
+    },
+    {
+      "learning_rate": 0.0001,
+      "actor_max_parameter_delta": 0.0,
+      "logstd_max_parameter_delta": 9.989738464355469e-05
+    }
+  ],
+  "zero_update_kl": 0.0,
+  "stale_vs_fresh_kl_one_disposable_actor_update": {
+    "using_pre_update_distribution_after_step": 0.0,
+    "using_fresh_post_update_distribution": 0.023038521694609813,
+    "note": "The runner computes dist before optimizer.step and does not recompute it for KL; its logged final mini-epoch KL omits the last update. This does not prove the entire reported KL is false or explain the observed policy degradation."
+  },
+  "mirror_probe": {
+    "observation_involution_maxabs": 0.0,
+    "action_involution_maxabs": 0.0,
+    "zero_update_original_ratio_max_error": 0.0,
+    "zero_update_mirrored_ratio_min_median_max": [
+      8.33363804653786e-06,
+      0.5913536583090715,
+      5.6915177667887695
+    ],
+    "zero_update_mirrored_ratio_outside_0p8_1p2_fraction": 0.921875,
+    "scope": "64 recorded public-policy observations with newly sampled actions; not a training rollout. Mirrored behavior log-prob copying can be intentional augmentation and is not declared a bug solely from a non-unit ratio."
+  },
+  "checkpoint_entropy": {
+    "A100": {
+      "logstd_min_max": [
+        -2.1523795127868652,
+        -2.130474805831909
+      ],
+      "entropy_at_checkpoint": -9.4267578125
+    },
+    "B100": {
+      "logstd_min_max": [
+        -2.036334753036499,
+        -2.0334043502807617
+      ],
+      "entropy_at_checkpoint": -8.007610321044922
+    }
+  },
+  "conclusion_limits": [
+    "Entropy-interval loss is a gradient term, not a learning-rate-independent parameter projection.",
+    "In this architecture entropy loss has no direct actor/critic gradient; indirect rollout and optimizer coupling effects remain possible.",
+    "Comparing adaptive, on-policy A/B average KL does not isolate a causal mechanism.",
+    "This audit does not establish the root cause of degraded walking quality."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+    "--task",
+    "K1_Stand_Up",
+    "--num_envs",
+    "64",
+    "--max_iterations",
+    "1",
+    "--save_interval",
+    "1",
+    "--seed",
+    "42",
+    "--headless",
+    "true",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42/nn/model_final.pth",
+    "--load_mode",
+    "full",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 8.20249398300075,
+  "sampled_gpu_peak_mib": 3014,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42",
+  "python_jit": "1",
+  "status": "PASS"
+}

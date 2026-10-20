@@ -1,0 +1,35 @@
+<!-- 摄像头跟踪球 -->
+
+<root BTCPP_format="4" >
+  <BehaviorTree ID="Locate">
+     <Sequence name="root">
+        <SelfLocate mode="htwk_core" msecs_interval="300" _while="locator_mode!='legacy'" />
+        <SelfLocate mode="trust_direction" _while="locator_mode!='htwk'" />
+        <SelfLocateSetBall
+            msecs_interval="200"
+            max_dist="6.0"
+            max_drift="2.0"
+            min_confidence="50.0"
+            require_odom_calibrated="true" />
+        <SelfLocateBallOutField
+            msecs_interval="100"
+            max_dist="6.0"
+            max_drift="2.0"
+            min_confidence="50.0"
+            throw_in_y_only="true"
+            require_odom_calibrated="true"
+            require_ball_out="false"
+            set_play_mask="111"/>
+        <SelfLocate1M msecs_interval="50" max_dist="4.5" max_drift="3.0" />
+        <SelfLocatePT msecs_interval="50" max_dist="3.0" max_drift="2.0" />
+        <SelfLocate2GP msecs_interval="50" max_dist="8.0" max_drift="6.0" max_pair_diff="1.5"
+                       use_theta_select_goal="true" theta_forward_cos="0.1"
+                       require_front="true" front_dot_min="0.05" validate="true" />
+        <SelfLocateBorder msecs_interval="50" max_dist="5.0" max_drift="3.0" />
+        <SelfLocate2T msecs_interval="50" max_dist="4.0" max_drift="2.0" />
+        <SelfLocateLM msecs_interval="50" max_dist="2.5" max_drift="1.5" max_line_dist="3.0"
+                      min_line_conf="0.75" min_line_length="0.6" max_line_marker_diff="0.8"
+                      center_x_limit="6.0" range_scale_in_center="2.0" />
+     </Sequence>
+  </BehaviorTree>
+</root>

@@ -1,0 +1,52 @@
+{
+  "before": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134117_746362_frozen_timeout_before/frozen_rollout.pth",
+  "after": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134147_206783_frozen_timeout_after/frozen_rollout.pth",
+  "before_source": "8568b98802db6754ee46acf44a6ffefe57c4f123624d705e2f49dec6fdef3302",
+  "after_source": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "original_tensor_comparison": {
+    "obs": {
+      "exact_equal": false,
+      "max_abs_difference": 3.6891632080078125
+    },
+    "privileged_obs": {
+      "exact_equal": false,
+      "max_abs_difference": 0.8625137209892273
+    },
+    "actions": {
+      "exact_equal": false,
+      "max_abs_difference": 1.4985342025756836
+    },
+    "rewards": {
+      "exact_equal": false,
+      "max_abs_difference": 0.17584869265556335
+    },
+    "dones": {
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    },
+    "time_outs": {
+      "exact_equal": false,
+      "max_abs_difference": 1.0
+    },
+    "old_mu": {
+      "exact_equal": false,
+      "max_abs_difference": 1.4985343217849731
+    },
+    "old_std": {
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    },
+    "old_logp": {
+      "exact_equal": false,
+      "max_abs_difference": 1.9073486328125e-06
+    },
+    "applied_actions": {
+      "exact_equal": false,
+      "max_abs_difference": 1.4985342025756836
+    },
+    "environment_time_outs": {
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    }
+  }
+}

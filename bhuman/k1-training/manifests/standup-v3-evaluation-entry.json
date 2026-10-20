@@ -1,0 +1,73 @@
+{
+  "status": "ENTRY_VERIFIED_POLICY_NOT_CERTIFIED",
+  "execution": {
+    "command": [
+      "/home/peakpeng/.venvs/bh-gym/bin/python",
+      "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/standup_eval_entry.py",
+      "--policy",
+      "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor.pt",
+      "--profile",
+      "published",
+      "--seed",
+      "2026",
+      "--steps",
+      "400",
+      "--num-envs",
+      "28"
+    ],
+    "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+    "exit_code": 0,
+    "wall_s": 24.54551632899893,
+    "sampled_gpu_peak_mib": 3012,
+    "stop_reason": null,
+    "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192353_251258_standup_eval_published_s2026",
+    "python_jit": "1",
+    "status": "PASS"
+  },
+  "evaluation_status": {
+    "status": "INSUFFICIENT_COVERAGE",
+    "profile": "published",
+    "gates": {
+      "numerical": true,
+      "reset_and_target_limits": true,
+      "physical_limits": true,
+      "reference_quality": true,
+      "sample_coverage": false
+    },
+    "policy_sha256": "00c50c9f30e6d926d2bd4c8b1674b6106a3ae16bcfadbef1cca0b49b5299377c",
+    "source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+    "note": "Separate stress/hold characterization; never implies robot or getup-to-walk handoff acceptance."
+  },
+  "quality": {
+    "reference_completion_rate": 1.0,
+    "stable_finish_rate": 0.9090909090909091,
+    "worst_stratum_reference_rate": 1.0,
+    "post_getup_upright_fraction": 0.9600974147620832,
+    "sample_coverage_all_strata": false
+  },
+  "manifest": {
+    "profile": "published",
+    "variant": "candidate",
+    "seed": 2026,
+    "steps": 400,
+    "num_envs": 28,
+    "source_root": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+    "asset_sha256": "a8fd3600fb415806cc06e59dfa8f1d411eebf06e745a808124fbfa1f78b88610",
+    "sustained_push": false,
+    "policy_path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor.pt",
+    "policy_sha256": "00c50c9f30e6d926d2bd4c8b1674b6106a3ae16bcfadbef1cca0b49b5299377c",
+    "code_sha256": "adecfaabc828188eb4a6c73cfe60fa8eb40e1d5397bac3728c66a99620f215eb",
+    "source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+    "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+    "harness_sha256": "3967de4b6b0e4673cf02c61a82f971cbdd529425bae4876a948471b2840bea12",
+    "physics_sampling": "every DOF refresh and actuation setter, not only the last substep",
+    "stance_criterion": "height >=.45m, abs roll/pitch <=.35rad, linear norm <=.5m/s, angular norm <=1.5rad/s for >=.2s",
+    "joint_sim_gate": "physical max <=.05rad and continuous >.01rad <=.10s; no hardware-safety claim"
+  },
+  "entry_hashes": {
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/evaluate_standup.py": "3967de4b6b0e4673cf02c61a82f971cbdd529425bae4876a948471b2840bea12",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_standup_eval.sh": "52c4241b3d4795b5ea6c08fd40fe7a1af9a5b5771b36b6538d41d14b1df7bc09",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/standup_eval_entry.py": "6cbe6afb4dbe2cc21823122f7e033a5a81f23ff64a820133c5983e7cec00f794"
+  },
+  "limitation": "400 steps verify the new entry and own exported actor; per-stratum coverage is insufficient for a policy quality verdict."
+}

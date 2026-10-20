@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42/nn/model_final.pth",
+  "sha256": "2375b87e59ad3ea36931f66b343bd948f6f9eb557068c261bbaa791b1398450b",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 3,
+  "env_steps": 4608,
+  "lr": 5.062500000000001e-05,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "current_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "environment_state_restored": false
+}

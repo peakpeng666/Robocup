@@ -1,0 +1,18 @@
+[submodule "booster_ros2_interface"]
+	path = src/booster_ros2_interface
+	url = https://gitee.com/booster_robotics/booster_ros2_interface.git
+[submodule "robocup_ros2_interface"]
+	path = src/robocup_ros2_interface
+	url = https://gitee.com/booster_robotics/robocup_ros2_interface.git
+[submodule "src/vision"]
+	path = src/vision
+	url = https://gitee.com/booster_robotics/booster_vision.git
+[submodule "src/vision_segmentation"]
+	path = src/vision_segmentation
+	url = https://gitee.com/booster_robotics/booster_vision_segmentation_deploy.git
+[submodule "src/src/ros2_sync_package"]
+	path = src/ros2_sync_package
+	url = https://gitee.com/booster_robotics/ros2_sync_package.git
+[submodule "src/ball_tracker"]
+	path = src/ball_tracker
+	url = https://gitee.com/booster_robotics/ball_tracker.git

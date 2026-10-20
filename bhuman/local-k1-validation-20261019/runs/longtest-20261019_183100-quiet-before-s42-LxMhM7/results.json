@@ -1,0 +1,1800 @@
+{
+  "phases": {
+    "reset_request": {
+      "max_overshoot_rad": 0.0,
+      "samples_per_joint": 0,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "reset_probe": {
+      "max_overshoot_rad": 0.0,
+      "samples_per_joint": 0,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "first_policy_step": {
+      "max_overshoot_rad": 0.0,
+      "samples_per_joint": 0,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "regular_policy": {
+      "max_overshoot_rad": 0.0,
+      "samples_per_joint": 0,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    }
+  },
+  "max_continuous_over_0_01rad_s": {
+    "AAHead_yaw": 0.0,
+    "Head_pitch": 0.0,
+    "ALeft_Shoulder_Pitch": 0.0,
+    "Left_Shoulder_Roll": 0.0,
+    "Left_Elbow_Pitch": 0.0,
+    "Left_Elbow_Yaw": 0.0,
+    "ARight_Shoulder_Pitch": 0.0,
+    "Right_Shoulder_Roll": 0.0,
+    "Right_Elbow_Pitch": 0.0,
+    "Right_Elbow_Yaw": 0.0,
+    "Left_Hip_Pitch": 0.0,
+    "Left_Hip_Roll": 0.0,
+    "Left_Hip_Yaw": 0.0,
+    "Left_Knee_Pitch": 0.0,
+    "Left_Ankle_Pitch": 0.0,
+    "Left_Ankle_Roll": 0.0,
+    "Right_Hip_Pitch": 0.0,
+    "Right_Hip_Roll": 0.0,
+    "Right_Hip_Yaw": 0.0,
+    "Right_Knee_Pitch": 0.0,
+    "Right_Ankle_Pitch": 0.0,
+    "Right_Ankle_Roll": 0.0
+  },
+  "max_target_overshoot_rad": 0.0,
+  "max_torque_limit_excess_Nm": 0.0,
+  "max_reset_input_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "finite": true,
+  "completed": false,
+  "steps_completed": 0,
+  "wall_s": 3.7608902729989495,
+  "events": [],
+  "stable_after_getup_steps": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "after_getup_steps": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "final_episode_steps": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "final_stable_steps": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "progress": [],
+  "strata": [
+    {
+      "direction": 0,
+      "keyframe": 0,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 1,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 2,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 3,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 4,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 5,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 0,
+      "keyframe": 6,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 0,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 1,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 2,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 3,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 4,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 5,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    },
+    {
+      "direction": 1,
+      "keyframe": 6,
+      "completed_episodes": 0,
+      "reference_success": 0,
+      "stable_success": 0,
+      "falls": 0
+    }
+  ],
+  "gates": {
+    "numerical": false,
+    "reset_and_target_limits": true,
+    "physical_limits": true
+  }
+}

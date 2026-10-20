@@ -1,0 +1,1 @@
+{"template": {"input_names": ["z"], "output_names": ["cls_k", "loc_k"]}, "track1": {"input_names": ["x"], "output_names": ["cls_s", "loc_s"]}, "track2": {"input_names": ["cls_f", "loc_f"], "output_names": ["cls", "loc"]}}

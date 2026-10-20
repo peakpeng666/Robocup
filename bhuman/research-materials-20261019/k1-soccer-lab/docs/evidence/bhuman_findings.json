@@ -1,0 +1,138 @@
+{
+  "audit_date": "2026-10-19",
+  "scope": "Read-only audit of official B-Human K1 release and one official-policy CPU MuJoCo playback",
+  "repositories": [
+    {
+      "repository": "bhuman/BHumanCodeRelease",
+      "branch": "master",
+      "commit": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "tag": "coderelease2026",
+      "tag_object": "18794a78e70fad95f131119b1e9c198caa5f6c14",
+      "public_announcement_date": "2026-10-15",
+      "author_date": "2026-10-10T14:18:17Z",
+      "committer_date": "2026-10-15T14:11:22Z",
+      "tagger_date": "2026-10-15T17:37:58Z",
+      "tree_sha": "20f32acc76b22f321dc96f343cb7516620ea0116",
+      "tree_items": 5871,
+      "tree_truncated": false,
+      "license": "Custom B-Human License.md including RoboCup announcement/contribution/source-release conditions",
+      "url": "https://github.com/bhuman/BHumanCodeRelease/tree/2e3374ba896da8288607f9a1881b876642fe18b8"
+    },
+    {
+      "repository": "bhuman/MachineLearning",
+      "branch": "master",
+      "commit": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "commit_date": "2026-10-15T18:01:57Z",
+      "message": "Add more robust fast standup policies",
+      "tree_items": 209,
+      "tree_truncated": false,
+      "license": "IsaacGymRL/LICENSE Apache-2.0 statement; Booster Robotics 2024; referenced component licenses also apply",
+      "url": "https://github.com/bhuman/MachineLearning/tree/c3fed817e6e8fd06418bea824b1f1ab0157379d2"
+    }
+  ],
+  "submodules": [
+    {
+      "path": "Util/CompiledNN",
+      "mode": "160000",
+      "type": "commit",
+      "sha": "8332c8759f3911e08ded6ac7e088f85620b4c4b5"
+    },
+    {
+      "path": "Util/SimRobot",
+      "mode": "160000",
+      "type": "commit",
+      "sha": "9deb6ae6b2a553211612affb757490736f96bfb3"
+    },
+    {
+      "path": "Util/pybind11",
+      "mode": "160000",
+      "type": "commit",
+      "sha": "0bd8896a4010f2d91b2340570c24fa08606ec406"
+    }
+  ],
+  "k1_policy": {
+    "path": "IsaacGymRL/pre-trained/WalkAndKick/K1_walk.onnx",
+    "git_blob_sha": "f1b711d0a72f43a62b1c6e10e226ccee3235a48c",
+    "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "bytes": 558557,
+    "shared_identically_with_code_release": true,
+    "input": {
+      "name": "input",
+      "rank": 2,
+      "dtype": "tensor(float)",
+      "shape": [
+        "batch_size",
+        344
+      ]
+    },
+    "output": {
+      "name": "output",
+      "rank": 2,
+      "dtype": "tensor(float)",
+      "shape": [
+        "batch_size",
+        13
+      ]
+    },
+    "compilednn_interface_rank": 1,
+    "compilednn_excludes_batch_dimension": true,
+    "policy_hz": 50,
+    "physics_hz": 500,
+    "history_frames": 10,
+    "history_frame_size": 32,
+    "current_size": 24,
+    "action_count_leg": 12,
+    "joint_order": [
+      "lHipPitch",
+      "lHipRoll",
+      "lHipYaw",
+      "lKneePitch",
+      "lAnklePitch",
+      "lAnkleRoll",
+      "rHipPitch",
+      "rHipRoll",
+      "rHipYaw",
+      "rKneePitch",
+      "rAnklePitch",
+      "rAnkleRoll"
+    ],
+    "actuator_count_in_mujoco": 22
+  },
+  "training": {
+    "script": "IsaacGymRL/train.py",
+    "task": "K1",
+    "history": true,
+    "checkpoint": "pre-trained/WalkAndKick/K1_walk.pth",
+    "python": "3.8 (legacy IsaacGym training)",
+    "simulator": "IsaacGym Preview 4 / PhysX",
+    "torch": "2.0",
+    "cuda": "11.8",
+    "numpy": "1.21.6",
+    "restores_model": true,
+    "attempts_optimizer_restore": true,
+    "restores_iteration_rng_environment": false,
+    "baseline_domain_randomization": true,
+    "fast_standup_training_recipe_complete_in_this_repo": false,
+    "export_converter_requires_parameterization": true
+  },
+  "hardware": {
+    "tested_booster_image": "1.7.1",
+    "observed_problems_image": "1.8.0",
+    "sensor_interface": "Booster SDK LowState",
+    "actuation_interface": "Booster SDK LowCmd / kTopicJointCtrl / SERIAL / CUSTOM",
+    "wired_ip_template": "192.168.<team>.<robot>",
+    "wireless_ip_template": "10.0.<team>.<robot>"
+  },
+  "report": "/workspace/scratch/ddfc9e6d5cc3/k1-research/bhuman_findings.md",
+  "experiment": "/workspace/scratch/ddfc9e6d5cc3/k1-soccer-lab/experiments/bhuman_cpu_baseline",
+  "sources": [
+    "https://docs.b-human.de/master/changelog/2026/",
+    "https://docs.b-human.de/master/motion/motion-walking-kicking/",
+    "https://docs.b-human.de/master/getting-started/setting-up-robot/",
+    "https://docs.b-human.de/master/getting-started/initial-setup/",
+    "https://lists.robocup.org/archives/list/robocup-humanoid@lists.robocup.org/latest",
+    "https://arxiv.org/abs/2610.14733",
+    "https://github.com/bhuman/BHumanCodeRelease/blob/2e3374ba896da8288607f9a1881b876642fe18b8/License.md",
+    "https://github.com/bhuman/MachineLearning/blob/c3fed817e6e8fd06418bea824b1f1ab0157379d2/IsaacGymRL/LICENSE"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "project": "k1-soccer-lab",
+  "version": "0.1.0",
+  "created_utc": "2026-10-19T07:11:12.197086+00:00",
+  "status": "research tooling and official pretrained baseline; no new trained policy or hardware qualification",
+  "artifacts": [
+    {
+      "filename": "K1_RoboCup_Research_and_Implementation_2026-10-19.pdf",
+      "bytes": 547551,
+      "sha256": "d822182dfe9ac96b61cd7f03ed41ca537de8d9a404a9a876be0c27fe1e6fdb88"
+    },
+    {
+      "filename": "k1-soccer-tooling-0.1.0.run",
+      "bytes": 101524,
+      "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64"
+    },
+    {
+      "filename": "k1_baseline_cpu_smoke.mp4",
+      "bytes": 821602,
+      "sha256": "4fa45db1acb5f06ae36df7cced2ec0e8307a239b6a0ddca3af9a6a11103fbb0b"
+    }
+  ]
+}

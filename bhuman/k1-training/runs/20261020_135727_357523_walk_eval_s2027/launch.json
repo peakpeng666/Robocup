@@ -1,0 +1,17 @@
+{
+  "source_sha256": "17ea9e9668851fb32dc4c7cf97863aacc7976aa0e1102ed5281d55b0762d33dc",
+  "entrypoint_sha256": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+    "--policy",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_135515_150806_walkH_4096_continue50/nn/model_50.pth",
+    "--seed",
+    "2027",
+    "--seg-steps",
+    "100",
+    "--num-envs",
+    "8"
+  ],
+  "utc": "2026-10-20T04:57:27.369553+00:00"
+}

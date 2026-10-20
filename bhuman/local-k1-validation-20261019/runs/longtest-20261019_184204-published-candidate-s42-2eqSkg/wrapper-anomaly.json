@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-10-19T18:49:15.667051+09:00",
+  "wrapper_exit_code": 1,
+  "python_exit_code": null,
+  "simulation_report_completed": true,
+  "simulation_steps_reported": 6000,
+  "cause": "Launching shell script was edited while its Python child was running. After the child exited the shell read changed content and failed on unbound source_root. Simulation JSON and full log were retained. Do not label this wrapper execution exit 0.",
+  "remediation": "Freeze all launcher/harness files for the remaining matrix; rerun published seed 42 for 3000 steps with known wrapper exit status."
+}

@@ -1,0 +1,30 @@
+{
+  "valid": {
+    "actual": "PASS",
+    "expected": "PASS"
+  },
+  "empty": {
+    "actual": "FAIL",
+    "expected": "FAIL"
+  },
+  "console_error": {
+    "actual": "FAIL",
+    "expected": "FAIL"
+  },
+  "nonfinite": {
+    "actual": "FAIL",
+    "expected": "FAIL"
+  },
+  "incomplete": {
+    "actual": "FAIL",
+    "expected": "FAIL"
+  },
+  "observed_arena_escape": {
+    "actual": false,
+    "expected": false
+  },
+  "premature_ready": {
+    "actual": false,
+    "expected": false
+  }
+}

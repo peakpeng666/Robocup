@@ -1,0 +1,86 @@
+camera:
+  type: realsense
+  intrin:
+    fx: 644.321533
+    fy: 643.516296
+    cx: 659.61377
+    cy: 358.155945
+    distortion_model: 1
+    distortion_coeffs:
+      - -0.0538922139
+      - 0.0633204132
+      - -0.000809954479
+      - 0.000588392722
+      - -0.0203252602
+  extrin:
+    -
+      - 0.0121346526
+      - 0.0121515207
+      - 0.999852538
+      - -0.0103733093
+    -
+      - -0.999915481
+      - -0.00450536236
+      - 0.0121901715
+      - -0.0138273751
+    -
+      - 0.00465282705
+      - -0.999915957
+      - 0.012095822
+      - 0.00748065067
+    -
+      - 0
+      - 0
+      - 0
+      - 1
+  pitch_compensation: -0.2
+  yaw_compensation: 0.3
+  z_compensation: 0.0
+detection_model:
+  model_path: ./src/vision/model/best_orin_finetune_ge_0313.engine
+  confidence_threshold: 0.2
+  nms_threshold: 0.4
+  classnames: [Ball, Goalpost, Person, LCross, TCross, XCross, PenaltyPoint, Opponent, BRMarker]
+  post_process:
+    single_ball_assumption: false
+    #confidence_thresholds:
+      #Ball: 0.3
+      #Goalpost: 0.3
+      #Person: 0.6
+      #LCross: 0.25
+      #TCross: 0.4
+      #XCross: 0.4
+      #PenaltyPoint: 0.2
+      #Opponent: 0.6
+      #BRMarker: 0.2
+segmentation_model:
+  model_path: ./src/vision/model/best_seg_orin.engine
+  confidence_threshold: 0.3
+  nms_threshold: 0.9
+use_depth: true
+ball_pose_estimator:
+  use_depth: false
+  radius: 0.109
+  down_sample_leaf_size: 0.01
+  cluster_distance_threshold: 0.01
+  fitting_distance_threshold: 0.01
+  minimum_cluster_size: 150
+  filter_distance: 1.2
+  check_ball_height: true
+human_like_pose_estimator:
+  use_depth: false
+  down_sample_leaf_size: 0.01
+  fitting_distance_threshold: 0.01
+  statistic_outlier_multiplier: 0.01
+field_marker_pose_estimator:
+  refine: false
+calibration:
+  offset:
+    exclude_distance: 2.0
+    zero_translation: true
+    field_marker_path: ./src/vision/config/field.yaml
+  handeye:
+    calibration_time: 1970-01-01-08-05-01
+    reprojection_error: 0.94675856495099753
+misc:
+  save_data_nonstationary: true

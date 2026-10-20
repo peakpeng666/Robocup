@@ -1,0 +1,14 @@
+{
+  "profile": "quiet",
+  "variant": "clamp",
+  "seed": 42,
+  "steps": 400,
+  "num_envs": 28,
+  "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "code_sha256": "aaacc7f5d8ed9842153c4564a2876838db914328cbdc1a4b10dfec6d061c4aef",
+  "before_sha256": "aaacc7f5d8ed9842153c4564a2876838db914328cbdc1a4b10dfec6d061c4aef",
+  "harness_sha256": "9c38172f09d088e72df978f71951cdb511a275fa54740f6807eb83d2a5b3c243",
+  "physics_sampling": "every DOF refresh and actuation setter, not only the last substep",
+  "stance_criterion": "height >=.45m, abs roll/pitch <=.35rad, linear norm <=.5m/s, angular norm <=1.5rad/s for >=.2s",
+  "joint_sim_gate": "physical max <=.05rad and continuous >.01rad <=.10s; no hardware-safety claim"
+}

@@ -1,0 +1,103 @@
+camera:
+  type: realsense
+  intrin:
+    fx: 643.710388
+    fy: 642.868225
+    cx: 652.632812
+    cy: 370.980835
+    distortion_model: 1
+    distortion_coeffs:
+      - -0.0539925471
+      - 0.0587877594
+      - -0.000276687468
+      - 0.000452146167
+      - -0.0183931738
+  extrin:
+    -
+      - -0.00368236937
+      - -0.00548366411
+      - 0.999978185
+      - -0.00655559404
+    -
+      - -0.999992609
+      - 0.00109128456
+      - -0.00367643847
+      - -0.0154409232
+    -
+      - -0.00107110024
+      - -0.999984384
+      - -0.00548764225
+      - 0.00578962313
+    -
+      - 0
+      - 0
+      - 0
+      - 1
+  pitch_compensation: 0
+  yaw_compensation: 0
+  z_compensation: 0
+detection_model:
+  model_path: model/T1_20260701Kr_realsense_det.engine
+  confidence_threshold: 0.2
+  nms_threshold: 0.4
+  classnames: [Ball, Goalpost, Person, LCross, TCross, XCross, PenaltyPoint, Opponent, BRMarker]
+  post_process:
+    single_ball_assumption: false
+    confidence_thresholds:
+      Ball: 0.4
+      Goalpost: 0.4
+      Person: 0.4
+      LCross: 0.3
+      TCross: 0.3
+      XCross: 0.3
+      PenaltyPoint: 0.3
+      Opponent: 0.4
+      BRMarker: 0.2
+use_depth: true
+ros_pipeline:
+  latest_frame: true
+  seg_infer_every_n_frames: 4
+  perf_log_interval: 60
+plane_fitting:
+  enable: true
+  use_icp: true
+  interval: 1
+  icp_max_iterations: 10
+  icp_inlier_threshold: 0.3
+  icp_convergence_threshold: 0.003
+  ransac_iterations: 30
+  inlier_threshold: 0.05
+  depth_min: 0.1
+  depth_max: 6.0
+  sample_step: 5
+  cam_height: 1.1
+  height_tolerance: 0.15
+  use_salvador_method: false
+ball_pose_estimator:
+  use_depth: false
+  radius: 0.109
+  down_sample_leaf_size: 0.01
+  cluster_distance_threshold: 0.01
+  fitting_distance_threshold: 0.01
+  minimum_cluster_size: 150
+  filter_distance: 1.2
+  check_ball_height: true
+human_like_pose_estimator:
+  use_depth: false
+  down_sample_leaf_size: 0.01
+  fitting_distance_threshold: 0.01
+  statistic_outlier_multiplier: 0.01
+field_marker_pose_estimator:
+  refine: false
+  line_segment_area_threshold: 75
+calibration:
+  sync_max_time_diff_ms: 1400
+  offset:
+    exclude_distance: 2.0
+    zero_translation: true
+    field_marker_path: ./src/vision/config/field.yaml
+  handeye:
+    calibration_time: 2026-07-03-16-28-25
+    reprojection_error: 0.46360574452605863
+misc:
+  save_data_nonstationary: true

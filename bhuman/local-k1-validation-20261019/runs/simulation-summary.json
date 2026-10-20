@@ -1,0 +1,146 @@
+{
+  "AuditFast": {
+    "exit_code": 0,
+    "completed": true,
+    "start": "2026-10-19T16:18:06+09:00",
+    "end": "2026-10-19T16:18:28+09:00",
+    "physics_samples": 40,
+    "first_pose_sample": {
+      "robot": "robot5",
+      "tick": "250",
+      "x_mm": "-2002.0",
+      "y_mm": "-0.0",
+      "yaw_rad": "0.001",
+      "roll_rad": "-0.001",
+      "pitch_rad": "-0.011",
+      "image": "0",
+      "image_time": "100505"
+    },
+    "last_pose_sample": {
+      "robot": "robot5",
+      "tick": "10000",
+      "x_mm": "-1855.8",
+      "y_mm": "-4.8",
+      "yaw_rad": "0.756",
+      "roll_rad": "0.049",
+      "pitch_rad": "-0.007",
+      "image": "0",
+      "image_time": "120005"
+    },
+    "sampled_path_length_mm": 11916.663992922908,
+    "image_rendered_physics_samples": 0,
+    "distinct_sampled_image_timestamps": 40,
+    "motion_samples": 40,
+    "motion_phases": [
+      1,
+      2
+    ],
+    "nonfinite_joint_samples": 0,
+    "cognition_samples": 39,
+    "requested_skills": [
+      2,
+      3
+    ],
+    "distinct_sampled_ball_seen_timestamps": 21,
+    "perception_seen_log_samples": 0,
+    "perception_camera_present_log_samples": 1,
+    "sampling_note": "Perception frames counts afterFrame invocations and can include preconfiguration frames; it is not a camera FPS measurement. Joint finiteness and states are sampled, not exhaustive."
+  },
+  "AuditOracle": {
+    "exit_code": 0,
+    "completed": true,
+    "start": "2026-10-19T16:18:36+09:00",
+    "end": "2026-10-19T16:18:57+09:00",
+    "physics_samples": 40,
+    "first_pose_sample": {
+      "robot": "robot5",
+      "tick": "250",
+      "x_mm": "-1988.5",
+      "y_mm": "-31.6",
+      "yaw_rad": "-0.024",
+      "roll_rad": "0.001",
+      "pitch_rad": "-0.012",
+      "image": "0",
+      "image_time": "100506"
+    },
+    "last_pose_sample": {
+      "robot": "robot5",
+      "tick": "10000",
+      "x_mm": "-4896.1",
+      "y_mm": "-4964.4",
+      "yaw_rad": "1.494",
+      "roll_rad": "-0.001",
+      "pitch_rad": "-0.008",
+      "image": "0",
+      "image_time": "120006"
+    },
+    "sampled_path_length_mm": 18120.565306968492,
+    "image_rendered_physics_samples": 0,
+    "distinct_sampled_image_timestamps": 40,
+    "motion_samples": 40,
+    "motion_phases": [
+      1,
+      2
+    ],
+    "nonfinite_joint_samples": 0,
+    "cognition_samples": 39,
+    "requested_skills": [
+      1,
+      2,
+      3,
+      8
+    ],
+    "distinct_sampled_ball_seen_timestamps": 30,
+    "perception_seen_log_samples": 238,
+    "perception_camera_present_log_samples": 3,
+    "sampling_note": "Perception frames counts afterFrame invocations and can include preconfiguration frames; it is not a camera FPS measurement. Joint finiteness and states are sampled, not exhaustive."
+  },
+  "AuditNormal": {
+    "exit_code": 0,
+    "completed": true,
+    "start": "2026-10-19T16:34:38+09:00",
+    "end": "2026-10-19T16:35:21+09:00",
+    "physics_samples": 40,
+    "first_pose_sample": {
+      "robot": "robot5",
+      "tick": "250",
+      "x_mm": "-2016.0",
+      "y_mm": "-95.2",
+      "yaw_rad": "-0.360",
+      "roll_rad": "0.044",
+      "pitch_rad": "-0.005",
+      "image": "1",
+      "image_time": "100507"
+    },
+    "last_pose_sample": {
+      "robot": "robot5",
+      "tick": "10000",
+      "x_mm": "-1836.1",
+      "y_mm": "-30.4",
+      "yaw_rad": "1.537",
+      "roll_rad": "0.049",
+      "pitch_rad": "-0.015",
+      "image": "1",
+      "image_time": "120007"
+    },
+    "sampled_path_length_mm": 12905.312172934913,
+    "image_rendered_physics_samples": 40,
+    "distinct_sampled_image_timestamps": 40,
+    "motion_samples": 40,
+    "motion_phases": [
+      1,
+      2
+    ],
+    "nonfinite_joint_samples": 0,
+    "cognition_samples": 39,
+    "requested_skills": [
+      2,
+      3,
+      8
+    ],
+    "distinct_sampled_ball_seen_timestamps": 20,
+    "perception_seen_log_samples": 23,
+    "perception_camera_present_log_samples": 441,
+    "sampling_note": "Perception frames counts afterFrame invocations and can include preconfiguration frames; it is not a camera FPS measurement. Joint finiteness and states are sampled, not exhaustive."
+  }
+}

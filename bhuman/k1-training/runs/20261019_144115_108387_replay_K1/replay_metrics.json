@@ -1,0 +1,29 @@
+{
+  "task": "K1",
+  "policy_steps": 500,
+  "num_envs": 4,
+  "policy_dt_s": 0.02,
+  "physics_dt_s": 0.0020000000949949026,
+  "gpu_physx": true,
+  "gpu_pipeline": true,
+  "tensor_device": "cuda:0",
+  "resets": 0,
+  "timeout_resets": 0,
+  "non_timeout_resets": 0,
+  "mean_reward_per_step": 0.06250396179733798,
+  "max_abs": {
+    "observation": 3.2642836570739746,
+    "reward": 0.12503865361213684,
+    "dof_pos": 1.8514114618301392,
+    "dof_vel": 12.869640350341797,
+    "root_states": 66.77478790283203,
+    "torques": 83.18616485595703
+  },
+  "finite_checks_pass": true,
+  "note": "Non-timeout reset is not necessarily a fall; task-specific termination applies. No real-robot validation.",
+  "velocity_tracking_rmse_vx_vy_wz": [
+    0.2893216013908386,
+    0.24129891395568848,
+    0.5933173298835754
+  ]
+}

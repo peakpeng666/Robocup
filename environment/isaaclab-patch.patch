@@ -1,0 +1,13 @@
+diff --git a/source/isaaclab/setup.py b/source/isaaclab/setup.py
+index 5231c1bdaff..087cecca28d 100644
+--- a/source/isaaclab/setup.py
++++ b/source/isaaclab/setup.py
+@@ -43,7 +43,7 @@ INSTALL_REQUIRES = [
+     "pytest",
+     "pytest-mock",
+     "junitparser",
+-    "flatdict==4.0.1",
++    "flatdict==4.0.0",
+     "flaky",
+ ]
+ 

@@ -1,0 +1,19 @@
+<root BTCPP_format="4">
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+    <include path="./subtrees/subtree_locate.xml" />
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <ReactiveSequence _while="control_state==2" name="LT + A">
+                <Speak text="locate" />
+                <CalibrateOdom x="-7" y="0" theta="0" />
+            </ReactiveSequence>
+            <ReactiveSequence _while="control_state==3" name="LT + B">
+                <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                <Speak text="auto" />
+                <SubTree ID="Locate" _autoremap="true" />
+                <CalcKickDir />
+                <CalcKickSpeed />
+            </ReactiveSequence>
+        </Sequence>
+    </BehaviorTree>
+</root>

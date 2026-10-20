@@ -1,0 +1,87 @@
+diff --git a/Src/SimRobot/MainWindow.cpp b/Src/SimRobot/MainWindow.cpp
+index d3f65643..2c9982df 100644
+--- a/Src/SimRobot/MainWindow.cpp
++++ b/Src/SimRobot/MainWindow.cpp
+@@ -1,3 +1,4 @@
++#include <cstdlib>
+ /**
+  * @file SimRobot/MainWindow.cpp
+  * Implementation of the main window of SimRobot
+@@ -353,6 +354,7 @@ bool MainWindow::selectObject(const SimRobot::Object& object)
+ 
+ void MainWindow::showWarning(const QString& title, const QString& message)
+ {
++  if(std::getenv("BH_AUDIT")) { std::cerr << "AUDIT ERROR " << message.toStdString() << std::endl; std::exit(2); }
+   QMessageBox::warning(this, title, message);
+ }
+ 
+@@ -501,9 +503,17 @@ bool MainWindow::loadModule(const QString& name, bool manually)
+ #endif
+   {
+     LoadedModule* loadedModule = new LoadedModule(moduleName);
++#if defined __linux__
++    // CUDA keeps process-level callbacks/worker state after sessions are freed.
++    // Destroy the controller normally, but keep its runtime mapped until exit.
++    // Unloading the plugin first leaves CUDA callbacks pointing at unmapped code.
++    if(name == "SimulatedRobot" && qgetenv("BH_VISION_CUDA") == "1")
++      loadedModule->setLoadHints(loadedModule->loadHints() | QLibrary::PreventUnloadHint);
++#endif
+     loadedModule->createModule = reinterpret_cast<LoadedModule::CreateModuleProc>(loadedModule->resolve("createModule"));
+     if(!loadedModule->createModule)
+     {
++      if(std::getenv("BH_AUDIT")) { std::cerr << "AUDIT ERROR " << loadedModule->errorString().toStdString() << std::endl; std::exit(2); }
+       QMessageBox::warning(this, tr("SimRobot"), loadedModule->errorString());
+       loadedModule->unload();
+       delete loadedModule;
+diff --git a/Src/SimRobotCore3/Simulation/Simulation.cpp b/Src/SimRobotCore3/Simulation/Simulation.cpp
+index d2f8a8fe..371f587f 100644
+--- a/Src/SimRobotCore3/Simulation/Simulation.cpp
++++ b/Src/SimRobotCore3/Simulation/Simulation.cpp
+@@ -17,6 +17,9 @@
+ #include <mujoco/mujoco.h>
+ #include <algorithm>
+ #include <cmath>
++#include <chrono>
++#include <cstdio>
++#include <cstdlib>
+ 
+ Simulation* Simulation::simulation = nullptr;
+ 
+@@ -156,14 +159,21 @@ bool Simulation::loadFile(const std::string& filename, std::list<std::string>& e
+ 
+ void Simulation::doSimulationStep()
+ {
++  using Clock = std::chrono::steady_clock;
++  static const bool profile = std::getenv("BH_PROFILE") != nullptr;
++  static double step1Ms = 0., actuatorMs = 0., step2Ms = 0., totalMs = 0.;
++  const auto start = profile ? Clock::now() : Clock::time_point{};
+   ++simulationStep;
+   simulatedTime += scene->stepLength;
+ 
+   mj_step1(model, data);
++  const auto first = profile ? Clock::now() : Clock::time_point{};
+ 
+   scene->updateActuators();
++  const auto actuators = profile ? Clock::now() : Clock::time_point{};
+ 
+   mj_step2(model, data);
++  const auto second = profile ? Clock::now() : Clock::time_point{};
+ 
+   std::memset(data->xfrc_applied, 0, model->nbody * 6 * sizeof(mjtNum));
+ 
+@@ -189,6 +199,15 @@ void Simulation::doSimulationStep()
+   }
+ 
+   updateFrameRate();
++  if(profile)
++  {
++    step1Ms += std::chrono::duration<double, std::milli>(first - start).count();
++    actuatorMs += std::chrono::duration<double, std::milli>(actuators - first).count();
++    step2Ms += std::chrono::duration<double, std::milli>(second - actuators).count();
++    totalMs += std::chrono::duration<double, std::milli>(Clock::now() - start).count();
++    if(simulationStep % 2500 == 0)
++      std::fprintf(stderr, "PROFILE physics steps=%u step1_ms=%.3f actuator_ms=%.3f step2_ms=%.3f total_ms=%.3f\n", simulationStep, step1Ms, actuatorMs, step2Ms, totalMs);
++  }
+ }
+ 
+ void Simulation::updateFrameRate()

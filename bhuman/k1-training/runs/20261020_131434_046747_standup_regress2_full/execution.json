@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+    "--task",
+    "K1_Stand_Up",
+    "--num_envs",
+    "64",
+    "--max_iterations",
+    "1",
+    "--save_interval",
+    "1",
+    "--seed",
+    "42",
+    "--headless",
+    "true",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_131421_733744_standup_regress2_warm/nn/model_final.pth",
+    "--load_mode",
+    "full",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_131434_046747_standup_regress2_full"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 9.195457691999763,
+  "sampled_gpu_peak_mib": 3014,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_131434_046747_standup_regress2_full",
+  "python_jit": "1",
+  "status": "PASS"
+}

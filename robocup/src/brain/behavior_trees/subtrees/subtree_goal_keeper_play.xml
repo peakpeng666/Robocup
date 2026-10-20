@@ -1,0 +1,82 @@
+<root BTCPP_format="4" >
+   <include path="./subtree_cam_find_and_track_ball.xml" />
+   <include path="./subtree_find_ball.xml" />
+   <include path="./subtree_locate.xml" />
+   <BehaviorTree ID="GoalKeeperPlay">
+      <ReactiveSequence >
+         <SelfLocate mode="trust_direction" />
+         <SubTree ID="Locate" _autoremap="true" _while="decision!='find' &amp;&amp; decision!='fall_recovery'" />
+         <ReactiveSequence _while="wait_for_opponent_restart" name="等待对方恢复比赛">
+            <!-- <PrintMsg msg="等待对方开球"/> -->
+            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+            <SetVelocity clear_decision="true" />
+         </ReactiveSequence>
+         <ReactiveSequence _while="!wait_for_opponent_restart" name="已方开球或对方已恢复比赛">
+            <Sequence _while="ball_out">
+               <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+               <!-- <SetVelocity /> -->
+               <GoBackInField />
+               <!-- <Sleep msec="1000" /> -->
+               <SubTree ID="Locate" _autoremap="true" _while="decision!='find' &amp;&amp; decision!='fall_recovery'" />
+            </Sequence>
+            <ReactiveSequence _while="!ball_out">
+               <!-- <SubTree ID="CamFindAndTrackBall" _autoremap="true" /> -->
+               <ReactiveSequence _while="wait_for_opponent_restart" name="等待对方恢复比赛">
+                  <!-- <PrintMsg msg="等待对方开球"/> -->
+                  <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                  <SetVelocity clear_decision="true" />
+                  <!-- <StepOnSpot /> -->
+               </ReactiveSequence>
+               <Sequence _while="!wait_for_opponent_restart" name="正常比赛">
+                  <Analyze />
+                  <ReactiveSequence _while="goalie_mode == 'block_kick'">
+                     <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                     <IfThenElse name="BlockKick_Select">
+                        <ScriptCondition code="goalie_block_kick_front_clear" />
+                        <RLVisionKick/>
+                        <Sequence name="Clear_To_Border">
+                           <GoalieClearToBorder pass_speed="{goalie_block_kick_pass_speed}" forward_x="3.0" sideline_margin="0.2" />
+                           <IfThenElse name="ClearPassGait_Select">
+                              <ScriptCondition code="pass_gait == 'mimic'" />
+                              <MimicPass pass_speed="{goalie_block_kick_pass_speed}" />
+                              <AMPPass pass_speed="{goalie_block_kick_pass_speed}" />
+                           </IfThenElse>
+                        </Sequence>
+                     </IfThenElse>
+                  </ReactiveSequence>
+                  <ReactiveSequence _while="goalie_mode == 'intercept2'">
+                     <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                     <IfThenElse name="Intercept2_Select">
+                        <ScriptCondition code="goalie_intercept2_force_squat" />
+                        <Intercept />
+                        <Intercept2 />
+                     </IfThenElse>
+                  </ReactiveSequence>
+                  <ReactiveSequence _while="goalie_mode=='attack'">
+                     <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                     <CalcKickDir />
+                     <CalcKickSpeed />
+                     <GoalieDecide decision_out="{decision}" decision_in="{decision}" />
+                     <FallRecovery _while="decision == 'fall_recovery'" />
+                     <AMPChase _while="decision == 'chase'" stop_dist="0.3" slow_down_dist="4.0" slow_down_speed="1.5" stop_angle="0.4" />
+                     <SubTree ID="FindBall" _while="decision == 'find'" _autoremap="true" />
+                     <GoToGoalBlockingPosition _while="decision == 'retreat'" />
+                     <IfThenElse _while="decision == 'pass'" name="GoaliePassGait_Select">
+                        <ScriptCondition code="pass_gait == 'mimic'" />
+                        <MimicPass />
+                        <AMPPass />
+                     </IfThenElse>
+                     <AdjustDribbleDirForObstacle _while="decision == 'dribble'" />
+                     <AMPDribble _while="decision == 'dribble'" />
+                  </ReactiveSequence>
+                  <ReactiveSequence _while="goalie_mode == 'guard'">
+                     <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                     <GoToReadyPosition _while="!ball_location_known &amp;&amp; !tm_ball_pos_reliable" />
+                     <GoToGoalBlockingPosition _while="ball_location_known || tm_ball_pos_reliable" />
+                  </ReactiveSequence>
+               </Sequence>
+            </ReactiveSequence>
+         </ReactiveSequence>
+      </ReactiveSequence>
+   </BehaviorTree>
+</root>

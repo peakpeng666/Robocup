@@ -1,0 +1,3652 @@
+{
+  "phases": {
+    "reset_request": {
+      "max_overshoot_rad": 0.0,
+      "samples_per_joint": 94,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "reset_probe": {
+      "max_overshoot_rad": 0.014054059982299805,
+      "samples_per_joint": 1764,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 7.152557373046875e-07,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.30000072717666626,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": 1.3225321769714355,
+            "held_target": -0.15191568434238434,
+            "applied_tau": 0.0,
+            "episode_step": 108.0,
+            "env": 19.0,
+            "policy_step": 351.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0015339851379394531,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": 1.221534013748169,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 3.5437581539154053,
+            "held_target": -0.41534432768821716,
+            "applied_tau": -2.038084030151367,
+            "episode_step": 189.0,
+            "env": 15.0,
+            "policy_step": 386.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 2.574920654296875e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -2.250025749206543,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 0.10314163565635681,
+            "held_target": -2.25,
+            "applied_tau": 0.0,
+            "episode_step": 23.0,
+            "env": 1.0,
+            "policy_step": 394.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.004672050476074219,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": 2.254672050476074,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": -1.8204652070999146,
+            "held_target": 0.2306555211544037,
+            "applied_tau": 0.0,
+            "episode_step": 197.0,
+            "env": 15.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0021321773529052734,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -3.0021321773529053,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -1.0742805004119873,
+            "held_target": 0.5698649287223816,
+            "applied_tau": 7.092410564422607,
+            "episode_step": 31.0,
+            "env": 4.0,
+            "policy_step": 326.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.002291721059009433,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.002291721059009433,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": -2.4271998405456543,
+            "held_target": 1.3632080554962158,
+            "applied_tau": 10.18620777130127,
+            "episode_step": 197.0,
+            "env": 15.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0033131837844848633,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.8733131885528564,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -4.159320831298828,
+            "held_target": -0.8700000047683716,
+            "applied_tau": 0.0,
+            "episode_step": 36.0,
+            "env": 6.0,
+            "policy_step": 262.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.014054059982299805,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": -3.0140540599823,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -2.9780147075653076,
+            "held_target": -0.9522110223770142,
+            "applied_tau": -11.336100578308105,
+            "episode_step": 136.0,
+            "env": 18.0,
+            "policy_step": 391.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.0023701032623648643,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.0023701032623648643,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 2.759507179260254,
+            "held_target": 0.7377843856811523,
+            "applied_tau": -5.891208648681641,
+            "episode_step": 189.0,
+            "env": 15.0,
+            "policy_step": 386.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.00034540891647338867,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.870345413684845,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": 0.3270465135574341,
+            "held_target": -0.7200350761413574,
+            "applied_tau": 4.914992809295654,
+            "episode_step": 29.0,
+            "env": 26.0,
+            "policy_step": 187.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 3.123283386230469e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.3450312316417694,
+            "lower": -0.3449999988079071,
+            "upper": 0.3449999988079071,
+            "qd": 0.08261880278587341,
+            "held_target": -0.20625799894332886,
+            "applied_tau": 3.2845239639282227,
+            "episode_step": 14.0,
+            "env": 4.0,
+            "policy_step": 371.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "first_policy_step": {
+      "max_overshoot_rad": 0.0003864765167236328,
+      "samples_per_joint": 940,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 8.940696716308594e-08,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.3000001013278961,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": 0.01365432795137167,
+            "held_target": -0.29779601097106934,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 4.0,
+            "policy_step": 357.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 1.2159347534179688e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.2200121879577637,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -0.056918658316135406,
+            "held_target": 1.2200000286102295,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 386.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 2.384185791015625e-07,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -2.250000238418579,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 0.00160013057757169,
+            "held_target": -2.24885892868042,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 2.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 2.0522717022686265e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -2.0522717022686265e-05,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.08595936000347137,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 197.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 1.4603137969970703e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.3450014591217041,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -0.0005848666769452393,
+            "held_target": 0.33783650398254395,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 24.0,
+            "policy_step": 194.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0003864765167236328,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.0003864765167236,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": 1.6297754049301147,
+            "held_target": -3.0,
+            "applied_tau": 7.517871856689453,
+            "episode_step": 0.0,
+            "env": 18.0,
+            "policy_step": 391.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 5.216920271777781e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -5.216920271777781e-06,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.02471201680600643,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 21.0,
+            "policy_step": 268.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 8.940696716308594e-08,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.34500008821487427,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -0.0005366957047954202,
+            "held_target": 0.3449999988079071,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 24.0,
+            "policy_step": 194.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "regular_policy": {
+      "max_overshoot_rad": 0.02553325891494751,
+      "samples_per_joint": 111060,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 1.9669532775878906e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.30000197887420654,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": -0.0024551854003220797,
+            "held_target": -0.25771209597587585,
+            "applied_tau": 2.672928810119629,
+            "episode_step": 10.0,
+            "env": 18.0,
+            "policy_step": 10.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.00015652179718017578,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.2201565504074097,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 0.1700635552406311,
+            "held_target": 1.2200000286102295,
+            "applied_tau": -1.0024816989898682,
+            "episode_step": 31.0,
+            "env": 12.0,
+            "policy_step": 384.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0012402534484863281,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -1.7412402629852295,
+            "lower": -1.7400000095367432,
+            "upper": 1.5700000524520874,
+            "qd": -1.3475905656814575,
+            "held_target": -0.8407500982284546,
+            "applied_tau": 14.0,
+            "episode_step": 18.0,
+            "env": 4.0,
+            "policy_step": 313.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 1.7881393432617188e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.9000017642974854,
+            "lower": -1.899999976158142,
+            "upper": 1.899999976158142,
+            "qd": 0.0012949436204507947,
+            "held_target": 1.899999976158142,
+            "applied_tau": -0.7559337615966797,
+            "episode_step": 6.0,
+            "env": 26.0,
+            "policy_step": 164.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.004560232162475586,
+          "samples_above_1mrad": 6,
+          "worst": {
+            "q": -2.2545602321624756,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 0.48024243116378784,
+            "held_target": -2.083544969558716,
+            "applied_tau": 8.452695846557617,
+            "episode_step": 9.0,
+            "env": 16.0,
+            "policy_step": 9.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.0004884004592895508,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.220488429069519,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 1.5867422819137573,
+            "held_target": 1.2200000286102295,
+            "applied_tau": -1.430559754371643,
+            "episode_step": 30.0,
+            "env": 27.0,
+            "policy_step": 142.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0006995201110839844,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -1.5706995725631714,
+            "lower": -1.5700000524520874,
+            "upper": 1.7400000095367432,
+            "qd": -0.48222774267196655,
+            "held_target": -1.5700000524520874,
+            "applied_tau": 0.0,
+            "episode_step": 8.0,
+            "env": 8.0,
+            "policy_step": 8.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 1.6689300537109375e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.9000016450881958,
+            "lower": -1.899999976158142,
+            "upper": 1.899999976158142,
+            "qd": 5.125044845044613e-05,
+            "held_target": 1.899999976158142,
+            "applied_tau": -0.9725760221481323,
+            "episode_step": 13.0,
+            "env": 12.0,
+            "policy_step": 366.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.00737309455871582,
+          "samples_above_1mrad": 19,
+          "worst": {
+            "q": 2.257373094558716,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": 0.1730501353740692,
+            "held_target": 2.1866655349731445,
+            "applied_tau": -4.039468765258789,
+            "episode_step": 9.0,
+            "env": 2.0,
+            "policy_step": 169.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.000141143798828125,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.000141143798828,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": 0.19747579097747803,
+            "held_target": -2.8092947006225586,
+            "applied_tau": 18.590890884399414,
+            "episode_step": 10.0,
+            "env": 4.0,
+            "policy_step": 10.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.00011610984802246094,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.3801161050796509,
+            "lower": -0.3799999952316284,
+            "upper": 1.5700000524520874,
+            "qd": 1.1644313335418701,
+            "held_target": -0.3799999952316284,
+            "applied_tau": 2.2465453147888184,
+            "episode_step": 22.0,
+            "env": 27.0,
+            "policy_step": 134.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0016489028930664062,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": 1.031648874282837,
+            "lower": -1.0299999713897705,
+            "upper": 1.0299999713897705,
+            "qd": 1.981974482536316,
+            "held_target": 0.28776034712791443,
+            "applied_tau": -20.0,
+            "episode_step": 18.0,
+            "env": 4.0,
+            "policy_step": 313.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.004400014877319336,
+          "samples_above_1mrad": 4,
+          "worst": {
+            "q": 2.3543999195098877,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.215273916721344,
+            "held_target": 2.3499999046325684,
+            "applied_tau": -19.062959671020508,
+            "episode_step": 9.0,
+            "env": 18.0,
+            "policy_step": 9.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0071427226066589355,
+          "samples_above_1mrad": 14,
+          "worst": {
+            "q": -0.8771427273750305,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": 1.036381483078003,
+            "held_target": -0.8700000047683716,
+            "applied_tau": 1.1895544528961182,
+            "episode_step": 36.0,
+            "env": 6.0,
+            "policy_step": 262.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.001355588436126709,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.3463555872440338,
+            "lower": -0.3449999988079071,
+            "upper": 0.3449999988079071,
+            "qd": 1.1387834548950195,
+            "held_target": -0.2902905344963074,
+            "applied_tau": 2.252781391143799,
+            "episode_step": 9.0,
+            "env": 13.0,
+            "policy_step": 9.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.00016808509826660156,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.0001680850982666,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -0.01765945740044117,
+            "held_target": -2.759186267852783,
+            "applied_tau": 26.70722770690918,
+            "episode_step": 9.0,
+            "env": 4.0,
+            "policy_step": 366.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.004250687081366777,
+          "samples_above_1mrad": 5,
+          "worst": {
+            "q": -0.004250687081366777,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": -7.27932596206665,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 1.0,
+            "env": 7.0,
+            "policy_step": 1.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.02553325891494751,
+          "samples_above_1mrad": 15,
+          "worst": {
+            "q": -0.8955332636833191,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -3.34566330909729,
+            "held_target": -0.011762410402297974,
+            "applied_tau": 20.0,
+            "episode_step": 5.0,
+            "env": 6.0,
+            "policy_step": 231.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0008113086223602295,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.34581130743026733,
+            "lower": -0.3449999988079071,
+            "upper": 0.3449999988079071,
+            "qd": -1.0092482566833496,
+            "held_target": -0.05691835284233093,
+            "applied_tau": 13.337849617004395,
+            "episode_step": 5.0,
+            "env": 13.0,
+            "policy_step": 295.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    }
+  },
+  "max_continuous_over_0_01rad_s": {
+    "AAHead_yaw": 0.0,
+    "Head_pitch": 0.0,
+    "ALeft_Shoulder_Pitch": 0.0,
+    "Left_Shoulder_Roll": 0.0,
+    "Left_Elbow_Pitch": 0.0,
+    "Left_Elbow_Yaw": 0.0,
+    "ARight_Shoulder_Pitch": 0.0,
+    "Right_Shoulder_Roll": 0.0,
+    "Right_Elbow_Pitch": 0.0,
+    "Right_Elbow_Yaw": 0.0,
+    "Left_Hip_Pitch": 0.0,
+    "Left_Hip_Roll": 0.0,
+    "Left_Hip_Yaw": 0.0,
+    "Left_Knee_Pitch": 0.0,
+    "Left_Ankle_Pitch": 0.0,
+    "Left_Ankle_Roll": 0.0,
+    "Right_Hip_Pitch": 0.0020000000949949026,
+    "Right_Hip_Roll": 0.0,
+    "Right_Hip_Yaw": 0.0,
+    "Right_Knee_Pitch": 0.0,
+    "Right_Ankle_Pitch": 0.00800000037997961,
+    "Right_Ankle_Roll": 0.0
+  },
+  "max_target_overshoot_rad": 0.0,
+  "max_torque_limit_excess_Nm": 0.0,
+  "max_reset_input_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "finite": true,
+  "completed": true,
+  "steps_completed": 400,
+  "wall_s": 24.052789265002502,
+  "events": [
+    {
+      "env": 13.0,
+      "episode": 1.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.15590861439704895,
+      "roll": -0.4753161370754242,
+      "pitch": -1.5567342042922974,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 31
+    },
+    {
+      "env": 19.0,
+      "episode": 1.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.2074812948703766,
+      "roll": -0.05236218869686127,
+      "pitch": -1.1649622917175293,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 31
+    },
+    {
+      "env": 6.0,
+      "episode": 1.0,
+      "episode_steps": 99.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4988388419151306,
+      "roll": 0.027322495356202126,
+      "pitch": 0.04114120453596115,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 99
+    },
+    {
+      "env": 27.0,
+      "episode": 1.0,
+      "episode_steps": 112.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5236334204673767,
+      "roll": -0.08107541501522064,
+      "pitch": -0.07316344231367111,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 112
+    },
+    {
+      "env": 5.0,
+      "episode": 1.0,
+      "episode_steps": 114.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5194522142410278,
+      "roll": -0.03125399351119995,
+      "pitch": -0.014153611846268177,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 114
+    },
+    {
+      "env": 20.0,
+      "episode": 1.0,
+      "episode_steps": 119.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5015162825584412,
+      "roll": 0.014903825707733631,
+      "pitch": 0.022053875029087067,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 119
+    },
+    {
+      "env": 26.0,
+      "episode": 1.0,
+      "episode_steps": 127.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5028613209724426,
+      "roll": -0.004378654528409243,
+      "pitch": -0.1367042511701584,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 127
+    },
+    {
+      "env": 6.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.13352364301681519,
+      "roll": -0.5620253086090088,
+      "pitch": -1.152590274810791,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 130
+    },
+    {
+      "env": 4.0,
+      "episode": 1.0,
+      "episode_steps": 133.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5127577185630798,
+      "roll": 0.02360178716480732,
+      "pitch": 0.03063097782433033,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 133
+    },
+    {
+      "env": 19.0,
+      "episode": 2.0,
+      "episode_steps": 103.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5043760538101196,
+      "roll": 0.008345047011971474,
+      "pitch": -0.0012060744920745492,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 134
+    },
+    {
+      "env": 18.0,
+      "episode": 1.0,
+      "episode_steps": 136.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.49804192781448364,
+      "roll": 0.007419070694595575,
+      "pitch": -0.01599542237818241,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 136
+    },
+    {
+      "env": 27.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.10289066284894943,
+      "roll": -0.10031678527593613,
+      "pitch": -1.721633791923523,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 143
+    },
+    {
+      "env": 3.0,
+      "episode": 1.0,
+      "episode_steps": 144.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.48818114399909973,
+      "roll": -0.005556642077863216,
+      "pitch": 0.027178354561328888,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 144
+    },
+    {
+      "env": 12.0,
+      "episode": 1.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5255861878395081,
+      "roll": -0.04642299935221672,
+      "pitch": -0.11002181470394135,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 154
+    },
+    {
+      "env": 26.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.14262253046035767,
+      "roll": 0.5844972729682922,
+      "pitch": 1.7243902683258057,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 158
+    },
+    {
+      "env": 13.0,
+      "episode": 2.0,
+      "episode_steps": 128.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.51884526014328,
+      "roll": -0.00885788258165121,
+      "pitch": -0.1453128308057785,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 159
+    },
+    {
+      "env": 2.0,
+      "episode": 1.0,
+      "episode_steps": 160.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.502739667892456,
+      "roll": -0.007816263474524021,
+      "pitch": 0.001226798165589571,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 160
+    },
+    {
+      "env": 11.0,
+      "episode": 1.0,
+      "episode_steps": 161.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5087376832962036,
+      "roll": -0.027205655351281166,
+      "pitch": -0.14055177569389343,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 161
+    },
+    {
+      "env": 17.0,
+      "episode": 1.0,
+      "episode_steps": 165.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5088553428649902,
+      "roll": -0.02758074551820755,
+      "pitch": 0.008260139264166355,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 165
+    },
+    {
+      "env": 16.0,
+      "episode": 1.0,
+      "episode_steps": 182.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5011147856712341,
+      "roll": 0.013888291083276272,
+      "pitch": -0.004267396871000528,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 182
+    },
+    {
+      "env": 1.0,
+      "episode": 1.0,
+      "episode_steps": 187.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49680420756340027,
+      "roll": -0.014902818948030472,
+      "pitch": 0.022776316851377487,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 187
+    },
+    {
+      "env": 25.0,
+      "episode": 1.0,
+      "episode_steps": 189.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5093700289726257,
+      "roll": -0.0009822177235037088,
+      "pitch": -0.11329831182956696,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 189
+    },
+    {
+      "env": 24.0,
+      "episode": 1.0,
+      "episode_steps": 194.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5092243552207947,
+      "roll": -0.028689157217741013,
+      "pitch": -0.10181690752506256,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 194
+    },
+    {
+      "env": 10.0,
+      "episode": 1.0,
+      "episode_steps": 197.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5095606446266174,
+      "roll": -0.004791954532265663,
+      "pitch": -0.1787540316581726,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 197
+    },
+    {
+      "env": 15.0,
+      "episode": 1.0,
+      "episode_steps": 197.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5149247646331787,
+      "roll": -0.018955908715724945,
+      "pitch": -0.024145452305674553,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 197
+    },
+    {
+      "env": 23.0,
+      "episode": 1.0,
+      "episode_steps": 198.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49296659231185913,
+      "roll": 0.01981934905052185,
+      "pitch": -0.12997327744960785,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 198
+    },
+    {
+      "env": 9.0,
+      "episode": 1.0,
+      "episode_steps": 211.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5097699761390686,
+      "roll": -0.009737342596054077,
+      "pitch": -0.13945546746253967,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 211
+    },
+    {
+      "env": 14.0,
+      "episode": 1.0,
+      "episode_steps": 211.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.505006730556488,
+      "roll": 0.012113019824028015,
+      "pitch": 0.011541688814759254,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 0,
+      "policy_step": 211
+    },
+    {
+      "env": 22.0,
+      "episode": 1.0,
+      "episode_steps": 221.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.502991795539856,
+      "roll": -0.011362915858626366,
+      "pitch": -0.16640682518482208,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 1,
+      "policy_step": 221
+    },
+    {
+      "env": 6.0,
+      "episode": 3.0,
+      "episode_steps": 96.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.51827472448349,
+      "roll": -0.012925676070153713,
+      "pitch": 0.03597234562039375,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 226
+    },
+    {
+      "env": 20.0,
+      "episode": 2.0,
+      "episode_steps": 108.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5145865678787231,
+      "roll": 0.0012432271614670753,
+      "pitch": 0.03567647933959961,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 227
+    },
+    {
+      "env": 8.0,
+      "episode": 1.0,
+      "episode_steps": 232.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5235435962677002,
+      "roll": -0.04001541808247566,
+      "pitch": -0.13526904582977295,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 1,
+      "policy_step": 232
+    },
+    {
+      "env": 0.0,
+      "episode": 1.0,
+      "episode_steps": 238.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5038365125656128,
+      "roll": 0.032656196504831314,
+      "pitch": -0.005536249838769436,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 0,
+      "policy_step": 238
+    },
+    {
+      "env": 19.0,
+      "episode": 3.0,
+      "episode_steps": 109.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5000216364860535,
+      "roll": 0.006778030656278133,
+      "pitch": 0.02069966308772564,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 243
+    },
+    {
+      "env": 5.0,
+      "episode": 2.0,
+      "episode_steps": 131.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4964516758918762,
+      "roll": -0.04673352837562561,
+      "pitch": 0.016238797456026077,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 245
+    },
+    {
+      "env": 18.0,
+      "episode": 2.0,
+      "episode_steps": 119.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5028392672538757,
+      "roll": 0.016320370137691498,
+      "pitch": -0.024990186095237732,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 255
+    },
+    {
+      "env": 4.0,
+      "episode": 2.0,
+      "episode_steps": 129.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5119114518165588,
+      "roll": 0.026949962601065636,
+      "pitch": 0.025445548817515373,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 262
+    },
+    {
+      "env": 6.0,
+      "episode": 4.0,
+      "episode_steps": 41.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.34414753317832947,
+      "roll": 0.026930756866931915,
+      "pitch": 1.2861571311950684,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 267
+    },
+    {
+      "env": 21.0,
+      "episode": 1.0,
+      "episode_steps": 268.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5086278915405273,
+      "roll": -0.01347670704126358,
+      "pitch": -0.1293555647134781,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 0,
+      "policy_step": 268
+    },
+    {
+      "env": 27.0,
+      "episode": 3.0,
+      "episode_steps": 134.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5184669494628906,
+      "roll": -0.10441216826438904,
+      "pitch": -0.06842068582773209,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 277
+    },
+    {
+      "env": 7.0,
+      "episode": 1.0,
+      "episode_steps": 286.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5401293635368347,
+      "roll": 0.00020907442376483232,
+      "pitch": -0.10850565880537033,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 0,
+      "policy_step": 286
+    },
+    {
+      "env": 13.0,
+      "episode": 3.0,
+      "episode_steps": 131.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49396762251853943,
+      "roll": -0.021898621693253517,
+      "pitch": -0.11030591279268265,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 290
+    },
+    {
+      "env": 4.0,
+      "episode": 3.0,
+      "episode_steps": 33.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.25668638944625854,
+      "roll": 1.4289846420288086,
+      "pitch": 2.1950039863586426,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 295
+    },
+    {
+      "env": 3.0,
+      "episode": 2.0,
+      "episode_steps": 159.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4740942716598511,
+      "roll": 0.04766298085451126,
+      "pitch": 0.028867831453680992,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 303
+    },
+    {
+      "env": 27.0,
+      "episode": 4.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.08278355747461319,
+      "roll": -0.2135479897260666,
+      "pitch": -1.6138793230056763,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 308
+    },
+    {
+      "env": 26.0,
+      "episode": 3.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5040407180786133,
+      "roll": -0.0071770488284528255,
+      "pitch": -0.1592823714017868,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 312
+    },
+    {
+      "env": 11.0,
+      "episode": 2.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5113027691841125,
+      "roll": 0.010485686361789703,
+      "pitch": -0.12190890312194824,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 315
+    },
+    {
+      "env": 12.0,
+      "episode": 2.0,
+      "episode_steps": 161.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5231208205223083,
+      "roll": -0.024343935772776604,
+      "pitch": -0.12879152595996857,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 315
+    },
+    {
+      "env": 17.0,
+      "episode": 2.0,
+      "episode_steps": 160.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5150519609451294,
+      "roll": 0.029433244839310646,
+      "pitch": -0.013973182998597622,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 325
+    },
+    {
+      "env": 4.0,
+      "episode": 4.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.22480390965938568,
+      "roll": 1.324601650238037,
+      "pitch": 1.814165472984314,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 326
+    },
+    {
+      "env": 2.0,
+      "episode": 2.0,
+      "episode_steps": 170.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5082637071609497,
+      "roll": 0.007318568881601095,
+      "pitch": -0.006179908290505409,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 330
+    },
+    {
+      "env": 20.0,
+      "episode": 3.0,
+      "episode_steps": 109.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.515224277973175,
+      "roll": 0.0016482550418004394,
+      "pitch": -0.13969436287879944,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 336
+    },
+    {
+      "env": 25.0,
+      "episode": 2.0,
+      "episode_steps": 151.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5094585418701172,
+      "roll": -0.0037799885030835867,
+      "pitch": -0.11800531297922134,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 340
+    },
+    {
+      "env": 5.0,
+      "episode": 3.0,
+      "episode_steps": 104.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4951697289943695,
+      "roll": -0.012844803743064404,
+      "pitch": 0.00989588350057602,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 349
+    },
+    {
+      "env": 19.0,
+      "episode": 4.0,
+      "episode_steps": 108.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4987208843231201,
+      "roll": 0.023112453520298004,
+      "pitch": 0.009669193997979164,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 351
+    },
+    {
+      "env": 12.0,
+      "episode": 3.0,
+      "episode_steps": 38.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.12523333728313446,
+      "roll": -0.11446265876293182,
+      "pitch": -1.6648433208465576,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 353
+    },
+    {
+      "env": 24.0,
+      "episode": 2.0,
+      "episode_steps": 162.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5258510112762451,
+      "roll": -0.06998609006404877,
+      "pitch": -0.10292505472898483,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 356
+    },
+    {
+      "env": 4.0,
+      "episode": 5.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.07447579503059387,
+      "roll": -0.01953240856528282,
+      "pitch": -1.5177586078643799,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 357
+    },
+    {
+      "env": 1.0,
+      "episode": 2.0,
+      "episode_steps": 184.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5004016757011414,
+      "roll": 0.0044822306372225285,
+      "pitch": 0.02542913518846035,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 371
+    },
+    {
+      "env": 16.0,
+      "episode": 2.0,
+      "episode_steps": 192.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5019968748092651,
+      "roll": 0.032223690301179886,
+      "pitch": 0.0035789539106190205,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 374
+    },
+    {
+      "env": 6.0,
+      "episode": 5.0,
+      "episode_steps": 112.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5107534527778625,
+      "roll": 0.024452434852719307,
+      "pitch": 0.02840413525700569,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 379
+    },
+    {
+      "env": 23.0,
+      "episode": 2.0,
+      "episode_steps": 186.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5088354349136353,
+      "roll": 0.0038751871325075626,
+      "pitch": -0.1272817999124527,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 384
+    },
+    {
+      "env": 10.0,
+      "episode": 2.0,
+      "episode_steps": 188.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5266878008842468,
+      "roll": -0.030542448163032532,
+      "pitch": -0.16381783783435822,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 385
+    },
+    {
+      "env": 15.0,
+      "episode": 2.0,
+      "episode_steps": 189.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5115055441856384,
+      "roll": 0.01942700892686844,
+      "pitch": 0.03105425089597702,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 386
+    },
+    {
+      "env": 18.0,
+      "episode": 3.0,
+      "episode_steps": 136.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4977837800979614,
+      "roll": 0.041970569640398026,
+      "pitch": -0.021163636818528175,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 391
+    },
+    {
+      "env": 12.0,
+      "episode": 4.0,
+      "episode_steps": 41.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.12896735966205597,
+      "roll": -0.4805437922477722,
+      "pitch": -1.5638352632522583,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 394
+    }
+  ],
+  "stable_after_getup_steps": [
+    106,
+    147,
+    155,
+    155,
+    159,
+    224,
+    217,
+    31,
+    108,
+    176,
+    200,
+    190,
+    158,
+    261,
+    111,
+    141,
+    174,
+    154,
+    210,
+    232,
+    275,
+    86,
+    140,
+    184,
+    167,
+    188,
+    222,
+    183
+  ],
+  "after_getup_steps": [
+    106,
+    149,
+    155,
+    183,
+    162,
+    262,
+    246,
+    102,
+    116,
+    176,
+    200,
+    190,
+    204,
+    279,
+    111,
+    155,
+    174,
+    166,
+    242,
+    240,
+    281,
+    86,
+    140,
+    184,
+    184,
+    191,
+    222,
+    254
+  ],
+  "final_episode_steps": [
+    162,
+    29,
+    70,
+    97,
+    43,
+    51,
+    21,
+    114,
+    168,
+    189,
+    15,
+    85,
+    6,
+    110,
+    189,
+    14,
+    26,
+    75,
+    9,
+    49,
+    64,
+    132,
+    179,
+    16,
+    44,
+    60,
+    88,
+    92
+  ],
+  "final_stable_steps": [
+    28,
+    0,
+    0,
+    35,
+    0,
+    27,
+    6,
+    0,
+    4,
+    80,
+    0,
+    15,
+    0,
+    78,
+    44,
+    0,
+    0,
+    5,
+    0,
+    8,
+    50,
+    0,
+    53,
+    0,
+    0,
+    0,
+    43,
+    73
+  ],
+  "progress": [
+    {
+      "steps": 200,
+      "wall_s": 13.73,
+      "terminations": 26,
+      "falls": 5.0
+    },
+    {
+      "steps": 400,
+      "wall_s": 24.05,
+      "terminations": 66,
+      "falls": 12.0
+    }
+  ],
+  "probe_events": [
+    {
+      "env": 0.0,
+      "linear_speed": 0.440894216299057,
+      "angular_speed": 1.5723239183425903,
+      "joint_speed_max": 19.872560501098633,
+      "joint_displacement_max": 0.022287290543317795,
+      "root_z": 0.14955610036849976,
+      "policy_step": 0
+    },
+    {
+      "env": 1.0,
+      "linear_speed": 0.2916002869606018,
+      "angular_speed": 2.5042550563812256,
+      "joint_speed_max": 4.783351898193359,
+      "joint_displacement_max": 0.01281346008181572,
+      "root_z": 0.17503005266189575,
+      "policy_step": 0
+    },
+    {
+      "env": 2.0,
+      "linear_speed": 0.32941925525665283,
+      "angular_speed": 3.7023723125457764,
+      "joint_speed_max": 10.882010459899902,
+      "joint_displacement_max": 0.020814811810851097,
+      "root_z": 0.2311464250087738,
+      "policy_step": 0
+    },
+    {
+      "env": 3.0,
+      "linear_speed": 2.5520710945129395,
+      "angular_speed": 8.687410354614258,
+      "joint_speed_max": 19.969968795776367,
+      "joint_displacement_max": 0.025650739669799805,
+      "root_z": 0.3240377604961395,
+      "policy_step": 0
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 0.2967614531517029,
+      "angular_speed": 2.3607046604156494,
+      "joint_speed_max": 9.393797874450684,
+      "joint_displacement_max": 0.013071268796920776,
+      "root_z": 0.33606478571891785,
+      "policy_step": 0
+    },
+    {
+      "env": 5.0,
+      "linear_speed": 0.6009532809257507,
+      "angular_speed": 4.3861613273620605,
+      "joint_speed_max": 14.283866882324219,
+      "joint_displacement_max": 0.021297484636306763,
+      "root_z": 0.3844015300273895,
+      "policy_step": 0
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 0.3734205961227417,
+      "angular_speed": 3.7051501274108887,
+      "joint_speed_max": 12.628782272338867,
+      "joint_displacement_max": 0.02259373664855957,
+      "root_z": 0.5920115113258362,
+      "policy_step": 0
+    },
+    {
+      "env": 7.0,
+      "linear_speed": 1.9915279150009155,
+      "angular_speed": 16.078691482543945,
+      "joint_speed_max": 13.552446365356445,
+      "joint_displacement_max": 0.017082273960113525,
+      "root_z": 0.1586591601371765,
+      "policy_step": 0
+    },
+    {
+      "env": 8.0,
+      "linear_speed": 1.5866007804870605,
+      "angular_speed": 10.254461288452148,
+      "joint_speed_max": 26.22978973388672,
+      "joint_displacement_max": 0.05000731348991394,
+      "root_z": 0.15165454149246216,
+      "policy_step": 0
+    },
+    {
+      "env": 9.0,
+      "linear_speed": 0.3240446150302887,
+      "angular_speed": 3.8951563835144043,
+      "joint_speed_max": 8.677444458007812,
+      "joint_displacement_max": 0.029021888971328735,
+      "root_z": 0.19996151328086853,
+      "policy_step": 0
+    },
+    {
+      "env": 10.0,
+      "linear_speed": 0.39386650919914246,
+      "angular_speed": 0.5808228850364685,
+      "joint_speed_max": 5.57074499130249,
+      "joint_displacement_max": 0.013535808771848679,
+      "root_z": 0.36932194232940674,
+      "policy_step": 0
+    },
+    {
+      "env": 11.0,
+      "linear_speed": 0.34498775005340576,
+      "angular_speed": 0.8426885008811951,
+      "joint_speed_max": 5.762246608734131,
+      "joint_displacement_max": 0.018549488857388496,
+      "root_z": 0.4091697335243225,
+      "policy_step": 0
+    },
+    {
+      "env": 12.0,
+      "linear_speed": 0.3576345145702362,
+      "angular_speed": 4.010236740112305,
+      "joint_speed_max": 5.173913955688477,
+      "joint_displacement_max": 0.021331489086151123,
+      "root_z": 0.4595867991447449,
+      "policy_step": 0
+    },
+    {
+      "env": 13.0,
+      "linear_speed": 1.7475554943084717,
+      "angular_speed": 11.564501762390137,
+      "joint_speed_max": 17.410587310791016,
+      "joint_displacement_max": 0.016504652798175812,
+      "root_z": 0.5804591774940491,
+      "policy_step": 0
+    },
+    {
+      "env": 14.0,
+      "linear_speed": 0.24216927587985992,
+      "angular_speed": 4.499053955078125,
+      "joint_speed_max": 6.411558151245117,
+      "joint_displacement_max": 0.011401861906051636,
+      "root_z": 0.13330742716789246,
+      "policy_step": 0
+    },
+    {
+      "env": 15.0,
+      "linear_speed": 0.18360532820224762,
+      "angular_speed": 2.377328634262085,
+      "joint_speed_max": 11.107797622680664,
+      "joint_displacement_max": 0.010474242269992828,
+      "root_z": 0.1338495910167694,
+      "policy_step": 0
+    },
+    {
+      "env": 16.0,
+      "linear_speed": 0.9802817702293396,
+      "angular_speed": 8.545698165893555,
+      "joint_speed_max": 9.278517723083496,
+      "joint_displacement_max": 0.007731050252914429,
+      "root_z": 0.21917106211185455,
+      "policy_step": 0
+    },
+    {
+      "env": 17.0,
+      "linear_speed": 0.4446597993373871,
+      "angular_speed": 1.8968877792358398,
+      "joint_speed_max": 9.719047546386719,
+      "joint_displacement_max": 0.019007563591003418,
+      "root_z": 0.32853442430496216,
+      "policy_step": 0
+    },
+    {
+      "env": 18.0,
+      "linear_speed": 0.8971514105796814,
+      "angular_speed": 6.554963111877441,
+      "joint_speed_max": 10.852640151977539,
+      "joint_displacement_max": 0.018957272171974182,
+      "root_z": 0.3594992160797119,
+      "policy_step": 0
+    },
+    {
+      "env": 19.0,
+      "linear_speed": 1.3520314693450928,
+      "angular_speed": 9.80180835723877,
+      "joint_speed_max": 12.41999340057373,
+      "joint_displacement_max": 0.011820316314697266,
+      "root_z": 0.3725976049900055,
+      "policy_step": 0
+    },
+    {
+      "env": 20.0,
+      "linear_speed": 0.22362661361694336,
+      "angular_speed": 6.691482067108154,
+      "joint_speed_max": 9.135058403015137,
+      "joint_displacement_max": 0.01885092258453369,
+      "root_z": 0.5973674654960632,
+      "policy_step": 0
+    },
+    {
+      "env": 21.0,
+      "linear_speed": 0.052728988230228424,
+      "angular_speed": 2.6178219318389893,
+      "joint_speed_max": 8.289287567138672,
+      "joint_displacement_max": 0.007780838757753372,
+      "root_z": 0.15494148433208466,
+      "policy_step": 0
+    },
+    {
+      "env": 22.0,
+      "linear_speed": 0.42048004269599915,
+      "angular_speed": 9.81069564819336,
+      "joint_speed_max": 19.249359130859375,
+      "joint_displacement_max": 0.03351399675011635,
+      "root_z": 0.1339288055896759,
+      "policy_step": 0
+    },
+    {
+      "env": 23.0,
+      "linear_speed": 0.5805787444114685,
+      "angular_speed": 9.236984252929688,
+      "joint_speed_max": 22.358570098876953,
+      "joint_displacement_max": 0.023525090888142586,
+      "root_z": 0.1267862170934677,
+      "policy_step": 0
+    },
+    {
+      "env": 24.0,
+      "linear_speed": 0.21956080198287964,
+      "angular_speed": 4.236268043518066,
+      "joint_speed_max": 8.463902473449707,
+      "joint_displacement_max": 0.01543939858675003,
+      "root_z": 0.33282965421676636,
+      "policy_step": 0
+    },
+    {
+      "env": 25.0,
+      "linear_speed": 0.1752261370420456,
+      "angular_speed": 1.431895136833191,
+      "joint_speed_max": 2.4460902214050293,
+      "joint_displacement_max": 0.013649225234985352,
+      "root_z": 0.4176287353038788,
+      "policy_step": 0
+    },
+    {
+      "env": 26.0,
+      "linear_speed": 0.2744940519332886,
+      "angular_speed": 1.1724718809127808,
+      "joint_speed_max": 28.407062530517578,
+      "joint_displacement_max": 0.03253239393234253,
+      "root_z": 0.49550655484199524,
+      "policy_step": 0
+    },
+    {
+      "env": 27.0,
+      "linear_speed": 0.10262539982795715,
+      "angular_speed": 0.7958145141601562,
+      "joint_speed_max": 0.7676295638084412,
+      "joint_displacement_max": 0.025393929332494736,
+      "root_z": 0.586665153503418,
+      "policy_step": 0
+    },
+    {
+      "env": 13.0,
+      "linear_speed": 1.1039446592330933,
+      "angular_speed": 9.491158485412598,
+      "joint_speed_max": 33.41023635864258,
+      "joint_displacement_max": 0.030107960104942322,
+      "root_z": 0.6085594892501831,
+      "policy_step": 31
+    },
+    {
+      "env": 19.0,
+      "linear_speed": 0.4754105508327484,
+      "angular_speed": 5.520511627197266,
+      "joint_speed_max": 5.745610237121582,
+      "joint_displacement_max": 0.012377023696899414,
+      "root_z": 0.3852899670600891,
+      "policy_step": 31
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 1.3729701042175293,
+      "angular_speed": 7.368092060089111,
+      "joint_speed_max": 9.327901840209961,
+      "joint_displacement_max": 0.030881643295288086,
+      "root_z": 0.5825549364089966,
+      "policy_step": 99
+    },
+    {
+      "env": 27.0,
+      "linear_speed": 1.05885648727417,
+      "angular_speed": 7.332306861877441,
+      "joint_speed_max": 8.571307182312012,
+      "joint_displacement_max": 0.015680432319641113,
+      "root_z": 0.5974153280258179,
+      "policy_step": 112
+    },
+    {
+      "env": 5.0,
+      "linear_speed": 0.6994896531105042,
+      "angular_speed": 6.97170877456665,
+      "joint_speed_max": 8.181249618530273,
+      "joint_displacement_max": 0.013963371515274048,
+      "root_z": 0.3872182369232178,
+      "policy_step": 114
+    },
+    {
+      "env": 20.0,
+      "linear_speed": 0.47548821568489075,
+      "angular_speed": 5.148574352264404,
+      "joint_speed_max": 9.560585975646973,
+      "joint_displacement_max": 0.01228940486907959,
+      "root_z": 0.5745195746421814,
+      "policy_step": 119
+    },
+    {
+      "env": 26.0,
+      "linear_speed": 2.208763599395752,
+      "angular_speed": 13.122848510742188,
+      "joint_speed_max": 17.47391700744629,
+      "joint_displacement_max": 0.02397555112838745,
+      "root_z": 0.47790810465812683,
+      "policy_step": 127
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 1.1559455394744873,
+      "angular_speed": 10.716097831726074,
+      "joint_speed_max": 10.641735076904297,
+      "joint_displacement_max": 0.016785282641649246,
+      "root_z": 0.572579026222229,
+      "policy_step": 130
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 0.9569021463394165,
+      "angular_speed": 5.939595699310303,
+      "joint_speed_max": 24.16983413696289,
+      "joint_displacement_max": 0.031215302646160126,
+      "root_z": 0.33050674200057983,
+      "policy_step": 133
+    },
+    {
+      "env": 19.0,
+      "linear_speed": 0.8903132081031799,
+      "angular_speed": 9.039036750793457,
+      "joint_speed_max": 8.840452194213867,
+      "joint_displacement_max": 0.004816675558686256,
+      "root_z": 0.37680792808532715,
+      "policy_step": 134
+    },
+    {
+      "env": 18.0,
+      "linear_speed": 0.773898184299469,
+      "angular_speed": 3.8885586261749268,
+      "joint_speed_max": 8.057029724121094,
+      "joint_displacement_max": 0.019846439361572266,
+      "root_z": 0.33575451374053955,
+      "policy_step": 136
+    },
+    {
+      "env": 27.0,
+      "linear_speed": 0.7247589230537415,
+      "angular_speed": 6.54298210144043,
+      "joint_speed_max": 7.667079448699951,
+      "joint_displacement_max": 0.020360589027404785,
+      "root_z": 0.6010109186172485,
+      "policy_step": 143
+    },
+    {
+      "env": 3.0,
+      "linear_speed": 0.507860004901886,
+      "angular_speed": 3.782627820968628,
+      "joint_speed_max": 16.897438049316406,
+      "joint_displacement_max": 0.028633832931518555,
+      "root_z": 0.32182785868644714,
+      "policy_step": 144
+    },
+    {
+      "env": 12.0,
+      "linear_speed": 0.7815951704978943,
+      "angular_speed": 6.83195686340332,
+      "joint_speed_max": 6.869556427001953,
+      "joint_displacement_max": 0.019653499126434326,
+      "root_z": 0.48555734753608704,
+      "policy_step": 154
+    },
+    {
+      "env": 26.0,
+      "linear_speed": 0.5311329364776611,
+      "angular_speed": 1.948378562927246,
+      "joint_speed_max": 20.764467239379883,
+      "joint_displacement_max": 0.01631075143814087,
+      "root_z": 0.4747037887573242,
+      "policy_step": 158
+    },
+    {
+      "env": 13.0,
+      "linear_speed": 0.4293786883354187,
+      "angular_speed": 4.940669536590576,
+      "joint_speed_max": 4.626171112060547,
+      "joint_displacement_max": 0.008996596559882164,
+      "root_z": 0.5835574269294739,
+      "policy_step": 159
+    },
+    {
+      "env": 2.0,
+      "linear_speed": 0.1842327117919922,
+      "angular_speed": 5.558932781219482,
+      "joint_speed_max": 7.666517734527588,
+      "joint_displacement_max": 0.011151261627674103,
+      "root_z": 0.30682066082954407,
+      "policy_step": 160
+    },
+    {
+      "env": 11.0,
+      "linear_speed": 0.22819636762142181,
+      "angular_speed": 1.4682620763778687,
+      "joint_speed_max": 4.625741004943848,
+      "joint_displacement_max": 0.011471867561340332,
+      "root_z": 0.40855830907821655,
+      "policy_step": 161
+    },
+    {
+      "env": 17.0,
+      "linear_speed": 0.2512637674808502,
+      "angular_speed": 2.0424602031707764,
+      "joint_speed_max": 14.759679794311523,
+      "joint_displacement_max": 0.022303462028503418,
+      "root_z": 0.32190781831741333,
+      "policy_step": 165
+    },
+    {
+      "env": 16.0,
+      "linear_speed": 0.40961068868637085,
+      "angular_speed": 3.9262890815734863,
+      "joint_speed_max": 15.352354049682617,
+      "joint_displacement_max": 0.03597080707550049,
+      "root_z": 0.20163175463676453,
+      "policy_step": 182
+    },
+    {
+      "env": 1.0,
+      "linear_speed": 0.4036141633987427,
+      "angular_speed": 1.021275281906128,
+      "joint_speed_max": 19.453449249267578,
+      "joint_displacement_max": 0.02860328182578087,
+      "root_z": 0.18534812331199646,
+      "policy_step": 187
+    },
+    {
+      "env": 25.0,
+      "linear_speed": 0.1968071609735489,
+      "angular_speed": 1.0177613496780396,
+      "joint_speed_max": 1.75762140750885,
+      "joint_displacement_max": 0.010701775550842285,
+      "root_z": 0.4280425012111664,
+      "policy_step": 189
+    },
+    {
+      "env": 24.0,
+      "linear_speed": 0.5204676389694214,
+      "angular_speed": 5.765838146209717,
+      "joint_speed_max": 6.106424808502197,
+      "joint_displacement_max": 0.02122020721435547,
+      "root_z": 0.343740314245224,
+      "policy_step": 194
+    },
+    {
+      "env": 10.0,
+      "linear_speed": 0.2347247302532196,
+      "angular_speed": 1.0127135515213013,
+      "joint_speed_max": 1.5123522281646729,
+      "joint_displacement_max": 0.014860864728689194,
+      "root_z": 0.34687769412994385,
+      "policy_step": 197
+    },
+    {
+      "env": 15.0,
+      "linear_speed": 0.14067324995994568,
+      "angular_speed": 0.9820531010627747,
+      "joint_speed_max": 17.28135871887207,
+      "joint_displacement_max": 0.012656912207603455,
+      "root_z": 0.1433638036251068,
+      "policy_step": 197
+    },
+    {
+      "env": 23.0,
+      "linear_speed": 0.11259008198976517,
+      "angular_speed": 1.9517109394073486,
+      "joint_speed_max": 7.263739585876465,
+      "joint_displacement_max": 0.021662287414073944,
+      "root_z": 0.12350186705589294,
+      "policy_step": 198
+    },
+    {
+      "env": 9.0,
+      "linear_speed": 0.224964901804924,
+      "angular_speed": 1.6426225900650024,
+      "joint_speed_max": 4.851543426513672,
+      "joint_displacement_max": 0.009122371673583984,
+      "root_z": 0.14200276136398315,
+      "policy_step": 211
+    },
+    {
+      "env": 14.0,
+      "linear_speed": 0.16040870547294617,
+      "angular_speed": 4.903753757476807,
+      "joint_speed_max": 10.03921127319336,
+      "joint_displacement_max": 0.027928456664085388,
+      "root_z": 0.2023296356201172,
+      "policy_step": 211
+    },
+    {
+      "env": 22.0,
+      "linear_speed": 1.1835869550704956,
+      "angular_speed": 13.002169609069824,
+      "joint_speed_max": 59.658966064453125,
+      "joint_displacement_max": 0.05379443243145943,
+      "root_z": 0.15342001616954803,
+      "policy_step": 221
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 1.033101201057434,
+      "angular_speed": 11.011070251464844,
+      "joint_speed_max": 19.27995491027832,
+      "joint_displacement_max": 0.01747119426727295,
+      "root_z": 0.5740630030632019,
+      "policy_step": 226
+    },
+    {
+      "env": 20.0,
+      "linear_speed": 0.394184947013855,
+      "angular_speed": 3.231022834777832,
+      "joint_speed_max": 3.9883034229278564,
+      "joint_displacement_max": 0.016722649335861206,
+      "root_z": 0.5905929803848267,
+      "policy_step": 227
+    },
+    {
+      "env": 8.0,
+      "linear_speed": 0.2874149680137634,
+      "angular_speed": 4.212176322937012,
+      "joint_speed_max": 12.26790714263916,
+      "joint_displacement_max": 0.03847214952111244,
+      "root_z": 0.16295984387397766,
+      "policy_step": 232
+    },
+    {
+      "env": 0.0,
+      "linear_speed": 0.2574659287929535,
+      "angular_speed": 2.1869113445281982,
+      "joint_speed_max": 18.16656494140625,
+      "joint_displacement_max": 0.026709146797657013,
+      "root_z": 0.14834333956241608,
+      "policy_step": 238
+    },
+    {
+      "env": 19.0,
+      "linear_speed": 0.32416409254074097,
+      "angular_speed": 7.820995330810547,
+      "joint_speed_max": 4.736252307891846,
+      "joint_displacement_max": 0.007138490676879883,
+      "root_z": 0.37877413630485535,
+      "policy_step": 243
+    },
+    {
+      "env": 5.0,
+      "linear_speed": 0.7632843255996704,
+      "angular_speed": 8.255000114440918,
+      "joint_speed_max": 13.260354995727539,
+      "joint_displacement_max": 0.01930398866534233,
+      "root_z": 0.38606101274490356,
+      "policy_step": 245
+    },
+    {
+      "env": 18.0,
+      "linear_speed": 0.6497718691825867,
+      "angular_speed": 4.097774505615234,
+      "joint_speed_max": 12.303473472595215,
+      "joint_displacement_max": 0.02839958667755127,
+      "root_z": 0.3396177887916565,
+      "policy_step": 255
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 0.7971426844596863,
+      "angular_speed": 5.324281215667725,
+      "joint_speed_max": 8.515161514282227,
+      "joint_displacement_max": 0.03436043858528137,
+      "root_z": 0.3449305593967438,
+      "policy_step": 262
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 0.6109756231307983,
+      "angular_speed": 6.089265823364258,
+      "joint_speed_max": 8.008008003234863,
+      "joint_displacement_max": 0.0166776180267334,
+      "root_z": 0.5565659999847412,
+      "policy_step": 267
+    },
+    {
+      "env": 21.0,
+      "linear_speed": 0.8024156093597412,
+      "angular_speed": 3.9112637042999268,
+      "joint_speed_max": 6.905942440032959,
+      "joint_displacement_max": 0.01678115874528885,
+      "root_z": 0.1335366815328598,
+      "policy_step": 268
+    },
+    {
+      "env": 27.0,
+      "linear_speed": 1.0260885953903198,
+      "angular_speed": 6.5666728019714355,
+      "joint_speed_max": 32.20691680908203,
+      "joint_displacement_max": 0.021435225382447243,
+      "root_z": 0.5875880122184753,
+      "policy_step": 277
+    },
+    {
+      "env": 7.0,
+      "linear_speed": 0.13474665582180023,
+      "angular_speed": 1.7489371299743652,
+      "joint_speed_max": 21.64800262451172,
+      "joint_displacement_max": 0.026940498501062393,
+      "root_z": 0.1366693377494812,
+      "policy_step": 286
+    },
+    {
+      "env": 13.0,
+      "linear_speed": 0.7147911787033081,
+      "angular_speed": 7.553398609161377,
+      "joint_speed_max": 13.696568489074707,
+      "joint_displacement_max": 0.018557284027338028,
+      "root_z": 0.5964673161506653,
+      "policy_step": 290
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 1.2290459871292114,
+      "angular_speed": 7.035101890563965,
+      "joint_speed_max": 14.847017288208008,
+      "joint_displacement_max": 0.02966148778796196,
+      "root_z": 0.3268696367740631,
+      "policy_step": 295
+    },
+    {
+      "env": 3.0,
+      "linear_speed": 1.2925678491592407,
+      "angular_speed": 6.284387588500977,
+      "joint_speed_max": 28.269515991210938,
+      "joint_displacement_max": 0.030256519094109535,
+      "root_z": 0.3255733251571655,
+      "policy_step": 303
+    },
+    {
+      "env": 27.0,
+      "linear_speed": 1.0537856817245483,
+      "angular_speed": 6.168130397796631,
+      "joint_speed_max": 5.3936052322387695,
+      "joint_displacement_max": 0.014087557792663574,
+      "root_z": 0.584380030632019,
+      "policy_step": 308
+    },
+    {
+      "env": 26.0,
+      "linear_speed": 0.12150174379348755,
+      "angular_speed": 0.1891227811574936,
+      "joint_speed_max": 18.48989486694336,
+      "joint_displacement_max": 0.034828245639801025,
+      "root_z": 0.4825114607810974,
+      "policy_step": 312
+    },
+    {
+      "env": 11.0,
+      "linear_speed": 0.2676311433315277,
+      "angular_speed": 1.31854248046875,
+      "joint_speed_max": 1.9532670974731445,
+      "joint_displacement_max": 0.014785170555114746,
+      "root_z": 0.41032201051712036,
+      "policy_step": 315
+    },
+    {
+      "env": 12.0,
+      "linear_speed": 0.14942778646945953,
+      "angular_speed": 11.57657527923584,
+      "joint_speed_max": 15.159688949584961,
+      "joint_displacement_max": 0.024690985679626465,
+      "root_z": 0.5065551400184631,
+      "policy_step": 315
+    },
+    {
+      "env": 17.0,
+      "linear_speed": 0.35480013489723206,
+      "angular_speed": 2.2450661659240723,
+      "joint_speed_max": 13.561217308044434,
+      "joint_displacement_max": 0.023287177085876465,
+      "root_z": 0.325334757566452,
+      "policy_step": 325
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 1.0817344188690186,
+      "angular_speed": 6.512310028076172,
+      "joint_speed_max": 10.392252922058105,
+      "joint_displacement_max": 0.017653733491897583,
+      "root_z": 0.33906739950180054,
+      "policy_step": 326
+    },
+    {
+      "env": 2.0,
+      "linear_speed": 0.21660034358501434,
+      "angular_speed": 4.928287506103516,
+      "joint_speed_max": 8.8115234375,
+      "joint_displacement_max": 0.006393499672412872,
+      "root_z": 0.19320547580718994,
+      "policy_step": 330
+    },
+    {
+      "env": 20.0,
+      "linear_speed": 0.7601551413536072,
+      "angular_speed": 3.5043885707855225,
+      "joint_speed_max": 9.640809059143066,
+      "joint_displacement_max": 0.01735764741897583,
+      "root_z": 0.5860466361045837,
+      "policy_step": 336
+    },
+    {
+      "env": 25.0,
+      "linear_speed": 0.1939845085144043,
+      "angular_speed": 1.0657074451446533,
+      "joint_speed_max": 2.5128238201141357,
+      "joint_displacement_max": 0.010238409042358398,
+      "root_z": 0.41422390937805176,
+      "policy_step": 340
+    },
+    {
+      "env": 5.0,
+      "linear_speed": 0.6115435361862183,
+      "angular_speed": 1.3453224897384644,
+      "joint_speed_max": 4.825299263000488,
+      "joint_displacement_max": 0.010686874389648438,
+      "root_z": 0.37265250086784363,
+      "policy_step": 349
+    },
+    {
+      "env": 19.0,
+      "linear_speed": 0.2745509743690491,
+      "angular_speed": 1.0716701745986938,
+      "joint_speed_max": 2.5288729667663574,
+      "joint_displacement_max": 0.014349699020385742,
+      "root_z": 0.3838341236114502,
+      "policy_step": 351
+    },
+    {
+      "env": 12.0,
+      "linear_speed": 1.7712852954864502,
+      "angular_speed": 13.292285919189453,
+      "joint_speed_max": 19.793472290039062,
+      "joint_displacement_max": 0.017742931842803955,
+      "root_z": 0.4764876067638397,
+      "policy_step": 353
+    },
+    {
+      "env": 24.0,
+      "linear_speed": 0.4207681119441986,
+      "angular_speed": 0.621087908744812,
+      "joint_speed_max": 2.789555072784424,
+      "joint_displacement_max": 0.014954894781112671,
+      "root_z": 0.3551183044910431,
+      "policy_step": 356
+    },
+    {
+      "env": 4.0,
+      "linear_speed": 0.7501123547554016,
+      "angular_speed": 2.4660634994506836,
+      "joint_speed_max": 12.711382865905762,
+      "joint_displacement_max": 0.01453651487827301,
+      "root_z": 0.33441436290740967,
+      "policy_step": 357
+    },
+    {
+      "env": 1.0,
+      "linear_speed": 0.6051973700523376,
+      "angular_speed": 1.8457998037338257,
+      "joint_speed_max": 13.762863159179688,
+      "joint_displacement_max": 0.016623837873339653,
+      "root_z": 0.17743301391601562,
+      "policy_step": 371
+    },
+    {
+      "env": 16.0,
+      "linear_speed": 0.6945220232009888,
+      "angular_speed": 7.094208240509033,
+      "joint_speed_max": 20.323843002319336,
+      "joint_displacement_max": 0.03133811801671982,
+      "root_z": 0.33414945006370544,
+      "policy_step": 374
+    },
+    {
+      "env": 6.0,
+      "linear_speed": 0.6931697130203247,
+      "angular_speed": 5.392128944396973,
+      "joint_speed_max": 5.950689315795898,
+      "joint_displacement_max": 0.012587723322212696,
+      "root_z": 0.5779008865356445,
+      "policy_step": 379
+    },
+    {
+      "env": 23.0,
+      "linear_speed": 0.5826810002326965,
+      "angular_speed": 2.031245708465576,
+      "joint_speed_max": 7.750286102294922,
+      "joint_displacement_max": 0.017495274543762207,
+      "root_z": 0.13537684082984924,
+      "policy_step": 384
+    },
+    {
+      "env": 10.0,
+      "linear_speed": 0.5888960361480713,
+      "angular_speed": 5.373004913330078,
+      "joint_speed_max": 6.471426010131836,
+      "joint_displacement_max": 0.0180814266204834,
+      "root_z": 0.3792988657951355,
+      "policy_step": 385
+    },
+    {
+      "env": 15.0,
+      "linear_speed": 0.2957551181316376,
+      "angular_speed": 5.017982006072998,
+      "joint_speed_max": 19.141845703125,
+      "joint_displacement_max": 0.020847138017416,
+      "root_z": 0.16111737489700317,
+      "policy_step": 386
+    },
+    {
+      "env": 18.0,
+      "linear_speed": 0.6522313952445984,
+      "angular_speed": 3.2200076580047607,
+      "joint_speed_max": 19.36418914794922,
+      "joint_displacement_max": 0.025670435279607773,
+      "root_z": 0.3204701542854309,
+      "policy_step": 391
+    },
+    {
+      "env": 12.0,
+      "linear_speed": 0.33335962891578674,
+      "angular_speed": 7.088253021240234,
+      "joint_speed_max": 7.007294178009033,
+      "joint_displacement_max": 0.017861247062683105,
+      "root_z": 0.507980227470398,
+      "policy_step": 394
+    }
+  ],
+  "strata": [
+    {
+      "direction": 0,
+      "keyframe": 0,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 2,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 1,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 2.0,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 2,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 3,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 3.0,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 4,
+      "completed_episodes": 8,
+      "reference_success": 5,
+      "stable_success": 3.0,
+      "falls": 3.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 5,
+      "completed_episodes": 7,
+      "reference_success": 6,
+      "stable_success": 6,
+      "falls": 1.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 6,
+      "completed_episodes": 8,
+      "reference_success": 6,
+      "stable_success": 6,
+      "falls": 2.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 0,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 2,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 1,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 2,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 2,
+      "completed_episodes": 3,
+      "reference_success": 3,
+      "stable_success": 3,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 3,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 4,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 5,
+      "completed_episodes": 7,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 3.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 6,
+      "completed_episodes": 7,
+      "reference_success": 4,
+      "stable_success": 2.0,
+      "falls": 3.0
+    }
+  ],
+  "gates": {
+    "numerical": true,
+    "reset_and_target_limits": true,
+    "physical_limits": true
+  }
+}

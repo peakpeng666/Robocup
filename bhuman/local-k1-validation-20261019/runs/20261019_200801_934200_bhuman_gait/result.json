@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "mode": "gait",
+  "scope": "Public B-Human K1 controller in normal 3D SimRobot; local simulation only; not a full regulation match or hardware qualification",
+  "requested_simulation_s": 30.0,
+  "checks": {
+    "process_exit_zero": true,
+    "completed_requested_steps": true,
+    "no_console_errors": true,
+    "all_robots_reported": true,
+    "all_robots_have_camera_perception_cognition": true,
+    "finite_all_recorded_frames": true,
+    "all_robots_execute_walk": true,
+    "no_fall_or_getup": true,
+    "robot_traveled_over_1m": true,
+    "complete_frame_capture": true
+  },
+  "robots": {
+    "robot5": {
+      "physics_samples": 60,
+      "motion_samples": 60,
+      "unique_camera_timestamps_sampled": 60,
+      "perception_samples": 60,
+      "ball_seen_samples": 0,
+      "cognition_samples": 59,
+      "skills": [
+        1
+      ],
+      "walk_frames": 11490,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 8.371685320917454,
+      "max_sampled_abs_roll_pitch_rad": 0.064,
+      "first_pose": {
+        "robot": "robot5",
+        "tick": "250",
+        "x_mm": "-5000.0",
+        "y_mm": "4977.0",
+        "yaw_rad": "-1.569",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.007",
+        "image": "1",
+        "image_time": "100500",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot5",
+        "tick": "15000",
+        "x_mm": "-1986.9",
+        "y_mm": "-85.4",
+        "yaw_rad": "2.466",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.007",
+        "image": "1",
+        "image_time": "129996",
+        "nonfinite_total": "0"
+      }
+    }
+  },
+  "game_states": [
+    3
+  ],
+  "last_game": {
+    "tick": "15000",
+    "state": "3",
+    "first_half": "1",
+    "remaining_s": "571",
+    "score_a": "0",
+    "score_b": "0",
+    "robots": "1",
+    "ball_valid": "1",
+    "ball_x_mm": "6000.0",
+    "ball_y_mm": "4000.0"
+  },
+  "ball_contacts_logged": 0,
+  "ball_path_m_from_2hz_samples": 0.0,
+  "errors": [],
+  "measurement_note": "Joint/pose finite counters run each available frame; trajectories sampled at 2 Hz. Ball path includes automatic-referee placement. Contacts are rate-limited at 10 Hz.",
+  "video": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_200801_934200_bhuman_gait/bhuman-k1-gait.mp4"
+}

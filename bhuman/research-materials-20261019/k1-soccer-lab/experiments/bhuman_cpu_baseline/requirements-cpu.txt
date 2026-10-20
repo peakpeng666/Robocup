@@ -1,0 +1,7 @@
+# Tested with Python 3.12.14 on Linux x86_64. No CUDA, IsaacGym, or torch needed.
+mujoco==3.3.7
+onnxruntime==1.22.1
+numpy==2.2.6
+PyYAML==6.0.3
+# Optional: render_smoke.py uses Pillow, system ffmpeg, and working EGL/OpenGL.
+Pillow==12.3.0

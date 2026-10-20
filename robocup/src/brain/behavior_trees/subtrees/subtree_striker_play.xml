@@ -1,0 +1,73 @@
+<root BTCPP_format="4" >
+   <include path="./subtree_cam_find_and_track_ball.xml" />
+   <include path="./subtree_find_ball.xml" />
+   <include path="./subtree_locate.xml" />
+   <BehaviorTree ID="StrikerPlay">
+      <ReactiveSequence>
+         <SelfLocate mode="trust_direction" />
+         <!-- 进入 StrikerPlay 顶层 -->
+         <PrintMsg msg="[BT] Enter StrikerPlay root" />
+         <SubTree ID="Locate" _autoremap="true" _while="decision!='find' &amp;&amp; decision!='fall_recovery'" />
+         <ReactiveSequence _while="wait_for_opponent_restart" name="等待对方恢复比赛">
+            <PrintMsg msg="[BT] wait_for_opponent_restart == true" />
+            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+            <SetVelocity clear_decision="true" />
+            <!-- <StepOnSpot /> -->
+         </ReactiveSequence>
+         <ReactiveSequence _while="!wait_for_opponent_restart" name="/正常比赛, 即已方开球或对方已恢复比赛">
+            <PrintMsg msg="[BT] wait_for_opponent_restart == false (normal game)" />
+            <Sequence _while="ball_out">
+               <PrintMsg msg="[BT] ball_out == true, go back in field" />
+               <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+               <SetVelocity clear_decision="true" />
+               <GoBackInField />
+               <!-- <Sleep msec="1000" /> -->
+               <SubTree ID="Locate" _autoremap="true" _while="decision!='find' &amp;&amp; decision!='fall_recovery'" />
+            </Sequence>
+            <ReactiveSequence _while="!ball_out">
+               <!-- 找球期也保持头部持续扫视，与身体找球并行 -->
+               <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+               <CalcKickDir />
+               <CalcKickSpeed />
+               
+               <!-- 先执行 StrikerDecide，把 decision 写入 blackboard -->
+               <StrikerDecide decision_out="{decision}" decision_in="{decision}" />
+               
+               <ReactiveSequence>
+                  <!-- assist -->
+                  <Assist _while="decision == 'assist'" />
+                  <!-- restart passer prepare -->
+                  <MoveToPoseOnField _while="decision == 'restart_passer_prepare'"
+                     x="{restart_passer_prepare_x}"
+                     y="{restart_passer_prepare_y}"
+                     theta="{restart_passer_prepare_theta}"
+                     long_range_threshold="1.0"
+                     turn_threshold="0.9"
+                     x_tolerance="0.25"
+                     y_tolerance="0.25"
+                     theta_tolerance="0.10"
+                     avoid_obstacle="true" />
+                  <!-- chase -->
+                  <AMPChase _while="decision == 'chase'" stop_dist="0.3" slow_down_dist="4.0" slow_down_speed="1.5" stop_angle="0.4" />
+                  <!-- pass -->
+                  <IfThenElse _while="decision == 'pass'" name="PassGait_Select">
+                     <ScriptCondition code="use_mimic_pass == true" />
+                     <MimicPass />
+                     <AMPPass />
+                  </IfThenElse>
+                  <!-- dribble -->
+                  <AdjustDribbleDirForObstacle _while="decision == 'dribble'" />
+                  <AMPDribble _while="decision == 'dribble'" />
+                  <!-- shoot -->
+                  <RLVisionKick _while="decision == 'shoot'"/>
+                  <!-- <AMPPass _while="decision == 'shoot'" /> -->
+                  <!-- fall recovery -->
+                  <FallRecovery _while="decision == 'fall_recovery'" />
+                  <!-- find -->
+                  <SubTree ID="FindBall" _while="decision=='find'" _autoremap="true" />
+               </ReactiveSequence>
+            </ReactiveSequence>
+         </ReactiveSequence>
+      </ReactiveSequence>
+   </BehaviorTree>
+</root>

@@ -1,0 +1,106 @@
+from pathlib import Path
+import json,hashlib,datetime
+ROOT=Path(__file__).resolve().parents[2]; OUT=Path(__file__).resolve().parent
+index=json.loads((OUT/'results-index.json').read_text())
+cohort=[]
+for seed in (2027,2028,2029):
+ choices=[r for r in index['evaluations'] if r['seed']==seed and r['execution'].get('source_sha256_at_launch')=='efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c']
+ base=[r for r in choices if r['policy'].endswith('pre-trained/WalkAndKick/K1_walk.pth')][-1]
+ candidate=[r for r in choices if r['policy'].endswith('20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth')][-1]
+ br=json.loads((ROOT/base['run']/'results.json').read_text());cr=json.loads((ROOT/candidate['run']/'results.json').read_text())
+ assert br['evaluator_sha256']==cr['evaluator_sha256']
+ violations=[]
+ for name in br['segments']:
+  b=br['segments'][name]['tracking_rmse_settled_vx_vy_wz'];c=cr['segments'][name]['tracking_rmse_settled_vx_vy_wz']
+  for i,axis in enumerate(('vx','vy','wz')):
+   if c[i]>1.3*b[i]:violations.append({'segment':name,'axis':axis,'baseline':b[i],'candidate':c[i],'relative_change':c[i]/b[i]-1})
+ cohort.append({'seed':seed,'baseline':base,'candidate':candidate,'segments_exceeding_30pct':violations})
+mean=lambda kind:[sum(x[kind]['segment_mean_settled_rmse'][i] for x in cohort)/3 for i in range(3)]
+b=mean('baseline');c=mean('candidate')
+result={'evaluations':cohort,'aggregate_baseline':b,'aggregate_candidate':c,'relative_change':[c[i]/b[i]-1 for i in range(3)],'baseline_settled':sum(x['baseline']['settled'] for x in cohort),'candidate_settled':sum(x['candidate']['settled'] for x in cohort),'n_env_episodes_per_policy':24,'per_episode_seconds':24,'training_seed':7,'training_iterations':70,'critic_only_iterations':20,'actor_iterations':50,'env_steps':4096*24*70,'deployment_approved':False,'conclusion':'Bounded continuation avoids the large aggregate degradation seen without a fixed reference; not superior in every segment/seed. One training seed only. No competition or robot promotion.'}
+(OUT/'holdout-comparison.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+rows='\n'.join('| {} | {} | {} | {}/8 → {}/8 |'.format(x['seed'], ' / '.join('%.4f'%v for v in x['baseline']['segment_mean_settled_rmse']), ' / '.join('%.4f'%v for v in x['candidate']['segment_mean_settled_rmse']),x['baseline']['settled'],x['candidate']['settled']) for x in cohort)
+report=f'''# 行走退化诊断与训练推进实测报告（2026-10-20）
+
+本轮已完成源码修复、真实固定 rollout 诊断、多组小规模在线对照、4096 环境训练、三个评估种子仲裁及起身 3+1 轮回归。没有安装或升级环境，没有连接机器人，没有替换比赛程序的公开步态或正常视觉。
+
+## 结论与证据强度
+
+1. **确定的代码缺陷**：history/symmetry runner 原先在 optimizer.step 后读取旧分布，KL 没有反映最后一次实际参数更新。现改为冻结 rollout 参考分布、更新后重新前向，并分开记录真实与镜像样本；高 KL 降学习率分支不能把低于下限的 LR 反向抬高。可选 KL 拒绝同时回滚参数和 Adam 状态。
+2. **确定的环境反馈缺陷**：行走 `_check_termination` 重绑 time_out_buf，但 extras 仍引用旧张量。真实 464 步探查中，17 个命令边界全部未返回；改为原位赋值后 17/17 正确返回，下一步清零也已验证。命令边界不等于物理重置。前后 PhysX 轨迹不逐位一致，不据此宣称单独解释全部退化。
+3. **确定的评估缺陷**：旧评估读取不存在的 termination_flags，空字典被误当成零终止。现直接统计 done 与当前 timeouts。旧 A/B/C/D 的“零跌倒”结论不再作为有效证据；E 组实际检测到 5 次非超时重置。
+4. **不支持此前的单因归因**：固定真实 rollout 上，移除熵区间损失后的最终真实 KL 0.578，与保留时 0.582 接近；熵项此时只直接作用于 logstd。原始样本的 actor 梯度范数 59.22，镜像项 0.983；镜像初始概率比约 75% 已在裁剪区外，值得后续研究，但本轮不把镜像增强直接判为错误。此结果只覆盖一个固定样本集，不能排除熵在长期训练中的影响。
+5. **训练结构的实证**：单步 KL ≤0.02 仍会累计偏离公开 actor；仅修 KL 或仅降 LR 都不足。critic 预热明显缓解早期退化，独立 critic LR 保证其不被策略回滚冻结，但继续训练仍退化。4096 env 及固定公开 actor 均值参考惩罚使本次 70 轮保持整体质量。它是本机显式实验配方，不冒充 B-Human 未公开配方，也不是已经证明唯一根因。
+
+## 固定 rollout
+
+真实样本 64 env ×24 步，共1536条，采样期间未优化。冻结观测、动作、奖励、终止/超时、旧分布、模型和优化器初态，CPU 上分别回放20次更新；最后状态值在 mini-epoch 前固定。早期 v1 诊断的移动 bootstrap 实现已被 v2 结果替代，旧文件仍保留。
+
+- 原配方：真实 KL 0.582；仅原始样本 surrogate：0.570；禁用熵区间：0.578。
+- 仅 critic：actor 完全不变；加入 KL 拒绝与退避：真实 KL 0.019998，13 次拒绝。
+- 原始概率比接近1（CPU/GPU舍入最大误差约1.1e-4）；旧策略对自身 KL 为0。
+- 证据：[固定样本诊断](../experiments/walk-diagnosis-20261020/fixed-early-v2/diagnosis.json)、[超时现场对照](../experiments/walk-diagnosis-20261020/timeout-live-comparison.json)、[固定样本漂移](../experiments/walk-diagnosis-20261020/frozen-policy-drift.json)。
+
+## 在线对照（训练种子7，评估种子2027）
+
+下列 vx 为12段 settled RMSE 的算术平均，单位 m/s；不是合并样本 RMSE。各方案依次增加处理，不能把跨行所有差异当成单因素因果。F/G 的70总轮包含20轮仅训练critic；H50包含30轮actor更新。
+
+| 方案 | 末期 vx RMSE | 实际重置证据 | 判断 |
+|---|---:|---|---|
+| C：修正 KL 统计/控制，50轮 | 0.229 | 旧计数无效 | 仍退化 |
+| D：C + 单步 KL 约束，50轮 | 0.376 | 旧计数无效 | 局部KL不限制累计漂移 |
+| E：D + 超时修复，50轮 | 0.345 | 5次非超时重置 | 不接入 |
+| F：E + critic预热，70总轮 | 0.154 | 0 | 初期改善；120总轮又降至0.232 |
+| G：独立critic学习率，70总轮 | 0.181 | 0 | 可学习但仍不够 |
+| H：G扩至4096env，25→50总轮 | 0.128→0.189 | 0 | 规模不能单独解决漂移 |
+| I：H + 固定公开actor均值参考，25→70总轮 | 0.124→0.128 | 0 | 可继续研究的稳定化分支 |
+
+I 的参考损失为 `0.5 * sum(((mu - mu_public) / exp(-2))**2)`，权重1。它只度量固定标准差下的均值距离，**不是两策略完整 KL**；公开参考 actor 冻结，文件SHA锁定，奖励、PD、URDF未改。固定旧观测上，H50 的动作均值 RMS 漂移0.0996，I70为0.0149；这也不是独立的质量验收。
+
+## 最终三种子评估
+
+相同当前源码、评估器与日程，确定性 actor，8环境×1200策略步；每环境24秒。2028/2029在配方选择后留出。只有一个训练种子，三个评估种子不等于三个独立训练重复。PhysX非逐位确定性，微小差异不作显著性结论。
+
+| 评估种子 | 公开 vx / vy / wz | I70 vx / vy / wz | 急停收敛：公开→I70 |
+|---|---|---|---|
+{rows}
+
+三种子平均：公开 {' / '.join('%.4f'%v for v in b)}；I70 {' / '.join('%.4f'%v for v in c)}。相对变化 {' / '.join('%+.1f%%'%(100*v) for v in result['relative_change'])}。两策略均未出现实际重置；急停收敛分别 {result['baseline_settled']}/24、{result['candidate_settled']}/24。按单段单轴逐一检查，仍有超过30%的退化项（详见JSON），因此不授予比赛部署通过结论。
+
+[逐项对照与全部run路径](../experiments/walk-diagnosis-20261020/holdout-comparison.json)；[所有训练/评估索引与哈希](../experiments/walk-diagnosis-20261020/results-index.json)。输出进程 PASS 与策略质量通过严格分离。
+
+限制：零命令采用固定1.5Hz步态，不是比赛中的所有静止模式；未新增独立外力强度分组；关节/力矩极值按50Hz末子步采样，不代表500Hz全物理子步最坏值；没有本轮生产 C++↔Python 契约、比赛替换、快速起身或真机验收。
+
+## 实际训练与恢复
+
+I：4096环境，总70轮（critic预热20轮、actor更新50轮），6,881,280环境步。25轮暖启动耗时85.93秒，再完整恢复45轮耗时158.50秒；显存峰值7036/7002 MiB。恢复前模型、优化器、RNG、学习率和计数均核对；计数25→70。恢复不包含 PhysX内部状态。
+
+候选：`runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth`，SHA256 `d3873edd4ea5e45e29e32b6bb5dc16e4d2088ba2fbae62e96f48f8121fb2b9de`。它未导出部署，官方模型保持原样。
+
+最小继续入口（恢复仓库原路径后执行）：
+
+```bash
+cd /home/peakpeng/Desktop/Robocup/bhuman/k1-training
+# 新训练种子，沿用已记录的参考约束配方；输出新目录。
+bash scripts/run_walk_stability.sh 4096 70 42 warm-start
+# 按同一配置恢复已有候选，仅再做25轮，然后独立评估。
+bash scripts/run_walk_stability.sh 4096 25 7 full /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth reference
+```
+
+后续先重复训练种子42/123、扩大评估时长与扰动覆盖，再逐项收紧速度、急停、超调和力矩门槛。参考惩罚的放松需另开单因素分支；不要在尚未证明可保持质量时盲目移除。正式比赛仍用公开策略与正常视觉。
+
+## 工程验收与回滚
+
+- KL数学/旧分布快照、LR方向、Adam整体回滚及只回滚策略的行为测试通过。
+- 不同优化器组 LR 的 v2 检查点恢复、模型/优化器/RNG等性、配置不匹配拒绝、受限加载不回退测试通过。
+- 超时边界与真实评估判定负例测试通过。
+- 修复一个本机原生导入问题：携带换行的 JSON argv 在 gym_38 导入阶段触发段错误。最小探针是漂亮JSON失败、等价紧凑JSON成功，长度1500的填充参数仍成功。入口现在生成紧凑JSON，并在加载Gym前明确拒绝换行参数；未更换环境包。
+- 普通起身64环境：暖启动3轮与full恢复1轮均通过，模型/优化器/RNG等性通过，计数3→4。起身物理源码与本轮开始逐字一致。只在此实测通过后更新源码指纹门，未放行模型部署。
+- 完整补丁对干净MachineLearning提交 `c3fed817e6e8fd06418bea824b1f1ab0157379d2` 的 `git apply --check` 通过。比赛原仓仍为 `2e3374ba896da8288607f9a1881b876642fe18b8`，两原仓工作区干净。
+- 当前训练源码指纹 `efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c`；每次新运行保存源码快照与启动指纹，运行期间变化会判失败。
+- 初始源码/脚本、C/D与E/F中间源码、失败尝试、旧补丁都保存在实验目录或run中。历史报告保留，本报告的纠错优先；未删除不利结果。
+
+[源码与补丁身份](../experiments/walk-diagnosis-20261020/source-artifacts.json)、[起身回归](../experiments/walk-diagnosis-20261020/standup-regression.json)。本轮成果随后按用户要求归档到公开GitHub，源文件和大型成果的远端保存方式见仓库根目录归档说明。
+'''
+(ROOT/'runs/REPORT-20261020-walk-diagnosis.md').write_text(report)
+print(json.dumps({k:v for k,v in result.items() if k!='evaluations'},ensure_ascii=False,indent=2))

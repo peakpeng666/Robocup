@@ -1,0 +1,30 @@
+{
+  "rollout_sha256": "46541187e5539bc4717ef6f8b8d481457d183e6d14d801106a22f446673df05e",
+  "note": "Same frozen real observation set; fixed-std mean distance to public rollout means. Not a rollout quality or full KL metric.",
+  "models": {
+    "H25": {
+      "path": "runs/20261020_135248_047145_walkH_4096_smoke25/nn/model_25.pth",
+      "sha256": "606c305377b9e48160d9aa6481648b23f76ef092bd965696c2b2d9b33e5bb1da",
+      "mean_rms_delta": 0.027588967233896255,
+      "fixed_std_mean_distance": 0.2701233923435211
+    },
+    "H50": {
+      "path": "runs/20261020_135515_150806_walkH_4096_continue50/nn/model_50.pth",
+      "sha256": "bf8d8f3433110e264b9ba9fff0d0b4b5697baea4d6f521741e71ccb6e6eab36c",
+      "mean_rms_delta": 0.09960644692182541,
+      "fixed_std_mean_distance": 3.521000862121582
+    },
+    "I25": {
+      "path": "runs/20261020_140126_253808_walkI_reference_4096_25_compact/nn/model_25.pth",
+      "sha256": "1cf30c49faf77c4c79a8022e51a8e3fd883ee53f43e88a53d28c705fb38f1692",
+      "mean_rms_delta": 0.010955234058201313,
+      "fixed_std_mean_distance": 0.042592644691467285
+    },
+    "I70": {
+      "path": "runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+      "sha256": "d3873edd4ea5e45e29e32b6bb5dc16e4d2088ba2fbae62e96f48f8121fb2b9de",
+      "mean_rms_delta": 0.014876658096909523,
+      "fixed_std_mean_distance": 0.07854201644659042
+    }
+  }
+}

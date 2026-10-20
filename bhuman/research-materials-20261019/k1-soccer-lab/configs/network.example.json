@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kind": "proposed_lab_topology_not_applied",
+  "subnet_example": "192.168.50.0/24",
+  "gamecontroller_example": "192.168.50.2",
+  "robots": [
+    {"name":"blue1","team":1,"player":1,"ipv4":"192.168.50.11"},
+    {"name":"blue2","team":1,"player":2,"ipv4":"192.168.50.12"},
+    {"name":"blue3","team":1,"player":3,"ipv4":"192.168.50.13"},
+    {"name":"red1","team":2,"player":1,"ipv4":"192.168.50.21"},
+    {"name":"red2","team":2,"player":2,"ipv4":"192.168.50.22"},
+    {"name":"red3","team":2,"player":3,"ipv4":"192.168.50.23"}
+  ],
+  "protocol": {"control_udp":3838,"status_udp":3939,"team_udp_formula":"10000 + team_number","team_max_payload_bytes":512,"control_version":20,"return_version":4},
+  "note": "Use organizer-assigned addresses in competition. These are examples, not reserved or tested LAN addresses. Keep each SDK channel isolated; six containers sharing host networking do not provide six independent robot identities."
+}

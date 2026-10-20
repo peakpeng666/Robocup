@@ -1,0 +1,955 @@
+{
+  "code_sha256": "adecfaabc828188eb4a6c73cfe60fa8eb40e1d5397bac3728c66a99620f215eb",
+  "runs": [
+    {
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_183912-quiet-candidate-s42-DkYW23",
+      "profile": "quiet",
+      "seed": 42,
+      "steps": 3000,
+      "num_envs": 28,
+      "sustained_push": false,
+      "exit_code": 0,
+      "wrapper_anomaly": null,
+      "completed": true,
+      "gates": {
+        "numerical": true,
+        "reset_and_target_limits": true,
+        "physical_limits": true,
+        "reference_quality": true,
+        "sample_coverage": true
+      },
+      "quality": {
+        "reference_completion_rate": 1.0,
+        "stable_finish_rate": 0.857707509881423,
+        "worst_stratum_reference_rate": 1.0,
+        "post_getup_upright_fraction": 0.9362625014046522,
+        "sample_coverage_all_strata": true
+      },
+      "episodes": 506,
+      "falls": 0,
+      "reference_successes": 506,
+      "stable_successes": 434.0,
+      "max_physical_overshoot_rad": 0.009374141693115234,
+      "max_physical_overshoot_deg": 0.5370987555731227,
+      "max_continuous_over_0_01rad_s": 0.0,
+      "max_reset_overshoot_rad": 0.0,
+      "max_target_overshoot_rad": 0.0,
+      "max_torque_limit_excess_Nm": 0.0,
+      "max_reset_input_errors": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_joint_sample": {
+        "name": "Left_Elbow_Yaw",
+        "max_overshoot_rad": 0.009374141693115234,
+        "samples_above_1mrad": 47,
+        "worst": {
+          "q": -2.2593741416931152,
+          "lower": -2.25,
+          "upper": 0.7799999713897705,
+          "qd": -4.124544143676758,
+          "held_target": -2.088897466659546,
+          "submitted_tau_this_step": 10.384819030761719,
+          "episode_step": 7.0,
+          "env": 16.0,
+          "policy_step": 1203.0,
+          "reset_actor": 0.0,
+          "max_contact_force_N": 1182.948486328125
+        },
+        "phase": "regular_policy"
+      },
+      "world_seconds": 60.93400004436262,
+      "extra_world_probe_steps": 467,
+      "body_force_submission": null,
+      "probe_min_body_clearance_m": null,
+      "strata": [
+        {
+          "direction": 0,
+          "keyframe": 0,
+          "completed_episodes": 25,
+          "reference_success": 25,
+          "stable_success": 17.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 1,
+          "completed_episodes": 29,
+          "reference_success": 29,
+          "stable_success": 26.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 2,
+          "completed_episodes": 33,
+          "reference_success": 33,
+          "stable_success": 31.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 3,
+          "completed_episodes": 38,
+          "reference_success": 38,
+          "stable_success": 35.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 4,
+          "completed_episodes": 45,
+          "reference_success": 45,
+          "stable_success": 33.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 5,
+          "completed_episodes": 50,
+          "reference_success": 50,
+          "stable_success": 46.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 6,
+          "completed_episodes": 54,
+          "reference_success": 54,
+          "stable_success": 39.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 0,
+          "completed_episodes": 22,
+          "reference_success": 22,
+          "stable_success": 17.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 1,
+          "completed_episodes": 24,
+          "reference_success": 24,
+          "stable_success": 24,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 2,
+          "completed_episodes": 29,
+          "reference_success": 29,
+          "stable_success": 29,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 3,
+          "completed_episodes": 32,
+          "reference_success": 32,
+          "stable_success": 32,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 4,
+          "completed_episodes": 35,
+          "reference_success": 35,
+          "stable_success": 34.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 5,
+          "completed_episodes": 42,
+          "reference_success": 42,
+          "stable_success": 42,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 6,
+          "completed_episodes": 48,
+          "reference_success": 48,
+          "stable_success": 29.0,
+          "falls": 0.0
+        }
+      ]
+    },
+    {
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_184204-published-candidate-s42-2eqSkg",
+      "profile": "published",
+      "seed": 42,
+      "steps": 6000,
+      "num_envs": 28,
+      "sustained_push": false,
+      "exit_code": null,
+      "wrapper_anomaly": {
+        "recorded_at": "2026-10-19T18:49:15.667051+09:00",
+        "wrapper_exit_code": 1,
+        "python_exit_code": null,
+        "simulation_report_completed": true,
+        "simulation_steps_reported": 6000,
+        "cause": "Launching shell script was edited while its Python child was running. After the child exited the shell read changed content and failed on unbound source_root. Simulation JSON and full log were retained. Do not label this wrapper execution exit 0.",
+        "remediation": "Freeze all launcher/harness files for the remaining matrix; rerun published seed 42 for 3000 steps with known wrapper exit status."
+      },
+      "completed": true,
+      "gates": {
+        "numerical": true,
+        "reset_and_target_limits": true,
+        "physical_limits": true,
+        "reference_quality": true,
+        "sample_coverage": true
+      },
+      "quality": {
+        "reference_completion_rate": 0.995136186770428,
+        "stable_finish_rate": 0.8628404669260701,
+        "worst_stratum_reference_rate": 0.9726027397260274,
+        "post_getup_upright_fraction": 0.9302585792129614,
+        "sample_coverage_all_strata": true
+      },
+      "episodes": 1028,
+      "falls": 5,
+      "reference_successes": 1023,
+      "stable_successes": 887.0,
+      "max_physical_overshoot_rad": 0.01006007194519043,
+      "max_physical_overshoot_deg": 0.5763996640573761,
+      "max_continuous_over_0_01rad_s": 0.0020000000949949026,
+      "max_reset_overshoot_rad": 0.0,
+      "max_target_overshoot_rad": 0.0,
+      "max_torque_limit_excess_Nm": 0.0,
+      "max_reset_input_errors": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_joint_sample": {
+        "name": "Left_Elbow_Yaw",
+        "max_overshoot_rad": 0.01006007194519043,
+        "samples_above_1mrad": 113,
+        "worst": {
+          "q": -2.2600600719451904,
+          "lower": -2.25,
+          "upper": 0.7799999713897705,
+          "qd": 0.4748871326446533,
+          "held_target": -2.0659074783325195,
+          "submitted_tau_this_step": 12.3797607421875,
+          "episode_step": 7.0,
+          "env": 16.0,
+          "policy_step": 5025.0,
+          "reset_actor": 0.0,
+          "max_contact_force_N": 1752.613525390625
+        },
+        "phase": "regular_policy"
+      },
+      "world_seconds": 121.90800009062514,
+      "extra_world_probe_steps": 954,
+      "body_force_submission": {
+        "calls": 6000,
+        "max_force_norm_N": 41.96155548095703,
+        "max_torque_norm_Nm": 7.411144733428955,
+        "simulate_calls": 60954,
+        "simulate_steps_preceded_by_body_force_setter": 5999,
+        "note": "Public source submits body forces once per policy step; this is not a constant force applied in all ten physics substeps."
+      },
+      "probe_min_body_clearance_m": null,
+      "strata": [
+        {
+          "direction": 0,
+          "keyframe": 0,
+          "completed_episodes": 51,
+          "reference_success": 51,
+          "stable_success": 38.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 1,
+          "completed_episodes": 58,
+          "reference_success": 58,
+          "stable_success": 55.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 2,
+          "completed_episodes": 68,
+          "reference_success": 68,
+          "stable_success": 65.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 3,
+          "completed_episodes": 75,
+          "reference_success": 75,
+          "stable_success": 61.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 4,
+          "completed_episodes": 90,
+          "reference_success": 90,
+          "stable_success": 71.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 5,
+          "completed_episodes": 101,
+          "reference_success": 101,
+          "stable_success": 97.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 6,
+          "completed_episodes": 108,
+          "reference_success": 107,
+          "stable_success": 81.0,
+          "falls": 1.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 0,
+          "completed_episodes": 44,
+          "reference_success": 44,
+          "stable_success": 33.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 1,
+          "completed_episodes": 50,
+          "reference_success": 50,
+          "stable_success": 50,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 2,
+          "completed_episodes": 60,
+          "reference_success": 60,
+          "stable_success": 58.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 3,
+          "completed_episodes": 66,
+          "reference_success": 66,
+          "stable_success": 64.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 4,
+          "completed_episodes": 73,
+          "reference_success": 71,
+          "stable_success": 69.0,
+          "falls": 2.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 5,
+          "completed_episodes": 86,
+          "reference_success": 84,
+          "stable_success": 84,
+          "falls": 2.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 6,
+          "completed_episodes": 98,
+          "reference_success": 98,
+          "stable_success": 61.0,
+          "falls": 0.0
+        }
+      ]
+    },
+    {
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_184915-quiet-candidate-s7-public-z9Y81e",
+      "profile": "quiet",
+      "seed": 7,
+      "steps": 3000,
+      "num_envs": 28,
+      "sustained_push": false,
+      "exit_code": 0,
+      "wrapper_anomaly": null,
+      "completed": true,
+      "gates": {
+        "numerical": true,
+        "reset_and_target_limits": true,
+        "physical_limits": true,
+        "reference_quality": true,
+        "sample_coverage": true
+      },
+      "quality": {
+        "reference_completion_rate": 0.9921259842519685,
+        "stable_finish_rate": 0.8622047244094488,
+        "worst_stratum_reference_rate": 0.9090909090909091,
+        "post_getup_upright_fraction": 0.9488176586944794,
+        "sample_coverage_all_strata": true
+      },
+      "episodes": 508,
+      "falls": 4,
+      "reference_successes": 504,
+      "stable_successes": 438.0,
+      "max_physical_overshoot_rad": 0.012127399444580078,
+      "max_physical_overshoot_deg": 0.6948488046437372,
+      "max_continuous_over_0_01rad_s": 0.0020000000949949026,
+      "max_reset_overshoot_rad": 0.0,
+      "max_target_overshoot_rad": 0.0,
+      "max_torque_limit_excess_Nm": 0.0,
+      "max_reset_input_errors": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_joint_sample": {
+        "name": "Right_Elbow_Yaw",
+        "max_overshoot_rad": 0.012127399444580078,
+        "samples_above_1mrad": 81,
+        "worst": {
+          "q": 2.26212739944458,
+          "lower": -0.7799999713897705,
+          "upper": 2.25,
+          "qd": -2.2230472564697266,
+          "held_target": 2.237125873565674,
+          "submitted_tau_this_step": -0.44727420806884766,
+          "episode_step": 8.0,
+          "env": 2.0,
+          "policy_step": 2106.0,
+          "reset_actor": 0.0,
+          "max_contact_force_N": 1801.2027587890625
+        },
+        "phase": "regular_policy"
+      },
+      "world_seconds": 60.944000044837594,
+      "extra_world_probe_steps": 472,
+      "body_force_submission": {
+        "calls": 3000,
+        "max_force_norm_N": 0.0,
+        "max_torque_norm_Nm": 0.0,
+        "simulate_calls": 30472,
+        "simulate_steps_preceded_by_body_force_setter": 2999,
+        "note": "Public source submits body forces once per policy step; this is not a constant force applied in all ten physics substeps."
+      },
+      "probe_min_body_clearance_m": 0.4889732599258423,
+      "strata": [
+        {
+          "direction": 0,
+          "keyframe": 0,
+          "completed_episodes": 24,
+          "reference_success": 24,
+          "stable_success": 19.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 1,
+          "completed_episodes": 30,
+          "reference_success": 30,
+          "stable_success": 24.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 2,
+          "completed_episodes": 32,
+          "reference_success": 32,
+          "stable_success": 26.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 3,
+          "completed_episodes": 36,
+          "reference_success": 36,
+          "stable_success": 28.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 4,
+          "completed_episodes": 45,
+          "reference_success": 45,
+          "stable_success": 23.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 5,
+          "completed_episodes": 51,
+          "reference_success": 51,
+          "stable_success": 41.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 6,
+          "completed_episodes": 54,
+          "reference_success": 54,
+          "stable_success": 53.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 0,
+          "completed_episodes": 21,
+          "reference_success": 21,
+          "stable_success": 21,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 1,
+          "completed_episodes": 24,
+          "reference_success": 24,
+          "stable_success": 19.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 2,
+          "completed_episodes": 30,
+          "reference_success": 30,
+          "stable_success": 28.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 3,
+          "completed_episodes": 33,
+          "reference_success": 33,
+          "stable_success": 33,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 4,
+          "completed_episodes": 36,
+          "reference_success": 36,
+          "stable_success": 36,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 5,
+          "completed_episodes": 44,
+          "reference_success": 40,
+          "stable_success": 40,
+          "falls": 4.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 6,
+          "completed_episodes": 48,
+          "reference_success": 48,
+          "stable_success": 47.0,
+          "falls": 0.0
+        }
+      ]
+    },
+    {
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_185151-published-candidate-s7-public-9VClfF",
+      "profile": "published",
+      "seed": 7,
+      "steps": 6000,
+      "num_envs": 28,
+      "sustained_push": false,
+      "exit_code": 0,
+      "wrapper_anomaly": null,
+      "completed": true,
+      "gates": {
+        "numerical": true,
+        "reset_and_target_limits": true,
+        "physical_limits": true,
+        "reference_quality": true,
+        "sample_coverage": true
+      },
+      "quality": {
+        "reference_completion_rate": 0.9951550387596899,
+        "stable_finish_rate": 0.8478682170542635,
+        "worst_stratum_reference_rate": 0.9767441860465116,
+        "post_getup_upright_fraction": 0.9388301747228978,
+        "sample_coverage_all_strata": true
+      },
+      "episodes": 1032,
+      "falls": 5,
+      "reference_successes": 1027,
+      "stable_successes": 875.0,
+      "max_physical_overshoot_rad": 0.01627063751220703,
+      "max_physical_overshoot_deg": 0.9322388594367004,
+      "max_continuous_over_0_01rad_s": 0.004000000189989805,
+      "max_reset_overshoot_rad": 0.0,
+      "max_target_overshoot_rad": 0.0,
+      "max_torque_limit_excess_Nm": 0.0,
+      "max_reset_input_errors": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_joint_sample": {
+        "name": "Right_Ankle_Pitch",
+        "max_overshoot_rad": 0.01627063751220703,
+        "samples_above_1mrad": 1,
+        "worst": {
+          "q": -0.8862706422805786,
+          "lower": -0.8700000047683716,
+          "upper": 0.3449999988079071,
+          "qd": -0.7796247005462646,
+          "held_target": -0.8700000047683716,
+          "submitted_tau_this_step": 0.0,
+          "episode_step": 31.0,
+          "env": 12.0,
+          "policy_step": 4934.0,
+          "reset_actor": 0.0,
+          "max_contact_force_N": 3790.48779296875
+        },
+        "phase": "reset_probe"
+      },
+      "world_seconds": 121.90800009062514,
+      "extra_world_probe_steps": 954,
+      "body_force_submission": {
+        "calls": 6000,
+        "max_force_norm_N": 38.442996978759766,
+        "max_torque_norm_Nm": 8.958590507507324,
+        "simulate_calls": 60954,
+        "simulate_steps_preceded_by_body_force_setter": 5999,
+        "note": "Public source submits body forces once per policy step; this is not a constant force applied in all ten physics substeps."
+      },
+      "probe_min_body_clearance_m": 0.4787118136882782,
+      "strata": [
+        {
+          "direction": 0,
+          "keyframe": 0,
+          "completed_episodes": 51,
+          "reference_success": 50,
+          "stable_success": 39.0,
+          "falls": 1.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 1,
+          "completed_episodes": 58,
+          "reference_success": 58,
+          "stable_success": 43.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 2,
+          "completed_episodes": 67,
+          "reference_success": 66,
+          "stable_success": 56.0,
+          "falls": 1.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 3,
+          "completed_episodes": 73,
+          "reference_success": 73,
+          "stable_success": 55.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 4,
+          "completed_episodes": 91,
+          "reference_success": 91,
+          "stable_success": 50.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 5,
+          "completed_episodes": 103,
+          "reference_success": 103,
+          "stable_success": 72.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 6,
+          "completed_episodes": 110,
+          "reference_success": 109,
+          "stable_success": 106.0,
+          "falls": 1.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 0,
+          "completed_episodes": 44,
+          "reference_success": 44,
+          "stable_success": 40.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 1,
+          "completed_episodes": 50,
+          "reference_success": 50,
+          "stable_success": 43.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 2,
+          "completed_episodes": 60,
+          "reference_success": 60,
+          "stable_success": 53.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 3,
+          "completed_episodes": 67,
+          "reference_success": 67,
+          "stable_success": 67,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 4,
+          "completed_episodes": 74,
+          "reference_success": 74,
+          "stable_success": 73.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 5,
+          "completed_episodes": 86,
+          "reference_success": 84,
+          "stable_success": 84,
+          "falls": 2.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 6,
+          "completed_episodes": 98,
+          "reference_success": 98,
+          "stable_success": 94.0,
+          "falls": 0.0
+        }
+      ]
+    },
+    {
+      "run": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_185826-published-candidate-s42-public-sUsEzq",
+      "profile": "published",
+      "seed": 42,
+      "steps": 3000,
+      "num_envs": 28,
+      "sustained_push": false,
+      "exit_code": 0,
+      "wrapper_anomaly": null,
+      "completed": true,
+      "gates": {
+        "numerical": true,
+        "reset_and_target_limits": true,
+        "physical_limits": true,
+        "reference_quality": true,
+        "sample_coverage": true
+      },
+      "quality": {
+        "reference_completion_rate": 0.9980237154150198,
+        "stable_finish_rate": 0.8616600790513834,
+        "worst_stratum_reference_rate": 0.9761904761904762,
+        "post_getup_upright_fraction": 0.9319209230146414,
+        "sample_coverage_all_strata": true
+      },
+      "episodes": 506,
+      "falls": 1,
+      "reference_successes": 505,
+      "stable_successes": 436.0,
+      "max_physical_overshoot_rad": 0.010027885437011719,
+      "max_physical_overshoot_deg": 0.5745555129814726,
+      "max_continuous_over_0_01rad_s": 0.0020000000949949026,
+      "max_reset_overshoot_rad": 0.0,
+      "max_target_overshoot_rad": 0.0,
+      "max_torque_limit_excess_Nm": 0.0,
+      "max_reset_input_errors": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_joint_sample": {
+        "name": "Right_Elbow_Yaw",
+        "max_overshoot_rad": 0.010027885437011719,
+        "samples_above_1mrad": 79,
+        "worst": {
+          "q": 2.2600278854370117,
+          "lower": -0.7799999713897705,
+          "upper": 2.25,
+          "qd": 0.744661808013916,
+          "held_target": 2.120712995529175,
+          "submitted_tau_this_step": -9.754609107971191,
+          "episode_step": 10.0,
+          "env": 2.0,
+          "policy_step": 2979.0,
+          "reset_actor": 0.0,
+          "max_contact_force_N": 1893.8240966796875
+        },
+        "phase": "regular_policy"
+      },
+      "world_seconds": 60.928000044077635,
+      "extra_world_probe_steps": 464,
+      "body_force_submission": {
+        "calls": 3000,
+        "max_force_norm_N": 41.96155548095703,
+        "max_torque_norm_Nm": 7.411144733428955,
+        "simulate_calls": 30464,
+        "simulate_steps_preceded_by_body_force_setter": 2999,
+        "note": "Public source submits body forces once per policy step; this is not a constant force applied in all ten physics substeps."
+      },
+      "probe_min_body_clearance_m": 0.4890073239803314,
+      "strata": [
+        {
+          "direction": 0,
+          "keyframe": 0,
+          "completed_episodes": 25,
+          "reference_success": 25,
+          "stable_success": 21.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 1,
+          "completed_episodes": 28,
+          "reference_success": 28,
+          "stable_success": 28,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 2,
+          "completed_episodes": 34,
+          "reference_success": 34,
+          "stable_success": 33.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 3,
+          "completed_episodes": 38,
+          "reference_success": 38,
+          "stable_success": 29.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 4,
+          "completed_episodes": 44,
+          "reference_success": 44,
+          "stable_success": 32.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 5,
+          "completed_episodes": 50,
+          "reference_success": 50,
+          "stable_success": 47.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 0,
+          "keyframe": 6,
+          "completed_episodes": 54,
+          "reference_success": 54,
+          "stable_success": 42.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 0,
+          "completed_episodes": 22,
+          "reference_success": 22,
+          "stable_success": 15.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 1,
+          "completed_episodes": 25,
+          "reference_success": 25,
+          "stable_success": 25,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 2,
+          "completed_episodes": 29,
+          "reference_success": 29,
+          "stable_success": 29,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 3,
+          "completed_episodes": 32,
+          "reference_success": 32,
+          "stable_success": 31.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 4,
+          "completed_episodes": 35,
+          "reference_success": 35,
+          "stable_success": 33.0,
+          "falls": 0.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 5,
+          "completed_episodes": 42,
+          "reference_success": 41,
+          "stable_success": 41,
+          "falls": 1.0
+        },
+        {
+          "direction": 1,
+          "keyframe": 6,
+          "completed_episodes": 48,
+          "reference_success": 48,
+          "stable_success": 30.0,
+          "falls": 0.0
+        }
+      ]
+    }
+  ],
+  "unfinished_runs": [
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/longtest-20261019_190121-hold-candidate-s42-public-ikCCkD"
+  ],
+  "primary_required_cases": [
+    [
+      "published",
+      7
+    ],
+    [
+      "published",
+      42
+    ],
+    [
+      "quiet",
+      7
+    ],
+    [
+      "quiet",
+      42
+    ]
+  ],
+  "primary_missing_cases": [],
+  "primary_physics_or_quality_failures": [],
+  "primary_unexplained_wrapper_failures": [],
+  "frozen_code_intact": true,
+  "environment_promotion_gate": false,
+  "completed_nominal_robot_seconds": 11760.0,
+  "completed_physics_robot_seconds": 11945.416008806787,
+  "interpretation": "Environment repair gate only. Public actor quality and standalone prolonged hold are separately reported. No getup-to-walk handoff, full training, or robot validation is certified."
+}

@@ -1,0 +1,10 @@
+{
+  "basic": {"trace_updates": true},
+  "algorithm": {
+    "max_update_kl": 0.02,
+    "guard_min_lr": 1e-8,
+    "critic_warmup_iterations": 20,
+    "critic_warmup_lr": 0.0003,
+    "critic_learning_rate": 0.0003
+  }
+}

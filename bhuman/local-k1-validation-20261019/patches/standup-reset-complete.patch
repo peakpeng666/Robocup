@@ -1,0 +1,58 @@
+--- a/envs/t1_stand_up.py
++++ b/envs/t1_stand_up.py
+@@ -499,6 +499,13 @@
+ 
+         self.delay_steps[env_ids] = torch.randint(0, self.cfg["control"]["decimation"], (len(env_ids),), device=self.device)
+         self.extras["time_outs"] = self.time_out_buf
++        # The reset probe advances the entire simulation. Rebuild derived policy
++        # inputs from the refreshed root/DOF state before returning an observation.
++        # No Gym refresh is allowed here: the final root setter is still pending.
++        self.base_lin_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 7:10])
++        self.base_ang_vel[:] = quat_rotate_inverse(self.base_quat, self.root_states[:, 10:13])
++        self.projected_gravity[:] = quat_rotate_inverse(self.base_quat, self.gravity_vec)
++        self._calc_torso_rot()
+ 
+     def _reset_dofs(self, env_ids):
+         # Use the modified start_joint_poses with spawn variants applied to them if spawn variants are enabled, otherwise use the original start_joint_poses
+@@ -536,16 +543,36 @@
+             torch.rand(len(env_ids), device=self.device) * (2 * torch.pi),
+         )
+ 
+-        # dynamic spawn height
+-        self.gym.set_actor_root_state_tensor(self.sim, gymtorch.unwrap_tensor(self.root_states))
++        # One robot actor per environment; keep the int32 index tensor alive
++        # until the indexed setters have consumed it.
++        env_ids_int32 = env_ids.to(dtype=torch.int32)
++        self.gym.set_actor_root_state_tensor_indexed(
++            self.sim, gymtorch.unwrap_tensor(self.root_states),
++            gymtorch.unwrap_tensor(env_ids_int32), len(env_ids_int32)
++        )
+         self.gym.simulate(self.sim)
++        self.gym.fetch_results(self.sim, True)
++        # Gym tensors are caches. Refresh after simulate and before any setter;
++        # use root and body states from the same completed probe step.
++        self.gym.refresh_actor_root_state_tensor(self.sim)
++        self.gym.refresh_rigid_body_state_tensor(self.sim)
++        self.gym.refresh_dof_state_tensor(self.sim)
++        # Account for the extra probe step in the finite-difference velocity
++        # history, including actors that were not selected for reset.
++        self.custom_dof_vel[:] = (self.dof_pos - self.prev_dof_pos) / self.sim_params.dt
++        self.filtered_custom_dof_vel[:] = self.filtered_custom_dof_vel * 0.78 + self.custom_dof_vel * 0.22
++        self.prev_dof_pos[:] = self.dof_pos
+         self.render()
+         min_z = torch.min(self.body_states[env_ids, :, 2], dim=1).values
+-        # compute per-env spawn height: if the deepest point of the robot is below 0, lift by -min_z + offset, otherwise just offset
++        # Preserve the existing world-z clearance rule and spawn offset.
+         spawn_height = torch.where(min_z < 0, -min_z + self.spawn_height_offset, self.spawn_height_offset)
+         self.root_states[env_ids, 2] += spawn_height
+-  
+-        self.gym.set_actor_root_state_tensor(self.sim, gymtorch.unwrap_tensor(self.root_states))
++
++        # Do not write an old root-state snapshot back to unaffected actors.
++        self.gym.set_actor_root_state_tensor_indexed(
++            self.sim, gymtorch.unwrap_tensor(self.root_states),
++            gymtorch.unwrap_tensor(env_ids_int32), len(env_ids_int32)
++        )
+ 
+     def _teleport_robot(self):
+         if self.terrain.type == "plane":

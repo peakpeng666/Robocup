@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/test_nan_guard.py"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 2.0727249089995894,
+  "sampled_gpu_peak_mib": 0,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144212_232072_nan_guard",
+  "python_jit": "1",
+  "status": "PASS"
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_metadata": {
+    "artifact_kind": "tooling",
+    "checksum_role": "integrity_only_not_signature",
+    "contains_trained_policy": false,
+    "project_id": "k1-soccer-lab",
+    "robot_flash_supported": false,
+    "schema_version": 1,
+    "version": "0.1.0"
+  },
+  "source_differences": [],
+  "bootstrap_matches": true,
+  "files": 27,
+  "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64"
+}

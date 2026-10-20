@@ -1,0 +1,148 @@
+<!-- 正式比赛专用, 严格执行规则, 无法人工接管 -->
+
+<root BTCPP_format="4">
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+    <include path="./subtrees/subtree_find_ball.xml" />
+    <include path="./subtrees/subtree_striker_play.xml" />
+    <include path="./subtrees/subtree_goal_keeper_play.xml" />
+    <include path="./subtrees/subtree_locate.xml" />
+    <include path="./subtrees/subtree_auto_standup_and_locate.xml" />
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <!-- <RunOnce name="测试用, 正常比赛时注释掉">
+                <Sequence>
+                    <Script code="gc_game_state = 'PLAY'" />
+                    <Script code="gc_game_sub_state_type = 'NONE'" />
+                    <Script code="gc_is_under_penalty = false" />
+                </Sequence>
+            </RunOnce> -->
+            <RunOnce><Script code="control_state=3" /></RunOnce>
+            <ReactiveSequence _while="control_state==3 &amp;&amp; gc_is_stopped" name="GC全局StopPlay">
+                <SetVelocity ensure_walk="true" clear_decision="true" />
+                <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                <SubTree ID="Locate" _autoremap="true" _while="ball_location_known"/>
+            </ReactiveSequence>
+
+            <ReactiveSequence _while="(control_state==1 || assist_kick || go_manual || assist_chase) &amp;&amp; gc_is_stopped==false" >
+                <Speak text="manual" />
+            </ReactiveSequence>
+
+            <ReactiveSequence _while="control_state==2 &amp;&amp; gc_is_stopped==false" name="需要 pickup 时， 先走到进场位置， 然后按下 LT + A, 重新校准定位, 等待数秒后, 按 LT + B 继续比赛">
+                <Speak text="locate" />
+                <CamScanField  _while="!odom_calibrated"/>
+                <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="odom_calibrated" />
+                <SelfLocateEnterField />
+
+            </ReactiveSequence>
+
+            <ReactiveSequence _while="control_state==3 &amp;&amp; go_manual==false &amp;&amp; gc_is_stopped==false" name="包一层用于控制策略的开关, 3 为手柄 LT+B 的状态, 2 为 LT+A, 1 为 LT+X">
+                <Speak text="auto" />
+                <SubTree ID="AutoGetUpAndLocate" _autoremap="true" />
+                <ReactiveSequence _while="gc_is_under_penalty" name="当前处于罚时状态, 或替补状态">
+                    <SetVelocity clear_decision="true" />
+                    <!-- Motion in Set: 原地罚时, 机器人留在原地停止运动(允许起身), 定位保持有效, 不做进场重定位 -->
+                    <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="gc_is_motion_in_set" />
+                    <!-- 其他判罚: 被拿下场, 罚时结束后从边线重新进场, 需要重新定位 -->
+                    <ReactiveSequence _while="!gc_is_motion_in_set" name="非原地罚时, 需要重新进场定位">
+                        <CamScanField  _while="!odom_calibrated"/>
+                        <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="odom_calibrated" />
+                        <SelfLocateEnterField />
+                    </ReactiveSequence>
+                </ReactiveSequence>
+
+                <ReactiveSequence _while="!gc_is_under_penalty" name="没有罚时, 正常比赛">
+                    <ReactiveSequence _while="gc_game_sub_state_type=='TIMEOUT'" name="比赛暂停. 暂停时, game state 必为 INITIAL">
+                        <SetVelocity clear_decision="true" />
+                        <!-- <PrintMsg msg="Timeout. Calibrating..." /> -->
+                        <CamScanField _while="!odom_calibrated"/>
+                        <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="odom_calibrated" />
+                        <SelfLocateEnterField />
+                    </ReactiveSequence>
+
+                    <ReactiveSequence _while="gc_game_sub_state_type=='PAUSE'" name="StopPlay暂停">
+                        <SetVelocity ensure_walk="true" clear_decision="true" />
+                        <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                        <SubTree ID="Locate" _autoremap="true" _while="ball_location_known"/>
+                    </ReactiveSequence>
+
+                    <ReactiveSequence _while="(gc_game_sub_state_type=='PENALTY_KICK' || penalty_kick_play_active) &amp;&amp; penalty_kick_released_to_normal==false" name="点球">
+                        <ReactiveSequence _while="penalty_kick_play_active==false &amp;&amp; (gc_game_state=='SET')==false &amp;&amp; (gc_game_sub_state=='SET')==false" name="点球准备站位">
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                            <SubTree ID="Locate" _autoremap="true" _while="ball_location_known"/>
+                            <PenaltyKickPosition side="attack" _while="penalty_kick_is_kickoff_side" />
+                            <PenaltyKickPosition side="defense" _while="penalty_kick_is_kickoff_side==false" />
+                        </ReactiveSequence>
+                        <ReactiveSequence _while="penalty_kick_play_active==false &amp;&amp; (gc_game_state=='SET' || gc_game_sub_state=='SET')" name="点球 set 静止">
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                            <SetVelocity clear_decision="true" />
+                        </ReactiveSequence>
+                        <ReactiveSequence _while="penalty_kick_play_active" name="点球 play">
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                            <SubTree ID="Locate" _autoremap="true" _while="ball_location_known"/>
+                            <PenaltyKickShoot _while="penalty_kick_is_kickoff_side" hold_msec="3500" />
+                            <PenaltyKickPosition side="defense" _while="penalty_kick_is_kickoff_side==false" />
+                        </ReactiveSequence>
+                    </ReactiveSequence>
+
+                    <ReactiveSequence _while="gc_game_state=='PLAY' &amp;&amp; (penalty_kick_play_active==false || penalty_kick_released_to_normal) &amp;&amp; (gc_game_sub_state_type=='NONE' || penalty_kick_released_to_normal || (gc_game_sub_state_type=='FREE_KICK' &amp;&amp; gc_is_sub_state_kickoff_side &amp;&amp; (local_freekick_phase=='PLACEMENT' || local_freekick_phase=='EXECUTE')))" name="PlayUnified">
+                        <SubTree ID="StrikerPlay" _autoremap="true" _while="player_role == 'striker'" />
+                        <SubTree ID="GoalKeeperPlay" _autoremap="true" _while="player_role == 'goal_keeper'" />
+                    </ReactiveSequence>
+
+                    <ReactiveSequence _while="gc_game_sub_state_type=='NONE' &amp;&amp; gc_game_state!='PLAY'" name="正常比赛">
+                        <ReactiveSequence _while="gc_game_state=='INITIAL'" name="在场外入场位置站好">
+                            <CamScanField _while="!odom_calibrated"/>
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="odom_calibrated" />
+                            <SelfLocateEnterField />
+                        </ReactiveSequence>
+
+                        <ReactiveSequence _while="gc_game_state=='READY'" name="走到场内自己的起始位置">
+                            <MoveHead pitch="0.35" yaw="0.0" />
+                            <GoToReadyPosition />
+                            <SubTree ID="Locate" _autoremap="true" />
+                            <!-- <WaveHand _while="we_just_scored" action="start" /> -->
+                        </ReactiveSequence>
+
+                        <ReactiveSequence _while="gc_game_state=='SET'" name="站好等待比赛开始">
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                            <SetVelocity clear_decision="true" />
+                            <SubTree ID="Locate" _autoremap="true" />
+                            <!-- <WaveHand action="stop" /> -->
+                        </ReactiveSequence>
+
+                        <ReactiveSequence _while="gc_game_state=='END'" name="比赛结束">
+                            <SetVelocity clear_decision="true" />
+                        </ReactiveSequence>
+
+                    </ReactiveSequence>
+
+                    <ReactiveSequence _while="gc_game_sub_state_type=='FREE_KICK' &amp;&amp; gc_game_state=='PLAY'" name="开任意球">
+                        <ReactiveSequence _while="local_freekick_phase=='WAIT_RESUME'">
+                            <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                            <SubTree ID="Locate" _autoremap="true" />
+                            <ReactiveSequence _while="own_goal_kick_keeper_stay_home &amp;&amp; player_role == 'goal_keeper'">
+                                <GoToOwnGoalCenter />
+                            </ReactiveSequence>
+                            <SetVelocity clear_decision="true" _while="own_goal_kick_keeper_stay_home==false || player_role != 'goal_keeper'" />
+                        </ReactiveSequence>
+                        <ReactiveSequence _while="local_freekick_phase=='PLACEMENT'">
+                            <SubTree ID="Locate" _autoremap="true" />
+                            <ReactiveSequence _while="(player_role == 'striker') &amp;&amp; !gc_is_sub_state_kickoff_side" name="移动到防守点球位置">
+                                <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                                <CalcKickDir />
+                                <SubTree ID="FindBall" _while="!ball_location_known &amp;&amp; !tm_ball_pos_reliable" _autoremap="true" />
+                                <GoToFreekickPosition _while="ball_location_known || tm_ball_pos_reliable" side="defense" />
+                            </ReactiveSequence>
+                            <ReactiveSequence _while="player_role == 'goal_keeper'">
+                                <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                                <GoToOwnGoalCenter />
+                            </ReactiveSequence>
+                        </ReactiveSequence>
+                    </ReactiveSequence>
+
+                </ReactiveSequence>
+            </ReactiveSequence>
+            <!-- <Sleep msec="1000" /> -->
+        </Sequence>
+    </BehaviorTree>
+</root>

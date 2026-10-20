@@ -1,0 +1,80 @@
+{
+  "rollout": "runs/20261020_134147_206783_frozen_timeout_after/frozen_rollout.pth",
+  "rollout_sha256": "5603d8e7cbe4f0e01ecaf011c9c72fb33e801dd78d1809605b8b856eb11fd075",
+  "source_sha256_at_collection": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "diagnostic_script_sha256": "386aab070cd12809452c5c863f5dddb216686f1ae568d568385bbf7e4c974912",
+  "bootstrap_values_frozen_before_mini_epochs": true,
+  "critic_checkpoint": null,
+  "critic_checkpoint_sha256": null,
+  "original_sample_count": 1536,
+  "reward_range_mean": [
+    -0.2523009181022644,
+    0.12414531409740448,
+    0.010307706892490387
+  ],
+  "timeouts": 7,
+  "timeout_reward_replacement_maxabs": 0.14036336541175842,
+  "gradient_attribution": {
+    "policy_original_half_weight": {
+      "weighted_loss": 0.001302570104598999,
+      "gradient_norms": {
+        "actor": 3.1166574954986572,
+        "critic": 0.0,
+        "logstd": 0.04081167280673981
+      }
+    },
+    "policy_mirror_half_weight": {
+      "weighted_loss": 0.08504750579595566,
+      "gradient_norms": {
+        "actor": 2.979410171508789,
+        "critic": 0.0,
+        "logstd": 0.04890228062868118
+      }
+    },
+    "value": {
+      "weighted_loss": 0.05262530967593193,
+      "gradient_norms": {
+        "actor": 0.0,
+        "critic": 0.169270858168602,
+        "logstd": 0.0
+      }
+    },
+    "entropy_regularizer": {
+      "weighted_loss": 0.07553796470165253,
+      "gradient_norms": {
+        "actor": 0.0,
+        "critic": 0.0,
+        "logstd": 0.03605550900101662
+      }
+    },
+    "entropy_interval": {
+      "weighted_loss": 0.059839099645614624,
+      "gradient_norms": {
+        "actor": 0.0,
+        "critic": 0.0,
+        "logstd": 0.17639824748039246
+      }
+    },
+    "symmetry": {
+      "weighted_loss": 2.502367351553403e-05,
+      "gradient_norms": {
+        "actor": 0.00041441942448727787,
+        "critic": 0.0,
+        "logstd": 0.0
+      }
+    }
+  },
+  "probability_checks": {
+    "original_ratio_max_error": 1.4782061157792015e-05,
+    "mirror_ratio_q05_q50_q95": [
+      0.016654123426275834,
+      0.6725552777194024,
+      2.371474802749126
+    ],
+    "mirror_clip_fraction_before_any_update": 0.765625,
+    "old_kl_max": 0.0,
+    "original_vs_mirror_actor_gradient_cosine": 0.046335168182849884
+  },
+  "counterfactuals": [],
+  "limitations": "One frozen real rollout; all counterfactual optimizer updates are in memory. No online policy-quality claim."
+}

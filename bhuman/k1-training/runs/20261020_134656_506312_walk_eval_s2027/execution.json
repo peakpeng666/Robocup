@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+    "--policy",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134330_740696_walkF_criticwarm20_actor50/nn/model_70.pth",
+    "--seed",
+    "2027",
+    "--seg-steps",
+    "100",
+    "--num-envs",
+    "8"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 34.73588357600056,
+  "sampled_gpu_peak_mib": 2946,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134656_506312_walk_eval_s2027",
+  "python_jit": "1",
+  "status": "PASS"
+}

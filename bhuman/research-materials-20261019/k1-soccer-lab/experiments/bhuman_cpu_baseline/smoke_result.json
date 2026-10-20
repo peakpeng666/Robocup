@@ -1,0 +1,54 @@
+{
+  "status": "pass",
+  "failure": null,
+  "scope": "single deterministic flat-ground CPU integration replay; not trained/upgraded policy, not robustness or sim-to-real certification",
+  "source_commit": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+  "policy_sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+  "versions": {
+    "mujoco": "3.3.7",
+    "onnxruntime": "1.22.1",
+    "numpy": "2.2.6"
+  },
+  "input": {
+    "name": "input",
+    "shape": [
+      "batch_size",
+      344
+    ],
+    "dtype": "tensor(float)",
+    "rank": 2
+  },
+  "output": {
+    "name": "output",
+    "shape": [
+      "batch_size",
+      13
+    ],
+    "dtype": "tensor(float)",
+    "rank": 2
+  },
+  "actuators": 22,
+  "simulation_dt_s": 0.002,
+  "policy_hz": 50.0,
+  "planned_duration_s": 16.0,
+  "simulated_duration_s": 16.00000000000201,
+  "wall_time_s": 1.5231173640001998,
+  "inferences": 800,
+  "inference_ms_median": 0.05983500011552678,
+  "inference_ms_p99": 0.5034205900665255,
+  "final_position_m": [
+    2.4329116208712223,
+    0.6087638087909069,
+    0.5459750969582197
+  ],
+  "minimum_recorded_height_m": 0.5149433750030333,
+  "maximum_recorded_tilt_rad": 0.05959991200027501,
+  "warnings": {},
+  "modifications": [
+    "torch actor replaced with ONNX deterministic inference",
+    "headless scripted commands; no wall-clock sleeps",
+    "mj_forward after initial state assignment",
+    "metrics and fall thresholds added; XML and meshes unchanged"
+  ],
+  "telemetry_sampling_hz": 10
+}

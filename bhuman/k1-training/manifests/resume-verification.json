@@ -1,0 +1,10 @@
+{
+  "format": "bh-k1-ckpt-v2",
+  "iteration_before": 5,
+  "iteration_after": 6,
+  "env_steps_before": 7680,
+  "env_steps_after": 9216,
+  "expected_increment": 1536,
+  "source_match": true,
+  "actor_changed_after_update": true
+}

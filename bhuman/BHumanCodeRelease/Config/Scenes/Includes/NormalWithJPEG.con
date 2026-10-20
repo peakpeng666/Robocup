@@ -1,0 +1,47 @@
+# Includes/Normal.con without Lower
+
+# activate simulation time
+st on
+
+# only a single robot displays game state
+dr debugDrawing3d:representation:GameState
+
+# in case we have more than a single robot
+robot all
+
+# Select modules for simulator
+for Color mr CameraImage LogDataProvider
+for Color mr CameraInfo LogDataProvider
+for Color mr FrameInfo LogDataProvider
+for Motion mr FrameInfo LogDataProvider
+for Motion mr JointSensorData LogDataProvider
+for Motion mr JoystickState LogDataProvider
+for Motion mr KeyStates LogDataProvider
+for Motion mr InertialSensorData LogDataProvider
+for Cognition mr GroundTruthWorldState LogDataProvider
+for Cognition mr GroundTruthRobotPose SimulatedWorldModelProvider
+for Cognition mr GroundTruthBallModel SimulatedWorldModelProvider
+
+call GameStates
+call DebugResponses
+
+# all views are defined in another script
+for Color vi CameraImage
+
+# Drawings for normal views
+
+vid all representation:BodyContour
+vid all representation:FieldLines:image
+vid all representation:PenaltyMarkPercept:image
+vid all representation:CenterCircleWithLine:image
+vid all representation:BallPercept:image
+vid all representation:RobotPercept:image
+
+call ManualHeadMotion
+
+call FieldViews
+
+dr debugDrawing3d:representation:RobotPose
+
+# clear ball is not working correctly
+ar clearBall off

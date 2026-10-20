@@ -1,0 +1,25 @@
+diff --git a/Src/SimRobot/MainWindow.cpp b/Src/SimRobot/MainWindow.cpp
+index d3f65643..0d6b592e 100644
+--- a/Src/SimRobot/MainWindow.cpp
++++ b/Src/SimRobot/MainWindow.cpp
+@@ -1,3 +1,4 @@
++#include <cstdlib>
+ /**
+  * @file SimRobot/MainWindow.cpp
+  * Implementation of the main window of SimRobot
+@@ -353,6 +354,7 @@ bool MainWindow::selectObject(const SimRobot::Object& object)
+ 
+ void MainWindow::showWarning(const QString& title, const QString& message)
+ {
++  if(std::getenv("BH_AUDIT")) { std::cerr << "AUDIT ERROR " << message.toStdString() << std::endl; std::exit(2); }
+   QMessageBox::warning(this, title, message);
+ }
+ 
+@@ -504,6 +506,7 @@ bool MainWindow::loadModule(const QString& name, bool manually)
+     loadedModule->createModule = reinterpret_cast<LoadedModule::CreateModuleProc>(loadedModule->resolve("createModule"));
+     if(!loadedModule->createModule)
+     {
++      if(std::getenv("BH_AUDIT")) { std::cerr << "AUDIT ERROR " << loadedModule->errorString().toStdString() << std::endl; std::exit(2); }
+       QMessageBox::warning(this, tr("SimRobot"), loadedModule->errorString());
+       loadedModule->unload();
+       delete loadedModule;

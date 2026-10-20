@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Develop/SimRobot",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalGait.ros3"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local",
+  "seconds": 30,
+  "mode": "gait",
+  "official_source": "bhuman/BHumanCodeRelease@2e3374ba896da8288607f9a1881b876642fe18b8",
+  "unchanged_public_files_sha256": {
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp": "704186f83378272931ccc785095a9d6776bf1963cab572af9797b66943a5a1b2",
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h": "86020512522fe0afbb2792f20913215fa08952b63bcd85f443f31a0ce73d3c6c",
+    "Config/Robots/Default/K1/walkingEngine.cfg": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+    "Config/Robots/Default/K1/motorParameters.cfg": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/GetUpEngine/K1.onnx": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa"
+  },
+  "simulator_sha256": "c2ce740f4ac8df1739c6923d003e32fff1615def627c0f2dd992faaed9f8fa67",
+  "controller_sha256": "39fc24e502b5626d968052f46edd5348d098e72c06d5b053642f012ebf64a72a",
+  "scene_sha256": "1e8870ebec87e51de767f58d9288aaeb68b9de6f0985fabcaf291a54c9845e83",
+  "schedule_sha256": "f9df1da14aed2d8bf4463ea7dc7afd4d8c6c1611bd3c8b0f8e1f2c12a0f55447",
+  "robot_connected": false,
+  "perception_mode": "normal rendered camera, not oracle or 2D"
+}

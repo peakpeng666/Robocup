@@ -1,0 +1,152 @@
+[
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+    "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "input",
+        "shape": [
+          "batch_size",
+          344
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output",
+        "shape": [
+          "batch_size",
+          13
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "input",
+        "shape": [
+          "batch_size",
+          59
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output",
+        "shape": [
+          "batch_size",
+          13
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+    "sha256": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "input",
+        "shape": [
+          "batch_size",
+          59
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output",
+        "shape": [
+          "batch_size",
+          13
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+    "sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "input",
+        "shape": [
+          "batch_size",
+          73
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output",
+        "shape": [
+          "batch_size",
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+    "sha256": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "obs",
+        "shape": [
+          "batch",
+          72
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          "batch",
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/Additional Policies/K1_fast_standup.onnx",
+    "sha256": "7be4ba074a4d7ee55f6f1fa1b6457a0125f33e25f52acb00026baed56ec7d082",
+    "opset": [
+      11
+    ],
+    "inputs": [
+      {
+        "name": "obs",
+        "shape": [
+          "batch",
+          72
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          "batch",
+          22
+        ]
+      }
+    ]
+  }
+]

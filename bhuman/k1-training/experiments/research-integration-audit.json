@@ -1,0 +1,124 @@
+{
+  "schema": "k1-research-integration-audit-v1",
+  "review_date": "2026-10-19",
+  "scope": "Research artifact review and local roadmap; material preservation and documentation only",
+  "material_root": "/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019",
+  "original_pdf_byte_copy_available": false,
+  "original_zip_byte_copy_available": false,
+  "recovery_manifest": "/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019/RECOVERY-MANIFEST.json",
+  "preserved_source_files": 51,
+  "local_protocol_test": {
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_gc2026.py",
+      "-v"
+    ],
+    "cwd_at_execution": "/tmp/k1-material-review-0q72lcn0/k1-soccer-lab",
+    "status": "PASS",
+    "tests": 9,
+    "exit_code": 0,
+    "source": "tool result earlier in the same review turn",
+    "installer_tests_rerun": false
+  },
+  "upstream_query": {
+    "method": "git ls-remote; no fetch",
+    "results": [
+      {
+        "repository": "bhuman/BHumanCodeRelease",
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "2617db",
+          "wall_time_seconds": 0.600582746,
+          "exit_code": 0,
+          "original_token_count": 27,
+          "output": "2e3374ba896da8288607f9a1881b876642fe18b8\tHEAD\n2e3374ba896da8288607f9a1881b876642fe18b8\trefs/heads/master\n"
+        }
+      },
+      {
+        "repository": "bhuman/MachineLearning",
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "979901",
+          "wall_time_seconds": 0.831031894,
+          "exit_code": 0,
+          "original_token_count": 27,
+          "output": "c3fed817e6e8fd06418bea824b1f1ab0157379d2\tHEAD\nc3fed817e6e8fd06418bea824b1f1ab0157379d2\trefs/heads/master\n"
+        }
+      },
+      {
+        "repository": "RoboCup-HumanoidSoccerLeague/GameController",
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "db50d1",
+          "wall_time_seconds": 0.914045522,
+          "exit_code": 0,
+          "original_token_count": 12,
+          "output": "a6cc98bb9f7c0f03912134b333194af3fa880798\tHEAD\n"
+        }
+      }
+    ]
+  },
+  "mainline_expected_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "decision": "Reuse existing Gym mainline and B-Human; prioritize production policy contracts, getup-to-walk handoff and reset timing before formal scale-up.",
+  "findings": [
+    {
+      "id": "ordinary_fast_selection",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": "K1 config fastActive=true; simulatedRobot forces false; observation dimensions differ."
+    },
+    {
+      "id": "getup_handoff",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": "GetUpPhase::createNextPhase normally forces walk; a long getup-actor hold is not the normal competition sequence."
+    },
+    {
+      "id": "preprocessing_and_pd",
+      "status": "SOURCE_CONFIRMED_NOT_CLOSED_LOOP_VALIDATED",
+      "evidence": "Previous action/request, limits, filters and nominal gains differ. See K1-CONTRACT.md."
+    },
+    {
+      "id": "global_reset_probe",
+      "status": "SOURCE_CONFIRMED_NEEDS_TIMING_TEST",
+      "evidence": "Standup reset simulates an extra global physics step."
+    },
+    {
+      "id": "walking_warm_start",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": "Smoke entry has no checkpoint; public critic width 359 vs current 360, actor compatible."
+    },
+    {
+      "id": "cpu_failure_exit",
+      "status": "STATIC_BUG_CONFIRMED_NOT_MODIFIED",
+      "evidence": "CPU smoke can record failure and return normally, with no nonzero exit. Warnings are not classified as failure."
+    },
+    {
+      "id": "tooling_only_release",
+      "status": "STATIC_CONFIRMED",
+      "evidence": "27 payload files, no trained policy; installer enforces tooling-only schema."
+    },
+    {
+      "id": "cross_engine_dependencies",
+      "status": "DEPENDENCY_GAP",
+      "evidence": "Existing bh-gym has ORT without MuJoCo; existing isaacsim-gui has MuJoCo without ORT. No packages installed during review."
+    }
+  ],
+  "activities": {
+    "archive_materials": true,
+    "documentation_written": true,
+    "training_code_changed": false,
+    "official_repo_changed": false,
+    "packages_installed": false,
+    "new_gpu_simulation": false,
+    "new_training": false,
+    "run_installer_executed": false,
+    "robot_connected": false
+  },
+  "proposed_stages_status": "PREPARED_NOT_STARTED"
+}

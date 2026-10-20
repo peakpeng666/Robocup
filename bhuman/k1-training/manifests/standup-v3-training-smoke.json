@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "time": "2026-10-19T19:22:33.280705+09:00",
+  "source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "runs": {
+    "warm-start": {
+      "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42",
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42/nn/model_final.pth",
+      "checkpoint_sha256": "2375b87e59ad3ea36931f66b343bd948f6f9eb557068c261bbaa791b1398450b",
+      "iteration": 3,
+      "env_steps": 4608,
+      "finite_model_optimizer_metrics": true,
+      "config_sha256": "f6269a4d8e68c55e8bf5fc84b22828b4af3cbfe0e685029082a53f82d142af0a",
+      "execution": {
+        "command": [
+          "/home/peakpeng/.venvs/bh-gym/bin/python",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+          "--task",
+          "K1_Stand_Up",
+          "--num_envs",
+          "64",
+          "--max_iterations",
+          "3",
+          "--save_interval",
+          "1",
+          "--seed",
+          "42",
+          "--headless",
+          "true",
+          "--checkpoint",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/checkpoints/bootstrap/K1_stand_up.actor-only.pth",
+          "--load_mode",
+          "warm-start",
+          "--output_dir",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42"
+        ],
+        "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+        "exit_code": 0,
+        "wall_s": 10.251925706998009,
+        "sampled_gpu_peak_mib": 3106,
+        "stop_reason": null,
+        "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42",
+        "python_jit": "1",
+        "status": "PASS"
+      }
+    },
+    "full": {
+      "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42",
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42/nn/model_final.pth",
+      "checkpoint_sha256": "4d5ac52912c62ffe1c5952c4e0480aadf03d7f28045af8cbbbe62ba834ef618f",
+      "iteration": 4,
+      "env_steps": 6144,
+      "finite_model_optimizer_metrics": true,
+      "config_sha256": "13b94cca6c4fe62480c3a876f7b51ed1168d44323191789f154e63fa67034c85",
+      "execution": {
+        "command": [
+          "/home/peakpeng/.venvs/bh-gym/bin/python",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+          "--task",
+          "K1_Stand_Up",
+          "--num_envs",
+          "64",
+          "--max_iterations",
+          "1",
+          "--save_interval",
+          "1",
+          "--seed",
+          "42",
+          "--headless",
+          "true",
+          "--checkpoint",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42/nn/model_final.pth",
+          "--load_mode",
+          "full",
+          "--output_dir",
+          "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42"
+        ],
+        "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+        "exit_code": 0,
+        "wall_s": 8.20249398300075,
+        "sampled_gpu_peak_mib": 3014,
+        "stop_reason": null,
+        "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42",
+        "python_jit": "1",
+        "status": "PASS"
+      }
+    }
+  },
+  "resume_validation": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192013_204893_standup_pilot_warm-start_s42/nn/model_final.pth",
+    "sha256": "2375b87e59ad3ea36931f66b343bd948f6f9eb557068c261bbaa791b1398450b",
+    "mode": "full",
+    "format": "bh-k1-ckpt-v2",
+    "iteration": 3,
+    "env_steps": 4608,
+    "lr": 5.062500000000001e-05,
+    "rng_restored": true,
+    "state_equality_verified": true,
+    "source_matches": true,
+    "checkpoint_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+    "current_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+    "environment_state_restored": false
+  },
+  "actor_updated_after_resume": true,
+  "export_manifest": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor_manifest.json",
+  "export_manifest_sha256": "c514881c906ea7703643d299125bd0036b9209e716f6c06ab866931e7e1fcb2e",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "random_batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 4.172325134277344e-07,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "random_batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 6.198883056640625e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "recorded_observations": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.1920928955078125e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  },
+  "protected_assets": {
+    "envs/K1_Stand_Up.yaml": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+    "resources/K1/K1_locomotion_all_joints_simple_2.urdf": "a8fd3600fb415806cc06e59dfa8f1d411eebf06e745a808124fbfa1f78b88610",
+    "resources/K1/K1_locomotion_all_joints_mesh.urdf": "5d468626dcfb9a1137e08c52d2da3c3eba43cfa5ada8af5eb12a19955fc5f475",
+    "pre-trained/GetUp/K1_stand_up.pt": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005"
+  },
+  "original_repositories": {
+    "BHumanCodeRelease": {
+      "head": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "clean": true
+    },
+    "MachineLearning": {
+      "head": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "clean": true
+    }
+  },
+  "environment_state_restored": false,
+  "policy_quality_approved": false,
+  "formal_training_started": false,
+  "robot_connected": false,
+  "scope": "Bounded 64-env PPO smoke (3+1 iterations), restore and CPU export verification only."
+}

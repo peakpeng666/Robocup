@@ -1,0 +1,30 @@
+{
+  "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256": "a955976c78a8cf494afcafbbd04adc908af6a26c7b5e5fe40e538f3188b2decf",
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+    "--history",
+    "--task",
+    "K1",
+    "--num_envs",
+    "4096",
+    "--max_iterations",
+    "25",
+    "--save_interval",
+    "5",
+    "--headless",
+    "true",
+    "--seed",
+    "7",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--load_mode",
+    "warm-start",
+    "--config_patch",
+    "{\"basic\":{\"trace_updates\":true},\"algorithm\":{\"max_update_kl\":0.02,\"guard_min_lr\":1e-08,\"critic_warmup_iterations\":20,\"critic_warmup_lr\":0.0003,\"critic_learning_rate\":0.0003,\"reference_mean_penalty\":1.0,\"reference_action_std\":0.1353352832366127,\"reference_checkpoint\":\"/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth\",\"reference_sha256\":\"7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff\"}}",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140126_253808_walkI_reference_4096_25_compact"
+  ],
+  "utc": "2026-10-20T05:01:26.268517+00:00"
+}

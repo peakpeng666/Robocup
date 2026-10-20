@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_131421_733744_standup_regress2_warm/nn/model_final.pth",
+  "sha256": "55cda6d51a4216281dbb13597a3f602c210e93dbf0fa0d02e5a978420ae1d1df",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 3,
+  "env_steps": 4608,
+  "lr": 5.062500000000001e-05,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+  "current_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+  "environment_state_restored": false
+}

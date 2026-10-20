@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>THU RoboCup 战术板</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #1a1a2e; color: #e0e0e0; font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+#header { background: #16213e; padding: 6px 12px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #0f3460; flex-wrap: wrap; }
+#header h1 { font-size: 14px; color: #e94560; letter-spacing: 1px; }
+#rule-note { font-size: 10px; color: #8fa3c7; border-left: 1px solid #0f3460; padding-left: 12px; }
+#status-bar { font-size: 11px; color: #888; margin-left: auto; }
+#capture-bar { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #aaa; border-left: 1px solid #0f3460; padding-left: 12px; }
+#capture-bar button { background: #0f3460; color: #e0e0e0; border: 1px solid #274a7a; border-radius: 3px; padding: 3px 8px; font-size: 11px; cursor: pointer; font-family: inherit; }
+#capture-bar button:hover { border-color: #e94560; }
+#capture-bar button:disabled { opacity: 0.4; cursor: default; }
+#capture-bar select { background: #0f3460; color: #e0e0e0; border: 1px solid #274a7a; border-radius: 3px; padding: 3px 6px; font-size: 11px; font-family: inherit; }
+#record-btn.active { background: #7a1a2e; border-color: #e94560; color: #ffb3c1; }
+#record-status { color: #ff9800; }
+#replay-bar { display: none; background: #16213e; border-bottom: 1px solid #0f3460; padding: 5px 12px; align-items: center; gap: 10px; font-size: 11px; color: #aaa; }
+#replay-bar.visible { display: flex; }
+#replay-bar button { background: #0f3460; color: #e0e0e0; border: 1px solid #274a7a; border-radius: 3px; padding: 2px 8px; font-size: 11px; cursor: pointer; font-family: inherit; }
+#replay-seek { flex: 1; }
+#replay-time { min-width: 90px; color: #8fa3c7; }
+#replay-speed { background: #0f3460; color: #e0e0e0; border: 1px solid #274a7a; border-radius: 3px; font-size: 11px; font-family: inherit; }
+#main { display: flex; flex: 1; overflow: hidden; }
+#robot-list { width: 200px; min-width: 200px; background: #16213e; border-right: 1px solid #0f3460; overflow-y: auto; padding: 6px; }
+#robot-list h2 { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #0f3460; }
+.robot-card { padding: 6px 8px; margin-bottom: 4px; border-radius: 4px; cursor: pointer; border: 1px solid transparent; transition: border-color 0.15s; }
+.robot-card:hover { border-color: #0f3460; }
+.robot-card.selected { border-color: #e94560; background: #1a1a2e; }
+.robot-card.offline { opacity: 0.45; }
+.robot-card .rc-header { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.robot-card .rc-pid { font-weight: bold; font-size: 13px; }
+.robot-card .rc-role { font-size: 10px; padding: 1px 4px; border-radius: 2px; }
+.role-striker { background: #1a4a8a; color: #7ab3ff; }
+.role-keeper { background: #7a3a00; color: #ffb347; }
+.robot-card .rc-decision { font-size: 11px; color: #aaa; }
+.robot-card .rc-cost { font-size: 11px; color: #d7e3fc; margin-top: 2px; }
+.robot-card .rc-state { font-size: 10px; margin-top: 2px; }
+.recovery-ready { color: #4caf50; }
+.recovery-falling { color: #ff9800; }
+.recovery-fallen { color: #f44336; }
+.recovery-getting-up { color: #ff9800; }
+.online-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 2px; }
+.dot-online { background: #4caf50; }
+.dot-offline { background: #555; }
+#canvas-area { flex: 1; display: flex; align-items: center; justify-content: center; background: #0d1117; position: relative; }
+#field-canvas { display: block; }
+#detail-panel { width: 200px; min-width: 200px; background: #16213e; border-left: 1px solid #0f3460; overflow-y: auto; padding: 8px; }
+#detail-panel h2 { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #0f3460; }
+.detail-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 11px; }
+.detail-label { color: #888; }
+.detail-value { color: #e0e0e0; text-align: right; max-width: 110px; word-break: break-all; }
+.detail-section { margin-top: 8px; margin-bottom: 4px; font-size: 10px; color: #e94560; text-transform: uppercase; letter-spacing: 1px; }
+.cost-lead { color: #e94560; }
+.cost-assist { color: #8fa3c7; }
+#legend { background: #16213e; border-top: 1px solid #0f3460; padding: 5px 12px; display: flex; gap: 16px; align-items: center; font-size: 10px; color: #888; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+.legend-line { width: 16px; height: 2px; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>THU RoboCup 战术板</h1>
+  <div id="rule-note">Debug UDP: 单包 / ≤1Hz</div>
+  <div id="capture-bar">
+    <button id="record-btn">● 开始录制</button>
+    <span id="record-status"></span>
+    <select id="replay-select"><option value="">选择录像...</option></select>
+    <button id="replay-load-btn">回放</button>
+    <button id="live-btn" disabled>返回实时</button>
+  </div>
+  <div id="status-bar">等待数据...</div>
+</div>
+<div id="replay-bar">
+  <button id="replay-playpause-btn">▶</button>
+  <input type="range" id="replay-seek" min="0" max="1000" value="0">
+  <span id="replay-time">0:00 / 0:00</span>
+  <select id="replay-speed">
+    <option value="0.5">0.5x</option>
+    <option value="1" selected>1x</option>
+    <option value="2">2x</option>
+    <option value="4">4x</option>
+  </select>
+</div>
+<div id="main">
+  <div id="robot-list">
+    <h2>机器人</h2>
+    <div id="robot-cards"></div>
+  </div>
+  <div id="canvas-area">
+    <canvas id="field-canvas"></canvas>
+  </div>
+  <div id="detail-panel">
+    <h2>详情</h2>
+    <div id="detail-content"><span style="color:#555">点击机器人查看详情</span></div>
+  </div>
+</div>
+<div id="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#5b9bd5"></div>前锋</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff8c00"></div>守门员</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffd700"></div>本机球</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(255,215,0,0.3);border:1px dashed #ffd700;border-radius:50%"></div>团队球</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e94560"></div>控球机器人</div>
+  <div class="legend-item"><div class="legend-line" style="background:#00e5ff"></div>带球方向</div>
+  <div class="legend-item"><div class="legend-line" style="background:#76ff03"></div>传球方向</div>
+  <div class="legend-item"><div class="legend-line" style="background:#d7e3fc"></div>追球速度</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#555"></div>障碍物</div>
+</div>
+<script>
+// ── Constants ──────────────────────────────────────────────────────────────
+const POLL_MS = 100;
+const ROBOT_COLORS = { striker: '#5b9bd5', goal_keeper: '#ff8c00' };
+const LEAD_COLOR = '#e94560';
+const BALL_COLOR = '#ffd700';
+const TEAM_BALL_COLOR = 'rgba(255,215,0,0.55)';
+const OBS_COLOR = '#666';
+const DRIBBLE_COLOR = '#00e5ff';
+const PASS_COLOR = '#76ff03';
+const CHASE_COLOR = '#d7e3fc';
+const FIELD_GREEN = '#1a4a1a';
+const FIELD_LINE = 'rgba(255,255,255,0.85)';
+const PLAYER_COLORS = ['#5b9bd5', '#ff8c00', '#00c853', '#ff4f81', '#b388ff', '#26c6da'];
+
+// ── State ───────────────────────────────────────────────────────────────────
+let latestState = null;
+let selectedKey = null; // "teamId_playerId"
+let viewMode = 'live'; // 'live' | 'replay'
+
+// ── Polling ─────────────────────────────────────────────────────────────────
+async function pollState() {
+  try {
+    const r = await fetch('/state');
+    if (r.ok) latestState = await r.json();
+  } catch (_) {}
+}
+setInterval(pollState, POLL_MS);
+setInterval(render, POLL_MS);
+
+// ── Recording controls ───────────────────────────────────────────────────────
+const recordBtn = document.getElementById('record-btn');
+const recordStatusEl = document.getElementById('record-status');
+let recording = false;
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body || {}),
+  });
+  return r.json();
+}
+
+async function pollRecordStatus() {
+  if (viewMode !== 'live') return;
+  try {
+    const r = await fetch('/record/status');
+    if (!r.ok) return;
+    const s = await r.json();
+    recording = s.recording;
+    recordBtn.textContent = recording ? '■ 停止录制' : '● 开始录制';
+    recordBtn.classList.toggle('active', recording);
+    recordStatusEl.textContent = recording ? `录制中 ${(s.duration_ms / 1000).toFixed(0)}s · ${s.packet_count}包` : '';
+  } catch (_) {}
+}
+setInterval(pollRecordStatus, 1000);
+
+recordBtn.addEventListener('click', async () => {
+  await postJson(recording ? '/record/stop' : '/record/start');
+  await pollRecordStatus();
+  if (!recording) refreshReplayList();
+});
+
+// ── Replay controls ───────────────────────────────────────────────────────────
+const replaySelect = document.getElementById('replay-select');
+const replayLoadBtn = document.getElementById('replay-load-btn');
+const liveBtn = document.getElementById('live-btn');
+const replayBar = document.getElementById('replay-bar');
+const replayPlayPauseBtn = document.getElementById('replay-playpause-btn');
+const replaySeek = document.getElementById('replay-seek');
+const replayTimeEl = document.getElementById('replay-time');
+const replaySpeedSel = document.getElementById('replay-speed');
+let replayState = 'paused';
+let replayDurationMs = 0;
+let seekDragging = false;
+
+function formatClock(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+async function refreshReplayList() {
+  try {
+    const r = await fetch('/replay/list');
+    if (!r.ok) return [];
+    const data = await r.json();
+    const recordings = data.recordings || [];
+    replaySelect.innerHTML = '<option value="">选择录像...</option>' +
+      recordings.map(rec => `<option value="${rec.name}">${rec.name}</option>`).join('');
+    return recordings;
+  } catch (_) {}
+  return [];
+}
+
+async function loadReplayFile(file, seekMs, shouldPlay) {
+  if (!file) return null;
+  replaySelect.value = file;
+  let s = await postJson('/replay/load', { file });
+  if (s.error) { alert(s.error); return s; }
+  viewMode = 'replay';
+  replayBar.classList.add('visible');
+  liveBtn.disabled = false;
+  if (Number.isFinite(seekMs)) {
+    s = await postJson('/replay/seek', { t_ms: seekMs });
+  }
+  if (shouldPlay) {
+    s = await postJson('/replay/play');
+  }
+  applyReplayStatus(s);
+  return s;
+}
+
+async function loadReplayFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('replay');
+  if (!file) return;
+  const seekMs = Number(params.get('t') || 0);
+  const shouldPlay = params.get('play') === '1';
+  await refreshReplayList();
+  const status = await loadReplayFile(file, Number.isFinite(seekMs) ? seekMs : 0, shouldPlay);
+  if (status && !status.error) {
+    history.replaceState(null, document.title, window.location.href);
+  }
+}
+
+refreshReplayList().then(loadReplayFromUrl);
+
+replayLoadBtn.addEventListener('click', async () => {
+  const file = replaySelect.value;
+  await loadReplayFile(file);
+});
+
+liveBtn.addEventListener('click', async () => {
+  await postJson('/replay/stop');
+  viewMode = 'live';
+  replayBar.classList.remove('visible');
+  liveBtn.disabled = true;
+});
+
+function applyReplayStatus(s) {
+  replayState = s.state;
+  replayDurationMs = s.duration_ms;
+  replayPlayPauseBtn.textContent = replayState === 'playing' ? '⏸' : '▶';
+  replaySeek.max = String(Math.max(1, Math.round(s.duration_ms)));
+  if (!seekDragging) replaySeek.value = String(Math.round(s.position_ms));
+  replayTimeEl.textContent = `${formatClock(s.position_ms)} / ${formatClock(s.duration_ms)}`;
+}
+
+async function pollReplayStatus() {
+  if (viewMode !== 'replay') return;
+  try {
+    const r = await fetch('/replay/status');
+    if (!r.ok) return;
+    applyReplayStatus(await r.json());
+  } catch (_) {}
+}
+setInterval(pollReplayStatus, 200);
+
+replayPlayPauseBtn.addEventListener('click', async () => {
+  const s = await postJson(replayState === 'playing' ? '/replay/pause' : '/replay/play');
+  applyReplayStatus(s);
+});
+
+replaySeek.addEventListener('input', () => { seekDragging = true; });
+replaySeek.addEventListener('change', async () => {
+  const s = await postJson('/replay/seek', { t_ms: Number(replaySeek.value) });
+  seekDragging = false;
+  applyReplayStatus(s);
+});
+
+replaySpeedSel.addEventListener('change', async () => {
+  await postJson('/replay/speed', { speed: Number(replaySpeedSel.value) });
+});
+
+// ── Canvas setup ─────────────────────────────────────────────────────────────
+const canvas = document.getElementById('field-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  const area = document.getElementById('canvas-area');
+  const rect = area.getBoundingClientRect();
+  const areaWidth = area.clientWidth || rect.width || (window.innerWidth - 416);
+  const areaHeight = area.clientHeight || rect.height || (window.innerHeight - 72);
+  const W = Math.max(1, Math.floor(areaWidth - 16));
+  const H = Math.max(1, Math.floor(areaHeight - 16));
+  canvas.style.width = `${W}px`;
+  canvas.style.height = `${H}px`;
+  if (canvas.width !== W) canvas.width = W;
+  if (canvas.height !== H) canvas.height = H;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// ── Field geometry helpers ────────────────────────────────────────────────────
+function makeTransform(field, cw, ch) {
+  const fl = field.length || 9.0;
+  const fw = field.width || 6.0;
+  const margin = 0.6;
+  const scaleX = cw / (fl + 2 * margin);
+  const scaleY = ch / (fw + 2 * margin);
+  const scale = Math.min(scaleX, scaleY);
+  const ox = cw / 2;
+  const oy = ch / 2;
+  // field: x→right (attack), y→left; canvas: x→right, y→down
+  return {
+    toCanvas(fx, fy) {
+      return { x: ox + fx * scale, y: oy - fy * scale };
+    },
+    scale,
+    field: field
+  };
+}
+
+// ── Drawing helpers ───────────────────────────────────────────────────────────
+function drawArrow(ctx, x1, y1, x2, y2, color, width, headLen) {
+  const dx = x2 - x1, dy = y2 - y1;
+  const len = Math.hypot(dx, dy);
+  if (len < 1) return;
+  const ux = dx / len, uy = dy / len;
+  const hl = headLen || 8;
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width || 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - hl * ux + hl * 0.4 * uy, y2 - hl * uy - hl * 0.4 * ux);
+  ctx.lineTo(x2 - hl * ux - hl * 0.4 * uy, y2 - hl * uy + hl * 0.4 * ux);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function isFiniteNumber(value) {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function formatCost(cost) {
+  const value = Number(cost);
+  return Number.isFinite(value) ? value.toFixed(1) : '—';
+}
+
+function formatAgeMs(ageMs) {
+  const value = Number(ageMs);
+  if (!Number.isFinite(value)) return '—';
+  if (value < 1000) return `${Math.round(value)}ms`;
+  return `${(value / 1000).toFixed(1)}s`;
+}
+
+function robotAccentColor(r) {
+  const team = Number.isFinite(Number(r.team_id)) ? Number(r.team_id) : 0;
+  const player = Number.isFinite(Number(r.player_id)) ? Number(r.player_id) : 0;
+  const idx = Math.abs(team * 7 + player - 1) % PLAYER_COLORS.length;
+  return PLAYER_COLORS[idx];
+}
+
+function drawConnector(ctx, from, to, color, dashed) {
+  ctx.save();
+  ctx.globalAlpha = dashed ? 0.46 : 0.62;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = dashed ? 1.2 : 1.5;
+  ctx.setLineDash(dashed ? [5, 4] : []);
+  ctx.beginPath();
+  ctx.moveTo(from.x, from.y);
+  ctx.lineTo(to.x, to.y);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawBallMarker(ctx, point, color, kind, label) {
+  const isTeam = kind === 'team';
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(point.x, point.y, isTeam ? 7 : 5, 0, Math.PI * 2);
+  if (isTeam) {
+    ctx.fillStyle = TEAM_BALL_COLOR;
+    ctx.fill();
+    ctx.setLineDash([4, 3]);
+  } else {
+    ctx.fillStyle = BALL_COLOR;
+    ctx.fill();
+  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = isTeam ? 1.5 : 1.8;
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#fff';
+  ctx.font = '9px Consolas';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText(label, point.x, point.y - (isTeam ? 9 : 7));
+  ctx.restore();
+}
+
+function localBallAnchor(r) {
+  if (r.ball && r.ball.detected && isFiniteNumber(r.ball.x) && isFiniteNumber(r.ball.y)) {
+    return { x: r.ball.x, y: r.ball.y, kind: 'local' };
+  }
+  return null;
+}
+
+function teamBallAnchor(r) {
+  if (r.team_ball && r.team_ball.valid && isFiniteNumber(r.team_ball.x) && isFiniteNumber(r.team_ball.y)) {
+    return { x: r.team_ball.x, y: r.team_ball.y, kind: 'team' };
+  }
+  return null;
+}
+
+function commandBallAnchor(r) {
+  return localBallAnchor(r) || teamBallAnchor(r);
+}
+
+function ballArrowLength(baseLen, speed) {
+  if (!isFiniteNumber(speed)) return baseLen;
+  return baseLen * Math.max(0.55, Math.min(1.45, speed));
+}
+
+function getWalkCommand(m) {
+  if (!m) return null;
+  if (m.walk_command_valid && isFiniteNumber(m.walk_vx) && isFiniteNumber(m.walk_vy)) {
+    return { vx: m.walk_vx, vy: m.walk_vy, vtheta: isFiniteNumber(m.walk_vtheta) ? m.walk_vtheta : 0 };
+  }
+  if (Array.isArray(m.walk_command_triplet) && m.walk_command_triplet.length >= 2) {
+    const vx = Number(m.walk_command_triplet[0]);
+    const vy = Number(m.walk_command_triplet[1]);
+    const vtheta = Number(m.walk_command_triplet[2] || 0);
+    if (Number.isFinite(vx) && Number.isFinite(vy)) return { vx, vy, vtheta: Number.isFinite(vtheta) ? vtheta : 0 };
+  }
+  return null;
+}
+
+function drawWalkCommandArrow(ctx, r, rp, t) {
+  const cmd = getWalkCommand(r.motion);
+  if (!cmd || !r.robot || !isFiniteNumber(r.robot.theta)) return;
+  const speed = Math.hypot(cmd.vx, cmd.vy);
+  if (speed < 0.03) return;
+  const theta = r.robot.theta;
+  const fieldVx = cmd.vx * Math.cos(theta) - cmd.vy * Math.sin(theta);
+  const fieldVy = cmd.vx * Math.sin(theta) + cmd.vy * Math.cos(theta);
+  const lenScale = 0.8 * t.scale;
+  drawArrow(ctx, rp.x, rp.y, rp.x + fieldVx * lenScale, rp.y - fieldVy * lenScale, CHASE_COLOR, 2, 8);
+}
+
+function drawRobotBallObservations(ctx, robots, t) {
+  for (const r of robots) {
+    if (!r.robot || !r._online) continue;
+    const rp = t.toCanvas(r.robot.x, r.robot.y);
+    const accent = robotAccentColor(r);
+    const localBall = localBallAnchor(r);
+    const teamBall = teamBallAnchor(r);
+    if (localBall) {
+      const bp = t.toCanvas(localBall.x, localBall.y);
+      drawConnector(ctx, rp, bp, accent, false);
+      drawBallMarker(ctx, bp, accent, 'local', `P${r.player_id}`);
+    }
+    if (teamBall) {
+      const tbp = t.toCanvas(teamBall.x, teamBall.y);
+      drawConnector(ctx, rp, tbp, accent, true);
+      drawBallMarker(ctx, tbp, accent, 'team', `P${r.player_id}T`);
+      const vx = (r.team_ball.vx || 0) * 0.8 * t.scale;
+      const vy = (r.team_ball.vy || 0) * 0.8 * t.scale;
+      if (Math.hypot(vx, vy) > 3) drawArrow(ctx, tbp.x, tbp.y, tbp.x + vx, tbp.y - vy, accent + 'aa', 1.3, 6);
+    }
+  }
+}
+
+function drawRobot(ctx, cx, cy, theta, color, isLead, label, recovery, scale) {
+  const r = Math.max(7, scale * 0.18);
+  const fallen = recovery === 'HAS_FALLEN' || recovery === 'IS_GETTING_UP';
+  const robotColor = fallen ? '#f44336' : color;
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-theta); // field theta: CCW from +x; canvas: CW from right
+  // Body
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  ctx.fillStyle = robotColor + '99';
+  ctx.fill();
+  ctx.strokeStyle = robotColor;
+  ctx.lineWidth = isLead ? 2.5 : 1.5;
+  ctx.stroke();
+  // Heading arrow
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(r * 1.5, 0);
+  ctx.strokeStyle = robotColor;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.restore();
+  // Lead ring
+  if (isLead) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r + 4, 0, Math.PI * 2);
+    ctx.strokeStyle = LEAD_COLOR;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+  // Label
+  ctx.save();
+  ctx.fillStyle = '#fff';
+  ctx.font = `bold ${Math.max(9, scale * 0.13)}px Consolas`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(label, cx, cy);
+  ctx.restore();
+}
+
+// ── Field drawing ─────────────────────────────────────────────────────────────
+function drawField(ctx, t) {
+  const f = t.field;
+  const fl = f.length, fw = f.width;
+  const gl = f.goal_area_length || 1.0, gw = f.goal_area_width || 3.0;
+  const pl = f.penalty_area_length || 2.0, pw = f.penalty_area_width || 5.0;
+  const cr = f.circle_radius || 1.5;
+  const goalW = f.goal_width || 2.6;
+
+  ctx.save();
+  // Field background
+  const tl = t.toCanvas(-fl / 2, fw / 2);
+  const br = t.toCanvas(fl / 2, -fw / 2);
+  ctx.fillStyle = FIELD_GREEN;
+  ctx.fillRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
+
+  ctx.strokeStyle = FIELD_LINE;
+  ctx.lineWidth = 1.5;
+
+  // Boundary
+  ctx.strokeRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
+
+  // Center line
+  const cl1 = t.toCanvas(0, fw / 2), cl2 = t.toCanvas(0, -fw / 2);
+  ctx.beginPath(); ctx.moveTo(cl1.x, cl1.y); ctx.lineTo(cl2.x, cl2.y); ctx.stroke();
+
+  // Center circle
+  const cc = t.toCanvas(0, 0);
+  ctx.beginPath(); ctx.arc(cc.x, cc.y, cr * t.scale, 0, Math.PI * 2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(cc.x, cc.y, 2, 0, Math.PI * 2); ctx.fillStyle = FIELD_LINE; ctx.fill();
+
+  // Goal areas (both sides)
+  for (const side of [-1, 1]) {
+    const gx = side * fl / 2;
+    const ga_tl = t.toCanvas(gx - side * gl, gw / 2);
+    const ga_br = t.toCanvas(gx, -gw / 2);
+    ctx.strokeRect(ga_tl.x, ga_tl.y, ga_br.x - ga_tl.x, ga_br.y - ga_tl.y);
+    const pa_tl = t.toCanvas(gx - side * pl, pw / 2);
+    const pa_br = t.toCanvas(gx, -pw / 2);
+    ctx.strokeRect(pa_tl.x, pa_tl.y, pa_br.x - pa_tl.x, pa_br.y - pa_tl.y);
+    // Goal posts
+    const gp1 = t.toCanvas(gx, goalW / 2), gp2 = t.toCanvas(gx, -goalW / 2);
+    ctx.save(); ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(gp1.x, gp1.y); ctx.lineTo(gp2.x, gp2.y); ctx.stroke();
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+// ── Main render ───────────────────────────────────────────────────────────────
+function render() {
+  resizeCanvas();
+  const cw = canvas.width, ch = canvas.height;
+  ctx.clearRect(0, 0, cw, ch);
+  ctx.fillStyle = '#0d1117';
+  ctx.fillRect(0, 0, cw, ch);
+
+  if (!latestState || !latestState.robots || latestState.robots.length === 0) {
+    ctx.fillStyle = '#444';
+    ctx.font = '14px Consolas';
+    ctx.textAlign = 'center';
+    ctx.fillText('等待机器人数据...', cw / 2, ch / 2);
+    updateRobotList([]);
+    return;
+  }
+
+  const robots = latestState.robots;
+  const fieldRobot = robots.find(r => r.field && r.field.length > 0) || robots[0];
+  const field = (fieldRobot && fieldRobot.field) || { length: 9, width: 6, goal_width: 2.6, goal_area_length: 1, goal_area_width: 3, penalty_area_length: 2, penalty_area_width: 5, circle_radius: 1.5 };
+  const t = makeTransform(field, cw, ch);
+
+  drawField(ctx, t);
+
+  // Obstacles from selected or first online robot
+  const obsSource = robots.find(r => robotKey(r) === selectedKey && r._online) || robots.find(r => r._online);
+  if (obsSource && obsSource.obstacles) {
+    for (const obs of obsSource.obstacles) {
+      const op = t.toCanvas(obs.x, obs.y);
+      const alpha = Math.max(0.15, 1 - obs.age_ms / 1500);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(op.x, op.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(100,100,100,${alpha})`;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  drawRobotBallObservations(ctx, robots, t);
+
+  // Robots
+  for (const r of robots) {
+    if (!r.robot) continue;
+    const rp = t.toCanvas(r.robot.x, r.robot.y);
+    const color = ROBOT_COLORS[r.role] || '#aaa';
+    ctx.save();
+    if (!r._online) ctx.globalAlpha = 0.3;
+    drawRobot(ctx, rp.x, rp.y, r.robot.theta, color, r.is_lead, `P${r.player_id}`, r.recovery, t.scale);
+    // Motion arrows
+    if (r._online && r.motion) {
+      if (r.decision === 'dribble') {
+        const dir = r.motion.dribble_dir, len = t.scale * 0.8;
+        drawArrow(ctx, rp.x, rp.y, rp.x + Math.cos(dir) * len, rp.y - Math.sin(dir) * len, DRIBBLE_COLOR, 2, 8);
+      } else if (r.decision === 'pass') {
+        const ball = commandBallAnchor(r);
+        const anchor = ball ? t.toCanvas(ball.x, ball.y) : rp;
+        const dir = r.motion.pass_dir;
+        const len = ballArrowLength(t.scale * 0.85, r.motion.pass_speed);
+        drawArrow(ctx, anchor.x, anchor.y, anchor.x + Math.cos(dir) * len, anchor.y - Math.sin(dir) * len, PASS_COLOR, 2, 8);
+      } else if (r.decision === 'chase') {
+        drawWalkCommandArrow(ctx, r, rp, t);
+      }
+    }
+    ctx.restore();
+  }
+
+  // Teammate ghost positions from selected robot's tmStatus
+  const sel = robots.find(r => robotKey(r) === selectedKey);
+  if (sel && sel.teammates) {
+    for (const tm of sel.teammates) {
+      if (!tm.alive) continue;
+      const alreadyDrawn = robots.some(r => r.player_id === tm.player_id && r._online);
+      if (alreadyDrawn) continue;
+      const tp = t.toCanvas(tm.x, tm.y);
+      const color = ROBOT_COLORS[tm.role] || '#aaa';
+      ctx.save();
+      ctx.globalAlpha = 0.6;
+      ctx.beginPath();
+      ctx.arc(tp.x, tp.y, 7, 0, Math.PI * 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([3, 2]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#fff';
+      ctx.font = '9px Consolas';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`P${tm.player_id}`, tp.x, tp.y);
+      ctx.restore();
+    }
+  }
+
+  updateRobotList(robots);
+  updateDetailPanel(sel || null);
+  updateStatusBar(robots);
+}
+
+// ── Robot list ────────────────────────────────────────────────────────────────
+function robotKey(r) { return `${r.team_id}_${r.player_id}`; }
+
+function recoveryClass(r) {
+  switch (r && r.recovery) {
+    case 'IS_FALLING': return 'recovery-falling';
+    case 'HAS_FALLEN': return 'recovery-fallen';
+    case 'IS_GETTING_UP': return 'recovery-getting-up';
+    default: return 'recovery-ready';
+  }
+}
+
+function updateRobotList(robots) {
+  const container = document.getElementById('robot-cards');
+  const existingKeys = new Set([...container.children].map(c => c.dataset.key));
+  const currentKeys = new Set(robots.map(robotKey));
+  // Remove stale
+  for (const card of [...container.children]) {
+    if (!currentKeys.has(card.dataset.key)) container.removeChild(card);
+  }
+  for (const r of robots) {
+    const key = robotKey(r);
+    let card = container.querySelector(`[data-key="${key}"]`);
+    if (!card) {
+      card = document.createElement('div');
+      card.dataset.key = key;
+      card.addEventListener('click', () => { selectedKey = key; });
+      container.appendChild(card);
+    }
+    card.className = `robot-card${r._online ? '' : ' offline'}${selectedKey === key ? ' selected' : ''}`;
+    const rc = recoveryClass(r);
+    card.innerHTML = `
+      <div class="rc-header">
+        <span class="online-dot ${r._online ? 'dot-online' : 'dot-offline'}"></span>
+        <span class="rc-pid">P${r.player_id}</span>
+        <span class="rc-role role-${r.role || 'striker'}">${r.role === 'goal_keeper' ? 'GK' : 'ST'}</span>
+        ${r.is_lead ? '<span style="color:#e94560;font-size:10px">●控球</span>' : ''}
+      </div>
+      <div class="rc-decision">${r.decision || '—'}</div>
+      <div class="rc-cost">cost ${formatCost(r.cost)}</div>
+      <div class="rc-state ${rc}">${r.recovery || 'IS_READY'}</div>
+      <div class="rc-state" style="color:#666">${r.game?.state || '—'} | ${r._latency_ms}ms</div>`;
+  }
+}
+
+// ── Detail panel ──────────────────────────────────────────────────────────────
+function row(label, value) {
+  return `<div class="detail-row"><span class="detail-label">${label}</span><span class="detail-value">${value}</span></div>`;
+}
+
+function renderTeammateCostRows(r) {
+  const teammates = Array.isArray(r.teammates) ? [...r.teammates] : [];
+  const liveTeammates = teammates
+    .filter(tm => tm && tm.alive)
+    .sort((a, b) => Number(a.player_id || 0) - Number(b.player_id || 0));
+  if (liveTeammates.length === 0) return row('队友 cost', '—');
+  return liveTeammates.map(tm => {
+    const lead = tm.is_lead ? '<span class="cost-lead">Lead</span>' : '<span class="cost-assist">Assist</span>';
+    return row(`P${tm.player_id}`, `${formatCost(tm.cost)} · ${lead} · ${formatAgeMs(tm.age_ms)}`);
+  }).join('');
+}
+
+function updateDetailPanel(r) {
+  const el = document.getElementById('detail-content');
+  if (!r) { el.innerHTML = '<span style="color:#555">点击机器人查看详情</span>'; return; }
+  const f = r.freekick || {}, g = r.game || {}, m = r.motion || {}, b = r.ball || {}, tb = r.team_ball || {};
+  const rc = recoveryClass(r);
+  el.innerHTML = `
+    <div class="detail-section">身份</div>
+    ${row('队伍', r.team_id)} ${row('编号', `P${r.player_id}`)}
+    ${row('角色', r.role || '—')} ${row('惯用脚', r.preferred_foot || '—')}
+    ${row('定位', r.odom_calibrated ? '<span style="color:#4caf50">已校准</span>' : '<span style="color:#f44336">未校准</span>')}
+    <div class="detail-section">决策</div>
+    ${row('决策', r.decision || '—')}
+    ${row('本机 cost', formatCost(r.cost))}
+    ${r.role === 'goal_keeper' ? row('守门模式', r.goalie_mode || '—') : ''}
+    ${row('控球', r.is_lead ? '<span style="color:#e94560">是</span>' : '否')}
+    <div class="detail-section">队友 cost</div>
+    ${renderTeammateCostRows(r)}
+    <div class="detail-section">恢复</div>
+    ${row('状态', `<span class="${rc}">${r.recovery || '—'}</span>`)}
+    <div class="detail-section">比赛</div>
+    ${row('状态', g.state || '—')} ${row('子状态', g.sub_state || '—')}
+    ${row('发球方', g.is_kickoff_side ? '是' : '否')}
+    <div class="detail-section">任意球</div>
+    ${row('阶段', f.phase || '—')} ${row('等待对方', f.wait_for_opponent_restart ? '是' : '否')}
+    <div class="detail-section">球</div>
+    ${row('本机', b.detected ? `<span style="color:#4caf50">(${b.x?.toFixed(2)}, ${b.y?.toFixed(2)})</span>` : '<span style="color:#f44336">未检测</span>')}
+    ${row('团队球', tb.valid ? `<span style="color:#4caf50">有效(${tb.support_count})</span>` : '无效')}
+    <div class="detail-section">运动</div>
+    ${row('踢球类型', m.kick_type || '—')}
+    ${row('带球方向', m.dribble_dir !== undefined ? (m.dribble_dir * 180 / Math.PI).toFixed(1) + '°' : '—')}
+    ${row('传球方向', m.pass_dir !== undefined ? (m.pass_dir * 180 / Math.PI).toFixed(1) + '°' : '—')}
+    <div class="detail-section">通讯</div>
+    ${row('延迟', `${r._latency_ms}ms`)} ${row('IP', r._sender_ip || '—')}`;
+}
+
+// ── Status bar ────────────────────────────────────────────────────────────────
+function updateStatusBar(robots) {
+  const online = robots.filter(r => r._online).length;
+  const lead = robots.find(r => r.is_lead);
+  const gameState = robots[0]?.game?.state || '—';
+  document.getElementById('status-bar').textContent =
+    `在线: ${online}/${robots.length}  |  比赛: ${gameState}  |  控球: ${lead ? 'P' + lead.player_id : '无'}`;
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+pollState();
+render();
+</script>
+</body>
+</html>

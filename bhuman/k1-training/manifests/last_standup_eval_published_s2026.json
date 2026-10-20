@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/standup_eval_entry.py",
+    "--policy",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor.pt",
+    "--profile",
+    "published",
+    "--seed",
+    "2026",
+    "--steps",
+    "400",
+    "--num-envs",
+    "28"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 24.54551632899893,
+  "sampled_gpu_peak_mib": 3012,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192353_251258_standup_eval_published_s2026",
+  "python_jit": "1",
+  "status": "PASS"
+}

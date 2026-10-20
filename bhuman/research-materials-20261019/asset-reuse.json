@@ -1,0 +1,198 @@
+[
+  {
+    "path": "resources/K1/K1_locomotion.xml",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "envs/K1.yaml",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": false
+  },
+  {
+    "path": "play_mujoco_walk_history.py",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "pre-trained/WalkAndKick/K1_walk.onnx",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "LICENSE",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Trunk.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Head_1.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Head_2.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Arm_1.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Arm_2.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Arm_3.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Arm_4.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Arm_1.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Arm_2.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Arm_3.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Arm_4.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Hip_Pitch.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Hip_Roll.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Hip_Yaw.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Shank.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Ankle_Cross.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Left_Foot.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Hip_Pitch.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Hip_Roll.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Hip_Yaw.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Shank.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Ankle_Cross.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  },
+  {
+    "path": "resources/K1/meshes/Right_Foot.STL",
+    "upstream_present": true,
+    "upstream_match": true,
+    "mainline_present": true,
+    "mainline_match": true
+  }
+]

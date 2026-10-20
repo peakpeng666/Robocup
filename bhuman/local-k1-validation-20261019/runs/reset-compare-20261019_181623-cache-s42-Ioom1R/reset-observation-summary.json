@@ -1,0 +1,11 @@
+{
+  "variant": "cache",
+  "completed": true,
+  "reset_batches": 5,
+  "max_reset_input_errors": {
+    "gravity_error": 1.7267662286758423,
+    "angular_velocity_error": 9.562202453613281,
+    "dof_history_error": 0.0
+  },
+  "consistent": false
+}

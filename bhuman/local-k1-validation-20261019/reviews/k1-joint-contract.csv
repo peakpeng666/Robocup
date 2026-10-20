@@ -1,0 +1,23 @@
+index,SDK_JointIndexK1,BHuman_serial_mapping,Gym_recorded_dof,Gym_URDF_effort_Nm,ankle_interpretation
+0,kHeadYaw,headYaw,AAHead_yaw,6,
+1,kHeadPitch,headPitch,Head_pitch,6,
+2,kLeftShoulderPitch,lShoulderPitch,ALeft_Shoulder_Pitch,14,
+3,kLeftShoulderRoll,lShoulderRoll,Left_Shoulder_Roll,14,
+4,kLeftElbowPitch,lElbowPitch,Left_Elbow_Pitch,14,
+5,kLeftElbowYaw,lElbowYaw,Left_Elbow_Yaw,14,
+6,kRightShoulderPitch,rShoulderPitch,ARight_Shoulder_Pitch,14,
+7,kRightShoulderRoll,rShoulderRoll,Right_Shoulder_Roll,14,
+8,kRightElbowPitch,rElbowPitch,Right_Elbow_Pitch,14,
+9,kRightElbowYaw,rElbowYaw,Right_Elbow_Yaw,14,
+10,kLeftHipPitch,lHipPitch,Left_Hip_Pitch,30,
+11,kLeftHipRoll,lHipRoll,Left_Hip_Roll,35,
+12,kLeftHipYaw,lHipYaw,Left_Hip_Yaw,20,
+13,kLeftKneePitch,lKneePitch,Left_Knee_Pitch,40,
+14,kCrankUpLeft,lAnklePitch,Left_Ankle_Pitch,20,SERIAL ankle angle; SDK enum uses crank name
+15,kCrankDownLeft,lAnkleRoll,Left_Ankle_Roll,20,SERIAL ankle angle; SDK enum uses crank name
+16,kRightHipPitch,rHipPitch,Right_Hip_Pitch,30,
+17,kRightHipRoll,rHipRoll,Right_Hip_Roll,35,
+18,kRightHipYaw,rHipYaw,Right_Hip_Yaw,20,
+19,kRightKneePitch,rKneePitch,Right_Knee_Pitch,40,
+20,kCrankUpRight,rAnklePitch,Right_Ankle_Pitch,20,SERIAL ankle angle; SDK enum uses crank name
+21,kCrankDownRight,rAnkleRoll,Right_Ankle_Roll,20,SERIAL ankle angle; SDK enum uses crank name

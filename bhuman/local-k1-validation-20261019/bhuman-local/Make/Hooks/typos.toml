@@ -1,0 +1,49 @@
+# HINT: It is possible to use regex to ignore words, identifiers and code sections. See: https://github.com/crate-ci/typos/blob/master/docs/reference.md
+
+# Don't correct words in files from this list.
+[files]
+extend-exclude = [
+  "Make/Hooks/typos.toml",
+  "Install/Keys/*",
+  "Util/Buildchain/Booster/*",
+]
+
+[default]
+extend-ignore-identifiers-re = []
+extend-ignore-words-re = []
+
+# Don't correct identifiers from this list.
+[default.extend-identifiers]
+_mmauto_set_as_posible_epi8 = "_mmauto_set_as_posible_epi8"
+_mmauto_set_as_posible_epi8_using = "_mmauto_set_as_posible_epi8_using"
+_STREAM_SER = "_STREAM_SER"
+2ndHalf = "2ndHalf"
+ASSERTs = "ASSERTs"
+BoosterAEC = "BoosterAEC"
+Boundaryf = "Boundaryf"
+Boundaryi = "Boundaryi"
+fieldPlayerColour = "fieldPlayerColour"
+goalkeeperColour = "goalkeeperColour"
+iterm2 = "iterm2"
+numer = "numer"
+O_CREAT = "O_CREAT"
+pBA = "pBA"
+
+# Don't correct words from this list.
+[default.extend-words]
+AGS = "AGS"
+ba = "ba"
+goes = "goes"
+HSI = "HSI"
+Ot = "Ot"
+parm = "parm"
+penalise = "penalise"
+penalised = "penalised"
+prepend="prepend"
+prev="prev"
+ret = "ret"
+TOI = "TOI"
+Udo = "Udo"
+ue = "ue"
+unpenalise = "unpenalise"
+unpenalised = "unpenalised"

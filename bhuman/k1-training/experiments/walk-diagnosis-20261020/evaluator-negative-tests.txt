@@ -1,0 +1,1 @@
+PASS: real termination classification counts physical and timeout events; nonfinite/incomplete coverage fails

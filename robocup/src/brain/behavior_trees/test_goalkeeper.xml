@@ -1,0 +1,25 @@
+<root BTCPP_format="4">
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+    <include path="./subtrees/subtree_find_ball.xml" />
+    <include path="./subtrees/subtree_locate.xml" />
+    <include path="./subtrees/subtree_goal_keeper_play.xml" />
+
+
+
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <Script code="gc_game_state = 'PLAY'" />
+            <Script code="gc_game_sub_state_type = 'NONE'" />
+            <Script code="gc_is_under_penalty = false" />
+            <ReactiveSequence _while="control_state==2"
+                name="然后按下 LT + A, 重新校准定位, 等待数秒后, 按 LT + B 继续比赛">
+                <Speak text="locate" />
+                <CalibrateOdom x="-7" y="0" theta="0" />
+            </ReactiveSequence>
+            <ReactiveSequence _while="control_state==3"
+                name="包一层用于控制策略的开关, 3 为手柄 LT+B 的状态, 2 为 LT+A, 1 为 LT+X">
+                <SubTree ID="GoalKeeperPlay" _autoremap="true" />
+            </ReactiveSequence>
+        </Sequence>
+    </BehaviorTree>
+</root>

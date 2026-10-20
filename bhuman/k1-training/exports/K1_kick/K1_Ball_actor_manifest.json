@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-19T04:20:34Z",
+  "task": "K1_Ball",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+  "checkpoint_sha256": "f70cf458855873f7677976310e310441ad7f740c92c0884f4ed046ebd4294927",
+  "load_mode": "actor",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/K1_kick/K1_Ball_actor.pt",
+    "sha256": "a11f95c1738f95febaed4cb234618c5a420125a3bee3d2b16142ae22960b7f75"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/K1_kick/K1_Ball_actor.onnx",
+    "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "opset": 11,
+    "input": "input: [batch, 59]",
+    "output": "output: [batch, 13]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed81 + k1-training patch layer",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 3.0517578125e-05,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 5.340576171875e-05,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  }
+}

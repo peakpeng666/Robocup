@@ -1,0 +1,689 @@
+diff --git a/Make/CMake/SimulatedRobot.cmake b/Make/CMake/SimulatedRobot.cmake
+index cc1b9a9..23b163a 100644
+--- a/Make/CMake/SimulatedRobot.cmake
++++ b/Make/CMake/SimulatedRobot.cmake
+@@ -12,6 +12,14 @@ list(APPEND SIMULATEDROBOT_SOURCES ${SIMULATEDROBOT_SOURCES_ADDITIONAL})
+ list(APPEND SIMULATEDROBOT_SOURCES "${SIMULATEDROBOT_ROOT_DIR}/Controller.qrc")
+ 
+ add_library(SimulatedRobot MODULE ${SIMULATEDROBOT_SOURCES})
++find_package(fmt CONFIG REQUIRED)
++target_link_libraries(SimulatedRobot PRIVATE fmt::fmt)
++if(UNIX AND NOT APPLE)
++  # Keep the copied desktop build usable without its original source directory.
++  set_target_properties(SimulatedRobot PROPERTIES
++    BUILD_WITH_INSTALL_RPATH TRUE
++    INSTALL_RPATH "$ORIGIN/../../../../Util/onnxruntime/lib/Linux")
++endif()
+ 
+ if(MACOS)
+   target_include_directories(SimulatedRobot SYSTEM PRIVATE ${IO_KIT_FRAMEWORK} ${IO_KIT_FRAMEWORK}/Headers)
+diff --git a/Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp b/Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp
+index dd90382..8afd44d 100644
+--- a/Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp
++++ b/Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp
+@@ -1,3 +1,5 @@
++#include <cstdio>
++#include <cstdlib>
+ /**
+  * @file SimulatedRobot/ConsoleRoboCupCtrl.cpp
+  *
+@@ -972,6 +974,7 @@ bool ConsoleRoboCupCtrl::calcImage(In& stream)
+ 
+ void ConsoleRoboCupCtrl::print(const std::string& text)
+ {
++  if(std::getenv("BH_AUDIT")) { std::fputs(text.c_str(), stderr); std::fflush(stderr); }
+   SYNC;
+   if(newLine)
+     textMessages.push_back(text);
+@@ -982,6 +985,7 @@ void ConsoleRoboCupCtrl::print(const std::string& text)
+ 
+ void ConsoleRoboCupCtrl::printLn(const std::string& text)
+ {
++  if(std::getenv("BH_AUDIT")) { std::fprintf(stderr, "%s\n", text.c_str()); std::fflush(stderr); }
+   SYNC;
+   if(newLine)
+     textMessages.push_back(text);
+diff --git a/Src/Libs/SimulatedRobot/LocalConsole.cpp b/Src/Libs/SimulatedRobot/LocalConsole.cpp
+index 055cbd8..4e91b85 100644
+--- a/Src/Libs/SimulatedRobot/LocalConsole.cpp
++++ b/Src/Libs/SimulatedRobot/LocalConsole.cpp
+@@ -8,6 +8,10 @@
+  */
+ 
+ #include "LocalConsole.h"
++#include <cstdio>
++#include <cstdlib>
++#include <unordered_map>
++#include <chrono>
+ #include "SimulatedRobot/ConsoleRoboCupCtrl.h"
+ #include "SimulatedRobot/SimulatedRobot2D.h"
+ #include "SimulatedRobot/SimulatedRobot3D.h"
+@@ -146,8 +150,22 @@ bool LocalConsole::main()
+ 
+ void LocalConsole::update()
+ {
++  using ProfileClock = std::chrono::steady_clock;
++  static const bool profile = std::getenv("BH_PROFILE") != nullptr;
++  struct Profile { double consoleMs = 0., waitMs = 0., imageMs = 0.; unsigned long steps = 0; };
++  static std::unordered_map<std::string, Profile> profiles;
++  const auto profileStart = profile ? ProfileClock::now() : ProfileClock::time_point{};
+   RobotConsole::update();
++  const auto waitStart = profile ? ProfileClock::now() : ProfileClock::time_point{};
+   updatedSignal.wait();
++  if(profile)
++  {
++    auto& p = profiles[robotName];
++    p.consoleMs += std::chrono::duration<double, std::milli>(waitStart - profileStart).count();
++    p.waitMs += std::chrono::duration<double, std::milli>(ProfileClock::now() - waitStart).count();
++    if(++p.steps % 2500 == 0)
++      std::fprintf(stderr, "PROFILE robot name=%s steps=%lu console_ms=%.3f wait_ms=%.3f image_ms=%.3f\n", robotName.c_str(), p.steps, p.consoleMs, p.waitMs, p.imageMs);
++  }
+ 
+   QString statusText;
+   {
+@@ -195,6 +213,7 @@ void LocalConsole::update()
+         }
+         nextImageTimestamp = newNextImageTimestamp;
+ 
++        const auto imageStart = profile ? ProfileClock::now() : ProfileClock::time_point{};
+         if((imageCalculated = ctrl->calculateImage))
+           simulatedRobot->getImage(cameraImage, cameraInfo);
+         else
+@@ -202,6 +221,8 @@ void LocalConsole::update()
+           simulatedRobot->getCameraInfo(cameraInfo);
+           cameraImage.timestamp = now;
+         }
++        if(profile)
++          profiles[robotName].imageMs += std::chrono::duration<double, std::milli>(ProfileClock::now() - imageStart).count();
+         simulatedRobot->getRobotPose(robotPose);
+         simulatedRobot->getWorldState(worldState);
+       }
+@@ -219,6 +240,21 @@ void LocalConsole::update()
+       simulatedRobot->getAndSetMotionData(motionRequest, motionInfo);
+       simulatedRobot->getTorsoMatrix(torsoMatrix);
+ 
++      if(std::getenv("BH_AUDIT"))
++      {
++        static std::unordered_map<std::string, unsigned long> robotUpdates;
++        static std::unordered_map<std::string, unsigned long> nonfiniteSamples;
++        auto& updates = robotUpdates[robotName];
++        bool finite = robotPose.translation.allFinite() && std::isfinite(static_cast<float>(robotPose.rotation))
++                      && inertialSensorData.angle.allFinite();
++        for(const auto angle : jointSensorData.angles)
++          finite &= std::isfinite(static_cast<float>(angle));
++        if(!finite) ++nonfiniteSamples[robotName];
++        if(++updates % 250 == 0 || !finite)
++          std::fprintf(stderr, "AUDIT physics robot=%s tick=%lu x_mm=%.1f y_mm=%.1f yaw_rad=%.3f roll_rad=%.3f pitch_rad=%.3f image=%d image_time=%u nonfinite_total=%lu\n",
++                       robotName.c_str(), updates, robotPose.translation.x(), robotPose.translation.y(), static_cast<float>(robotPose.rotation),
++                       static_cast<float>(inertialSensorData.angle.x()), static_cast<float>(inertialSensorData.angle.y()), imageCalculated, cameraImage.timestamp, nonfiniteSamples[robotName]);
++      }
+       ctrl->gameController.getGameControllerData(gameControllerData);
+       ctrl->gameController.getWhistle(whistle);
+     }
+diff --git a/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp b/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
+index d874124..e165a44 100644
+--- a/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
++++ b/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
+@@ -19,6 +19,16 @@
+ #include "TestUtils.h"
+ 
+ #include <QApplication>
++#include <QWidget>
++#include <QOpenGLWidget>
++#include <QImage>
++#include <QSettings>
++#include <cstdio>
++#include <cstdlib>
++#include <fstream>
++#include <sstream>
++#include <vector>
++#include <chrono>
+ 
+ #ifdef MACOS
+ #define TOLERANCE (3.f * simStepLength)
+@@ -41,6 +51,7 @@ RoboCupCtrl::RoboCupCtrl(SimRobot::Application& application)
+ 
+ bool RoboCupCtrl::compile()
+ {
++  if(std::getenv("BH_AUDIT")) std::fprintf(stderr, "AUDIT compile_begin\n");
+   static_assert(static_cast<int>(SimRobotCore3::scene) != static_cast<int>(SimRobotCore2D::scene),
+                 "The kinds 'scene' must be different to distinguish between simulation cores.");
+ 
+@@ -202,6 +213,7 @@ bool RoboCupCtrl::compile()
+   }
+   gameController.loadBallSpecification();
+ 
++
+   return true;
+ }
+ 
+@@ -331,6 +343,71 @@ void RoboCupCtrl::stop()
+ 
+ void RoboCupCtrl::update()
+ {
++  using ProfileClock = std::chrono::steady_clock;
++  static const bool profile = std::getenv("BH_PROFILE") != nullptr;
++  static const auto profileStart = ProfileClock::now();
++  static double robotUpdateMs = 0., captureMs = 0.;
++  // Optional local demonstration commands use the same console as the GUI.
++  // No gait, model, gain, or competition behavior is changed by this hook.
++  static unsigned long steps = 0;
++  static std::vector<std::pair<unsigned long, std::string>> schedule;
++  static std::size_t nextCommand = 0;
++  if(steps == 0)
++    if(const char* viewName = std::getenv("BH_SIM_VIEW"))
++    {
++      // Scene objects are registered after compile(); open the view on update.
++      SimRobot::Object* object = application->resolveObject(QString::fromLocal8Bit(viewName));
++      if(object)
++      {
++        const bool wholeField = object->getFullName() == "RoboCup";
++        auto& layout = application->getLayoutSettings();
++        layout.beginGroup(object->getFullName());
++        layout.setValue("cameraPosX", wholeField ? 0.0 : 1.0);
++        layout.setValue("cameraPosY", wholeField ? -12.0 : 1.3);
++        layout.setValue("cameraPosZ", wholeField ? 13.0 : 0.6);
++        layout.setValue("cameraTargetX", 0.0);
++        layout.setValue("cameraTargetY", 0.0);
++        layout.setValue("cameraTargetZ", wholeField ? 0.0 : -0.15);
++        layout.endGroup();
++      }
++      if(!object || !application->openObject(*object))
++      { std::fprintf(stderr, "AUDIT ERROR cannot_open_scene_view\n"); std::_Exit(2); }
++      for(QWidget* window : QApplication::topLevelWidgets())
++        if(window->inherits("MainWindow"))
++        {
++          window->resize(1280, 800);
++          if(std::getenv("BH_SIM_CAPTURE"))
++            for(QOpenGLWidget* view : window->findChildren<QOpenGLWidget*>())
++              view->setFixedSize(960, 600);
++        }
++    }
++  if(steps == 0)
++    if(const char* path = std::getenv("BH_SIM_SCHEDULE"))
++    {
++      std::ifstream input(path);
++      if(!input) { std::fprintf(stderr, "AUDIT ERROR cannot_open_schedule\n"); std::exit(2); }
++      std::string line;
++      while(std::getline(input, line))
++      {
++        if(line.empty() || line[0] == '#') continue;
++        std::istringstream row(line);
++        unsigned long tick;
++        if(!(row >> tick)) { std::fprintf(stderr, "AUDIT ERROR invalid_schedule\n"); std::exit(2); }
++        std::string command;
++        std::getline(row >> std::ws, command);
++        if(command.empty() || (!schedule.empty() && tick < schedule.back().first))
++        { std::fprintf(stderr, "AUDIT ERROR invalid_schedule_order\n"); std::exit(2); }
++        schedule.emplace_back(tick, command);
++      }
++    }
++  while(nextCommand < schedule.size() && schedule[nextCommand].first <= steps)
++  {
++    const auto& command = schedule[nextCommand++].second;
++    std::fprintf(stderr, "AUDIT command tick=%lu text=%s\n", steps, command.c_str());
++    // The return value means that robot selection changed, not command success.
++    // Console syntax/representation errors are retained in the audit log.
++    static_cast<ConsoleRoboCupCtrl*>(this)->executeConsoleCommand(command);
++  }
+   if(delayTime != 0.f)
+   {
+     float t = static_cast<float>(Time::getRealSystemTime());
+@@ -348,10 +425,59 @@ void RoboCupCtrl::update()
+ 
+   gameController.update();
+ 
++  const auto robotUpdateStart = profile ? ProfileClock::now() : ProfileClock::time_point{};
+   for(ControllerRobot* robot : robots)
+     robot->update();
++  if(profile)
++    robotUpdateMs += std::chrono::duration<double, std::milli>(ProfileClock::now() - robotUpdateStart).count();
+ 
+   Time::addSimulatedTime(static_cast<int>(simStepLength + 0.5f));
++  ++steps;
++  if(std::getenv("BH_AUDIT") && steps % 250 == 0)
++  {
++    GameControllerData state;
++    gameController.getGameControllerData(state);
++    Vector2f ball = Vector2f::Zero();
++    const bool hasBall = SimulatedRobot::getAbsoluteBallPosition(ball);
++    std::fprintf(stderr, "AUDIT game tick=%lu state=%u first_half=%u remaining_s=%d score_a=%u score_b=%u robots=%zu ball_valid=%d ball_x_mm=%.1f ball_y_mm=%.1f\n",
++                 steps, state.state, state.firstHalf, state.secsRemaining, state.teams[0].score, state.teams[1].score,
++                 robots.size(), hasBall, ball.x(), ball.y());
++  }
++  const auto captureStart = profile ? ProfileClock::now() : ProfileClock::time_point{};
++  if(steps % 50 == 0)
++    if(const char* directory = std::getenv("BH_SIM_CAPTURE"))
++      for(QWidget* window : QApplication::topLevelWidgets())
++        if(window->inherits("MainWindow"))
++          for(QOpenGLWidget* view : window->findChildren<QOpenGLWidget*>())
++            if(view->isVisible() && view->width() >= 200 && view->height() >= 150)
++            {
++              // This is the spectator recording only; robot CameraImage stays
++              // on the original uncompressed normal-vision pipeline.
++              const bool jpeg = qgetenv("BH_SIM_CAPTURE_FORMAT") == "jpeg";
++              const QString path = QString("%1/frame-%2.%3").arg(QString::fromLocal8Bit(directory)).arg(steps / 50, 6, 10, QChar('0')).arg(jpeg ? "jpg" : "png");
++              if(!view->grabFramebuffer().save(path, jpeg ? "JPG" : "PNG", jpeg ? 90 : -1))
++              { std::fprintf(stderr, "AUDIT ERROR capture_failed\n"); std::exit(2); }
++              break;
++            }
++  if(profile)
++  {
++    captureMs += std::chrono::duration<double, std::milli>(ProfileClock::now() - captureStart).count();
++    if(steps % 2500 == 0)
++      std::fprintf(stderr, "PROFILE controller steps=%lu elapsed_ms=%.3f robot_updates_ms=%.3f capture_ms=%.3f\n", steps,
++                   std::chrono::duration<double, std::milli>(ProfileClock::now() - profileStart).count(), robotUpdateMs, captureMs);
++  }
++  if(const char* limit = std::getenv("BH_AUDIT_STEPS"))
++  {
++    if(steps == std::strtoul(limit, nullptr, 10))
++    {
++      std::fprintf(stderr, "AUDIT completed steps=%lu simulated_ms=%.0f\n", steps, steps * simStepLength);
++      std::fflush(stderr);
++      for(QWidget* window : QApplication::topLevelWidgets())
++        if(window->inherits("MainWindow"))
++          QMetaObject::invokeMethod(window, "close", Qt::QueuedConnection);
++      QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);
++    }
++  }
+ }
+ 
+ void RoboCupCtrl::collided(SimRobotCore3::Geometry&, SimRobotCore3::Geometry& geom2)
+@@ -361,6 +487,16 @@ void RoboCupCtrl::collided(SimRobotCore3::Geometry&, SimRobotCore3::Geometry& ge
+     return;
+   body = body->getRootBody();
+   controller->gameController.setLastBallContactRobot(body);
++  if(std::getenv("BH_AUDIT"))
++  {
++    static unsigned lastLogTime = 0;
++    const unsigned now = Time::getCurrentSystemTime();
++    if(now - lastLogTime >= 100)
++    {
++      lastLogTime = now;
++      std::fprintf(stderr, "AUDIT contact time=%u robot=%s\n", now, body->getFullName().toStdString().c_str());
++    }
++  }
+ }
+ 
+ void RoboCupCtrl::collided(SimRobotCore2D::Geometry&, SimRobotCore2D::Geometry& geom2)
+diff --git a/Src/Libs/SimulatedRobot/TestController.cpp b/Src/Libs/SimulatedRobot/TestController.cpp
+index 5943d1c..b339625 100644
+--- a/Src/Libs/SimulatedRobot/TestController.cpp
++++ b/Src/Libs/SimulatedRobot/TestController.cpp
+@@ -16,7 +16,7 @@
+ #include "Streaming/InStreams.h"
+ #include "Streaming/OutStreams.h"
+ #include "TestUtils.h"
+-#include <format>
++#include <fmt/format.h>
+ #include <fstream>
+ #include <regex>
+ #ifdef MACOS
+@@ -118,13 +118,13 @@ bool TestController::loadTest(const FieldDimensions& /*fieldDims*/)
+   // Write information into console
+   if(testParams.testType == situation)
+   {
+-    message += std::format("{} / {} test runs completed\n"
++    message += fmt::format("{} / {} test runs completed\n"
+                            "{} / {} test runs successful\n",
+                            testState.currTestRuns - 1, testParams.numOfTestRuns, testState.numOfSuccess, testParams.numOfTestRuns);
+   }
+   else if(testParams.testType == game)
+   {
+-    message += std::format("{} / {} test runs completed\n", testState.currTestRuns - 1, testParams.numOfTestRuns);
++    message += fmt::format("{} / {} test runs completed\n", testState.currTestRuns - 1, testParams.numOfTestRuns);
+ 
+     int winsTeamA = 0, winsTeamB = 0;
+     int totalScoreA = 0, totalScoreB = 0;
+@@ -150,7 +150,7 @@ bool TestController::loadTest(const FieldDimensions& /*fieldDims*/)
+       totalScoreB += scoreB;
+     }
+ 
+-    message += std::format("Total score: {}:{}\n"
++    message += fmt::format("Total score: {}:{}\n"
+                            "Wins Team A: {}\n"
+                            "Wins Team B: {}\n"
+                            "Draws: {}\n",
+@@ -565,7 +565,7 @@ TestController::TestAction TestController::finishTestCycle()
+       resultCode.push_back('0');
+       if(isFuzzingApplicable())
+       {
+-        std::filesystem::path failedConPath = testDirPath / std::format("faulty_config_{}th_run.con", testState.currTestRuns);
++        std::filesystem::path failedConPath = testDirPath / fmt::format("faulty_config_{}th_run.con", testState.currTestRuns);
+         std::filesystem::copy_file(getFuzzedConfigPath(), failedConPath);
+       }
+     }
+@@ -670,7 +670,7 @@ void TestController::logTestResults()
+         ++draws;
+       }
+ 
+-      csvResults += std::format("{},{},{},{},{},{},{},{}\n", gameNo, halfNo, kickoffTeam,
++      csvResults += fmt::format("{},{},{},{},{},{},{},{}\n", gameNo, halfNo, kickoffTeam,
+                                 scoreA, scoreB, budgetA, budgetB, winner);
+     };
+ 
+@@ -686,7 +686,7 @@ void TestController::logTestResults()
+     float avgScoreA = testParams.numOfTestRuns > 0 ? static_cast<float>(totalScoreA) / testParams.numOfTestRuns : 0.0f;
+     float avgScoreB = testParams.numOfTestRuns > 0 ? static_cast<float>(totalScoreB) / testParams.numOfTestRuns : 0.0f;
+ 
+-    message += std::format("Total score: {}:{}\n"
++    message += fmt::format("Total score: {}:{}\n"
+                            "Wins Team A: {}\n"
+                            "Wins Team B: {}\n"
+                            "Draws: {}\n"
+@@ -702,9 +702,9 @@ void TestController::logTestResults()
+     {
+       std::string targetHits = testState.cycleResultCodes[i].substr(0, testState.cycleResultCodes[i].size() - 1);
+       std::string success = testState.cycleResultCodes[i].back() == '1' ? "true" : "false";
+-      csvResults += std::format("{},{},{}\n", i + 1, targetHits, success);
++      csvResults += fmt::format("{},{},{}\n", i + 1, targetHits, success);
+     }
+-    message += std::format("Number of successful runs / number of total runs:\n{}/{}\n",
++    message += fmt::format("Number of successful runs / number of total runs:\n{}/{}\n",
+                            testState.numOfSuccess, testParams.numOfTestRuns);
+   }
+ 
+diff --git a/Src/Libs/SimulatedRobot/TestUtils.cpp b/Src/Libs/SimulatedRobot/TestUtils.cpp
+index dc36f41..1a22020 100644
+--- a/Src/Libs/SimulatedRobot/TestUtils.cpp
++++ b/Src/Libs/SimulatedRobot/TestUtils.cpp
+@@ -2,7 +2,7 @@
+ #include <string>
+ #include <vector>
+ #include <filesystem>
+-#include <format>
++#include <fmt/format.h>
+ #include <QCoreApplication>
+ #include <QFileInfo>
+ 
+@@ -10,8 +10,8 @@ std::filesystem::path TestUtils::generateTestDirPath(const std::string& scenePat
+ {
+   std::filesystem::path baseDir = std::filesystem::temp_directory_path() / "b-human";
+   std::string normalScenePath = std::filesystem::path(scenePath).lexically_normal().string();
+-  std::string testID = std::format("{}:{}", normalScenePath, TestUtils::getProcessID());
+-  std::string testDir = std::format("test_{:08x}", crc32(testID));
++  std::string testID = fmt::format("{}:{}", normalScenePath, TestUtils::getProcessID());
++  std::string testDir = fmt::format("test_{:08x}", crc32(testID));
+   return baseDir / testDir;
+ }
+ 
+diff --git a/Src/Threads/Cognition.cpp b/Src/Threads/Cognition.cpp
+index 1c4381a..e90eb15 100644
+--- a/Src/Threads/Cognition.cpp
++++ b/Src/Threads/Cognition.cpp
+@@ -7,6 +7,11 @@
+  */
+ 
+ #include "Cognition.h"
++#include "Representations/BehaviorControl/SkillRequest.h"
++#include "Representations/Modeling/BallModel.h"
++#include "Representations/Modeling/RobotPose.h"
++#include <cstdio>
++#include <cstdlib>
+ #include "Debugging/DebugRequest.h"
+ #include "Framework/Settings.h"
+ #include "Modules/Infrastructure/InterThreadProviders/PerceptionProviders.h"
+@@ -90,6 +95,27 @@ void Cognition::beforeModules()
+ 
+ void Cognition::afterModules()
+ {
++  if(SystemCall::getMode() == SystemCall::simulatedRobot && std::getenv("BH_AUDIT"))
++  {
++    static thread_local unsigned long frames = 0;
++    auto& board = Blackboard::getInstance();
++    if(++frames % 30 == 0 && board.exists("SkillRequest") && board.exists("BallModel"))
++    {
++      const auto& skill = static_cast<const SkillRequest&>(board["SkillRequest"]);
++      const auto& ball = static_cast<const BallModel&>(board["BallModel"]);
++      std::fprintf(stderr, "AUDIT cognition robot=%s team=%d player=%d frames=%lu skill=%d ball_x_mm=%.1f ball_y_mm=%.1f ball_seen_time=%u\n",
++                   Global::getSettings().robotName.c_str(), Global::getSettings().teamNumber, Global::getSettings().playerNumber,
++                   frames, static_cast<int>(skill.skill), ball.estimate.position.x(), ball.estimate.position.y(), ball.timeWhenLastSeen);
++      if(board.exists("RobotPose"))
++      {
++        const auto& pose = static_cast<const RobotPose&>(board["RobotPose"]);
++        std::fprintf(stderr, "AUDIT localization team=%d player=%d frames=%lu x_mm=%.1f y_mm=%.1f yaw_rad=%.3f target_x_mm=%.1f target_y_mm=%.1f target_yaw_rad=%.3f\n",
++                     Global::getSettings().teamNumber, Global::getSettings().playerNumber, frames,
++                     pose.translation.x(), pose.translation.y(), static_cast<float>(pose.rotation),
++                     skill.target.translation.x(), skill.target.translation.y(), static_cast<float>(skill.target.rotation));
++      }
++    }
++  }
+   if(Blackboard::getInstance().exists("BHumanMessageOutputGenerator")
+      && static_cast<const BHumanMessageOutputGenerator&>(Blackboard::getInstance()["BHumanMessageOutputGenerator"]).send
+      && static_cast<const BHumanMessageOutputGenerator&>(Blackboard::getInstance()["BHumanMessageOutputGenerator"]).sendThisFrame
+diff --git a/Src/Threads/Motion.cpp b/Src/Threads/Motion.cpp
+index 1c5b3c0..5e16aa2 100644
+--- a/Src/Threads/Motion.cpp
++++ b/Src/Threads/Motion.cpp
+@@ -8,6 +8,10 @@
+ 
+ #include "Modules/Infrastructure/BoosterProvider/BoosterProvider.h"
+ #include "Motion.h"
++#include "Representations/MotionControl/MotionInfo.h"
++#include "Representations/Infrastructure/JointRequest.h"
++#include <cstdio>
++#include <cstdlib>
+ #include "Framework/ModulePacket.h"
+ #include "Framework/Settings.h"
+ #include "Modules/Infrastructure/LogDataProvider/LogDataProvider.h"
+@@ -25,6 +29,27 @@ bool Motion::beforeFrame()
+ void Motion::afterModules()
+ {
+   BoosterProvider::finishFrame();
++  if(SystemCall::getMode() == SystemCall::simulatedRobot && std::getenv("BH_AUDIT"))
++  {
++    static thread_local unsigned long frames = 0;
++    static thread_local unsigned long nonfiniteFrames = 0, walkFrames = 0, fallFrames = 0, getUpFrames = 0;
++    auto& board = Blackboard::getInstance();
++    if(board.exists("MotionInfo") && board.exists("JointRequest"))
++    {
++      const auto& info = static_cast<const MotionInfo&>(board["MotionInfo"]);
++      const auto& joints = static_cast<const JointRequest&>(board["JointRequest"]);
++      bool finite = true;
++      for(const auto angle : joints.angles) finite &= std::isfinite(static_cast<float>(angle));
++      if(!finite) ++nonfiniteFrames;
++      walkFrames += info.executedPhase == MotionPhase::walk;
++      fallFrames += info.executedPhase == MotionPhase::fall;
++      getUpFrames += info.executedPhase == MotionPhase::getUp;
++      if(++frames % 250 == 0 || !finite)
++        std::fprintf(stderr, "AUDIT motion robot=%s team=%d player=%d frames=%lu phase=%d stable=%d finite=%d nonfinite_total=%lu walk_frames=%lu fall_frames=%lu getup_frames=%lu\n",
++                     Global::getSettings().robotName.c_str(), Global::getSettings().teamNumber, Global::getSettings().playerNumber,
++                     frames, static_cast<int>(info.executedPhase), info.isMotionStable, finite, nonfiniteFrames, walkFrames, fallFrames, getUpFrames);
++    }
++  }
+ }
+ 
+ bool Motion::afterFrame()
+diff --git a/Src/Threads/Perception.cpp b/Src/Threads/Perception.cpp
+index f9f3b90..d7c0713 100644
+--- a/Src/Threads/Perception.cpp
++++ b/Src/Threads/Perception.cpp
+@@ -7,6 +7,11 @@
+  */
+ 
+ #include "Perception.h"
++#include "Representations/Perception/BallPercepts/BallPercept.h"
++#include "Representations/Infrastructure/CameraImage.h"
++#include "Framework/Settings.h"
++#include <cstdio>
++#include <cstdlib>
+ #include "Modules/Infrastructure/CameraProvider/RealSenseProvider.h"
+ #include "Modules/Infrastructure/CameraProvider/X5CameraProvider.h"
+ #include "Modules/Infrastructure/LogDataProvider/LogDataProvider.h"
+@@ -32,6 +37,25 @@ void Perception::beforeModules()
+ 
+ bool Perception::afterFrame()
+ {
++  if(SystemCall::getMode() == SystemCall::simulatedRobot && std::getenv("BH_AUDIT"))
++  {
++    static thread_local unsigned long frames = 0;
++    static thread_local unsigned lastTimestamp = 0;
++    auto& board = Blackboard::getInstance();
++    const unsigned timestamp = board.exists("CameraImage") ? static_cast<const CameraImage&>(board["CameraImage"]).timestamp : 0;
++    if(timestamp && timestamp != lastTimestamp)
++    {
++      lastTimestamp = timestamp;
++      if(++frames % 30 == 0 || frames == 1)
++      {
++        const int seen = board.exists("BallPercept") ? static_cast<int>(static_cast<const BallPercept&>(board["BallPercept"]).status) : -1;
++        const auto& image = static_cast<const CameraImage&>(board["CameraImage"]);
++        std::fprintf(stderr, "AUDIT perception robot=%s team=%d player=%d frames=%lu camera=1 image_time=%u ball_status=%d width=%u height=%u\n",
++                     Global::getSettings().robotName.c_str(), Global::getSettings().teamNumber, Global::getSettings().playerNumber, frames, timestamp, seen,
++                     static_cast<unsigned>(image.width * 2), static_cast<unsigned>(image.height));
++      }
++    }
++  }
+   if(Blackboard::getInstance().exists("CameraImage"))
+   {
+     if(SystemCall::getMode() == SystemCall::physicalRobot)
+diff --git a/Util/CompiledNN2ONNX/include/CompiledNN2ONNX/CompiledNN.h b/Util/CompiledNN2ONNX/include/CompiledNN2ONNX/CompiledNN.h
+index a6ff2c5..56ad4d9 100644
+--- a/Util/CompiledNN2ONNX/include/CompiledNN2ONNX/CompiledNN.h
++++ b/Util/CompiledNN2ONNX/include/CompiledNN2ONNX/CompiledNN.h
+@@ -12,6 +12,11 @@
+ #include <onnxruntime_cxx_api.h>
+ #include <iostream>
+ #include <mutex>
++#include <cstdlib>
++#include <stdexcept>
++#include <chrono>
++#include <atomic>
++#include <fstream>
+ #include "../../../Src/Libs/Platform/File.h"
+ 
+ #include "Model.h"
+@@ -70,6 +75,10 @@ namespace NeuralNetworkONNX
+     std::vector<Ort::Value> inputTensors; /**< The pre-allocated tensors for each input. */
+     std::vector<Ort::Value> outputTensors; /**< The pre-allocated tensors for each output. */
+     std::vector<unsigned char*> uint8Buffers; /**< For each input that is encoded as unsigned chars, a buffer of the required size is provided. Otherwise, the entry is nullptr. */
++    std::string auditModel;
++    bool auditVision = false;
++    unsigned long auditCalls = 0;
++    double auditMilliseconds = 0.;
+ 
+     /**
+      * Helper method to create a single ONNX environment that hosts the global
+@@ -77,10 +86,36 @@ namespace NeuralNetworkONNX
+      */
+     static Ort::Env& environment()
+     {
+-      OrtThreadingOptions* threadingOptions = nullptr;
+-      Ort::GetApi().CreateThreadingOptions(&threadingOptions);
+-      static Ort::Env environment{threadingOptions};
+-      Ort::GetApi().ReleaseThreadingOptions(threadingOptions);
++      static Ort::Env environment = []
++      {
++        Ort::ThreadingOptions threadingOptions;
++#if defined LINUX && !defined TARGET_ROBOT
++        // Local simulator scheduling only. Keep the public model and operators.
++        // Absent overrides retain ORT defaults for a reproducible comparison.
++        auto option = [](const char* name, int maximum, int fallback)
++        {
++          const char* value = std::getenv(name);
++          if(!value) return fallback;
++          char* end = nullptr;
++          const long parsed = std::strtol(value, &end, 10);
++          if(end == value || *end || parsed < 0 || parsed > maximum)
++            throw std::invalid_argument(std::string("Invalid simulator option: ") + name);
++          return static_cast<int>(parsed);
++        };
++        const int threads = option("BH_ORT_THREADS", 32, -1);
++        const int spinning = option("BH_ORT_SPIN", 1, -1);
++        if(threads >= 0)
++        {
++          threadingOptions.SetGlobalIntraOpNumThreads(threads);
++          threadingOptions.SetGlobalInterOpNumThreads(1);
++        }
++        if(spinning >= 0)
++          threadingOptions.SetGlobalSpinControl(spinning);
++        if(std::getenv("BH_AUDIT"))
++          std::cerr << "AUDIT runtime ort_threads=" << threads << " ort_spin=" << spinning << std::endl;
++#endif
++        return Ort::Env{threadingOptions};
++      }();
+       return environment;
+     }
+ 
+@@ -197,16 +232,45 @@ namespace NeuralNetworkONNX
+     void compile(const Model& model, const CompilationSettings& settings = CompilationSettings())
+     {
+       clear();
++      auditModel = model.filename;
++      auditVision = auditModel.find("/RobotBallPerceptor/ball_robot_") != std::string::npos;
++      auditCalls = 0;
++      auditMilliseconds = 0.;
+ 
+       // Create an ONNX session. Use a global thread pool rather than local pools.
+       Ort::SessionOptions sessionOptions;
++#ifdef BH_ONNX_VALIDATOR
++      sessionOptions.SetLogSeverityLevel(0); // Node placement evidence in the standalone validator.
++#endif
+ #ifndef TARGET_ROBOT
+       sessionOptions.DisablePerSessionThreads();
+ #else
+       sessionOptions.SetExecutionMode(ORT_SEQUENTIAL);
+       sessionOptions.SetIntraOpNumThreads(settings.numOfThreads);
+ #endif
+-#if defined MACOS
++#if defined LINUX && !defined TARGET_ROBOT
++      // Desktop acceleration of the unchanged public vision model only.
++      // Motion policies continue to use the CPU execution provider.
++      const char* cuda = std::getenv("BH_VISION_CUDA");
++      if(cuda && std::string(cuda) != "0" && std::string(cuda) != "1")
++        throw std::invalid_argument("BH_VISION_CUDA must be 0 or 1");
++      if(auditVision && cuda && std::string(cuda) == "1")
++      {
++        OrtCUDAProviderOptionsV2* rawOptions = nullptr;
++        const auto& api = Ort::GetApi();
++        Ort::ThrowOnError(api.CreateCUDAProviderOptions(&rawOptions));
++        const auto release = [&api](OrtCUDAProviderOptionsV2* options) { api.ReleaseCUDAProviderOptions(options); };
++        std::unique_ptr<OrtCUDAProviderOptionsV2, decltype(release)> options(rawOptions, release);
++        const char* keys[] = {"device_id", "use_tf32", "cudnn_conv_algo_search", "gpu_mem_limit"};
++        const char* values[] = {"0", "0", "HEURISTIC", "2147483648"};
++        Ort::ThrowOnError(api.UpdateCUDAProviderOptions(options.get(), keys, values, 4));
++        Ort::ThrowOnError(api.SessionOptionsAppendExecutionProvider_CUDA_V2(sessionOptions, options.get()));
++        if(std::getenv("BH_AUDIT"))
++          std::fprintf(stderr, "AUDIT network provider=CUDA tf32=0 fp16=0 model=%s\n", auditModel.c_str());
++      }
++      else if(std::getenv("BH_AUDIT"))
++        std::fprintf(stderr, "AUDIT network provider=CPU model=%s\n", auditModel.c_str());
++#elif defined MACOS
+       if(settings.useCoreML)
+       {
+         std::unordered_map<std::string, std::string> providerOptions;
+@@ -300,6 +364,8 @@ namespace NeuralNetworkONNX
+     /** Runs the network. */
+     void apply()
+     {
++      const bool profile = std::getenv("BH_PROFILE") != nullptr;
++      const auto started = profile ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+       // For each input with an unsigned chars buffer, the data is copied into
+       // the actual float input tensor.
+       for(size_t i = 0; i < uint8Buffers.size(); ++i)
+@@ -314,6 +380,26 @@ namespace NeuralNetworkONNX
+       session.Run(Ort::RunOptions{nullptr},
+                   inputNames.data(), inputTensors.data(), inputTensors.size(),
+                   outputNames.data(), outputTensors.data(), outputTensors.size());
++      ++auditCalls;
++      if(profile)
++      {
++        auditMilliseconds += std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - started).count();
++        if(auditCalls % 300 == 0)
++          std::fprintf(stderr, "PROFILE network model=%s calls=%lu apply_ms=%.3f\n", auditModel.c_str(), auditCalls, auditMilliseconds);
++      }
++#if defined LINUX && !defined TARGET_ROBOT
++      // Explicit bounded diagnostic: one real preprocessed camera tensor per
++      // instance. It is never enabled by the ordinary launcher.
++      if(auditVision && auditCalls == 30)
++        if(const char* directory = std::getenv("BH_VISION_CAPTURE_INPUT"))
++        {
++          static std::atomic<unsigned> index{0};
++          const std::string path = std::string(directory) + "/vision-" + std::to_string(index++) + ".f32";
++          std::ofstream file(path, std::ios::binary);
++          file.write(reinterpret_cast<const char*>(inputTensors[0].GetTensorData<float>()), inputSizes[0] * sizeof(float));
++          if(!file) throw std::runtime_error("Cannot save vision diagnostic tensor: " + path);
++        }
++#endif
+     }
+ 
+     /**

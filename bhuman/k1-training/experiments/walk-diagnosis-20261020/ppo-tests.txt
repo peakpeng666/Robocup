@@ -1,0 +1,1 @@
+PASS: KL timing/reference, LR direction, rejected Adam rollback, accepted bounded update

@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134330_740696_walkF_criticwarm20_actor50/nn/model_70.pth",
+  "sha256": "ee813ef0efb546a19aedefbb3871c915c3e71565813ae24cd80b94734015e3d9",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 70,
+  "env_steps": 430080,
+  "lr": 7.866484311946215e-06,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "current_source_sha256": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "environment_state_restored": false
+}

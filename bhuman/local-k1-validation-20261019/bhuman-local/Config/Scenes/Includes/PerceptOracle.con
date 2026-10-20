@@ -1,0 +1,69 @@
+# Configuration for simulation scenes with simulated percepts
+
+# Activate simulation time
+st on
+
+# Only a single robot displays game state
+dr debugDrawing3d:representation:GameState
+
+# In case we have more than a single robot
+robot all
+
+# Fast, because we do not compute images
+ci off
+
+# Ground truth modules
+for Cognition mr GroundTruthWorldState LogDataProvider
+for Cognition mr GroundTruthRobotPose SimulatedWorldModelProvider
+for Cognition mr GroundTruthBallModel SimulatedWorldModelProvider
+
+# Activate, so they can provide drawings
+for Color mr RobotPercept OracledPerceptsProvider
+
+# Field views need ground truth and some later deactivated modules
+call FieldViews
+
+# Select modules for simulator
+for Color mr CameraInfo LogDataProvider
+for Color mr FrameInfo LogDataProvider
+for Motion mr FrameInfo LogDataProvider
+for Motion mr JointSensorData LogDataProvider
+for Motion mr JoystickState LogDataProvider
+for Motion mr KeyStates LogDataProvider
+for Motion mr InertialSensorData LogDataProvider
+
+# Switch to percept oracle
+for Color mr BallPercept OracledPerceptsProvider
+for Color mr CirclePercept OracledPerceptsProvider
+for Color mr FieldBoundary OracledPerceptsProvider
+for Color mr FieldLineIntersections OracledPerceptsProvider
+for Color mr LinesPercept OracledPerceptsProvider
+for Color mr PenaltyMarkPercept OracledPerceptsProvider
+
+# Representations not required anymore
+mr BallSpots off
+mr CameraImage off
+mr CameraIntrinsics off
+mr ColorScanLineRegionsHorizontal off
+mr ColorScanLineRegionsVerticalClipped off
+mr ECImage default
+mr IntersectionCandidates off
+mr IntersectionsPercept default
+mr JerseyClassifier off
+mr JPEGImage off
+mr JPEGImageRequest off
+mr PenaltyMarkRegions off
+mr RelativeFieldColors off
+mr ScanGrid off
+
+# Representations that are still required
+for Motion mr CameraIntrinsics ConfigurationDataProvider
+
+call GameStates
+call DebugResponses
+
+dr debugDrawing3d:representation:RobotPose
+# dr debugDrawing3d:representation:GameState:playerNumber
+
+# clear ball is not working correctly
+ar clearBall off

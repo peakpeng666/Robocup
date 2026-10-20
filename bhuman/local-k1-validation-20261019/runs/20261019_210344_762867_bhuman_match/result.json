@@ -1,0 +1,461 @@
+{
+  "status": "FAIL",
+  "mode": "match",
+  "scope": "Public B-Human K1 controller in normal 3D SimRobot; local simulation only; not a full regulation match or hardware qualification",
+  "requested_simulation_s": 60.0,
+  "checks": {
+    "process_exit_zero": false,
+    "completed_requested_steps": true,
+    "no_console_errors": true,
+    "all_robots_reported": true,
+    "all_robots_have_camera_perception_cognition": true,
+    "finite_all_recorded_frames": true,
+    "all_robots_execute_walk": true,
+    "normal_camera_resolution": true,
+    "camera_perception_rate_at_least_50hz": true,
+    "vision_provider_matches_request": true,
+    "motion_policies_still_cpu": true,
+    "no_sampled_tilt_stuck_over_30s": true,
+    "ready_set_playing_observed": true,
+    "six_active_robots": true,
+    "all_robots_remain_near_arena": true,
+    "initialization_before_ready": true,
+    "robot_ball_contact_observed": true,
+    "ball_moved_over_30cm": true,
+    "ball_percept_observed": true
+  },
+  "robots": {
+    "robot1": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.85806300110705,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "5",
+        "player": "1",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "19524",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 31,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3,
+        4,
+        8
+      ],
+      "walk_frames": 19524,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 14.912879454921121,
+      "max_sampled_abs_roll_pitch_rad": 0.21,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot1",
+        "tick": "250",
+        "x_mm": "-6025.5",
+        "y_mm": "4474.8",
+        "yaw_rad": "-1.569",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.011",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot1",
+        "tick": "30000",
+        "x_mm": "-6176.9",
+        "y_mm": "56.5",
+        "yaw_rad": "0.084",
+        "roll_rad": "-0.041",
+        "pitch_rad": "0.000",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    },
+    "robot2": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.82451552336887,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "5",
+        "player": "2",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "23334",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 78,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "walk_frames": 23334,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 29.590098031752543,
+      "max_sampled_abs_roll_pitch_rad": 0.171,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot2",
+        "tick": "250",
+        "x_mm": "-4025.6",
+        "y_mm": "4474.8",
+        "yaw_rad": "-1.570",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.012",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot2",
+        "tick": "30000",
+        "x_mm": "-462.8",
+        "y_mm": "-49.9",
+        "yaw_rad": "0.552",
+        "roll_rad": "0.039",
+        "pitch_rad": "0.005",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    },
+    "robot3": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.82451552336887,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "5",
+        "player": "3",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "23503",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 75,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3,
+        4,
+        8
+      ],
+      "walk_frames": 23503,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 27.669361558272595,
+      "max_sampled_abs_roll_pitch_rad": 0.261,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot3",
+        "tick": "250",
+        "x_mm": "-1475.6",
+        "y_mm": "4474.6",
+        "yaw_rad": "-1.570",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.012",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot3",
+        "tick": "30000",
+        "x_mm": "-2644.0",
+        "y_mm": "2427.0",
+        "yaw_rad": "0.231",
+        "roll_rad": "0.028",
+        "pitch_rad": "-0.032",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    },
+    "robot21": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.82451552336887,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "70",
+        "player": "1",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "19339",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 36,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "walk_frames": 19339,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 22.697940891777645,
+      "max_sampled_abs_roll_pitch_rad": 0.345,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot21",
+        "tick": "250",
+        "x_mm": "-6025.6",
+        "y_mm": "4474.7",
+        "yaw_rad": "-1.569",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.012",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot21",
+        "tick": "30000",
+        "x_mm": "-6175.0",
+        "y_mm": "9.0",
+        "yaw_rad": "-0.633",
+        "roll_rad": "-0.030",
+        "pitch_rad": "-0.007",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    },
+    "robot22": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.82451552336887,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "70",
+        "player": "2",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "22704",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 69,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "walk_frames": 22704,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 19.47233271558033,
+      "max_sampled_abs_roll_pitch_rad": 0.188,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot22",
+        "tick": "250",
+        "x_mm": "-4025.5",
+        "y_mm": "4473.5",
+        "yaw_rad": "-1.569",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.012",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot22",
+        "tick": "30000",
+        "x_mm": "-1870.8",
+        "y_mm": "-50.6",
+        "yaw_rad": "-0.078",
+        "roll_rad": "-0.019",
+        "pitch_rad": "0.011",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    },
+    "robot23": {
+      "physics_samples": 120,
+      "motion_samples": 120,
+      "perception_hz_over_sim_time": 58.82451552336887,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "70",
+        "player": "3",
+        "frames": "30000",
+        "phase": "2",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "21313",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 120,
+      "perception_samples": 118,
+      "ball_seen_samples": 86,
+      "cognition_samples": 117,
+      "skills": [
+        1,
+        2,
+        3
+      ],
+      "walk_frames": 21313,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 25.187720799298823,
+      "max_sampled_abs_roll_pitch_rad": 0.384,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot23",
+        "tick": "250",
+        "x_mm": "-1475.6",
+        "y_mm": "4474.0",
+        "yaw_rad": "-1.570",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.013",
+        "image": "1",
+        "image_time": "100513",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot23",
+        "tick": "30000",
+        "x_mm": "3543.7",
+        "y_mm": "-2953.8",
+        "yaw_rad": "2.332",
+        "roll_rad": "-0.035",
+        "pitch_rad": "-0.001",
+        "image": "1",
+        "image_time": "160013",
+        "nonfinite_total": "0"
+      }
+    }
+  },
+  "game_states": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "last_game": {
+    "tick": "30000",
+    "state": "1",
+    "first_half": "1",
+    "remaining_s": "559",
+    "score_a": "0",
+    "score_b": "1",
+    "robots": "6",
+    "ball_valid": "1",
+    "ball_x_mm": "7475.1",
+    "ball_y_mm": "-1048.9"
+  },
+  "ball_contacts_logged": 38,
+  "ball_path_m_from_2hz_samples": 47.77436847591613,
+  "errors": [],
+  "gait_segments": {},
+  "measurement_note": "Joint/pose finite counters run each available frame; trajectories sampled at 2 Hz. Ball path includes automatic-referee placement. Contacts are rate-limited at 10 Hz.",
+  "performance": {
+    "wall_s": 63.04143411199766,
+    "real_time_factor": 0.9517549980447092,
+    "includes_startup_and_capture": true,
+    "encoding_excluded": true
+  }
+}

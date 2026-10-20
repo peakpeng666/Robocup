@@ -1,0 +1,1135 @@
+K1 足球运控升级
+研究证据、训练路线与部署仿真
+
+B-Human 2026 × 清华火神 × HSL RoboCup
+
+
+以现成 K1 足球系统为基线，分别升级运动、反应技能与团队决策；将真实 SDK、裁判协议和版本发布纳入同一条
+验证链。
+
+
+
+
+          16 秒                      6 个 IP         29 项
+         官方 K1 物理回放                 本机 UDP 协议验证   协议与安装测试通过
+
+
+
+
+实测轨迹画面：官方预训练策略，未进行新训练；单机器人短时回放。
+
+
+研究截止 2026-10-19 · 工具原型 v0.1.0
+
+本次尚未完成：新策略训练、独立六机器人 SDK 物理比赛、真实局域网裁判接入与真机升级。报告中的训练方案和验收阈值均明确
+作为建议。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                      01
+K1 SOCCER LAB / 研究与实施方案                                                                2026-10-19
+
+
+
+核验日期：2026-10-19（UTC）。研究对象：Booster K1、B-Human 2026、清华火神反应式足球，以及能沿用
+真机部署接口的 RoboCup 仿真系统。
+
+
+1. 结论与本次交付的实际进度
+建议采用“B-Human 完整比赛系统 + 官方 K1 运动训练基线 + 反应式足球技能迁移 + 独立机器人部署仿真”的路
+线。先保留现成感知、定位、角色分配、传球/射门/防守和裁判逻辑，再用可测量的实验升级运动技能与球队决策。
+这既符合现有开放材料，也有利于把训练结果最终做成可回滚的软件版本。
+
+这里的“高级步态”涉及三个不同层次：底层行走与平衡，走踢起身等动作技能，以及队友协作和攻防策略。三
+层需要共同验证，不能只更换一个行走网络就推定球队能力提升。B-Human 自身已经采用这类分层组织。
+[S01–S04]
+
+
+ 项目                  本次实际状态                                  证据边界
+
+
+ 开源基线                锁定 B-Human 比赛/训练仓库、子模块、HSL              审计源码与关键配置；未编译全部比赛程序
+                     协议/规则、NUSim 版本
+
+
+ 官方 K1 物理回放          已运行 16 秒，800 次 50 Hz 推理，无跌倒阈值           官方预训练策略；单机器人、平地、短时；没有
+                     触发，无数值警告                                新训练
+
+
+ 六 IP 协议             六个独立 127.0.0.x 地址完成 UDP 控制/回报           本机回环；没有外部真实裁判机、局域网隔离或
+                                                             DDS
+
+
+ 协议与更新包测试            29 项通过，含官方 C 头字节一致性、升级与回                工具工程测试；不等于机器人运动验收
+                     滚
+
+
+ 可执行 .run            实现构建、完整性检查、绝对路径安装、版本                    artifact_kind=tooling；没有训练完成的新策略
+                     切换与回退                                   ，不刷电机固件
+
+
+ 新策略与完整比赛            尚未完成                                    需要 GPU、K1 硬件合同、完整传感/SDK 仿真和
+                                                             实际联调
+
+
+原始实验结果与脚本在 experiments/bhuman_cpu_baseline/，综合测试记录在 docs/validation-results.json。.
+run 是后续版本发布机制的可运行原型，不能作为已训练成功的升级包使用。
+
+
+2. B-Human 2026 到底公开了什么
+
+2.1 两个官方仓库必须一起使用
+
+官方于 2026-10-15 发布 Code Release 2026，当前目标为 Booster K1/T1，已移除 NAO。比赛系统与训练框架分
+属两个仓库；只看比赛仓库会低估其训练材料的完整程度。[S01–S03]
+
+
+ 用途                         版本
+
+
+ 比赛程序、感知定位、行为、              BHumanCodeRelease，tag coderelease2026，commit
+ SimRobot                   2e3374ba896da8288607f9a1881b876642fe18b8
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                        02
+K1 SOCCER LAB / 研究与实施方案                                                                         2026-10-19
+
+
+
+ 用途                             版本
+
+
+ 行走、踢球、常规起身训练                   MachineLearning，master，commit c3fed817e6e8fd06418bea824b1f1ab0157379d2
+
+
+ CompiledNN 子模块                 8332c8759f3911e08ded6ac7e088f85620b4c4b5
+
+
+ SimRobot 子模块                   9deb6ae6b2a553211612affb757490736f96bfb3
+
+
+ pybind11 子模块                   0bd8896a4010f2d91b2340570c24fa08606ec406
+
+
+版本锁和下载工具包含这些信息。下载工具递归初始化子模块；本次没有把拉取全部依赖等同于完成编译。正式
+训练/部署还要固定依赖镜像、GPU 驱动、物理资产、归一化、关节映射和电机参数。
+
+2.2 已开放训练与仍有缺口的部分
+
+行走与踢球有训练环境、PPO/历史策略实现、机器人资产、训练配置、checkpoint 与 ONNX。常规起身也有训练
+入口。额外快速起身策略来自另一条 mjlab_playground 管线，当前仓库没有等同完整的训练配方；上游还明确
+记录它在独立 MuJoCo/实机与比赛仿真之间的行为差异。因此快速起身不应直接放入“已完成仿真一致性”的版
+本清单。[S03、S05]
+
+官方 K1 行走 checkpoint 续训入口如下，工作目录为 MachineLearning/IsaacGymRL：
+
+ python train.py --history --task=K1 \
+
+   --checkpoint=pre-trained/WalkAndKick/K1_walk.pth --headless=1
+
+
+训练依赖是 legacy Isaac Gym Preview 4、Python 3.8、PyTorch 2.0 / CUDA 11.8；与本次 Python 3.12 CPU
+ONNX 回放是两套环境。先复现官方旧栈，再评估迁移 Isaac Lab；同时改训练框架、物理模型和奖励会难以定位
+收益与退化来源。[S03]
+
+checkpoint 加载恢复模型并尝试恢复 optimizer，但未恢复迭代号、RNG 和环境状态，所以是续训/微调入口，不
+是逐比特断点恢复。上游 convert.py 硬编码 T1 文件和 (1,62) 输入，不能原样用来导出 K1 历史行走网络。应参数
+化导出，并比较同一批观测在 PyTorch、ONNX 和生产 C++ 中的输出。[S05]
+
+
+2.3 不能破坏的模型合同
+
+ 接口                             已核实的 K1 walk 合同
+
+
+ 原始 ONNX 输入                     float32，名称 input，形状 [batch_size, 344]
+
+
+ 原始 ONNX 输出                     float32，名称 output，形状 [batch_size, 13]
+
+
+ 344 维组成                        10 帧 × 32 维历史 + 24 维当前信息
+
+
+ 13 维输出                         12 个腿关节角度偏置 + 1 个步频偏置
+
+
+ 策略频率                           50 Hz；官方训练物理步长 2 ms、decimation 10
+
+
+ 历史内容                           投影重力、陀螺仪、去默认姿态的关节角、前一动作及占位维
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                 03
+K1 SOCCER LAB / 研究与实施方案                                                                  2026-10-19
+
+
+
+ 接口                        已核实的 K1 walk 合同
+
+
+ 当前内容                      速度命令、步态相位、关节速度、前一步频及占位维
+
+
+ 踢球合同                      59 输入 / 13 输出，无 10 帧历史；使用专门的 walk-start-for-kick checkpoint
+
+
+原始 ONNX 是二维张量。WalkingEngine 中的 rank=1 是 CompiledNN 包装隐藏 batch 维后的抽象，不能据此修
+改模型成一维。关节顺序、角度单位、球坐标系、速度缩放、默认姿态、动作限幅、PD 增益和历史初始化都属于
+部署合同，形状匹配只是其中一项。[S04–S05]
+
+B-Human 原本就有惯性/编码器噪声、零偏、质量/质心、刚度/阻尼、摩擦、接触参数与外力随机化。新的鲁棒性
+方法必须与这个已随机化的基线比较；只给观测添加高斯噪声不足以构成可信的升级证据。[S03、S05]
+
+
+3. 火神论文的确切含义与迁移方法
+
+3.1 已核验的论文与材料
+
+用户提到的工作是《Learning vision-driven reactive soccer skills for humanoid robots》，发表于 Science
+Robotics 11(117)，2026-08-19，DOI 10.1126/scirobotics.aed1152。采用 arXiv 2511.03996 的 v2（2026-08-20）
+交叉核对。平台为 Booster T1，而不是 K1。[S06–S08]
+
+作者 Zenodo 记录 21620490 发布了约 19.7 MB 的 code.zip；已下载并与记录中的 MD5 核对一致。归档含
+PPO/AMP 训练、历史编码与辅助重建、T1 YAML/环境、模型 checkpoint、T1 URDF/XML 和重定向动作 CSV。
+它不只是一段演示视频。[S09]
+
+
+ 论文结果                      应如何理解
+
+
+ 距球 1.5 m，约 1.5 s 完成触球     是起动至触球的任务完成时间，不是纯感知反应延迟
+
+
+ 视觉 25 Hz，策略 50 Hz         不代表端到端闭环只需 20 ms
+
+
+ 感知延迟均值 116 ms、标准差         说明必须显式处理迟到观测与历史状态
+ 18 ms
+
+
+ 踢球前 1 s 球位置 RMSE 0.344    针对论文条件的抗噪改进，不能直接外推 K1
+ m → 0.186 m
+
+
+ 前场 80–90%、后场 60–70%，      是有限实机测试中的踢球成功率；那组实验未摔倒不等于任意条件都稳定
+ 各位置 10 次
+
+
+ 论文报告 8 张 V100、16,384 环    是作者实验配置，不是本项目的 GPU 预算或完成时间承诺
+ 境、约一天
+
+
+这些数值依据最新论文与作者材料；更完整的逐项出处在 docs/evidence/huoshen_findings.md。[S06–S09]
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                        04
+K1 SOCCER LAB / 研究与实施方案                                                    2026-10-19
+
+
+
+3.2 火神有团队配合，但不全在公开策略里
+
+最新论文附录 G 的完整比赛架构包含行为树，负责规则、角色和多人协调。学习得到的反应式策略只在主攻手具
+有空间优势、球较近、前方净空等条件满足时激活，并有超范围/超时退出逻辑。公开单机器人 actor 主要处理自
+身、球与球门，不含完整队友/对手战术决策输入。[S08–S09]
+
+这支持保留 B-Human 上层系统的路线：普通行走与定位、传球选择、防守站位、裁判状态沿用现成层次；在适当
+时机调用经过 K1 适配的反应式技能。后续再将上层策略学习化，避免把规则处理与全身运动一起从零探索。
+
+3.3 T1 → K1 需要重新训练的部分
+
+公开火神模型有 58 维观测、50 帧历史和 15 维动作。T1 资产中 23 个 joint 标签包含 8 个固定手臂关节，实际控
+制头部 2、腰部 1、腿部 12。K1 没有相同腰部结构；关节数接近也不表示 checkpoint 可以直接部署。[S09]
+
+建议依次做：将 K1 实际质量、惯量、足底几何和驱动限位纳入模型；把参考动作重新重定向到 K1 并检查支撑足
+接触；按 K1 重新定义动作、观测和 PD；先复现 B-Human 行走，再训练反应式追球/踢球；最后验证技能切换的
+相位、历史、目标关节与力矩连续性。
+
+火神值得迁移的核心是“含时延与遮挡的虚拟感知、历史信念表示、辅助状态重建、动作先验和课程训练”。不
+是把 T1 的腰关节权重删除后直接替换模型。
+
+公开 play_mujoco.py 用 qpos 真值构造球/球门观测，再加简化视场与延迟；归档没有完整真实相机检测、定位、
+比赛行为树、队伍通信、GameController 或真机 SDK runner。因此该播放器不能作为完整视觉比赛或真机部署
+等价的验收环境。[S09]
+
+
+4. 系统架构：运动、技能、团队分别升级
+
+4.1 建议保留的层次
+
+ 层次                  输入与输出                       起点与升级方向
+
+
+ 传感与状态估计             相机/IMU/关节/时间戳 → 自身、球、对手和队   B-Human 感知定位；加入延迟、置信度、观测
+                     友的局部估计                      年龄与实测漂移处理
+
+
+ 比赛与团队决策             局部估计、受限队友通信、GC → 角色、目标      保留 B-Human 角色与战术；后续受约束的分散
+                     位置、传/射/防守意图                 策略训练
+
+
+ 动作技能管理              高层意图 → 走、急停换向、反应踢球、起身       明确激活/退出条件与切换连续性，保持旧技能
+                                                 回归
+
+
+ 低层策略                可测状态及历史 → 关节请求、步频           B-Human 50 Hz K1 actor，针对实测扰动微调
+
+
+ 设备与监督               SDK、状态门、限位、模式与进程健康          真机与仿真走同一接口合同；单一运动控制拥有
+                                                 者
+
+
+表中分层属于工程建议。B-Human 已有去中心化角色选择、主攻手竞争、射门/传球/解围/盘带和站位分配，不需
+要从零发明球队行为。[S02、S10]
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                           05
+K1 SOCCER LAB / 研究与实施方案                                               2026-10-19
+
+
+
+4.2 团队策略学习放在高层
+
+第一步用固定 B-Human 球队做基线和对手。随后可以让高层策略输出角色、目标区域、传球对象或技能选择，由
+成熟低层执行。5–10 Hz 的高层策略是初始设计建议，需要按闭环延迟和战术实验调整；50 Hz 低层合同则来自已
+核实的 B-Human 基线。
+
+训练可采用集中 critic、分散 actor（CTDE），配合 MAPPO 等可复现基线、不同历史对手组成的自博弈池和角色
+随机化。critic/teacher 可以用训练真值；部署 actor 必须只看自己的传感估计及规则允许的报文。团队奖励应结
+合净进球、失球、推进、有效接应、传球价值与规则约束，避免只奖励靠近球导致所有队员争抢。
+
+不要仅按同队训练胜率判定有效。要与固定官方基线、不同风格对手、旧版本和未见过的队形比赛，记录角色切
+换、重复抢球、传球完成、被截断、防线暴露及通信成本。新策略应在同一硬件时限与规则预算下比较。
+
+
+5. 如何把“大多数情况下稳定”变成实验
+
+5.1 先测分布，再随机化
+
+随机化范围首先来自具体 K1 的日志、台架或受控运动数据，而不是越大越好。过强且不真实的扰动会使策略过度
+保守，牺牲用户要求的快速反应。要保存采样过程、单位、频谱、相关性和状态条件，再区分训练覆盖范围与未
+见过的组合。
+
+
+ 扰动类别                应覆盖的机制                      对应指标
+
+
+ IMU / 编码器           零偏漂移、标定误差、相关噪声、饱和、丢样        状态估计误差、速度跟踪、姿态恢复、跌倒率
+                     与时间戳抖动
+
+
+ 视觉                  延迟与抖动、漏检/误检、遮挡、光照、模糊、       球状态误差、失球恢复时间、起动至触球/决策
+                     视场、观测陈旧                     延迟
+
+
+ 电机与机体               PD/摩擦/回差、扭矩与速度限制、质量/质心、     饱和比例、跟踪误差、能耗、连续运行退化
+                     温度和电压导致的性能变化
+
+
+ 地面与接触               草皮/地毯摩擦、磨损、足底形变、球摩擦与恢       滑移、急停距离、踢球方向/速度、接触失败
+                     复系数
+
+
+ 对抗                  扰动方向/时机、轻碰撞、急转追球、单足支撑       恢复时间、跌倒/起身、碰撞与失球
+                     冲击
+
+
+ 计算与通信               推理超时、CPU/GPU 争用、DDS/队友丢包、   p95/p99 延迟、超期率、停机/失联处理、团队
+                     乱序、限额                       退化
+
+
+火神和 Miki 等工作的启示是通过历史推断当前可信状态，并学习在外部感知不可靠时使用本体感觉。工程上应给
+观测带时间戳与年龄，预测至当前时刻；随意增加低通滤波可能增大相位滞后，需要把抗噪收益与反应延迟一起
+评估。[S08、S16]
+
+5.2 验收矩阵
+
+以下为建议的验收设计，不是已经测得的成绩。正式阈值应由基线、硬件约束和目标赛事共同决定。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                     06
+K1 SOCCER LAB / 研究与实施方案                                                2026-10-19
+
+
+
+ 验收层级                必测内容                      比较与记录方式
+
+
+ 模型合同                单位/顺序/频率/归一化/动作限幅/导出一致性   相同观测的 PyTorch–ONNX–C++ 差异；失败拒
+                                               绝发布
+
+
+ 运动                  直走、侧移、后退、急停、反转、组合速度、      相同命令/随机种子，报告跟踪误差、跌倒/机器
+                     外力恢复                      人小时、p95/p99
+
+
+ 技能                  追球、移动球、踢球、起身、技能连续切换       全部尝试为分母，失败/超时/进程崩溃均计入
+
+
+ 多机                  攻防、传球、角色切换、少人、通信丢失、不      净进球、失球、胜平负、置信区间、通信预算
+                     同对手
+
+
+ 部署                  安装、重复安装、坏包、升级失败、回退、重      在同一虚拟机器人镜像与真实 SDK 合同上执行
+                     启
+
+
+ 真机                  机型/参数/场地变异、整场时长、热与电压状     受控逐级验证，记录实机失败和中断原因
+                     态
+
+
+训练至少使用多个种子（初始建议 3 个），评估使用独立种子、未见过的扰动组合和对手。保留全部试验与中止
+，不挑成功视频。对于零跌倒结果仍应给有限样本上界：例如在独立同分布的 300 次试验中零失败，单侧 95% 二
+项分布失败率上界约为 1%；这仍不覆盖分布之外的机况与碰撞。
+
+本次只有 16 秒正常回放，不能据此给出“大多数情况下稳定”的成功率。其作用是把官方资产、ONNX 推理和物
+理回放连通，为后续实验提供可复现起点。
+
+
+6. 仿真 RoboCup 如何接近真实部署
+
+6.1 需要同时具备的两类仿真
+
+训练环境追求并行吞吐，可以使用特权 critic 和加速时钟。部署比赛仿真则要求每个机器人作为独立程序运行，用
+本机传感管线和 SDK 消息控制，服从真实 GC 与网络约束。两者共享资产/合同与策略版本，但评估权限和时钟不
+同。
+
+建议以 B-Human SimRobot 复现现成球队行为和真实渲染场景，同时评估用 MuJoCo 实现 Booster SDK 边界。
+共享的物理世界负责接触、球和渲染；每个机器人运行独立进程、配置、IP、状态文件及 SDK 桥。禁止使用全局
+共享队伍真值代替真实队友通信。
+
+完整部署一致性至少包括：同一来源的程序与模型、同一预处理与估计器、同一低层模式/关节映射、同一 IPC/网
+络接口、同一比赛服务生命周期、同样的安装与回滚流程。若训练机是 x86_64 而 K1 是 ARM，应该从同一源码分
+别构建目标架构产物；不能声称两个架构原生运行同一个二进制。仿真无法完全再现真实摩擦、硬件故障、温度
+与计算时序，仍需硬件在环与真机验收。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                       07
+K1 SOCCER LAB / 研究与实施方案                                                             2026-10-19
+
+
+
+6.2 B-Human SimRobot 与 NUSim 的实际能力
+
+ 方案                     可复用能力                             不能据此推定已实现的内容
+
+
+ B-Human SimRobot       已有 K1 多人数场景、比赛程序、行为/感知调           同一进程的多机器人不自动具有独立真实网络身
+                        试                                 份
+
+
+ PerceptOracle / Fast   行为排错、快速回归                         跳过部分渲染/感知或使用模型真值，不能计入
+ 场景                                                       最终视觉部署成绩
+
+
+ NUbots NUSim K1        MuJoCo、LowState/LowCmd、CUSTOM 低   当前多机参数主要生成多机器人，只有主机器人
+                        层控制、头部相机共享内存、GC supervisor        受控，其余以 PD 保持姿态
+
+
+ NUSim 高层 SDK RPC       接收部分命令/模式切换                       Move/GetUp/VisualKick 等接受但未实现真实行
+                                                          为，不能替代完整 SDK 功能
+
+
+NUSim 是有价值的 SDK 仿真参考，不是开箱即用的六个自主 K1 联赛。其行走模型合同为 79 观测 / 22 动作，与
+B-Human 的 344 / 13 不同；默认 host 网络与共享 IPC 也不构成每台机器人隔离。选择它时应保留 SDK 消息思路
+，重新核验生产预处理和多机隔离。[S11–S13]
+
+6.3 一个机器人一个 IP
+
+建议示例拓扑：GC 为 192.168.50.2；蓝队 192.168.50.11/.12/.13；红队 192.168.50.21/.22/.23。地址仅示例，
+真实比赛必须使用主办方分配的网络设置。
+
+默认 Docker bridge 使用 NAT，外部往往只看到宿主地址；host 网络共享宿主 IP，也不代表六个网络身份。可在
+支持的 Linux 有线网络上选择 macvlan/ipvlan，或 TAP/桥接的 network namespace。macvlan 的宿主与子接口
+通信需要另设接口/路由；根权限、云网络和无线网卡支持也各有约束。部署前必须用真实 GC 所在机器验证广播
+到达和回报源 IP。[S14–S15]
+
+DDS 隔离要额外处理。真实 SDK 可能固定 domain 0 和 topic 名称，仅给机器人不同 ROS 名字并不能防止
+LowCmd 串到另一台机器人。应让每个虚拟机器人具有独立网络/桥接端点，并用消息身份、收发计数和错误注入
+证明确实只控制自己的关节。
+
+当连接真实 GC 时，比赛仿真应以真实墙钟 1× 运行。加速训练时使用独立仿真裁判适配器和仿真时钟，避免真实
+裁判状态、回报频率和加速物理不一致。
+
+
+7. 当前 HSL GameController 协议
+2026 Humanoid Soccer League 已整合原 HL/SPL。应锁定当前 HSL 仓库和赛事规则，而不是沿用旧 HL 或 SPL
+的报文尺寸。此次核对固定 GC commit a6cc98bb9f7c0f03912134b333194af3fa880798 的官方 C 头及 Rust
+serializer。[S17–S19]
+
+
+ 通道                     当前格式                              使用要求
+
+
+ GC → 球员                UDP 3838；RGme；version 20；158 字节   正常约 2 Hz；明确处理 stopped、处罚、状态和
+                                                          超时
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                     08
+K1 SOCCER LAB / 研究与实施方案                                                                    2026-10-19
+
+
+
+
+ 通道                     当前格式                                        使用要求
+
+
+ 球员 → GC                UDP 3939；RGrt；version 4；32 字节               每台机器人以自身 IP 单播回报；允许 0.5–2 Hz
+                                                                    ，工具采用 1 Hz
+
+
+ 队内通信                   UDP 10000 + 队号；单包不超过 512 字节                 使用受限广播，遵守 GC 给出的队伍消息预算
+
+
+ 监控真值                   RGTD；另有监控请求/转发端口                            只允许评估侧使用，不能输入球员 actor
+
+
+回报中的 pose 和球位置为毫米，角度为弧度；浮点和整数按明确小端线格式处理。部分 PLAYING 转换的真实状
+态会被 GC 暂时隐藏，因此球员程序还需现有哨声/事件逻辑。仅看 state=PLAYING 不足以放行运动，stopped 和
+处罚要优先处理。[S17]
+
+HSL 规则禁止使用场外计算充当比赛机器人的大脑。仿真可以共享宿主硬件，但每个机器人必须限定独立观测、
+计算资源和合法通信，才能对现实比赛有意义。规则中的体型/重量级和赛事人数不能按 K1 型号自行猜定，应核
+对具体机器与赛事分组。[S18–S19]
+
+本项目协议工具对照官方 C 结构编译字节样本，再验证 Python 解码/编码；拒绝旧版本、错误长度、监控真值、
+非有限/溢出浮点和重复乱序包。diagnostic_gate 只输出诊断意图，不是完整规则引擎或物理安全控制器。
+
+
+8. .run 版本发布应做到什么
+
+8.1 本次可运行原型
+
+工具包支持 --verify、--install-root /absolute/path 和 --rollback --install-root /absolute/path。每个版本有文
+件清单、大小与 SHA256；安装先校验再发布版本目录；current/previous 分别使用原子链接替换；已有非项目目
+录、损坏版本、路径穿越、符号链接和同版本不同内容会被拒绝。
+
+以下是本次生成包的工作区绝对路径用法；下载到其他电脑后应换成实际路径：
+
+ /workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run --verify
+
+
+
+ /workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run \
+
+   --install-root /tmp/k1-soccer-tooling-user-demo
+
+
+第一次安装目标必须不存在。.run 使用 Linux/POSIX 与 Python 3.10+，只安装研究工具；完整源码 ZIP 另含测试、
+打包器和物理回放实验。直接 ./filename.run 与绝对路径执行都依赖可执行权限，下载后可在确认来源的本地文
+件上使用 chmod +x。
+
+8.2 正式 K1 版本仍需要补齐
+
+真正的运动版本应包括针对目标架构的应用、ONNX、归一化与参数、明确的机器人/系统镜像/SDK/驱动合同、发
+布证据和必要许可证。个体标定、机器人身份与网络地址应保存在版本目录外，升级不应覆盖它们。
+
+发布流程应验证可信发布者签名和兼容性；停止旧运动进程并确认控制权交接；安装候选版本；执行静态与非运
+动健康检查；按经过验证的启动协议激活；健康失败恢复旧版本并记录原因。只能有一个控制器拥有运动输出。
+
+当前 SHA256 校验是完整性检查，不是数字签名。包自身执行的 --verify 不能认证一个未知来源的可执行文件；正
+式发行需要包外可信验证器或等价信任链。当前两个链接分别原子替换，不承诺断电下的跨链接事务恢复，也不
+自动重启机器人服务。这些是具体待实现项，并不影响本次工具原型的本地演示。
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                           09
+K1 SOCCER LAB / 研究与实施方案                                                2026-10-19
+
+
+
+应优先封装 B-Human 现有安装/更新流程并核验 K1 系统镜像，而不是猜测厂商电机固件刷写命令。用户最终需要
+的日常“一次执行更新运控版本”可以实现，但要以已验收策略和硬件合同为前提。[S20]
+
+
+
+9. 实施路线与停止条件
+
+ 阶段                  工作与产物                          进入下一阶段的条件
+
+
+ P0 基线               官方固定版本、资产校验、生产预处理对照、           官方策略和部署行为可复现，异常有日志与定位
+                     SimRobot 对打
+
+
+ P1 鲁棒行走             从 K1 checkpoint 续训；实测域随机化、急停   在独立测试分布上降低失败且不牺牲关键响应/
+                     换向、推扰与延迟消融                     旧能力
+
+
+ P2 反应足球技能           K1 动作重定向，历史估计、遮挡/时延训练，         真实视觉链/SDK 仿真通过；相同任务中优于官
+                     连续追踢                           方基线
+
+
+ P3 球队协作             固定行为基线、受限通信、高层 CTDE/自博弈、       多场多种子对比改善攻防，同时规则/消息预算
+                     对手池                            合格
+
+
+ P4 部署比赛仿真           六独立进程/IP/SDK、单一物理世界、真实 GC、     安装、升级、比赛、失联、回退的全过程联调通
+                     1× 时钟                          过
+
+
+ P5 真机发行             目标 K1 架构构建、签名、兼容性门禁、受控分        真机长时/扰动/技能/比赛验收完成，才标记正式
+                     级试验                            运控版
+
+
+P0 与 P4 的基础设施可并行；P1/P2/P3 的算法收益必须回流到统一比赛评估。不要只看训练奖励。若出现性能提
+升来自 oracle、更多计算资源、未计入失败或不公平对手，应回到同条件实验再比较。
+
+当前没有可用训练 GPU、K1 真机/SDK 环境或真实局域网裁判端，所以本次没有启动新策略训练或声称完成
+P4/P5。不需要先购买新平台；先提供现有 GPU 型号/显存/数量和 K1 版本，再选择复现栈、并行环境数与实验预
+算。
+
+
+10. 许可、检索范围与证据使用
+BHumanCodeRelease 使用自定义许可，MachineLearning/IsaacGymRL 则声明 Apache-2.0 并列出上游组件许
+可证。主比赛代码要求保留版权、许可和致谢；RoboCup 竞赛使用的文本包含提前至少一个月公告组件、以及符
+合派生软件条件时说明贡献和当年源代码公开等要求。普通本地研究不会凭空触发竞赛公告；真正分发或参赛时
+应按相关组件原文执行。本次未发送任何对外公告。[S21–S22]
+
+调研采用公开原始论文、正式会刊记录、作者项目页、官方仓库、规则与协议源码交叉核验。覆盖方向包括人形
+足球、反应控制、鲁棒腿式运动、历史状态推断、sim-to-real、多智能体协作与部署。正式期刊、顶会和预印本
+分别标注，公开视频/仓库能运行不等同于论文全系统可复现。
+
+“所有学术期刊”不能在有限公开检索下保证穷尽。本次没有访问所有付费数据库，也没有获得完整数据库导出
+；学术聚合服务出现长时间无响应，已改用短查询与一手页面核验。文献矩阵中的条目是与本项目相关且有可追
+溯来源的优先阅读集合，不构成 PRISMA 式穷尽性系统综述。未核实会刊状态的项目只能列为预印本或待确认，
+不能包装成顶刊。
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                      10
+K1 SOCCER LAB / 研究与实施方案                                                                            2026-10-19
+
+
+
+11. 下一轮所需环境信息
+请补充现有 K1 的硬件修订/机载计算模块、系统镜像、SDK/固件、摄像头型号及当前电机参数；现有 GPU 型号、
+显存、数量和可访问训练主机；目标赛事组别与队伍人数；用于连接 GC 的 Linux 主机、有线网络和裁判端位置。
+
+这些信息决定是否能复现旧 Isaac Gym 栈、目标二进制架构、真实视觉接口、PD/动作映射以及机器人 IP 的实现
+方式。硬件模板在 configs/hardware.template.json，实验和网络草案在同目录。训练预算、稳定性阈值与正式
+发行兼容清单应在这些数据到位后冻结。
+
+
+12. 主要原始来源
+• [S01] B-Human 2026 官方发布公告，2026-10-15：https://lists.robocup.org/archives/list/robocup-humanoid@lists.robocu
+p.org/thread/A3VYED6NELW3RNR4TH56DTFISMJN7LCB/
+
+• [S02] B-Human 2026 更新说明：https://docs.b-human.de/master/changelog/2026/
+
+• [S03] B-Human MachineLearning 固定版本：https://github.com/bhuman/MachineLearning/tree/c3fed817e6e8fd06418be
+a824b1f1ab0157379d2/IsaacGymRL
+
+• [S04] B-Human 行走/踢球文档：https://docs.b-human.de/master/motion/motion-walking-kicking/
+
+• [S05] B-Human 关键源码与参数：固定版本链接、逐文件审计和模型合同见 docs/evidence/bhuman_findings.md。
+
+• [S06] 清华自动化系论文新闻：https://www.au.tsinghua.edu.cn/info/1062/4568.htm
+
+• [S07] Science Robotics 正式论文：https://doi.org/10.1126/scirobotics.aed1152
+
+• [S08] 火神作者预印本 v2：https://arxiv.org/abs/2511.03996
+
+• [S09] 火神公开代码与模型：https://zenodo.org/records/21620490
+
+• [S10] B-Human 行为层说明：https://docs.b-human.de/master/behavior/overview/
+
+• [S11] B-Human SimRobot：https://docs.b-human.de/master/simrobot/
+
+• [S12] NUSim K1 设置：https://github.com/NUbots/NUSim/blob/03b5517d508a64e2a8adb25aec1f458c6f84cd73/docs/K1_
+MUJOCO_SETUP.md
+
+• [S13] NUSim 观测/动作合同：https://github.com/NUbots/NUSim/blob/03b5517d508a64e2a8adb25aec1f458c6f84cd73/do
+cs/OBS_ACTION_CONTRACT.md
+
+• [S14] Docker macvlan 官方文档：https://docs.docker.com/engine/network/drivers/macvlan/
+
+• [S15] Docker bridge 官方文档：https://docs.docker.com/engine/network/drivers/bridge/
+
+• [S16] Miki 等，Science Robotics 2022：https://leggedrobotics.github.io/rl-perceptiveloco/
+
+• [S17] HSL GameController 固定版本：https://github.com/RoboCup-HumanoidSoccerLeague/GameController/tree/a6cc98
+bb9f7c0f03912134b333194af3fa880798
+
+• [S18] HSL 规则固定版本：https://github.com/RoboCup-HumanoidSoccerLeague/HSL-Rules/tree/06c44d4b0ea2fd3cd4fdc
+c2a7cb907f6ace400dc
+
+• [S19] RoboCup HSL 官方介绍：https://www.robocup.org/leagues/35
+
+• [S20] B-Human 机器人设置与已测试系统：https://docs.b-human.de/master/getting-started/setting-up-robot/
+
+• [S21] B-Human 主代码许可：https://github.com/bhuman/BHumanCodeRelease/blob/2e3374ba896da8288607f9a1881b87
+6642fe18b8/License.md
+
+• [S22] 训练框架许可：https://github.com/bhuman/MachineLearning/blob/c3fed817e6e8fd06418bea824b1f1ab0157379d2/
+IsaacGymRL/LICENSE
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                  11
+K1 SOCCER LAB / 研究与实施方案                                                                         2026-10-19
+
+
+
+
+附录 A：23 项重点文献与实现矩阵
+截止 2026-10-19，按问题相关性组织。期刊、会议和预印本分开；同一工作的会议与期刊扩展合并记为一项。“
+未核实完整代码”不等于作者没有公开，而是本次没有足够证据确认。B-Human/火神已进一步检查代码实物；其
+他条目主要用于方法和实验设计选型。
+
+
+A1. 优先阅读顺序
+首先读 B-Human 2026 运动/行为源码、火神、ICRA 2026 Noisy Striker，建立当前可用的足球基线与反应技能路
+线；然后读 Cassie dual-history、A-RMA、Ji RA-L 和 Miki，设计抗噪/估计误差消融；最后读 Science Robotics
+2022 团队足球、MAPPO 与视觉足球，构建高层协作实验。DreamWaQ++ 和 Digit Transformer 属于后续感知融
+合/历史架构对照，初版不需要把所有方法叠加。
+
+
+
+A2. 正式期刊：13 项
+
+ 文献                                  会刊 / 平台            可借鉴组件               开源与 K1 边界
+
+
+ J01. Wang 等：Learning                Science Robotics   视觉延迟/遮挡、历史          Zenodo 训练/模型/动作可得；不含完
+ vision-driven reactive soccer       2026；Booster T1    重建、PPO+AMP、快        整比赛部署栈，K1 需重定向并重训
+ skills for humanoid robots                             速追踢
+
+
+ J02. Haarnoja 等：Learning            Science Robotics   起身/踢球预训练、组          主要实机状态来自动捕；不是 K1 全视
+ agile soccer skills for a bipedal   2024；Robotis       合技能、自博弈、对手          觉多人球队；数据开放不等于全训练
+ robot with deep reinforcement       OP3，1v1            应对                  公开
+ learning
+
+
+ J03. Liu 等：From motor               Science Robotics   人样动作、足球技能、          dm_control soccer 环境公开；完整
+ control to team play in             2022；仿真人形          球队的分阶段学习与           论文训练/整队权重未据此确认；没有
+ simulated humanoid football         avatars            population 训练       K1 真机证据
+
+
+ J04. Miki 等：Learning robust         Science Robotics   本体/外部感知融合、          作者论文/项目；本轮未核实完整训练
+ perceptive locomotion for           2022；ANYmal        带重建的历史信念、感          包；四足接触冗余不同
+ quadrupedal robots in the wild                         知退化
+
+
+ J05. Hwangbo 等：Learning             Science Robotics   执行器动力学学习、仿          补充源码含 actuator_model 和
+ agile and dynamic motor skills      2019；ANYmal        真到硬件的控制差异辨          environments，依赖内部仿真；非通
+ for legged robots                                      识                   用完整部署链
+
+
+ J06. Lee 等：Learning                 Science Robotics   盲走、本体反馈、接触          原文列补充仓库，本轮未成功读取；
+ quadrupedal locomotion over         2020；ANYmal        突变与地形泛化             不能标完整复现已验证
+ challenging terrain
+
+
+ J07. Radosavovic 等：                 Science Robotics   因果 Transformer 的观   作者项目/正式 PDF；完整训练代码未
+ Real-world humanoid                 2024；Digit         测/动作历史、随机化、         核实；Digit 非 K1
+ locomotion with reinforcement                          第二仿真筛选
+ learning
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                12
+K1 SOCCER LAB / 研究与实施方案                                                                          2026-10-19
+
+
+
+ 文献                                 会刊 / 平台            可借鉴组件              开源与 K1 边界
+
+
+ J08. Li 等：Reinforcement            IJRR，online        长短双历史、任务随机         作者论文/视频，完整训练部署未核实
+ learning for versatile, dynamic,   2024 / 卷期 2025；    化、走跑跳站立的动力         ；K1 足型/驱动需重训
+ and robust bipedal locomotion      Cassie             学适应
+ control
+
+
+ J09. Nahrendra 等：                  T-RO 2026，         异步多模态、置信度、         作者项目未见完整 Code 发布；不能
+ DreamWaQ++: Obstacle-Aware         42:819–836；四足      外部感知失效时的鲁棒         把原 DreamWaQ 或社区复现当此论
+ Quadrupedal Locomotion With                           融合                 文代码
+ Resilient Multimodal
+ Reinforcement Learning
+
+
+ J10. Ji 等：Concurrent Training      RA-L 2022；四足       策略与速度/足高/接触        正式期刊，同文 ICRA 展示不重复计数
+ of a Control Policy and a State                       状态估计共训             ；完整官方代码未核实
+ Estimator for Dynamic and
+ Robust Legged Locomotion
+
+
+ J11. Margolis 等：Rapid              IJRR 2024，前身       指令课程、动力学随机         作者 RSS 实现 rapid-locomotion-rl
+ locomotion via reinforcement       RSS 2022；Mini      化、在线辨识与高速约         可得；不自动代表期刊扩展全部实验
+ learning                           Cheetah            束
+
+
+ J12. Wensing 等：Optimization-       T-RO 2024，2023     接触、约束、模型简化、        综述论文，不存在一份可移植 K1 权重
+ Based Control for Dynamic          online；综述          优化控制与闭环审查          ；不自动赋予 RL 理论稳定性
+ Legged Robots
+
+
+ J13. Vinyals 等：Grandmaster         Nature 2019；电      league、历史对手和反      只支撑对抗训练机制；不支撑 K1 稳定
+ level in StarCraft II using        子竞技                制策略池               性或真实足球性能
+ multi-agent reinforcement
+ learning
+
+
+
+
+A3. 会议与系统报告：10 项
+
+ 文献                                 会刊 / 平台            可借鉴组件              开源与 K1 边界
+
+
+ C01. Tirumala 等：Learning           CoRL 2024 / PMLR   机载 RGB 与计算、        论文/作者项目；1v1 不是队友合作；
+ Robot Soccer from Egocentric       2025；OP3，1v1       NeRF+物理、teacher    不能当 K1 已完成视觉部署
+ Vision with Deep                                      多智能体 RL、主动找
+ Reinforcement Learning                                球
+
+
+ C02. Xu 等：Learning Agile           ICRA 2026；         追球 teacher、定向踢     官方 Daffan/humanoid-soccer 公开
+ Striker Skills for Humanoid        Booster T1         球、DAgger、含噪        四阶段训练及 odometry；仍需 K1 任
+ Soccer Robots from Noisy                              student 的约束 RL 适   务与生产接口适配
+ Sensory Input                                         配
+
+
+ C03. Kumar 等：RMA: Rapid            RSS 2021；Unitre    历史估计动力学 latent     作者 Code 当前指向 ICRA 2023 后续
+ Motor Adaptation for Legged        e A1               ，条件化控制             RMA 实现，不能称完全原版；
+ Robots                                                                   GPL-3.0 / RaiSim
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                  13
+K1 SOCCER LAB / 研究与实施方案                                                                   2026-10-19
+
+
+
+
+ 文献                                 会刊 / 平台            可借鉴组件           开源与 K1 边界
+
+
+ C04. Kumar 等：Adapting              IROS 2022；         让最终策略适应估计器      论文/项目已核实；完整代码未核实；
+ Rapid Motor Adaptation for         Cassie             误差，而非假设完美隐      双足方法有参考性，权重不能移植
+ Bipedal Robots                                        状态
+
+
+ C05. Rudin 等：Learning to           CoRL 2021 / PMLR   大规模并行 PPO 与课    官方 legged_gym 训练公开；分钟级
+ Walk in Minutes Using              2022；ANYmal        程学习             耗时不外推到完整 K1 足球
+ Massively Parallel Deep
+ Reinforcement Learning
+
+
+ C06. Nahrendra 等：                  ICRA 2023；         受限感知下的环境隐变      作者完整训练代码未核实；同名第三
+ DreamWaQ: Learning Robust          Unitree A1         量推断             方移植需单独标记
+ Quadrupedal Locomotion With
+ Implicit Terrain Imagination via
+ Deep Reinforcement Learning
+
+
+ C07. Yu 等：The Surprising           NeurIPS 2022       MAPPO、CTDE、循环   官方 on-policy，MIT；适合高层，需
+ Effectiveness of PPO in            Datasets and       策略和参数共享         另接真实机器人观测与自博弈
+ Cooperative Multi-Agent Games      Benchmarks；合
+                                    作游戏
+
+
+ C08. Rashid 等：QMIX:                ICML 2018；合作       分散执行的价值分解，      官方 PyMARL，Apache-2.0；不直接
+ Monotonic Value Function           基准                 离散角色/技能选择对      处理连续多关节运控
+ Factorisation for Deep                                照
+ Multi-Agent Reinforcement
+ Learning
+
+
+ C09. He 等：Learning                 IROS 2024；H2O      人体动作重定向、可行      官方仓库兼含 OmniH2O，CC BY-NC
+ Human-to-Humanoid                  ，Unitree H1        性筛选、模仿跟踪        4.0；不直接并入商用包，不负责自主
+ Real-Time Whole-Body                                                  战术
+ Teleoperation
+
+
+ P01. B-Human '26 – Scalable        arXiv 2610.14733   现成去中心化角色、战      比赛与训练源码开放；应作为当前 K1
+ Team Play up to 11 vs. 11          ，RoboCup           术、传球、防守、感知      基线，不称顶刊
+                                    champion/procee    与运动整合
+                                    dings 报告
+
+
+
+
+A4. 与本项目最直接的新对照：Noisy Striker
+Xu 等 ICRA 2026 的官方代码确实公开，而非只找到预印本。它采用四阶段 teacher–student：远距离追球、定向
+踢球、带噪声/延迟/遮挡的 DAgger 蒸馏、N-P3O 约束强化学习进一步适配；另有腿惯性里程计训练。这条线与火
+神共同回答了“训练真值到部署不完美感知”的问题，是反应技能阶段值得并行复现的基线。[C02]
+
+工程上应对比：原始 B-Human kick；火神式历史重建+动作先验；Noisy Striker 式 teacher–student+适配。统
+一 K1 资产、球初始条件、真实感知噪声、控制频率与失败分母，才能判断收益来自算法还是实验条件。现有公开
+T1 代码并不能直接证明某个方法在 K1 上更强。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                          14
+K1 SOCCER LAB / 研究与实施方案                                                                                     2026-10-19
+
+
+
+A5. 正式 DOI 与作者入口
+• J01：https://doi.org/10.1126/scirobotics.aed1152 ；代码 https://zenodo.org/records/21620490
+
+• J02：https://doi.org/10.1126/scirobotics.adi8022 ；作者 https://deepmind.google/research/publications/31284/
+
+• J03：https://doi.org/10.1126/scirobotics.abo0235 ；原稿 https://arxiv.org/abs/2105.12196 ；环境
+https://github.com/google-deepmind/dm_control/tree/main/dm_control/locomotion/soccer
+
+• J04：https://doi.org/10.1126/scirobotics.abk2822 ；项目 https://leggedrobotics.github.io/rl-perceptiveloco/
+
+• J05：https://doi.org/10.1126/scirobotics.aau5872 ；补充代码 https://github.com/junja94/anymal_science_robotics_supp
+lementary
+
+• J06：https://doi.org/10.1126/scirobotics.abc5986 ；项目 https://leggedrobotics.github.io/rl-blindloco/
+
+• J07：https://doi.org/10.1126/scirobotics.adi9579 ；项目 https://learning-humanoid-locomotion.github.io/
+
+• J08：https://doi.org/10.1177/02783649241285161 ；项目 https://xbpeng.github.io/projects/Cassie_Locomotion/index.ht
+ml
+
+• J09：https://doi.org/10.1109/TRO.2026.3653774 ；项目 https://dreamwaqpp.github.io/
+
+• J10：https://doi.org/10.1109/LRA.2022.3151396 ；作者稿 https://arxiv.org/abs/2202.05481
+
+• J11：https://doi.org/10.1177/02783649231224053 ；代码 https://github.com/Improbable-AI/rapid-locomotion-rl
+
+• J12：https://doi.org/10.1109/TRO.2023.3324580 ；作者 https://andreadelprete.github.io/publication/wensing-2023/
+
+• J13：https://doi.org/10.1038/s41586-019-1724-z
+
+• C01：https://proceedings.mlr.press/v270/tirumala25a.html ；项目 https://sites.google.com/view/vision-soccer
+
+• C02：https://arxiv.org/abs/2512.06571 ；作者会刊记录 https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-zifan_
+xu_icra_2026.html ；代码 https://github.com/Daffan/humanoid-soccer
+
+• C03：https://arxiv.org/abs/2107.04034 ；项目 https://ashish-kmr.github.io/rma-legged-robots/ ；后续代码
+https://github.com/antonilo/rl_locomotion
+
+• C04：https://doi.org/10.1109/IROS47612.2022.9981091 ；项目 https://ashish-kmr.github.io/a-rma/
+
+• C05：https://proceedings.mlr.press/v164/rudin22a.html ；代码 https://github.com/leggedrobotics/legged_gym
+
+• C06：https://doi.org/10.1109/ICRA48891.2023.10161144 ；作者稿 https://arxiv.org/abs/2301.10602
+
+• C07：https://proceedings.nips.cc/paper_files/paper/2022/hash/9c1535a02f0ce079433344e14d910597-Abstract-Datasets
+_and_Benchmarks.html ；代码 https://github.com/marlbenchmark/on-policy
+
+• C08：https://proceedings.mlr.press/v80/rashid18a.html ；代码 https://github.com/oxwhirl/pymarl
+
+• C09：https://doi.org/10.1109/IROS58592.2024.10801984 ；项目 https://human2humanoid.com/ ；代码
+https://github.com/LeCAR-Lab/human2humanoid
+
+• P01：https://arxiv.org/abs/2610.14733 ；完整基线版本见 sources.lock.json
+
+更细的作者机构出版记录、原始平台、代码范围及检索限制分别保存在 docs/evidence/literature_findings.md
+与 docs/evidence/journal_addendum.md。本次使用代表工作建立实验路线，未以发表级别替代可复现性和 K1
+实际适用性判断。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                           15
+K1 SOCCER LAB / 研究与实施方案                                                                            2026-10-19
+
+
+
+
+附录 B：社区路线与兼容性选择
+
+B1. 四条值得持续跟踪的官方/团队主线
+
+ 路线                     本次发现                                     本项目选择
+
+
+ B-Human Code           已有 K1 足球比赛程序、完整常规运动训练、策                  当前主线；保持固定基线，用相同场景和接口比
+ Release + MachineLea   略与球队行为                                   较新策略
+ rning
+
+
+ 清华火神 / Noisy           两条 T1 反应足球与不完美感知训练路线；训练                  作为 K1 反应踢球阶段的两个对照，需要重新建
+ Striker                代码均有原作者发布                                立动作/观测合同
+
+
+ Booster 新 train/depl   现代 Isaac Lab、K1 资产、统一 MuJoCo/真机          借鉴执行器与并联脚踝、模型导出、控制接口；
+ oy/assets              控制，以及 K1 走路部署样例                          不立即替换全部足球训练栈
+
+
+ NUbots NUSim           社区 SDK 边界 MuJoCo 与感知集成，明确记录              借鉴真机接口仿真；补齐独立多机控制、
+                        大量工程限制                                   IP/DDS 隔离和视觉部署等价性
+
+
+
+
+B2. Booster 新框架的精确核验
+
+ 仓库                     固定 commit                                关键能力
+
+
+ booster_train          8bb5b53824e0fbcfe69a5cb78a81f4bddb3e2    测试 IsaacLab 2.3.2 + Isaac Sim 5.1.0；K1 已注
+                        a6e，2026-09-26                           册 BeyondMimic MJ_Dance_002 动作任务
+
+
+ booster_deploy         7bb1462e2ac742eba5c01659b815e2e99fbe6    新增 K1 locomotion/ONNX；同一抽象运行
+                        17f，2026-09-13                           MuJoCo 或 ROS2/DDS 真机
+
+
+ booster_assets         12a97516f57469078707afb587a5f84c1cb110   K1 22DoF 资产、locomotion URDF、并联脚踝
+                        d1，2026-09-26                            XML、50 Hz 动作 CSV
+
+
+这三个仓库是实际的现代工具选项，但当前新 train 中未见与 deploy 现成 K1 walk 权重配套的 K1 walking 训练任
+务。更不能据此宣称它已经提供完整足球视觉、团队攻防与裁判机系统。
+
+新 K1 walk 配置控制 20 个身体关节，排除头部。由源码推导的历史输入为 690 维、输出 20 维；这是静态推导，
+未加载该权重实测。B-Human 原始 ONNX 经实际加载为 344→13。两者不能按同一个 policy contract 混接。
+
+deploy README 顶部要求 firmware ≥1.7.2，但旧正文仍写 ≥1.4；同一文件存在冲突。B-Human 则仅明确测试
+1.7.1，并报告 1.8.0 异常。报告不自行消除这些矛盾；实现必须选择一套版本组合并在用户的实际机器验证。
+
+训练侧已有 actuator delay、armature、并联脚踝 wrapper，适合参考。真机并联关节的 Kd 直接发送电机，不
+能原样复用仿真 Kd；准备/退出模式也需与 B-Human 接管/释放流程统一。
+
+train/deploy 顶层是 Apache-2.0，assets 是 BSD-3-Clause，部分派生文件保留各自声明。不要给整个组合包统
+一贴一个许可证标签。
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                                     16
+K1 SOCCER LAB / 研究与实施方案                                          2026-10-19
+
+
+
+B3. 官方入口与更详细记录
+• train：https://github.com/BoosterRobotics/booster_train
+
+• deploy：https://github.com/BoosterRobotics/booster_deploy
+
+• assets：https://github.com/BoosterRobotics/booster_assets
+
+• 厂商足球示例：https://github.com/BoosterRobotics/robocup_demo
+
+• NUSim：https://github.com/NUbots/NUSim
+
+• B-Human：https://github.com/bhuman/BHumanCodeRelease
+
+• B-Human 训练：https://github.com/bhuman/MachineLearning
+
+详细固定源码路径、接口推导、依赖和许可证据见 docs/evidence/booster_community_supplement.md。本
+次选择以公开材料和合同适配成本为依据，没有依据 stars、播放量或未验证速度视频给方案排名。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                 17
+K1 SOCCER LAB / 研究与实施方案                                                                     2026-10-19
+
+
+
+
+附录 C：已执行验证与复现边界
+
+C1. 官方 K1 策略 CPU MuJoCo 回放
+模型来自固定 B-Human MachineLearning commit。训练与比赛仓库的 K1_walk.onnx Git blob SHA 完全相同；
+下载后的文件 SHA256 为 9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f，
+558,557 字节。28 个所需资产共 12,446,526 字节，均有固定下载 URL、大小和 SHA256；源码包不重复收录模型
+/网格，可用清单脚本下载。
+
+
+ 项目                       本次实测
+
+
+ 环境                       x86_64、Python 3.12.14、MuJoCo 3.3.7、ONNX Runtime 1.22.1、NumPy 2.2.6
+
+
+ 时长 / 频率                  16 秒物理时间；500 Hz 物理；50 Hz 策略，800 次推理
+
+
+ 命令序列                     0–2 s 站立；2–7 s 前进 0.5 m/s；7–10 s 横移 0.2 m/s；10–13 s 转向 0.4 rad/s；13–16 s
+                          停止
+
+
+ 跌倒/数值检查                  未触发高度 <0.25 m 或倾角 >1.2 rad 的中止条件；无数值警告
+
+
+ 姿态记录                     10 Hz 采样最低高度 0.514943 m，最大倾角 0.059600 rad；非全物理步极值
+
+
+ 时间测量                     CPU 墙钟 1.523 s；推理中位 0.059835 ms，p99 0.503421 ms
+
+
+ 视频                       960×640，10 fps，H.264，16.000 s；同一次轨迹渲染，没有另拼成功轨迹
+
+
+CPU 推理耗时不是 K1 机载端到端感知/运动时延。16 秒无跌倒只是短时集成测试，不涉及训练升级、草皮变化、
+球/对手、视觉、踢球、起身、裁判或团队比赛。
+
+回放改编自上游独立脚本，不是正式 B-Human 进程。差异包括训练 YAML 的 PD 参数、关节速度差分/低通、历
+史初始化、站停相位和上肢过渡；正式部署的掉包处理和惯性估计也不同。下一阶段必须做生产预处理与控制合
+同对照，不能把同一权重误作两条执行链完全相同。
+
+复现入口：experiments/bhuman_cpu_baseline/README.md。原始结果 smoke_result.json，10 Hz 测量
+smoke_trace.csv，原始轨迹 smoke_trajectory.npy，渲染脚本 render_smoke.py。视频明确标注“官方预训练
+基线、没有新训练、没有硬件认证”。
+
+
+C2. 六个 IP 的协议闭环
+在本机 127/8 回环网络实际创建六个 UDP socket，分别绑定 127.0.0.11/.12/.13 和 127.0.0.21/.22/.23。合成测试
+裁判端位于 127.0.0.10，发送 158 字节控制数据，收到六个不同源 IP 的 32 字节状态回报；队号/球衣号组合全部
+匹配。
+
+该测试已运行并通过。它是独立 IP 的协议行为验证，不是 Linux 六个 namespace、真实 AP/交换机、真实 GC
+GUI、DDS、物理碰撞或六台自主机器人比赛的验证。原始执行结果保存为 docs/udp-loopback-results.json，脚
+本为 tools/udp_loopback_smoke.py。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                                             18
+K1 SOCCER LAB / 研究与实施方案                                                        2026-10-19
+
+
+
+C3. 29 项协议与更新包测试
+综合命令 python3 -B -m unittest discover -s tests -v 返回 exit 0；29 项通过，测试执行约 4.840 s、完整命令墙
+钟约 5.115 s。记录包含命令、Python 版本、stdout/stderr 与当时全部 Python 源文件 SHA256。
+
+协议测试用真正的 C 编译器编译固定官方 RoboCupGameControlData.h，生成黄金字节，再比较 Python 解码、
+回报打包、字段单位与结构长度。还覆盖真值通道拒绝、错版本/长度、停止/处罚/陈旧包、READY/SET/timeout
+区别、序列回绕/重复/乱序、浮点溢出、队伍报文预算。
+
+更新包测试通过真实子进程构建和执行，覆盖两版本安装/升级/回退、相同安装幂等、同版本冲突、不可变版本、
+坏摘要/内容/大小、重复 ZIP 项、路径穿越、符号链接、已有目录保护、并发安装锁，以及提交 current 链接 I/O
+故障后的指针恢复。还验证摘要自洽但声称 robot_firmware 的包被明确拒绝。
+
+结果见 docs/validation-results.json；安装器子任务的 20 项独立测试及源码哈希另见 release/test-results.json。
+最终 .run 内容在交付前另做包完整性与实际安装检查，执行结果在完整源码 ZIP 的
+release/final-package-checks.json。
+
+
+C4. 明确未执行
+本次没有 GPU 训练、新策略对比、B-Human 全量构建、完整独立多机 SDK 联赛、真实摄像头管线、真实局域网
+GC 连接、厂商系统镜像修改、电机固件刷写或真机运动。未执行项不计入通过项。对于用户最终目标，P1–P5 仍
+应依照正文路线在具备硬件与训练环境后完成。
+
+
+
+
+已运行基线 · 可追溯版本 · 未完成新策略训练                                                              19
+

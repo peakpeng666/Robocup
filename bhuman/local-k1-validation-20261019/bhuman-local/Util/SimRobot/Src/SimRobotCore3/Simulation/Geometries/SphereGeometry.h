@@ -1,0 +1,35 @@
+/**
+ * @file Simulation/Geometries/SphereGeometry.h
+ * Declaration of class SphereGeometry
+ * @author Colin Graf
+ */
+
+#pragma once
+
+#include "Simulation/Geometries/Geometry.h"
+
+/**
+ * @class SphereGeometry
+ * A sphere shaped geometry
+ */
+class SphereGeometry : public Geometry
+{
+public:
+  float radius; /**< The radius of the sphere */
+
+private:
+  /**
+   * Creates the geometry (not including \c translation and \c rotation)
+   * @param body The body to which to attach the geometry
+   * @param The created geometry
+   */
+  mjsGeom* assembleGeometry(mjsBody* body) override;
+
+  /**
+   * Creates the physical objects used by the OpenDynamicsEngine (ODE).
+   * These are a geometry object for collision detection and/or a body,
+   * if the simulation object is movable.
+   * @param graphicsContext The graphics context to create resources in
+   */
+  void createPhysics(GraphicsContext& graphicsContext) override;
+};

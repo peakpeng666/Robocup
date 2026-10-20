@@ -1,0 +1,20 @@
+{
+  "recorded_at_utc": "2026-10-19T06:44:25.864297+00:00",
+  "command": "python -m unittest discover -s tests -p test_release.py -v",
+  "working_directory": "/workspace/scratch/ddfc9e6d5cc3/k1-soccer-lab",
+  "python": "3.12.14",
+  "platform": "Linux",
+  "tests_run": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_seconds_reported_by_unittest": 9.97,
+  "exit_code": 0,
+  "result": "OK",
+  "test_scope": "tooling package construction, verification, installation, upgrade, rollback, integrity and filesystem failure protections; no robot training or deployment",
+  "source_sha256": {
+    "release/build_run.py": "15c2ef8190d495e7abd8385e1382e10917e70798919ce47080f8e510c8cc6457",
+    "release/installer.py": "54533fa22735ff6d13b83e3977a906b7a926e57f6cc1c14c2754623a72267321",
+    "tests/test_release.py": "2666eb26b67e5eedac213404d79d47e613a7d39f1d3aa749bcf3230f40b2b96f"
+  }
+}

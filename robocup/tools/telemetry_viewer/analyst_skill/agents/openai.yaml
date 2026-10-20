@@ -1,0 +1,4 @@
+interface:
+  display_name: "RoboCup Match Analyst"
+  short_description: "中文赛后复盘与遥测证据分析"
+  default_prompt: "Use $match-analyst to inspect the latest RoboCup telemetry recording and write a Chinese post-match report."

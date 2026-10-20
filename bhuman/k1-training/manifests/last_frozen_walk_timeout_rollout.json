@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/capture_walk_rollout.py",
+    "--task",
+    "K1",
+    "--num_envs",
+    "64",
+    "--seed",
+    "7",
+    "--headless",
+    "true",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--load_mode",
+    "warm-start",
+    "--config_patch",
+    "{\"basic\":{\"capture_warmup_steps\":440}}"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 19.437622111001474,
+  "sampled_gpu_peak_mib": 3012,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_132948_391662_frozen_walk_timeout_rollout",
+  "python_jit": "1",
+  "status": "PASS"
+}

@@ -1,0 +1,3 @@
+call ../Includes/Normal
+ar directGoals on
+gc playing

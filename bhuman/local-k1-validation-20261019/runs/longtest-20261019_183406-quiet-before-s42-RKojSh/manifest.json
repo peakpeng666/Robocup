@@ -1,0 +1,14 @@
+{
+  "profile": "quiet",
+  "variant": "before",
+  "seed": 42,
+  "steps": 400,
+  "num_envs": 28,
+  "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "code_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+  "before_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d",
+  "harness_sha256": "13ef82a4dd850fd0cc7bcf47b9e785e88fa34de6ec87a1125f9d1ab69aca7780",
+  "physics_sampling": "every DOF refresh and actuation setter, not only the last substep",
+  "stance_criterion": "height >=.45m, abs roll/pitch <=.35rad, linear norm <=.5m/s, angular norm <=1.5rad/s for >=.2s",
+  "joint_sim_gate": "physical max <=.05rad and continuous >.01rad <=.10s; no hardware-safety claim"
+}

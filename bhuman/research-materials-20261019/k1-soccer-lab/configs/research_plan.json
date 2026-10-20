@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "proposed_experiment_plan_not_results",
+  "baseline": {
+    "repository": "bhuman_training",
+    "revision": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+    "working_directory": "IsaacGymRL",
+    "task": "K1",
+    "history": true,
+    "checkpoint": "pre-trained/WalkAndKick/K1_walk.pth",
+    "command": ["python", "train.py", "--history", "--task=K1", "--checkpoint=pre-trained/WalkAndKick/K1_walk.pth", "--headless=1"],
+    "policy_hz": 50,
+    "physics_dt_s": 0.002,
+    "training_environments_upstream_default": 4096,
+    "note": "Use upstream Python 3.8 / Isaac Gym Preview4 environment; this is not runnable in the current CPU-only Python 3.12 session. Inspect the upstream curriculum before long training. Checkpoint loading is not a bit-exact interrupted-run resume."
+  },
+  "stages": [
+    {"id":"P0", "goal":"reproduce stock K1 walk, kick and stand-up separately; freeze tensor and motor contract"},
+    {"id":"P1", "goal":"identify measured actuator/sensor/latency distributions; improve recurrent or history-based state estimation"},
+    {"id":"P2", "goal":"train robustness curriculum; hold out combined disturbances and robot identities"},
+    {"id":"P3", "goal":"retarget T1 reactive soccer skill training to K1; keep B-Human behavior and rule handling"},
+    {"id":"P4", "goal":"train high-level decentralized cooperation with centralized critics and historical opponent pools"},
+    {"id":"P5", "goal":"validate identical model/config/service semantics across isolated virtual robots and hardware"}
+  ],
+  "proposed_validation": {
+    "training_seeds": [0, 1, 2],
+    "splits": ["nominal", "held_out_noise", "held_out_dynamics", "combined_shift", "unseen_opponents"],
+    "trial_statuses": ["success", "fall", "timeout", "crash", "invalid_action", "aborted", "missing"],
+    "denominator": "all pre-registered trials, including missing or failed executions",
+    "metrics": ["fall_rate", "command_tracking_error", "sensor_to_action_p50_p95_p99", "getup_success", "kick_success", "kick_direction_error", "kick_exit_speed", "contact_force", "energy", "temperature", "win_draw_loss", "goals_for_against", "pass_completion", "team_packet_budget", "gc_stop_response"],
+    "note": "All target thresholds and disturbance ranges must be set from measured K1 limits and a frozen baseline. This plan does not claim stability outside a defined distribution."
+  }
+}

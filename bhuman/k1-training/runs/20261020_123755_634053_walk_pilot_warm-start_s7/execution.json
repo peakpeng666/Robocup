@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+    "--history",
+    "--task",
+    "K1",
+    "--num_envs",
+    "64",
+    "--max_iterations",
+    "5",
+    "--save_interval",
+    "1",
+    "--seed",
+    "7",
+    "--headless",
+    "true",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--load_mode",
+    "warm-start",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_123755_634053_walk_pilot_warm-start_s7"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 12.31770389600024,
+  "sampled_gpu_peak_mib": 3126,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_123755_634053_walk_pilot_warm-start_s7",
+  "python_jit": "1",
+  "status": "PASS"
+}

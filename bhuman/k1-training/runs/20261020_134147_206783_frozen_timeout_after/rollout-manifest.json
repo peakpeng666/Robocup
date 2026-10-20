@@ -1,0 +1,19 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134147_206783_frozen_timeout_after/frozen_rollout.pth",
+  "sha256": "5603d8e7cbe4f0e01ecaf011c9c72fb33e801dd78d1809605b8b856eb11fd075",
+  "source_sha256": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "num_envs": 64,
+  "horizon": 24,
+  "warmup_policy_steps": 440,
+  "optimization_steps": 0,
+  "model_unchanged": true,
+  "done_events": 0,
+  "timeout_events": 7,
+  "timeout_boundary_audit": {
+    "steps_observed": 464,
+    "current_timeout_events": 17,
+    "returned_timeout_events": 17,
+    "mismatched_env_steps": 0
+  },
+  "physics_state_serialized": false
+}

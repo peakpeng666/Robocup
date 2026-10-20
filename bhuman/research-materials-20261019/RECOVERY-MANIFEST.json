@@ -1,0 +1,294 @@
+{
+  "saved_at": "2026-10-19T19:40:27.542971+09:00",
+  "original_zip_byte_copy_available": false,
+  "recovered_zip": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019/k1-soccer-lab-0.1.0.recovered.zip",
+    "sha256": "7ebc579cf4aaad03ca170a199edf953e9181974521640314844f9ebbf1c9ab47",
+    "note": "Repacked from all 51 extracted files; not claimed byte-identical to original ZIP."
+  },
+  "original_pdf_byte_copy_available": false,
+  "pdf_recovery": "All 19 pages extracted text plus rendered pages 4,8,9; this does not reproduce the original PDF layout.",
+  "original_artifact_identities": [
+    {
+      "path": "/home/peakpeng/Desktop/k1_baseline_cpu_smoke.mp4",
+      "bytes": 821602,
+      "sha256": "4fa45db1acb5f06ae36df7cced2ec0e8307a239b6a0ddca3af9a6a11103fbb0b",
+      "executed": false
+    },
+    {
+      "path": "/home/peakpeng/Desktop/k1-soccer-tooling-0.1.0.run",
+      "bytes": 101524,
+      "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64",
+      "executed": false
+    },
+    {
+      "path": "/home/peakpeng/Desktop/k1-soccer-lab-0.1.0.zip",
+      "bytes": 1260454,
+      "sha256": "9ecc809ff015ce753083fa8214ba6c1586a34fa8dc140ccbe5241555e6ffe97c",
+      "executed": false
+    },
+    {
+      "path": "/home/peakpeng/Desktop/K1_RoboCup_Research_and_Implementation_2026-10-19.pdf",
+      "bytes": 572543,
+      "sha256": "c77229145600bdd344dedb5b35b605298eb8b0328b9b699f979fe73e98a4a708",
+      "executed": false
+    }
+  ],
+  "source_files": [
+    {
+      "path": "README.md",
+      "size": 5996,
+      "sha256": "392e2b274bf8a7d6d9e8288ff1679d626f952f0abc0155e247738e0db860ac18"
+    },
+    {
+      "path": "configs/hardware.template.json",
+      "size": 765,
+      "sha256": "fc222b28ebdcba61ed9d71835bc0c9325baf0064809e8aa14e5d8566c9e1598c"
+    },
+    {
+      "path": "configs/network.example.json",
+      "size": 965,
+      "sha256": "79ea438960cfb1fef00c9342a9c14c3ddc2fa104921822b3c25d3665b71b1555"
+    },
+    {
+      "path": "configs/research_plan.json",
+      "size": 2406,
+      "sha256": "d981d3e98858ec67120fdcd38d140434d44db42db90fbfcee4a52b980eff2507"
+    },
+    {
+      "path": "delivery-manifest.json",
+      "size": 771,
+      "sha256": "709c5430f88fb9f1cae90dea9f55f05e882691c74137552691f428442e976538"
+    },
+    {
+      "path": "dist/k1-soccer-tooling-0.1.0.run",
+      "size": 101524,
+      "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64"
+    },
+    {
+      "path": "docs/COMMUNITY.zh-CN.md",
+      "size": 3420,
+      "sha256": "7577225958524c709d3640b48ff58c30cf8f70074d282faea07005f8749a2841"
+    },
+    {
+      "path": "docs/INSTALLATION.md",
+      "size": 4078,
+      "sha256": "b39421d87cde3aa734580c33f53d1805ca0ce80007480930662963c4e09a42be"
+    },
+    {
+      "path": "docs/LITERATURE.zh-CN.md",
+      "size": 11363,
+      "sha256": "6a99aa44ee0b4128d954b7f4e0ebf5388800259b0d01b4749f14ea6884d8ec6c"
+    },
+    {
+      "path": "docs/NETWORK.md",
+      "size": 6960,
+      "sha256": "5c6f51065d686ba44452f2ac6cebed24a57f6dd39137fb3814521e599d06caeb"
+    },
+    {
+      "path": "docs/RESEARCH.zh-CN.md",
+      "size": 28746,
+      "sha256": "5e13c2b57ced99c29abd12022e984532206a37269ea9772b6edc1ac93bb4883b"
+    },
+    {
+      "path": "docs/VALIDATION.zh-CN.md",
+      "size": 4367,
+      "sha256": "ed41c3af60f6f8f171f0496083fa01dc7ca44d61f1241b6333bb466cbc101cdf"
+    },
+    {
+      "path": "docs/evidence/bhuman_findings.json",
+      "size": 4802,
+      "sha256": "747b0b55c08a0df3e462fc564ce0753c3bad818a138b10f7d0d15440adcab551"
+    },
+    {
+      "path": "docs/evidence/bhuman_findings.md",
+      "size": 21617,
+      "sha256": "8edf92f7da9af6a08fd96ad78b2570cd5fd0fd8a2260c83ad114cc900a6ecfb4"
+    },
+    {
+      "path": "docs/evidence/booster_community_supplement.md",
+      "size": 5710,
+      "sha256": "1e9d4c7db0ae052b2efdd525f5000e1efb0952bd5122fcb6b9f339434d51496a"
+    },
+    {
+      "path": "docs/evidence/huoshen_findings.md",
+      "size": 11809,
+      "sha256": "ef4d34d1d12040503581b4298dfd697b125cf91f22ce85c4a51ee3a9371591ef"
+    },
+    {
+      "path": "docs/evidence/journal_addendum.md",
+      "size": 11364,
+      "sha256": "0c5634b319714a1ef566edee0a2c8004703fdccba7665728f9acc012aa40399c"
+    },
+    {
+      "path": "docs/evidence/literature_findings.md",
+      "size": 19862,
+      "sha256": "f56a97b400f535678435d8a50960c4fa827c45eec5833cbfd8b81051ea2d28ad"
+    },
+    {
+      "path": "docs/licenses/B-Human-License.md",
+      "size": 4314,
+      "sha256": "c6a45c95a37960f789fa65a926a4df64cbe3716526f354cefc363f757bfc7914"
+    },
+    {
+      "path": "docs/licenses/NotoSansSC-OFL.txt",
+      "size": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "docs/udp-loopback-results.json",
+      "size": 950,
+      "sha256": "5afe079c652de35fc9f72f098d45c709ca712953f2b5ef6fa06805e86aae8e21"
+    },
+    {
+      "path": "docs/validation-results.json",
+      "size": 5302,
+      "sha256": "70bec2f35c85e5b3ff1f7cbab8409a657e0c0031360edad410c50617e2d3619e"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/LICENSE",
+      "size": 916,
+      "sha256": "e7c650725db8a696fc587cb7ec88b7685f81841f12002e2385b47d7e54e6c0d3"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/README.md",
+      "size": 5615,
+      "sha256": "82249b0b330eadc261ab9c27ffe57c665ca640a582f498717a4ad2634ee95efb"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/download_assets.py",
+      "size": 1959,
+      "sha256": "ece99b0c69f9a7573f889b03755e5f98435f31c42637bf3de54dff2837523768"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/download_manifest.json",
+      "size": 8949,
+      "sha256": "ddc5c7047996de9d7f6e7f17f353965b85d9db1177e4f03801b9590175940a5c"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/headless_smoke.py",
+      "size": 8976,
+      "sha256": "849b23cc9d6b2a69a65ac0206185db1ecc509421fce70d5850e0110d096a0e69"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/k1_baseline_cpu_smoke.mp4",
+      "size": 821602,
+      "sha256": "4fa45db1acb5f06ae36df7cced2ec0e8307a239b6a0ddca3af9a6a11103fbb0b"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/k1_baseline_cpu_smoke.png",
+      "size": 164083,
+      "sha256": "36d073d0d016762e693301a9e87cce416388796fa54fcf590120b6b9a9230f4f"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/render_smoke.py",
+      "size": 2450,
+      "sha256": "34140fab9b26c2867deee00b6d07ea255910ca0ac067044547bf9cf9bc553d4b"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/requirements-cpu.txt",
+      "size": 238,
+      "sha256": "b29ba3a6b9fd3a392bda0443c7cb6a8e38a1aff6b98838a6759e244d137f326e"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/smoke_result.json",
+      "size": 1501,
+      "sha256": "528da28d99dba438d02f01c331d03d3dd2308bab9b5ebdd0372b3a75770f3801"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/smoke_trace.csv",
+      "size": 28545,
+      "sha256": "0a641a403475aa693072e69d7cca2842e886be850946f54e7f4a15365af17940"
+    },
+    {
+      "path": "experiments/bhuman_cpu_baseline/smoke_trajectory.npy",
+      "size": 37248,
+      "sha256": "6abc04d61475a0a9b648a03d04a76d8d0a2a1674e3c4a5f1f2591a337bf9769d"
+    },
+    {
+      "path": "k1lab/__init__.py",
+      "size": 98,
+      "sha256": "00dc8def57aeb3be7756f3a4403b7a5568697fc1c720f2a0b5e19f4b15abd1e6"
+    },
+    {
+      "path": "k1lab/gc2026.py",
+      "size": 7836,
+      "sha256": "b842ae51d4da1fff16f2daf35850b3a2aa19c0271c7640da317601313960a681"
+    },
+    {
+      "path": "release/README.md",
+      "size": 4078,
+      "sha256": "b39421d87cde3aa734580c33f53d1805ca0ce80007480930662963c4e09a42be"
+    },
+    {
+      "path": "release/build_run.py",
+      "size": 7031,
+      "sha256": "15c2ef8190d495e7abd8385e1382e10917e70798919ce47080f8e510c8cc6457"
+    },
+    {
+      "path": "release/final-package-checks.json",
+      "size": 4178,
+      "sha256": "1a51444084878d393f62e7b0041c1081fa911e84ee4daceeb9f00efef2c65ece"
+    },
+    {
+      "path": "release/installer.py",
+      "size": 21535,
+      "sha256": "54533fa22735ff6d13b83e3977a906b7a926e57f6cc1c14c2754623a72267321"
+    },
+    {
+      "path": "release/test-results.json",
+      "size": 892,
+      "sha256": "a4c1cb6425dbb02cae1ab23695384634e59e609bcde1a0e4ad65fc56d638b224"
+    },
+    {
+      "path": "sources.lock.json",
+      "size": 3252,
+      "sha256": "d53e42936f3a1f4abc6c349729d799787da05321fd8afb97e4a87cc087637f7d"
+    },
+    {
+      "path": "tests/abi_fixture.c",
+      "size": 1742,
+      "sha256": "30c59741f90e3ab27bcb32fd6c8abad98e3ea6359211040bfc69f4b7b2189fc0"
+    },
+    {
+      "path": "tests/test_gc2026.py",
+      "size": 4546,
+      "sha256": "fde40eadd6620cc8871936918c33031818431f057f7fd982d8e20eedd7e6ce2c"
+    },
+    {
+      "path": "tests/test_release.py",
+      "size": 16365,
+      "sha256": "2666eb26b67e5eedac213404d79d47e613a7d39f1d3aa749bcf3230f40b2b96f"
+    },
+    {
+      "path": "tools/check_policy_contract.py",
+      "size": 1812,
+      "sha256": "9b729f0d97dd1a576aa033c02113e4bf700322f770878e4fc6c49d8c3e50aacc"
+    },
+    {
+      "path": "tools/checkout_sources.py",
+      "size": 2821,
+      "sha256": "5e5aaab6c43937410239d6e04c363ae22b48bf36844bc6b79ec6c17e32cddb71"
+    },
+    {
+      "path": "tools/gc_probe.py",
+      "size": 4645,
+      "sha256": "a8d3cca7c2ae916eee84ce7b1efc0eeff7a569bf7ac928b0de44f821ad9c73b3"
+    },
+    {
+      "path": "tools/udp_loopback_smoke.py",
+      "size": 2708,
+      "sha256": "d87d17fa5e6291cf1ed0db20080fadcf944ad383e67b8d48bb1119ebeea0c23f"
+    },
+    {
+      "path": "vendor/hsl2026/LICENSE",
+      "size": 1074,
+      "sha256": "92ed5509aeb98f234fa1c253fc41e4fd1b6aaf69d894342b8bfc0f9581b9e874"
+    },
+    {
+      "path": "vendor/hsl2026/RoboCupGameControlData.h",
+      "size": 5778,
+      "sha256": "5216f2e2367e19fbc3840bd821f72b7fe7f371cd0f56ecb59c51bb7f3879d7f0"
+    }
+  ]
+}

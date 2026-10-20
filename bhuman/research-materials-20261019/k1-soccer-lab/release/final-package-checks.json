@@ -1,0 +1,67 @@
+{
+  "recorded_at": "2026-10-19T07:11:12.193984+00:00",
+  "artifact": "/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run",
+  "sha256": "e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64",
+  "size": 101524,
+  "passed": true,
+  "current": "releases/0.1.0",
+  "tests": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/ddfc9e6d5cc3/k1-soccer-lab/release/build_run.py",
+        "--source",
+        "/workspace/scratch/ddfc9e6d5cc3/k1-soccer-lab",
+        "--output",
+        "/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run",
+        "--version",
+        "0.1.0"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"artifact_kind\": \"tooling\",\n  \"checksum_role\": \"integrity_only_not_signature\",\n  \"contains_trained_policy\": false,\n  \"files\": 27,\n  \"output\": \"/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run\",\n  \"robot_flash_supported\": false,\n  \"sha256\": \"e68819fea54ab7e68225a1cce350dc8f9874667e0883dbafae4201697c057b64\",\n  \"version\": \"0.1.0\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run",
+        "--verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"artifact_kind\": \"tooling\", \"checksum_role\": \"integrity_only_not_signature\", \"contains_trained_policy\": false, \"files\": 27, \"robot_flash_supported\": false, \"status\": \"verified\", \"version\": \"0.1.0\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run",
+        "--install-root",
+        "/tmp/k1-final-install-zycycv1z/k1-soccer-tooling"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"artifact_kind\": \"tooling\", \"checksum_role\": \"integrity_only_not_signature\", \"contains_trained_policy\": false, \"current\": \"releases/0.1.0\", \"install_root\": \"/tmp/k1-final-install-zycycv1z/k1-soccer-tooling\", \"robot_flash_supported\": false, \"status\": \"installed\", \"version\": \"0.1.0\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/tmp/k1-final-install-zycycv1z/k1-soccer-tooling/current/tools/gc_probe.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: gc_probe.py [-h] --team TEAM --player PLAYER [--listen-ip LISTEN_IP]\n                   [--gc-ip GC_IP] [--source-ip SOURCE_IP]\n                   [--status-file STATUS_FILE] [--seconds SECONDS]\n\nPlayer-side HSL protocol probe. Passive by default; it never drives motors.\nStatus transmission requires --status-file, --source-ip, and --gc-ip together.\nThat file must contain fresh estimated robot state, not simulator ground\ntruth. Do not run a second player client beside an active B-Human process on\none IP.\n\noptions:\n  -h, --help            show this help message and exit\n  --team TEAM\n  --player PLAYER\n  --listen-ip LISTEN_IP\n  --gc-ip GC_IP         accept only this IPv4 source; mandatory when returning\n                        status\n  --source-ip SOURCE_IP\n                        this virtual/physical robot's own IPv4 address\n  --status-file STATUS_FILE\n  --seconds SECONDS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run",
+        "--install-root",
+        "/tmp/k1-final-install-zycycv1z/k1-soccer-tooling"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"artifact_kind\": \"tooling\", \"checksum_role\": \"integrity_only_not_signature\", \"contains_trained_policy\": false, \"current\": \"releases/0.1.0\", \"install_root\": \"/tmp/k1-final-install-zycycv1z/k1-soccer-tooling\", \"robot_flash_supported\": false, \"status\": \"installed\", \"version\": \"0.1.0\"}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Final tooling package verification, install, installed CLI help and idempotent reinstall in a temporary directory; no hardware or external networking."
+}

@@ -1,0 +1,27 @@
+{
+  "include/booster/robot/b1/b1_api_const.hpp": {
+    "official_local_sha256": "59f1eee3feb73a8041c52d8222caccde3b97ac601e7caa94b4235f270c8ad030",
+    "bhuman_vendored_sha256": "dbd19178fd8423ce22d5042f42daba1855bfe4084ec09f575c07145149ced873",
+    "identical": false
+  },
+  "include/booster/idl/b1/LowCmd.h": {
+    "official_local_sha256": "8a60246228c7eff258462bce830228b9cbfda31b8146cbd1f05f2d8da5c32378",
+    "bhuman_vendored_sha256": "ae8ccc3e2bf8061c9a7f2359baf49c4f9de181113e3487d4f7265c2d3546d630",
+    "identical": false
+  },
+  "include/booster/idl/b1/LowState.h": {
+    "official_local_sha256": "8f3b5fd2dc76d37734b44bc49c661b1b9161f22ae50a4a78705263a74b87bc27",
+    "bhuman_vendored_sha256": "488047b0686167dc03d9dfa834e6a9e940a76e2e465411b5c7618006cb4939fd",
+    "identical": false
+  },
+  "include/booster/idl/b1/MotorCmd.h": {
+    "official_local_sha256": "60dccc3c2295a19bb482151e9a529bef0343b895a0ad01acfda0f5fb93414496",
+    "bhuman_vendored_sha256": "97799c464b1ba2623841a55db9f4ec4f07bf6e25f4f54117a4af774c3282f4b0",
+    "identical": false
+  },
+  "include/booster/idl/b1/MotorState.h": {
+    "official_local_sha256": "d8c6dd50a1c4846b56fb1524b04116306491b5c6eb0ab6a305ce589d593f7ccc",
+    "bhuman_vendored_sha256": "f607d7759169f9fb57b7ec1bce5886a5bb9943e1c8d445369206f3fcd6fde4e4",
+    "identical": false
+  }
+}

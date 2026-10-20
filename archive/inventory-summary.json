@@ -1,0 +1,40 @@
+{
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "excluded_local_dependencies_and_unrelated_plugins": [
+    "bhuman/k1-training/cache",
+    "bhuman/k1-training/third_party",
+    "bhuman/k1-training/downloads",
+    "bhuman/local-k1-validation-20261019/runtime",
+    ".v2c",
+    ".video_agent"
+  ],
+  "counts": {
+    "directory": 7091,
+    "file": 50859,
+    "symlink": 49
+  },
+  "regular_file_bytes": 17035258934,
+  "secret_pattern_findings": [
+    {
+      "path": "bhuman/BHumanCodeRelease/Install/Keys/id_rsa_b-human",
+      "sha256": "8f3a14063f140b2b2f2efc9f377d6fdbda5307898e1447550f3ad43aacf4a93e",
+      "known_published_bhuman_key": true
+    },
+    {
+      "path": "bhuman/BHumanCodeRelease/Util/LogAnalyzer/requirements.txt",
+      "sha256": "f1dbd53875a974aac8672e9e5337e026dde97aff41019c8df0334f7b40c8725c",
+      "known_published_bhuman_key": false
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/bhuman-local/Install/Keys/id_rsa_b-human",
+      "sha256": "8f3a14063f140b2b2f2efc9f377d6fdbda5307898e1447550f3ad43aacf4a93e",
+      "known_published_bhuman_key": true
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/bhuman-local/Util/LogAnalyzer/requirements.txt",
+      "sha256": "f1dbd53875a974aac8672e9e5337e026dde97aff41019c8df0334f7b40c8725c",
+      "known_published_bhuman_key": false
+    }
+  ],
+  "seconds": 18.074955701828003
+}

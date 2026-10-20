@@ -1,0 +1,23 @@
+<root BTCPP_format="4">
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+    <include path="./subtrees/subtree_locate.xml" />
+
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <Script code="gc_game_state = 'PLAY'" />
+            <Script code="gc_game_sub_state_type = 'NONE'" />
+            <Script code="gc_is_under_penalty = false" />
+            <ReactiveSequence _while="control_state==2"
+                name="然后按下 LT + A, 重新校准定位, 等待数秒后, 按 LT + B 继续 chase 测试">
+                <Speak text="locate" />
+                <CalibrateOdom x="-7" y="0" theta="0" />
+            </ReactiveSequence>
+            <ReactiveSequence _while="control_state==3"
+                name="直接执行 AMPChase, 用于测试 chase">
+                <SubTree ID="CamFindAndTrackBall" _autoremap="true" />
+                <SubTree ID="Locate" _autoremap="true" />
+                <AMPChase stop_dist="0.3" slow_down_dist="2.5" slow_down_speed="0.9" stop_angle="0.2" />
+            </ReactiveSequence>
+        </Sequence>
+    </BehaviorTree>
+</root>

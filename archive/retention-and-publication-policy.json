@@ -1,0 +1,34 @@
+{
+  "visibility_requested": "public",
+  "known_sensitive_upstream_url_userinfo": "Removed from public copies; original files and all original Git metadata encrypted. No secret values included in this report.",
+  "public_working_tree_scan": "No unreviewed high-confidence token/private-key patterns in staged browseable files.",
+  "git_history": "Entire original Git metadata is encrypted, including unreachable objects and config.",
+  "local_retention": [
+    "/home/peakpeng/.venvs/bh-gym",
+    "/home/peakpeng/.venvs/isaaclab",
+    "/home/peakpeng/.venvs/isaacsim-gui",
+    "/home/peakpeng/IsaacLab",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/downloads",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/torch_extensions",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/cuda",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/env.sh",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime",
+    "/home/peakpeng/.local/share/robocup-archive"
+  ],
+  "cleanup_preconditions": [
+    "Remote main commit verified",
+    "Every release asset size and SHA256 verified against GitHub server digest",
+    "Local archives verified file by file; GPG authenticated decryption passed",
+    "Original source files unchanged since snapshot",
+    "Post-cleanup environment dependency paths and light imports verified"
+  ],
+  "project_only_caches_eligible_for_cleanup": [
+    "bhuman/k1-training/cache/pip",
+    "bhuman/k1-training/cache/uv"
+  ],
+  "unrelated_plugin_state_left_alone": [
+    ".v2c",
+    ".video_agent"
+  ]
+}

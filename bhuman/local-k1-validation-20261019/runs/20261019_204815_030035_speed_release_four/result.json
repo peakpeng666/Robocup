@@ -1,0 +1,73 @@
+{
+  "status": "BENCHMARK_COMPLETED",
+  "scope": "performance only; full match acceptance is separate",
+  "sim_s": 12,
+  "wall_s": 25.050242424003955,
+  "real_time_factor": 0.4790372802341111,
+  "exit_code": 0,
+  "errors": [],
+  "cpu_core_equivalents": 9.7939171943864,
+  "max_thread_count": 50,
+  "top_threads": [
+    {
+      "name": "robot21.Color",
+      "cpu_ticks": 2191
+    },
+    {
+      "name": "robot2.Color",
+      "cpu_ticks": 2188
+    },
+    {
+      "name": "robot1.Color",
+      "cpu_ticks": 2121
+    },
+    {
+      "name": "robot23.Color",
+      "cpu_ticks": 2117
+    },
+    {
+      "name": "robot3.Color",
+      "cpu_ticks": 2081
+    },
+    {
+      "name": "robot22.Color",
+      "cpu_ticks": 2066
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1899
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1897
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1897
+    },
+    {
+      "name": "robot21.Debug",
+      "cpu_ticks": 1296
+    },
+    {
+      "name": "robot21.LocalCo",
+      "cpu_ticks": 1116
+    },
+    {
+      "name": "Main",
+      "cpu_ticks": 654
+    },
+    {
+      "name": "robot2.Debug",
+      "cpu_ticks": 219
+    },
+    {
+      "name": "robot3.Debug",
+      "cpu_ticks": 206
+    },
+    {
+      "name": "robot2.LocalCon",
+      "cpu_ticks": 180
+    }
+  ]
+}

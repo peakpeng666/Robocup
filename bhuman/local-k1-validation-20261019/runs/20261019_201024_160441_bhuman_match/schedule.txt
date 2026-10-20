@@ -1,0 +1,1 @@
+# Match uses public behavior and the built-in automatic referee.

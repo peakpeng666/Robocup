@@ -1,0 +1,393 @@
+{
+  "evaluations": [
+    {
+      "seed": 2027,
+      "baseline": {
+        "run": "runs/20261020_141350_477395_walk_eval_s2027",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+            "--seed",
+            "2027",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.735072784000295,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141350_477395_walk_eval_s2027",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "71800052f1cc6257d23ae481a991e0afa7c5159863f82c3663aed8159ecbbf46",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "policy_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+        "seed": 2027,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.14200965190927187,
+          0.20842091490825018,
+          0.3538074816266696
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 5,
+        "envs": 8,
+        "joint_overshoot_rad": 8.064508438110352e-05,
+        "torque_saturation_ratio": 0.00034722222222222224,
+        "results_sha256": "43496dd14a7511e49e61ffc94408e4fd64a38f3ecda4695313a13b341780639d"
+      },
+      "candidate": {
+        "run": "runs/20261020_140956_374479_walk_eval_s2027",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+            "--seed",
+            "2027",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.748372255000504,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140956_374479_walk_eval_s2027",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "d2d03df5d6a9fadc155e03e9ed2c89b3a767b4317728e41e29273abba687636e",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+        "policy_sha256": "d3873edd4ea5e45e29e32b6bb5dc16e4d2088ba2fbae62e96f48f8121fb2b9de",
+        "seed": 2027,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.12762097269296646,
+          0.20182056725025177,
+          0.3173653744161129
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 4,
+        "envs": 8,
+        "joint_overshoot_rad": 9.185075759887695e-05,
+        "torque_saturation_ratio": 0.00032118055555555556,
+        "results_sha256": "62cb758063111c6852a6fe3aa866cfb445d9459585e0db319fe7b1c93da5df55"
+      },
+      "segments_exceeding_30pct": [
+        {
+          "segment": "left",
+          "axis": "vx",
+          "baseline": 0.07544384151697159,
+          "candidate": 0.10899742692708969,
+          "relative_change": 0.44474916355591465
+        },
+        {
+          "segment": "diag_fwd_left",
+          "axis": "wz",
+          "baseline": 0.3659028708934784,
+          "candidate": 0.514829158782959,
+          "relative_change": 0.4070104383871751
+        }
+      ]
+    },
+    {
+      "seed": 2028,
+      "baseline": {
+        "run": "runs/20261020_141038_825744_walk_eval_s2028",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+            "--seed",
+            "2028",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.73384127800091,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141038_825744_walk_eval_s2028",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "677fb0316ef4ebcf0dce6d16ee3ff7bf53b873e471175bbc7d7dec3854093337",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "policy_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+        "seed": 2028,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.14746630315979323,
+          0.20086227357387543,
+          0.29902807623147964
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 3,
+        "envs": 8,
+        "joint_overshoot_rad": 5.21242618560791e-05,
+        "torque_saturation_ratio": 0.0003559027777777778,
+        "results_sha256": "04ae189528458996e62a1f35d9012e09e93ce62f70671fd479fd247c2994b36e"
+      },
+      "candidate": {
+        "run": "runs/20261020_141112_611066_walk_eval_s2028",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+            "--seed",
+            "2028",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.734465610999905,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141112_611066_walk_eval_s2028",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "0b9f0e446c1dea51350ac362bf8d07636e4943c043653a7ed0e7ee63d6733276",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+        "policy_sha256": "d3873edd4ea5e45e29e32b6bb5dc16e4d2088ba2fbae62e96f48f8121fb2b9de",
+        "seed": 2028,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.16228596431513628,
+          0.21499855568011603,
+          0.3123448354502519
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 3,
+        "envs": 8,
+        "joint_overshoot_rad": 0.0005388855934143066,
+        "torque_saturation_ratio": 0.000703125,
+        "results_sha256": "54775a235cb3f5d4fab93b43c28b2a4a6f42f528aeaad4c9f586b82526bb3483"
+      },
+      "segments_exceeding_30pct": [
+        {
+          "segment": "turn_left",
+          "axis": "vx",
+          "baseline": 0.10360779613256454,
+          "candidate": 0.14121389389038086,
+          "relative_change": 0.3629659076011993
+        },
+        {
+          "segment": "turn_left",
+          "axis": "vy",
+          "baseline": 0.15784697234630585,
+          "candidate": 0.2125505656003952,
+          "relative_change": 0.34656092822656914
+        },
+        {
+          "segment": "diag_fwd_right",
+          "axis": "vx",
+          "baseline": 0.09481680393218994,
+          "candidate": 0.2026251256465912,
+          "relative_change": 1.1370170396325787
+        },
+        {
+          "segment": "diag_fwd_right",
+          "axis": "wz",
+          "baseline": 0.28263989090919495,
+          "candidate": 0.38660338521003723,
+          "relative_change": 0.36783022370413776
+        },
+        {
+          "segment": "stop_settle",
+          "axis": "vx",
+          "baseline": 0.26184555888175964,
+          "candidate": 0.350023478269577,
+          "relative_change": 0.3367554514363005
+        }
+      ]
+    },
+    {
+      "seed": 2029,
+      "baseline": {
+        "run": "runs/20261020_141146_399840_walk_eval_s2029",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+            "--seed",
+            "2029",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.75636821400076,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141146_399840_walk_eval_s2029",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "a3bb26d69879a1f1d4997f27a93cfe3c7c7d03e4802e7a1eeb1379a9b2f68672",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "policy_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+        "seed": 2029,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.13651989959180355,
+          0.1981115055580934,
+          0.34341396888097125
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 3,
+        "envs": 8,
+        "joint_overshoot_rad": 0.0010691285133361816,
+        "torque_saturation_ratio": 0.0006423611111111111,
+        "results_sha256": "7c5600e87540868901b4224b8b0a1418ea45e9591eb1a5dd571a5c0e6f5343cb"
+      },
+      "candidate": {
+        "run": "runs/20261020_141220_215134_walk_eval_s2029",
+        "execution": {
+          "command": [
+            "/home/peakpeng/.venvs/bh-gym/bin/python",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+            "--policy",
+            "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+            "--seed",
+            "2029",
+            "--seg-steps",
+            "100",
+            "--num-envs",
+            "8"
+          ],
+          "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+          "exit_code": 0,
+          "wall_s": 33.714815442001054,
+          "sampled_gpu_peak_mib": 2946,
+          "stop_reason": null,
+          "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141220_215134_walk_eval_s2029",
+          "python_jit": "1",
+          "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+          "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+          "status": "PASS"
+        },
+        "execution_sha256": "e17490700f10912d54fdb810253dadd31b792bc7d172380cb1ed2fc8bcf67506",
+        "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+        "policy_sha256": "d3873edd4ea5e45e29e32b6bb5dc16e4d2088ba2fbae62e96f48f8121fb2b9de",
+        "seed": 2029,
+        "seg_steps": 100,
+        "segment_mean_settled_rmse": [
+          0.1293381154537201,
+          0.1932352396349112,
+          0.29929256935914356
+        ],
+        "termination_events": {
+          "reset_total": 0,
+          "non_timeout_reset": 0,
+          "episode_timeout_reset": 0,
+          "command_boundary_without_reset": 0
+        },
+        "termination_count_valid": true,
+        "settled": 2,
+        "envs": 8,
+        "joint_overshoot_rad": 3.0159950256347656e-05,
+        "torque_saturation_ratio": 0.00028645833333333333,
+        "results_sha256": "f8e59c66c8765583e5a5e7bfc392a305f719f0ca5a7a001ea9258cfc688228c1"
+      },
+      "segments_exceeding_30pct": []
+    }
+  ],
+  "aggregate_baseline": [
+    0.14199861822028956,
+    0.20246489801340636,
+    0.33208317557970685
+  ],
+  "aggregate_candidate": [
+    0.13974835082060763,
+    0.20335145418842634,
+    0.3096675930751694
+  ],
+  "relative_change": [
+    -0.015847107724604625,
+    0.004378814222706806,
+    -0.06749990409904782
+  ],
+  "baseline_settled": 11,
+  "candidate_settled": 9,
+  "n_env_episodes_per_policy": 24,
+  "per_episode_seconds": 24,
+  "training_seed": 7,
+  "training_iterations": 70,
+  "critic_only_iterations": 20,
+  "actor_iterations": 50,
+  "env_steps": 6881280,
+  "deployment_approved": false,
+  "conclusion": "Bounded continuation avoids the large aggregate degradation seen without a fixed reference; not superior in every segment/seed. One training seed only. No competition or robot promotion."
+}

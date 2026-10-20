@@ -1,0 +1,197 @@
+[
+  {
+    "path": "bhuman/BHumanCodeRelease",
+    "head": "2e3374ba896da8288607f9a1881b876642fe18b8",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/bhuman/BHumanCodeRelease.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "bhuman/MachineLearning",
+    "head": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+    "branch": "master",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/bhuman/MachineLearning.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "bhuman/local-k1-validation-20261019/bhuman-local",
+    "head": "2e3374ba896da8288607f9a1881b876642fe18b8",
+    "branch": "local-k1-sim",
+    "status": "M Make/CMake/SimulatedRobot.cmake\n M Src/Libs/SimulatedRobot/ConsoleRoboCupCtrl.cpp\n M Src/Libs/SimulatedRobot/LocalConsole.cpp\n M Src/Libs/SimulatedRobot/RoboCupCtrl.cpp\n M Src/Libs/SimulatedRobot/TestController.cpp\n M Src/Libs/SimulatedRobot/TestUtils.cpp\n M Src/Threads/Cognition.cpp\n M Src/Threads/Motion.cpp\n M Src/Threads/Perception.cpp\n M Util/CompiledNN2ONNX/include/CompiledNN2ONNX/CompiledNN.h\n M Util/SimRobot\n?? Config/Scenes/K1/AuditFast.con\n?? Config/Scenes/K1/AuditFast.ros3\n?? Config/Scenes/K1/AuditNormal.con\n?? Config/Scenes/K1/AuditNormal.ros3\n?? Config/Scenes/K1/AuditOracle.con\n?? Config/Scenes/K1/AuditOracle.ros3\n?? Config/Scenes/K1/BHumanLocalGait.con\n?? Config/Scenes/K1/BHumanLocalGait.ros3\n?? Config/Scenes/K1/BHumanLocalMatch.con\n?? Config/Scenes/K1/BHumanLocalMatch.ros3",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "1"
+  },
+  {
+    "path": "bhuman/local-k1-validation-20261019/bhuman-local/Util/SimRobot",
+    "head": "9deb6ae6b2a553211612affb757490736f96bfb3",
+    "branch": "",
+    "status": "M Src/SimRobot/MainWindow.cpp\n M Src/SimRobotCore3/Simulation/Simulation.cpp",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/bhuman/SimRobot.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "bhuman/local-k1-validation-20261019/bhuman-local/Util/CompiledNN",
+    "head": "8332c8759f3911e08ded6ac7e088f85620b4c4b5",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/bhuman/CompiledNN.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "bhuman/local-k1-validation-20261019/bhuman-local/Util/pybind11",
+    "head": "0bd8896a4010f2d91b2340570c24fa08606ec406",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/pybind/pybind11.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup",
+    "head": "649b7341f5b79ef7d117dd204ce05314d3b7f4b8",
+    "branch": "sandbox/thu/thu_master",
+    "status": "M src/vision",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/robocup.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "16"
+  },
+  {
+    "path": "robocup/src/robocup_ros2_interface",
+    "head": "270e756e7ab020f0d59e199ce71f85240d9fc49b",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "git@gitee.com:booster_robotics/robocup_ros2_interface.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup/src/ball_tracker",
+    "head": "2e597a58f0d0732d1d35c5949e0d3147f6758b83",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/ball_tracker.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup/src/ros2_sync_package",
+    "head": "eafd40d701ab4a0775243f8cbc2b3418fd8aaeb4",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/ros2_sync_package.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup/src/vision",
+    "head": "3198a6fd61297e0d0c0e4cee387da8186d4e6010",
+    "branch": "",
+    "status": "T thirdparty/lib/libceres.so\n T thirdparty/lib/libceres.so.4",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/booster_vision.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup/src/booster_ros2_interface",
+    "head": "5a6016753900461ad50ca1f03add4923f5df4ef3",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/booster_ros2_interface.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "robocup/src/vision_segmentation",
+    "head": "e9ec53d68e6500466c6ed94576730f349770e4fc",
+    "branch": "",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://gitee.com/booster_robotics/booster_vision_segmentation_deploy.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "booster/robocup_demo",
+    "head": "45b0e16889c25a6f01ec43952bcec685c303ba62",
+    "branch": "support_2026_game_controller",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/BoosterRobotics/robocup_demo.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  },
+  {
+    "path": "booster/booster_robotics_sdk",
+    "head": "324946e7c885de6cd6d37220eca64ed4e0f8d418",
+    "branch": "fw-1.6",
+    "status": "",
+    "remotes": [
+      {
+        "name": "origin",
+        "url": "https://github.com/BoosterRobotics/booster_robotics_sdk.git"
+      }
+    ],
+    "local_commits_not_in_remote_refs": "0"
+  }
+]

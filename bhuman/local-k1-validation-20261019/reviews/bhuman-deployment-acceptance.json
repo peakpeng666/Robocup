@@ -1,0 +1,72 @@
+{
+  "time_utc": "2026-10-19T11:36:34.881212+00:00",
+  "public_contract_sha256": {
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp": "704186f83378272931ccc785095a9d6776bf1963cab572af9797b66943a5a1b2",
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h": "86020512522fe0afbb2792f20913215fa08952b63bcd85f443f31a0ce73d3c6c",
+    "Config/Robots/Default/K1/walkingEngine.cfg": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+    "Config/Robots/Default/K1/motorParameters.cfg": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+    "Config/Robots/SimulatedK1/walkingEngine.cfg": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+    "Config/Robots/SimulatedK1/motorParameters.cfg": "9dd2a3d1030b3729c5acc8f53c34d1126f9c0d0f9c72e5e131b8879f604b1948",
+    "Config/Robots/SimulatedK1/odometryDataPreviewProvider.cfg": "bebcb08d58ed78243c72e692f5d31c637fc9cf5bd8beea09adece4edefdfeb04",
+    "Config/Locations/MField/setupPosesProvider.cfg": "3b4db7e855f86efd601ec264d498512c3421f2fccb9197ff7ac5ee40d9b71786",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/GetUpEngine/K1.onnx": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa"
+  },
+  "gait": {
+    "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_203524_218142_bhuman_gait",
+    "status": "PASS",
+    "postcheck_sha256": "1d26e88b230c5053b237d578e6f85ff33ddbda618086eff56f95f491d7d7bd51",
+    "console_sha256": "5a6cace37f49984cb8082a45d169a5bf903eb7d31ab32e62905e410e54dcc88a",
+    "checks": {
+      "process_exit_zero": true,
+      "completed_requested_steps": true,
+      "no_console_errors": true,
+      "all_robots_reported": true,
+      "all_robots_have_camera_perception_cognition": true,
+      "finite_all_recorded_frames": true,
+      "all_robots_execute_walk": true,
+      "no_fall_or_getup": true,
+      "robot_traveled_over_1m": true,
+      "all_gait_commands_dispatched": true,
+      "forward_response": true,
+      "side_response": true,
+      "turn_response": true,
+      "settled_stop_under_10cm": true,
+      "encoded_video_complete": true,
+      "tested_controller_unchanged": true,
+      "tested_simulator_unchanged": true,
+      "tested_scene_unchanged": true
+    }
+  },
+  "match": {
+    "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_202258_633116_bhuman_match",
+    "status": "PASS",
+    "postcheck_sha256": "b6e1961a956f7651fd74de5c6e0911a5c1299358e0a6721f9f00f8003c6ef633",
+    "console_sha256": "5c6498a32195736179453e112bf38aeb8b8a738d0c6df91e3e62fda20d6f3dd4",
+    "checks": {
+      "process_exit_zero": true,
+      "completed_requested_steps": true,
+      "no_console_errors": true,
+      "all_robots_reported": true,
+      "all_robots_have_camera_perception_cognition": true,
+      "finite_all_recorded_frames": true,
+      "all_robots_execute_walk": true,
+      "ready_set_playing_observed": true,
+      "six_active_robots": true,
+      "all_robots_remain_near_arena": true,
+      "initialization_before_ready": true,
+      "robot_ball_contact_observed": true,
+      "ball_moved_over_30cm": true,
+      "ball_percept_observed": true,
+      "encoded_video_complete": true,
+      "tested_controller_unchanged": true,
+      "tested_simulator_unchanged": true,
+      "tested_scene_unchanged": true
+    }
+  },
+  "status": "PASS"
+}

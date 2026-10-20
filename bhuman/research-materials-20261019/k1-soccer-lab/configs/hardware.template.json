@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "requires_measured_robot_inventory",
+  "model": "Booster K1",
+  "hardware_revision": null,
+  "serial_number": null,
+  "compute_board": null,
+  "cpu_architecture": null,
+  "os_image": null,
+  "sdk_revision": null,
+  "motion_firmware_version": null,
+  "camera_model": null,
+  "camera_calibration_sha256": null,
+  "joint_order_sha256": null,
+  "motor_parameters_sha256": null,
+  "joint_calibration_sha256": null,
+  "safety_controller_version": null,
+  "network_interface": null,
+  "robot_ipv4": null,
+  "gamecontroller_ipv4": null,
+  "competition_profile": "research_3v3_pending_actual_division",
+  "note": "Null values are unresolved facts, not working deployment defaults. Tooling .run packages do not activate motor control."
+}

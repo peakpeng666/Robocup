@@ -1,0 +1,21 @@
+--- a/python/setup.py
++++ b/python/setup.py
+@@ -42,7 +42,6 @@
+           python_requires='>=3.6,<3.9',
+           install_requires = [
+               "torch>=1.8.0",
+-              "torchvision>=0.9.0",
+               "numpy>=1.16.4",
+               "scipy>=1.5.0",
+               "pyyaml>=5.3.1",
+@@ -50,6 +49,10 @@
+               "imageio",
+               "ninja",
+           ],
++          # Local packaging adaptation: the Preview 4 core and B-Human tasks
++          # do not import torchvision. Keep optional vision examples opt-in
++          # so its exact torch dependency cannot replace the cp38 CUDA build.
++          extras_require={"vision": ["torchvision>=0.9.0"]},
+          )
+ 
+ _do_setup()

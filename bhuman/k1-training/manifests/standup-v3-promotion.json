@@ -1,0 +1,72 @@
+{
+  "environment_promotion_gate": true,
+  "mainline_source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "previous_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+  "candidate_file_sha256": "adecfaabc828188eb4a6c73cfe60fa8eb40e1d5397bac3728c66a99620f215eb",
+  "acceptance_report": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/longtest-acceptance.json",
+  "acceptance_sha256": "ab15e1da0a7777b258bbe0001da55c37ed13c86b9c88f2aec50046416ca50339",
+  "backup": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/pre-standup-v3-20261019_191302.zip",
+  "source_snapshot": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/source-snapshots/efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c.zip",
+  "copied_helpers_and_bootstrap": {
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_standup_pilot.sh": "78f4a28af14738cfb743fa282ebd203553d621fe445404a5dabeecc9d943da2f",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/prepare-standup-warmstart.py": "675f6b500924b16e7300aa8aee511c3d2645fadd2fb6c7d998cd10a517ded7c8",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/checkpoints/bootstrap/K1_stand_up.actor-only.pth": "fe8870aa48bb68f543482d740d8d9fd87c3205d8bcf341c92b3319ef2bb07f97",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/checkpoints/bootstrap/K1_stand_up.actor-only.json": "6a47c5f0f4a2dea3b2b6905bebc2156e0edc3b35d551178dabcb9dc84fd1561f"
+  },
+  "training_smoke": {
+    "status": "PASS",
+    "report": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/standup-v3-training-smoke.json",
+    "sha256": "a748948693258bb961765da52a7c451e1105622168c4a8e28bded941caa13643"
+  },
+  "model_deployment_approved": false,
+  "scope": "Local training environment only; original repositories, official policies and robot configuration unchanged.",
+  "revalidations": [
+    {
+      "utc": "2026-10-20T03:43:20Z",
+      "reason": "bh_common.load_checkpoint 增加加载后与源文件逐张量等性校验(仅 actor/warm-start 分支,新增打印与校验,不改训练语义)",
+      "new_mainline_source_sha256": "2e33e63b869f7a6aabf7b31eafd15d623c75a3291b95b47497d60843ce674ca4",
+      "regression": {
+        "standup_warm_start_3it": "runs/20261020_124224_939897_standup_regress_warm",
+        "standup_full_resume_1it": "runs/20261020_124245_376813_standup_regress_full",
+        "both_status": "PASS",
+        "resume_counts": "3->4, env_steps 4608->6144, model/optimizer/RNG equality verified"
+      },
+      "changed_files": [
+        "utils/bh_common.py"
+      ],
+      "env_code_t1_stand_up_unchanged": true
+    },
+    {
+      "utc": "2026-10-20T04:14:43Z",
+      "reason": "runner 增加 --config_patch 单因素实验入口 + bh_common.apply_config_patch(不改默认语义)",
+      "new_mainline_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+      "regression": {
+        "warm": "20261020_131421_733744_standup_regress2_warm",
+        "full": "20261020_131434_046747_standup_regress2_full",
+        "both_status": "PASS"
+      },
+      "changed_files": [
+        "utils/runner.py",
+        "utils/runner_history_symmetry.py",
+        "utils/bh_common.py"
+      ]
+    },
+    {
+      "utc": "2026-10-20T05:14:26.061574+00:00",
+      "reason": "Walk fresh post-step KL, timeout tensor identity fix, optional critic/reference experiments; shared checkpoint helper preserves optimizer group LR. Standup physics code unchanged.",
+      "new_mainline_source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "regression": {
+        "warm": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141315_554903_standup_kl_regression_warm",
+        "full": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141325_828339_standup_kl_regression_full",
+        "both_status": "PASS",
+        "restored_iteration": 3,
+        "restored_env_steps": 4608,
+        "state_equality_verified": true,
+        "rng_restored": true,
+        "environment_state_restored": false
+      },
+      "env_code_t1_stand_up_unchanged": true,
+      "model_deployment_approved": false
+    }
+  ]
+}

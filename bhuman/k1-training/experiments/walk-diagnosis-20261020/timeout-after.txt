@@ -1,0 +1,2 @@
+{"boundary": "command-resample-without-reset", "environment_timeouts": [true, false], "returned_timeouts": [true, false], "fresh": true}
+PASS: current boundary reported and cleared on next step

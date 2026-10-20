@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_130048_569110_walkB_lrfloor_10it/nn/model_final.pth",
+  "sha256": "cdcf3f121e10d47c06bace5c196411fbae727e11887c75de5affe2862e1d67d8",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 10,
+  "env_steps": 61440,
+  "lr": 5.0625e-06,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+  "current_source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+  "environment_state_restored": false
+}

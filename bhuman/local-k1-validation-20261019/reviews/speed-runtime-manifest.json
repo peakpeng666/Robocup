@@ -1,0 +1,129 @@
+{
+  "scope": "Actual shared libraries loaded by the validated six-robot process; existing CUDA environment was not modified.",
+  "versions": {
+    "nvidia_cudnn_cu12": "9.7.1.26",
+    "nvidia_cublas_cu12": "12.8.3.14",
+    "nvidia_cuda_runtime_cu12": "12.8.57",
+    "nvidia_cuda_nvrtc_cu12": "12.8.61"
+  },
+  "wheel_sha256": "d30c1512f22b1f01bacb4f177d49cbefd23e0f4bef56066f1282992d133e6ff8",
+  "libraries": {
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cublas/lib/libcublas.so.12": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cublas/lib/libcublas.so.12",
+      "bytes": 116384544,
+      "sha256": "f6c022dc5fd4583164c5a964f3b470c5170eecd647820831dffe008d8441de99"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cublas/lib/libcublasLt.so.12": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cublas/lib/libcublasLt.so.12",
+      "bytes": 781053840,
+      "sha256": "4ef47ce60325811dfce57acbc2ced3000dbb6c50ce65f4ec34340b1897d6911a"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+      "bytes": 104454480,
+      "sha256": "3d917ecfcbb1d6e1e834c0baf11a2a095c5c137d07e194b1795f2b8dcfa59ee2"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+      "bytes": 728800,
+      "sha256": "218eec4c8385a32e258a0235be4d449986844f2d0de3430052f0924e6fe60f71"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn.so.9",
+      "bytes": 125136,
+      "sha256": "947352ab457779068ab09bb36712cbe61329821171bb3a80f6a6abbc6f4382dc"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_engines_precompiled.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_engines_precompiled.so.9",
+      "bytes": 555760440,
+      "sha256": "7b4177d216a6758ed92a991633ee0d83eb9041b3ab99f323b572cbf2b2b8a787"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_engines_runtime_compiled.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_engines_runtime_compiled.so.9",
+      "bytes": 27276000,
+      "sha256": "fda6c5a884509477a26f95646734cbb7a800f12ab40d5705ec2a25c2023ef863"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_graph.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_graph.so.9",
+      "bytes": 4387616,
+      "sha256": "4a2b2ae91c5430e5a2f683eff8824318fd18ac6f481982ae4e75b070df49abe1"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_heuristic.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_heuristic.so.9",
+      "bytes": 62918344,
+      "sha256": "c4e1198912d430455c6090e7da5d8129d91a4b1846e948b8a2cfd52cecfd97a3"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_ops.so.9": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cudnn/lib/libcudnn_ops.so.9",
+      "bytes": 119547400,
+      "sha256": "1cb34d36627569ab3be54e994b4dea9ebb9c4efcefb61a3884e96966b6b2ed69"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cufft/lib/libcufft.so.11": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/cufft/lib/libcufft.so.11",
+      "bytes": 278924992,
+      "sha256": "0a07d86224ed58e3674a904458f7e5bc42719ffad62e7e094e31404e789751b3"
+    },
+    "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/curand/lib/libcurand.so.10": {
+      "resolved_path": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia/curand/lib/libcurand.so.10",
+      "bytes": 136745144,
+      "sha256": "a55f35bc64c3131874181ecb3f7960488d0be6456b09fd30e74e1514d9815b2d"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore3.so": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore3.so",
+      "bytes": 772160,
+      "sha256": "b8f34083939149d5d9fd9a49705ba1522d7690b85808843df668aad4fe3dca92"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so",
+      "bytes": 24078592,
+      "sha256": "162c37af4f079bf0e76f529f0eb435db31be326f8352aa0b649fe5a55bb5152b"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime.so.1.22.0": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime.so.1.22.0",
+      "bytes": 19950288,
+      "sha256": "09fb71acf9debf4c5755f2c49522bfa80e580223be83d3f4e18744788d4be7db"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime_providers_cuda.so": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime_providers_cuda.so",
+      "bytes": 407530104,
+      "sha256": "c1ea7b552057b2ad58f4d278807ba99eabf565a9bd93d0da2c3162299f59e99e"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime_providers_shared.so": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib/libonnxruntime_providers_shared.so",
+      "bytes": 14632,
+      "sha256": "ee7bf6d4d32f523dbdebf9dec70a1b3287a1a60d019192490732750dc385f98c"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+      "bytes": 256192,
+      "sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Util/onnxruntime/lib/Linux/libonnxruntime.so.1": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Util/onnxruntime/lib/Linux/libonnxruntime.so.1.22.0",
+      "bytes": 21042416,
+      "sha256": "3da6146e14e7b8aaec625dde11d6114c7457c87a5f93d744897da8781e35c673"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/runtime_env.py": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/runtime_env.py",
+      "bytes": 1264,
+      "sha256": "8e655551958fb6846c9625996e305c15b9eb07414424a054a95ea5d5ae5f91ee"
+    },
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/prepare-gpu-vision.py": {
+      "resolved_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/prepare-gpu-vision.py",
+      "bytes": 2082,
+      "sha256": "bcaa9670502c1e0940fba64ec0eba3e9530a8a309abfad943b07ac754918231c"
+    }
+  },
+  "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 595.99.02, 24463 MiB",
+  "official_repositories": {
+    "BHumanCodeRelease": {
+      "sha": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "status_porcelain": ""
+    },
+    "MachineLearning": {
+      "sha": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "status_porcelain": ""
+    }
+  },
+  "training_source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112"
+}

@@ -1,0 +1,28 @@
+{
+  "scope": "ordinary K1 getup 73->22; simulation and bounded training preparation only",
+  "confirmed_fixes": [
+    "Randomized reset q bounded by URDF before teleportation",
+    "Delayed hold targets bounded even if physical q crosses a solver limit",
+    "Geometry probe relocated above terrain; placement uses per-body local terrain clearance",
+    "Root/DOF caches, finite-difference history and reset policy inputs synchronized"
+  ],
+  "residual_peak_example": {
+    "run": "longtest-20261019_185151-published-candidate-s7-public-9VClfF",
+    "phase": "reset_probe",
+    "joint": "Right_Ankle_Pitch",
+    "q_rad": -0.8862706422805786,
+    "lower_rad": -0.8700000047683716,
+    "target_rad": -0.8700000047683716,
+    "submitted_torque_Nm": 0,
+    "reset_actor": false,
+    "max_contact_force_for_actor_N": 3790.48779296875,
+    "interpretation": "Another actor reset advances this actor without a DOF actuation submission for the 2 ms global probe. Contact/inertia/constraint behavior occurs with an in-range target. Per-joint causal decomposition of the contact force has not been measured."
+  },
+  "retained_upstream_semantics": [
+    "Every reset batch still advances the entire world by one extra 2 ms probe; report physical elapsed time separately from policy elapsed time. This should be removed in a separate, benchmarked kinematic-reset implementation before assuming exact 50 Hz at large environment counts.",
+    "Public pushes are submitted once per policy step, not every physics substep. The sustained-force test deliberately differs.",
+    "Intermediate-keyframe resets return gait_process=0 before the next policy update recalculates execution_time/total_time. Leave the public schedule unchanged in this patch; any correction needs a phase-contract ablation."
+  ],
+  "inactive_source_issue": "The head-name lookup writes lower_body_indices instead of head_indices in upstream code. The only consumer is body_in_soles reward, which is commented out in the tested K1 YAML. Fix and validate this before enabling that optional reward.",
+  "training_next": "Use the accepted local code and actor-only bootstrap for a bounded pilot, verify checkpoint/optimizer/RNG restoration and export, then define a duration/seed/scale budget for formal training. Do not treat the public actor or pilot checkpoints as an improved deployable policy."
+}

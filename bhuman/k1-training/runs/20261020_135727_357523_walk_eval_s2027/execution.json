@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+    "--policy",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_135515_150806_walkH_4096_continue50/nn/model_50.pth",
+    "--seed",
+    "2027",
+    "--seg-steps",
+    "100",
+    "--num-envs",
+    "8"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 33.74827155899948,
+  "sampled_gpu_peak_mib": 2946,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_135727_357523_walk_eval_s2027",
+  "python_jit": "1",
+  "source_sha256_at_launch": "17ea9e9668851fb32dc4c7cf97863aacc7976aa0e1102ed5281d55b0762d33dc",
+  "source_sha256_at_end": "17ea9e9668851fb32dc4c7cf97863aacc7976aa0e1102ed5281d55b0762d33dc",
+  "entrypoint_sha256_at_launch": "e53112030a5b2f6eccdc8dd350e3c2d273d9a546e93a984e167d4a6194efc000",
+  "status": "PASS"
+}

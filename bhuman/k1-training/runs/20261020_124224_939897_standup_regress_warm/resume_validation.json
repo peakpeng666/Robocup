@@ -1,0 +1,10 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/checkpoints/bootstrap/K1_stand_up.actor-only.pth",
+  "sha256": "fe8870aa48bb68f543482d740d8d9fd87c3205d8bcf341c92b3319ef2bb07f97",
+  "mode": "warm-start",
+  "format": "bhuman_actor_warmstart_v1",
+  "iteration": null,
+  "env_steps": null,
+  "lr": null,
+  "rng_restored": false
+}

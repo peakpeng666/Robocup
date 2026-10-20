@@ -1,0 +1,11 @@
+<!-- 用于调试球路预测 -->
+
+<root BTCPP_format="4" >
+    <include path="./subtrees/subtree_cam_find_and_track_ball.xml" />
+    <include path="./subtrees/subtree_find_ball.xml" />
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root">
+            <SubTree ID="CamFindAndTrackBall" _autoremap="true" _while="control_state>=2" />
+        </Sequence>
+    </BehaviorTree>
+</root>

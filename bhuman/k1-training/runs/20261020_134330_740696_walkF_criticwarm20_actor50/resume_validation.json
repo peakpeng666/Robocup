@@ -1,0 +1,10 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+  "sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+  "mode": "warm-start",
+  "format": "upstream",
+  "iteration": null,
+  "env_steps": null,
+  "lr": null,
+  "rng_restored": false
+}

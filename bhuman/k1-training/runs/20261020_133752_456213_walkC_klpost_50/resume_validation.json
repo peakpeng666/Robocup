@@ -1,0 +1,15 @@
+{
+  "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_133502_813304_walkC_klpost_10/nn/model_10.pth",
+  "sha256": "1a03f896a3dd05bb44a68ad813a8c860ed522b096d3646cafe47e30af4057813",
+  "mode": "full",
+  "format": "bh-k1-ckpt-v2",
+  "iteration": 10,
+  "env_steps": 61440,
+  "lr": 0.0001,
+  "rng_restored": true,
+  "state_equality_verified": true,
+  "source_matches": true,
+  "checkpoint_source_sha256": "6f41e1141926dd7c814acbe5dca6293fb0b52032d40b253f90f8ad1914a5add5",
+  "current_source_sha256": "6f41e1141926dd7c814acbe5dca6293fb0b52032d40b253f90f8ad1914a5add5",
+  "environment_state_restored": false
+}

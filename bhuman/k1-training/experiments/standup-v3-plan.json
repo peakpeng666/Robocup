@@ -1,0 +1,81 @@
+{
+  "schema": "k1-local-experiment-plan-v1",
+  "created": "2026-10-19T19:27:02.390854+09:00",
+  "status": "PREPARED_NOT_STARTED",
+  "source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "task": "K1_Stand_Up",
+  "observation_action": [
+    73,
+    22
+  ],
+  "bootstrap": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/checkpoints/bootstrap/K1_stand_up.actor-only.pth",
+  "initialization": "public actor only; new critic, logstd, optimizer; do not use the 3+1 smoke as a deployment policy",
+  "proposed_bounded_pilot": {
+    "num_envs": 64,
+    "iterations": 100,
+    "train_seeds": [
+      42,
+      7,
+      123
+    ],
+    "run_one_at_a_time": true,
+    "per_run_timeout_s": 900,
+    "sampled_gpu_memory_limit_mib": 12288,
+    "automatic_execution": false
+  },
+  "evaluation": {
+    "seeds": [
+      2026,
+      31415,
+      27182
+    ],
+    "seed_2026_status": "already used for entry smoke; not a pristine final test seed",
+    "profiles": [
+      "quiet",
+      "published"
+    ],
+    "num_envs": 28,
+    "steps": 6000,
+    "matched_public_actor_baseline_required": true,
+    "minimum_finished_episodes_per_stratum": 20,
+    "geometry_noise_and_pd_frozen": true
+  },
+  "minimum_environment_regression_gates": {
+    "finite": true,
+    "reset_and_target_excess_rad": 1e-06,
+    "torque_clamp_excess_Nm": 1e-05,
+    "max_physical_overshoot_rad": 0.05,
+    "max_continuous_time_above_0_01rad_s": 0.1,
+    "quiet_reference_completion": 0.95,
+    "quiet_per_stratum": 0.9,
+    "published_reference_completion": 0.9,
+    "published_per_stratum": 0.8
+  },
+  "policy_metrics_separate_from_environment_gate": [
+    "reference completion",
+    "strict terminal stance for 0.2 s",
+    "fall pose and phase",
+    "joint overshoot duration",
+    "getup time",
+    "post-getup speed/drift",
+    "force submission duty cycle"
+  ],
+  "formal_scale_prerequisites": [
+    "quantify or remove the global extra 2 ms reset probe; validate control timing at intended environment count",
+    "hold a separate untouched final evaluation set before hyperparameter selection",
+    "validate getup-to-walk action/history/phase continuity",
+    "evaluate complete side-lying recovery separately from front/back reference poses"
+  ],
+  "prohibited_in_this_plan": [
+    "robot connections",
+    "motor firmware changes",
+    "automatic installation or service changes",
+    "replacement of official competition policy/model parameters"
+  ],
+  "not_claimed": [
+    "exact PhysX trajectory resume",
+    "reproduction of unpublished B-Human recipe",
+    "fast standup training recipe",
+    "hardware joint-limit certification"
+  ]
+}

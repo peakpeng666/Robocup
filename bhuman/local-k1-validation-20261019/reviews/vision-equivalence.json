@@ -1,0 +1,309 @@
+{
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence",
+  "status": "PASS",
+  "scope": "Six real camera tensors plus one synthetic image; five CPU motion-policy fixture comparisons. Not exhaustive visual equivalence.",
+  "cases": [
+    {
+      "case": "vision-0",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-0.f32",
+      "input_sha256": "66269ffb3379433763f8347b0ee93552e2425d205a77d1ab44d5d5931419cce6",
+      "finite": true,
+      "max_absolute_error": 0.00013178586959838867,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 126.293338,
+          "mean_apply_ms": 30.7724166
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 27421.9869,
+          "mean_apply_ms": 1.5433526
+        }
+      }
+    },
+    {
+      "case": "vision-1",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-1.f32",
+      "input_sha256": "135f18fac1c4c4066ea400976521547189a8ab6ac3570fd542e5e2c3f80f9585",
+      "finite": true,
+      "max_absolute_error": 0.00010257959365844727,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 109.895053,
+          "mean_apply_ms": 25.838171
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 665.621314,
+          "mean_apply_ms": 1.53922295
+        }
+      }
+    },
+    {
+      "case": "vision-2",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-2.f32",
+      "input_sha256": "bb643ae533129d57d3f37d3e4c724f025b3b9202d6af0a53c08da88481b7a69e",
+      "finite": true,
+      "max_absolute_error": 8.913874626159668e-05,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 128.089727,
+          "mean_apply_ms": 26.7518077
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 1752.46801,
+          "mean_apply_ms": 1.51365185
+        }
+      }
+    },
+    {
+      "case": "vision-3",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-3.f32",
+      "input_sha256": "f5b574688e5ccc29e4a30f7a22f3a487e3b6ebb24e0fada8847667665f6b6a88",
+      "finite": true,
+      "max_absolute_error": 9.59932804107666e-05,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 108.098234,
+          "mean_apply_ms": 25.5939153
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 669.364508,
+          "mean_apply_ms": 1.44877215
+        }
+      }
+    },
+    {
+      "case": "vision-4",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-4.f32",
+      "input_sha256": "d22002c9c4bb4accfcc261b91dc479e332615dd434ef812bc509365772867c91",
+      "finite": true,
+      "max_absolute_error": 0.00019973516464233398,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 108.85709,
+          "mean_apply_ms": 25.4978231
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 530.06405,
+          "mean_apply_ms": 1.45310405
+        }
+      }
+    },
+    {
+      "case": "vision-5",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "runs/20261019_205557_426813_speed_vision_cpu_capture/vision-inputs/vision-5.f32",
+      "input_sha256": "55d701a09eecf5519b44cef760f31180e71bd3e6251de8b4ff633002a38153cb",
+      "finite": true,
+      "max_absolute_error": 9.450316429138184e-05,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 108.816938,
+          "mean_apply_ms": 25.4389366
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 498.868917,
+          "mean_apply_ms": 1.54356235
+        }
+      }
+    },
+    {
+      "case": "vision-synthetic",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx",
+      "model_sha256": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+      "input": "synthetic",
+      "input_sha256": null,
+      "finite": true,
+      "max_absolute_error": 6.079673767089844e-06,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 106.839124,
+          "mean_apply_ms": 25.7472179
+        },
+        "cuda": {
+          "input_values": 887808,
+          "output_values": 42483,
+          "setup_ms": 727.095164,
+          "mean_apply_ms": 1.78630585
+        }
+      }
+    },
+    {
+      "case": "walk",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/Walk/K1_walk.onnx",
+      "model_sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+      "input": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence/walk-input.f32",
+      "input_sha256": "2a4dc51d068763d8ff8364721b389b3a1d9089efd31804af7ed162f9f688f3ca",
+      "finite": true,
+      "max_absolute_error": 0.0,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 344,
+          "output_values": 13,
+          "setup_ms": 10.375694,
+          "mean_apply_ms": 0.0077538
+        },
+        "cuda": {
+          "input_values": 344,
+          "output_values": 13,
+          "setup_ms": 10.209973,
+          "mean_apply_ms": 0.00846275
+        }
+      }
+    },
+    {
+      "case": "kick",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+      "model_sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+      "input": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence/kick-input.f32",
+      "input_sha256": "d97a2d1f1646a9a01edfe451ab7fdd42d2532a2de727bb235b7350d2835d176a",
+      "finite": true,
+      "max_absolute_error": 0.0,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 59,
+          "output_values": 13,
+          "setup_ms": 8.718683,
+          "mean_apply_ms": 0.00460715
+        },
+        "cuda": {
+          "input_values": 59,
+          "output_values": 13,
+          "setup_ms": 10.623628,
+          "mean_apply_ms": 0.0052001
+        }
+      }
+    },
+    {
+      "case": "kick-soft",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+      "model_sha256": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+      "input": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence/kick-soft-input.f32",
+      "input_sha256": "d97a2d1f1646a9a01edfe451ab7fdd42d2532a2de727bb235b7350d2835d176a",
+      "finite": true,
+      "max_absolute_error": 0.0,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 59,
+          "output_values": 13,
+          "setup_ms": 9.639016,
+          "mean_apply_ms": 0.00495795
+        },
+        "cuda": {
+          "input_values": 59,
+          "output_values": 13,
+          "setup_ms": 9.355328,
+          "mean_apply_ms": 0.0071751
+        }
+      }
+    },
+    {
+      "case": "getup",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/GetUpEngine/K1.onnx",
+      "model_sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+      "input": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence/getup-input.f32",
+      "input_sha256": "cd35cd636498e1f9d9cb7f2810db27a71e4739d7e7254cd8558e0c279a65ca57",
+      "finite": true,
+      "max_absolute_error": 0.0,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 73,
+          "output_values": 22,
+          "setup_ms": 11.336883,
+          "mean_apply_ms": 0.00526585
+        },
+        "cuda": {
+          "input_values": 73,
+          "output_values": 22,
+          "setup_ms": 9.56177,
+          "mean_apply_ms": 0.00523645
+        }
+      }
+    },
+    {
+      "case": "fast-getup",
+      "model": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+      "model_sha256": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+      "input": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210252_vision_equivalence/fast-getup-input.f32",
+      "input_sha256": "6827dbb89b6ad7fdbd91016fc9fcda4106b2486c77e07097977840fe259993b6",
+      "finite": true,
+      "max_absolute_error": 0.0,
+      "allclose_atol_rtol_2e_4": true,
+      "confidence_045_candidate_decisions_equal": true,
+      "timing": {
+        "cpu": {
+          "input_values": 72,
+          "output_values": 22,
+          "setup_ms": 10.208157,
+          "mean_apply_ms": 0.01179875
+        },
+        "cuda": {
+          "input_values": 72,
+          "output_values": 22,
+          "setup_ms": 10.65875,
+          "mean_apply_ms": 0.0117565
+        }
+      }
+    }
+  ],
+  "validator_sha256": "69961da22d735b712243668b5103743983eeee527103887f0a756e55670a70cf",
+  "wrapper_sha256": "167cf76ce1665a10ecb540745a1f394b43cc53f37d5b3e44c64d6fd4ed2e1686"
+}

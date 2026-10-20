@@ -1,0 +1,2 @@
+PASS: multiline argv rejected before native import, exit 1
+Multiline command arguments are unsafe for this Isaac Gym binding; pass compact --config_patch JSON.

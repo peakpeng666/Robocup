@@ -1,0 +1,13 @@
+{
+  "changed_methods": [
+    "_reset_idx",
+    "_reset_root_states"
+  ],
+  "unchanged_inputs": {
+    "envs/K1_Stand_Up.yaml": true,
+    "pre-trained/GetUp/K1_stand_up.pt": true,
+    "resources/K1/K1_locomotion_all_joints_simple_2.urdf": true
+  },
+  "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+  "fixed_sha256": "7e461406893149e2c6317cf6e599e9052b2a54af0bc71db366e9d9508424fd1d"
+}

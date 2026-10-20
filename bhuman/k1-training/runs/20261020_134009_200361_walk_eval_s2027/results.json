@@ -1,0 +1,392 @@
+{
+  "utc": "2026-10-20T04:40:41Z",
+  "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_133752_456213_walkC_klpost_50/nn/model_50.pth",
+  "policy_sha256": "553cad3e2f5fdc7f9c0cb97f0aaabe8e8435707cd533bc225585ac7e0e53093f",
+  "actor_checkpoint_mode": "actor",
+  "load_info": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_133752_456213_walkC_klpost_50/nn/model_50.pth",
+    "sha256": "553cad3e2f5fdc7f9c0cb97f0aaabe8e8435707cd533bc225585ac7e0e53093f",
+    "mode": "actor",
+    "format": "bh-k1-ckpt-v2",
+    "iteration": 50,
+    "env_steps": 307200,
+    "lr": 0.0001,
+    "rng_restored": false
+  },
+  "source_sha256": "6f41e1141926dd7c814acbe5dca6293fb0b52032d40b253f90f8ad1914a5add5",
+  "seed": 2027,
+  "num_envs": 8,
+  "seg_steps": 100,
+  "schedule": [
+    "still",
+    "forward",
+    "backward",
+    "left",
+    "right",
+    "turn_left",
+    "turn_right",
+    "diag_fwd_left",
+    "diag_fwd_right",
+    "stop_settle",
+    "reverse",
+    "final_still"
+  ],
+  "alignment_note": "current command tail patched before every inference; no extra physics or history update; first step included",
+  "zero_command_mode": "fixed 1.5 Hz gait baseline, not native frozen-gait standing mode",
+  "evaluator_sha256": "88efcddab6ee2a9a9ba0e00be570167dd595a464c2488556f11c52d646a57ecc",
+  "sampling_note": "joint/torque extremes sampled at policy rate (50 Hz, final physics substep); not a 500 Hz worst-case guarantee",
+  "planned_steps": 1200,
+  "executed_steps": 1200,
+  "termination_events_total": {},
+  "settle_per_env": {
+    "n_settled": 1,
+    "n_total": 8,
+    "settled_steps_min_med_max": [
+      76,
+      76.0,
+      76
+    ],
+    "settled_seconds_min_med_max": [
+      1.52,
+      1.52,
+      1.52
+    ],
+    "per_env_steps": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      76,
+      -1
+    ]
+  },
+  "max_joint_overshoot_rad": 0.0018235445022583008,
+  "overshoot_gt_10mrad_max_consecutive_policy_steps": 0,
+  "overshoot_gt_10mrad_max_consecutive_seconds": 0.0,
+  "max_abs_applied_torque_nm": 56.0,
+  "torque_saturation_ratio": 0.0008420138888888889,
+  "segments": {
+    "still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.22313261032104492,
+        0.28333765268325806,
+        0.4338380694389343
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.25798463821411133,
+        0.30761662125587463,
+        0.5213543772697449
+      ],
+      "mean_step_disp_m": 0.0067076850100420415,
+      "mean_step_yaw_rad": 0.006364607214927673,
+      "max_step_drift_m": 0.02331187017261982,
+      "termination_events": {}
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.2664567828178406,
+        0.23791193962097168,
+        0.5106204748153687
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.384756863117218,
+        0.23996980488300323,
+        0.5265679955482483
+      ],
+      "mean_step_disp_m": 0.016720297359861434,
+      "mean_step_yaw_rad": 0.007845174372196197,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.4143214821815491,
+        0.24716664850711823,
+        0.43142619729042053
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.6496434211730957,
+        0.24259325861930847,
+        0.5273126363754272
+      ],
+      "mean_step_disp_m": 0.010579469120129944,
+      "mean_step_yaw_rad": 0.006847804188728332,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.20085805654525757,
+        0.24410276114940643,
+        0.4044627845287323
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.21194715797901154,
+        0.28030285239219666,
+        0.4358096122741699
+      ],
+      "mean_step_disp_m": 0.00968611467629671,
+      "mean_step_yaw_rad": 0.0060892564058303835,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "right": {
+      "command_vx_vy_wz": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.3641679584980011,
+        0.3977719247341156,
+        0.470580130815506
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.360054612159729,
+        0.4937581717967987,
+        0.46321699023246765
+      ],
+      "mean_step_disp_m": 0.009101981068961323,
+      "mean_step_yaw_rad": 0.0063333925604820256,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "turn_left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.12088865786790848,
+        0.15434734523296356,
+        0.32661908864974976
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.1282964050769806,
+        0.17455725371837616,
+        0.33722877502441406
+      ],
+      "mean_step_disp_m": 0.004513504654169082,
+      "mean_step_yaw_rad": 0.017743028104305267,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "turn_right": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.12243448197841644,
+        0.2922930121421814,
+        0.32383042573928833
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.12997554242610931,
+        0.2749061584472656,
+        0.3813331723213196
+      ],
+      "mean_step_disp_m": 0.00492629999294877,
+      "mean_step_yaw_rad": 0.018817581832408906,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "diag_fwd_left": {
+      "command_vx_vy_wz": [
+        0.6,
+        0.3,
+        0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.14839670062065125,
+        0.22292488813400269,
+        0.4130464792251587
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.23147477209568024,
+        0.22076493501663208,
+        0.44205448031425476
+      ],
+      "mean_step_disp_m": 0.01302205943968147,
+      "mean_step_yaw_rad": 0.009907525479793549,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "diag_fwd_right": {
+      "command_vx_vy_wz": [
+        0.6,
+        -0.3,
+        -0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.2967202067375183,
+        0.40499430894851685,
+        0.7477018237113953
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.2741550803184509,
+        0.4355407953262329,
+        0.7278380990028381
+      ],
+      "mean_step_disp_m": 0.012418034262955189,
+      "mean_step_yaw_rad": 0.010000077188014983,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "stop_settle": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.21220216155052185,
+        0.38088399171829224,
+        0.5423957705497742
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.30960753560066223,
+        0.40828996896743774,
+        0.5722694993019104
+      ],
+      "mean_step_disp_m": 0.021336982301436366,
+      "mean_step_yaw_rad": 0.012644624561071396,
+      "max_step_drift_m": 5.7913689613342285,
+      "termination_events": {}
+    },
+    "reverse": {
+      "command_vx_vy_wz": [
+        -0.6,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.19602327048778534,
+        0.2152857929468155,
+        0.348868727684021
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.3097120225429535,
+        0.21906495094299316,
+        0.34360724687576294
+      ],
+      "mean_step_disp_m": 0.009534736447967589,
+      "mean_step_yaw_rad": 0.004966741800308228,
+      "max_step_drift_m": 0.0,
+      "termination_events": {}
+    },
+    "final_still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.18507587909698486,
+        0.2112049013376236,
+        0.24272961914539337
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.21212142705917358,
+        0.2075062096118927,
+        0.2518761456012726
+      ],
+      "mean_step_disp_m": 0.005167640519794077,
+      "mean_step_yaw_rad": 0.0037661102414131165,
+      "max_step_drift_m": 0.015293137170374393,
+      "termination_events": {}
+    }
+  },
+  "finite_checks_pass": true,
+  "baseline_comparison": {
+    "baseline_policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "baseline_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+    "settled_rmse_vx": {
+      "still": [
+        0.22313261032104492,
+        0.1467474102973938
+      ],
+      "forward": [
+        0.2664567828178406,
+        0.1461457908153534
+      ],
+      "backward": [
+        0.4143214821815491,
+        0.19908465445041656
+      ],
+      "left": [
+        0.20085805654525757,
+        0.07451245188713074
+      ],
+      "right": [
+        0.3641679584980011,
+        0.21640190482139587
+      ],
+      "turn_left": [
+        0.12088865786790848,
+        0.14806170761585236
+      ],
+      "turn_right": [
+        0.12243448197841644,
+        0.1142435148358345
+      ],
+      "diag_fwd_left": [
+        0.14839670062065125,
+        0.12659336626529694
+      ],
+      "diag_fwd_right": [
+        0.2967202067375183,
+        0.12241803854703903
+      ],
+      "stop_settle": [
+        0.21220216155052185,
+        0.06883642077445984
+      ],
+      "reverse": [
+        0.19602327048778534,
+        0.13268792629241943
+      ],
+      "final_still": [
+        0.18507587909698486,
+        0.12026147544384003
+      ]
+    },
+    "note": "columns are [candidate, baseline]; report only, no automatic quality pass"
+  }
+}

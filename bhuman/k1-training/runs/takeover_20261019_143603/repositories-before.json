@@ -1,0 +1,18 @@
+{
+  "competition": {
+    "head": "2e3374ba896da8288607f9a1881b876642fe18b8",
+    "status": ""
+  },
+  "training": {
+    "head": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+    "status": ""
+  },
+  "isaaclab": {
+    "head": "46dff135f44683f031edf346e544fcfd8456b2bb",
+    "status": "M source/isaaclab/setup.py\n?? lab.sh\n?? tools/local/"
+  },
+  "ros": {
+    "head": "649b7341f5b79ef7d117dd204ce05314d3b7f4b8",
+    "status": "M src/vision"
+  }
+}

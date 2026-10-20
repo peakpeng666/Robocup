@@ -1,0 +1,298 @@
+我已按你的要求派出三路代理，分别核查 **B-Human K1、清华火神、鲁棒控制与多机器人足球文献**，同时完成了裁判协议、仿真部署架构和 `.run` 原型的实现与验证。
+
+**建议的主线已经明确：以 B-Human 2026 的完整 K1 足球系统为基础，分别升级“运动控制、反应式足球技能、团队决策”，并用真实 SDK 接口、独立机器人 IP 和真实 GameController 建立部署验证环境。**
+
+本轮已经交付调研、源码和可运行原型；**尚未训练出优于 B-Human 的新策略，也未完成真机升级或六机器人自主比赛**。这些后续工作需要你的 K1 版本、GPU 和网络环境。
+
+## 一、交付文件
+
+| 文件 | 内容 |
+|---|---|
+| K1_RoboCup_Research_and_Implementation_2026-10-19.pdf[K1_RoboCup_Research_and_Implementation_2026-10-19.pdf](sandbox:/workspace/scratch/ddfc9e6d5cc3/deliverables/K1_RoboCup_Research_and_Implementation_2026-10-19.pdf) | **19 页中文报告**：版本核验、23 项重点文献、训练路线、社区方案、真实部署仿真、裁判协议、更新包与验收设计 |
+| k1-soccer-lab-0.1.0.zip[k1-soccer-lab-0.1.0.zip](sandbox:/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-lab-0.1.0.zip) | **51 个文件的源码包**：版本锁、协议工具、安装器、测试、训练/硬件/网络模板、原始实验记录与复现脚本；内含 `.run` |
+| k1-soccer-tooling-0.1.0.run[k1-soccer-tooling-0.1.0.run](sandbox:/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run) | **可执行更新机制原型**：校验、绝对路径安装、版本切换、回滚。当前安装研究工具，尚不含新训练策略 |
+| k1_baseline_cpu_smoke.mp4[k1_baseline_cpu_smoke.mp4](sandbox:/workspace/scratch/ddfc9e6d5cc3/deliverables/k1_baseline_cpu_smoke.mp4) | **实际运行的官方 K1 基线回放**：16 秒，站立、前进、横移、转向、停止 |
+
+下面把关键发现和实施取舍展开说明。
+
+## 二、B-Human 最新开放的内容，足够作为你的训练起点
+
+### 1. 确实已经有完整的 K1 训练材料
+
+B-Human 于 **2026 年 10 月 15 日**发布 Code Release 2026，当前支持 **Booster K1/T1**，已移除 NAO。比赛程序和训练框架分在两个官方仓库，行走、踢球和常规起身训练材料已经公开。[lists.robocup.org](https://lists.robocup.org/archives/list/robocup-humanoid%40lists.robocup.org/thread/A3VYED6NELW3RNR4TH56DTFISMJN7LCB/?utm_source=chatgpt.com)
+
+| 用途 | 官方仓库 | 本次锁定版本 |
+|---|---|---|
+| 比赛程序、感知定位、团队行为、机器人接口、SimRobot | [BHumanCodeRelease](https://github.com/bhuman/BHumanCodeRelease) | `coderelease2026`，提交 `2e3374b…` |
+| 行走、踢球、起身训练环境与 checkpoint | [MachineLearning](https://github.com/bhuman/MachineLearning) | `master`，提交 `c3fed81…` |
+
+完整 SHA 和三个必要子模块的版本已经写入源码包的 `sources.lock.json`，下载脚本会递归初始化子模块。
+
+官方 K1 历史行走策略的续训入口是：
+
+```bash
+python train.py --history --task=K1 \
+  --checkpoint=pre-trained/WalkAndKick/K1_walk.pth \
+  --headless=1
+```
+
+工作目录为官方训练仓库的 `IsaacGymRL`。它使用 **Python 3.8、Isaac Gym Preview 4、PyTorch 2.0/CUDA 11.8** 的旧训练栈。我的建议是先在隔离环境复现这个固定基线，再考虑迁移 Isaac Lab，便于分清性能变化来自算法、仿真器还是执行器模型。训练代码审计和固定源码链接均在报告与源码包中。[GitHub](https://github.com/bhuman/MachineLearning?utm_source=chatgpt.com)
+
+### 2. 模型接口已经实际核对
+
+官方 K1 walk ONNX 经加载检查，合同如下：
+
+| 项目 | 官方 K1 walk |
+|---|---|
+| 输入 | float32，`[batch_size, 344]` |
+| 输出 | float32，`[batch_size, 13]` |
+| 历史 | 10 帧历史，加当前信息 |
+| 动作语义 | 12 个腿关节角度偏置，加 1 个步频偏置 |
+| 策略频率 | 50 Hz |
+| 踢球模型 | 另一套 59 输入、13 输出合同，无上述 10 帧历史 |
+
+这意味着：**行走、踢球、其他团队的 K1/T1 模型，不能仅因为“都是 ONNX”就互换。** 还必须一致地处理关节顺序、默认姿态、坐标系、单位、动作限幅、PD 参数、历史初始化和时间戳。B-Human 官方运动文档也明确了其策略与运动请求之间的关系。[B-Human](https://docs.b-human.de/master/motion/motion-walking-kicking/?utm_source=chatgpt.com)
+
+源码审计还发现两个容易踩的坑：
+
+- checkpoint 加载会恢复模型并尝试恢复优化器，但没有恢复完整的迭代、随机数和环境状态，因此不能当成逐比特断点恢复。
+- 上游转换脚本仍有硬编码的 T1 文件名和输入形状，K1 导出需要参数化，并检查 PyTorch、ONNX、生产 C++ 的输出一致性。
+
+这些具体问题已经记录在源码包中，后续可以直接按清单处理。
+
+### 3. 团队配合、进攻、防守已有强基线
+
+B-Human 已经有去中心化角色选择、站位分配，以及射门、传球、解围、盘带等行为。其策略层和技能执行层分工明确。[B-Human](https://docs.b-human.de/master/behavior/overview/?utm_source=chatgpt.com)
+
+因此，我建议先保留这些能力，建立原版球队对打基线，然后分别比较：
+
+- 换了新运动策略，球队是否更少跌倒、更快到位；
+- 换了反应踢球技能，是否更快触球、更少错失机会；
+- 换了团队决策，是否改善传球、防守与净进球。
+
+这样才能知道“升级”究竟发生在哪一层。
+
+## 三、火神论文可以借鉴，但需要认真做 T1 → K1 迁移
+
+你说的论文已经核实：
+
+**《Learning vision-driven reactive soccer skills for humanoid robots》**  
+发表于 **Science Robotics，2026 年 8 月 19 日**，DOI：`10.1126/scirobotics.aed1152`。平台是 **Booster T1**。作者公开了训练代码、模型、机器人资产与参考动作。[au.tsinghua.edu.cn](https://www.au.tsinghua.edu.cn/info/1062/4568.htm?utm_source=chatgpt.com)
+
+### 1. “快速反应”要按正确指标理解
+
+论文中的约 **1.5 秒**，指机器人从距球 **1.5 米**处开始运动，到完成触球的时间。
+
+它的视觉管线约 **25 Hz**、策略 **50 Hz**；论文的感知延迟模型约为 **116 ± 18 ms，均值±标准差**。所以，不能用“策略 50 Hz”推导整个视觉闭环只有 20 ms 延迟。[arxiv.org](https://arxiv.org/abs/2511.03996?utm_source=chatgpt.com)
+
+对你的项目，应该同时测：
+
+- 新观测出现到动作生效的延迟；
+- 起动到触球的时间；
+- 急停、反转、拦截成功率；
+- 这些动作中的跌倒率与接触失败率。
+
+### 2. 值得迁移的是训练方法和闭环结构
+
+火神的重要方法包括带遮挡、视场、噪声和延迟的虚拟感知，历史状态编码与辅助重建，以及动作先验和课程训练。[humanoid-kick.github.io](https://humanoid-kick.github.io/?utm_source=chatgpt.com)
+
+公开模型实际控制 T1 的头部、腰部和双腿，共 15 维动作。K1 的结构不同，因此需要：
+
+1. 用实际 K1 质量、惯量、足底和驱动限位建立模型。
+2. 将参考动作重新重定向到 K1，检查支撑足接触与运动可行性。
+3. 重新定义观测、动作和电机参数。
+4. 训练 K1 版本的追球/踢球技能。
+5. 验证普通行走与反应技能切换时的历史、相位和关节请求连续性。
+
+不能通过简单删除腰部动作，把 T1 权重直接变成 K1 策略。
+
+### 3. 火神完整系统有团队协作，但公开反应策略不包办全部战术
+
+最新论文附录描述了上层行为树，用于规则、角色和多机器人协调；反应式学习策略在主攻手、近球、空间条件合适时激活。[arxiv.org](https://arxiv.org/abs/2511.03996?utm_source=chatgpt.com)
+
+公开代码包没有完整比赛行为树、队友通信、裁判接入和真机 SDK runner。其 MuJoCo 播放器还从仿真状态构造球与球门观测，再加入简化视场和延迟。因此，公开播放器跑通之后，仍要补真实视觉与生产部署链。
+
+**这也是我建议“B-Human 上层系统 + K1 反应技能”的原因。**
+
+## 四、文献与社区调研：哪些最值得真正复现
+
+本次矩阵收录 **23 项重点工作：13 项期刊工作，以及 10 项会议/系统报告**，区分了正式发表、平台、代码开放范围和 K1 迁移限制。
+
+这是一轮有边界的定向研究，不能声称穷尽所有学术期刊。报告没有把预印本、论文项目页、仿真环境开放和完整训练系统开放混为一谈。
+
+最直接影响你项目的文献如下：
+
+| 工作 | 正式场所 | 对 K1 项目的价值 |
+|---|---|---|
+| 火神反应式足球 | Science Robotics 2026 | 视觉不确定性、历史估计、快速追踢 |
+| **Learning Agile Striker Skills… from Noisy Sensory Input** | ICRA 2026 | 四阶段 teacher–student、蒸馏后适配；官方训练代码已公开 |
+| DeepMind 双足足球 | Science Robotics 2024 | 起身、踢球、技能组合与 1v1 对抗；原主要系统采用动捕状态 |
+| Egocentric Vision Soccer | CoRL 2024，PMLR 2025 | 机载 RGB、机载计算、主动感知与视觉足球 |
+| From Motor Control to Team Play | Science Robotics 2022 | 从动作到技能再到团队的分阶段训练；原实验为仿真人形 |
+| Cassie 双历史控制 | IJRR，2024 在线、2025 卷期 | 长短历史、任务随机化、动力学变化适应 |
+| 策略与状态估计器共同训练 | RA-L 2022 | 把估计误差纳入闭环，便于做有解释性的消融 |
+| DreamWaQ++ | T-RO 2026 | 异步多模态、外部感知失效与鲁棒融合 |
+| RMA / A-RMA | RSS 2021 / IROS 2022 | 历史估计动力学条件，以及策略对估计器误差的适配 |
+| MAPPO / QMIX | NeurIPS 2022 / ICML 2018 | 高层团队策略的可复现对照 |
+
+足球方向的正式记录和作者发布材料分别支持上述平台与开放范围。[cs.utexas.edu](https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-zifan_xu_icra_2026.html?utm_source=chatgpt.com) 鲁棒控制及多智能体方向的会刊信息也已通过原始论文、出版社或作者机构记录交叉核验。[journals.sagepub.com](https://journals.sagepub.com/doi/10.1177/02783649241285161?utm_source=chatgpt.com)
+
+其中，**ICRA 2026 的 Noisy Striker 值得与你提到的火神并行比较**。它公开了追球 teacher、定向踢球 teacher、带噪声/延迟/遮挡的 DAgger 蒸馏，以及约束强化学习进一步适配的四阶段流程，还包含里程计训练。[GitHub](https://github.com/Daffan/humanoid-soccer?utm_source=chatgpt.com)
+
+### 社区方案的两个发现
+
+**Booster 新框架值得参考，但当前不能直接替代完整 B-Human 足球训练。** 新 `booster_train` 基于 Isaac Lab，支持 K1/T1/T2 的动作跟踪；`booster_deploy` 提供 MuJoCo/真机统一执行抽象。其模型、动作映射和依赖与 B-Human 不同。[GitHub](https://github.com/BoosterRobotics/booster_train?utm_source=chatgpt.com)
+
+还发现了实际兼容冲突：B-Human 文档明确测试 **1.7.1** 系统镜像；新 Booster deploy README 顶部要求固件 **≥1.7.2**，旧正文却仍写 **≥1.4**。这些信息需要在你的具体 K1 上核实，不能随意拼接。[B-Human](https://docs.b-human.de/master/getting-started/setting-up-robot/?utm_source=chatgpt.com)
+
+## 五、怎样训练出更稳、更快、有配合的版本
+
+我的建议是先把实验问题收窄，再逐层扩大。
+
+### 第一层：鲁棒运动
+
+B-Human 原本已经有多种噪声与动力学随机化。下一阶段应补充来自你实际机器的数据，重点覆盖：
+
+| 类别 | 需要建模的因素 |
+|---|---|
+| 本体传感 | IMU 零偏漂移、编码器偏置、相关噪声、丢样、时间戳抖动 |
+| 驱动与机体 | PD、摩擦、回差、限矩/限速、质量/质心、温度和电压引起的变化 |
+| 接触与球 | 足底滑移、草皮/地毯差异、球摩擦、接触恢复系数 |
+| 视觉 | 延迟与抖动、漏检/误检、遮挡、模糊、光照、观测陈旧 |
+| 计算与通信 | 推理超时、资源争用、DDS/队友报文丢失和乱序 |
+
+优先比较原始 B-Human、额外实测随机化、历史估计器、显式状态估计器联合训练几种方案。暂时不必同时引入 Transformer、多模态大模型和复杂奖励，避免难以归因。
+
+对抗噪声而言，需要把历史用于推断当前状态，并明确观测时间。单纯叠加低通滤波可能增大滞后，影响你要求的快速反应。Miki、A-RMA、Cassie 双历史和状态估计共训的价值，就在于帮助设计这些对照。[leggedrobotics.github.io](https://leggedrobotics.github.io/rl-perceptiveloco/?utm_source=chatgpt.com)
+
+### 第二层：反应足球技能
+
+统一 K1 资产、球初始状态、感知误差和失败统计，比较：
+
+- 原始 B-Human 踢球；
+- 火神式历史重建与动作先验；
+- Noisy Striker 式 teacher–student 与后续适配。
+
+除了单次踢球，还要测连续追踢、移动球、遮挡后重新发现球，以及行走、急停、踢球、起身之间的切换。
+
+### 第三层：团队协作
+
+先固定可靠低层，对比 B-Human 行为与学习得到的高层策略。高层可以输出角色、目标区域、传球对象或技能选择。
+
+训练可以采用集中 critic、分散 actor，配合 MAPPO 基线与历史对手池；**部署时，每个 actor 只能使用自己的传感估计和规则允许的队友通信。** MAPPO 的现成实现能作为合作训练起点，但仍需要接入你的机器人接口与对抗训练机制。[GitHub](https://github.com/marlbenchmark/on-policy?utm_source=chatgpt.com)
+
+评估不要只看训练奖励或与当前自身版本的胜率。需要固定官方基线、旧版本和不同风格对手，记录净进球、失球、有效传球、抢球冲突、角色切换和通信成本。
+
+### “大多数情况下稳定”必须有统计定义
+
+建议把跌倒率、机器人运行小时、触球时间、技能成功率、失联行为和整场比赛结果一起记录。失败、超时、崩溃和中止都要保留。
+
+例如，即便在 **300 次独立同分布试验中零失败**，单侧 95% 失败率上界仍约为 1%；它也不覆盖测试分布之外的机况。你的目标可以是明确运行范围内的高稳定性，但不能由一段成功视频推出。
+
+## 六、仿真 RoboCup 应如何做，才能接近真机部署
+
+你的要求需要同时实现 **物理仿真、部署接口、网络身份和比赛规则**。
+
+建议的目标架构如下，**这是下一阶段架构，当前尚未完成全部集成**：
+
+```mermaid
+flowchart TD
+    GC["真实 HSL GameController"] <--> NET["比赛网络"]
+    NET <--> BLUE["蓝队：独立进程与 IP"]
+    NET <--> RED["红队：独立进程与 IP"]
+    RELEASE["同一版本发布与安装流程"] --> BLUE
+    RELEASE --> RED
+    BLUE <-->|"SDK 与相机接口"| WORLD["共享物理世界"]
+    RED <-->|"SDK 与相机接口"| WORLD
+    WORLD --> EVAL["独立评估与录像"]
+```
+
+### 1. 每台机器人都应有自己的运行环境
+
+以研究用 3v3 为例，可以分别配置蓝队 `.11/.12/.13`、红队 `.21/.22/.23`，以及单独的裁判地址。每个球员实例应具有独立进程、配置、状态文件、IP 和 SDK 端点。
+
+默认 Docker bridge 常使用 NAT；host 网络共享宿主 IP。二者都不能直接满足“裁判机看到六个独立机器人身份”。Linux 有线环境下可评估 macvlan/ipvlan 或桥接 network namespace，但需要处理宿主互通、广播可达与具体网络限制。[Docker Docs](https://docs.docker.com/engine/network/drivers/macvlan/?utm_source=chatgpt.com)
+
+DDS 还需额外隔离，防止相同 topic/domain 的运动命令串到另一台机器人。只修改 ROS 名称或显示编号不够。
+
+### 2. 当前裁判协议已核对并实现工具
+
+本次锁定的 HSL 协议为：
+
+| 通道 | 格式 |
+|---|---|
+| GC → 机器人 | UDP `3838`，`RGme`，版本 `20`，158 字节 |
+| 机器人 → GC | UDP `3939`，`RGrt`，版本 `4`，32 字节 |
+| 队内通信 | UDP `10000 + 队号`，单包不超过 512 字节，遵守队伍消息预算 |
+| 监控真值 | `RGTD`，仅供评估侧使用 |
+
+协议工具已对照官方 C 头文件做字节一致性测试。真实 GC 联调仍未执行。运动判断还必须处理 `stopped`、处罚、陈旧数据以及哨声/事件逻辑，不能只检查 `PLAYING`。[GitHub](https://github.com/RoboCup-HumanoidSoccerLeague/GameController?utm_source=chatgpt.com)
+
+连接真实 GC 的比赛应按真实墙钟 **1×** 运行；加速训练则使用独立仿真裁判和仿真时钟。
+
+### 3. 现有模拟器有基础，也有明确缺口
+
+B-Human SimRobot 已有 K1 多机器人场景；其中 PerceptOracle/Fast 变体会跳过部分感知或使用模型真值，适合行为调试，不能当最终视觉部署成绩。[B-Human](https://docs.b-human.de/master/simrobot/?utm_source=chatgpt.com)
+
+NUbots NUSim 提供了有价值的 K1 MuJoCo、LowState/LowCmd 和相机接口参考，但当前多机选项主要生成多个机器人，额外机器人保持姿态；部分高层 SDK 命令接受后并未实现相应动作。因此它还不是开箱即用的六个自主 K1 联赛。[GitHub](https://github.com/NUbots/NUSim/blob/main/docs/K1_MUJOCO_SETUP.md?utm_source=chatgpt.com)
+
+最后，“完全模拟真机”需要落实为可验收的接口一致性。x86 训练机与 ARM 机载计算通常需要从同一源码分别构建；仿真也不能完全复现热衰减、真实摩擦和硬件时序。正式发行仍应经过硬件在环与真机验证。
+
+## 七、你要的绝对路径 `.run`，现在已经有原型
+
+本次文件的绝对路径是：
+
+```text
+/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run
+```
+
+可以直接校验并安装：
+
+```bash
+/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run --verify
+
+/workspace/scratch/ddfc9e6d5cc3/deliverables/k1-soccer-tooling-0.1.0.run \
+  --install-root /tmp/k1-soccer-tooling-demo
+```
+
+安装目标第一次必须不存在。下载到你的电脑后，把路径换成实际绝对路径；运行环境为 Linux/POSIX、Python 3.10+，下载后如丢失执行权限，可对该本地文件设置 `chmod +x`。
+
+原型已支持版本目录、`current/previous` 切换、安装锁、完整性校验和回滚。**当前 `artifact_kind=tooling`，安装的是工具、配置和文档。**
+
+正式运控包下一步需要包含：
+
+- 针对目标架构构建的应用和经过验收的 ONNX；
+- 归一化、动作映射、电机参数及系统/SDK 兼容清单；
+- 发布者签名、健康检查、运动控制权交接和失败回退；
+- 保留在版本目录外的个体标定、机器人身份与网络配置。
+
+SHA256 只能检查完整性，不能替代发布者签名；当前原型也没有宣称断电下的完整跨文件事务恢复。正式发行应封装已验证的机器人更新流程，而不是猜测电机固件刷写命令。
+
+B-Human 主代码还采用自定义许可，包含参赛前公告及满足派生软件条件时的贡献说明、源代码发布要求；训练部分的许可另行处理。实际分发和参赛时应保留对应条件。[GitHub](https://github.com/bhuman/BHumanCodeRelease/blob/master/License.md?utm_source=chatgpt.com)
+
+## 八、已经实际跑过什么，下一步缺什么
+
+本轮实测结果：
+
+| 验证 | 结果 |
+|---|---|
+| 官方 K1 物理回放 | 16 秒，800 次策略调用，未触发跌倒阈值，无 MuJoCo 数值警告 |
+| 六 IP UDP | 六个不同回环地址收发成功，队号/球衣号匹配 |
+| 协议与安装器 | 29 项测试通过 |
+| 最终 `.run` | 校验、实际安装、已安装命令启动、重复安装通过 |
+| PDF / 源码包 | 19 页逐页检查；51 文件 ZIP 完整性检查通过 |
+
+回放使用官方预训练策略，且独立播放器与正式 B-Human 的 PD、历史初始化等仍有差异。这些测试证明了基线和工具能连通，尚不能证明抗噪性能提升、完整比赛能力或真机适用性。
+
+接下来的顺序应是：**完成生产接口基线 → 鲁棒行走续训 → K1 反应足球技能 → 固定低层上的团队学习 → 独立 IP/SDK/真实 GC 全流程比赛 → 真机运控发行。**
+
+请把下面四类现有环境信息发来：
+
+| 信息 | 决定什么 |
+|---|---|
+| **K1 硬件修订、机载计算模块、系统镜像、SDK/固件、摄像头型号** | 目标二进制、视觉驱动、电机与策略合同 |
+| **GPU 型号、显存、数量，以及训练主机访问方式** | 训练栈、并行环境数和实验预算 |
+| **目标赛事组别、计划 3v3/5v5 或其他人数** | 规则配置、场地和团队训练规模 |
+| **用于仿真的 Linux 主机、有线网络、真实裁判机位置** | 独立 IP、广播、DDS 隔离和真实 GC 联调 |
+
+有了这些信息，就可以从已经保存的固定基线和工程原型继续做实际训练与集成，不必重新从调研起步。

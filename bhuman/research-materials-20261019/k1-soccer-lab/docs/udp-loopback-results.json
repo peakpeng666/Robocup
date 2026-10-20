@@ -1,0 +1,47 @@
+{
+  "test": "six_ip_loopback",
+  "result": "passed",
+  "started_at": 1792391785.0627253,
+  "control_size": 158,
+  "return_size": 32,
+  "scope": "loopback UDP only; official GameController GUI, LAN, DDS and physics not exercised",
+  "record_origin": "Captured from the earlier actual tool execution in this session; not a new run",
+  "robots": [
+    {
+      "source_ip": "127.0.0.11",
+      "team": 1,
+      "player": 1,
+      "bytes": 32
+    },
+    {
+      "source_ip": "127.0.0.12",
+      "team": 1,
+      "player": 2,
+      "bytes": 32
+    },
+    {
+      "source_ip": "127.0.0.13",
+      "team": 1,
+      "player": 3,
+      "bytes": 32
+    },
+    {
+      "source_ip": "127.0.0.21",
+      "team": 2,
+      "player": 1,
+      "bytes": 32
+    },
+    {
+      "source_ip": "127.0.0.22",
+      "team": 2,
+      "player": 2,
+      "bytes": 32
+    },
+    {
+      "source_ip": "127.0.0.23",
+      "team": 2,
+      "player": 3,
+      "bytes": 32
+    }
+  ]
+}

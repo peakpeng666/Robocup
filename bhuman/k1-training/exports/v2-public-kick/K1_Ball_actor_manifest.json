@@ -1,0 +1,50 @@
+{
+  "utc": "2026-10-19T05:46:38Z",
+  "task": "K1_Ball",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+  "checkpoint_sha256": "f70cf458855873f7677976310e310441ad7f740c92c0884f4ed046ebd4294927",
+  "load_mode": "actor",
+  "config_sha256": "986f60387c717d5bbe68fbcc8f59b07c1b2854041682fd310e95c7523544c065",
+  "adaptation_sha256": "5bc4e94fa29a6d9ed3aeaf2aa28e0f0bf4a0be707140d1d76b1d9253edb47053",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v2-public-kick/K1_Ball_actor.pt",
+    "sha256": "a11f95c1738f95febaed4cb234618c5a420125a3bee3d2b16142ae22960b7f75"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v2-public-kick/K1_Ball_actor.onnx",
+    "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "opset": 11,
+    "input": "input: [batch, 59]",
+    "output": "output: [batch, 13]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "random_batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.3075768947601318e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "random_batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 7.62939453125e-05,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "recorded_observations": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 6.556510925292969e-07,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  },
+  "deployment_status": "NOT_VALIDATED_ON_ROBOT",
+  "intended_use": "PUBLIC_REFERENCE_POLICY",
+  "formal_model_sha256_identical": true
+}

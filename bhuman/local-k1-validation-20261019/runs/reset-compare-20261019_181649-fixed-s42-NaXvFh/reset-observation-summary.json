@@ -1,0 +1,11 @@
+{
+  "variant": "fixed",
+  "completed": true,
+  "reset_batches": 5,
+  "max_reset_input_errors": {
+    "gravity_error": 0.0,
+    "angular_velocity_error": 0.0,
+    "dof_history_error": 0.0
+  },
+  "consistent": true
+}

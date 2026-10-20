@@ -1,0 +1,8 @@
+# 包含 siamrpn_alex_dwxcorr_otb 目录下的所有必要文件
+recursive-include ball_tracker/pysot/experiments/siamrpn_alex_dwxcorr_otb *.yaml *.onnx *.pth *.trt *.engine *.json
+
+# 包含 siamrpn_mobilev2_l234_dwxcorr 目录下的文件（如果存在）
+#recursive-include ball_tracker/pysot/experiments/siamrpn_mobilev2_l234_dwxcorr *.yaml *.onnx *.pth *.trt *.engine *.json
+
+# 如果 siamrpn_r50_l234_dwxcorr 目录下没有这些文件，可以注释相关行
+# recursive-include ball_tracker/pysot/experiments/siamrpn_r50_l234_dwxcorr *.yaml *.onnx *.pth *.trt *.engine *.json

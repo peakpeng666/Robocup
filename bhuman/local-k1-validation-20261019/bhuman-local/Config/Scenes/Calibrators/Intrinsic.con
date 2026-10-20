@@ -1,0 +1,10 @@
+dr off
+dr representation:JPEGImage
+dr representation:CameraInfo
+
+echo
+echo log start
+echo log stop
+echo log keep
+echo log saveImages 1
+echo

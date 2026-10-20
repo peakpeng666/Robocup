@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-19T10:21:18Z",
+  "task": "K1_Stand_Up",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_192046_927292_standup_pilot_full_s42/nn/model_final.pth",
+  "checkpoint_sha256": "4d5ac52912c62ffe1c5952c4e0480aadf03d7f28045af8cbbbe62ba834ef618f",
+  "load_mode": "actor",
+  "config_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b",
+  "adaptation_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor.pt",
+    "sha256": "00c50c9f30e6d926d2bd4c8b1674b6106a3ae16bcfadbef1cca0b49b5299377c"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v3-smoke-standup/K1_Stand_Up_actor.onnx",
+    "sha256": "c7c7650097085c1c9c662072afa294a08c72a0844202c0dc69ce7030839defcb",
+    "opset": 11,
+    "input": "input: [batch, 73]",
+    "output": "output: [batch, 22]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "random_batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 4.172325134277344e-07,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "random_batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 6.198883056640625e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "recorded_observations": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.1920928955078125e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  }
+}

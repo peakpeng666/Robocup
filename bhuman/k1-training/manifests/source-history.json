@@ -1,0 +1,73 @@
+{
+  "training_and_resume_tested": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "current": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "post_training_changes": [
+    "Replay report accepts each task asset schema; no physics changes.",
+    "Source hash differences are reported rather than rejected; model/config/optimizer checks remain strict.",
+    "Replay torque limits distinguish URDF effort limits for standup from YAML clamps for walk/kick.",
+    "Standup termination causes copied before reset, for diagnostic counts only."
+  ],
+  "snapshots": "source-snapshots/*.zip, all Python and YAML files; assets remain pinned to upstream commit.",
+  "previous_before_standup_v3": "39fa46c22c087c291d35070ee7e66613006029ef3f35637d2b6f411ce3e68848",
+  "standup_v3": {
+    "time": "2026-10-19T19:13:02.307993+09:00",
+    "modified_source": [
+      "envs/t1_stand_up.py"
+    ],
+    "acceptance": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/longtest-acceptance.json",
+    "backup": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/pre-standup-v3-20261019_191302.zip",
+    "training_smoke": {
+      "status": "PASS",
+      "report": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/standup-v3-training-smoke.json",
+      "sha256": "a748948693258bb961765da52a7c451e1105622168c4a8e28bded941caa13643"
+    },
+    "changes": [
+      "Bound randomized reset joint positions and delayed targets by URDF limits",
+      "Refresh root/body/DOF caches and rebuild reset observation/velocity history",
+      "Probe geometry above terrain, then place using local terrain clearance"
+    ],
+    "training_and_resume_tested": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112"
+  },
+  "entries": [
+    {
+      "utc": "2026-10-20T03:44:07Z",
+      "source_sha256": "2e33e63b869f7a6aabf7b31eafd15d623c75a3291b95b47497d60843ce674ca4",
+      "change": "bh_common.load_checkpoint 加载后与源文件逐张量等性校验(actor/warm-start);新增行走 pilot/评估入口(scripts);起身回归与 promotion 再验证完成",
+      "runs": [
+        "runs/20261020_123755_634053_walk_pilot_warm-start_s7",
+        "runs/20261020_123820_246657_walk_pilot_full_s7",
+        "runs/20261020_123632_850178_walk_eval_s2027",
+        "runs/20261020_123839_827918_walk_eval_s2027"
+      ]
+    },
+    {
+      "utc": "2026-10-20T04:15:11Z",
+      "source_sha256": "0d7d7d2c88f5857b80056e15c52228f3d4147ce797a738d6ac147e1280361a9a",
+      "change": "evaluate_walk 六项修正(yaw四元数/分段停稳per-env/无额外物理步对齐/真实判定函数负例/非有限失败退出/50Hz标注)+ runner --config_patch 单因素入口;A/B lr 对照实验完成",
+      "runs": [
+        "runs/20261020_125831_006819_walk_eval_s2027",
+        "runs/20261020_125932_063235_walkA_ctrl_10it",
+        "runs/20261020_130048_569110_walkB_lrfloor_10it",
+        "runs/20261020_130345_455004_walkA_ctrl_100it",
+        "runs/20261020_130600_518371_walkB_lrfloor_100it"
+      ]
+    },
+    {
+      "utc": "2026-10-20T05:14:26.061574+00:00",
+      "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "change": "Walk fresh post-step KL, timeout tensor identity fix, optional critic/reference experiments; shared checkpoint helper preserves optimizer group LR. Standup physics code unchanged.",
+      "evidence": "experiments/walk-diagnosis-20261020/results-index.json",
+      "standup_regression": {
+        "warm": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141315_554903_standup_kl_regression_warm",
+        "full": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141325_828339_standup_kl_regression_full",
+        "both_status": "PASS",
+        "restored_iteration": 3,
+        "restored_env_steps": 4608,
+        "state_equality_verified": true,
+        "rng_restored": true,
+        "environment_state_restored": false
+      }
+    }
+  ],
+  "previous_current": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112"
+}

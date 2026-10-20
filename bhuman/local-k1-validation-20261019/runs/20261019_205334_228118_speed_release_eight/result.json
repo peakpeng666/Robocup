@@ -1,0 +1,73 @@
+{
+  "status": "BENCHMARK_COMPLETED",
+  "scope": "performance only; full match acceptance is separate",
+  "sim_s": 12,
+  "wall_s": 20.05166413299594,
+  "real_time_factor": 0.5984540694681518,
+  "exit_code": 0,
+  "errors": [],
+  "cpu_core_equivalents": 12.959024162608273,
+  "max_thread_count": 54,
+  "top_threads": [
+    {
+      "name": "robot21.Color",
+      "cpu_ticks": 1796
+    },
+    {
+      "name": "robot1.Color",
+      "cpu_ticks": 1794
+    },
+    {
+      "name": "robot3.Color",
+      "cpu_ticks": 1789
+    },
+    {
+      "name": "robot2.Color",
+      "cpu_ticks": 1786
+    },
+    {
+      "name": "robot23.Color",
+      "cpu_ticks": 1785
+    },
+    {
+      "name": "robot22.Color",
+      "cpu_ticks": 1775
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1476
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1471
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1468
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1465
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1460
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1449
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 1442
+    },
+    {
+      "name": "Main",
+      "cpu_ticks": 669
+    },
+    {
+      "name": "robot1.Debug",
+      "cpu_ticks": 509
+    }
+  ]
+}

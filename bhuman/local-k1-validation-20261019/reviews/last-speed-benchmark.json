@@ -1,0 +1,74 @@
+{
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_210655_496112_speed_gpu_exit_fix",
+  "status": "BENCHMARK_COMPLETED",
+  "scope": "performance only; full match acceptance is separate",
+  "sim_s": 6,
+  "wall_s": 9.012315634994593,
+  "real_time_factor": 0.6657556440546925,
+  "exit_code": 0,
+  "errors": [],
+  "cpu_core_equivalents": 3.6361354092787126,
+  "max_thread_count": 52,
+  "top_threads": [
+    {
+      "name": "Main",
+      "cpu_ticks": 285
+    },
+    {
+      "name": "robot3.Color",
+      "cpu_ticks": 226
+    },
+    {
+      "name": "robot2.Color",
+      "cpu_ticks": 201
+    },
+    {
+      "name": "robot21.Color",
+      "cpu_ticks": 197
+    },
+    {
+      "name": "robot1.Color",
+      "cpu_ticks": 194
+    },
+    {
+      "name": "robot23.Color",
+      "cpu_ticks": 190
+    },
+    {
+      "name": "robot22.Color",
+      "cpu_ticks": 175
+    },
+    {
+      "name": "robot1.Cognitio",
+      "cpu_ticks": 105
+    },
+    {
+      "name": "robot22.Debug",
+      "cpu_ticks": 97
+    },
+    {
+      "name": "robot3.Cognitio",
+      "cpu_ticks": 91
+    },
+    {
+      "name": "robot21.Cogniti",
+      "cpu_ticks": 85
+    },
+    {
+      "name": "robot23.Cogniti",
+      "cpu_ticks": 84
+    },
+    {
+      "name": "robot2.Cognitio",
+      "cpu_ticks": 79
+    },
+    {
+      "name": "robot23.Debug",
+      "cpu_ticks": 79
+    },
+    {
+      "name": "robot22.Cogniti",
+      "cpu_ticks": 78
+    }
+  ]
+}

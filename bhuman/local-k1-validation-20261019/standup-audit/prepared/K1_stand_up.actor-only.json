@@ -1,0 +1,51 @@
+{
+  "source": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/standup-audit/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+  "source_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "output": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/standup-audit/prepared/K1_stand_up.actor-only.pth",
+  "output_sha256": "fe8870aa48bb68f543482d740d8d9fd87c3205d8bcf341c92b3319ef2bb07f97",
+  "actor_shapes": {
+    "0.weight": [
+      256,
+      73
+    ],
+    "0.bias": [
+      256
+    ],
+    "2.weight": [
+      128,
+      256
+    ],
+    "2.bias": [
+      128
+    ],
+    "4.weight": [
+      128,
+      128
+    ],
+    "4.bias": [
+      128
+    ],
+    "6.weight": [
+      22,
+      128
+    ],
+    "6.bias": [
+      22
+    ]
+  },
+  "max_abs_error": 0.0,
+  "evaluated_observations": 2113,
+  "recorded_observations_sha256": "552c2fe3754d2f5cdcdfd7c5ef20e0e2b35b842457679361e12fef0b18a1c6ce",
+  "critic_and_logstd_fresh": true,
+  "load_info": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/standup-audit/prepared/K1_stand_up.actor-only.pth",
+    "sha256": "fe8870aa48bb68f543482d740d8d9fd87c3205d8bcf341c92b3319ef2bb07f97",
+    "mode": "warm-start",
+    "format": "bhuman_actor_warmstart_v1",
+    "iteration": null,
+    "env_steps": null,
+    "lr": null,
+    "rng_restored": false
+  },
+  "meaning": "Actor-only warm start. Training critic, logstd and optimizer are newly initialized; no original training state is recovered."
+}

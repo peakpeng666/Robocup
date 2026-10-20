@@ -1,0 +1,47 @@
+{
+  "exit_code": 0,
+  "completed": true,
+  "start": "2026-10-19T19:56:33+09:00",
+  "end": "2026-10-19T19:57:01+09:00",
+  "physics_samples": 40,
+  "first_pose_sample": {
+    "robot": "robot5",
+    "tick": "250",
+    "x_mm": "-2009.1",
+    "y_mm": "-54.3",
+    "yaw_rad": "-0.397",
+    "roll_rad": "0.035",
+    "pitch_rad": "-0.031",
+    "image": "1",
+    "image_time": "100499"
+  },
+  "last_pose_sample": {
+    "robot": "robot5",
+    "tick": "10000",
+    "x_mm": "-1934.9",
+    "y_mm": "16.8",
+    "yaw_rad": "-0.589",
+    "roll_rad": "-0.038",
+    "pitch_rad": "-0.028",
+    "image": "1",
+    "image_time": "119999"
+  },
+  "sampled_path_length_mm": 11928.515699201404,
+  "image_rendered_physics_samples": 40,
+  "distinct_sampled_image_timestamps": 40,
+  "motion_samples": 40,
+  "motion_phases": [
+    1,
+    2
+  ],
+  "nonfinite_joint_samples": 0,
+  "cognition_samples": 39,
+  "requested_skills": [
+    2,
+    3
+  ],
+  "distinct_sampled_ball_seen_timestamps": 19,
+  "perception_seen_log_samples": 29,
+  "perception_camera_present_log_samples": 2802,
+  "sampling_note": "Perception frames counts afterFrame invocations and can include preconfiguration frames; it is not a camera FPS measurement. Joint finiteness and states are sampled, not exhaustive."
+}

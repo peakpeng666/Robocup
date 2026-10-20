@@ -1,0 +1,2744 @@
+{
+  "phases": {
+    "reset_request": {
+      "max_overshoot_rad": 0.12974101305007935,
+      "samples_per_joint": 90,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.12974101305007935,
+          "samples_above_1mrad": 14,
+          "worst": {
+            "q": -0.4297410249710083,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": 0.0,
+            "held_target": -0.24774986505508423,
+            "applied_tau": -0.33628058433532715,
+            "episode_step": 129.0,
+            "env": 4.0,
+            "policy_step": 262.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.04976928234100342,
+          "samples_above_1mrad": 3,
+          "worst": {
+            "q": 1.269769310951233,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.07990360260009766,
+          "samples_above_1mrad": 8,
+          "worst": {
+            "q": -2.3299036026000977,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 0.0,
+            "held_target": -0.21666470170021057,
+            "applied_tau": 0.0,
+            "episode_step": 192.0,
+            "env": 16.0,
+            "policy_step": 374.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.05838918685913086,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 1.2783892154693604,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 0.0,
+            "held_target": -0.6462234258651733,
+            "applied_tau": -1.9630804061889648,
+            "episode_step": 197.0,
+            "env": 15.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.03169536590576172,
+          "samples_above_1mrad": 3,
+          "worst": {
+            "q": 2.2816953659057617,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": 0.0,
+            "held_target": 0.2352983057498932,
+            "applied_tau": 0.0,
+            "episode_step": 197.0,
+            "env": 15.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.044124603271484375,
+          "samples_above_1mrad": 3,
+          "worst": {
+            "q": -3.0441246032714844,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": 0.0,
+            "held_target": -0.7057443261146545,
+            "applied_tau": 30.0,
+            "episode_step": 82.0,
+            "env": 3.0,
+            "policy_step": 385.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.06417222321033478,
+          "samples_above_1mrad": 11,
+          "worst": {
+            "q": -0.06417222321033478,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.0,
+            "held_target": 0.7792081832885742,
+            "applied_tau": -1.2922508716583252,
+            "episode_step": 170.0,
+            "env": 2.0,
+            "policy_step": 330.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.08528557419776917,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": 0.43028557300567627,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": 0.0,
+            "held_target": -0.547947883605957,
+            "applied_tau": -2.3698782920837402,
+            "episode_step": 197.0,
+            "env": 10.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.008597135543823242,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -3.0085971355438232,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": 0.0,
+            "held_target": -0.7114753723144531,
+            "applied_tau": 0.0,
+            "episode_step": 165.0,
+            "env": 17.0,
+            "policy_step": 165.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.12158733606338501,
+          "samples_above_1mrad": 13,
+          "worst": {
+            "q": -0.12158733606338501,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 2.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.061046063899993896,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 0.406046062707901,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 10.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "reset_probe": {
+      "max_overshoot_rad": 0.059226274490356445,
+      "samples_per_joint": 1652,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.032117873430252075,
+          "samples_above_1mrad": 11,
+          "worst": {
+            "q": -0.33211788535118103,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": 22.807634353637695,
+            "held_target": -0.24774986505508423,
+            "applied_tau": -0.33628058433532715,
+            "episode_step": 129.0,
+            "env": 4.0,
+            "policy_step": 262.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 0.002623438835144043,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 1.2226234674453735,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -12.306849479675293,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.059226274490356445,
+          "samples_above_1mrad": 7,
+          "worst": {
+            "q": -2.3092262744903564,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": -0.03652620315551758,
+            "held_target": -0.2258022427558899,
+            "applied_tau": 0.0,
+            "episode_step": 184.0,
+            "env": 1.0,
+            "policy_step": 371.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.016347289085388184,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 1.2363473176956177,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -0.3107614517211914,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.025810956954956055,
+          "samples_above_1mrad": 3,
+          "worst": {
+            "q": 2.275810956954956,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": -2.3804798126220703,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 1.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.013362407684326172,
+          "samples_above_1mrad": 3,
+          "worst": {
+            "q": -3.013362407684326,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": 0.19789743423461914,
+            "held_target": -0.5900397300720215,
+            "applied_tau": 3.1445982456207275,
+            "episode_step": 159.0,
+            "env": 3.0,
+            "policy_step": 303.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.013943762518465519,
+          "samples_above_1mrad": 8,
+          "worst": {
+            "q": -0.013943762518465519,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 37.596702575683594,
+            "held_target": 1.3011289834976196,
+            "applied_tau": 2.418616533279419,
+            "episode_step": 189.0,
+            "env": 15.0,
+            "policy_step": 386.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.014558583498001099,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 0.3595585823059082,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -19.822269439697266,
+            "held_target": -0.547947883605957,
+            "applied_tau": -2.3698782920837402,
+            "episode_step": 197.0,
+            "env": 10.0,
+            "policy_step": 197.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 6.9141387939453125e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.000006914138794,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -0.011719150468707085,
+            "held_target": -3.0,
+            "applied_tau": 0.0,
+            "episode_step": 41.0,
+            "env": 2.0,
+            "policy_step": 371.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.034830186516046524,
+          "samples_above_1mrad": 10,
+          "worst": {
+            "q": -0.034830186516046524,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 21.22585678100586,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 2.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.005302399396896362,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": 0.35030239820480347,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -18.444477081298828,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 10.0,
+            "policy_step": 0.0,
+            "reset_actor": 1.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "first_policy_step": {
+      "max_overshoot_rad": 0.004723787307739258,
+      "samples_per_joint": 900,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.0007794201374053955,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.30077943205833435,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": 3.6930482387542725,
+            "held_target": -0.33211788535118103,
+            "applied_tau": -6.0,
+            "episode_step": 0.0,
+            "env": 4.0,
+            "policy_step": 262.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 8.344650268554688e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.220008373260498,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -0.03367180377244949,
+            "held_target": 1.220578670501709,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 386.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.004723787307739258,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -2.2547237873077393,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 18.119354248046875,
+            "held_target": -2.3092262744903564,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 1.0,
+            "policy_step": 371.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 0.00017380714416503906,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.2201738357543945,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -1.2968302965164185,
+            "held_target": 1.2363473176956177,
+            "applied_tau": 1.5425472259521484,
+            "episode_step": 0.0,
+            "env": 15.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.00042748451232910156,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 2.250427484512329,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": -2.014709234237671,
+            "held_target": 2.275810956954956,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 1.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.0002205371856689453,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.000220537185669,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -2.3551337718963623,
+            "held_target": -3.013362407684326,
+            "applied_tau": -1.482079267501831,
+            "episode_step": 0.0,
+            "env": 3.0,
+            "policy_step": 303.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.00017150102939922363,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.00017150102939922363,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 0.8019776940345764,
+            "held_target": -0.013627205975353718,
+            "applied_tau": -19.658119201660156,
+            "episode_step": 0.0,
+            "env": 22.0,
+            "policy_step": 221.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 1.4603137969970703e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.3450014591217041,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -0.0005848666769452393,
+            "held_target": 0.33783650398254395,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 24.0,
+            "policy_step": 194.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.001980704953894019,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.001980704953894019,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": 9.240100860595703,
+            "held_target": -0.034830186516046524,
+            "applied_tau": -37.14908981323242,
+            "episode_step": 0.0,
+            "env": 2.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 2.980232238769531e-07,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.8700003027915955,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -0.16743117570877075,
+            "held_target": -0.8695709109306335,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 3.0,
+            "policy_step": 144.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    },
+    "regular_policy": {
+      "max_overshoot_rad": 0.02553325891494751,
+      "samples_per_joint": 111100,
+      "joints": [
+        {
+          "name": "AAHead_yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Head_pitch",
+          "max_overshoot_rad": 0.00048026442527770996,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.30048027634620667,
+            "lower": -0.30000001192092896,
+            "upper": 0.8899999856948853,
+            "qd": -1.8149189949035645,
+            "held_target": 0.3287368416786194,
+            "applied_tau": 6.0,
+            "episode_step": 5.0,
+            "env": 15.0,
+            "policy_step": 5.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ALeft_Shoulder_Pitch",
+          "max_overshoot_rad": 5.364418029785156e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.2200053930282593,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": -0.018070479854941368,
+            "held_target": 0.48109036684036255,
+            "applied_tau": -14.0,
+            "episode_step": 25.0,
+            "env": 26.0,
+            "policy_step": 152.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "max_overshoot_rad": 3.349781036376953e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.5700335502624512,
+            "lower": -1.7400000095367432,
+            "upper": 1.5700000524520874,
+            "qd": -0.04176269471645355,
+            "held_target": 1.5700000524520874,
+            "applied_tau": 0.0,
+            "episode_step": 13.0,
+            "env": 8.0,
+            "policy_step": 13.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "max_overshoot_rad": 1.7881393432617188e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.9000017642974854,
+            "lower": -1.899999976158142,
+            "upper": 1.899999976158142,
+            "qd": 0.0012949436204507947,
+            "held_target": 1.899999976158142,
+            "applied_tau": -0.7559337615966797,
+            "episode_step": 6.0,
+            "env": 26.0,
+            "policy_step": 164.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "max_overshoot_rad": 0.004073619842529297,
+          "samples_above_1mrad": 13,
+          "worst": {
+            "q": -2.2540736198425293,
+            "lower": -2.25,
+            "upper": 0.7799999713897705,
+            "qd": 1.2882779836654663,
+            "held_target": -2.0385377407073975,
+            "applied_tau": 11.345148086547852,
+            "episode_step": 8.0,
+            "env": 2.0,
+            "policy_step": 168.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "ARight_Shoulder_Pitch",
+          "max_overshoot_rad": 8.106231689453125e-06,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 1.220008134841919,
+            "lower": -2.950000047683716,
+            "upper": 1.2200000286102295,
+            "qd": 0.013192645274102688,
+            "held_target": 1.2200000286102295,
+            "applied_tau": -12.642749786376953,
+            "episode_step": 19.0,
+            "env": 27.0,
+            "policy_step": 131.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "max_overshoot_rad": 0.00015211105346679688,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -1.5701521635055542,
+            "lower": -1.5700000524520874,
+            "upper": 1.7400000095367432,
+            "qd": 0.29512542486190796,
+            "held_target": -1.5700000524520874,
+            "applied_tau": 0.0,
+            "episode_step": 9.0,
+            "env": 8.0,
+            "policy_step": 9.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "max_overshoot_rad": 0.0074613094329833984,
+          "samples_above_1mrad": 8,
+          "worst": {
+            "q": 2.2574613094329834,
+            "lower": -0.7799999713897705,
+            "upper": 2.25,
+            "qd": 0.02866119146347046,
+            "held_target": 2.231860399246216,
+            "applied_tau": -1.8861806392669678,
+            "episode_step": 9.0,
+            "env": 2.0,
+            "policy_step": 169.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "max_overshoot_rad": 0.00013184547424316406,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.000131845474243,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -0.20889230072498322,
+            "held_target": -2.9895081520080566,
+            "applied_tau": 6.135438919067383,
+            "episode_step": 45.0,
+            "env": 16.0,
+            "policy_step": 227.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "max_overshoot_rad": 3.2961368560791016e-05,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -0.3800329566001892,
+            "lower": -0.3799999952316284,
+            "upper": 1.5700000524520874,
+            "qd": 0.05608680471777916,
+            "held_target": -0.3799999952316284,
+            "applied_tau": 13.411430358886719,
+            "episode_step": 27.0,
+            "env": 13.0,
+            "policy_step": 27.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "max_overshoot_rad": 0.001477360725402832,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -1.0314773321151733,
+            "lower": -1.0299999713897705,
+            "upper": 1.0299999713897705,
+            "qd": 2.646362543106079,
+            "held_target": -1.0299999713897705,
+            "applied_tau": 20.0,
+            "episode_step": 20.0,
+            "env": 27.0,
+            "policy_step": 297.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "max_overshoot_rad": 0.003208066103979945,
+          "samples_above_1mrad": 5,
+          "worst": {
+            "q": -0.003208066103979945,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": -0.30412235856056213,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 19.0,
+            "env": 22.0,
+            "policy_step": 240.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "max_overshoot_rad": 0.0071427226066589355,
+          "samples_above_1mrad": 11,
+          "worst": {
+            "q": -0.8771427273750305,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": 1.036381483078003,
+            "held_target": -0.8700000047683716,
+            "applied_tau": 1.1895544528961182,
+            "episode_step": 36.0,
+            "env": 6.0,
+            "policy_step": 262.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "max_overshoot_rad": 0.001355588436126709,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.3463555872440338,
+            "lower": -0.3449999988079071,
+            "upper": 0.3449999988079071,
+            "qd": 1.1387834548950195,
+            "held_target": -0.2902905344963074,
+            "applied_tau": 2.252781391143799,
+            "episode_step": 9.0,
+            "env": 13.0,
+            "policy_step": 9.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "max_overshoot_rad": 0.0003857612609863281,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": -3.0003857612609863,
+            "lower": -3.0,
+            "upper": 2.2100000381469727,
+            "qd": -0.2795112431049347,
+            "held_target": -3.0,
+            "applied_tau": 9.89357852935791,
+            "episode_step": 42.0,
+            "env": 16.0,
+            "policy_step": 42.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "max_overshoot_rad": 0.0,
+          "samples_above_1mrad": 0,
+          "worst": {
+            "q": 0.0,
+            "lower": 0.0,
+            "upper": 0.0,
+            "qd": 0.0,
+            "held_target": 0.0,
+            "applied_tau": 0.0,
+            "episode_step": 0.0,
+            "env": 0.0,
+            "policy_step": 0.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "max_overshoot_rad": 0.002531290054321289,
+          "samples_above_1mrad": 2,
+          "worst": {
+            "q": 2.3525311946868896,
+            "lower": 0.0,
+            "upper": 2.3499999046325684,
+            "qd": -0.20090317726135254,
+            "held_target": 0.0,
+            "applied_tau": -40.0,
+            "episode_step": 16.0,
+            "env": 13.0,
+            "policy_step": 16.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "max_overshoot_rad": 0.02553325891494751,
+          "samples_above_1mrad": 20,
+          "worst": {
+            "q": -0.8955332636833191,
+            "lower": -0.8700000047683716,
+            "upper": 0.3449999988079071,
+            "qd": -3.34566330909729,
+            "held_target": -0.011762410402297974,
+            "applied_tau": 20.0,
+            "episode_step": 5.0,
+            "env": 6.0,
+            "policy_step": 231.0,
+            "reset_actor": 0.0
+          }
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "max_overshoot_rad": 0.0011967718601226807,
+          "samples_above_1mrad": 1,
+          "worst": {
+            "q": -0.3461967706680298,
+            "lower": -0.3449999988079071,
+            "upper": 0.3449999988079071,
+            "qd": -1.5817233324050903,
+            "held_target": -0.3449999988079071,
+            "applied_tau": 5.922855854034424,
+            "episode_step": 23.0,
+            "env": 19.0,
+            "policy_step": 23.0,
+            "reset_actor": 0.0
+          }
+        }
+      ]
+    }
+  },
+  "max_continuous_over_0_01rad_s": {
+    "AAHead_yaw": 0.0,
+    "Head_pitch": 0.0020000000949949026,
+    "ALeft_Shoulder_Pitch": 0.0,
+    "Left_Shoulder_Roll": 0.0,
+    "Left_Elbow_Pitch": 0.0,
+    "Left_Elbow_Yaw": 0.0020000000949949026,
+    "ARight_Shoulder_Pitch": 0.0020000000949949026,
+    "Right_Shoulder_Roll": 0.0,
+    "Right_Elbow_Pitch": 0.0,
+    "Right_Elbow_Yaw": 0.0020000000949949026,
+    "Left_Hip_Pitch": 0.0020000000949949026,
+    "Left_Hip_Roll": 0.0,
+    "Left_Hip_Yaw": 0.0,
+    "Left_Knee_Pitch": 0.0020000000949949026,
+    "Left_Ankle_Pitch": 0.0020000000949949026,
+    "Left_Ankle_Roll": 0.0,
+    "Right_Hip_Pitch": 0.0,
+    "Right_Hip_Roll": 0.0,
+    "Right_Hip_Yaw": 0.0,
+    "Right_Knee_Pitch": 0.0020000000949949026,
+    "Right_Ankle_Pitch": 0.00800000037997961,
+    "Right_Ankle_Roll": 0.0
+  },
+  "max_target_overshoot_rad": 0.059226274490356445,
+  "max_torque_limit_excess_Nm": 0.0,
+  "max_reset_input_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "finite": true,
+  "completed": true,
+  "steps_completed": 400,
+  "wall_s": 24.379689781999332,
+  "events": [
+    {
+      "env": 13.0,
+      "episode": 1.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.15590861439704895,
+      "roll": -0.4753161370754242,
+      "pitch": -1.5567342042922974,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 31
+    },
+    {
+      "env": 19.0,
+      "episode": 1.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.17950859665870667,
+      "roll": -0.14765293896198273,
+      "pitch": -1.4092252254486084,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 31
+    },
+    {
+      "env": 6.0,
+      "episode": 1.0,
+      "episode_steps": 99.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4988388419151306,
+      "roll": 0.027322495356202126,
+      "pitch": 0.04114120453596115,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 99
+    },
+    {
+      "env": 27.0,
+      "episode": 1.0,
+      "episode_steps": 112.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5236334204673767,
+      "roll": -0.08107541501522064,
+      "pitch": -0.07316344231367111,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 112
+    },
+    {
+      "env": 5.0,
+      "episode": 1.0,
+      "episode_steps": 114.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5227664113044739,
+      "roll": -0.02298315055668354,
+      "pitch": -0.00023045510170049965,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 114
+    },
+    {
+      "env": 20.0,
+      "episode": 1.0,
+      "episode_steps": 119.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5015162825584412,
+      "roll": 0.014903825707733631,
+      "pitch": 0.022053875029087067,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 119
+    },
+    {
+      "env": 26.0,
+      "episode": 1.0,
+      "episode_steps": 127.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5028613209724426,
+      "roll": -0.004378654528409243,
+      "pitch": -0.1367042511701584,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 127
+    },
+    {
+      "env": 6.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.13352364301681519,
+      "roll": -0.5620253086090088,
+      "pitch": -1.152590274810791,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 130
+    },
+    {
+      "env": 4.0,
+      "episode": 1.0,
+      "episode_steps": 133.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5067600011825562,
+      "roll": 0.0073125348426401615,
+      "pitch": 0.03237529098987579,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 133
+    },
+    {
+      "env": 19.0,
+      "episode": 2.0,
+      "episode_steps": 103.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49853622913360596,
+      "roll": 0.011846768669784069,
+      "pitch": 0.007548493333160877,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 134
+    },
+    {
+      "env": 18.0,
+      "episode": 1.0,
+      "episode_steps": 136.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5162672996520996,
+      "roll": 0.02045092172920704,
+      "pitch": 0.011968896724283695,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 136
+    },
+    {
+      "env": 27.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.08917893469333649,
+      "roll": -0.0982188731431961,
+      "pitch": -1.6472694873809814,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 143
+    },
+    {
+      "env": 3.0,
+      "episode": 1.0,
+      "episode_steps": 144.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.48818114399909973,
+      "roll": -0.005556642077863216,
+      "pitch": 0.027178354561328888,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 144
+    },
+    {
+      "env": 12.0,
+      "episode": 1.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5255861878395081,
+      "roll": -0.04642299935221672,
+      "pitch": -0.11002181470394135,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 154
+    },
+    {
+      "env": 26.0,
+      "episode": 2.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.14262253046035767,
+      "roll": 0.5844972729682922,
+      "pitch": 1.7243902683258057,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 158
+    },
+    {
+      "env": 13.0,
+      "episode": 2.0,
+      "episode_steps": 128.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.51884526014328,
+      "roll": -0.00885788258165121,
+      "pitch": -0.1453128308057785,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 159
+    },
+    {
+      "env": 2.0,
+      "episode": 1.0,
+      "episode_steps": 160.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5119635462760925,
+      "roll": 0.036676473915576935,
+      "pitch": -0.0012457225238904357,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 160
+    },
+    {
+      "env": 11.0,
+      "episode": 1.0,
+      "episode_steps": 161.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5087376832962036,
+      "roll": -0.027205655351281166,
+      "pitch": -0.14055177569389343,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 161
+    },
+    {
+      "env": 17.0,
+      "episode": 1.0,
+      "episode_steps": 165.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5088553428649902,
+      "roll": -0.02758074551820755,
+      "pitch": 0.008260139264166355,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 165
+    },
+    {
+      "env": 16.0,
+      "episode": 1.0,
+      "episode_steps": 182.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5029531121253967,
+      "roll": 0.005411799531430006,
+      "pitch": 0.008459088392555714,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 182
+    },
+    {
+      "env": 1.0,
+      "episode": 1.0,
+      "episode_steps": 187.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4994427263736725,
+      "roll": 0.002137088915333152,
+      "pitch": 0.04361627623438835,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 187
+    },
+    {
+      "env": 25.0,
+      "episode": 1.0,
+      "episode_steps": 189.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5093700289726257,
+      "roll": -0.0009822177235037088,
+      "pitch": -0.11329831182956696,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 189
+    },
+    {
+      "env": 24.0,
+      "episode": 1.0,
+      "episode_steps": 194.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5092243552207947,
+      "roll": -0.028689157217741013,
+      "pitch": -0.10181690752506256,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 194
+    },
+    {
+      "env": 10.0,
+      "episode": 1.0,
+      "episode_steps": 197.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5093953013420105,
+      "roll": -0.004750456195324659,
+      "pitch": -0.17897026240825653,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 197
+    },
+    {
+      "env": 15.0,
+      "episode": 1.0,
+      "episode_steps": 197.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5141562819480896,
+      "roll": 0.000656522752251476,
+      "pitch": -0.040771596133708954,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 197
+    },
+    {
+      "env": 23.0,
+      "episode": 1.0,
+      "episode_steps": 198.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49296659231185913,
+      "roll": 0.01981934905052185,
+      "pitch": -0.12997327744960785,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 198
+    },
+    {
+      "env": 9.0,
+      "episode": 1.0,
+      "episode_steps": 211.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5096006989479065,
+      "roll": -0.011944971978664398,
+      "pitch": -0.14291927218437195,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 211
+    },
+    {
+      "env": 14.0,
+      "episode": 1.0,
+      "episode_steps": 211.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4967210292816162,
+      "roll": -0.014348169788718224,
+      "pitch": 0.020410073921084404,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 0,
+      "policy_step": 211
+    },
+    {
+      "env": 22.0,
+      "episode": 1.0,
+      "episode_steps": 221.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5032777190208435,
+      "roll": -0.01318671926856041,
+      "pitch": -0.1653469204902649,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 1,
+      "policy_step": 221
+    },
+    {
+      "env": 6.0,
+      "episode": 3.0,
+      "episode_steps": 96.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.51827472448349,
+      "roll": -0.012925676070153713,
+      "pitch": 0.03597234562039375,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 226
+    },
+    {
+      "env": 20.0,
+      "episode": 2.0,
+      "episode_steps": 108.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5145865678787231,
+      "roll": 0.0012432271614670753,
+      "pitch": 0.03567647933959961,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 227
+    },
+    {
+      "env": 8.0,
+      "episode": 1.0,
+      "episode_steps": 232.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5213867425918579,
+      "roll": -0.0180239025503397,
+      "pitch": -0.121761754155159,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 1,
+      "policy_step": 232
+    },
+    {
+      "env": 0.0,
+      "episode": 1.0,
+      "episode_steps": 238.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5038365125656128,
+      "roll": 0.032656196504831314,
+      "pitch": -0.005536249838769436,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 0,
+      "policy_step": 238
+    },
+    {
+      "env": 19.0,
+      "episode": 3.0,
+      "episode_steps": 109.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5011497139930725,
+      "roll": 0.006339649669826031,
+      "pitch": 0.00908214133232832,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 243
+    },
+    {
+      "env": 5.0,
+      "episode": 2.0,
+      "episode_steps": 131.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49160900712013245,
+      "roll": 0.01940310001373291,
+      "pitch": 0.010234890505671501,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 245
+    },
+    {
+      "env": 18.0,
+      "episode": 2.0,
+      "episode_steps": 119.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4960710406303406,
+      "roll": 0.054977402091026306,
+      "pitch": -0.0034827138297259808,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 255
+    },
+    {
+      "env": 4.0,
+      "episode": 2.0,
+      "episode_steps": 129.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.511113166809082,
+      "roll": 0.006466686725616455,
+      "pitch": 0.03312461078166962,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 262
+    },
+    {
+      "env": 6.0,
+      "episode": 4.0,
+      "episode_steps": 41.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.34414753317832947,
+      "roll": 0.026930756866931915,
+      "pitch": 1.2861571311950684,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 267
+    },
+    {
+      "env": 21.0,
+      "episode": 1.0,
+      "episode_steps": 268.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5093814134597778,
+      "roll": -0.02005675621330738,
+      "pitch": -0.1257663071155548,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 0,
+      "policy_step": 268
+    },
+    {
+      "env": 27.0,
+      "episode": 3.0,
+      "episode_steps": 134.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5298539400100708,
+      "roll": -0.030789198353886604,
+      "pitch": -0.09094585478305817,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 277
+    },
+    {
+      "env": 7.0,
+      "episode": 1.0,
+      "episode_steps": 286.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 0.0,
+      "height": 0.5526288151741028,
+      "roll": 0.0026836388278752565,
+      "pitch": -0.10317715257406235,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 0,
+      "policy_step": 286
+    },
+    {
+      "env": 13.0,
+      "episode": 3.0,
+      "episode_steps": 131.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.49396762251853943,
+      "roll": -0.021898621693253517,
+      "pitch": -0.11030591279268265,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 290
+    },
+    {
+      "env": 3.0,
+      "episode": 2.0,
+      "episode_steps": 159.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4697202444076538,
+      "roll": 0.023523621261119843,
+      "pitch": 0.024767661467194557,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 303
+    },
+    {
+      "env": 27.0,
+      "episode": 4.0,
+      "episode_steps": 31.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.12408290803432465,
+      "roll": -0.311257541179657,
+      "pitch": -1.741281509399414,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 6,
+      "policy_step": 308
+    },
+    {
+      "env": 26.0,
+      "episode": 3.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5040158033370972,
+      "roll": -0.01825357787311077,
+      "pitch": -0.15182632207870483,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 312
+    },
+    {
+      "env": 11.0,
+      "episode": 2.0,
+      "episode_steps": 154.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5130638480186462,
+      "roll": 0.01577267237007618,
+      "pitch": -0.10739030689001083,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 315
+    },
+    {
+      "env": 12.0,
+      "episode": 2.0,
+      "episode_steps": 161.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5227988362312317,
+      "roll": -0.032963745296001434,
+      "pitch": -0.13226951658725739,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 5,
+      "policy_step": 315
+    },
+    {
+      "env": 17.0,
+      "episode": 2.0,
+      "episode_steps": 160.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.504855751991272,
+      "roll": 0.004337815567851067,
+      "pitch": -0.01578228920698166,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 325
+    },
+    {
+      "env": 2.0,
+      "episode": 2.0,
+      "episode_steps": 170.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5058301687240601,
+      "roll": 0.012700007297098637,
+      "pitch": -0.0036218794994056225,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 330
+    },
+    {
+      "env": 20.0,
+      "episode": 3.0,
+      "episode_steps": 109.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5154423713684082,
+      "roll": 0.011425028555095196,
+      "pitch": -0.15014907717704773,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 336
+    },
+    {
+      "env": 25.0,
+      "episode": 2.0,
+      "episode_steps": 151.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5089526176452637,
+      "roll": -0.017365336418151855,
+      "pitch": -0.12013901770114899,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 4,
+      "policy_step": 340
+    },
+    {
+      "env": 5.0,
+      "episode": 3.0,
+      "episode_steps": 104.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.502841591835022,
+      "roll": 0.02145187184214592,
+      "pitch": 0.0009512921096757054,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 349
+    },
+    {
+      "env": 19.0,
+      "episode": 4.0,
+      "episode_steps": 108.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4998481869697571,
+      "roll": 0.014049064368009567,
+      "pitch": 0.0013623988488689065,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 5,
+      "policy_step": 351
+    },
+    {
+      "env": 24.0,
+      "episode": 2.0,
+      "episode_steps": 162.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5159711837768555,
+      "roll": -0.04835793748497963,
+      "pitch": -0.10162492841482162,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 356
+    },
+    {
+      "env": 1.0,
+      "episode": 2.0,
+      "episode_steps": 184.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5008677244186401,
+      "roll": -0.004616579506546259,
+      "pitch": 0.031138353049755096,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 371
+    },
+    {
+      "env": 16.0,
+      "episode": 2.0,
+      "episode_steps": 192.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.4952622056007385,
+      "roll": 0.037136953324079514,
+      "pitch": -0.0009923601755872369,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 2,
+      "policy_step": 374
+    },
+    {
+      "env": 6.0,
+      "episode": 5.0,
+      "episode_steps": 112.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5135672688484192,
+      "roll": 0.00860980898141861,
+      "pitch": 0.027211977168917656,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 6,
+      "policy_step": 379
+    },
+    {
+      "env": 10.0,
+      "episode": 2.0,
+      "episode_steps": 184.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5251572728157043,
+      "roll": -0.017870774492621422,
+      "pitch": -0.14671087265014648,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 3,
+      "policy_step": 381
+    },
+    {
+      "env": 23.0,
+      "episode": 2.0,
+      "episode_steps": 186.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5068793892860413,
+      "roll": 0.005592420697212219,
+      "pitch": -0.12467238306999207,
+      "timeout": 0.0,
+      "direction": 1,
+      "keyframe": 2,
+      "policy_step": 384
+    },
+    {
+      "env": 3.0,
+      "episode": 3.0,
+      "episode_steps": 82.0,
+      "fall": 1.0,
+      "reference_complete": 0.0,
+      "stable_finish": 0.0,
+      "height": 0.3032301366329193,
+      "roll": 0.07624603062868118,
+      "pitch": 1.3028843402862549,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 3,
+      "policy_step": 385
+    },
+    {
+      "env": 15.0,
+      "episode": 2.0,
+      "episode_steps": 189.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.508355975151062,
+      "roll": -0.034099724143743515,
+      "pitch": 0.011660581454634666,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 1,
+      "policy_step": 386
+    },
+    {
+      "env": 18.0,
+      "episode": 3.0,
+      "episode_steps": 136.0,
+      "fall": 0.0,
+      "reference_complete": 1.0,
+      "stable_finish": 1.0,
+      "height": 0.5024323463439941,
+      "roll": 0.0011316353920847178,
+      "pitch": -0.023521089926362038,
+      "timeout": 0.0,
+      "direction": 0,
+      "keyframe": 4,
+      "policy_step": 391
+    }
+  ],
+  "stable_after_getup_steps": [
+    106,
+    149,
+    155,
+    131,
+    237,
+    249,
+    217,
+    21,
+    107,
+    176,
+    196,
+    178,
+    180,
+    261,
+    108,
+    145,
+    174,
+    155,
+    229,
+    221,
+    270,
+    86,
+    140,
+    184,
+    170,
+    188,
+    215,
+    133
+  ],
+  "after_getup_steps": [
+    106,
+    149,
+    155,
+    155,
+    242,
+    257,
+    246,
+    102,
+    116,
+    176,
+    196,
+    183,
+    237,
+    279,
+    111,
+    155,
+    174,
+    166,
+    242,
+    234,
+    287,
+    86,
+    140,
+    184,
+    184,
+    191,
+    215,
+    256
+  ],
+  "final_episode_steps": [
+    162,
+    29,
+    70,
+    15,
+    138,
+    51,
+    21,
+    114,
+    168,
+    189,
+    19,
+    85,
+    85,
+    110,
+    189,
+    14,
+    26,
+    75,
+    9,
+    49,
+    64,
+    132,
+    179,
+    16,
+    44,
+    60,
+    88,
+    92
+  ],
+  "final_stable_steps": [
+    27,
+    0,
+    0,
+    0,
+    96,
+    25,
+    11,
+    0,
+    28,
+    79,
+    0,
+    0,
+    6,
+    79,
+    44,
+    0,
+    0,
+    0,
+    0,
+    1,
+    10,
+    0,
+    53,
+    0,
+    0,
+    0,
+    37,
+    71
+  ],
+  "progress": [
+    {
+      "steps": 200,
+      "wall_s": 14.56,
+      "terminations": 26,
+      "falls": 5.0
+    },
+    {
+      "steps": 400,
+      "wall_s": 24.38,
+      "terminations": 62,
+      "falls": 8.0
+    }
+  ],
+  "strata": [
+    {
+      "direction": 0,
+      "keyframe": 0,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 2,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 1,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 2,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 3,
+      "completed_episodes": 5,
+      "reference_success": 4,
+      "stable_success": 3.0,
+      "falls": 1.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 4,
+      "completed_episodes": 5,
+      "reference_success": 5,
+      "stable_success": 4.0,
+      "falls": 0.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 5,
+      "completed_episodes": 7,
+      "reference_success": 6,
+      "stable_success": 6,
+      "falls": 1.0
+    },
+    {
+      "direction": 0,
+      "keyframe": 6,
+      "completed_episodes": 8,
+      "reference_success": 6,
+      "stable_success": 6,
+      "falls": 2.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 0,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 1.0,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 1,
+      "completed_episodes": 2,
+      "reference_success": 2,
+      "stable_success": 2,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 2,
+      "completed_episodes": 3,
+      "reference_success": 3,
+      "stable_success": 3,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 3,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 4,
+      "completed_episodes": 4,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 0.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 5,
+      "completed_episodes": 5,
+      "reference_success": 4,
+      "stable_success": 4,
+      "falls": 1.0
+    },
+    {
+      "direction": 1,
+      "keyframe": 6,
+      "completed_episodes": 7,
+      "reference_success": 4,
+      "stable_success": 2.0,
+      "falls": 3.0
+    }
+  ],
+  "gates": {
+    "numerical": true,
+    "reset_and_target_limits": false,
+    "physical_limits": false
+  }
+}

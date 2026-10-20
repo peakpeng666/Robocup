@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-19T04:20:36Z",
+  "task": "K1_Stand_Up",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+  "checkpoint_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "load_mode": "actor",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/K1_standup/K1_Stand_Up_actor.pt",
+    "sha256": "b88c04a1c41ce04caeb8eef223cda598cabacf360c0fcde64e73912e570ce795"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/K1_standup/K1_Stand_Up_actor.onnx",
+    "sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "opset": 11,
+    "input": "input: [batch, 73]",
+    "output": "output: [batch, 22]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed81 + k1-training patch layer"
+}{"atol": 1e-05, "rtol": 0.0001, "results": {"batch1": {"orig_vs_exported_ts": 0.0, "orig_vs_exported_onnx": 1.043081283569336e-06, "ok": true}, "batch4": {"orig_vs_exported_ts": 0.0, "orig_vs_exported_onnx": 1.1444091796875e-05, "ok": true}}, "verdict": "PASS", "note": "TorchScript-source export; ORT pass != official CompiledNN verified"}

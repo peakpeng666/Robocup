@@ -1,0 +1,37 @@
+/**
+ * @file Simulation/Geometries/BoxGeometry.h
+ * Declaration of class BoxGeometry
+ * @author Colin Graf
+ */
+
+#pragma once
+
+#include "Simulation/Geometries/Geometry.h"
+
+/**
+ * @class BoxGeometry
+ * A box shaped geometry
+ */
+class BoxGeometry : public Geometry
+{
+public:
+  float width; /**< The width of the box (cy) */
+  float height; /**< The height of the box (cz) */
+  float depth; /**< The depth of the box (cx) */
+
+private:
+  /**
+   * Creates the geometry (not including \c translation and \c rotation)
+   * @param body The body to which to attach the geometry
+   * @param The created geometry
+   */
+  mjsGeom* assembleGeometry(mjsBody* body) override;
+
+  /**
+   * Creates the physical objects used by the OpenDynamicsEngine (ODE).
+   * These are a geometry object for collision detection and/or a body,
+   * if the simulation object is movable.
+   * @param graphicsContext The graphics context to create resources in
+   */
+  void createPhysics(GraphicsContext& graphicsContext) override;
+};

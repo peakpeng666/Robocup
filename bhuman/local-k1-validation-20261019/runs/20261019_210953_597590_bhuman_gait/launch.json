@@ -1,0 +1,53 @@
+{
+  "schema": 2,
+  "runtime": {
+    "vision": "cuda",
+    "ort_threads": 1,
+    "ort_spin": 0,
+    "real_time_pacing": true,
+    "onnxruntime_gpu": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib",
+    "cuda_libraries_reused_from": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia",
+    "precision": "FP32; TF32 disabled; motion policies remain on CPU"
+  },
+  "recording": true,
+  "recording_frames": "jpeg",
+  "build": "Release",
+  "command": [
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenes/K1/BHumanLocalGait.ros3"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local",
+  "seconds": 30,
+  "mode": "gait",
+  "scenario": "Default",
+  "launcher_sha256": "8fc24ce1acdab8da078d49f06a09a1d4f7aeee573adb1d20a9e4cf2e20201945",
+  "official_source": "bhuman/BHumanCodeRelease@2e3374ba896da8288607f9a1881b876642fe18b8",
+  "unchanged_public_files_sha256": {
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp": "704186f83378272931ccc785095a9d6776bf1963cab572af9797b66943a5a1b2",
+    "Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h": "86020512522fe0afbb2792f20913215fa08952b63bcd85f443f31a0ce73d3c6c",
+    "Config/Robots/Default/K1/walkingEngine.cfg": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+    "Config/Robots/Default/K1/motorParameters.cfg": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+    "Config/Robots/SimulatedK1/walkingEngine.cfg": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+    "Config/Robots/SimulatedK1/motorParameters.cfg": "9dd2a3d1030b3729c5acc8f53c34d1126f9c0d0f9c72e5e131b8879f604b1948",
+    "Config/Robots/SimulatedK1/odometryDataPreviewProvider.cfg": "bebcb08d58ed78243c72e692f5d31c637fc9cf5bd8beea09adece4edefdfeb04",
+    "Config/Locations/MField/setupPosesProvider.cfg": "3b4db7e855f86efd601ec264d498512c3421f2fccb9197ff7ac5ee40d9b71786",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/GetUpEngine/K1.onnx": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    "Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa",
+    "Config/Robots/Default/K1/cameraResolution.cfg": "dd46e8fc9d28fbcc5c4f1f2d69a19775b89384227cf67dc47017d2441fe66700",
+    "Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620",
+    "Config/NeuralNets/RobotBallPerceptor/ball_robot_640.onnx": "99970cad7d913ec8ddb2c283992be51ad63d4c38ab44906fde2d97df56827986",
+    "Src/Modules/Perception/MultiPerceptors/RobotBallPerceptor.cpp": "5a0849a77b19bffc14c83f6865a7c6bcbf882148ed7c159c4f3e7a16dc10c7ae",
+    "Src/Modules/Perception/MultiPerceptors/RobotBallPerceptor.h": "3c3c21bf7052cf72e3464150d40628c0f5f18b0d69d4565dea3ea894217ecb12"
+  },
+  "simulator_sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157",
+  "controller_sha256": "162c37af4f079bf0e76f529f0eb435db31be326f8352aa0b649fe5a55bb5152b",
+  "scene_sha256": "1e8870ebec87e51de767f58d9288aaeb68b9de6f0985fabcaf291a54c9845e83",
+  "schedule_sha256": "f9df1da14aed2d8bf4463ea7dc7afd4d8c6c1611bd3c8b0f8e1f2c12a0f55447",
+  "scene_console_sha256": "d79e23e69a3803d2c2f02f04f9a9223f45ab387a42d88766a011a17aba4d4ff8",
+  "robot_connected": false,
+  "perception_mode": "normal rendered camera, not oracle or 2D"
+}

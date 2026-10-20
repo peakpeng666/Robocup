@@ -1,0 +1,7 @@
+{
+  "variant": "baseline",
+  "baseline_sha256": "790337313d479055f8196ef775b7a5eb4e490831432cf0b138b4a31e6db2b2c9",
+  "fixed_sha256": "18aeef9ad94185ad4f604baa5452ea86f00731ab09fddf47f227ce2321affd28",
+  "policy_sha256": "052d2bce0fc16a7ccbbeddc7b6d6601521d0eb5da0cd29b7db387028c873c005",
+  "observation": "Both arms use the existing episode tracer and identical reset-cache clone instrumentation. No claim of fully nonintrusive timing."
+}

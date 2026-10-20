@@ -1,0 +1,494 @@
+brain_node:
+  ros__parameters:
+    game:
+      team_id: 31 # consistant with GameControl
+      player_id: 2 # 1 | 2 | 3 | 4
+      field_type: "2025_adult_size" # 2025_kid_size | 2025_adult_size | 2025_5v5 | 2026_s | 2026_m | 2026_l
+      player_role: "striker" # striker | goal_keeper
+      player_start_pos: "right" # right | left
+      treat_person_as_robot: false # 是否将人类视为机器人, 用于调试. !!!! 正式比赛时, 必须设置为 false !!!!
+      number_of_players: 3
+
+    ball_predictor:
+      step_interval: 100. # 球预测的时间间隔, 单位: 毫秒
+      step_cnt: 50 # 球预测的步数
+      linear_steps: 5 # 利用前几帧的数据进行线性预测, 数据越大越稳定但越慢.
+      linear_rsq_threshold: 0.98 # 线性预测的 R^2 阈值, 小于此值则认为没有做直线运动.
+      acceleration: -0.35 # 球自由滚动时的基础加速度
+      speed_friction_factor: 0.45 # 速度相关摩擦系数, 速度越高减速越强; 0 表示使用固定摩擦
+
+    team_ball:
+      cluster_radius: 1.0 # 融合 team ball 时, 距离最高权重 anchor 超过该半径的样本不参与融合(m)
+      remote_max_age_msec: 1200.0 # 队友球观测超过该年龄后不参与 team ball 融合(ms)
+      unsynced_weight_scale: 0.75 # 没有完成时钟同步的队友观测权重缩放
+      unsynced_policy: "keep" # keep | drop; drop 时完全丢弃未同步队友球观测
+      geometry_weight_range_m: 8.0 # 队友/本机离球越远权重越低, 到该距离降到 geometry_weight_min
+      geometry_weight_min: 0.4 # 几何距离权重下限
+
+    robot:
+      robot_height: 1.0 # 用于大概估算检测到的物体相对于机器人头的 pitch 角
+      odom_factor: 1.0 # 大概估算 odom 中给出的距离与实际行走的距离的比例
+      vx_factor: 0.90 # 修正步态 x 与 y 的差异
+      yaw_offset: 0.10 # 修正步态的前进角度
+      vx_limit: 2.0 # 步态 x 速度限制
+      backward_vx_limit: 1.0 # 后退时的步态 x 速度限制(绝对值)
+      vy_limit: 0.85 # 步态 y 速度限制
+      vtheta_limit: 2.0 # 步态角速度限制, 也是统一的身体转向上限
+      head_pitch_limit_up: 0.113 # 头部向上软限位(向下为正). 要让远距找球真正抬头, 这里必须小于 far search pitch
+      # 2025_kid_size / 2026_s：ball_search.head_pitch_far: 0.129
+      # 2025_adult_size / 2026_m：ball_search.head_pitch_far: 0.113
+      # 2025_5v5 / 2026_l：ball_search.head_pitch_far: 0.102
+      min_vx_response: 0.2 # robocupWalk 对前向小速度不响应时, 自动抬到这个最小值
+      min_vy_response: 0.2 # robocupWalk 对横向小速度不响应时, 自动抬到这个最小值
+      min_vtheta_response: 0.2 # robocupWalk 对小角速度不响应时, 自动抬到这个最小值
+      lateral_min_response_disable_vx_threshold: 0.50 # 当前向 vx 大于此值时, 不再对 vy/vtheta 抬最小响应
+      walk_smoothing:
+        accel_x: 2.6 # robocupWalk 前向加速上限(m/s^2); 越大起步越猛
+        accel_y: 2.0 # robocupWalk 横向加速上限(m/s^2); 越大横移起步越快
+        accel_theta: 1.6 # robocupWalk 转向加速上限(rad/s^2); 越大转身起步越快
+        decel_x: 5.0 # robocupWalk 前向减速上限(m/s^2); 越大收速越干脆
+        decel_y: 3.0 # robocupWalk 横向减速上限(m/s^2); 越大横移收得越快
+        decel_theta: 3.0 # robocupWalk 转向减速上限(rad/s^2); 越大停转越快
+        dt_min: 0.02 # 两次速度指令间隔的最小取值(s); 防止控制周期太小时平滑步长过小
+        dt_max: 0.08 # 两次速度指令间隔的最大取值(s); 防止掉帧后单次跳变过大
+        dt_initial: 0.05 # 没有历史速度时用于第一拍爬升的等效 dt(s); 越大第一拍起步越快
+      walk_stall:
+        min_linear_cmd: 0.20 # 线速度指令超过这个值, 才认为“在认真尝试移动”
+        min_theta_cmd: 0.35 # 角速度指令超过这个值, 才认为“在认真尝试转身”
+        pose_dist_threshold: 0.05 # odom 位移小于这个值时, 认为基本没动(m)
+        pose_theta_threshold: 0.08 # odom 朝向变化小于这个值时, 认为基本没转(rad)
+        timeout_sec: 1.00 # 满足“有明显指令但几乎没动”持续多久后, 插入一次 0,0,0(s)
+
+    strategy:
+      amp_striker:
+        enter_shoot_opponent_goal_line_dist_threshold: 6.0 # 进入 shoot: 球到对方球门线的距离阈值(m); 2025 adult 下对应 x>=1.0
+        enter_shoot_y_abs_threshold: 2.7 # 进入 shoot: 梯形靠中场一侧的半宽(m)
+        enter_shoot_goal_line_y_abs_threshold: 1.0 # 进入 shoot: 梯形在对方球门线处的半宽(m)
+        exit_shoot_opponent_goal_line_dist_threshold: 6.5 # 保持 shoot: 球到对方球门线的距离阈值(m); 2025 adult 下对应 x>=0.5
+        exit_shoot_y_abs_threshold: 3.5 # 保持 shoot: 梯形靠中场一侧的半宽(m)
+        exit_shoot_goal_line_y_abs_threshold: 1.0 # 保持 shoot: 梯形在对方球门线处的半宽(m)
+        enter_shoot_min_ball_range: 0.0 # 进入 shoot 区域后, 还要求球离自己大于此距离(m)才进入 shoot
+        shoot_front_clear_enable: false # 进入 shoot 前要求前方扇形区域无遮挡; 关闭后只按 shoot 区域/距离等条件判断
+        enable_congestion_assist_fallback: false # 通信缺失且近球/追球路线拥堵时, striker 是否退回 assist; 默认关
+      ball_confidence_threshold: 30.0 # confidence 低于这个阈值, 认为不是球(注意detection模块目前传入目标置信度都是 > 20 的)
+      ball_confidence_decay_rate: 3.0 # 看到 confidence 为 100 的球后, 多少秒没有再看到, 则认为球丢了 (confidence < ball_confidence_threshold). 最后看到的球信息越低, 则越快认为球已经丢了.
+      ball_memory_timeout: 1.5 # 球记忆失效时间, 超过这个时间, 认为球丢了
+      tm_ball_dist_threshold: 1.0 # 队友球与我距离超过该值时, 兼容层 tm_ball_pos_reliable 才认为可信
+      ball_visual_memory_timeout: 0.3 # 丢球后头部继续盯本地旧球位置的时间, 超过后更积极地转向 team ball / 扫视
+      ball_field_reject_margin: 3.0 # 视觉球落在场地边界外超过该余量时直接拒绝(m)
+      enable_local_opponent_indirect_restart_release_fix: true # 对方间接任意球(throw-in/corner/goal-kick/indirect-freekick)本地判球动总开关; 关掉后不跟踪球动, ball_free 仅由 GameController 下发
+      opponent_indirect_restart_ball_move_threshold_factor: 0.10 # 对方 throw-in/corner/goal-kick/indirect-freekick 本地判球动: 相对机器人球距的比例阈值
+      opponent_indirect_restart_ball_move_min: 0.45 # 上述相对机器人判球动的最小位移阈值(m); 调大可减少静止球视觉/姿态抖动误判
+      opponent_indirect_restart_field_move_threshold_factor: 0.12 # 球场坐标交叉确认的比例阈值, 与对方 kickoff 判球动一致
+      opponent_indirect_restart_field_move_min: 0.30 # 球场坐标交叉确认的最小位移阈值(m); 设为0可关闭这层交叉确认
+      opponent_indirect_restart_ball_move_consecutive_frames: 6 # 上述两个移动条件都需要连续满足的帧数
+      close_control:
+        fallback_team_ball_fresh_timeout_msec: 800.0 # 本地球缺失时, team ball 年龄小于此值可作为共享回退依据(ms)
+        local_ball_memory_timeout_msec: 700.0 # 身体近控/追球可继续使用本地旧球的时间窗(ms); 不影响头部找球视觉记忆
+        motion_ball_prediction_override_enable: false # pass/dribble/shoot 中, 预测球和真实球差距大时, 用预测球覆盖发给底层 motion 的视觉球
+        predicted_ball_divergence_entry_guard_enable: false # 进入 pass/dribble/shoot 前, 若预测球和真实球差距过大, 是否退回 chase
+        motion_ball_prediction_override_min_delta_m: 0.7 # 预测球和真实球距离差超过该值才覆盖; 静止球通常不会触发
+        motion_ball_prediction_override_max_real_age_msec: 250.0 # 本机真实球超过该年龄时不使用预测-真实差值门控
+        motion_ball_prediction_override_confidence: 0.85 # 预测球覆盖时发给底层的置信度
+        attack_ball_stable_window_msec: 2000.0 # 需要“球稳定”时, 采样窗口长度(ms)
+        attack_ball_stable_distance_threshold: 0.3 # 上述窗口内, 球位置最大波动小于此值时认为稳定(m)
+        retreat_enter_ball_x_threshold: 0.0 # 当前主要给 goalie 用; 球的 x 大于此值时进入 retreat
+        retreat_exit_ball_x_threshold: -1.0 # 当前主要给 goalie 用; retreat 状态退出阈值, 小于 enter 形成迟滞
+        enter_threshold: 2.3 # striker/goalie 进入 close-control 的球距阈值(m)
+        exit_threshold: 2.8 # striker/goalie 退出 close-control 的球距阈值(m), 大于 enter 形成迟滞
+        lost_ball_yaw_find_threshold: 0.9 # 丢球后, 若最后记忆的球偏角绝对值大于此值, 直接转 find(rad)
+        lost_ball_close_margin_enter: 0.1 # 非 close-control 状态丢球时, “其实还很近” 的附加 margin(m)
+        lost_ball_close_margin_exit: 0.2 # close-control 状态丢球时, “其实还很近” 的附加 margin(m)
+        safe_pass_own_goal_line_dist_threshold: 3.0 # close-control 时, 球离我方球门线小于此值优先 soft pass(m)
+        pass_goalpost_ray_endline_angle: 0.52 # 对方球门门柱引出的射线与底线夹角(rad); 用于定义角区三角区, 区内默认沿y轴朝中路, 门柱50cm内斜向进场
+        opponent_goal_center_back_offset: 0.3 # 计算对方球门中心方向时, 目标点沿 +x 往球门后方平移的距离(m)
+        pass_gait: "amp" # pass 决策使用的底层步态: amp | mimic
+        use_mimic_pass_on_restart: false # 我方开球/indirect free kick 第一脚是否用 mimic_pass 步态(false 时维持 pass_gait 配置的普通步态)
+        mimic_pass_foot_latch_range: 1.2 # MimicPass 球距小于等于该值时锁定踢球脚; 更远时持续按几何重算(m)
+        soft_pass_speed: 1.2 # striker/goalie 共用的 soft pass 逼近速度
+        restart_pass_speed: 1.2 # 开球/indirect free kick 第一脚专用逼近速度, 独立于 soft_pass_speed, 与 use_mimic_pass_on_restart 无关
+        shoot_zone_pass_speed: 2.8 # 进入 shoot 区但决策为 pass 时的 pass 逼近速度
+        restart_pass_target_distance: 3.5 # 3.5 # restart/kickoff 强制传球时, 按传球方向从球点投影出的接应目标距离(m)
+        restart_receiver_ready_distance: 1.2 # restart/kickoff 接应者距离接应站位小于该值时, 发球者才允许传球(m)
+        restart_receiver_back_from_target: # 我方 restart 接应者站位: 从接球目标点沿场地 -X 方向后撤的距离(m), 数值越大越靠我方半场
+          default: 1.9 # 中圈开球等没有单独配置的默认接应后撤
+          indirect_free_kick: 2.1 # 我方 indirect free kick 接应后撤
+          throw_in: 2.5 # 我方边线球接应后撤
+          goal_kick: 2.5 # 我方门球接应后撤
+          corner_kick: 2.5 # 我方角球接应后撤
+        restart_passer_prepare_ball_route_clearance: 0.4 # restart passer 准备站位时, 机器人到目标点连线与球的最小避让距离(m)
+        restart_passer_prepare_bypass_dist: 0.8 # 上述路线过球时, passer 先绕到球侧方的偏移距离(m)
+        restart_touch_close_range: 0.35 # restart passer 本机首触判定: 球先小于该距离, 进入近球 latch(m)
+        restart_touch_release_range: 0.6 # restart passer 本机首触判定: 近球 latch 后球大于该距离, 认为第一脚已踢出(m)
+        kickoff_receiver_settle_speed: 0.4 # kickoff 第二脚接应者等待球速低于该值再接管(m/s)
+        kickoff_receiver_max_wait_msec: 1200.0 # kickoff 第二脚接应者最多等待球静止多久(ms)
+        kickoff_receiver_fallback_wait_msec: 600.0 # 没有有效本机球速估计时, kickoff 第二脚接应者兜底等待多久(ms)
+        own_center_kickoff_receiver_fixed_x_enable: true # 我方中圈开球 PLAY 后, 接应者站位是否强制使用固定 x
+        own_center_kickoff_receiver_fixed_x: -0.4 # 上述开关打开时, 接应者站位的 x 坐标(m)
+        own_center_kickoff_context_timeout_msec: 10000.0 # 我方中圈开球上下文保留多久; 控制接应/通信/固定脚/固定x等配合逻辑(ms)
+        decision_min_msec: 1000.0 # striker/goalie 共用: 进入 pass/dribble/shoot 后至少保持多久才允许切换 decision(ms)
+        missing_ball_find_delay_msec: 100.0 # 球位置完全未知后延迟这么久再进入 find, 防止单帧/短暂丢球抖动(ms)
+        enter_evidence_window_msec: 250.0 # 进入近控时, 决策球在该窗口内至少 evidence_ratio 满足进入条件才切换(ms)
+        exit_evidence_window_msec: 300.0 # 退出近控到 chase 时, 决策球在该窗口内至少 evidence_ratio 满足退出条件才切换(ms)
+        shoot_zone_evidence_window_msec: 250.0 # 进入 shoot zone 判断使用的决策球证据窗口(ms)
+        find_evidence_window_msec: 250.0 # 球位置未知进入 find 前使用的证据窗口(ms)
+        enable_dribble: false # 是否允许近控安全区产出 dribble; false 时该区域兜底 pass
+        enable_shoot: true # 是否允许 striker 在射门区产出 shoot; false 时射门区按 dribble/pass 兜底
+        force_pass_on_own_center_kickoff: true # 我方中点开球且球仍在中心区域时, 近控阶段强制只走 pass
+        force_pass_on_own_indirect_restart: true # 我方 indirect restart(goal kick/corner/throw-in/indirect freekick) 是否强制走传接配合
+        own_center_kickoff_pass_side: "left" # 我方中点开球第一脚方向: left | right | manual. left/right 会同时驱动 READY 单侧接应站位方向
+        own_center_kickoff_pass_angle_abs: 0.5 # 0.6 # left/right 模式下的传球夹角绝对值(rad), 0 为朝对方球门方向(+x)
+        own_center_kickoff_pass_dir: -0.5 # 0.6 # manual 模式下的强制 pass 方向(rad), 0 为朝对方球门方向(+x)
+        dribble_stall_to_pass_timeout_msec: 3000.0 # 连续处于 dribble 且机器人几乎不动超过此时长时，兜底切到 pass(ms)
+        dribble_angle_gate_enable: true # 是否启用 robot->ball 与 dribble方向大角度时切 pass 的保护
+        dribble_enter_max_angle: 1.57 # 进入dribble要求 robot->ball 与 dribble方向夹角不超过此值(rad)
+        dribble_keep_max_angle: 2.09 # 已处于dribble时允许的较宽夹角(rad), 防止临界抖动
+        no_switch_enter_range: 0.6 # 球距小于该值时锁住当前 close-control 决策(pass/dribble/visualkick), 防止近球乱切(m)
+        no_switch_exit_range: 0.8 # 球距大于该值后解除上述近球决策锁(m)
+        pass_entry_stop_guard_enable: true # 从不稳定 walk 状态切入 pass 前, 先保持 walk 并发送零速度停车, 避免带速度硬切 pass
+        pass_entry_backward_vx_threshold: 0.05 # walk vx 小于 -该值时计为一个后退 tick(m/s)
+        pass_entry_backward_filter_ticks: 10 # 最近多少个 walk 速度 tick 参与后退过滤
+        pass_entry_backward_filter_min_count: 5 # 上述窗口里至少多少个 tick 后退才触发保护
+        pass_entry_lateral_vy_threshold: 0.35 # 最近 walk 横移速度超过该值时, 切 pass 前先停车(m/s)
+        pass_entry_turn_threshold: 0.85 # 最近 walk 角速度超过该值时, 切 pass 前先停车(rad/s)
+        pass_entry_linear_speed_threshold: 1.35 # 最近 walk 平移速度超过该值时, 切 pass 前先停车(m/s)
+        pass_entry_recent_motion_msec: 350.0 # 最近 walk 运动指令在该时间窗内才触发 pass 停车保护(ms)
+        pass_entry_stop_msec: 300.0 # 触发上述保护后保持零速度多久再允许切 pass(ms)
+        pass_entry_recent_backward_msec: 450.0 # 即使中间 decision 抖动, 最近该时长内出现过后退 walk 也先停车再进 pass(ms)
+        throw_in_teammate_lead_dist: 1.0 # 我方边线球时, 传向最近队友朝对方球门方向前方多少米的接球点(m)
+      decision_ball:
+        enable: true # 是否启用决策球滤波/证据窗口; false 时退回当前帧决策逻辑
+        evidence_ratio: 0.5 # 决策条件在窗口内满足该比例即认为成立; 0.5 表示半数通过
+        min_samples: 3 # 决策证据窗口内至少需要的样本数, 防止单帧触发
+        history_window_msec: 600.0 # 决策球历史缓存长度(ms)
+        filter_tau_msec: 120.0 # 决策专用球位置低通滤波时间常数(ms), 仅影响 decision, 不影响 motion 原始球
+        max_step_m: 0.6 # 决策球单次更新允许的基础跳变量(m)
+        max_speed_mps: 6.0 # 决策球限幅允许的额外移动速度(m/s)
+      use_squat_block: false # 是否使用蹲下挡球策略, 如果为 true, 则守门员会蹲下挡球, 否则只会站立挡球
+      squat_block_msecs: 2000.0 # 蹲下挡球的时间, 单位: 毫秒
+      use_move_block: false # 是否使用移动挡球策略, 如果为 true, 则守门员依据对球路的预测, 提前向挡球位置移动, 如 false, 则只会向球的当前位置移动.
+      move_block_msecs: 2000.0 # 移动挡球的时间, 单位: 毫秒
+      opponent_kickoff_wait_timeout_msec: 10000.0 # 对方 kickoff/free kick 后, 若没看到球动, 最多等待多久再进入正常比赛(ms). 设为 0 可关闭这层等待.
+      opponent_kickoff_fallback_consecutive_frames: 5 # 对方中圈开球没听到哨声但球已进我方深处时, 连续多少帧后本地开始比赛
+      tolerance:
+        ready:
+          dist: 0.4 # 全局 READY 站位的到位距离容差(m)
+          theta: 0.4 # 全局 READY 站位的朝向容差(rad)
+        goalie_guard_ready:
+          dist: 0.2 # 门将在正常比赛 guard 且无球时回 ready 点的距离容差(m)
+          theta: 0.2 # 门将在正常比赛 guard 且无球时回 ready 点的朝向容差(rad)
+        goalie_freekick_ready:
+          dist: 0.2 # 门将在 free kick 阶段无球时回 ready 点的距离容差(m)
+          theta: 0.2 # 门将在 free kick 阶段无球时回 ready 点的朝向容差(rad)
+        goalie_block:
+          dist: 0.2 # 门将 blocking 位的距离容差(m)
+          theta: 0.1 # 门将 blocking 位面向球的朝向容差(rad)
+      goalie:
+        retreat_evidence_window_msec: 300.0 # goalie retreat 的 ballXField 判断证据窗口(ms)
+        attack_x_field_divisor: 4.0 # 门将允许出击的球场深度线: ball.x < -field.length / 该值
+        attack_exit_x_margin: 0.5 # 门将已进入 attack 后, 球向前离开进入线这么多距离前仍保持 attack(m)
+        attack_force_close_range: 4.0 # 球距离已经近到此值内时, 即使稳定判定未满足也允许出击(m)
+        block_dist_to_goal_line: 1.0 # GoToGoalBlockingPosition 默认站在离我方球门线多远的位置(m)
+      goalie_intercept2:
+        enable: true # 横移挡球总开关（利用 ball_predictor 预测球穿过机器人y轴的位置）
+        seen_ms_entry: 150.0 # 进入 intercept2：球最近被看到的时间阈值(ms)
+        seen_ms_keep: 450.0 # 保持 intercept2：球最近被看到的时间阈值(ms)
+        time_min: 0.10 # 球到达机器人y轴的最短时间(s)，太小通常来不及横移
+        time_max_entry: 4.0 # 进入 intercept2 的最大到达时间(s)，更早开始横移
+        time_max_keep: 4.5 # 保持 intercept2 的最大到达时间(s)
+        max_ball_distance: 6.0 # 球距离机器人超过该值则不进入 intercept2(m)
+        max_walk_distance: 2.0 # 预计交点 |y| 超过该值则不横移(m)
+        width_hysteresis: 0.2 # 保持 intercept2 时，横移范围滞回(m)
+        end_x_entry: 0.25 # 进入 intercept2：预测停球点 x(机器人坐标) 需小于该值(m)，否则认为球停在身前无需挡
+        end_x_keep: 0.35 # 保持 intercept2：预测停球点 x(机器人坐标) 阈值(m)
+        min_speed: 0.10 # 估计球速低于该值则不进入 intercept2(m/s)
+        min_dwell_ms: 400.0 # 进入 intercept2 后至少保持这么久，减少抖动(ms)
+        stand_radius: 0.08 # 交点y在该半径内则站立不动(m)
+        stand_hysteresis: 0.05 # 站立/横移切换滞回(m)
+        walk_vy_max: 0.6 # 横移最大侧向速度(m/s)，会再被 robot.vy_limit 限制
+        walk_vy_gain: 2.2 # 横移速度比例增益
+        blocking_y_blend_base: 0.6 # 挡球站位时，用预测交点修正 ballPos.y 的基础混合权重(0~1)
+        blocking_end_x_gate: 0.45 # 预测停球点 endPosRobotX 越小越信任预测交点(m)
+        blocking_time_gate: 2.0 # timeToIntersection 越小越信任预测交点(s)
+        enable_squat_fallback: true # 太近/太急时下蹲兜底（走 Intercept 节点）
+        squat_t_hit_max: 0.35 # 小于该值认为“来不及走位”(s)
+        squat_ball_range_max: 1.0 # 球距离小于该值允许触发下蹲兜底(m)
+        squat_ball_speed_min: 0.18 # 球速大于该值才触发兜底(m/s)
+      goalie_block_kick:
+        enable: true # intercept2 挡停球后自动解围开关（前方无遮挡才触发）
+        duration_msec: 400.0 # 进入 block_kick 后保持多久(ms)，避免 Analyze 马上覆盖回 guard/attack
+        ball_range_max: 1.2 # 球距离小于该值才会触发解围(m)
+        ball_x_max: 0.95 # 球在机器人前方 x 小于该值才触发(m)
+        ball_y_max: 0.35 # 球在机器人身前 |y| 小于该值才触发(m)
+        ball_speed_max: 1.0 # 估计球速低于该值才触发(m/s)
+        front_check_dist: 1.3 # 前方扇形无遮挡的检查距离(m)
+        front_half_angle: 0.314 # 前方扇形半角(rad)，默认约 18deg
+        pass_speed: 2.8 # 解围时 AMPPass 的 pass_speed(m/s)
+      amp_chase:
+        far_ball_vy_disable_range: 4.0 # 普通 chase 未避障时, 球距离大于该值不发 vy; <=0 表示关闭
+        far_ball_improved:
+          enable: true # 远球改进策略总开关: 含先转向再直线跑 + 己方半场防守站位; false 恢复原行为
+          turn_forward_speed: 0.1 # 远球未避障且偏角大于转向阈值时, 转向同时保持的前进速度(m/s); 0 表示原地转
+        obstacle_avoid:
+          level: 2 # 0=完全关闭 chase 避障; 1=当前版本避障; 2=thu_avoidance 大改版本
+          disable_during_retreat: true # 回防式追球时是否临时关闭 chase 避障
+          safe_dist: 1.80 # 追球方向前方障碍物距离小于此值时, 切换到近距离短侧移避障
+          speed: 2.08 # 进入避障分支时, 沿安全方向的平移速度(m/s)
+          min_ball_range: 0.65 # 球距离小于此值时不再绕障, 防止在球附近来回横跳
+          theta_blend: 0.42 # 避障时, 朝向向避障方向偏一点的混合比例; 0 表示始终只朝向球，1 表示始终完全转向避障方向
+          theta_max_bias: 0.58 # 避障时, 相对盯球朝向允许额外偏转的最大角度(rad)
+        ball_prediction:
+          enable: false # 追球时使用球路预测点, 而不是只追当前球位置
+          lookahead_msec: 1500.0 # 追多久之后的球位置; 球快时可适当调大, 抖动时调小
+          max_age_msec: 350.0 # 预测结果超过这个年龄就回退当前球位置
+      amp_dribble:
+        sideline_danger_dist: 1.0   # Y边线危险距离
+        endline_danger_dist: 1.0    # X端线危险距离, 前后场共用
+        corner_danger_dist: 1.5     # 角落危险距离
+        speed:
+          backfield: 0.65 # 球在后场时的普通带球速度(m/s)
+          normal: 0.65 # 其他情况下的普通带球速度(m/s)
+        obstacle_avoid:
+          enable: true # dribble 时是否根据前方障碍物微调 dribble_dir
+          safe_dist: 2.7 # 当前 dribble_dir 前方障碍物距离小于此值时, 才尝试改向
+          max_adjust_angle: 1.57 # 允许相对原始 dribble_dir 的最大偏转(rad), 防止过于保守
+          min_clearance_gain: 0.1 # 新方向至少比原方向多出的净空距离(m), 否则保持原方向
+      cooperation:
+        enable_role_switch: true # 开启后, 会根据场上裁判机上存活的队友数量, 来自动决定自己的角色, 当场上不满员时, 我变为 striker.
+        ball_control_cost_threshold: 8.0 # 当 lead_margin_ignore_control_threshold_enable=false 时, 只有队友最小 cost 小于此值才用 margin 降 lead
+        lead_switch_abs_margin: 1.0 # 普通 lead/assist 切换的 cost 死区; assist takeover bias 激活时不使用
+        lead_margin_ignore_control_threshold_enable: true # true 时远球(cost>=threshold)也用 lead_switch_abs_margin 降 lead; false 恢复旧逻辑
+        kickoff_assist_bias_cost: 300.0 # 已弃用: kickoff 第一脚后现在硬指定 receiver 为 leader, 不再靠 cost 切换
+        kickoff_receiver_post_pass_cost: 0.0 # 我方中圈开球第一脚后, receiver 临时广播的最大 cost, 帮助接球者稳定接管 lead
+        kickoff_p2_post_pass_cost: 100.0 # 我方中圈开球第一脚踢出中圈后, passer 临时广播的最小 cost(参数名保留 p2 兼容旧配置)
+        kickoff_p2_post_pass_cost_duration_msec: 10000.0 # 上述 passer cost 抬高持续时间(ms)
+        takeover_enable: true # 总开关: 关闭后 cost 老化、local takeover、assist takeover 全部禁用, 恢复原始行为
+        team_cost_fresh_grace_msec: 450.0 # 队友 cost 在收到通信后的新鲜宽限期; 超过后才开始做老化惩罚(ms)
+        team_cost_age_penalty_per_sec: 1.5 # 队友 cost 过了宽限期后, 每秒额外增加的惩罚
+        team_cost_age_max_penalty: 3.0 # 队友 cost 老化惩罚上限
+        local_takeover_ball_range: 1.2 # 本地看到的球距离小于该值时, 允许用近球接管顶掉旧的远端 lead(m)
+        local_takeover_stale_msec: 300.0 # 本地近球接管只接受这么新的视觉球(ms)
+        local_takeover_cost_slack: 0.5 # 本地接管要求比老化后的队友最优 cost 至少更优这么多
+        local_takeover_hold_msec: 1000.0 # 本地接管触发后, 至少保持这么久避免 assist/lead 抖动(ms)
+        assist_takeover_enable: true # striker assist 看到球且现有 striker lead 丢球时, 是否降低本机 lead 选举 cost
+        assist_takeover_lead_com_fresh_msec: 1500.0 # lead 通信数据超过此年龄时不使用(ms)
+        assist_takeover_bias_start_msec: 300.0 # lead 连续没看到球超过此时间后, assist 选举 cost 开始按指数曲线减少(ms)
+        assist_takeover_bias_target_msec: 1000.0 # 目标时间点(ms): 到这里时 bonus 应等于 target_bonus
+        assist_takeover_bias_target_bonus: 2.3 # lead 未见球到 target_msec 时, 本机 lead 选举 cost 减去该值
+        assist_takeover_bias_max_bonus: 3.0 # lead 长时间未见球时, 本机 lead 选举 cost 最多减去该值
+      ready_layout:
+        kickoff_overrides: "3: {x: -1.12, y: -2.50, theta: 0.90}" # 可选, YAML 字符串, 按 player_id 覆盖本方开球时的 READY 站位. 例如: "2: {x: -3.2, y: 1.0, theta: 0.0}"
+        defend_overrides: "" # 可选, YAML 字符串, 按 player_id 覆盖对方开球时的 READY 站位. 例如: "3: {x: -4.0, y: -1.2, theta: 0.0}"
+      positioning:
+        ready:
+          # READY 阶段默认站位的公式参数.
+          # 当前实现是“1 个 leader + 其余人分前后两排左右展开”.
+          # 这里统一用比例:
+          # 1. 左右展开间距 = field.width * *_width_ratio
+          # 2. 前后层深位置 = -field.length * *_x_field_ratio
+          kickoff:
+            leader_x_field_ratio: 0.11 # 本方开球时, leader 的 x = -field.length * 该比例
+            front_x_field_ratio: 0.08 # 本方开球时, 前排的 x = -field.length * 该比例
+            back_x_field_ratio: 0.32 # 本方开球时, 后排的 x = -field.length * 该比例
+            single_side_offset_width_ratio: 0.28 # 本方开球 READY 单侧接应者侧向偏移 = field.width * 该比例; 方向跟 own_center_kickoff_pass_side
+          defend:
+            leader_x_field_ratio: 0.2 # 对方开球时, leader 的 x = -field.length * 该比例
+            front_x_field_ratio: 0.33 # 对方开球时, 前排的 x = -field.length * 该比例
+            back_x_field_ratio: 0.38 # 对方开球时, 后排的 x = -field.length * 该比例
+          front_spacing_width_ratio: 0.17 # READY 前排左右相邻 lane 的间距 = field.width * 该比例
+          back_spacing_width_ratio: 0.20 # READY 后排左右相邻 lane 的间距 = field.width * 该比例
+          y_clamp_margin: 0.5 # READY 站位距离边线至少保留多少余量(m)
+        single_side_offset_width_ratio: 0.25 # READY 仅有 1 个非 leader 时, 或 assist/freekick 仅有 1 个 support 时, 额外侧偏 = field.width * 该比例
+        support:
+          # assist / freekick 的 support 共用这套公式:
+          # 1. 先取“球 -> 我方球门中心”的连线.
+          # 2. front/mid/back 三层都落在这条线上, 位置由该线段长度 * *_depth_ball_to_goal_ratio 决定.
+          #    ratio = 0 表示就在球旁边, ratio = 1 表示到我方球门中心.
+          # 3. 多个 support 再沿着这条线的法向左右展开.
+          # 4. 只有 1 个 support 时, 额外给一个固定侧偏, 避免和 leader/ball 完全共线.
+          front_depth_ball_to_goal_ratio: 0.35 # 最前 support 层深 = 球到我方球门中心距离 * 该比例
+          mid_depth_ball_to_goal_ratio: 0.60 # 中间 support 层深 = 球到我方球门中心距离 * 该比例
+          back_depth_ball_to_goal_ratio: 0.82 # 最后 support 层深 = 球到我方球门中心距离 * 该比例
+          lane_gap_width_ratio: 0.10 # support 左右相邻 lane 的间距 = field.width * 该比例
+          y_clamp_margin: 0.4 # support 站位距离边线至少保留多少余量(m)
+        freekick:
+          defense_dist: 2.8 # 对方 indirect free kick 防守站位距离球的距离(m), 数值越大越往后退
+          defense_backoff: # 对方 restart 防守站位: 在 defense_dist / support 形状基础上, 整体继续向我方球门方向后撤(m)
+            throw_in: 0.5 # 对方边线球防守额外后撤
+            goal_kick: 0.5 # 对方门球防守额外后撤
+            corner_kick: 0.0 # 对方角球防守额外后撤
+          hold_position_before_release_once_stable: true # 对方边线球/角球/门球防守时, 若已到过摆位点且速度命令已归零, release 前原地站住不再继续追摆位点
+      turning:
+        body_gain: 2.0 # chase/assist/find 等身体转向统一增益, 越大转向越快
+        min_turn_speed: 1.0 # 找球近目标保持扫描时的最小角速度
+
+    ball_search:
+      point_head_pitch_low: 1.0 # 点式找球低头扫描 pitch(rad), pitch 越大越低头
+      point_head_pitch_high: 0.3 # 点式找球抬头扫描 pitch(rad), pitch 越小越抬头
+      point_head_yaw_left: 1.1 # 点式找球左侧扫描 yaw(rad), yaw 向左为正
+      point_head_yaw_right: -1.1 # 点式找球右侧扫描 yaw(rad), yaw 向右为负
+      point_cmd_interval_msec: 800 # 点式找球每个头部点位停留时间(ms)
+      point_turning_cmd_interval_msec: 800 # 旋转找球时 yaw 固定 0, high/low pitch 点位停留时间(ms)
+      point_restart_interval_msec: 50000 # 距离上次指令超过该时间后从第一个点位重新扫描(ms)
+      team_hint_ball_center_height: 0.06 # 用 team_ball 作为找球启发时, 按球心离地高度估算头部 pitch(m)
+      team_hint_pitch_offset: 0.0 # team_ball 头部 pitch 标定偏置(rad); 球在画面偏上就调大, 偏下就调小
+      team_hint_pitch_max: 0.95 # team_ball 很近时允许的最大向下 pitch(rad), 防止头压得过低
+
+    telemetry:
+      enable: true # 是否开启轻量 2D 可视化 telemetry（默认关闭，需手动配置 host）
+      host: "10.0.0.4" # 电脑端 IPv4，例如 "192.168.10.110"
+      port: 15000 # 电脑端 UDP 监听端口
+      rate_hz: 1.0 # 规则限制: 调试 UDP 最多 1Hz
+      max_obstacles: 40 # 每帧最多发送多少个障碍物点
+
+    obstacle_avoidance:
+      depth_sample_step: 16 # 障碍物检测时, 深度图采样点的步长
+      obstacle_min_height: 0.35 # 障碍物高度阈值, 高于此值的点视为障碍物
+      grid_size: 0.2 # 障碍物检测时, 网格边长
+      max_x: 4.5 # 在前方 x: [0, max_x] 范围内检测障碍物
+      max_y: 5.0 # 在左右 y: [-max_y, max_y] 范围内检测障碍物
+      exclusion_x: 0.3 # 排除 x 轴范围, 即排除机器人自己, 此范围外的点视为障碍物
+      exclusion_y: 0.4 # 排除 y 轴范围, 即排除机器人自己, 此范围外的点视为障碍物
+      ball_exclusion_radius: 0.0 # 球周围这个半径内的障碍物认为不是障碍
+      ball_exclusion_height: 0.3 # 球周围这个高度内的障碍物认为不是障碍
+      near_small_obstacle_filter_enable: true # 是否过滤近处小面积深度连通域, 减少手臂/噪声被转成障碍物
+      near_small_obstacle_max_x: 0.8 # 只过滤机器人前方该距离内的小连通域
+      near_small_obstacle_min_cells: 2 # 小于该占用格数量的近处连通域会被过滤
+      occupancy_threshold: 15 # 障碍物阈值, 在世界坐标系的一个网格内, 高于指定高度的深度采样点数大于些值, 则认为存在障碍物
+      collision_threshold: 0.52 # 碰撞阈值, 当障碍物与机器人的距离小于此值, 则认为发生碰撞, 相当于机器人的碰撞半径
+      safe_distance: 2.0 # 安全距离, 当障碍物距离小于此值时, 认为需要避障
+      avoid_secs: 1.4 # 避障时, 每次绕行障碍物的时长
+      enable_freekick_avoid: true # 是否在自由球起始放置时避障
+      freekick_start_placing_safe_distance: 1.0 # 自由球起始放置时, 避障安全距离, 如果球在此范围内, 则认为需要避障
+      freekick_start_placing_avoid_secs: 1.7 # 自由球起始放置时, 避障绕行时间
+      obstacle_memory_msecs: 1500. # 视野外的障碍物, 在记忆中保持的时间(毫秒)
+      avoid_during_chase: true # 是否在 chase 时避障
+      chase_ao_safe_dist: 1.5 # chase 时的避障安全距离
+      always_turn_left: false # 在 gotoreadyposition时, 如果有障碍, 永远向左转
+
+    path_planning:
+      enable: true # move2pose 定位移动是否启用 A* 全局路径规划
+      grid_resolution: 0.15 # A* field-frame 栅格分辨率(m)
+      inflation_radius: 0.55 # 深度障碍膨胀半径(m)
+      opponent_inflation: 0.65 # 对手机器人膨胀半径(m)
+      teammate_inflation: 0.45 # 队友机器人膨胀半径(m)
+      include_teammates: true # 是否把队友作为全局规划障碍
+      max_iterations: 5000 # 单次 A* 最大展开次数
+      replan_interval_ms: 200.0 # 周期性重规划间隔(ms)
+      waypoint_spacing: 0.3 # 输出 waypoint 重采样间距(m)
+      smoothing_weight: 0.3 # 预留平滑权重，当前使用 line-of-sight 简化
+      path_stickiness_weight: 0.8 # 实时重规划时对上一条路径走廊的软偏好，减少左右乱飘
+      path_stickiness_max_distance: 1.2 # 超过这个距离后不再额外惩罚偏离旧路径(m)
+      min_range_for_planning: 0.2 # 仅最后贴近目标时直接短距控制，其余距离实时走 A*
+      emergency_safe_distance: 0.5 # A* 生效后局部避障只保留这个紧急安全距离
+      follower_waypoint_reach_dist: 0.25 # 路径跟随时认为到达当前 waypoint 的距离(m)
+      follower_lookahead_dist: 1.5 # 路径跟随前视距离(m)，越大沿路径给的速度越快
+      follower_bezier_smoothing_enable: true # 路径跟随时用局部贝塞尔曲线圆滑 A* 折线拐角
+      follower_bezier_corner_radius: 0.45 # 贝塞尔圆角切入/切出距离(m)，越大拐角越圆
+      follower_bezier_sample_count: 10 # 每个贝塞尔圆角采样点数
+      max_forward_speed: 1.5 # move2pose/path-follow longRange 前向速度请求上限(m/s)
+      turn_walk_min_speed: 1.0 # longRange 大角度转向时保留的前进底速(m/s)
+      turn_walk_max_heading_error: 1.4 # 目标相对朝向超过该角度时仍先原地转(rad)
+      goal_slowdown_radius: 1.0 # 距目标小于该距离后按剩余距离减速，减少终点超调(m)
+      goal_stop_radius: 0.25 # 距目标小于该距离后线速度归零(m)
+      switch_min_hold_ms: 600.0 # 新路径横向跳变时，旧路径最短承诺时间(ms)
+      switch_min_progress: 0.4 # 新路径横向跳变时，沿旧路径至少推进的距离(m)
+      switch_min_improvement_ratio: 0.18 # 新路径节省比例超过此值时立即切换，优先到达速度
+      switch_min_improvement_dist: 0.8 # 新路径至少节省此距离(m)才算明显更快
+      switch_lateral_threshold: 0.45 # 新旧路径最大横向差超过此值才认为是突兀切路(m)
+      obstacle_release_grace_ms: 1000.0 # 障碍刚从路径规划输入消失后的短宽限(ms)
+      waypoint_jump_limit: 0.65 # 每个规划 tick 输出 waypoint 最大跳变(m)，轻量抑制瞬时转向
+
+    locator:
+      min_marker_count: 5 # 最少看到多少到 marker, 才可以进行粒子滤波定位
+      max_residual: 0.35 # 粒子滤波定位时, 最终每个粒子的加权偏差大于此值时, 认为定位不成功
+      mode: "2way" # legacy | hybrid | 2way | separate | separated | htwk | fusion
+      fusion:
+        # 连续主导(HTWK)
+        continuous_min_quality: 0.45
+        continuous_max_step_pos: 0.40
+        continuous_max_step_theta: 0.30
+        # 离散门控(SelfLocate*)
+        discrete_gate_enable: true
+        discrete_require_converged: true
+        discrete_min_htwk_quality: 0.65
+        discrete_max_delta_pos_to_htwk: 0.40
+        discrete_max_delta_theta_to_htwk: 0.35
+        discrete_cooldown_ms: 1200.0
+        discrete_max_step_pos: 0.25
+        discrete_max_step_theta: 0.20
+      monitor:
+        enable: true # 是否开启定位质量监控, 用于发现 self-locator 输出抖动/低质量
+        window_size: 120 # 监控滑动窗口大小, 表示保留最近多少帧定位质量样本
+        min_samples: 60 # 样本数达到该值后才开始判定质量是否异常
+        success_rate_min: 0.7 # 窗口内成功定位比例下限, 低于该值认为定位质量差
+        quality_mean_min: 0.6 # 窗口内定位质量均值下限, 低于该值认为定位不可靠
+        dpos_p95_max: 0.5 # 窗口内位置跳变量 P95 上限(m), 越小越严格
+        dtheta_p95_max: 0.35 # 窗口内朝向跳变量 P95 上限(rad), 越小越严格
+        dpos_std_max: 0.2 # 窗口内位置跳变量标准差上限(m), 用于检测持续抖动
+        dtheta_std_max: 0.15 # 窗口内朝向跳变量标准差上限(rad), 用于检测持续转角抖动
+        report_interval_ms: 1000.0 # 定位监控日志/告警的最小输出间隔(ms)
+
+    team_ball:
+      remote_max_age_msec: 1800.0 # M4: 远端队友球观测最大年龄(ms); 变小更保守, 变大更容易采纳旧消息
+      unsynced_policy: "keep" # M4: 队友时钟未同步时的策略; keep=保留但降权, drop=直接丢弃
+      unsynced_weight_scale: 0.75 # M4/M5: unsynced_policy=keep 时的权重倍率; 越小越不信任未同步队友
+      geometry_weight_range_m: 8.0 # M5: 距离权重衰减范围(m); 越小越惩罚远距离观测
+      geometry_weight_min: 0.4 # M5: 距离权重下限; 越小远距离球影响越弱
+      min_sample_confidence: 0.30 # M6: 单个球员球样本进入 team_ball 成簇/分歧计算的最低置信度; 0.30 对应原始 detection confidence 30
+      cluster_radius: 1.0 # M6: 基础兼容半径(m); 越大越容易把不同样本合成同一个球簇
+      cluster_radius_max: 1.6 # M6: 动态兼容半径上限(m); 防止旧/远观测把簇拉得过宽
+      cluster_radius_age_growth_m_per_sec: 0.25 # M6: 观测每旧 1 秒, 兼容半径额外放宽多少(m)
+      cluster_radius_range_growth: 0.02 # M6: 观测距离每增加 1m, 兼容半径额外放宽多少(m)
+      cluster_radius_speed_growth_m_per_mps: 0.20 # M6: 球速每增加 1m/s, 兼容半径额外放宽多少(m); 当前速度多为 0
+      min_cluster_support: 1.0 # M6: 最小成簇样本数; 设为 2 可要求至少两个样本支持同一个 team_ball
+
+    enable_com: true  # 是否开启队友间通信
+    communication:
+      adaptive_send:
+        enable: true # 开启队友消息自适应发送频率; 消息格式不变, 只调整发送间隔
+        high_interval_ms: 500.0 # 近控/重启配合/近球/低 cost 等高价值状态的发送间隔
+        idle_interval_ms: 2000.0 # 远离球且无关键动作时的保底心跳间隔
+        event_poll_ms: 100.0 # 状态变化检测周期; 越小事件广播越快但线程唤醒越频繁
+        event_min_interval_ms: 500.0 # 事件触发包的最小间隔, 防止状态抖动刷包
+        active_cost_threshold: 4.0 # cost 小于该值时视为活跃状态
+        active_ball_range_threshold: 4.0 # 本机球距小于该值时视为活跃状态(m)
+
+    rerunLog:
+      enable_tcp: false # 是否通过网络传输 log
+      server_ip: "192.168.10.111:9876" # 开启了 rerun Viewer 的机器地址
+      enable_file: true # 是否将 log 写入本地
+      log_dir: "/home/booster/Workspace/rrlog" # 本地 log 存储路径, 会在此路径下生成以时间为开头的文件
+      max_log_file_mins: 5.0 # 本地 log 最长多少分钟就分片存储. 太大的文件会导致读的时候死机.
+      img_interval: 1 #每多少帧图像 log 一次, 如果希望更好的实时性或减少日志大小, 可以调高这个值. 但会造成 log 的时间精度降低.
+
+    recovery:
+      method: "stand_up" # robocup_walk | stand_up前者依赖 robocupwalk 自起身，后者调用 standUp，兼容 master 的做法
+      retry_max_count: 2
+
+    vision:
+        image_topic: "/boostercamera/head/rgb" #realsense
+        depth_image_topic: "/boostercamera/head/depth" #realsense
+          # image_topic: "/zed/zed_node/left/image_rect_color" #zed
+          # depth_image_topic: "/zed/zed_node/depth/depth_registered" #zed
+        cam_pixel_width: 1080. # 相机像素宽度, realsense 与 zed 相同
+        cam_pixel_height: 720. # 相机像素高度, realsense 与 zed 相同
+        cam_fov_x: 90.0 # 相机视场角, 单位: 度, realsense
+        cam_fov_y: 60.0 # 相机视场角, 单位: 度, realsense
+        # cam_fov_x: 110.0 # 相机视场角, 单位: 度, zed
+        # cam_fov_y: 70.0 # 相机视场角, 单位: 度, zed
+        # TODO 相机参数以及点云处理, 未来应该转移到 vision 模块中. 或使 vision 模块发送 TF 消息.
+
+    debug:
+      log_ball_pos: false # 是否记录球位置到 ballpos.log 中, 用于调试
+
+    game_control_ip: "10.0.0.2"
+
+    # for fun
+    sound:
+      enable: true # 是否播放声音
+      sound_pack: "espeak" # espeak 或 语音名名称, 假设语音包名称为 <name>, 相应的语音文件需放到: sound_play/sounds/ 目录下, 以<name>-xx.mp3 命名
+
+    whistle_detection:
+      enable: true # 裁判机原始状态仍为 SET 时, 收到哨声后本地锁存为 PLAY; 对方开球时也会解除等待逻辑
+      topic: "/whistle_detected" # whistle_detection 模块发布的 ROS2 话题

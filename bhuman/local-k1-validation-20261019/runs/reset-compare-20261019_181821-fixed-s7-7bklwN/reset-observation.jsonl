@@ -1,0 +1,5 @@
+{"step": 0, "env_ids": [0, 1, 2, 3], "gravity_error": [0.0, 0.0, 0.0, 0.0], "angular_velocity_error": [0.0, 0.0, 0.0, 0.0], "dof_history_error": [0.0, 0.0, 0.0, 0.0], "custom_dof_velocity_absmax": [5.0770039558410645, 15.156973838806152, 8.473991394042969, 5.090355396270752], "variant": "fixed"}
+{"step": 126, "env_ids": [0], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [12.11245346069336], "variant": "fixed"}
+{"step": 131, "env_ids": [2], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [15.391687393188477], "variant": "fixed"}
+{"step": 185, "env_ids": [3], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [16.541181564331055], "variant": "fixed"}
+{"step": 236, "env_ids": [1], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [5.043804168701172], "variant": "fixed"}

@@ -1,0 +1,108 @@
+camera:
+  type: "realsense" # realsense, d-robotics, zed, zed_compressed
+  intrin:
+    fx: 321.949
+    fy: 321.608
+    cx: 324.519
+    cy: 178.605
+    distortion_coeffs: [-0.0553056,0.065975,-0.000994232,2.98548e-05,-0.0216579]
+    distortion_model: 2 # 0: none, 1: opencv format, 2: for rs d455 only
+  extrin:
+    - [ 0.05659255, 0.03014561, 0.99794215, 0.04217854]
+    - [-0.99839673, 0.00283376, 0.05653273, 0.01405556]
+    - [-0.00112372,-0.9995415 , 0.03025765,-0.01538294]
+    - [ 0.        , 0.        , 0.        , 1.        ]
+  pitch_compensation: 0.0 # in degree
+  yaw_compensation: 0.0
+  z_compensation: 0.0
+detection_model:
+  model_path: "model/T1_20260701Kr_realsense_det.engine"
+  confidence_threshold: 0.2
+  nms_threshold: 0.4
+  classnames: ["Ball", "Goalpost", "Person", "LCross", "TCross", "XCross", "PenaltyPoint", "Opponent", "BRMarker"]
+  post_process:
+    single_ball_assumption: false
+    confidence_thresholds:
+      Ball: 0.4
+      Goalpost: 0.4
+      Person: 0.4
+      LCross: 0.3
+      TCross: 0.3
+      XCross: 0.3
+      PenaltyPoint: 0.3
+      Opponent: 0.4
+      BRMarker: 0.2
+# segmentation_model:
+#   model_path: "model/best_seg_orin_10.3.engine"
+#   confidence_threshold: 0.3
+#   nms_threshold: 0.9
+# robot_color_classifier:
+#   red_bounds:
+#     - [0, 80, 50, 20, 255, 255]
+#     - [160, 80, 100, 179, 255, 255]
+#   blue_bounds:
+#     - [100, 140, 50, 140, 255, 255]
+#   green_bounds:
+#     - [30, 45, 45, 80, 255, 255]
+use_depth: true
+ros_pipeline:
+  latest_frame: true          # ROS image_transport 模式下只处理最新 color 帧，worker 忙时覆盖旧帧，避免延迟堆积
+  seg_infer_every_n_frames: 4 # segmentation 跟随 detection 抽帧运行；设为 0 可关闭，设很大可近似禁用
+  perf_log_interval: 60       # 每 N 个 detection 帧打印一次 drop/耗时统计
+plane_fitting:
+  # ========== 总开关 ==========
+  enable: true               # 是否启用平面检测测距（false=使用原始射线-地面相交测距），false后,下面的配置参数全部不生效
+  use_icp: true              # 只有enable开关生效时才对算法进行选择：true=ICP算法（快速准确），false=RANSAC算法（传统方法）
+  interval: 1                # 平面检测间隔帧数（1=每帧检测，2=每2帧检测一次，以此类推）
+                             # 值越大越省资源，但平面更新越慢。推荐：高速运动用1，静态场景用3
+  
+  # ========== ICP 算法参数（use_icp=true 时生效）==========
+  icp_max_iterations: 10     # ICP 最大迭代次数（30fps相机推荐10-15次，单次约0.5ms）
+                             # 通常5-10次就能收敛。值越大越精确但越慢
+  icp_inlier_threshold: 0.3  # ICP 内点判定阈值（米）：点到平面距离小于此值才算内点
+                             # 值越小越严格，但可能导致内点太少。推荐范围：0.3-0.8
+  icp_convergence_threshold: 0.003  # ICP 收敛阈值：平面参数变化小于此值时停止迭代
+                             # 值越大越容易提前停止（更快）。推荐：0.0001-0.001
+  
+  # ========== RANSAC 算法参数（use_icp=false 时生效）==========
+  ransac_iterations: 30     # RANSAC 迭代次数（越多越准确但越慢）
+  inlier_threshold: 0.05     # RANSAC 内点阈值（米）：点到平面距离小于此值才算内点
+  depth_min: 0.1             # 有效深度最小值（米）：小于此值的深度点会被忽略
+  depth_max: 6.0             # 有效深度最大值（米）：大于此值的深度点会被忽略
+  sample_step: 5             # RANSAC 采样步长（像素）：每隔N个像素采样一次，值越大越快但越粗糙
+  
+  # ========== 通用参数（ICP 和 RANSAC 都使用）==========
+  cam_height: 1.1            # 相机离地高度（米）：用于 ICP 初始化和平面有效性验证
+                             # ⚠️ 重要：必须设置为实际相机高度，否则影响检测准确性
+  height_tolerance: 0.15     # 高度验证容差（米）：检测到的平面距离与 cam_height 的允许误差
+                             # 如果误差超过此值，平面会被判定为无效
+                             # ICP 算法建议 0.15-0.20，RANSAC 建议 0.10
+  use_salvador_method: false # 是否使用 Salvador 方法（带平面验证和旋转校正）
+                             # true=严格验证平面有效性，false=简单验证（只检查非零）
+                             # ⚠️ 设置为 false 可关闭平面验证、高度检查、旋转校正
+                             # 建议保持 true，验证成本很低但能提高鲁棒性
+ball_pose_estimator:
+  use_depth: false
+  radius: 0.109
+  down_sample_leaf_size: 0.01
+  cluster_distance_threshold: 0.01
+  fitting_distance_threshold: 0.01
+  minimum_cluster_size: 150
+  filter_distance: 1.2
+  check_ball_height: true
+human_like_pose_estimator:
+  use_depth: false
+  down_sample_leaf_size: 0.01
+  fitting_distance_threshold: 0.01
+  statistic_outlier_multiplier: 0.01
+field_marker_pose_estimator:
+  refine: false
+  line_segment_area_threshold: 75 # 75 for vga resolution, 300 for 720p resolution
+calibration:
+  sync_max_time_diff_ms: 1400
+  offset:
+    exclude_distance: 2.0
+    zero_translation: true
+    field_marker_path: "./src/vision/config/field.yaml"
+misc:
+  save_data_nonstationary: true

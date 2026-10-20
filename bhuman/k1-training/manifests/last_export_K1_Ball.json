@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/export_model.py",
+    "--task",
+    "K1_Ball",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+    "--load_mode",
+    "actor",
+    "--out_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/v2-public-kick",
+    "--opset",
+    "11"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 2.0705642760003684,
+  "sampled_gpu_peak_mib": 0,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144637_817268_export_K1_Ball",
+  "python_jit": "1",
+  "status": "PASS"
+}

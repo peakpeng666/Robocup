@@ -1,0 +1,18 @@
+{
+  "environment_promotion": "PASS",
+  "training_restore_export": "PASS",
+  "own_actor_evaluation": "INSUFFICIENT_COVERAGE",
+  "stand_hold": "FAIL_PER_ENV_COVERAGE",
+  "sustained_stress_falls": 55,
+  "sustained_stress_finished_episodes": 531,
+  "formal_training_started": false,
+  "robot_connected": false,
+  "final_report": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/STANDUP-LONGTEST-REPORT.md",
+  "files": {
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/STANDUP-LONGTEST-REPORT.md": "a8dc1445436dda815a6001f2968811563b62565c8d293489d889d8d0eb2e618c",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/STATUS.md": "54b6c5df4468ac598af73bb1c65d72c9c24f419769b887348374e5969b1ef7c7",
+    "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/SYNC-README.md": "5493b7db87a7e18821704b6cc3385324c03af0f68394c1059b942fa65855a9df",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/README.md": "7b2a13ec7c81ca8975bfd86deaff9b5d7df5b7ad4a4d6a1d3ccf06ba63a314f4",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/REPORT-v3-standup.md": "d480c63e29aa1fc6d10c4c7dd90325a82771c922c2d6cbd11e5f78b60cd3a29b"
+  }
+}

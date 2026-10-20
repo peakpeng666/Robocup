@@ -1,0 +1,11 @@
+{
+  "variant": "baseline",
+  "completed": true,
+  "reset_batches": 6,
+  "max_reset_input_errors": {
+    "gravity_error": 1.8668186664581299,
+    "angular_velocity_error": 6.7560272216796875,
+    "dof_history_error": 0.0
+  },
+  "consistent": false
+}

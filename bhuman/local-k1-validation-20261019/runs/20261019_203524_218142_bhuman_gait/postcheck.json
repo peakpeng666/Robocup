@@ -1,0 +1,164 @@
+{
+  "status": "PASS",
+  "mode": "gait",
+  "scope": "Public B-Human K1 controller in normal 3D SimRobot; local simulation only; not a full regulation match or hardware qualification",
+  "requested_simulation_s": 30.0,
+  "checks": {
+    "process_exit_zero": true,
+    "completed_requested_steps": true,
+    "no_console_errors": true,
+    "all_robots_reported": true,
+    "all_robots_have_camera_perception_cognition": true,
+    "finite_all_recorded_frames": true,
+    "all_robots_execute_walk": true,
+    "no_fall_or_getup": true,
+    "robot_traveled_over_1m": true,
+    "all_gait_commands_dispatched": true,
+    "forward_response": true,
+    "side_response": true,
+    "turn_response": true,
+    "settled_stop_under_10cm": true,
+    "encoded_video_complete": true,
+    "tested_controller_unchanged": true,
+    "tested_simulator_unchanged": true,
+    "tested_scene_unchanged": true
+  },
+  "robots": {
+    "robot5": {
+      "physics_samples": 60,
+      "motion_samples": 60,
+      "unique_camera_timestamps_sampled": 60,
+      "perception_samples": 59,
+      "ball_seen_samples": 14,
+      "cognition_samples": 59,
+      "skills": [
+        3,
+        8
+      ],
+      "walk_frames": 12010,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 8.405229768329702,
+      "max_sampled_abs_roll_pitch_rad": 0.055,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot5",
+        "tick": "250",
+        "x_mm": "1994.9",
+        "y_mm": "-14.5",
+        "yaw_rad": "3.100",
+        "roll_rad": "-0.017",
+        "pitch_rad": "-0.013",
+        "image": "1",
+        "image_time": "100500",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot5",
+        "tick": "15000",
+        "x_mm": "-3213.6",
+        "y_mm": "-2944.0",
+        "yaw_rad": "0.800",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.007",
+        "image": "1",
+        "image_time": "129996",
+        "nonfinite_total": "0"
+      }
+    }
+  },
+  "game_states": [
+    3
+  ],
+  "last_game": {
+    "tick": "15000",
+    "state": "3",
+    "first_half": "1",
+    "remaining_s": "571",
+    "score_a": "0",
+    "score_b": "0",
+    "robots": "1",
+    "ball_valid": "1",
+    "ball_x_mm": "6000.0",
+    "ball_y_mm": "4000.0"
+  },
+  "ball_contacts_logged": 0,
+  "ball_path_m_from_2hz_samples": 0.0,
+  "errors": [],
+  "gait_segments": {
+    "forward": {
+      "samples": 17,
+      "forward_m": 5.183995666550466,
+      "left_m": -0.11243394094933909,
+      "yaw_change_rad": 0.24618530717958675,
+      "net_displacement_m": 5.169059043965352
+    },
+    "left": {
+      "samples": 13,
+      "forward_m": 0.1503720999297462,
+      "left_m": 2.318392083656953,
+      "yaw_change_rad": -0.22999999999999998,
+      "net_displacement_m": 2.3619885054758414
+    },
+    "turn": {
+      "samples": 17,
+      "forward_m": 0.01757942436541647,
+      "left_m": -0.22942740472211637,
+      "yaw_change_rad": 4.0249999999999995,
+      "net_displacement_m": 0.2358593012793857
+    },
+    "settled_stop": {
+      "samples": 9,
+      "forward_m": 7.923969103372534e-05,
+      "left_m": 0.0003515658592432198,
+      "yaw_change_rad": -0.02199999999999991,
+      "net_displacement_m": 0.00036055512754644935
+    }
+  },
+  "measurement_note": "Joint/pose finite counters run each available frame; trajectories sampled at 2 Hz. Ball path includes automatic-referee placement. Contacts are rate-limited at 10 Hz.",
+  "video": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_203524_218142_bhuman_gait/bhuman-k1-gait.mp4",
+    "sha256": "1a7b87ad41193c874928fca4a7f3fa61929c3592fccb5f6bc95d9f38b9fecb35",
+    "width": 1920,
+    "height": 1200,
+    "r_frame_rate": "10/1",
+    "duration": "30.000000",
+    "nb_frames": "300"
+  },
+  "game_transitions": [
+    {
+      "tick": "250",
+      "state": "3",
+      "first_half": "1",
+      "remaining_s": "600",
+      "score_a": "0",
+      "score_b": "0",
+      "robots": "1",
+      "ball_valid": "1",
+      "ball_x_mm": "6000.0",
+      "ball_y_mm": "4000.0",
+      "sim_s": 0.5
+    }
+  ],
+  "last_motion": {
+    "5:5": {
+      "robot": "SimulatedK1",
+      "team": "5",
+      "player": "5",
+      "frames": "15000",
+      "phase": "1",
+      "stable": "1",
+      "finite": "1",
+      "nonfinite_total": "0",
+      "walk_frames": "12010",
+      "fall_frames": "0",
+      "getup_frames": "0"
+    }
+  },
+  "wall_s": 59.28230615999928,
+  "evaluator_sha256": "77ff526aeae6b7ed4dc4daaad144dd4199a19b2d476c8100caed4512f15e3be0",
+  "collection_script_sha256": "f2d207b5af8b720e2f856fb2e6bbed2215ca1ee1ceee168b123799e716cd25a6",
+  "original_result_retained": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261019_203524_218142_bhuman_gait/result.json"
+}

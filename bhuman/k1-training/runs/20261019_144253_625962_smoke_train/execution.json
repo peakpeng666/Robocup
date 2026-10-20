@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+    "--history",
+    "--task",
+    "K1",
+    "--num_envs",
+    "64",
+    "--max_iterations",
+    "5",
+    "--save_interval",
+    "1",
+    "--headless",
+    "true",
+    "--seed",
+    "7",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144253_625962_smoke_train"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 20.717851127001268,
+  "sampled_gpu_peak_mib": 3126,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_144253_625962_smoke_train",
+  "python_jit": "1",
+  "status": "PASS"
+}

@@ -1,0 +1,3 @@
+call ../Includes/Fast
+ar directGoals on
+gc playing

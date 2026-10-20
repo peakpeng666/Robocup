@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-19",
+  "review_timezone": "Etc/UTC",
+  "note": "Exact revisions inspected during this review. Their presence does not mean every component has been built or integrated.",
+  "repositories": [
+    {
+      "id": "bhuman",
+      "url": "https://github.com/bhuman/BHumanCodeRelease.git",
+      "revision": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "tag": "coderelease2026",
+      "role": "K1/T1 deployment, perception, behavior and SimRobot",
+      "source": "https://github.com/bhuman/BHumanCodeRelease/tree/coderelease2026",
+      "submodules": [
+        {
+          "path": "Util/CompiledNN",
+          "revision": "8332c8759f3911e08ded6ac7e088f85620b4c4b5"
+        },
+        {
+          "path": "Util/SimRobot",
+          "revision": "9deb6ae6b2a553211612affb757490736f96bfb3"
+        },
+        {
+          "path": "Util/pybind11",
+          "revision": "0bd8896a4010f2d91b2340570c24fa08606ec406"
+        }
+      ]
+    },
+    {
+      "id": "bhuman_training",
+      "url": "https://github.com/bhuman/MachineLearning.git",
+      "revision": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "role": "IsaacGymRL walk/kick/get-up training and pretrained checkpoints",
+      "source": "https://github.com/bhuman/MachineLearning"
+    },
+    {
+      "id": "hsl_gamecontroller",
+      "url": "https://github.com/RoboCup-HumanoidSoccerLeague/GameController.git",
+      "revision": "a6cc98bb9f7c0f03912134b333194af3fa880798",
+      "role": "HSL 2026 player protocol version 20 / return version 4"
+    },
+    {
+      "id": "hsl_rules",
+      "url": "https://github.com/RoboCup-HumanoidSoccerLeague/HSL-Rules.git",
+      "revision": "06c44d4b0ea2fd3cd4fdcc2a7cb907f6ace400dc",
+      "role": "2026 rule book; confirm competition-specific updates before a tournament"
+    },
+    {
+      "id": "nusim",
+      "url": "https://github.com/NUbots/NUSim.git",
+      "revision": "03b5517d508a64e2a8adb25aec1f458c6f84cd73",
+      "role": "Community MuJoCo/SDK bridge reference; inspected, not integrated"
+    }
+  ],
+  "publications": [
+    {
+      "id": "huoshen_2026",
+      "title": "Learning vision-driven reactive soccer skills for humanoid robots",
+      "doi": "10.1126/scirobotics.aed1152",
+      "publication_date": "2026-08-19",
+      "project": "https://humanoid-kick.github.io/",
+      "code_record": "https://zenodo.org/records/21620490",
+      "code_md5": "23b0890a2f627150cfc16af60682abf3",
+      "platform": "T1",
+      "note": "Code archive includes a T1 training/playback implementation, not the complete tournament behavior/vision/SDK stack.",
+      "code_sha256": "1bf05d6df207a1024448e04add19c1714bff93787900a8e73254721dfd96e9d7"
+    }
+  ],
+  "community_reference_repositories": [
+    {
+      "id": "booster_train",
+      "url": "https://github.com/BoosterRobotics/booster_train",
+      "revision": "8bb5b53824e0fbcfe69a5cb78a81f4bddb3e2a6e"
+    },
+    {
+      "id": "booster_deploy",
+      "url": "https://github.com/BoosterRobotics/booster_deploy",
+      "revision": "7bb1462e2ac742eba5c01659b815e2e99fbe617f"
+    },
+    {
+      "id": "booster_assets",
+      "url": "https://github.com/BoosterRobotics/booster_assets",
+      "revision": "12a97516f57469078707afb587a5f84c1cb110d1"
+    }
+  ]
+}

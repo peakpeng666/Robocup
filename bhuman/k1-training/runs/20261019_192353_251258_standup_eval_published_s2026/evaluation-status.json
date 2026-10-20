@@ -1,0 +1,14 @@
+{
+  "status": "INSUFFICIENT_COVERAGE",
+  "profile": "published",
+  "gates": {
+    "numerical": true,
+    "reset_and_target_limits": true,
+    "physical_limits": true,
+    "reference_quality": true,
+    "sample_coverage": false
+  },
+  "policy_sha256": "00c50c9f30e6d926d2bd4c8b1674b6106a3ae16bcfadbef1cca0b49b5299377c",
+  "source_sha256": "9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112",
+  "note": "Separate stress/hold characterization; never implies robot or getup-to-walk handoff acceptance."
+}

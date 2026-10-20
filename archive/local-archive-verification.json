@@ -1,0 +1,22 @@
+{
+  "public": {
+    "status": "PASS",
+    "entries": 47432,
+    "files": 41272,
+    "regular_file_bytes_verified": 13336441005
+  },
+  "encrypted_original": {
+    "status": "PASS",
+    "entries": 10569,
+    "files": 9589,
+    "regular_file_bytes_verified": 3698821109
+  },
+  "restore_sample_files": [
+    "bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_70.pth",
+    "bhuman/k1-training/runs/REPORT-20261020-walk-diagnosis.md",
+    "bhuman/k1-training/src/IsaacGymRL/utils/ppo_diagnostics.py",
+    "bhuman/research-materials-20261019/k1_baseline_cpu_smoke.mp4"
+  ],
+  "sample_root": "/home/peakpeng/.cache/robocup-publish-20261020/restore-test",
+  "gpg_authenticated_decryption_exit": 0
+}

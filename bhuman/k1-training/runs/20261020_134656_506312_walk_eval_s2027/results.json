@@ -1,0 +1,819 @@
+{
+  "utc": "2026-10-20T04:47:30Z",
+  "policy": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134330_740696_walkF_criticwarm20_actor50/nn/model_70.pth",
+  "policy_sha256": "ee813ef0efb546a19aedefbb3871c915c3e71565813ae24cd80b94734015e3d9",
+  "actor_checkpoint_mode": "actor",
+  "load_info": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_134330_740696_walkF_criticwarm20_actor50/nn/model_70.pth",
+    "sha256": "ee813ef0efb546a19aedefbb3871c915c3e71565813ae24cd80b94734015e3d9",
+    "mode": "actor",
+    "format": "bh-k1-ckpt-v2",
+    "iteration": 70,
+    "env_steps": 430080,
+    "lr": 7.866484311946215e-06,
+    "rng_restored": false
+  },
+  "source_sha256": "1ede05ccb7a5f16b420249bc05be39397dbe351edffaf4fe587e404b3f5bbeb9",
+  "seed": 2027,
+  "num_envs": 8,
+  "seg_steps": 100,
+  "schedule": [
+    "still",
+    "forward",
+    "backward",
+    "left",
+    "right",
+    "turn_left",
+    "turn_right",
+    "diag_fwd_left",
+    "diag_fwd_right",
+    "stop_settle",
+    "reverse",
+    "final_still"
+  ],
+  "alignment_note": "current command tail patched before every inference; no extra physics or history update; first step included",
+  "zero_command_mode": "fixed 1.5 Hz gait baseline, not native frozen-gait standing mode",
+  "evaluator_sha256": "6f49fa8bc9b53991374b6d1adfb608ea600c9cf4ddc8a9d9fabd41f05314c2d4",
+  "sampling_note": "joint/torque extremes sampled at policy rate (50 Hz, final physics substep); not a 500 Hz worst-case guarantee",
+  "planned_steps": 1200,
+  "executed_steps": 1200,
+  "termination_events_total": {
+    "reset_total": 0,
+    "non_timeout_reset": 0,
+    "episode_timeout_reset": 0,
+    "command_boundary_without_reset": 0
+  },
+  "termination_count_note": "counted directly from done and current time_outs; non_timeout_reset includes physical termination causes, not only falls",
+  "mean_scaled_reward_terms_per_policy_step": {
+    "action_pos_limits": -2.0833333110203966e-05,
+    "action_rate": -0.0012171950656920671,
+    "actions_in_range": 0.0,
+    "ang_vel_xy": -0.0009044909966178238,
+    "base_height": -0.00036963759339414537,
+    "collision": -0.0003083333431277424,
+    "dof_acc": -4.9207956180907786e-05,
+    "dof_pos_limits": -0.0004291666264180094,
+    "dof_vel": -6.002852751407772e-05,
+    "feet_distance": -0.0009220486972481012,
+    "feet_height": -4.043229637318291e-05,
+    "feet_roll": -8.759324555285275e-05,
+    "feet_slip": -0.0004006388480775058,
+    "feet_swing": 0.028718752786517143,
+    "feet_yaw_diff": -0.0002487946767359972,
+    "feet_yaw_mean": -0.00019057061581406742,
+    "gait_phase_factor": -6.336594378808513e-05,
+    "ground_pressure": -5.54110920347739e-05,
+    "hip_roll": 0.0,
+    "lin_vel_z": -0.00035142243723385036,
+    "orientation": -0.001353663275949657,
+    "power": -0.0020144337322562933,
+    "root_acc": -0.0008740648627281189,
+    "terminate": 0.0,
+    "torque_limits": -7.569500303361565e-05,
+    "torque_tiredness": -0.0001916133624035865,
+    "torques": -0.0031203655526041985,
+    "tracking_ang_vel": 0.007231154013425112,
+    "tracking_lin_vel_x": 0.014513280242681503,
+    "tracking_lin_vel_y": 0.014667422510683537
+  },
+  "settle_per_env": {
+    "n_settled": 6,
+    "n_total": 8,
+    "settled_steps_min_med_max": [
+      23,
+      48.0,
+      89
+    ],
+    "settled_seconds_min_med_max": [
+      0.46,
+      0.96,
+      1.78
+    ],
+    "per_env_steps": [
+      64,
+      -1,
+      -1,
+      89,
+      49,
+      23,
+      41,
+      48
+    ]
+  },
+  "max_joint_overshoot_rad": 0.002881646156311035,
+  "overshoot_gt_10mrad_max_consecutive_policy_steps": 0,
+  "overshoot_gt_10mrad_max_consecutive_seconds": 0.0,
+  "max_abs_applied_torque_nm": 56.0,
+  "torque_saturation_ratio": 0.00034722222222222224,
+  "segments": {
+    "still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.18235841393470764,
+        0.19099067151546478,
+        0.26822444796562195
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.2295994758605957,
+        0.23877277970314026,
+        0.4195507764816284
+      ],
+      "mean_step_disp_m": 0.005348284768406302,
+      "mean_step_yaw_rad": 0.005381942093372345,
+      "max_step_drift_m": 0.018503928557038307,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": -0.00014999997802078724,
+        "action_rate": -0.001495306147262454,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0014909885358065367,
+        "base_height": -0.00035324940108694136,
+        "collision": 0.0,
+        "dof_acc": -5.124562812852673e-05,
+        "dof_pos_limits": -0.0004500000213738531,
+        "dof_vel": -5.291817069519311e-05,
+        "feet_distance": -0.0025927540846168995,
+        "feet_height": -0.0002686481748241931,
+        "feet_roll": -6.191897409735247e-05,
+        "feet_slip": -0.0003287037252448499,
+        "feet_swing": 0.027300002053380013,
+        "feet_yaw_diff": -0.00017329727415926754,
+        "feet_yaw_mean": -5.018999218009412e-05,
+        "gait_phase_factor": -8.015288767637685e-05,
+        "ground_pressure": -5.782795051345602e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.0008692284463904798,
+        "orientation": -0.0012656889157369733,
+        "power": -0.0018041729927062988,
+        "root_acc": -0.0011615228140726686,
+        "terminate": 0.0,
+        "torque_limits": -0.0001561167446197942,
+        "torque_tiredness": -0.00019294941739644855,
+        "torques": -0.003371025901287794,
+        "tracking_ang_vel": 0.006310522556304932,
+        "tracking_lin_vel_x": 0.012519849464297295,
+        "tracking_lin_vel_y": 0.012833420187234879
+      }
+    },
+    "forward": {
+      "command_vx_vy_wz": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.2424079179763794,
+        0.18776226043701172,
+        0.36215540766716003
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.39985549449920654,
+        0.18537788093090057,
+        0.35781431198120117
+      ],
+      "mean_step_disp_m": 0.015344319848809391,
+      "mean_step_yaw_rad": 0.0055658724904060364,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0012928997166454792,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0008490964537486434,
+        "base_height": -0.0005509473849087954,
+        "collision": -9.999999747378752e-05,
+        "dof_acc": -5.580241486313753e-05,
+        "dof_pos_limits": -0.001324999611824751,
+        "dof_vel": -8.733172580832615e-05,
+        "feet_distance": -0.0004457100003492087,
+        "feet_height": 0.0,
+        "feet_roll": -4.719213393400423e-05,
+        "feet_slip": -0.00070415303343907,
+        "feet_swing": 0.0304500050842762,
+        "feet_yaw_diff": -0.00015507904754485935,
+        "feet_yaw_mean": -4.7135476052062586e-05,
+        "gait_phase_factor": -4.733073365059681e-05,
+        "ground_pressure": -5.633854016195983e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00028688920428976417,
+        "orientation": -0.0008159871213138103,
+        "power": -0.0027745922561734915,
+        "root_acc": -0.0008146045147441328,
+        "terminate": 0.0,
+        "torque_limits": -0.00011128986079711467,
+        "torque_tiredness": -0.00021623304928652942,
+        "torques": -0.003325618337839842,
+        "tracking_ang_vel": 0.008047967217862606,
+        "tracking_lin_vel_x": 0.009081474505364895,
+        "tracking_lin_vel_y": 0.016206789761781693
+      }
+    },
+    "backward": {
+      "command_vx_vy_wz": [
+        -0.5,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.20938007533550262,
+        0.19503110647201538,
+        0.3763216733932495
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.5033566951751709,
+        0.19852149486541748,
+        0.4080776870250702
+      ],
+      "mean_step_disp_m": 0.011153705585747957,
+      "mean_step_yaw_rad": 0.005899894535541534,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0012853543739765882,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0009236664627678692,
+        "base_height": -0.00044217592221684754,
+        "collision": -9.999999747378752e-05,
+        "dof_acc": -6.105040665715933e-05,
+        "dof_pos_limits": 0.0,
+        "dof_vel": -6.557741289725527e-05,
+        "feet_distance": -0.00030543352477252483,
+        "feet_height": 0.0,
+        "feet_roll": -6.370909977704287e-05,
+        "feet_slip": -0.0004984497791156173,
+        "feet_swing": 0.02955000102519989,
+        "feet_yaw_diff": -0.00011068562889704481,
+        "feet_yaw_mean": -7.55837609176524e-05,
+        "gait_phase_factor": -5.5958382290555164e-05,
+        "ground_pressure": -6.460095755755901e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00034324973239563406,
+        "orientation": -0.002384343883022666,
+        "power": -0.0021589866373687983,
+        "root_acc": -0.0010403476189821959,
+        "terminate": 0.0,
+        "torque_limits": -7.000476762186736e-05,
+        "torque_tiredness": -0.00020214061078149825,
+        "torques": -0.0033479833509773016,
+        "tracking_ang_vel": 0.0068629467859864235,
+        "tracking_lin_vel_x": 0.00854901410639286,
+        "tracking_lin_vel_y": 0.014022267423570156
+      }
+    },
+    "left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.0991290733218193,
+        0.2672726809978485,
+        0.34976282715797424
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.20817333459854126,
+        0.30388274788856506,
+        0.3578914701938629
+      ],
+      "mean_step_disp_m": 0.00873489372432232,
+      "mean_step_yaw_rad": 0.004962652623653412,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.00122353108599782,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0010237697279080749,
+        "base_height": -0.0004529803991317749,
+        "collision": -0.00039999998989515007,
+        "dof_acc": -5.219062586547807e-05,
+        "dof_pos_limits": -7.499999628635123e-05,
+        "dof_vel": -6.197478796821088e-05,
+        "feet_distance": -0.0003500011807773262,
+        "feet_height": 0.0,
+        "feet_roll": -0.0001529786386527121,
+        "feet_slip": -0.0003902176977135241,
+        "feet_swing": 0.028949998319149017,
+        "feet_yaw_diff": -0.00013487324758898467,
+        "feet_yaw_mean": -8.111924398690462e-05,
+        "gait_phase_factor": -6.284867413341999e-05,
+        "ground_pressure": -5.4356150940293446e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.0003062736941501498,
+        "orientation": -0.0014234638074412942,
+        "power": -0.0022314495872706175,
+        "root_acc": -0.0009406149038113654,
+        "terminate": 0.0,
+        "torque_limits": -6.164950173115358e-05,
+        "torque_tiredness": -0.00020337551541160792,
+        "torques": -0.003369526704773307,
+        "tracking_ang_vel": 0.007773477118462324,
+        "tracking_lin_vel_x": 0.014616625383496284,
+        "tracking_lin_vel_y": 0.013085169717669487
+      }
+    },
+    "right": {
+      "command_vx_vy_wz": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.22784475982189178,
+        0.35415056347846985,
+        0.3738138675689697
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.20297318696975708,
+        0.4393822252750397,
+        0.3705710768699646
+      ],
+      "mean_step_disp_m": 0.007968616392463445,
+      "mean_step_yaw_rad": 0.005361842811107635,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": -4.999999873689376e-05,
+        "action_rate": -0.001290543470531702,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0010729767382144928,
+        "base_height": -0.000380637968191877,
+        "collision": -0.00039999998989515007,
+        "dof_acc": -5.901830445509404e-05,
+        "dof_pos_limits": -0.0002999999560415745,
+        "dof_vel": -6.2004808569327e-05,
+        "feet_distance": -0.00033758318750187755,
+        "feet_height": 0.0,
+        "feet_roll": -0.00016750162467360497,
+        "feet_slip": -0.0003823042206931859,
+        "feet_swing": 0.026099998503923416,
+        "feet_yaw_diff": -0.000146452322951518,
+        "feet_yaw_mean": -8.751545828999951e-05,
+        "gait_phase_factor": -9.017444244818762e-05,
+        "ground_pressure": -5.552896254812367e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00030502493609674275,
+        "orientation": -0.0014313706196844578,
+        "power": -0.002176794921979308,
+        "root_acc": -0.0009061348391696811,
+        "terminate": 0.0,
+        "torque_limits": -0.00012167172826593742,
+        "torque_tiredness": -0.0002015172503888607,
+        "torques": -0.003330125706270337,
+        "tracking_ang_vel": 0.006841960363090038,
+        "tracking_lin_vel_x": 0.013640135526657104,
+        "tracking_lin_vel_y": 0.00904522743076086
+      }
+    },
+    "turn_left": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.0736641064286232,
+        0.1701556295156479,
+        0.561532735824585
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.08573991060256958,
+        0.19553406536579132,
+        0.5221024751663208
+      ],
+      "mean_step_disp_m": 0.0038771677226759494,
+      "mean_step_yaw_rad": 0.017317719757556915,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0010031857527792454,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0007660693372599781,
+        "base_height": -0.00022791499213781208,
+        "collision": 0.0,
+        "dof_acc": -4.015321610495448e-05,
+        "dof_pos_limits": -0.0004500000213738531,
+        "dof_vel": -4.8497244279133156e-05,
+        "feet_distance": -0.0004070343275088817,
+        "feet_height": 0.0,
+        "feet_roll": -6.603549991268665e-05,
+        "feet_slip": -0.0002317799226148054,
+        "feet_swing": 0.028800003230571747,
+        "feet_yaw_diff": -0.000809439632575959,
+        "feet_yaw_mean": -0.0009004459134303033,
+        "gait_phase_factor": -5.019291347707622e-05,
+        "ground_pressure": -4.625097426469438e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00014261671458370984,
+        "orientation": -0.0012101751053705812,
+        "power": -0.00151151604950428,
+        "root_acc": -0.0008060053805820644,
+        "terminate": 0.0,
+        "torque_limits": -2.125370519934222e-05,
+        "torque_tiredness": -0.00015395171067211777,
+        "torques": -0.002622909378260374,
+        "tracking_ang_vel": 0.007875284180045128,
+        "tracking_lin_vel_x": 0.02309531718492508,
+        "tracking_lin_vel_y": 0.018851662054657936
+      }
+    },
+    "turn_right": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.10328300297260284,
+        0.15298977494239807,
+        0.2844693660736084
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.10505208373069763,
+        0.16850396990776062,
+        0.381906658411026
+      ],
+      "mean_step_disp_m": 0.0032841690559871494,
+      "mean_step_yaw_rad": 0.018640709817409517,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0009700451628305018,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0006355996010825038,
+        "base_height": -0.0002245383511763066,
+        "collision": -9.999999747378752e-05,
+        "dof_acc": -3.653142266557552e-05,
+        "dof_pos_limits": -9.999999747378752e-05,
+        "dof_vel": -4.196416193735786e-05,
+        "feet_distance": -0.00035734998527914286,
+        "feet_height": 0.0,
+        "feet_roll": -5.564811363001354e-05,
+        "feet_slip": -0.0001699274725979194,
+        "feet_swing": 0.027300002053380013,
+        "feet_yaw_diff": -0.0006022542365826666,
+        "feet_yaw_mean": -0.0006580318440683186,
+        "gait_phase_factor": -4.8877558583626524e-05,
+        "ground_pressure": -4.863771391683258e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -8.673980482853949e-05,
+        "orientation": -0.001095650950446725,
+        "power": -0.0014126381138339639,
+        "root_acc": -0.0007706181495450437,
+        "terminate": 0.0,
+        "torque_limits": -2.0374453015392646e-05,
+        "torque_tiredness": -0.0001590193569427356,
+        "torques": -0.0025596453342586756,
+        "tracking_ang_vel": 0.00861948449164629,
+        "tracking_lin_vel_x": 0.02274707891047001,
+        "tracking_lin_vel_y": 0.019861187785863876
+      }
+    },
+    "diag_fwd_left": {
+      "command_vx_vy_wz": [
+        0.6,
+        0.3,
+        0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.16728292405605316,
+        0.19171364605426788,
+        0.3603678047657013
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.22882850468158722,
+        0.20199286937713623,
+        0.3756651282310486
+      ],
+      "mean_step_disp_m": 0.01144002643879503,
+      "mean_step_yaw_rad": 0.010568597316741944,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": -2.499999936844688e-05,
+        "action_rate": -0.0013122595846652985,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0007502397056668997,
+        "base_height": -0.00039581229793839157,
+        "collision": -0.0018000002019107342,
+        "dof_acc": -5.10399040649645e-05,
+        "dof_pos_limits": -0.0009749997989274561,
+        "dof_vel": -7.462981739081442e-05,
+        "feet_distance": -0.0004205114964861423,
+        "feet_height": 0.0,
+        "feet_roll": -0.00010511150321690366,
+        "feet_slip": -0.0005506105371750891,
+        "feet_swing": 0.029549993574619293,
+        "feet_yaw_diff": -0.0002974867238663137,
+        "feet_yaw_mean": -0.00011362187069607899,
+        "gait_phase_factor": -4.287368938094005e-05,
+        "ground_pressure": -5.636805872200057e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.000237651911447756,
+        "orientation": -0.0010782541939988732,
+        "power": -0.002472840715199709,
+        "root_acc": -0.0007729919743724167,
+        "terminate": 0.0,
+        "torque_limits": -8.89971197466366e-05,
+        "torque_tiredness": -0.0002083921426674351,
+        "torques": -0.0032022371888160706,
+        "tracking_ang_vel": 0.007416298147290945,
+        "tracking_lin_vel_x": 0.01413947343826294,
+        "tracking_lin_vel_y": 0.01608401909470558
+      }
+    },
+    "diag_fwd_right": {
+      "command_vx_vy_wz": [
+        0.6,
+        -0.3,
+        -0.5
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.14788345992565155,
+        0.20619088411331177,
+        0.585364043712616
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.14671488106250763,
+        0.2722068428993225,
+        0.7366105318069458
+      ],
+      "mean_step_disp_m": 0.011960549484938384,
+      "mean_step_yaw_rad": 0.010230539441108704,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": -2.499999936844688e-05,
+        "action_rate": -0.001208434347063303,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0009545379434712231,
+        "base_height": -0.0003617387847043574,
+        "collision": -9.999999747378752e-05,
+        "dof_acc": -5.405070987762883e-05,
+        "dof_pos_limits": -0.0004499999631661922,
+        "dof_vel": -7.692577491980046e-05,
+        "feet_distance": -0.0004060597566422075,
+        "feet_height": 0.0,
+        "feet_roll": -0.00010474116425029933,
+        "feet_slip": -0.0005176480626687407,
+        "feet_swing": 0.02872500568628311,
+        "feet_yaw_diff": -0.00024499581195414066,
+        "feet_yaw_mean": -0.00016967114061117172,
+        "gait_phase_factor": -5.015958595322445e-05,
+        "ground_pressure": -6.574751023435965e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.0002840339147951454,
+        "orientation": -0.0012853614753112197,
+        "power": -0.002403744962066412,
+        "root_acc": -0.0008685155771672726,
+        "terminate": 0.0,
+        "torque_limits": -0.00011294456635368988,
+        "torque_tiredness": -0.00021013598598074168,
+        "torques": -0.0032783804927021265,
+        "tracking_ang_vel": 0.005631312727928162,
+        "tracking_lin_vel_x": 0.01648038625717163,
+        "tracking_lin_vel_y": 0.013862675055861473
+      }
+    },
+    "stop_settle": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.11048167198896408,
+        0.21495729684829712,
+        0.2771530747413635
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.1810448169708252,
+        0.26656585931777954,
+        0.2984859347343445
+      ],
+      "mean_step_disp_m": 0.005216766189550981,
+      "mean_step_yaw_rad": 0.0041194289922714235,
+      "max_step_drift_m": 0.018002526834607124,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0011575999669730663,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.000788829755038023,
+        "base_height": -0.00041389779653400183,
+        "collision": -0.0006999999168328941,
+        "dof_acc": -4.523543611867353e-05,
+        "dof_pos_limits": -0.0007499999483115971,
+        "dof_vel": -4.826012082048692e-05,
+        "feet_distance": -0.0027069631032645702,
+        "feet_height": -0.00011214582627872005,
+        "feet_roll": -0.00012406309542711824,
+        "feet_slip": -0.00035472039598971605,
+        "feet_swing": 0.027974992990493774,
+        "feet_yaw_diff": -0.0001164603017969057,
+        "feet_yaw_mean": -3.814332012552768e-05,
+        "gait_phase_factor": -8.896759391063824e-05,
+        "ground_pressure": -5.22554328199476e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.0005572519730776548,
+        "orientation": -0.0015475575346499681,
+        "power": -0.00163352454546839,
+        "root_acc": -0.0007470657001249492,
+        "terminate": 0.0,
+        "torque_limits": -5.762723594671115e-05,
+        "torque_tiredness": -0.0001757448335411027,
+        "torques": -0.002821129746735096,
+        "tracking_ang_vel": 0.006601149216294289,
+        "tracking_lin_vel_x": 0.013128812424838543,
+        "tracking_lin_vel_y": 0.012182808481156826
+      }
+    },
+    "reverse": {
+      "command_vx_vy_wz": [
+        -0.6,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.16639231145381927,
+        0.17169837653636932,
+        0.4050891101360321
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.23590876162052155,
+        0.1732865273952484,
+        0.3735780715942383
+      ],
+      "mean_step_disp_m": 0.011941834613680839,
+      "mean_step_yaw_rad": 0.0051858100295066835,
+      "max_step_drift_m": 0.0,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0012616728199645877,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0008265222422778606,
+        "base_height": -0.00028421252500265837,
+        "collision": 0.0,
+        "dof_acc": -5.007552317692898e-05,
+        "dof_pos_limits": -0.00017499997920822352,
+        "dof_vel": -5.8821693528443575e-05,
+        "feet_distance": -0.0003072035906370729,
+        "feet_height": 0.0,
+        "feet_roll": -5.622718526865356e-05,
+        "feet_slip": -0.00046430359361693263,
+        "feet_swing": 0.029250001534819603,
+        "feet_yaw_diff": -9.064639016287401e-05,
+        "feet_yaw_mean": -3.836150062852539e-05,
+        "gait_phase_factor": -5.923739809077233e-05,
+        "ground_pressure": -5.351852087187581e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00034499814501032233,
+        "orientation": -0.0017708877567201853,
+        "power": -0.0022410228848457336,
+        "root_acc": -0.0009373125503771007,
+        "terminate": 0.0,
+        "torque_limits": -6.822750583523884e-05,
+        "torque_tiredness": -0.00020770433184225112,
+        "torques": -0.0034844009205698967,
+        "tracking_ang_vel": 0.008056187070906162,
+        "tracking_lin_vel_x": 0.013467707671225071,
+        "tracking_lin_vel_y": 0.016366222873330116
+      }
+    },
+    "final_still": {
+      "command_vx_vy_wz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps": 100,
+      "tracking_rmse_settled_vx_vy_wz": [
+        0.11324048787355423,
+        0.17434093356132507,
+        0.2458321750164032
+      ],
+      "tracking_rmse_full_vx_vy_wz": [
+        0.22228603065013885,
+        0.17008647322654724,
+        0.3045291602611542
+      ],
+      "mean_step_disp_m": 0.00454452151665464,
+      "mean_step_yaw_rad": 0.003932087421417236,
+      "max_step_drift_m": 0.019798986613750458,
+      "termination_events": {
+        "reset_total": 0,
+        "non_timeout_reset": 0,
+        "episode_timeout_reset": 0,
+        "command_boundary_without_reset": 0
+      },
+      "mean_scaled_reward_terms_per_policy_step": {
+        "action_pos_limits": 0.0,
+        "action_rate": -0.0011055084178224206,
+        "actions_in_range": 0.0,
+        "ang_vel_xy": -0.0007715947576798499,
+        "base_height": -0.00034754490479826927,
+        "collision": 0.0,
+        "dof_acc": -3.4101867640856653e-05,
+        "dof_pos_limits": -9.999999747378752e-05,
+        "dof_vel": -4.1436534957028925e-05,
+        "feet_distance": -0.0024279793724417686,
+        "feet_height": -0.0001043934898916632,
+        "feet_roll": -4.5991728256922215e-05,
+        "feet_slip": -0.00021484754688572139,
+        "feet_swing": 0.030675003305077553,
+        "feet_yaw_diff": -0.00010386535723228008,
+        "feet_yaw_mean": -2.7027734176954255e-05,
+        "gait_phase_factor": -8.361743675777689e-05,
+        "ground_pressure": -5.350230276235379e-05,
+        "hip_roll": 0.0,
+        "lin_vel_z": -0.00045311066787689924,
+        "orientation": -0.0009352184715680778,
+        "power": -0.0013519218191504478,
+        "root_acc": -0.0007230453775264323,
+        "terminate": 0.0,
+        "torque_limits": -1.8182803614763543e-05,
+        "torque_tiredness": -0.00016819588199723512,
+        "torques": -0.0027314000762999058,
+        "tracking_ang_vel": 0.006737247109413147,
+        "tracking_lin_vel_x": 0.012693477794528008,
+        "tracking_lin_vel_y": 0.013607606291770935
+      }
+    }
+  },
+  "finite_checks_pass": true
+}

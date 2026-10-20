@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "tag": "snapshot-20261020",
+  "parts": [
+    {
+      "name": "public-workspace.tar.zst.part000",
+      "size": 1992294400,
+      "sha256": "f7a4fe9d52cd7d97833209c66979a1ae8cc3287ee883f963437b6fc95808ccb6",
+      "archive": "public-workspace.tar.zst"
+    },
+    {
+      "name": "public-workspace.tar.zst.part001",
+      "size": 1992294400,
+      "sha256": "fd9bf9ba2a5a68006fb86e6bcdc7d582954c258844907cc5704c5a8b2b4535de",
+      "archive": "public-workspace.tar.zst"
+    },
+    {
+      "name": "public-workspace.tar.zst.part002",
+      "size": 1992294400,
+      "sha256": "8682e6ad28893cda71d13ce36b2520c95c22f6c17bcf62905b72cded8298a5c0",
+      "archive": "public-workspace.tar.zst"
+    },
+    {
+      "name": "public-workspace.tar.zst.part003",
+      "size": 1164482001,
+      "sha256": "23af437281e9c3e6e5f145a7b4f54308b006d2eff9764c0b588f18ebb0d76c88",
+      "archive": "public-workspace.tar.zst"
+    },
+    {
+      "name": "original-history.tar.zst.gpg.part000",
+      "size": 1992294400,
+      "sha256": "2f54192a445b7c9c06cc4984565bc1f6d617c01e150b52fb51946ca3fdc14660",
+      "archive": "original-history.tar.zst.gpg"
+    },
+    {
+      "name": "original-history.tar.zst.gpg.part001",
+      "size": 1513211154,
+      "sha256": "92dffb41867c10301f3df9ac110ddb8f693218f454abfdc53d0785e6b03a83c4",
+      "archive": "original-history.tar.zst.gpg"
+    }
+  ],
+  "restore_root": "/home/peakpeng/Desktop/Robocup",
+  "public_files": "archive/public-files.jsonl",
+  "encrypted_original_files": "archive/encrypted-original-files.jsonl",
+  "key_path_local_only": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt"
+}

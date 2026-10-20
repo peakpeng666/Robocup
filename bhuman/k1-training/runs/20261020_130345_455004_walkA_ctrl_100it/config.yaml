@@ -1,0 +1,580 @@
+algorithm:
+  bound_coef: 1.0
+  desired_kl: 0.01
+  e_clip: 0.2
+  entropy_coef: -0.01
+  entropy_range:
+    max: -10
+    min: -11
+  gamma: 0.98
+  lam: 0.95
+  learn_ball: false
+  learning_rate: 1.0e-08
+  learning_rate_range:
+    max: 0.01
+    min: 0.0001
+  symmetry_coef: 0.01
+  use_waist: false
+asset:
+  angular_damping: 0.0
+  armature: 0.0
+  base_name: Trunk
+  collapse_fixed_joints: true
+  default_dof_drive_mode: 3
+  density: 0.001
+  disable_gravity: false
+  feet_edge_pos:
+  - - 0.1185
+    - 0.035
+    - -0.038
+  - - 0.1185
+    - -0.035
+    - -0.038
+  - - -0.0665
+    - 0.035
+    - -0.038
+  - - -0.0665
+    - -0.035
+    - -0.038
+  file: resources/K1/K1_locomotion.urdf
+  file2: resources/K1/K1_locomotion_feet_box.urdf
+  fix_base_link: false
+  flip_visual_attachments: false
+  foot_names:
+  - left_foot_link
+  - right_foot_link
+  linear_damping: 0.0
+  max_angular_velocity: 1000.0
+  max_linear_velocity: 1000.0
+  mujoco_file: resources/K1/K1_locomotion.xml
+  name: K1
+  origin_names:
+  - Left_Hip_Pitch
+  - Right_Hip_Pitch
+  replace_cylinder_with_capsule: false
+  self_collisions: 0
+  thickness: 0.01
+basic:
+  checkpoint: /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_125932_063235_walkA_ctrl_10it/nn/model_final.pth
+  description: ''
+  headless: true
+  load_mode: full
+  max_iterations: 90
+  output_dir: /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_130345_455004_walkA_ctrl_100it
+  rl_device: cuda:0
+  seed: 7
+  sim_device: cuda:0
+  task: K1
+commands:
+  ang_vel_yaw:
+  - -1.5
+  - 1.5
+  gait_frequency:
+  - 1.0
+  - 2.0
+  lin_vel_x:
+  - -1.0
+  - 2.0
+  lin_vel_y:
+  - -1.0
+  - 1.0
+  num_commands: 3
+  proportion_correction: 0.2
+  resampling_time_s:
+  - 8.0
+  - 12.0
+  slow_proportion: 0.1
+  slow_walk_range: 0.2
+  still_proportion: 0.1
+control:
+  action_scale: 1.0
+  allow_unknown_joints: true
+  armature:
+    Ankle: 0.0565056
+    Hip_Pitch: 0.0478125
+    Hip_Roll: 0.0339552
+    Hip_Yaw: 0.0282528
+    Knee: 0.095625
+  damping:
+    Ankle_Pitch: 2
+    Ankle_Roll: 2
+    Default: 1
+    Hip_Pitch: 4
+    Hip_Roll: 4
+    Hip_Yaw: 4
+    Knee: 4
+  decimation: 10
+  stiffness:
+    Ankle_Pitch: 50.0
+    Ankle_Roll: 60.0
+    Default: 10
+    Hip_Pitch: 80.0
+    Hip_Roll: 80.0
+    Hip_Yaw: 80.0
+    Knee: 80.0
+  torque_clipping:
+  - 40
+  - 50
+  - 30
+  - 56
+  - 36
+  - 36
+  - 40
+  - 50
+  - 30
+  - 56
+  - 36
+  - 36
+env:
+  env_spacing: 1.0
+  history_size: 10
+  num_actions: 13
+  num_base_observations: 32
+  num_envs: 256
+  num_last_observations: 24
+  num_observations: 344
+  num_privileged_obs: 16
+init_state:
+  ang_vel:
+  - 0.0
+  - 0.0
+  - 0.0
+  default_joint_angles:
+    Ankle_Pitch: -0.25
+    Hip_Pitch: -0.2
+    Knee_Pitch: 0.4
+    default: 0.0
+  lin_vel:
+  - 0.0
+  - 0.0
+  - 0.0
+  pos:
+  - 0.0
+  - 0.0
+  - 0.58
+  rot:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 1.0
+noise:
+  ang_vel:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  ang_vel_stand:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.15
+  dof_pos:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.01
+  dof_pos_stand:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.02
+  dof_vel:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.5
+  dof_vel_stand:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.5
+  gravity:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.01
+  gravity_stand:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.02
+  height:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.02
+  lin_vel:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.05
+normalization:
+  action_frequence_limit:
+  - -0.5
+  - 0.5
+  ang_vel: 1.0
+  ball_kick_range: 0.1
+  ball_pos: 0.1
+  ball_vel: 0.1
+  clip_actions: 2.0
+  dof_pos: 1.0
+  dof_vel: 0.1
+  filter_weight: 0.1
+  filter_weight_low_speed: 0.3
+  filter_weight_speed_range: 0.1
+  gravity: 1.0
+  lin_vel: 1.0
+  push_force: 0.1
+  push_torque: 0.5
+randomization:
+  base_com:
+    distribution: uniform
+    operation: additive
+    range:
+    - -0.1
+    - 0.1
+  base_com_x:
+    distribution: uniform
+    operation: additive
+    range:
+    - -0.15
+    - 0.1
+  base_mass:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.8
+    - 1.2
+  compliance:
+    distribution: uniform
+    operation: additive
+    range:
+    - 0.5
+    - 1.5
+  dof_ankle_damping:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.8
+    - 1.2
+  dof_ankle_stiffness:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.7
+    - 1.3
+  dof_damping:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.95
+    - 1.05
+  dof_friction:
+    distribution: uniform
+    operation: additive
+    range:
+    - 0.0
+    - 2.0
+  dof_hiproll_damping:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.8
+    - 1.2
+  dof_hiproll_stiffness:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.8
+    - 1.2
+  dof_pos_offset_other:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.025
+  dof_pos_offset_pitch:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.05
+  dof_stiffness:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.95
+    - 1.05
+  friction:
+    distribution: uniform
+    operation: additive
+    range:
+    - 0.3
+    - 1.5
+  init_base_ang_vel_xyz:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 1.0
+  init_base_lin_vel_xy:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.3
+  init_base_lin_vel_z:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  init_base_pos_xy:
+    distribution: uniform
+    operation: additive
+    range:
+    - -1.0
+    - 1.0
+  init_dof_pos:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  kick_ang_vel:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  kick_interval_s: 3.0
+  kick_lin_vel:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  kick_lin_vel_strong:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.5
+  kick_lin_vel_z:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 0.1
+  other_com:
+    distribution: uniform
+    operation: additive
+    range:
+    - -0.005
+    - 0.005
+  other_mass:
+    distribution: uniform
+    operation: scaling
+    range:
+    - 0.98
+    - 1.02
+  push_duration_s: 2.0
+  push_force:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 10.0
+  push_interval_s: 5.0
+  push_torque:
+    distribution: gaussian
+    operation: additive
+    range:
+    - 0.0
+    - 2.0
+  restitution:
+    distribution: uniform
+    operation: additive
+    range:
+    - 0.1
+    - 0.9
+rewards:
+  base_height_target: 0.52
+  episode_length_s: 30.0
+  feet_distance_ref: 0.192
+  feet_height_ref: 0.03
+  only_positive_rewards: false
+  penalize_contacts_on:
+  - Trunk
+  - H1
+  - H2
+  - AL
+  - AR
+  - Waist
+  - Hip
+  - Shank
+  - Ankle
+  penalize_sole_contacts:
+  - left_foot_link
+  - right_foot_link
+  scales:
+    action_pos_limits: -1
+    action_rate: -1.0
+    actions_in_range: -1
+    ang_vel_xy: -0.2
+    base_height: -40.0
+    collision: -2.0
+    dof_acc: -1.0e-07
+    dof_pos_limits: -1
+    dof_vel: -0.0001
+    dof_vel_limits: -0.0
+    feet_distance: -1
+    feet_height: -0.25
+    feet_roll: -0.1
+    feet_slip: -0.1
+    feet_swing: 3.0
+    feet_yaw_diff: -1
+    feet_yaw_mean: -1
+    gait_phase_factor: -0.1
+    ground_pressure: -0.1
+    hip_roll: -1.0
+    lin_vel_z: -2.0
+    orientation: -5.0
+    power: -0.002
+    root_acc: -0.0001
+    terminate: -100
+    torque_limits: -0.01
+    torque_tiredness: -0.01
+    torques: -0.0002
+    tracking_ang_vel: 0.375
+    tracking_lin_vel_x: 0.75
+    tracking_lin_vel_y: 0.75
+  soft_dof_pos_limit: 0.95
+  soft_dof_vel_limit: 1.0
+  soft_torque_limit: 1.0
+  swing_period: 0.2
+  target_frequence: 1.5
+  terminate_contacts_on: []
+  terminate_height: 0.2
+  terminate_height_range:
+  - 0.3
+  - 0.45
+  terminate_time: 0.1
+  terminate_vel: 400.0
+  tracking_reward_x_factor:
+  - 1.0
+  - 1.33
+  - 3.5
+  tracking_reward_x_speed:
+  - 0.5
+  - 2.0
+  tracking_reward_y_factor:
+  - 1.0
+  - 1.33
+  - 2.0
+  tracking_reward_y_speed:
+  - 0.5
+  - 2.0
+  tracking_reward_yaw_factor:
+  - 1.0
+  - 1.33
+  - 2.5
+  tracking_reward_yaw_speed:
+  - 0.5
+  - 2.0
+  tracking_sigma:
+  - 0.25
+  - 0.25
+  - 0.25
+  tracking_sigma_speed:
+  - 0.5
+  - 2.0
+  tracking_sigma_stand: 0.25
+  tracking_stand_factor:
+  - 1.33
+  - 1.33
+  - 0.5
+  tracking_yaw_sigma:
+  - 0.25
+  - 0.25
+  - 0.25
+  use_swing_reward_scaling: false
+runner:
+  horizon_length: 24
+  mini_epochs: 20
+  save_interval: 5
+  use_wandb: false
+sim:
+  dt: 0.002
+  gravity:
+  - 0.0
+  - 0.0
+  - -9.81
+  physics_engine: physx
+  physx:
+    bounce_threshold_velocity: 0.2
+    contact_collection: 1
+    contact_offset: 0.02
+    default_buffer_size_multiplier: 5.0
+    max_depenetration_velocity: 1.0
+    max_gpu_contact_pairs: 8388608
+    num_position_iterations: 4
+    num_subscenes: 8
+    num_threads: 4
+    num_velocity_iterations: 1
+    rest_offset: 0.0
+    solver_type: 1
+  substeps: 1
+  up_axis: z
+terrain:
+  border_size: 5.0
+  discrete_height: 0.02
+  dynamic_friction: 1.0
+  friction:
+    distribution: uniform
+    operation: additive
+    range:
+    - 0.3
+    - 1.0
+  horizontal_scale: 0.1
+  num_terrains: 8
+  patch_size: 5
+  random_height: 0.1
+  restitution: 0.0
+  slope: 0.1
+  slope_threshold: 2.0
+  stairs_width: 0.5
+  static_friction: 1.0
+  step_height: -0.1
+  terrain_length: 20.0
+  terrain_proportions:
+  - 0.0
+  - 0.0
+  - 0.5
+  - 0.5
+  - 0.0
+  terrain_width: 10.0
+  type: trimesh
+  vertical_scale: 0.005
+viewer:
+  lookat:
+  - 50.0
+  - 5.0
+  - 0.0
+  pos:
+  - 36.0
+  - 5.0
+  - 2.0
+  record_env_idx: 0
+  record_interval: 5.0
+  record_video: false

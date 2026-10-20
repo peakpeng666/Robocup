@@ -1,0 +1,3 @@
+call ../Includes/PerceptOracle
+ar directGoals on
+gc playing

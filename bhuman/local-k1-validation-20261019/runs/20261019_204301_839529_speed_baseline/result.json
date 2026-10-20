@@ -1,0 +1,73 @@
+{
+  "status": "BENCHMARK_COMPLETED",
+  "scope": "performance only; full match acceptance is separate",
+  "sim_s": 12,
+  "wall_s": 43.167705891006335,
+  "real_time_factor": 0.27798558557405545,
+  "exit_code": 0,
+  "errors": [],
+  "cpu_core_equivalents": 21.679169200302006,
+  "max_thread_count": 93,
+  "top_threads": [
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3477
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3455
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3417
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3352
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3305
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3302
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3296
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3293
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3293
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3258
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3255
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3239
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3208
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3198
+    },
+    {
+      "name": "robot1.Audio",
+      "cpu_ticks": 3139
+    }
+  ]
+}
