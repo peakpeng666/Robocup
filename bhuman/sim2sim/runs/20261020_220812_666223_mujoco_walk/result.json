@@ -1,0 +1,5 @@
+{
+  "status": "ERROR",
+  "error": "Error(s) in loading state_dict for Sequential:\n\tsize mismatch for 0.weight: copying a param with shape torch.Size([256, 59]) from checkpoint, the shape in current model is torch.Size([256, 344]).",
+  "type": "RuntimeError"
+}

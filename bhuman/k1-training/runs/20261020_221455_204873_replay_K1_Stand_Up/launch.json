@@ -1,0 +1,23 @@
+{
+  "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256": "943c6bc768fe8c5114c69f31425400402be2198d65cae212457b4f956ff6ed1c",
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/play.py",
+    "--task",
+    "K1_Stand_Up",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+    "--load_mode",
+    "torchscript",
+    "--num_envs",
+    "4",
+    "--max_policy_steps",
+    "300",
+    "--headless",
+    "true",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_221455_204873_replay_K1_Stand_Up"
+  ],
+  "utc": "2026-10-20T13:14:55.220099+00:00"
+}

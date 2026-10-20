@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "checks": {
+    "completed_requested_steps": true,
+    "all_states_and_actions_finite": true,
+    "no_mujoco_automatic_time_reset": true,
+    "no_numerical_warnings": true,
+    "no_fall": true,
+    "joint_overshoot_below_005_rad": true,
+    "source_model_and_config_unchanged": true,
+    "forward_responds": true,
+    "side_responds": true,
+    "turn_responds": true,
+    "final_stop_bounded": true
+  },
+  "seconds_requested": 120.0,
+  "simulated_s": 120.0,
+  "physics_steps": 60000,
+  "policy_calls": 6000,
+  "wall_s": 10.604821270999992,
+  "real_time_factor": 11.315607961083957,
+  "nonfinite_events": 0,
+  "fall_events": [],
+  "mujoco_numerical_warnings": {
+    "mjWARN_BADQPOS": 0,
+    "mjWARN_BADQVEL": 0,
+    "mjWARN_BADQACC": 0,
+    "mjWARN_BADCTRL": 0
+  },
+  "automatic_time_resets": [],
+  "final_mujoco_time_s": 119.99999999990173,
+  "minimum_base_height_m": 0.5196280962959057,
+  "maximum_tilt_rad": 0.055256336687107374,
+  "maximum_joint_overshoot_rad": 0.0,
+  "joint_overshoot_rad": {
+    "AAHead_yaw": 0.0,
+    "Head_pitch": 0.0,
+    "ALeft_Shoulder_Pitch": 0.0,
+    "Left_Shoulder_Roll": 0.0,
+    "Left_Elbow_Pitch": 0.0,
+    "Left_Elbow_Yaw": 0.0,
+    "ARight_Shoulder_Pitch": 0.0,
+    "Right_Shoulder_Roll": 0.0,
+    "Right_Elbow_Pitch": 0.0,
+    "Right_Elbow_Yaw": 0.0,
+    "Left_Hip_Pitch": 0.0,
+    "Left_Hip_Roll": 0.0,
+    "Left_Hip_Yaw": 0.0,
+    "Left_Knee_Pitch": 0.0,
+    "Left_Ankle_Pitch": 0.0,
+    "Left_Ankle_Roll": 0.0,
+    "Right_Hip_Pitch": 0.0,
+    "Right_Hip_Roll": 0.0,
+    "Right_Hip_Yaw": 0.0,
+    "Right_Knee_Pitch": 0.0,
+    "Right_Ankle_Pitch": 0.0,
+    "Right_Ankle_Roll": 0.0
+  },
+  "peak_torque_Nm": 25.7037353515625,
+  "torque_saturation_fraction": 0.0,
+  "segments": {
+    "stand": {
+      "samples": 950,
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        -0.00016920603449187567,
+        8.908452664283178e-06,
+        0.0003919081962330414
+      ],
+      "velocity_rmse": [
+        0.0005300423047161478,
+        1.8612495294863768e-05,
+        0.0004223297990608765
+      ]
+    },
+    "forward": {
+      "samples": 950,
+      "command": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        0.2452938235433478,
+        -0.02035534224647563,
+        0.013403386381616752
+      ],
+      "velocity_rmse": [
+        0.03439233051541643,
+        0.12380301203700661,
+        0.14806479708965217
+      ]
+    },
+    "side": {
+      "samples": 950,
+      "command": [
+        0.0,
+        0.11999999731779099,
+        0.0
+      ],
+      "mean_velocity": [
+        -0.005543494946775211,
+        0.09811357460766694,
+        -0.02448640460249551
+      ],
+      "velocity_rmse": [
+        0.02011453145850682,
+        0.13542117405518003,
+        0.12988368924290067
+      ]
+    },
+    "turn": {
+      "samples": 950,
+      "command": [
+        0.0,
+        0.0,
+        0.25
+      ],
+      "mean_velocity": [
+        -0.007556397603873752,
+        -0.04007623315923602,
+        0.23929255365541108
+      ],
+      "velocity_rmse": [
+        0.022528782020744726,
+        0.13030774879114357,
+        0.1510263070609917
+      ]
+    },
+    "combined": {
+      "samples": 950,
+      "command": [
+        0.18000000715255737,
+        0.07999999821186066,
+        0.20000000298023224
+      ],
+      "mean_velocity": [
+        0.17654731560694545,
+        0.04477085346380543,
+        0.18792752607750068
+      ],
+      "velocity_rmse": [
+        0.03193964049675547,
+        0.1361436823793964,
+        0.13926976643921127
+      ]
+    },
+    "stop": {
+      "samples": 950,
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        0.00020517316146364655,
+        -6.734094095188419e-06,
+        -0.0009288644411993262
+      ],
+      "velocity_rmse": [
+        0.0006780380439228671,
+        7.338251913751878e-05,
+        0.0013570452248219686
+      ]
+    }
+  },
+  "observations_shape": [
+    6000,
+    344
+  ],
+  "policy_identity": {
+    "actor_tensors_verified": 8,
+    "critic_loaded": false,
+    "checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff"
+  },
+  "robot_connected": false
+}

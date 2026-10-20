@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "checks": {
+    "completed_requested_steps": true,
+    "all_states_and_actions_finite": true,
+    "no_fall": true,
+    "joint_overshoot_below_005_rad": true,
+    "source_model_and_config_unchanged": true,
+    "forward_responds": true,
+    "side_responds": true,
+    "turn_responds": true,
+    "final_stop_bounded": true
+  },
+  "seconds_requested": 60.0,
+  "simulated_s": 60.0,
+  "physics_steps": 30000,
+  "policy_calls": 3000,
+  "wall_s": 2.872245086000021,
+  "real_time_factor": 20.8895822617832,
+  "nonfinite_events": 0,
+  "fall_events": [],
+  "minimum_base_height_m": 0.5217647710653488,
+  "maximum_tilt_rad": 0.05813947308687695,
+  "maximum_joint_overshoot_rad": 0.0,
+  "joint_overshoot_rad": {
+    "AAHead_yaw": 0.0,
+    "Head_pitch": 0.0,
+    "ALeft_Shoulder_Pitch": 0.0,
+    "Left_Shoulder_Roll": 0.0,
+    "Left_Elbow_Pitch": 0.0,
+    "Left_Elbow_Yaw": 0.0,
+    "ARight_Shoulder_Pitch": 0.0,
+    "Right_Shoulder_Roll": 0.0,
+    "Right_Elbow_Pitch": 0.0,
+    "Right_Elbow_Yaw": 0.0,
+    "Left_Hip_Pitch": 0.0,
+    "Left_Hip_Roll": 0.0,
+    "Left_Hip_Yaw": 0.0,
+    "Left_Knee_Pitch": 0.0,
+    "Left_Ankle_Pitch": 0.0,
+    "Left_Ankle_Roll": 0.0,
+    "Right_Hip_Pitch": 0.0,
+    "Right_Hip_Roll": 0.0,
+    "Right_Hip_Yaw": 0.0,
+    "Right_Knee_Pitch": 0.0,
+    "Right_Ankle_Pitch": 0.0,
+    "Right_Ankle_Roll": 0.0
+  },
+  "peak_torque_Nm": 28.160377502441406,
+  "torque_saturation_fraction": 0.0,
+  "segments": {
+    "stand": {
+      "samples": 450,
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        -0.00034439416108701453,
+        1.4479131311209888e-05,
+        0.0005179587018857193
+      ],
+      "velocity_rmse": [
+        0.0007700143219132566,
+        2.620490844855652e-05,
+        0.0005338911191215781
+      ]
+    },
+    "forward": {
+      "samples": 450,
+      "command": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        0.24537310206227833,
+        -0.02097865827084105,
+        0.01380600119687996
+      ],
+      "velocity_rmse": [
+        0.03431513273396199,
+        0.12363413976421306,
+        0.14776069513585924
+      ]
+    },
+    "side": {
+      "samples": 450,
+      "command": [
+        0.0,
+        0.11999999731779099,
+        0.0
+      ],
+      "mean_velocity": [
+        -0.005322655522258073,
+        0.09687436003651884,
+        -0.017759362695910063
+      ],
+      "velocity_rmse": [
+        0.019246249921568672,
+        0.13531049901686437,
+        0.11690952554890342
+      ]
+    },
+    "turn": {
+      "samples": 450,
+      "command": [
+        0.0,
+        0.0,
+        0.25
+      ],
+      "mean_velocity": [
+        -0.007186631442099396,
+        -0.0378104054229334,
+        0.23816893943870027
+      ],
+      "velocity_rmse": [
+        0.02271701200625024,
+        0.12933692861497528,
+        0.13998739254688738
+      ]
+    },
+    "combined": {
+      "samples": 450,
+      "command": [
+        0.18000000715255737,
+        0.07999999821186066,
+        0.20000000298023224
+      ],
+      "mean_velocity": [
+        0.1766253008113967,
+        0.045870824010990977,
+        0.18729060711002804
+      ],
+      "velocity_rmse": [
+        0.0320176479222253,
+        0.13706763477963663,
+        0.1589306093607911
+      ]
+    },
+    "stop": {
+      "samples": 450,
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_velocity": [
+        0.0004345632234617369,
+        -3.49460404574447e-05,
+        -0.0016883956207635088
+      ],
+      "velocity_rmse": [
+        0.0010212242197528906,
+        0.00016394261650487638,
+        0.0024012851301339036
+      ]
+    }
+  },
+  "observations_shape": [
+    3000,
+    344
+  ],
+  "policy_identity": {
+    "actor_tensors_verified": 8,
+    "critic_loaded": false,
+    "checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff"
+  },
+  "robot_connected": false
+}

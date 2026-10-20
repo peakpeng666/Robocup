@@ -15,14 +15,17 @@
     "--headless",
     "true",
     "--output_dir",
-    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_200134_989407_replay_K1"
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220415_303292_replay_K1"
   ],
   "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
   "exit_code": 0,
-  "wall_s": 36.786493817999144,
+  "wall_s": 39.88959504400009,
   "sampled_gpu_peak_mib": 2948,
   "stop_reason": null,
-  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261019_200134_989407_replay_K1",
+  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220415_303292_replay_K1",
   "python_jit": "1",
+  "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256_at_launch": "943c6bc768fe8c5114c69f31425400402be2198d65cae212457b4f956ff6ed1c",
   "status": "PASS"
 }

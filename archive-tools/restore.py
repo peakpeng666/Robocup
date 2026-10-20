@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Restore verified project artifacts without changing installed environments."""
 from pathlib import Path
-import argparse,hashlib,json,subprocess,tempfile,shutil,os
+import argparse,hashlib,json,subprocess,tempfile,shutil,os,time,contextlib
+from concurrent.futures import ThreadPoolExecutor,as_completed
 REPO_ROOT=Path(__file__).resolve().parents[1]
 KEEP=('bhuman/k1-training/third_party','bhuman/k1-training/downloads','bhuman/k1-training/cache','bhuman/local-k1-validation-20261019/runtime','.v2c','.video_agent')
 def digest(p):
@@ -13,6 +14,8 @@ def main():
  ap=argparse.ArgumentParser(description=__doc__)
  ap.add_argument('--output',type=Path,default=Path('/home/peakpeng/Desktop/Robocup'))
  ap.add_argument('--training-only',action='store_true',help='Restore only the 78 MB training kit and candidate checkpoint.')
+ ap.add_argument('--download-cache',type=Path,help='Keep verified downloads here so interrupted restores can resume.')
+ ap.add_argument('--jobs',type=int,default=4,choices=range(1,9),help='Concurrent downloads (1-8; default 4).')
  ap.add_argument('--with-original-history',action='store_true',help='Also decrypt original nested Git histories and original authentication files using your local key.')
  ap.add_argument('--key',type=Path,default=Path.home()/'.local/share/robocup-archive/recovery-key.txt')
  a=ap.parse_args();dest=a.output.resolve();manifest=json.loads((REPO_ROOT/'archive/assets-manifest.json').read_text())
@@ -39,12 +42,28 @@ def main():
  needed=sum(x['size'] for x in parts)+sum(r.get('size',0) for r in expected.values())+1024**3
  if shutil.disk_usage(dest if dest.exists() else dest.parent).free<needed:ap.error('Insufficient free space for download and extraction')
  dest.mkdir(parents=True,exist_ok=True)
- with tempfile.TemporaryDirectory(prefix='robocup-restore-') as tmp:
+ cache_context=contextlib.nullcontext(str(a.download_cache.resolve())) if a.download_cache else tempfile.TemporaryDirectory(prefix='robocup-restore-')
+ with cache_context as tmp:
   tmp=Path(tmp)
-  for part in parts:
-   subprocess.run(['gh','release','download',manifest['tag'],'--repo','peakpeng666/Robocup','--pattern',part['name'],'--dir',str(tmp)],check=True)
+  tmp.mkdir(parents=True,exist_ok=True)
+  def download(part):
    p=tmp/part['name']
-   if p.stat().st_size!=part['size'] or digest(p)!=part['sha256']:raise ValueError('Downloaded checksum mismatch: '+part['name'])
+   if p.is_file() and p.stat().st_size==part['size'] and digest(p)==part['sha256']:return part['name']
+   for attempt in range(3):
+    with tempfile.TemporaryDirectory(prefix='.partial-',dir=tmp) as stage:
+     result=subprocess.run(['gh','release','download',manifest['tag'],'--repo','peakpeng666/Robocup','--pattern',part['name'],'--dir',stage],capture_output=True,text=True)
+     staged=Path(stage)/part['name']
+     if result.returncode==0 and staged.is_file() and staged.stat().st_size==part['size'] and digest(staged)==part['sha256']:
+      os.replace(staged,p);return part['name']
+     error=result.stderr[-1000:] if result.returncode else 'Downloaded checksum mismatch'
+    time.sleep(attempt+1)
+   raise RuntimeError('Could not restore '+part['name']+': '+error)
+  with ThreadPoolExecutor(max_workers=a.jobs) as pool:
+   jobs=[pool.submit(download,p) for p in parts]
+   for count,job in enumerate(as_completed(jobs),1):
+    job.result()
+    if count==1 or count%10==0 or count==len(parts):print('Verified downloads: %d/%d' % (count,len(parts)),flush=True)
+  print('All download SHA256 checks passed; extracting verified workspace.',flush=True)
   def extract(archive,encrypted=False):
    names=[str(tmp/p['name']) for p in parts if p['archive']==archive]
    cat=subprocess.Popen(['cat',*names],stdout=subprocess.PIPE)

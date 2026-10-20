@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "observations": 6000,
+  "input_dim": 344,
+  "output_dim": 13,
+  "atol": 1e-05,
+  "rtol": 0.0001,
+  "results": {
+    "torchscript": {
+      "pass": true,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "mean_absolute_error": 4.2535223343520556e-08
+    },
+    "official_competition_onnx": {
+      "pass": true,
+      "maximum_absolute_error": 1.430511474609375e-06,
+      "mean_absolute_error": 6.189857515437325e-08
+    }
+  },
+  "official_onnx_sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+  "torchscript_sha256": "f270f3afd0e2e2afa3aeb0d785245b5c4c0513b61f136aff4aff11cd590f74b7",
+  "checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+  "note": "MuJoCo Torch 2.11 outputs vs TorchScript/ORT in the existing Python 3.8 environment; no CompiledNN or robot claim."
+}

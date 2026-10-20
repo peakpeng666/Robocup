@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-20T13:11:49Z",
+  "task": "K1",
+  "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+  "checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+  "load_mode": "actor",
+  "config_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "adaptation_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "torchscript": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/restored-public-walk-20261020/K1_actor.pt",
+    "sha256": "f270f3afd0e2e2afa3aeb0d785245b5c4c0513b61f136aff4aff11cd590f74b7"
+  },
+  "onnx": {
+    "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/restored-public-walk-20261020/K1_actor.onnx",
+    "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "opset": 11,
+    "input": "input: [batch, 344]",
+    "output": "output: [batch, 13]"
+  },
+  "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+  "tri_check": {
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "results": {
+      "random_batch1": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.430511474609375e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "random_batch4": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.3113021850585938e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      },
+      "recorded_observations": {
+        "eager_vs_script_maxabs": 0.0,
+        "eager_vs_ort_maxabs": 1.1920928955078125e-06,
+        "eager_vs_script_ok": true,
+        "eager_vs_ort_ok": true
+      }
+    },
+    "verdict": "PASS",
+    "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+  }
+}

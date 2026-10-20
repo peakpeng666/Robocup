@@ -2,7 +2,19 @@
 
 原装 Booster K1 的 B-Human 比赛仿真、公开策略复现与本机强化学习工作区。此仓库整理了截至 **2026-10-20** 的代码、配置、补丁、调研、训练与仿真证据。没有连接机器人；自训练候选未替换官方步态与正常视觉。
 
-## 当前成果
+## 本机当前状态（2026-10-20 恢复后）
+
+**三个可运行工作区已恢复并实测，继续保留在本机。GitHub 用于同步备份。**
+
+- 最新比赛程序已在原路径重新编译：六机正常视觉比赛 120 秒，含启动/录像采集耗时 78.210 秒（1.534×实时），验收通过；单机步态 30 秒也通过。
+- 新增 `bhuman/sim2sim/`：复用已有 MuJoCo 3.8 / Python 3.12，官方 actor 和 XML 的 120 秒命令回放通过。6,000 次实际输入对应的输出与 TorchScript/官方 ONNX 一致。
+- 训练主线恢复至原路径：官方 Gym 回放、64 环境新暖启动、4096 环境第70→71轮完整恢复/续训，以及导出三方比对均通过。自训练候选没有接入比赛。
+- 常规清理只限缓存和核验后的重复产物；保留工作区规则已写入 `AGENTS.md`，旧整工作区删除脚本已停用。
+
+入口和证据见 [本地恢复验收](LOCAL-RESTORE-20261020.md)、[MuJoCo 使用说明](bhuman/sim2sim/README.md)。
+新的 [本机运行包](https://github.com/peakpeng666/Robocup/releases/tag/local-runtime-20261020) 包含当前源码、模型、Release 编译程序和可续训检查点；下方 `snapshot-20261020` 保留完整历史归档。
+
+## 归档时成果
 
 - **比赛仿真**：保留 B-Human 自己的公开步态和正常相机感知。已有六机正常视觉 660 秒比赛记录，549.495 秒墙钟时间（1.201×实时）。这是历史仿真验收，不是本轮重新跑赛或真机结论。
 - **训练环境**：已有 Isaac Gym Preview 4 / Python 3.8.20 / 定制 Torch 2.3.0a0 CUDA 12.8 在 RTX 5090 Laptop 上实跑。Isaac Sim、Isaac Lab 是另外两套既有环境，未混用。
@@ -56,9 +68,9 @@ python3 /tmp/Robocup-review/archive-tools/restore.py --output /home/peakpeng/Des
 
 所有者的恢复密钥保留于 `/home/peakpeng/.local/share/robocup-archive/recovery-key.txt`，权限0600，**从未上传**。没有这份密钥仍可下载全部公开工作成果，但无法解密原始历史归档。训练检查点配置使用原绝对路径；跨机器或换路径时应显式处理配置与运行环境，不能跳过恢复兼容性检查。
 
-## 本机清理验收
+## 历史清理记录（恢复之前）
 
-2026-10-20：远端162个文件的SHA256/大小及代表性匿名下载均通过后，已清理原项目与项目专用包缓存。工作区现约2.2 GiB，仅保留Gym/ONNX Runtime等依赖、下载的环境安装包、版本锁、环境脚本和恢复记录；原有三套venv、IsaacLab与系统依赖保留。清理后Gym原生绑定、PyTorch CUDA小矩阵运算及60包依赖检查均通过。
+2026-10-20：远端162个文件的SHA256/大小及代表性匿名下载均通过后，已清理原项目与项目专用包缓存。当时工作区约2.2 GiB，仅保留依赖及恢复记录；随后按用户要求恢复了上述三个可运行工作区。此段仅为历史记录，当前状态以本页顶部及本地恢复报告为准。清理后Gym原生绑定、PyTorch CUDA小矩阵运算及60包依赖检查均通过。
 
 [远端校验](archive/remote-verification.json) · [清理记录](archive/cleanup-completed.json) · [清理后环境检查](archive/post-cleanup-environments.json) · [最终交付记录](archive/final-delivery.json)。临时上传副本在最终推送核验后删除。
 

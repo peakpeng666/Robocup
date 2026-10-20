@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "mode": "gait",
+  "scope": "Public B-Human K1 controller in normal 3D SimRobot; local simulation only; not a full regulation match or hardware qualification",
+  "requested_simulation_s": 30.0,
+  "checks": {
+    "process_exit_zero": true,
+    "completed_requested_steps": true,
+    "no_console_errors": true,
+    "all_robots_reported": true,
+    "all_robots_have_camera_perception_cognition": true,
+    "finite_all_recorded_frames": true,
+    "all_robots_execute_walk": true,
+    "normal_camera_resolution": true,
+    "camera_perception_rate_at_least_50hz": true,
+    "vision_provider_matches_request": true,
+    "motion_policies_still_cpu": true,
+    "no_sampled_tilt_stuck_over_30s": true,
+    "no_fall_or_getup": true,
+    "robot_traveled_over_1m": true,
+    "all_gait_commands_dispatched": true,
+    "forward_response": true,
+    "side_response": true,
+    "turn_response": true,
+    "settled_stop_under_10cm": true,
+    "complete_frame_capture": true
+  },
+  "robots": {
+    "robot5": {
+      "physics_samples": 60,
+      "motion_samples": 60,
+      "perception_hz_over_sim_time": 58.92518297641637,
+      "camera_sizes": [
+        [
+          544,
+          448
+        ]
+      ],
+      "longest_sampled_tilt_over_0_85rad_s": 0.0,
+      "last_motion": {
+        "robot": "SimulatedK1",
+        "team": "5",
+        "player": "5",
+        "frames": "15000",
+        "phase": "1",
+        "stable": "1",
+        "finite": "1",
+        "nonfinite_total": "0",
+        "walk_frames": "12030",
+        "fall_frames": "0",
+        "getup_frames": "0"
+      },
+      "unique_camera_timestamps_sampled": 60,
+      "perception_samples": 59,
+      "ball_seen_samples": 8,
+      "cognition_samples": 59,
+      "skills": [
+        3,
+        8
+      ],
+      "walk_frames": 12030,
+      "fall_frames": 0,
+      "getup_frames": 0,
+      "nonfinite_physics_total": 0,
+      "nonfinite_motion_total": 0,
+      "path_m_from_2hz_samples": 8.370344041726982,
+      "max_sampled_abs_roll_pitch_rad": 0.056,
+      "all_samples_near_arena": true,
+      "first_pose": {
+        "robot": "robot5",
+        "tick": "250",
+        "x_mm": "1994.8",
+        "y_mm": "33.2",
+        "yaw_rad": "3.086",
+        "roll_rad": "0.009",
+        "pitch_rad": "-0.013",
+        "image": "1",
+        "image_time": "100497",
+        "nonfinite_total": "0"
+      },
+      "last_pose": {
+        "robot": "robot5",
+        "tick": "15000",
+        "x_mm": "-3678.0",
+        "y_mm": "-2522.5",
+        "yaw_rad": "0.625",
+        "roll_rad": "-0.001",
+        "pitch_rad": "-0.006",
+        "image": "1",
+        "image_time": "129993",
+        "nonfinite_total": "0"
+      }
+    }
+  },
+  "game_states": [
+    3
+  ],
+  "last_game": {
+    "tick": "15000",
+    "state": "3",
+    "first_half": "1",
+    "remaining_s": "571",
+    "score_a": "0",
+    "score_b": "0",
+    "robots": "1",
+    "ball_valid": "1",
+    "ball_x_mm": "6000.0",
+    "ball_y_mm": "4000.0"
+  },
+  "ball_contacts_logged": 0,
+  "ball_path_m_from_2hz_samples": 0.0,
+  "errors": [],
+  "gait_segments": {
+    "forward": {
+      "samples": 17,
+      "forward_m": 5.196486977570963,
+      "left_m": -0.1066022140683249,
+      "yaw_change_rad": 0.2791853071795867,
+      "net_displacement_m": 5.180864617030637
+    },
+    "left": {
+      "samples": 13,
+      "forward_m": 0.16222673535202609,
+      "left_m": 2.321019204418344,
+      "yaw_change_rad": -0.3611853071795861,
+      "net_displacement_m": 2.4015729845249343
+    },
+    "turn": {
+      "samples": 17,
+      "forward_m": 0.026643642812061614,
+      "left_m": -0.25730275188211243,
+      "yaw_change_rad": 4.010185307179586,
+      "net_displacement_m": 0.2059916988618713
+    },
+    "settled_stop": {
+      "samples": 9,
+      "forward_m": 1.6557714591803513e-05,
+      "left_m": 0.00036030882567997767,
+      "yaw_change_rad": -0.015000000000000013,
+      "net_displacement_m": 0.00036055512754644935
+    }
+  },
+  "measurement_note": "Joint/pose finite counters run each available frame; trajectories sampled at 2 Hz. Ball path includes automatic-referee placement. Contacts are rate-limited at 10 Hz.",
+  "performance": {
+    "wall_s": 10.502342580000004,
+    "real_time_factor": 2.8565055625903977,
+    "includes_startup_and_capture": true,
+    "encoding_excluded": true
+  },
+  "video": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs/20261020_221030_477446_bhuman_gait/bhuman-k1-gait.mp4"
+}
