@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "repository": "https://github.com/peakpeng666/Robocup",
+  "current_runtime_release": "https://github.com/peakpeng666/Robocup/releases/tag/local-runtime-20261020",
+  "verified_runtime_assets": 13,
+  "source_code_commit": "3a3f78e09218f589a7b57a386662561081eaa77c",
+  "details": "archive/runtime-remote-verification-20261020.json",
+  "historical_full_release": "https://github.com/peakpeng666/Robocup/releases/tag/snapshot-20261020",
+  "local_workspaces_preserved": true
+}

@@ -79,3 +79,10 @@ MuJoCo：[结果](bhuman/sim2sim/runs/20261020_220814_312153_mujoco_walk/result.
 `AGENTS.md` 已登记用户规则。旧 `archive-tools/cleanup_local.py` 不再包含工作区
 删除实现，`--apply` 明确拒绝。以后常规清理只针对缓存和经核验的重复产物，
 保留可运行源码、模型、编译程序、继续训练所需检查点和环境。
+
+
+运行备份采用10个带SHA256的分卷。按文件名顺序合并
+`Robocup-runtime-20261020.tar.zst.chunk000…009`，对照 `runtime-backup.json`
+校验合并包，再在独立空目录解压；`runtime-files.jsonl` 给出19,671个条目的
+逐文件哈希和链接目标。原始加密Git历史及密钥不在运行包内，旧历史Release不变。
+用户目录 `/home/peakpeng/AGENTS.md` 也已登记相同的本机保留规则。

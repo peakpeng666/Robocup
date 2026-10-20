@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "entries": 19671,
+  "verified_file_bytes": 1667966013,
+  "bundle_sha256": "eafdf3d74d257eb67de62dcad4e4370fbfa8ef82f5138c11f4abf93c3a56e594",
+  "method": "Independently streamed tar/zstd and verified every file byte hash and symlink against the manifest.",
+  "workspace_deleted": false
+}

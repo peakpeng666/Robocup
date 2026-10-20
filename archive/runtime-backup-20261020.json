@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "source_commit": "3a3f78e09218f589a7b57a386662561081eaa77c",
+  "bundle": {
+    "name": "Robocup-runtime-20261020.tar.zst",
+    "size": 628081149,
+    "sha256": "eafdf3d74d257eb67de62dcad4e4370fbfa8ef82f5138c11f4abf93c3a56e594"
+  },
+  "files_manifest": {
+    "name": "runtime-files.jsonl",
+    "size": 4606476,
+    "sha256": "07ad6a28ab8f487ca986ae032c33ab53fd2db273176aa432f3ceec1ec9eddbd0"
+  },
+  "entries": 19671,
+  "uncompressed_regular_file_bytes": 1667966013,
+  "excluded": "Configured Python environments, proprietary Gym installation/downloads, package caches, build object directories and intermediate spectator frames. All runnable Release binaries, models and current continuation checkpoints are included.",
+  "workspace_deleted": false,
+  "robot_connected": false,
+  "parts": [
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk000",
+      "size": 67108864,
+      "sha256": "16ec0657d1a8574f085bdfcf5135d8354f37c0a4a1e0d85926a7594246e4abe7"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk001",
+      "size": 67108864,
+      "sha256": "979758e7afb4d6e3b10995532e89f15a527b104349bf69f01441cf9495fab19f"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk002",
+      "size": 67108864,
+      "sha256": "68b586c5639432793fad28fd6bbd12fa8ee9c11df68dc8e292590cc15a67acbb"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk003",
+      "size": 67108864,
+      "sha256": "505a93ef3f8582fb77f3d65a7394cd3e99f0dda2f7f49fb7895e1246f0361ba2"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk004",
+      "size": 67108864,
+      "sha256": "b9d6dc13dc14bb0c811dd4e4670f9cf82e1de020eb0ed048092f9e9f79caff4a"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk005",
+      "size": 67108864,
+      "sha256": "d7bd55376d67c108731ab0d72f3477b1586a82e5c7fd9460ad77fee79d1e392e"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk006",
+      "size": 67108864,
+      "sha256": "8a21d946d4c26327cb728a499cd2b912083743bb6ff111209818070c083a74d7"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk007",
+      "size": 67108864,
+      "sha256": "5d1954bdb539f0c5fa362d304f819a21738e54f3e1c39e43a3aabfe9261f14f2"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk008",
+      "size": 67108864,
+      "sha256": "72a6169e9ffd831c68e47796f35465548304f0c9ffd446585f7f39c7da06d0f3"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk009",
+      "size": 24101373,
+      "sha256": "4d845ba4611e5c8eb2226fdd8b92a77ad129b7bbacc8b76e53d32cf08f9947bd"
+    }
+  ],
+  "distribution": "Concatenate parts in filename order, then verify bundle SHA256 before extraction."
+}

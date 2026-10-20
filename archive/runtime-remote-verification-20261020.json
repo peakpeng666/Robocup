@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "release_id": 418431978,
+  "tag": "local-runtime-20261020",
+  "assets_verified": [
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk000",
+      "size": 67108864,
+      "sha256": "16ec0657d1a8574f085bdfcf5135d8354f37c0a4a1e0d85926a7594246e4abe7",
+      "asset_id": 659413233
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk001",
+      "size": 67108864,
+      "sha256": "979758e7afb4d6e3b10995532e89f15a527b104349bf69f01441cf9495fab19f",
+      "asset_id": 659413234
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk002",
+      "size": 67108864,
+      "sha256": "68b586c5639432793fad28fd6bbd12fa8ee9c11df68dc8e292590cc15a67acbb",
+      "asset_id": 659413237
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk003",
+      "size": 67108864,
+      "sha256": "505a93ef3f8582fb77f3d65a7394cd3e99f0dda2f7f49fb7895e1246f0361ba2",
+      "asset_id": 659413232
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk004",
+      "size": 67108864,
+      "sha256": "b9d6dc13dc14bb0c811dd4e4670f9cf82e1de020eb0ed048092f9e9f79caff4a",
+      "asset_id": 659414568
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk005",
+      "size": 67108864,
+      "sha256": "d7bd55376d67c108731ab0d72f3477b1586a82e5c7fd9460ad77fee79d1e392e",
+      "asset_id": 659414639
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk006",
+      "size": 67108864,
+      "sha256": "8a21d946d4c26327cb728a499cd2b912083743bb6ff111209818070c083a74d7",
+      "asset_id": 659415322
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk007",
+      "size": 67108864,
+      "sha256": "5d1954bdb539f0c5fa362d304f819a21738e54f3e1c39e43a3aabfe9261f14f2",
+      "asset_id": 659415773
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk008",
+      "size": 67108864,
+      "sha256": "72a6169e9ffd831c68e47796f35465548304f0c9ffd446585f7f39c7da06d0f3",
+      "asset_id": 659416185
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk009",
+      "size": 24101373,
+      "sha256": "4d845ba4611e5c8eb2226fdd8b92a77ad129b7bbacc8b76e53d32cf08f9947bd",
+      "asset_id": 659416592
+    },
+    {
+      "name": "runtime-files.jsonl",
+      "size": 4606476,
+      "sha256": "07ad6a28ab8f487ca986ae032c33ab53fd2db273176aa432f3ceec1ec9eddbd0",
+      "asset_id": 659405292
+    },
+    {
+      "name": "runtime-backup.json",
+      "size": 2706,
+      "sha256": "e70bd0e14ceba233d67e21e53d9f0410b0e0a8d88267e2f0aaef5300c61aa80c",
+      "asset_id": 659419547
+    },
+    {
+      "name": "runtime-verification.json",
+      "size": 311,
+      "sha256": "c60c7612daccc1fd352c7e40abaaae682a1b3bae3b42b1a2a6c07c77a8987b23",
+      "asset_id": 659405291
+    }
+  ],
+  "expected_asset_count": 13,
+  "combined_bundle_sha256": "eafdf3d74d257eb67de62dcad4e4370fbfa8ef82f5138c11f4abf93c3a56e594",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/local-runtime-20261020",
+  "published_at": "2026-10-20T13:37:01Z",
+  "draft": false,
+  "anonymous_download_tests": [
+    {
+      "name": "runtime-backup.json",
+      "sample_bytes": 2706,
+      "sha256": "e70bd0e14ceba233d67e21e53d9f0410b0e0a8d88267e2f0aaef5300c61aa80c",
+      "anonymous_download": "PASS"
+    },
+    {
+      "name": "Robocup-runtime-20261020.tar.zst.chunk000",
+      "sample_bytes": 1048576,
+      "sha256": "9437783990f99adf7fcb96aa61c83b165d9843af04a11757f493f6fd690e91ae",
+      "anonymous_download": "PASS"
+    }
+  ],
+  "verified_at_local": "2026-10-20T22:37:07.973522+09:00"
+}
