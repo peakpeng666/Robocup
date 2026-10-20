@@ -14,7 +14,11 @@
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/cache/cuda",
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/env.sh",
     "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime",
-    "/home/peakpeng/.local/share/robocup-archive"
+    "/home/peakpeng/.local/share/robocup-archive",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/install_env.sh",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/requirements.lock",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/installed-packages.json",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/archive-identities.json"
   ],
   "cleanup_preconditions": [
     "Remote main commit verified",
@@ -30,5 +34,6 @@
   "unrelated_plugin_state_left_alone": [
     ".v2c",
     ".video_agent"
-  ]
+  ],
+  "upload_transport": "64 MiB chunks, per-process HTTP/1.1, per-asset retries, verification before skipping previously uploaded chunks."
 }

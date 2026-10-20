@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checked_original_entries": 57999,
+  "checked_regular_file_bytes": 17035258934,
+  "unexpected_paths": [],
+  "retained_configuration_files": [
+    "bhuman/k1-training/manifests/archive-identities.json",
+    "bhuman/k1-training/manifests/installed-packages.json",
+    "bhuman/k1-training/manifests/requirements.lock",
+    "bhuman/k1-training/scripts/env.sh",
+    "bhuman/k1-training/scripts/install_env.sh"
+  ],
+  "apply": false
+}
