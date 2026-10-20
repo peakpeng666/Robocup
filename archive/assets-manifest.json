@@ -966,5 +966,14 @@
   "restore_root": "/home/peakpeng/Desktop/Robocup",
   "public_files": "archive/public-files.jsonl",
   "encrypted_original_files": "archive/encrypted-original-files.jsonl",
-  "key_path_local_only": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt"
+  "key_path_local_only": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt",
+  "optional_assets": [
+    {
+      "name": "k1-training-kit-20261020.tar.zst",
+      "size": 77610837,
+      "sha256": "77d62731ee16867961eba3cc04c3f02443255578ed611cf3e267d5c37b4fc317",
+      "archive": "k1-training-kit-20261020.tar.zst",
+      "purpose": "Optional small standalone training restoration; does not replace the complete snapshot."
+    }
+  ]
 }

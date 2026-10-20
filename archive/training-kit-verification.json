@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "entries_verified": 1310,
+  "all_file_hashes_match": true,
+  "actual_extraction_performed": true,
+  "restored_source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "restored_iteration": 70,
+  "restored_env_steps": 6881280
+}

@@ -12,10 +12,13 @@ def digest(p):
 def main():
  ap=argparse.ArgumentParser(description=__doc__)
  ap.add_argument('--output',type=Path,default=Path('/home/peakpeng/Desktop/Robocup'))
+ ap.add_argument('--training-only',action='store_true',help='Restore only the 78 MB training kit and candidate checkpoint.')
  ap.add_argument('--with-original-history',action='store_true',help='Also decrypt original nested Git histories and original authentication files using your local key.')
  ap.add_argument('--key',type=Path,default=Path.home()/'.local/share/robocup-archive/recovery-key.txt')
  a=ap.parse_args();dest=a.output.resolve();manifest=json.loads((REPO_ROOT/'archive/assets-manifest.json').read_text())
- expected={r['path']:r for r in map(json.loads,(REPO_ROOT/'archive/public-files.jsonl').read_text().splitlines())}
+ if a.training_only and a.with_original_history:ap.error('Choose training-only or original-history restoration, not both.')
+ files_manifest='training-kit-files.jsonl' if a.training_only else 'public-files.jsonl'
+ expected={r['path']:r for r in map(json.loads,(REPO_ROOT/'archive'/files_manifest).read_text().splitlines())}
  for command in ('gh','zstd','tar'):
   if not shutil.which(command):ap.error('Missing existing utility: '+command)
  if a.with_original_history and (not a.key.is_file() or not shutil.which('gpg')):ap.error('Original history requires gpg and your local recovery key; the key is never uploaded.')
@@ -32,7 +35,7 @@ def main():
     if p.is_symlink():ok=row['type']=='symlink' and os.readlink(p)==row['target']
     else:ok=row['type']=='file' and digest(p)==row['sha256']
     if not ok:ap.error('Changed file would be overwritten: '+str(p))
- parts=[x for x in manifest['parts'] if x['archive']=='public-workspace.tar.zst' or a.with_original_history]
+ parts=manifest.get('optional_assets',[]) if a.training_only else [x for x in manifest['parts'] if x['archive']=='public-workspace.tar.zst' or a.with_original_history]
  needed=sum(x['size'] for x in parts)+sum(r.get('size',0) for r in expected.values())+1024**3
  if shutil.disk_usage(dest if dest.exists() else dest.parent).free<needed:ap.error('Insufficient free space for download and extraction')
  dest.mkdir(parents=True,exist_ok=True)
@@ -53,7 +56,7 @@ def main():
    assert tar.returncode==0 and z.wait()==0
    if decrypt:assert decrypt.wait()==0
    assert cat.wait()==0
-  extract('public-workspace.tar.zst')
+  extract('k1-training-kit-20261020.tar.zst' if a.training_only else 'public-workspace.tar.zst')
   if a.with_original_history:extract('original-history.tar.zst.gpg',True)
  verification=dict(expected)
  if a.with_original_history:

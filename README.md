@@ -32,6 +32,8 @@ Git 树收录约6000个便于浏览的源码与证据文件。**模型、全部�
 
 ## 完整成果与恢复
 
+另提供约78 MB的 `k1-training-kit-20261020.tar.zst`，包含完整训练源码/资产、脚本、配置和第70轮候选，可用 `--training-only` 快速恢复训练工作区，无需下载整份比赛录像和历史归档。
+
 - `public-workspace.tar.zst.chunk000…106`：完整公开工作树，包括模型、训练检查点、编译程序、日志、研究资料和视频。合并解压约13.34GB。
 - `original-history.tar.zst.gpg.chunk000…052`：原始15个仓库的Git元数据、原始认证文件与相关SSH文件的加密归档，解密后的文件数据约3.70GB。当前代码公开可读；这份归档仅用于所有者保全原始历史。
 - 每个分卷都有SHA256；发布前逐文件流式验证了公开41272个文件和加密9589个文件，另实际恢复了训练检查点、源码、报告与视频样本。两份清单中有两个文件分别保存公开清理版和原始版。
@@ -44,6 +46,8 @@ Git 树收录约6000个便于浏览的源码与证据文件。**模型、全部�
 ```bash
 git clone https://github.com/peakpeng666/Robocup.git /tmp/Robocup-review
 python3 /tmp/Robocup-review/archive-tools/restore.py --output /home/peakpeng/Desktop/Robocup
+# 或只恢复训练主线和第70轮候选：
+python3 /tmp/Robocup-review/archive-tools/restore.py --output /home/peakpeng/Desktop/Robocup --training-only
 # 可选：恢复所有者的原始嵌套Git历史及原始认证文件
 python3 /tmp/Robocup-review/archive-tools/restore.py --output /home/peakpeng/Desktop/Robocup --with-original-history
 ```

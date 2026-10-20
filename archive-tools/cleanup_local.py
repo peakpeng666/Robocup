@@ -40,7 +40,8 @@ def main():
  verified=json.loads((REPO/'archive/remote-verification.json').read_text())
  assert verified['status']=='PASS' and verified['repo_is_public'] and verified['release_published']
  assert verified['manifest_sha256']==digest(REPO/'archive/assets-manifest.json')
- assert verified['verified_asset_count']==len(json.loads((REPO/'archive/assets-manifest.json').read_text())['parts'])+1
+ asset_manifest=json.loads((REPO/'archive/assets-manifest.json').read_text())
+ assert verified['verified_asset_count']==len(asset_manifest['parts'])+len(asset_manifest.get('optional_assets',[]))+1
  current=json.loads(subprocess.check_output(['gh','api','repos/peakpeng666/Robocup/commits/main'],text=True))['sha']
  assert current==verified['remote_main_sha'],(current,verified['remote_main_sha'])
  assert (KEYDIR/'recovery-key.txt').is_file() and stat.S_IMODE((KEYDIR/'recovery-key.txt').stat().st_mode)==0o600

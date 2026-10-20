@@ -22,13 +22,13 @@ def upload(row):
  for attempt in range(1,4):
   update(name,{'status':'uploading','size':row['size'],'start':t,'attempt':attempt})
   command=['gh','release','upload','snapshot-20261020',str(p),'--repo',repo]
-  if attempt>1:
+  if attempt>1 or existing.get(name):
    found=remote_assets().get(name)
    if same(found,row):update(name,{'status':'PASS','size':row['size'],'seconds':time.time()-t,'attempt':attempt,'recovered_after_response_error':True});return True
    if found:command.append('--clobber')
   try:
    with (logs/(name+'.txt')).open('a') as log:
-    r=subprocess.run(command,env=env,stdout=log,stderr=log,timeout=180)
+    r=subprocess.run(command,env=env,stdout=log,stderr=log,timeout=900)
    ok=r.returncode==0
   except subprocess.TimeoutExpired:ok=False
   if ok:
@@ -39,6 +39,6 @@ def upload(row):
    return True
   time.sleep(2*attempt)
  update(name,{'status':'FAIL','size':row['size'],'seconds':time.time()-t,'attempts':3});return False
-with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:results=list(pool.map(upload,manifest['parts']))
+with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:results=list(pool.map(upload,manifest['parts']))
 if not all(results):raise SystemExit(1)
 print(json.dumps({'status':'ALL_UPLOADED','chunks':len(results),'wall_s':time.time()-start}),flush=True)
