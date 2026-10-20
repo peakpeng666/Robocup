@@ -3,7 +3,14 @@ import json,subprocess,time,concurrent.futures,threading,os,hashlib
 BASE=Path('/home/peakpeng/.cache/robocup-publish-20261020');ASSETS=BASE/'assets';manifest=json.loads((ASSETS/'assets-manifest.json').read_text());repo='peakpeng666/Robocup';release_id=418040215
 env=dict(os.environ,GODEBUG='http2client=0');env.pop('GH_DEBUG',None)
 def remote_assets():
- pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{repo}/releases/{release_id}/assets?per_page=100'],env=env,text=True))
+ pages=None
+ for attempt in range(6):
+  response=subprocess.run(['gh','api','--paginate','--slurp',f'repos/{repo}/releases/{release_id}/assets?per_page=100'],env=env,capture_output=True,text=True)
+  if response.returncode==0:
+   try:pages=json.loads(response.stdout);break
+   except ValueError:pass
+  time.sleep(min(2**attempt,10))
+ if pages is None:raise RuntimeError('GitHub metadata unavailable after retries')
  return {x['name']:x for page in pages for x in page}
 existing=remote_assets()
 for name,row in existing.items():
@@ -39,6 +46,10 @@ def upload(row):
    return True
   time.sleep(2*attempt)
  update(name,{'status':'FAIL','size':row['size'],'seconds':time.time()-t,'attempts':3});return False
-with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:results=list(pool.map(upload,manifest['parts']))
+def safe_upload(row):
+ try:return upload(row)
+ except Exception as error:
+  update(row['name'],{'status':'FAIL','size':row['size'],'error_type':type(error).__name__});return False
+with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:results=list(pool.map(safe_upload,manifest['parts']))
 if not all(results):raise SystemExit(1)
 print(json.dumps({'status':'ALL_UPLOADED','chunks':len(results),'wall_s':time.time()-start}),flush=True)

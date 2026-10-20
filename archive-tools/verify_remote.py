@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify every GitHub asset digest before publishing or cleaning local data."""
 from pathlib import Path
-import argparse,json,subprocess,hashlib,tempfile,datetime
+import argparse,json,subprocess,hashlib,tempfile,datetime,time
 REPO='peakpeng666/Robocup';RELEASE=418040215
 BASE=Path('/home/peakpeng/.cache/robocup-publish-20261020');WORK=BASE/'repo'
 def digest(path):
@@ -9,13 +9,21 @@ def digest(path):
  with Path(path).open('rb') as f:
   for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
  return h.hexdigest()
-def api(endpoint):return json.loads(subprocess.check_output(['gh','api',endpoint],text=True))
+def json_command(args):
+ for attempt in range(6):
+  r=subprocess.run(args,capture_output=True,text=True)
+  if r.returncode==0:
+   try:return json.loads(r.stdout)
+   except ValueError:pass
+  time.sleep(min(2**attempt,10))
+ raise RuntimeError('GitHub metadata temporarily unavailable after retries')
+def api(endpoint):return json_command(['gh','api',endpoint])
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--publish',action='store_true');a=ap.parse_args()
  path=WORK/'archive/assets-manifest.json';manifest=json.loads(path.read_text())
  expected={x['name']:x for x in manifest['parts']+manifest.get('optional_assets',[])}
  expected['assets-manifest.json']={'name':'assets-manifest.json','size':path.stat().st_size,'sha256':digest(path)}
- pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{REPO}/releases/{RELEASE}/assets?per_page=100'],text=True))
+ pages=json_command(['gh','api','--paginate','--slurp',f'repos/{REPO}/releases/{RELEASE}/assets?per_page=100'])
  actual={x['name']:x for page in pages for x in page}
  verified=[];missing=[]
  for name,row in expected.items():
