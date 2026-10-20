@@ -28,7 +28,7 @@ def main():
    d=Path(dp);dirs[:]=[n for n in dirs if (d/n).relative_to(dest).as_posix() not in KEEP]
    for n in list(dirs)+files:
     p=d/n;r=p.relative_to(dest).as_posix()
-    if r in ('RESTORE-ROBOCUP.md','REMOTE-VERIFIED.json'):continue
+    if r in ('RESTORE-ROBOCUP.md','REMOTE-VERIFIED.json','TRAINING-KIT-README.md'):continue
     if p.is_dir() and not p.is_symlink():continue
     row=expected.get(r)
     if not row:ap.error('Unexpected existing file; restore to a clean destination: '+str(p))

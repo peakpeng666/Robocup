@@ -18,7 +18,8 @@
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/install_env.sh",
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/requirements.lock",
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/installed-packages.json",
-    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/archive-identities.json"
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/manifests/archive-identities.json",
+    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/patches/isaacgym-optional-vision.patch"
   ],
   "cleanup_preconditions": [
     "Remote main commit verified",
