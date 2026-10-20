@@ -5,7 +5,7 @@ ROOT=Path('/home/peakpeng/Desktop/Robocup')
 KEY=Path('/home/peakpeng/.local/share/robocup-archive/recovery-key.txt')
 pub=ASSETS/'public-workspace.tar.zst'
 priv=ASSETS/'original-history.tar.zst.gpg'
-size=1900*1024*1024;parts=[]
+size=64*1024*1024;parts=[]
 for archive in (pub,priv):
  whole=hashlib.sha256()
  with archive.open('rb') as src:
@@ -13,7 +13,7 @@ for archive in (pub,priv):
   while True:
    first=src.read(1024*1024)
    if not first:break
-   part=archive.with_name(archive.name+'.part%03d'%index);h=hashlib.sha256();written=0
+   part=archive.with_name(archive.name+'.chunk%03d'%index);h=hashlib.sha256();written=0
    with part.open('wb') as f:
     data=first
     while data:

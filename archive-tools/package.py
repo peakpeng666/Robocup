@@ -67,7 +67,7 @@ z.stdout.close()
 with tarfile.open(fileobj=z.stdin,mode='w|',format=tarfile.PAX_FORMAT) as tf:add_rows(tf,private_rows)
 z.stdin.close();assert z.wait()==0;assert g.wait()==0
 print('encrypted history completed',priv.stat().st_size,flush=True)
-size=1900*1024*1024;parts=[]
+size=64*1024*1024;parts=[]
 for archive in (pub,priv):
  whole=hashlib.sha256()
  with archive.open('rb') as src:
@@ -75,7 +75,7 @@ for archive in (pub,priv):
   while True:
    first=src.read(1024*1024)
    if not first:break
-   part=archive.with_name(archive.name+'.part%03d'%index);h=hashlib.sha256();written=0
+   part=archive.with_name(archive.name+'.chunk%03d'%index);h=hashlib.sha256();written=0
    with part.open('wb') as f:
     data=first
     while data:
