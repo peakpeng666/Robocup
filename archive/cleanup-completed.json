@@ -1,0 +1,28 @@
+{
+  "status": "CLEANED_AFTER_REMOTE_VERIFICATION",
+  "checked_original_entries": 57999,
+  "checked_regular_file_bytes": 17035258934,
+  "unexpected_paths": [],
+  "retained_configuration_files": [
+    "bhuman/k1-training/manifests/archive-identities.json",
+    "bhuman/k1-training/manifests/installed-packages.json",
+    "bhuman/k1-training/manifests/requirements.lock",
+    "bhuman/k1-training/patches/isaacgym-optional-vision.patch",
+    "bhuman/k1-training/scripts/env.sh",
+    "bhuman/k1-training/scripts/install_env.sh"
+  ],
+  "apply": true,
+  "removed_snapshot_files_and_links": 50902,
+  "removed_snapshot_file_bytes": 17035251054,
+  "removed_project_caches": [
+    "bhuman/k1-training/cache/pip",
+    "bhuman/k1-training/cache/uv"
+  ],
+  "removed_verified_download_duplicates": [
+    "/home/peakpeng/Downloads/k1-soccer-tooling-0.1.0.run",
+    "/home/peakpeng/Downloads/k1_baseline_cpu_smoke.mp4"
+  ],
+  "utc": "2026-10-20T07:01:49.724767+00:00",
+  "remote_main_sha": "6291c35e127917030b2ab72bc192fb477f5b3ffa",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/snapshot-20261020"
+}

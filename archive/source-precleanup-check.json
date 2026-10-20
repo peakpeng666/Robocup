@@ -7,8 +7,9 @@
     "bhuman/k1-training/manifests/archive-identities.json",
     "bhuman/k1-training/manifests/installed-packages.json",
     "bhuman/k1-training/manifests/requirements.lock",
+    "bhuman/k1-training/patches/isaacgym-optional-vision.patch",
     "bhuman/k1-training/scripts/env.sh",
     "bhuman/k1-training/scripts/install_env.sh"
   ],
-  "apply": false
+  "apply": true
 }

@@ -1,0 +1,3 @@
+Importing module 'gym_38' (/home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/gym_38.so)
+Setting GYM_USD_PLUG_INFO_PATH to /home/peakpeng/Desktop/Robocup/bhuman/k1-training/third_party/isaacgym/python/isaacgym/_bindings/linux-x86_64/usd/plugInfo.json
+BHG_ENV_RESULT={"python": "3.8.20", "gym": "1.0rc4", "torch": "2.3.0a0+git63d5e92", "torch_cuda": "12.8", "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU", "native_gym_import": "PASS", "tiny_cuda_matmul": "PASS"}

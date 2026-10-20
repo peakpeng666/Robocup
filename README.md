@@ -56,6 +56,12 @@ python3 /tmp/Robocup-review/archive-tools/restore.py --output /home/peakpeng/Des
 
 所有者的恢复密钥保留于 `/home/peakpeng/.local/share/robocup-archive/recovery-key.txt`，权限0600，**从未上传**。没有这份密钥仍可下载全部公开工作成果，但无法解密原始历史归档。训练检查点配置使用原绝对路径；跨机器或换路径时应显式处理配置与运行环境，不能跳过恢复兼容性检查。
 
+## 本机清理验收
+
+2026-10-20：远端162个文件的SHA256/大小及代表性匿名下载均通过后，已清理原项目与项目专用包缓存。工作区现约2.2 GiB，仅保留Gym/ONNX Runtime等依赖、下载的环境安装包、版本锁、环境脚本和恢复记录；原有三套venv、IsaacLab与系统依赖保留。清理后Gym原生绑定、PyTorch CUDA小矩阵运算及60包依赖检查均通过。
+
+[远端校验](archive/remote-verification.json) · [清理记录](archive/cleanup-completed.json) · [清理后环境检查](archive/post-cleanup-environments.json) · [最终交付记录](archive/final-delivery.json)。临时上传副本在最终推送核验后删除。
+
 ## 上游与许可
 
 - [B-Human 比赛代码](https://github.com/bhuman/BHumanCodeRelease)：`2e3374ba896da8288607f9a1881b876642fe18b8`

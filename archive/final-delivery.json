@@ -1,0 +1,39 @@
+{
+  "status": "COMPLETE",
+  "utc": "2026-10-20T07:05:08.508668+00:00",
+  "repository": "https://github.com/peakpeng666/Robocup",
+  "release": "https://github.com/peakpeng666/Robocup/releases/tag/snapshot-20261020",
+  "visibility": "public",
+  "remote_verified_assets": 162,
+  "remote_asset_bytes": 10724517260,
+  "verified_code_snapshot_commit": "6291c35e127917030b2ab72bc192fb477f5b3ffa",
+  "local_project_source_and_artifact_cleanup": "CLEANED_AFTER_REMOTE_VERIFICATION",
+  "retained_workspace_bytes": 2324914176,
+  "retained_workspace_gib": 2.165,
+  "post_cleanup_environment_check": "PASS",
+  "existing_environments_preserved": [
+    "bh-gym",
+    "isaaclab",
+    "isaacsim-gui",
+    "IsaacLab source and local configuration",
+    "Conda base and system dependencies"
+  ],
+  "recovery_key_path_local_only": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt",
+  "key_uploaded": false,
+  "robot_connected": false,
+  "official_gait_and_normal_vision_replaced": false,
+  "training": {
+    "environments": 4096,
+    "iterations": 70,
+    "critic_only_iterations": 20,
+    "actor_iterations": 50,
+    "env_steps": 6881280,
+    "training_seed": 7,
+    "candidate_deployment_approved": false,
+    "report": "bhuman/k1-training/runs/REPORT-20261020-walk-diagnosis.md"
+  },
+  "restoration": {
+    "training_only_download_bytes": 77610837,
+    "instructions": "archive-tools/restore.py --training-only; full artifacts and optional encrypted original history use the same tool."
+  }
+}

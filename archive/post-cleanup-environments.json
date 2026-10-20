@@ -1,0 +1,33 @@
+{
+  "bh-gym": {
+    "python": "3.8.20",
+    "gym": "1.0rc4",
+    "torch": "2.3.0a0+git63d5e92",
+    "torch_cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "native_gym_import": "PASS",
+    "tiny_cuda_matmul": "PASS"
+  },
+  "dependency_check": "PASS",
+  "other_existing_environments": {
+    "isaaclab": {
+      "python": "3.11.15",
+      "packages": {
+        "isaaclab": "0.44.9",
+        "isaacsim": "5.0.0.0",
+        "torch": "2.7.0+cu128"
+      }
+    },
+    "isaacsim-gui": {
+      "python": "3.12.13",
+      "packages": {
+        "isaacsim": "6.0.1.0",
+        "torch": "2.11.0+cu130",
+        "mujoco": "3.8.0"
+      }
+    }
+  },
+  "required_dependency_paths_exist": true,
+  "status": "PASS",
+  "disk_free_bytes_before_staging_removal": 68411248640
+}
