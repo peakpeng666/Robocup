@@ -2,6 +2,7 @@
 
 > 回答的问题：**训练好的策略如何部署到 Booster K1 真机上，官方给什么、全世界社区/强队用什么成熟方案、本仓库授权后按什么顺序走。**
 > 所有仓库与文档均于 2026-10-21 检索核实。对照模块：`inventory/03`、`inventory/06`、`inventory/07`。
+> 修订：2026-10-21 §1 链路①「.run 包装」表述勘误——.run 是 Booster 官方升级包格式，B-Human 部署不产出 .run（详见 deploy/run-封装调研.md）。
 
 ---
 
@@ -15,11 +16,11 @@
 
 | 链路 | 本质 | 适用 |
 |---|---|---|
-| ① B-Human 栈 | 整套比赛软件（含策略加载）以 `.run` 包装部署到机器人，C++ 侧 CompiledNN/ONNX Runtime 推理 | **比赛部署**——本仓库最终目标 |
+| ① B-Human 栈 | 整套比赛软件（含策略加载）以 deploy 脚本/Deploy Dialog **增量拷贝**部署（Config + bhuman 可执行文件；**不产出 .run**——.run 是 Booster 官方系统升级包格式，见 deploy/run-封装调研.md） | **比赛部署**——本仓库最终目标 |
 | ② 官方 SDK | 机器人原生低层接口（DDS 话题）+ 独立部署进程跑策略 | **RL 实验策略快速迭代**——社区主流 |
 | ③ 自有固件 | 整队全栈替换（视觉/行为/控制全部自研） | 有整队工程能力时；本仓库不需要 |
 
-**结论先行**：实验策略走链路②（booster_deploy 任务注册），比赛候选走链路①（进 B-Human 栈过 sim2sim 门和比赛仿真门后打包 .run）。链路③只作参考。
+**结论先行**：实验策略走链路②（booster_deploy 任务注册），比赛候选走链路①（进 B-Human 栈过 sim2sim 门和比赛仿真门后 deploy 下发）。链路③只作参考。
 
 ---
 
@@ -46,9 +47,10 @@ GitHub 组织 **BoosterRobotics**（2026-10 核实的热门仓库）：
 | 组件 | 固件要求 | 来源 |
 |---|---|---|
 | RLVisionKick（官方视觉踢球） | **≥ 1.5.2**，仅 K1 | robocup_demo README |
-| B-Human 2026 比赛栈 | 按 1.7.1 验证（inventory/03 记录） | 本仓库实测基线 |
+| B-Human 2026 比赛栈 | **只在 1.7.1 测试过**（docs 原文；1.8.0 实测异常） | docs.b-human.de coderelease2026 |
 | booster_deploy（官方/社区） | **≥ v1.4**（nomadz README 明示） | booster_deploy 系 README |
 | 机器人端软件 | Python 3.10+ / ROS 2 Humble 已预装 | booster_deploy |
+| 官方系统升级包 | .run 格式（最新 1.7.2.0，2026-08-04）；升级后 B-Human 补丁需重打 | docs.booster.tech（deploy/run-封装调研.md §1） |
 
 **决策含义**：刷固件升级会同时改变 B-Human 栈的运行基底——任何固件动作必须先确认 B-Human 侧兼容，且在授权后单独评审。当前不执行任何固件操作。
 
@@ -56,12 +58,11 @@ GitHub 组织 **BoosterRobotics**（2026-10 核实的热门仓库）：
 
 ## 4. 链路①：B-Human 比赛栈部署
 
-来自官方文档（docs.b-human.de）：
+详见本分支 **deploy/bhuman-部署机制.md**（装机补丁/deploy 下发/systemd 单进程/策略进栈链路全解剖）与 **deploy/步态解剖-WalkingEngine与策略契约.md**（步态=B-Human 自训 RL 策略的实物证据）。要点：
 
-- K1/T1 初始化用 **`Install/installRobot`** 脚本（⚠️ 属于本授权禁止执行的安装脚本，仅登记）；
-- 部署经 IDE 构建目标触发部署对话框；
-- **推理运行时关键细节**：B-Human 自研 **CompiledNN** 高效推理库**不支持 ARM**——K1 的 Jetson 是 ARM，因此在 ARM 上改用 **ONNX Runtime**（明显更慢，且网络需额外提供 `.onnx` 格式）。这条直接决定：进 B-Human 栈的策略必须同时维护 TorchScript/JIT 与 ONNX 双格式，并过 sim2sim 双格式数值门（inventory/06 已验证 7.15e-7 / 1.43e-6 量级）；
-- 神经网络文件放在 `Config/` 下随部署包下发。
+- 装机：`Install/installRobot` 在官方镜像 v1.7.1 上**打补丁**（systemd 用户服务 + 按键/手柄路由；⚠️ 属本授权禁止执行的安装脚本，仅登记）；
+- 日常部署：rsync Config（含 Config/NeuralNets 下的策略 .onnx）+ bhuman 可执行文件；
+- **推理运行时关键细节**：CompiledNN 不支持 ARM——K1 的 Jetson 上走 **ONNX Runtime + TensorRT 缓存**（缓存绑定硬件配置，不一致则首次启动编译 ≥10 分钟）；进栈策略必须维护 ONNX 格式并过 sim2sim 双格式数值门（inventory/06 已验证 7.15e-7 / 1.43e-6 量级）。
 
 ---
 
@@ -80,7 +81,7 @@ GitHub 组织 **BoosterRobotics**（2026-10 核实的热门仓库）：
 
 | 项目 | 可移植的模式 |
 |---|---|
-| **RoboNaldo_Deploy**（OpenDriveLab） | **多策略状态机切换**（PassiveMode 阻尼保护/FixedPose 复位/LocoMode 行走/AMP/FreeKick 547 维观测 5 帧历史）；**ONNX 内嵌元数据**（关节名/PD 增益/默认姿态/观测动作布局）；**Orin 上 C++ 桥 + Python 策略双进程**（官方明示 unitree_python_sdk 与 Orin NX 不兼容 → 拆 C++ 传数据 + Python 推理）；感知融合进程发 DDS 话题 `rt/ball_state`；tmux 一键起全栈；浏览器传感器仪表盘 :8091 |
+| **RoboNaldo_Deploy**（OpenDriveLab） | **多策略状态机切换**（PassiveMode 阻尼保护/FixedPose 复位/LocoMode 行走/AMP/FreeKick 547 维观测 5 帧历史）；**ONNX 内嵌元数据**（关节名/PD 增益/默认姿态/观测动作布局）；**Orin 上 C++ 桥 + Python 策略双进程**；感知融合进程发 DDS 话题 `rt/ball_state`；tmux 一键起全栈；浏览器传感器仪表盘 :8091 |
 | **G1_deploy**（yifeichen2024） | 单/多 ONNX 策略运行时热切换；**安全三连**：动作幅值告警、估计力矩超限即中止、关节速度超限即中止，出错/SELECT 回落阻尼；启动序列 零力矩→默认姿态→策略 |
 | **walk-these-ways**（MIT Improbable-AI） | 机器人端 **Docker 镜像部署**（3.5 GB 一次性下发）；SDK PowerProtect level 9 力矩断电保护；两段式按键确认才进控制环 |
 | NVIDIA GR00T 工作流 | LEAPP 导出部署描述符、Jetson 边缘推理——VLA 远期方向参考 |
@@ -120,12 +121,12 @@ GitHub 组织 **BoosterRobotics**（2026-10 核实的热门仓库）：
 
 | 步骤 | 内容 | 前置 |
 |---|---|---|
-| D0 | 固件决策评审（§3 矩阵：不动则 B-Human 基线可用；升级则重获 RLVisionKick/booster_deploy 但需重验 B-Human 栈） | 授权 |
+| D0 | 固件决策评审（§3 矩阵：不动则 B-Human 基线可用；升级则重获 RLVisionKick/booster_deploy 但需重验 B-Human 栈 + 重跑 installRobot） | 授权 |
 | D1 | 官方基线复现：原装 demo（robocup_demo）确认硬件健康 | D0 |
 | D2 | 链路②打通：booster_sdk + booster_deploy 跑官方预训练 walk（htwk-gym 自带模型亦可） | D0 |
-| D3 | 自研策略注册为 booster_deploy 任务（观测契约按 inventory/00 P1 核对） | D2 + 策略过 sim2sim 门 |
+| D3 | 自研策略注册为 booster_deploy 任务（观测契约按 deploy/步态解剖 核对） | D2 + 策略过 sim2sim 门 |
 | D4 | 分级放行实走（§7.6），同步跑极限环对比（survey/C §C6-7） | D3 |
-| D5 | 比赛候选：进 B-Human 栈，过 660 s 比赛仿真门 → `.run` 打包（链路①） | 策略过全部评测门 |
+| D5 | 比赛候选：进 B-Human 栈，过 660 s 比赛仿真门 → deploy 下发（链路①） | 策略过全部评测门 |
 | D6 | 真机标定回馈训练：T-n 曲线 / 球下落滚动 / 必要时 ASAP 残差（survey/C） | D4 |
 
 ---
@@ -136,9 +137,11 @@ GitHub 组织 **BoosterRobotics**（2026-10 核实的热门仓库）：
 - booster_gym：https://github.com/BoosterRobotics/booster_gym ｜ 论文 https://arxiv.org/abs/2506.15132
 - booster_train：https://github.com/BoosterRobotics/booster_train ｜ booster_deploy / booster_assets / booster_robotics_sdk 同组织
 - robocup_demo（RLVisionKick）：https://github.com/BoosterRobotics/robocup_demo
-- B-Human 部署文档：https://docs.b-human.de/master/getting-started/initial-setup/
+- B-Human 部署文档：https://docs.b-human.de/coderelease2026/getting-started/setting-up-robot/ ｜ .../working-with-robot/
+- Booster 官方升级（.run 包）：https://docs.booster.tech/docs/product-manual/k1/firmware-version/software-upgrade/
 - NOMADZ nomadz_deploy：https://github.com/nomadz-ethz/nomadz_deploy
 - NaoHTWK：https://github.com/NaoHTWK/htwk-gym ｜ https://github.com/NaoHTWK/Firmware-Salvador
 - RoboNaldo_Deploy：https://github.com/OpenDriveLab/RoboNaldo_Deploy ｜ G1_deploy：https://github.com/yifeichen2024/G1_deploy
 - walk-these-ways：https://github.com/Improbable-AI/walk-these-ways
-- MimicKit：https://github.com/xbpeng/MimicKit（arXiv 2510.13794）｜ ProtoMotions（功能更全的替代）
+- MimicKit：https://github.com/xbpeng/MimicKit（arXiv 2510.13794）
+- 本分支相关文档：deploy/bhuman-部署机制.md ｜ deploy/步态解剖-WalkingEngine与策略契约.md ｜ deploy/run-封装调研.md ｜ deploy/ADR-001-部署形态决策.md
