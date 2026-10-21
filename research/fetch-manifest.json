@@ -1,0 +1,22 @@
+{
+  "note": "全部为公开可直接下载的 PDF。arXiv 用 /pdf/<id> 直链；失效则按标题检索。需要注册的资源（AMASS/ACCAD/Isaac Gym/固件）不在此清单。",
+  "items": [
+    {"key": "vulcan-scirobotics", "title": "Learning Vision-Driven Reactive Soccer Skills for Humanoid Robots (火神, Sci. Robotics 2026)", "url": "https://arxiv.org/pdf/2511.03996", "file": "vulcan-vision-reactive-soccer-2511.03996.pdf"},
+    {"key": "booster-gym", "title": "Booster Gym: End-to-End RL Framework for Humanoid Locomotion", "url": "https://arxiv.org/pdf/2506.15132", "file": "booster-gym-2506.15132.pdf"},
+    {"key": "striker-icra2026", "title": "Learning Agile Striker Skills from Noisy Sensory Input (UT Austin, ICRA 2026)", "url": "https://www.joydeepb.com/Publications/icra2026_striker.pdf", "file": "striker-icra2026.pdf"},
+    {"key": "amp", "title": "AMP: Adversarial Motion Priors (SIGGRAPH 2021)", "url": "https://arxiv.org/pdf/2104.02180", "file": "amp-2104.02180.pdf"},
+    {"key": "rma", "title": "RMA: Rapid Motor Adaptation (RSS 2021)", "url": "https://arxiv.org/pdf/2107.04034", "file": "rma-2107.04034.pdf"},
+    {"key": "dreamwaq", "title": "DreamWaQ (RA-L 2023)", "url": "https://arxiv.org/pdf/2301.10602", "file": "dreamwaq-2301.10602.pdf"},
+    {"key": "dreamwaqpp", "title": "DreamWaQ++ (T-RO 2026)", "url": "https://arxiv.org/pdf/2409.19709", "file": "dreamwaqpp-2409.19709.pdf"},
+    {"key": "deepmind-soccer-2024", "title": "Learning Agile Soccer Skills for a Bipedal Robot (Sci. Robotics 2024)", "url": "https://arxiv.org/pdf/2304.13653", "file": "deepmind-soccer-2304.13653.pdf"},
+    {"key": "deepmind-teamplay-2022", "title": "From Motor Control to Team Play in Simulated Humanoid Football (Sci. Robotics 2022)", "url": "https://arxiv.org/pdf/2205.12107", "file": "deepmind-teamplay-2205.12107.pdf"},
+    {"key": "rhoban-2019", "title": "Rhoban FC: RoboCup KidSize 2019 Champion Team Paper", "url": "https://arxiv.org/pdf/1910.11744", "file": "rhoban-champion-1910.11744.pdf"},
+    {"key": "frasa", "title": "FRASA: Fall Recovery And Stand up Agent (Rhoban)", "url": "https://arxiv.org/pdf/2410.08655", "file": "frasa-2410.08655.pdf"},
+    {"key": "footstepnet", "title": "FootstepNet (Rhoban)", "url": "https://arxiv.org/pdf/2403.12589", "file": "footstepnet-2403.12589.pdf"},
+    {"key": "amass", "title": "AMASS: Archive of Motion Capture as Surface Shapes (ICCV 2019)", "url": "https://arxiv.org/pdf/1904.03278", "file": "amass-1904.03278.pdf"},
+    {"key": "hifar-standup", "title": "HiFAR 跌倒恢复 (火神 TDP 引用; 编号二手, 失败则按标题检索)", "url": "https://arxiv.org/pdf/2502.20061", "file": "hifar-2502.20061.pdf"},
+    {"key": "tdp-bhuman-2026", "title": "B-Human Team Description Paper 2026", "url": "https://hsl.robocup.org/wp-content/uploads/2026/03/B_Human-tdp-697c9beb6dc45.pdf", "file": "tdp-2026-bhuman.pdf"},
+    {"key": "tdp-whirlwind-2026", "title": "whIRLwind Amsterdam (荷兰队) TDP 2026", "url": "https://staff.science.uva.nl/a.visser/activities/whIRLwind/2026/whIRLwind_RoboCup_2026_qualification_document.pdf", "file": "tdp-2026-whirlwind-amsterdam.pdf"},
+    {"key": "rhoban-2023-hal", "title": "Rhoban FC KidSize 2023 Champion Team Paper (HAL)", "url": "https://hal.science/hal-05310493v1/document", "file": "rhoban-champion-2023.pdf"}
+  ]
+}
