@@ -1,5 +1,5 @@
 {
-  "note": "全部为公开可直接下载的 PDF。arXiv 用 /pdf/<id> 直链；失效则按标题检索。需要注册的资源（AMASS/ACCAD/Isaac Gym/固件）不在此清单。2026-10-21 扩充至 47 篇（survey 系列调研核实编号）。",
+  "note": "全部为公开可直接下载的 PDF。arXiv 用 /pdf/<id> 直链；失效则按标题检索。需要注册的资源（AMASS/ACCAD/Isaac Gym/固件/SMPL 模型）不在此清单。2026-10-21 扩充至 54 篇（survey 系列 + 视频转动作调研核实编号）。",
   "items": [
     {"key": "vulcan-scirobotics", "title": "Learning Vision-Driven Reactive Soccer Skills for Humanoid Robots (火神, Sci. Robotics 2026)", "url": "https://arxiv.org/pdf/2511.03996", "file": "vulcan-vision-reactive-soccer-2511.03996.pdf"},
     {"key": "booster-gym", "title": "Booster Gym: End-to-End RL Framework for Humanoid Locomotion", "url": "https://arxiv.org/pdf/2506.15132", "file": "booster-gym-2506.15132.pdf"},
@@ -47,6 +47,13 @@
     {"key": "h2o", "title": "Learning Human-to-Humanoid Real-Time Whole-Body Teleoperation (IROS 2024)", "url": "https://arxiv.org/pdf/2403.04436", "file": "h2o-2403.04436.pdf"},
     {"key": "humanplus", "title": "HumanPlus: Humanoid Shadowing and Imitation from Humans (CoRL 2024)", "url": "https://arxiv.org/pdf/2406.10454", "file": "humanplus-2406.10454.pdf"},
     {"key": "twist", "title": "TWIST: Teleoperated Whole-Body Imitation System (2025)", "url": "https://arxiv.org/pdf/2505.02803", "file": "twist-2505.02803.pdf"},
-    {"key": "berkeley-humanoid", "title": "Berkeley Humanoid: A Research Platform for Learning-Based Control (2024)", "url": "https://arxiv.org/pdf/2407.21781", "file": "berkeley-humanoid-2407.21781.pdf"}
+    {"key": "berkeley-humanoid", "title": "Berkeley Humanoid: A Research Platform for Learning-Based Control (2024)", "url": "https://arxiv.org/pdf/2407.21781", "file": "berkeley-humanoid-2407.21781.pdf"},
+    {"key": "gvhmr", "title": "GVHMR: World-Grounded Human Motion Recovery via Gravity-View Coordinates (SIGGRAPH Asia 2024 / TPAMI 2026)", "url": "https://arxiv.org/pdf/2409.06662", "file": "gvhmr-2409.06662.pdf"},
+    {"key": "wham", "title": "WHAM: Reconstructing World-grounded Humans with Accurate 3D Motion (CVPR 2024)", "url": "https://arxiv.org/pdf/2312.07531", "file": "wham-2312.07531.pdf"},
+    {"key": "videomimic", "title": "VideoMimic: Visual Imitation Enables Contextual Humanoid Control (CoRL 2025 最佳学生论文)", "url": "https://arxiv.org/pdf/2505.03729", "file": "videomimic-2505.03729.pdf"},
+    {"key": "viral", "title": "VIRAL: Visual Sim-to-Real at Scale for Humanoid Loco-Manipulation (CVPR 2026)", "url": "https://arxiv.org/pdf/2511.15200", "file": "viral-2511.15200.pdf"},
+    {"key": "robotdancing", "title": "RobotDancing: Residual Action RL for Multi-Minute Dance (2025)", "url": "https://arxiv.org/pdf/2509.20717", "file": "robotdancing-2509.20717.pdf"},
+    {"key": "motion-x", "title": "Motion-X: Large-scale 3D Expressive Whole-body Human Motion Dataset (NeurIPS 2023 D&B)", "url": "https://arxiv.org/pdf/2307.00818", "file": "motion-x-2307.00818.pdf"},
+    {"key": "motion-x-pp", "title": "Motion-X++: Large-Scale Multimodal 3D Whole-body Human Motion Dataset (2025)", "url": "https://arxiv.org/pdf/2501.05098", "file": "motion-x-pp-2501.05098.pdf"}
   ]
 }
