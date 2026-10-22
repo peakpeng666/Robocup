@@ -177,11 +177,33 @@ class FetchTests(unittest.TestCase):
                 dest.write_bytes(other_pdf)
                 fetch.receipt_path(dest).write_text(json.dumps({'url': self.item['url'], 'sha256': fetch.checksum(dest)}))
         with patch.object(fetch.os, 'replace', side_effect=replace):
-            self.assertEqual(self.run_main(), (0, 1))
+            self.assertEqual(self.run_main(), (1, 1))
         self.assertEqual(self.run_main(), (0, 1))
         self.assertEqual(dest.read_bytes(), PDF)
         self.assertEqual(self.run_main(), (0, 0))
         self.assertFalse(list(self.out.glob('*.part')))
+
+    def test_nonportable_or_reserved_filenames_fail_before_output(self):
+        for name in ['../escape.pdf', '/escape.pdf', r'C:\escape.pdf',
+                     'one.pdf:stream', 'CON.pdf', 'nul.PDF', 'a?.pdf',
+                     'a\x00.pdf', 'one.pdf ', '.gitignore', 'report.pdf.']:
+            with self.subTest(name=name):
+                self.write_manifest([dict(self.item, file=name)])
+                self.assertEqual(self.run_main(), (1, 0))
+                self.assertFalse(self.out.exists())
+
+    def test_case_aliases_fail_before_output(self):
+        self.write_manifest([self.item, dict(self.item, key='two', file='ONE.PDF')])
+        self.assertEqual(self.run_main(), (1, 0))
+        self.assertFalse(self.out.exists())
+
+    def test_malformed_manifest_types_fail_before_output(self):
+        for items in [None, {}, [None], [dict(self.item, url=12)],
+                      [dict(self.item, file=[])], [dict(self.item, title=None)]]:
+            with self.subTest(items=items):
+                self.write_manifest(items)
+                self.assertEqual(self.run_main(), (1, 0))
+                self.assertFalse(self.out.exists())
 
     def test_list_is_read_only(self):
         self.assertEqual(self.run_main(['--list']), (0, 0))
