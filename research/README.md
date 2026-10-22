@@ -1,8 +1,8 @@
-# K1 步态强化研究资料库（research 分支）
+# K1 步态强化研究资料库
 
 > 目标：在 B-Human 公开步态的基础上训练更强的步态，重点是「实时感知/反应式」方向（清华火神范式）。
 > 本分支只做资料与链接整理，**不提交任何受版权保护的 PDF 原文**；可公开下载的论文用 `fetch.py` 一键拉到本地（下载目录自动 git-ignore）。需要注册/授权的给出链接与获取说明。
-> 整理时间：2026-10-21。
+> 整理时间：2026-10-21。本页随当前分支使用；本分支清单现有 47 项，以 `python3 research/fetch.py --list` 为准。
 
 ## 主题调研系列（survey/）——本轮调研主体
 
@@ -46,18 +46,28 @@
 | `05-仿真与训练框架.md` | 训练栈选型 |
 | `06-落地路线建议.md` | 分阶段实验矩阵与验收协议 |
 | `papers.bib` | 关键论文 BibTeX（30+ 条） |
-| `fetch.py` + `fetch-manifest.json` | **47 篇**公开 PDF/TDP 一键下载（幂等） |
+| `fetch.py` + `fetch-manifest.json` | **47 项**公开 PDF/TDP 清单；验证后原子保存，完整缓存可跳过 |
 
 ## 快速拉取
 
 ```bash
-git fetch origin && git switch research
+# 在你已选择的 research / train / deploy 分支运行；此命令不切换分支
+git branch --show-current
 python3 research/fetch.py            # 下载全部公开 PDF 到 research/downloads/（不入库）
 python3 research/fetch.py --list     # 只看清单
 ```
 
+## 下载校验与离线回归
+
+- 保持当前分支：research/deploy 清单为47项，train含视频转动作增补共54项；下载器不会切分支或修改清单。
+- 下载先写 `.part` 临时文件，核对响应长度（若服务器提供）、PDF文件头和结束标记后原子替换。失败清理临时文件，并返回非零退出码；不会覆盖既有文件。
+- 旧缓存也做PDF基础检查；错误页或常见截断文件不再按大小误判成功。基础检查不是完整PDF解析、真实性认证或版权许可。
+- `--only KEY` 只下指定条目；缺少KEY、未知选项和未知KEY均报错，不回退为全量下载。
+- 无网络回归：`python3 -m unittest discover -s research -p test_fetch.py -v`。
+
 ## 使用纪律（与 AGENTS.md 一致）
 
-- 公开 PDF 与链接可自由使用；各开源仓库保留其 LICENSE/NOTICE，引用注明上游。
+- 公开可访问不等于自由再分发；使用PDF需遵守来源许可，各开源仓库保留其 LICENSE/NOTICE，引用注明上游。
 - 下载的产物不入库；本分支只放目录、笔记、脚本。
 - 任何声称「优于官方」的结论必须走 `06-落地路线建议.md` 的留出种子评估协议。
+
