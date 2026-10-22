@@ -8,7 +8,7 @@ import argparse
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import tempfile
 import urllib.request
 
@@ -79,6 +79,9 @@ def download(item, dest):
             f.write("\n")
         os.replace(temp_path, dest)
         os.replace(receipt_temp, receipt_path(dest))
+        # Detect an interleaved writer before reporting success. This is not a
+        # lock against later external writes; a mismatched pair must fail now.
+        validate_cache(item, dest)
     finally:
         for partial in (temp_path, receipt_temp):
             if partial is not None:
@@ -93,15 +96,25 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         items = json.loads(MANIFEST.read_text(encoding="utf-8"))["items"]
+        if not isinstance(items, list):
+            raise ValueError("清单 items 必须是列表")
         keys, names = set(), set()
         for item in items:
+            if not isinstance(item, dict) or any(not isinstance(item.get(field), str) or not item[field] for field in ("key", "file", "url", "title")):
+                raise ValueError("清单每项的 key/file/url/title 必须是非空字符串")
             key, name = item["key"], item["file"]
             if not name or Path(name).name != name or name in (".", "..") or "\\" in name:
                 raise ValueError(f"非法输出文件名: {name!r}")
-            if key in keys or name in names:
+            # The manifest contains PDFs only. Reject Windows devices, ADS,
+            # trailing dots/spaces and case aliases even when run on POSIX.
+            if (not name.lower().endswith(".pdf") or name[-1] in " ."
+                    or any(ord(c) < 32 or c in '<>:"|?*' for c in name)
+                    or PureWindowsPath(name).is_reserved()):
+                raise ValueError(f"非法或不兼容的 PDF 文件名: {name!r}")
+            if key in keys or name.casefold() in names:
                 raise ValueError("清单存在重复 key 或文件名")
             keys.add(key)
-            names.add(name)
+            names.add(name.casefold())
             if not item["url"].startswith("https://"):
                 raise ValueError(f"下载地址必须使用 HTTPS: {key}")
         if args.only is not None:
