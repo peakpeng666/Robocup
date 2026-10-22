@@ -5,6 +5,7 @@
 PDF 结构检查仅防止常见错误页/截断，不代替来源真实性或版权授权审查。
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -29,9 +30,28 @@ def validate_pdf(path):
             raise ValueError("PDF 缺少结束标记，可能未下载完整")
 
 
+def checksum(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def receipt_path(dest):
+    return dest.with_name(dest.name + ".download.json")
+
+
+def validate_cache(item, dest):
+    validate_pdf(dest)
+    receipt = json.loads(receipt_path(dest).read_text(encoding="utf-8"))
+    if not isinstance(receipt, dict) or receipt.get("url") != item["url"] or receipt.get("sha256") != checksum(dest):
+        raise ValueError("缓存来源或 SHA256 不匹配")
+
+
 def download(item, dest):
     """Never replace the final destination until the new response is validated."""
-    temp_path = None
+    temp_path = receipt_temp = None
     try:
         req = urllib.request.Request(item["url"], headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=120) as response:
@@ -48,10 +68,21 @@ def download(item, dest):
             if length is not None and count != int(length):
                 raise ValueError(f"下载长度不符：预期 {length}B，收到 {count}B")
         validate_pdf(temp_path)
+        # Bind the receipt to these exact downloaded bytes, not a possibly
+        # concurrently replaced destination. A torn PDF/receipt pair fails cache
+        # validation on the next run and is downloaded again, never trusted.
+        receipt = {"url": item["url"], "sha256": checksum(temp_path)}
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=dest.parent,
+                                         prefix=dest.name + ".receipt.", suffix=".part", delete=False) as f:
+            receipt_temp = Path(f.name)
+            json.dump(receipt, f)
+            f.write("\n")
         os.replace(temp_path, dest)
+        os.replace(receipt_temp, receipt_path(dest))
     finally:
-        if temp_path is not None:
-            temp_path.unlink(missing_ok=True)
+        for partial in (temp_path, receipt_temp):
+            if partial is not None:
+                partial.unlink(missing_ok=True)
 
 
 def main(argv=None):
@@ -94,11 +125,11 @@ def main(argv=None):
         dest = OUT / it["file"]
         if dest.exists():
             try:
-                validate_pdf(dest)
+                validate_cache(it, dest)
             except (OSError, ValueError):
                 print(f"[redo] {it['key']} 既有文件未通过验证，重新下载")
             else:
-                print(f"[skip] {it['key']} 已通过 PDF 基础验证")
+                print(f"[skip] {it['key']} 已通过 PDF 与来源/校验和验证")
                 ok += 1
                 continue
         try:

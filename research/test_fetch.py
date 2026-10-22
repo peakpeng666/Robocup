@@ -81,6 +81,23 @@ class FetchTests(unittest.TestCase):
         self.assertEqual(self.run_main(response=Response(length=len(PDF)+1))[0], 1)
         self.assertFalse((self.out / 'one.pdf').exists())
 
+    def test_missing_length_and_redirected_pdf_response(self):
+        response = Response()
+        response.geturl = lambda: 'https://cdn.example.org/paper.pdf'
+        self.assertEqual(self.run_main(response=response), (0, 1))
+        self.assertEqual((self.out / 'one.pdf').read_bytes(), PDF)
+
+    def test_invalid_content_length_rejected(self):
+        self.assertEqual(self.run_main(response=Response(length='invalid'))[0], 1)
+        self.assertFalse((self.out / 'one.pdf').exists())
+        self.assertFalse(list(self.out.glob('*.part')))
+
+    def test_redirect_landing_on_html_is_not_success(self):
+        response = Response(b'<html>' + b'captcha' * 2000)
+        response.geturl = lambda: 'https://example.org/login'
+        self.assertEqual(self.run_main(response=response)[0], 1)
+        self.assertFalse((self.out / 'one.pdf').exists())
+
     def test_legacy_partial_file_redownloaded(self):
         self.out.mkdir()
         (self.out / 'one.pdf').write_bytes(b'x'*11000)
@@ -93,6 +110,77 @@ class FetchTests(unittest.TestCase):
         (self.out / 'one.pdf').write_bytes(old)
         self.assertEqual(self.run_main(response=Response(interrupted=True))[0], 1)
         self.assertEqual((self.out / 'one.pdf').read_bytes(), old)
+        self.assertFalse(list(self.out.glob('*.part')))
+
+    def test_complete_but_untrusted_legacy_pdf_is_redownloaded(self):
+        self.out.mkdir()
+        (self.out / 'one.pdf').write_bytes(PDF)
+        self.assertEqual(self.run_main(), (0, 1))
+
+    def test_middle_corruption_or_wrong_complete_pdf_is_redownloaded(self):
+        self.assertEqual(self.run_main(), (0, 1))
+        changed = PDF[:100] + b'CORRUPT' + PDF[107:]
+        (self.out / 'one.pdf').write_bytes(changed)
+        self.assertEqual(self.run_main(), (0, 1))
+        self.assertEqual((self.out / 'one.pdf').read_bytes(), PDF)
+
+    def test_changed_source_invalidates_cache(self):
+        self.run_main()
+        self.write_manifest([dict(self.item, url='https://example.org/updated.pdf')])
+        self.assertEqual(self.run_main(), (0, 1))
+
+    def test_malformed_receipt_redownloads(self):
+        self.run_main()
+        fetch.receipt_path(self.out / 'one.pdf').write_text('not JSON')
+        self.assertEqual(self.run_main(), (0, 1))
+
+    def test_failed_new_source_preserves_old_pdf_and_receipt(self):
+        self.run_main()
+        dest = self.out / 'one.pdf'
+        receipt = fetch.receipt_path(dest).read_bytes()
+        self.write_manifest([dict(self.item, url='https://example.org/updated.pdf')])
+        self.assertEqual(self.run_main(response=Response(interrupted=True))[0], 1)
+        self.assertEqual(dest.read_bytes(), PDF)
+        self.assertEqual(fetch.receipt_path(dest).read_bytes(), receipt)
+
+    def test_receipt_publish_failure_is_nonzero_and_cache_is_not_trusted(self):
+        self.run_main()
+        dest = self.out / 'one.pdf'
+        old_receipt = fetch.receipt_path(dest).read_bytes()
+        self.write_manifest([dict(self.item, url='https://example.org/updated.pdf')])
+        new_pdf = PDF.replace(b'x', b'y')
+        original_replace = fetch.os.replace
+        def replace(source, target):
+            if Path(target) == fetch.receipt_path(dest):
+                raise OSError('simulated receipt rename failure')
+            original_replace(source, target)
+        with patch.object(fetch.os, 'replace', side_effect=replace):
+            self.assertEqual(self.run_main(response=Response(new_pdf))[0], 1)
+        # Publication is not a two-file transaction: PDF can be new, receipt old.
+        self.assertEqual(dest.read_bytes(), new_pdf)
+        self.assertEqual(fetch.receipt_path(dest).read_bytes(), old_receipt)
+        self.assertFalse(list(self.out.glob('*.part')))
+        self.assertEqual(self.run_main(), (0, 1))
+        self.assertEqual(self.run_main(), (0, 0))
+
+    def test_interleaved_publish_never_trusts_mismatched_receipt(self):
+        self.out.mkdir()
+        dest = self.out / 'one.pdf'
+        other_pdf = PDF.replace(b'x', b'y')
+        original_replace = fetch.os.replace
+        concurrent_once = [False]
+        def replace(source, target):
+            original_replace(source, target)
+            if Path(target) == dest and not concurrent_once[0]:
+                concurrent_once[0] = True
+                # Another writer finishes between this writer's PDF and receipt.
+                dest.write_bytes(other_pdf)
+                fetch.receipt_path(dest).write_text(json.dumps({'url': self.item['url'], 'sha256': fetch.checksum(dest)}))
+        with patch.object(fetch.os, 'replace', side_effect=replace):
+            self.assertEqual(self.run_main(), (0, 1))
+        self.assertEqual(self.run_main(), (0, 1))
+        self.assertEqual(dest.read_bytes(), PDF)
+        self.assertEqual(self.run_main(), (0, 0))
         self.assertFalse(list(self.out.glob('*.part')))
 
     def test_list_is_read_only(self):
