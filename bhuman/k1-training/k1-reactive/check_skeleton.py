@@ -635,6 +635,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "walk-eval s2027 artifact REPORT_ONLY; checklist cannot upgrade quality",
         ),
         (
+            "bhuman/k1-training/scripts/kick_standup_train_dry_run.py",
+            "kick+standup train dry-run; 59→13 / 73→22 print-only; would_train=false",
+        ),
+        (
+            "bhuman/k1-training/scripts/local_artifact_upload_cleanup.py",
+            "upload+cleanup checklist; push GitHub then clear caches; no Desktop rm",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

@@ -50,7 +50,9 @@ export PASS as competition deploy, export live without TRAINABLE,
 missing-weight as fabricated PASS, missing-weight fails closed,
 merge-readiness claims ready, merge flips ready_gpu,
 silent train launch, flip ready_gpu without user,
-merge-readiness PASS as merge OK, walk-eval artifact as competition-ready.
+merge-readiness PASS as merge OK, walk-eval artifact as competition-ready,
+generated cmd as launch auth, leftover cache without upload note,
+destructive Desktop rm.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -208,6 +210,13 @@ from local_rtx5090_pretrain_checklist import (  # noqa: E402
 )
 from walk_eval_artifact_crosscheck import (  # noqa: E402
     refuse_walk_eval_artifact_as_competition_ready,
+)
+from kick_standup_train_dry_run import (  # noqa: E402
+    refuse_generated_cmd_as_launch_auth,
+)
+from local_artifact_upload_cleanup import (  # noqa: E402
+    refuse_destructive_desktop_rm,
+    refuse_leftover_cache_without_upload_note,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1177,6 +1186,36 @@ def _case_walk_eval_artifact_as_competition_ready() -> None:
     )
 
 
+def _case_generated_cmd_as_launch_auth() -> None:
+    refuse_generated_cmd_as_launch_auth(
+        {
+            "generated_cmd_as_launch_auth": True,
+            "would_train": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_leftover_cache_without_upload_note() -> None:
+    refuse_leftover_cache_without_upload_note(
+        {
+            "leftover_cache_without_upload_note": True,
+            "leave_large_cache": True,
+        }
+    )
+
+
+def _case_destructive_desktop_rm() -> None:
+    refuse_destructive_desktop_rm(
+        {
+            "destructive_desktop_rm": True,
+            "path": "~/Desktop",
+            "rm": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1295,6 +1334,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("flip_ready_gpu_without_user", _case_flip_ready_gpu_without_user),
     ("merge_readiness_pass_as_merge_ok", _case_merge_readiness_pass_as_merge_ok),
     ("walk_eval_artifact_as_competition_ready", _case_walk_eval_artifact_as_competition_ready),
+    ("generated_cmd_as_launch_auth", _case_generated_cmd_as_launch_auth),
+    ("leftover_cache_without_upload_note", _case_leftover_cache_without_upload_note),
+    ("destructive_desktop_rm", _case_destructive_desktop_rm),
 )
 
 

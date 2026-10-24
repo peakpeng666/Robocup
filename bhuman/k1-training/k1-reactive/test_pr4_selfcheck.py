@@ -89,6 +89,8 @@ NEEDLES = (
     "test_merge_readiness_blockers.py",
     "test_local_rtx5090_pretrain_checklist.py",
     "test_walk_eval_artifact_crosscheck.py",
+    "test_kick_standup_train_dry_run.py",
+    "test_local_artifact_upload_cleanup.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

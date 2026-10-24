@@ -251,6 +251,8 @@ scripts/
 ├── merge_readiness_blockers.py  merge_ready=false；ready_gpu=false；GAP / TRAINABLE / REPORT_ONLY
 ├── local_rtx5090_pretrain_checklist.py RTX 5090 开训前清单；print-only；ready_gpu=false
 ├── walk_eval_artifact_crosscheck.py s2027 REPORT_ONLY；清单不得升成比赛合格
+├── kick_standup_train_dry_run.py kick 59→13 / standup 73→22 只打印；would_train=false
+├── local_artifact_upload_cleanup.py 先推 GitHub 再清缓存；不得 rm Desktop
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -360,6 +362,8 @@ k1-switcher/
 ├── test_merge_readiness_blockers.py
 ├── test_local_rtx5090_pretrain_checklist.py
 ├── test_walk_eval_artifact_crosscheck.py
+├── test_kick_standup_train_dry_run.py
+├── test_local_artifact_upload_cleanup.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -468,7 +472,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-kfsd.json   上轮（kick 评估 REPORT_ONLY + fast-standup 回放 + 双链干跑）
 ├── contract-gate-20261024-kspm.json   上轮（kick ONNX 部署路径 + standup/fast 隔离矩阵 + 相位草稿）
 ├── contract-gate-20261024-emrg.json   上轮（walk ONNX 导出干跑 + 缺权 SKIP 诚实 + 合并就绪阻塞）
-├── contract-gate-20261024-lrtx.json   本轮（RTX 5090 开训前清单 + walk-eval 产物 REPORT_ONLY 交叉核对）
+├── contract-gate-20261024-lrtx.json   上轮（RTX 5090 开训前清单 + walk-eval 产物 REPORT_ONLY 交叉核对）
+├── contract-gate-20261024-kscl.json   本轮（kick/standup 开训干跑 + 上传+清理清单）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -543,6 +548,8 @@ k1-training/manifests/
 ├── merge-readiness-blockers-latest.json merge_ready=false；ready_gpu=false；GAP 仍开
 ├── local-rtx5090-pretrain-checklist-latest.json RTX 5090 清单；ready_gpu=false；不启动 train
 ├── walk-eval-artifact-crosscheck-latest.json s2027 REPORT_ONLY；清单 ≠ 比赛合格
+├── kick-standup-train-dry-run-latest.json kick 59→13 / standup 73→22 只打印；would_train=false
+├── local-artifact-upload-cleanup-latest.json 先推 GitHub 再清缓存；不得 rm Desktop
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -552,6 +559,8 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| kick / standup 开训干跑 | `scripts/kick_standup_train_dry_run.py` | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；fast **72→22** 仅注记、不是 Isaac；**would_train=false**；打印命令 ≠ 开训授权；stamp `20261024-kscl` |
+| 本地产物上传+清理清单 | `scripts/local_artifact_upload_cleanup.py` | 先推 GitHub `artifacts/<run-id>/` 再清已上传缓存；只盘点/文档；不得 rm Desktop；大缓存留下必须带上传说明 |
 | 本机 RTX 5090 开训前清单 | `scripts/local_rtx5090_pretrain_checklist.py` | 胶合 bh-gym / 软链 / disk note / dry-run；**ready_gpu=false**；不启动 train.py；stamp `20261024-lrtx` |
 | walk 评估产物交叉核对 | `scripts/walk_eval_artifact_crosscheck.py` | `20261024_200640_281778_walk_eval_s2027` 仍 **REPORT_ONLY**；清单不得升成比赛合格 |
 | walk ONNX 导出干跑 | `scripts/walk_onnx_export_dry_run.py` | 344 stub；kick/fast 不是默认导出；PASS ≠ competition deploy；**TRAINABLE=false**；**gap_closed=false** |
@@ -692,6 +701,8 @@ k1-training/manifests/
 | 合并就绪阻塞 | `merge_readiness_blockers.py` | **merge_ready=false**；**ready_gpu=false**；GAP / TRAINABLE / REPORT_ONLY |
 | 本机 RTX 5090 开训前清单 | `local_rtx5090_pretrain_checklist.py` | 胶合 bh-gym / 软链 / disk note / dry-run；**ready_gpu=false**；不启动 train.py |
 | walk 评估产物交叉核对 | `walk_eval_artifact_crosscheck.py` | s2027 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 |
+| kick / standup 开训干跑 | `kick_standup_train_dry_run.py` | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；**would_train=false**；打印命令 ≠ 开训授权 |
+| 本地产物上传+清理清单 | `local_artifact_upload_cleanup.py` | 先推 GitHub 再清已上传缓存；只盘点；不得 rm Desktop |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

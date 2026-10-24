@@ -121,6 +121,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -246,6 +248,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -364,6 +368,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers.py",
         "local_rtx5090_pretrain_checklist.py",
         "walk_eval_artifact_crosscheck.py",
+        "kick_standup_train_dry_run.py",
+        "local_artifact_upload_cleanup.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -478,6 +484,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -597,6 +605,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -700,6 +710,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -851,6 +863,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -879,6 +893,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -908,6 +924,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -937,6 +955,8 @@ REQUIRED_DOCS = {
         "merge_readiness_blockers",
         "local_rtx5090_pretrain_checklist",
         "walk_eval_artifact_crosscheck",
+        "kick_standup_train_dry_run",
+        "local_artifact_upload_cleanup",
     ),
     "bhuman/docs/OBS-ASSEMBLY-344.md": (
         "344→13",

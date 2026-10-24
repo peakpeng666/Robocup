@@ -336,6 +336,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/walk_eval_artifact_crosscheck.py",
         "hint": "先看 walk_eval_s2027 是否仍是 REPORT_ONLY，或清单 PASS 是否把 quality_verdict 升成比赛合格",
     },
+    "test_kick_standup_train_dry_run.py": {
+        "look": "bhuman/k1-training/scripts/kick_standup_train_dry_run.py",
+        "hint": "先看 kick/standup 干跑是否仍是 print-only / would_train=false，或打印命令是否被当成开训授权",
+    },
+    "test_local_artifact_upload_cleanup.py": {
+        "look": "bhuman/k1-training/scripts/local_artifact_upload_cleanup.py",
+        "hint": "先看上传+清理是否仍是先推 GitHub 再清缓存，或是否对 Desktop 做了破坏性 rm",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

@@ -38,6 +38,10 @@ walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`。默认导
 
 walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`。`artifacts/20261024_200640_281778_walk_eval_s2027/` 仍是 **REPORT_ONLY**；过程 PASS / 清单 PASS 不得把 `quality_verdict` 升成比赛合格。**TRAINABLE=false**。**gap_closed=false**。不改写该产物树。
 
+kick / standup 开训干跑（只打印，镜像 walk dry-run）：`scripts/kick_standup_train_dry_run.py`。`K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只发射命令；fast **72→22** 仅注记、不是 Isaac 注册任务。**would_train=false**。打印命令 ≠ 开训授权。**TRAINABLE=false**。**gap_closed=false**。不启动 train.py。
+
+本地产物上传+清理清单（只盘点）：`scripts/local_artifact_upload_cleanup.py`。跑完必须先推 GitHub `artifacts/<run-id>/`（巨型走 **Git LFS** / Release），再清本机已上传缓存。脚本只出清单/文档，**不得对用户 Desktop / `$HOME` 做破坏性 rm**。大缓存留下必须带上传说明。**TRAINABLE=false**。**gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

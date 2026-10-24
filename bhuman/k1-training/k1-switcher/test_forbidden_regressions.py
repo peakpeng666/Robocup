@@ -149,6 +149,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "flip_ready_gpu_without_user",
         "merge_readiness_pass_as_merge_ok",
         "walk_eval_artifact_as_competition_ready",
+        "generated_cmd_as_launch_auth",
+        "leftover_cache_without_upload_note",
+        "destructive_desktop_rm",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -202,7 +205,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "missing-weight-as-fabricated-pass / missing-weight-fails-closed / "
             "merge-readiness-claims-ready / merge-flips-ready-flag / "
             "silent-train-launch / flip-ready-gpu-without-user / "
-            "merge-readiness-pass-as-merge-ok / walk-eval-artifact-as-competition-ready"
+            "merge-readiness-pass-as-merge-ok / walk-eval-artifact-as-competition-ready / "
+            "generated-cmd-as-launch-auth / leftover-cache-without-upload-note / "
+            "destructive-desktop-rm"
         )
 
     try:

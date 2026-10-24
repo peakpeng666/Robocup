@@ -206,6 +206,8 @@ REQUIRED_LANDINGS = (
     "merge_readiness_blockers.py",
     "local_rtx5090_pretrain_checklist.py",
     "walk_eval_artifact_crosscheck.py",
+    "kick_standup_train_dry_run.py",
+    "local_artifact_upload_cleanup.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )
