@@ -2,10 +2,9 @@
 
 2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P4、[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)、[P3-PREVIEW.md](P3-PREVIEW.md)、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) §6.7–6.9、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、`bhuman/sim2sim/overpass_contract.py`。
 
-**P4 不改 walk 344→13，不改 `K1.yaml` 默认奖励。**  
-默认 / 主路径永远是官方 B-Human walk。kick / standup 只按官方边。reactive / 估计器仍是旁路。
+底座与开训纪律：见 [README-RL.md](README-RL.md)。本文只预研切换 + sim2sim，**不实现**六机 / 真机，不改 walk **344→13** / `K1.yaml` 默认奖励。kick / standup 只按官方边。reactive / 估计器仍是旁路。
 
-本文只预研。不跑 SimRobot 六机，不连真机，不改 live `run-mujoco.sh` / `mujoco_walk.py`。
+不跑 SimRobot 六机，不连真机，不改 live `run-mujoco.sh` / `mujoco_walk.py`。
 
 命名：本文「P4」= 本 PR 路线图的**切换 + sim2sim + 起身交接**。不是 `origin/research` 06 的「对照 + 切换」。
 
@@ -72,4 +71,4 @@
 - 不把队友状态 / latent 写入 344。
 - 不跑安装 / 固件 / `booster_deploy`。
 
-活验收：`bash bhuman/k1-training/scripts/run_contract_gate.sh`。过桥合同：`python3 bhuman/sim2sim/test_overpass_contract.py`。指南：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
+活验收与新人入口：[README-RL.md](README-RL.md) §3。过桥合同：`python3 bhuman/sim2sim/test_overpass_contract.py`。指南：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。

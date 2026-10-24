@@ -2,10 +2,9 @@
 
 2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P3、[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) §6.3 / §6.4 / §6.12、[NEXT-P1-P2.md](NEXT-P1-P2.md)。
 
-**P3 不改 walk 344→13，不改 `K1.yaml` 默认奖励。**  
-默认 / 主路径永远是官方 B-Human walk。对照实验另开目录与指纹；**谁赢都不许改官方维**。
+底座、何时开训、先跑哪句：见 [README-RL.md](README-RL.md)。本文只预研方法对照，**不实现训练**，不改 walk **344→13** / `K1.yaml` 默认奖励。对照另开目录与指纹；**谁赢都不许改官方维**。
 
-本文只预研。不建可训练 env，不下载 Noisy Striker ZIP，不训 TeleHuman，不迁 Isaac Lab 主线。
+不建可训练 env，不下载 Noisy Striker ZIP，不训 TeleHuman，不迁 Isaac Lab 主线。
 
 命名：本文「P3」= 本 PR 路线图的**方法对照**。不是 `origin/research` 06 的「端到端追踢训练」。
 
@@ -63,4 +62,4 @@ P3 进行中，部署默认入口仍是官方 walk **344→13**。kick / standup
 - 不把对照仿真器的 PASS 写成比赛六机或真机结论。
 - 不把 CTDE / MAPPO 队友状态写入 344。
 
-活验收仍走合同门禁：`bash bhuman/k1-training/scripts/run_contract_gate.sh`。指南：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)。
+活验收与新人入口：[README-RL.md](README-RL.md) §3、[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)。

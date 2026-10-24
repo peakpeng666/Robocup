@@ -46,17 +46,9 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 ## 3. 合并之后仍然不是 / 阻塞
 
-阻塞（本 PR 合了也解不了）：
+开训顺序与「合完仍不是已训通」的主叙述见 [README-RL.md](README-RL.md) §4。本清单只钉：
 
-- **GPU worker**（P1 真训）
-- **权重**（`K1_walk.pth` / ONNX 仍在操作者本机 / Release）
-- **真机**（未授权；不连接机器人）
+- **阻塞**：GPU worker / **权重** / **真机**（合了也解不了）
+- 合完仍然不是：已训通、含官方权重、可以开始 P1 真训、已上真机
+- 默认入口仍是官方 walk **344→13**
 
-合完仍然不是：
-
-- **已训通**（门禁 PASS ≠ `train.py` 跑过）
-- **含官方权重**
-- **可以开始 P1 真训**（先 `probe_reserved_gpu.sh` → `ready=true` → **告知用户，等明确开训**）
-- **已上真机**
-
-默认入口合完仍是官方 walk **344→13**。

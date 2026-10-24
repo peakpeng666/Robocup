@@ -2,12 +2,10 @@
 
 2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P5、[P4-PREVIEW.md](P4-PREVIEW.md)、[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) §6.7–6.9、[NEXT-P1-P2.md](NEXT-P1-P2.md)。
 
-**P5 不改 walk 344→13，不改 `K1.yaml` 默认奖励。**  
-默认 / 主路径永远是官方 B-Human walk。ASAP / 厂家 T–n / 带宽实测都不得回头改官方维。
+底座与开训纪律：见 [README-RL.md](README-RL.md)。本文只预研真机前置，不改 walk **344→13** / `K1.yaml` 默认奖励。ASAP / 厂家 T–n / 带宽实测都不得回头改官方维。
 
-本文只预研。**不连接机器人，不跑安装 / 固件 / `booster_deploy`。**
-
-**本阶段文档 / 门禁就绪 ≠ 已上真机。** 门禁 PASS、P5 预研成文，都不等于授权、不等于上过机、不等于可以写真机结论。
+**不连接机器人，不跑安装 / 固件 / `booster_deploy`。**  
+**文档 / 门禁就绪 ≠ 已上真机。** 门禁 PASS、P5 预研成文，都不等于授权、不等于上过机、不等于可以写真机结论。
 
 命名：本文「P5」= 本 PR 路线图的**真机前置**。不是 `origin/research` 06 的 SDK/固件实验。
 
@@ -77,4 +75,4 @@
 - 不统一 PD、不改官方 344 / 默认奖励。
 - 不把 latent / 队友状态写入 344。
 
-活验收仍是合同门禁（**PASS ≠ 已上真机**）：`bash bhuman/k1-training/scripts/run_contract_gate.sh`。新人入口：[README-RL.md](README-RL.md)。
+活验收仍是合同门禁（**PASS ≠ 已上真机**）。新人入口：[README-RL.md](README-RL.md) §3。

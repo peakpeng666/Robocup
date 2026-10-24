@@ -1,6 +1,8 @@
 # K1 / B-Human RL 五分钟地图
 
-2026-10-24。给刚进 `peakpeng666/Robocup` 的人：先知道底座在哪、本 PR 加了什么、先跑哪两句、什么时候才能开训。
+2026-10-24。给刚进 `peakpeng666/Robocup` 的人：先知道底座在哪、本 PR 加了什么、先跑哪句、什么时候才能开训。
+
+**本文是主叙述。** P3 / P4 / P5 / [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) / [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) 只补各自表与清单，开训步骤以本节 §3–§4 为准。
 
 **默认 / 主路径 = 官方 B-Human walk 344→13。** 不要改 `K1.yaml` 维数或默认奖励。不要把火神 T1 / NUSim 当 K1。latent 不进 344。
 
@@ -55,22 +57,23 @@
 
 ---
 
-## 3. 先跑哪两个命令（无 GPU）
+## 3. 先跑哪句（无 GPU）
 
-仓库根：
+仓库根先跑这一条：
 
 ```bash
-bash bhuman/k1-training/scripts/run_contract_gate.sh
-bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
-# 一键等价：bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
+bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 ```
+
+拆开等价：`run_contract_gate.sh` + `run_unit_tests_no_gym.sh`。
 
 | 命令 | 做什么 | 云端无 GPU |
 |---|---|---|
-| 门禁 | 锁官方维、旁路未泄漏、负例 | **PASS + WARN**；**PASS ≠ 已训通** |
-| 无 Gym 测试 | 发现并跑 switcher / reactive / estimators / sim2sim / draft 纯 Python 测试 | 缺 mujoco/权 → 测试内 SKIP，不得假绿 |
+| 自检 | 门禁 + 无 Gym + audit + 干跑 + 注册清单 | **PASS + WARN**；**PASS ≠ 已训通** |
+| 门禁 | 锁官方维、旁路未泄漏、负例 | 缺 CUDA / Isaac / 权 → WARN |
+| 无 Gym 测试 | switcher / reactive / estimators / sim2sim / draft | 缺 mujoco/权 → 测试内 SKIP，不得假绿 |
 
-怎么读门禁：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)。
+怎么读门禁：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)。合并清单：[PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)。
 
 ---
 
