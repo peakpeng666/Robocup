@@ -1,11 +1,11 @@
 # PR #4 自检摘要（最新）
 
-由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T08:39:51+00:00；渲染 2026-10-24T08:39:51+00:00）。
+由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T08:43:34+00:00；渲染 2026-10-24T08:43:34+00:00）。
 人读一览，不是新调研。**PASS ≠ 已训通 ≠ 已上真机。**
 
 **PASS** 基底 **344→13** / TRAINABLE=false / ready_gpu=false
 
-计数：PASS 17 · SKIP 1 · WARN 3
+计数：PASS 20 · SKIP 1 · WARN 3
 
 | 项 | 状态 | 说明 |
 |---|---|---|
@@ -23,6 +23,9 @@
 | `test_checkpoint_layout.py` | **PASS** | selfcheck step |
 | `test_kick_standup_joint_map.py` | **PASS** | selfcheck step |
 | `test_reference_motion_inventory.py` | **PASS** | selfcheck step |
+| `test_getup_engine_snapshot.py` | **PASS** | selfcheck step |
+| `test_walk_stability_presets_audit.py` | **PASS** | selfcheck step |
+| `test_forbidden_regressions.py` | **PASS** | selfcheck step |
 | `render_selfcheck_summary.py` | **PASS** | selfcheck step |
 | `ready_gpu` | **WARN** | false (expected without CUDA worker) |
 | `reserved GPU` | **WARN** | cuda, isaacgym_or_alt, checkpoint |

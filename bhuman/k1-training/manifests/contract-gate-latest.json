@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:39:50+00:00",
+  "generated_utc": "2026-10-24T08:43:32+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -56,7 +56,10 @@
     "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused",
     "kick_standup_joint_map": "kick 59→13 shares walk exit; standup[12]=lHipYaw motor",
     "reference_motion_inventory": "declared ref/motion paths; missing SKIP; T1 ≠ walk default",
-    "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN"
+    "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN",
+    "getup_engine_snapshot": "GetUpEngine 22-D; match kick_standup; SKIP if missing",
+    "walk_stability_presets_audit": "official walk-*-stability-v1 keys; draft-only excluded",
+    "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD; silent=red"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -159,6 +162,9 @@
       "kick/standup joint map (standup[12] motor ≠ walk gait_frequency) present",
       "reference-motion inventory (missing SKIP; T1 ≠ official walk default) present",
       "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey) present",
+      "GetUpEngine 22-D snapshot (match kick_standup; SKIP if missing) present",
+      "official walk-*-stability-v1 audit (draft-only excluded) present",
+      "forbidden regressions pack (silent refuse = gate red) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -723,14 +729,16 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 45 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 48 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_checkpoint_layout.py",
         "PASS test_deploy_call.py",
         "PASS test_env_registry_audit.py",
+        "PASS test_forbidden_regressions.py",
         "PASS test_gait_frequency_contract.py",
+        "PASS test_getup_engine_snapshot.py",
         "PASS test_gpu_worker_checklist.py",
         "PASS test_history_buffer_shape.py",
         "PASS test_joint_map_contract.py",
@@ -750,6 +758,7 @@
         "PASS test_switcher_sm.py",
         "PASS test_teamcomm_budget.py",
         "PASS test_timeseries_contract.py",
+        "PASS test_walk_stability_presets_audit.py",
         "PASS test_bt_skill_select.py",
         "PASS test_global_docs.py",
         "PASS test_hifar_boundary.py",
@@ -798,7 +807,15 @@
           "status": "PASS"
         },
         {
+          "name": "test_forbidden_regressions.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_gait_frequency_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_getup_engine_snapshot.py",
           "status": "PASS"
         },
         {
@@ -871,6 +888,10 @@
         },
         {
           "name": "test_timeseries_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_walk_stability_presets_audit.py",
           "status": "PASS"
         },
         {
@@ -961,7 +982,9 @@
         "test_checkpoint_layout.py",
         "test_deploy_call.py",
         "test_env_registry_audit.py",
+        "test_forbidden_regressions.py",
         "test_gait_frequency_contract.py",
+        "test_getup_engine_snapshot.py",
         "test_gpu_worker_checklist.py",
         "test_history_buffer_shape.py",
         "test_joint_map_contract.py",
@@ -980,6 +1003,7 @@
         "test_switcher_sm.py",
         "test_teamcomm_budget.py",
         "test_timeseries_contract.py",
+        "test_walk_stability_presets_audit.py",
         "test_bt_skill_select.py",
         "test_global_docs.py",
         "test_hifar_boundary.py",
@@ -1461,10 +1485,73 @@
       ],
       "skipped": false,
       "walk": "344→13"
+    },
+    "getup_engine_snapshot": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "PASS: GetUpEngine 22 matches joint_map + kick_standup",
+        "SKIP helper leaves standup22 empty",
+        "write-back API refused",
+        "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp: 22 joints; [12]=lHipYaw",
+        "matches joint_map + kick_standup_joint_map",
+        "write-back of K1.yaml refused",
+        "wrote bhuman/k1-training/manifests/getup-engine-standup22-latest.json",
+        "official K1.yaml untouched",
+        "wrote manifests/getup-engine-standup22-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13",
+      "standup": "73→22"
+    },
+    "walk_stability_presets_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_audit_frozen: official pair; draft-only excluded",
+        "official walk-reference + walk-critic stability-v1",
+        "reference_mean_penalty=1.0 on walk-reference-stability-v1",
+        "critic preset has no reference_mean_penalty (honest)",
+        "draft-only did not pollute official presets / run_walk_stability.sh",
+        "negative: draft_only / walk-p1-factors in official refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/walk-stability-presets-audit-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
+    },
+    "forbidden_regressions": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD",
+        "assert_pack_frozen: 8 cases refused",
+        "negative: t1_as_walk refused",
+        "negative: huoshen_obs_as_walk refused",
+        "negative: t1_on_walk_slot refused",
+        "negative: standup_to_kick refused",
+        "negative: simrobot_as_fast_standup refused",
+        "negative: latent_into_344 refused",
+        "negative: draft_write_live refused",
+        "negative: unified_pd_closed_fake_green refused",
+        "silent refuse scores FAIL (gate would go red)",
+        "negative: K1.yaml write refused",
+        "official walk still 344→13",
+        "official K1.yaml untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T08:39:48+00:00",
+    "generated_utc": "2026-10-24T08:43:30+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1542,7 +1629,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "abf00b5dd7b3e0797551477b4cc2b73388bc0492",
+    "workspace_head": "5bca94b619e069fd5e31280cfa80477fbbb4fa38",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1987,6 +2074,9 @@
     "kick/standup joint map (standup[12] motor ≠ walk gait_frequency) present",
     "reference-motion inventory (missing SKIP; T1 ≠ official walk default) present",
     "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey) present",
+    "GetUpEngine 22-D snapshot (match kick_standup; SKIP if missing) present",
+    "official walk-*-stability-v1 audit (draft-only excluded) present",
+    "forbidden regressions pack (silent refuse = gate red) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -2288,14 +2378,16 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 45 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 48 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_checkpoint_layout.py",
     "PASS test_deploy_call.py",
     "PASS test_env_registry_audit.py",
+    "PASS test_forbidden_regressions.py",
     "PASS test_gait_frequency_contract.py",
+    "PASS test_getup_engine_snapshot.py",
     "PASS test_gpu_worker_checklist.py",
     "PASS test_history_buffer_shape.py",
     "PASS test_joint_map_contract.py",
@@ -2315,6 +2407,7 @@
     "PASS test_switcher_sm.py",
     "PASS test_teamcomm_budget.py",
     "PASS test_timeseries_contract.py",
+    "PASS test_walk_stability_presets_audit.py",
     "PASS test_bt_skill_select.py",
     "PASS test_global_docs.py",
     "PASS test_hifar_boundary.py",
@@ -2593,6 +2686,39 @@
     "negative: K1.yaml write refused",
     "wrote bhuman/docs/PR4-SELFCHECK-LATEST.md",
     "official K1.yaml untouched",
+    "PASS: GetUpEngine 22 matches joint_map + kick_standup",
+    "SKIP helper leaves standup22 empty",
+    "write-back API refused",
+    "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp: 22 joints; [12]=lHipYaw",
+    "matches joint_map + kick_standup_joint_map",
+    "write-back of K1.yaml refused",
+    "wrote bhuman/k1-training/manifests/getup-engine-standup22-latest.json",
+    "official K1.yaml untouched",
+    "wrote manifests/getup-engine-standup22-latest.json",
+    "official K1.yaml untouched",
+    "assert_audit_frozen: official pair; draft-only excluded",
+    "official walk-reference + walk-critic stability-v1",
+    "reference_mean_penalty=1.0 on walk-reference-stability-v1",
+    "critic preset has no reference_mean_penalty (honest)",
+    "draft-only did not pollute official presets / run_walk_stability.sh",
+    "negative: draft_only / walk-p1-factors in official refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/walk-stability-presets-audit-latest.json",
+    "official K1.yaml untouched",
+    "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD",
+    "assert_pack_frozen: 8 cases refused",
+    "negative: t1_as_walk refused",
+    "negative: huoshen_obs_as_walk refused",
+    "negative: t1_on_walk_slot refused",
+    "negative: standup_to_kick refused",
+    "negative: simrobot_as_fast_standup refused",
+    "negative: latent_into_344 refused",
+    "negative: draft_write_live refused",
+    "negative: unified_pd_closed_fake_green refused",
+    "silent refuse scores FAIL (gate would go red)",
+    "negative: K1.yaml write refused",
+    "official walk still 344→13",
+    "official K1.yaml untouched",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2654,6 +2780,11 @@
     "python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
     "python3 bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
     "python3 bhuman/k1-training/scripts/render_selfcheck_summary.py",
+    "python3 bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py",
+    "python3 bhuman/k1-training/scripts/getup_engine_snapshot.py",
+    "python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
+    "python3 bhuman/k1-training/scripts/walk_stability_presets_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
