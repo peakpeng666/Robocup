@@ -234,7 +234,10 @@ def write_audit(repo: Path | None = None, out: Path | None = None) -> dict[str, 
         path = repo / path
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(snapshot, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    snapshot["wrote"] = str(path.relative_to(repo)) if path.is_relative_to(repo) else str(path)
+    try:
+        snapshot["wrote"] = str(path.resolve().relative_to(repo.resolve()))
+    except ValueError:
+        snapshot["wrote"] = str(path)
     return snapshot
 
 

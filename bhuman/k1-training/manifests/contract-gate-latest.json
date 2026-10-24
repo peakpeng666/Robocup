@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-24T10:49:19+00:00",
+  "generated_utc": "2026-10-24T10:55:27+00:00",
   "verdict": "PASS",
-  "repo": "/workspace",
+  "repo": "/home/peakpeng/Desktop/Robocup-pr4",
   "architecture": {
     "baseline": "B-Human IsaacGymRL official walk/kick/standup",
     "rule": "new skills are parallel extensions; do not rewrite frozen dims",
@@ -314,7 +314,7 @@
       "implemented": false,
       "anchors": {
         "ok": true,
-        "doc": "/workspace/bhuman/docs/SKILL-SWITCH-CONTINUITY.md",
+        "doc": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/docs/SKILL-SWITCH-CONTINUITY.md",
         "shells": 8,
         "errors": []
       },
@@ -555,7 +555,6 @@
       "skipped": true,
       "warnings": [
         "sim2sim stack: python module mujoco missing",
-        "sim2sim stack: isaacsim-gui python missing",
         "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
         "sim2sim live replay skipped (no mujoco/weights); skeleton only"
       ]
@@ -1446,7 +1445,7 @@
         "will_run_train_py=false will_run_isaac_gym=false",
         "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
         "official K1 task visible (registry + K1.yaml 344→13)",
-        "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+        "ready=false missing: checkpoint",
         "probe JSON includes checklist",
         "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
         "probe_reserved_gpu.sh does not call train.py",
@@ -1455,8 +1454,6 @@
       "trainable": false,
       "ready": false,
       "missing": [
-        "cuda",
-        "isaacgym_or_alt",
         "checkpoint"
       ],
       "walk": "344→13"
@@ -1674,8 +1671,8 @@
         "no subprocess import in dry-run generator",
         "negative: --exec refused",
         "negative: --task K1_Reactive refused",
-        "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
-        "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "live dry-run ready_gpu=False missing=['checkpoint']",
+        "ready=false listed missing ['checkpoint']",
         "injected ready=true still print-only / will_run_train_py=false",
         "printed banner + official --task K1 draft; exit 0",
         "official K1.yaml untouched"
@@ -3590,20 +3587,18 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T10:49:15+00:00",
+    "generated_utc": "2026-10-24T10:55:21+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
     "skip_reasons": [
-      "nvidia-smi not found (no CUDA worker)",
-      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
       "K1_walk.pth absent (gitignored / local-only)"
     ],
-    "nvidia_smi": null,
-    "gpu": null,
-    "bh_gym_python": null,
-    "bh_gym_version": null,
-    "isaacgym_in_bh_gym": false,
+    "nvidia_smi": "/usr/bin/nvidia-smi",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
+    "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "bh_gym_version": "3.8.20",
+    "isaacgym_in_bh_gym": true,
     "auto_smoke_env": "0",
     "will_run_isaac_gym": false,
     "will_run_train_py": false,
@@ -3611,21 +3606,21 @@
     "tell_user": null,
     "checklist": {
       "cuda": {
-        "ok": false,
-        "detail": "nvidia-smi not found (no CUDA worker)",
-        "gpu": null
+        "ok": true,
+        "detail": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
+        "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB"
       },
       "isaacgym_or_alt": {
-        "ok": false,
-        "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
-        "bh_gym_python": null,
-        "bh_gym_version": null,
-        "isaacgym": false,
+        "ok": true,
+        "detail": "isaacgym importable in /home/peakpeng/.venvs/bh-gym/bin/python (3.8.20)",
+        "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
+        "bh_gym_version": "3.8.20",
+        "isaacgym": true,
         "alternative": null
       },
       "disk": {
         "ok": true,
-        "detail": "IsaacGymRL present; free≈245.6GiB"
+        "detail": "IsaacGymRL present; free≈45.4GiB"
       },
       "official_k1_task": {
         "ok": true,
@@ -3638,8 +3633,6 @@
       }
     },
     "missing": [
-      "cuda",
-      "isaacgym_or_alt",
       "checkpoint"
     ],
     "official_k1_task": {
@@ -3668,10 +3661,10 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "89580564b7f95454d8410e90c18f3640ead2adda",
+    "workspace_head": "bb955dbe694215729069773e61e3a39144ea46b4",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
-    "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
-    "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "last_touch_MachineLearning": "95c7fa85c5958166252587bcc22f3449b57ca2f8 Record verified public release, completed cleanup, and healthy retained environments",
+    "last_touch_k1_training_isaac": "95c7fa85c5958166252587bcc22f3449b57ca2f8 Record verified public release, completed cleanup, and healthy retained environments",
     "pinned_upstream_MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
     "pinned_upstream_BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
     "git_origins": {
@@ -3681,23 +3674,23 @@
     "k1_training_source_fingerprint": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c"
   },
   "environment": {
-    "python": "3.12.3",
-    "executable": "/usr/bin/python3",
-    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
-    "nvidia_smi": null,
-    "gpu": null,
+    "python": "3.8.20",
+    "executable": "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.2.5",
+    "nvidia_smi": "/usr/bin/nvidia-smi",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
     "modules": {
-      "torch": false,
+      "torch": true,
       "isaacgym": false,
-      "onnx": false,
-      "onnxruntime": false,
+      "onnx": true,
+      "onnxruntime": true,
       "mujoco": false
     },
-    "bh_gym_python_exists": false,
-    "bh_gym_python": "/home/ubuntu/.venvs/bh-gym/bin/python",
-    "isaacsim_gui_python_exists": false,
+    "bh_gym_python_exists": true,
+    "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "isaacsim_gui_python_exists": true,
     "can_run_isaac_gym_train": false,
-    "can_run_mujoco_sim2sim": false
+    "can_run_mujoco_sim2sim": true
   },
   "trees": {
     "bhuman/MachineLearning/IsaacGymRL": {
@@ -3749,7 +3742,7 @@
         }
       },
       "model": {
-        "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
+        "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
         "actor_in_num_obs": true,
         "actor_out_num_act": true,
         "critic_in_obs_plus_priv": true,
@@ -3808,7 +3801,7 @@
         }
       },
       "model": {
-        "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
+        "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
         "actor_in_num_obs": true,
         "actor_out_num_act": true,
         "critic_in_obs_plus_priv": true,
@@ -3821,7 +3814,7 @@
   },
   "walk_cfgs": [
     {
-      "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3839,7 +3832,7 @@
       }
     },
     {
-      "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3857,7 +3850,7 @@
       }
     },
     {
-      "path": "/workspace/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3872,7 +3865,7 @@
       }
     },
     {
-      "path": "/workspace/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -4035,13 +4028,10 @@
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
-    "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
-    "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
     "reserved GPU/bh-gym: K1_walk.pth absent (gitignored / local-only)",
-    "GPU checklist missing: cuda, isaacgym_or_alt, checkpoint",
+    "GPU checklist missing: checkpoint",
     "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay",
     "sim2sim stack: python module mujoco missing",
-    "sim2sim stack: isaacsim-gui python missing",
     "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
     "sim2sim live replay skipped (no mujoco/weights); skeleton only",
     "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries",
@@ -4052,9 +4042,9 @@
     "official kick onnx/pth absent (gitignored / local-only); naming convention still recorded"
   ],
   "notes": [
-    "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "ActorCritic /home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
     "bhuman/MachineLearning/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
-    "ActorCritic /workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "ActorCritic /home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
     "bhuman/k1-training/src/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
     "both IsaacGymRL trees agree on K1 walk env dims",
     "both IsaacGymRL trees agree on K1 kick env dims",
@@ -4603,7 +4593,7 @@
     "will_run_train_py=false will_run_isaac_gym=false",
     "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
     "official K1 task visible (registry + K1.yaml 344→13)",
-    "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+    "ready=false missing: checkpoint",
     "probe JSON includes checklist",
     "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
     "probe_reserved_gpu.sh does not call train.py",
@@ -4722,8 +4712,8 @@
     "no subprocess import in dry-run generator",
     "negative: --exec refused",
     "negative: --task K1_Reactive refused",
-    "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
-    "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "live dry-run ready_gpu=False missing=['checkpoint']",
+    "ready=false listed missing ['checkpoint']",
     "injected ready=true still print-only / will_run_train_py=false",
     "printed banner + official --task K1 draft; exit 0",
     "official K1.yaml untouched",
