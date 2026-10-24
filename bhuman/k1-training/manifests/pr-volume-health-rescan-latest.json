@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T12:31:48+00:00",
+  "generated_utc": "2026-10-24T12:41:01+00:00",
   "status": "PASS",
   "skipped": false,
   "reason": null,
@@ -14,11 +14,11 @@
   "growth": {
     "pin_files": 335,
     "pin_insertions": 191077,
-    "current_files": 472,
-    "current_insertions": 330902,
-    "shortstat": "472 files changed, 330902 insertions(+), 5 deletions(-)",
-    "latest_manifests": 90,
-    "contract_gate_stamps": 61,
+    "current_files": 479,
+    "current_insertions": 341243,
+    "shortstat": "479 files changed, 341243 insertions(+), 5 deletions(-)",
+    "latest_manifests": 92,
+    "contract_gate_stamps": 62,
     "artifact_run_dirs": 3,
     "growth_noted": true,
     "note": "pr4_index_nav pin stays 335 files / +191077; later *-latest.json and contract-gate stamps grew; do not rewrite that pin; do not delete artifacts"
