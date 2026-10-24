@@ -64,4 +64,5 @@ T4（切入后跳变）在有真实 Gym/MuJoCo 轨迹之前必须 **SKIP**。阈
 构造 / 校验 API：`k1-switcher/history_buffer_shape.py`（`10×32+24=344`）。无录包时只能 **shape PASS + continuity SKIP**；合成全 0 不得报连续性 PASS。`python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py`。
 
 13 维动作关节序（只读）：`k1-switcher/joint_map_contract.py`（12 腿 URDF 序 + `gait_frequency`；standup 22 不得冒充）。  
-第 13 维语义：`k1-switcher/gait_frequency_contract.py`（`action[12]` = 步频，≠ 电机）。
+第 13 维语义：`k1-switcher/gait_frequency_contract.py`（`action[12]` = 步频，≠ 电机）。  
+部署侧拼装只读对照：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md)（公式同源；默认仍官方 walk，不经 reactive concat）。

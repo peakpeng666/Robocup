@@ -9,8 +9,10 @@ TABLE = "bhuman/docs/PR4-MERGE-CHECKLIST.md"
 NEEDLES = (
     "run_contract_gate.sh",
     "run_unit_tests_no_gym.sh",
+    "run_pr4_selfcheck.sh",
     "344→13",
     "不要自动合并",
+    "不要合并",
     "合并 ≠ 已训通",
     "未含权重",
     "GPU worker",
@@ -19,6 +21,11 @@ NEEDLES = (
     "draft_only",
     "K1.yaml",
     "TRAINABLE",
+    "可审",
+    "README-RL",
+    "阻塞",
+    "权重",
+    "真机",
 )
 
 

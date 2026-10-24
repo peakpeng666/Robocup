@@ -29,7 +29,7 @@
 |---|---|---|
 | walk ↔ kick | 上层要踢 / 踢完 | 同 13 维家族；**禁止**把 10×32 memcpy 进 59，或把 59 填进 344。kick→walk 标记 `history_reset_pending` |
 | walk/kick → standup | **必须 fallen** | 不把 344/59 pad 成 73；22 维由 GetUpEngine 自管 |
-| standup → walk | **必须 getup_done** | 走历史清零；last_action = 13 个 0；启动 **5 s** 窗口计时（只计时，不跑物理） |
+| standup → walk | **必须 getup_done** | 走历史清零；last_action = **构造的** 13 个 0（含 gait_frequency）；**禁止**用 standup 22 或 standup[:13] 冒充；启动 **5 s** 窗口计时（只计时，不跑物理） |
 | standup → kick | **禁止** | 起身成功后必须先走 |
 | * → reactive | **禁止** | 回落当前技能（默认 walk 344→13） |
 | * → huoshen_t1 / nusim | **抛错** | 外族合同 |

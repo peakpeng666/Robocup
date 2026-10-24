@@ -46,6 +46,8 @@
 | gait_frequency 第 13 维 | `k1-switcher/gait_frequency_contract.py` | action[12] = 步频，≠ 电机 |
 | boosterJoints 快照 | `scripts/booster_joints_snapshot.py` | 12 腿 + gait_frequency；缺源 SKIP |
 | 全量自检 | `scripts/run_pr4_selfcheck.sh` | 一行：344→13 / TRAINABLE=false / ready_gpu |
+| 部署侧观测拼装 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 10×32+24=344；默认不经 reactive concat |
+| last_action 清零 | `k1-switcher/last_action_reset.py` | standup→walk = 13 个 0；拒 standup[:13] |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -94,4 +96,5 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么读；**PASS ≠ 已训通** |
 | [PR4-INDEX.md](PR4-INDEX.md) | 文件树 |
 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | research-inputs / GLOBAL 可迁短表 |
-| [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并前两条命令；**不要自动合并** |
+| [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 自检主入口；可审、先读本文；**不要合并** |
+| [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 部署侧 344 拼装只读；不经 reactive concat |

@@ -2,26 +2,28 @@
 
 2026-10-24。短清单，不是调研。配套：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)、[README-RL.md](README-RL.md)。
 
-**不要自动合并。** 本清单只回答「合之前还要看什么」。  
-**合并 ≠ 已训通。** 本 PR **未含权重** / ONNX。**需 GPU worker 才能 P1 真训**，且必须先告知用户。
+**不要自动合并。不要合并。** 本清单只回答「合之前还要看什么」。  
+**HEAD 可审、建议先读 README-RL。** 审的是合同 / 门禁 / 旁路纪律，不是权重。  
+**合并 ≠ 已训通。** 本 PR **未含权重** / ONNX。  
+**阻塞**仍是 **GPU worker** / **权重** / **真机**。需 GPU worker 才能 P1 真训，且必须先告知用户。
 
 ---
 
-## 1. 合并前必跑（两条）
+## 1. 当前自检（主入口）
 
-仓库根：
+仓库根先跑这一条（内含门禁 + 无 Gym + reward audit + draft diff + GPU 探测）：
+
+```bash
+bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
+```
+
+必须 **exit 0**。云端无 GPU 预期 **PASS + WARN**（缺 CUDA / Isaac / 权）。缺依赖的测试内 **SKIP**，不得假绿。一行应含 `PASS 基底 344→13 / TRAINABLE=false / ready_gpu=false`。
+
+拆开等价：
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
-```
-
-两条都必须 **exit 0**。云端无 GPU 预期 **PASS + WARN**（缺 CUDA / Isaac / 权）。缺依赖的测试内 **SKIP**，不得假绿。
-
-一键等价（再加 reward audit / draft diff / GPU 探测）：
-
-```bash
-bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 ```
 
 ---
@@ -42,10 +44,18 @@ bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 
 ---
 
-## 3. 合并之后仍然不是
+## 3. 合并之后仍然不是 / 阻塞
+
+阻塞（本 PR 合了也解不了）：
+
+- **GPU worker**（P1 真训）
+- **权重**（`K1_walk.pth` / ONNX 仍在操作者本机 / Release）
+- **真机**（未授权；不连接机器人）
+
+合完仍然不是：
 
 - **已训通**（门禁 PASS ≠ `train.py` 跑过）
-- **含官方权重**（`K1_walk.pth` / ONNX 仍在操作者本机 / Release）
+- **含官方权重**
 - **可以开始 P1 真训**（先 `probe_reserved_gpu.sh` → `ready=true` → **告知用户，等明确开训**）
 - **已上真机**
 

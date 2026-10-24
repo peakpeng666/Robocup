@@ -86,7 +86,8 @@ bhuman/docs/
 ├── P4-PREVIEW.md                        P4 预研（不实现六机/真机；三道门）
 ├── P5-PREVIEW.md                        P5 预研（不碰真机；≠ 已上真机）
 ├── RESEARCH-MIGRATE-TABLE.md            research-inputs / GLOBAL 可迁短表
-├── PR4-MERGE-CHECKLIST.md               合并前两条命令；合并 ≠ 已训通；不要自动合并
+├── PR4-MERGE-CHECKLIST.md               自检主入口；可审、先读 README-RL；不要合并
+├── OBS-ASSEMBLY-344.md                  部署侧 walk 拼装 10×32+24=344（不经 reactive）
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -155,10 +156,14 @@ k1-switcher/
 ├── history_buffer_shape.py      10×32+24=344；合成全 0 不得连续性 PASS
 ├── joint_map_contract.py        13-D 腿+步频；拒 12/15/22；standup ≠ walk
 ├── gait_frequency_contract.py   action[12]=gait_frequency；≠ 第 13 路电机
+├── obs_assembly.py              部署侧 10×32+24=344；不经 reactive concat
+├── last_action_reset.py         standup→walk 13 个 0；拒 standup[:13]
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
 ├── test_gait_frequency_contract.py
+├── test_obs_assembly.py
+├── test_last_action_reset.py
 ├── test_booster_joints_snapshot.py
 ├── test_p1_draft_diff.py
 ├── test_k1_reward_audit.py
@@ -212,7 +217,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-onnx.json   上轮（ONNX 导出合同 + GPU 清单）
 ├── contract-gate-20261024-audit.json  上轮（奖励审计 + 历史缓冲 + research 短表）
 ├── contract-gate-20261024-joints.json 上轮（13-D 关节图 + draft 差分 + 合并清单）
-├── contract-gate-20261024-gait.json   本轮（gait_frequency + boosterJoints + 自检）
+├── contract-gate-20261024-gait.json   上轮（gait_frequency + boosterJoints + 自检）
+├── contract-gate-20261024-obs.json    本轮（观测拼装 + last_action 清零 + 清单刷新）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -262,6 +268,9 @@ k1-training/manifests/
 | gait_frequency 第 13 维 | `gait_frequency_contract.py` | action[12] = 步频，≠ 电机；standup/reactive 不得冒充 |
 | WalkingEngine boosterJoints 快照 | `booster_joints_snapshot.py` | 与 joint_map 一致；缺源码 SKIP，不伪造关节名 |
 | PR #4 全量自检 | `run_pr4_selfcheck.sh` | 门禁+无 Gym+audit+diff+GPU；一行 344→13 / TRAINABLE=false / ready_gpu |
+| 部署侧观测拼装 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) + `obs_assembly.py` | 10×32+24=344；不经 reactive；缺源不伪造 |
+| last_action 清零合同 | `last_action_reset.py` | standup→walk 13 个 0（含步频位）；拒 standup[:13] |
+| 合并清单刷新 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 自检主入口；可审、先读 README-RL；阻塞 GPU worker / 权重 / 真机 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

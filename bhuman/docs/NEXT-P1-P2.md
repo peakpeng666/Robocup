@@ -183,6 +183,8 @@ python3 bhuman/k1-training/scripts/p1_draft_diff.py
 python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py
 python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py
 python3 bhuman/k1-training/scripts/booster_joints_snapshot.py
+python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py
+python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
@@ -216,6 +218,8 @@ research-inputs 短表：[RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md)�
 gait_frequency 第 13 维：`gait_frequency_contract.py`（action[12] ≠ 电机）。
 boosterJoints 快照：`booster_joints_snapshot.py`（缺源码 SKIP）。
 全量自检：`run_pr4_selfcheck.sh`。
+部署侧观测拼装：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md)（10×32+24=344；不经 reactive）。
+last_action 清零：`last_action_reset.py`（standup→walk = 13 个 0；拒 standup[:13]）。
 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 CI 草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI；云端 PASS+WARN）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。

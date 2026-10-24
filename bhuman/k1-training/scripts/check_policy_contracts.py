@@ -576,6 +576,18 @@ def check_gpu_free_shells(
             "k1_pr4_selfcheck",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+            "obs_assembly",
+            "k1_obs_assembly",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+            "last_action_reset",
+            "k1_last_action_reset",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1031,6 +1043,8 @@ def main() -> int:
             "gait_frequency_contract": "walk action[12]=gait_frequency; not a 13th motor",
             "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
             "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
+            "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
+            "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1103,6 +1117,8 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
             "python3 bhuman/k1-training/scripts/booster_joints_snapshot.py",
             "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+            "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

@@ -87,9 +87,14 @@ def assert_standup_kick_bypass(repo: Path | None = None) -> None:
         raise AssertionError("standup→walk without getup_done must be refused")
     if sm.request("kick").accepted:
         raise AssertionError("standup→kick must be refused")
-    done = sm.request("walk", getup_done=True)
+    done = sm.request("walk", getup_done=True, previous_action=[0.3] * 22)
     if not done.accepted or done.skill != "walk" or done.contract != "344→13":
         raise AssertionError("getup_done must return to official walk 344→13")
+    if done.last_action != [0.0] * 13:
+        raise AssertionError(
+            "getup_done last_action must be constructed 13 zeros including gait_frequency; "
+            "standup 22-D slice is not the reset"
+        )
 
     kick_bt = select_skill(SkillSelectContext(want_kick=True))
     if kick_bt.skill != "kick" or kick_bt.contract != "59→13":

@@ -75,11 +75,15 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("standup→kick leaked")
     else:
         notes.append("standup→kick refused; must walk first")
-    done = sm.request("walk", getup_done=True)
+    done = sm.request("walk", getup_done=True, previous_action=[0.9] * 22)
     if done.accepted and done.contract == "344→13":
         notes.append("getup_done returns to walk 344→13")
     else:
         errors.append("getup_done did not return to walk")
+    if done.last_action != [0.0] * 13:
+        errors.append("getup_done last_action must be 13 zeros, not standup 22-D slice")
+    else:
+        notes.append("getup_done last_action constructed 13 zeros (gait_frequency included)")
 
     kick = select_skill(SkillSelectContext(want_kick=True))
     if kick.skill == "kick" and kick.contract == "59→13":

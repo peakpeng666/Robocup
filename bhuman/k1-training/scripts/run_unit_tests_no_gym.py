@@ -55,6 +55,8 @@ REQUIRED_NAMES = (
     "test_gait_frequency_contract.py",
     "test_booster_joints_snapshot.py",
     "test_pr4_selfcheck.py",
+    "test_obs_assembly.py",
+    "test_last_action_reset.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

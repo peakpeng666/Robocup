@@ -34,7 +34,7 @@ bt_decision_to_sm_target(decision.skill)   →  walk / kick / standup
         ▼
 SwitcherSM.request(target, fallen, getup_done, previous_action)
         │  走↔踢：skill_switch_map.first_step_last_action（13 维复用，不 memcpy 历史）
-        │  起身→走：last_action = 13 个 0；history_reset_pending；启动 5 s 计时
+        │  起身→走：last_action = 构造的 13 个 0（含 gait_frequency；拒 standup[:13]）；history_reset_pending；启动 5 s 计时
         ▼
 DeployTick{bt, sm_target, accepted, skill, contract, last_action, hold_s}
         │
@@ -54,7 +54,7 @@ ONNX / C++  （未接入；本拍到此结束）
 |---|---|---|
 | 无事件 / 主攻手近球（reactive 未实现） | **不离开** | 已在 walk 344→13 |
 | 上层 `want_kick` 且未跌倒 | walk → kick 59→13（同 13 维家族；不 memcpy 10×32） | 踢完 `want_kick=false` → kick → walk；`history_reset_pending` |
-| `fallen` | walk/kick → standup 73→22（BT 名是 `handoff_getup`） | **必须 `getup_done=true`** 才接受 standup → walk；`last_action` = 13 个 0；启动 **5 s** 计时（只计时） |
+| `fallen` | walk/kick → standup 73→22（BT 名是 `handoff_getup`） | **必须 `getup_done=true`** 才接受 standup → walk；`last_action` = **构造的** 13 个 0（含步频位；**禁止** standup 22 / standup[:13] 冒充）；启动 **5 s** 计时（只计时） |
 | 起身成功但上层立刻 `want_kick` | **禁止** standup → kick | 先走 344→13，再按上一行切踢 |
 | `requested=huoshen_t1` / `nusim` / `K1_Reactive` | **BT 层抛错** | 到不了 SM，官方 actor 不被替换 |
 
@@ -104,7 +104,7 @@ BT 与 SM 在起身窗口可能短暂不一致（集成测试会锁）：
 | `fallen` | `handoff_getup` | standup | 接受，73→22 |
 | 起身中、尚未 `getup_done` | walk（若未跌倒） | walk | **拒绝**，停在 standup |
 | 起身成功但 `want_kick` | kick | kick | **拒绝** standup→kick；必须先走 |
-| 起身成功、`getup_done` | walk | walk | 接受；5 s 窗口 + 13 个 0 |
+| 起身成功、`getup_done` | walk | walk | 接受；5 s 窗口 + 构造的 13 个 0（拒 standup[:13]） |
 | 主攻手+近球+前方有空 | walk（回落） | walk | 接受；理由含 `344` |
 | `requested=huoshen_t1` / `nusim` | — | — | **BT 层抛错**，到不了 SM / 引擎 |
 

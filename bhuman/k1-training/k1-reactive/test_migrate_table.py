@@ -93,6 +93,8 @@ REQUIRED_LANDINGS = (
     "gait_frequency_contract.py",
     "booster_joints_snapshot.py",
     "run_pr4_selfcheck.sh",
+    "OBS-ASSEMBLY-344.md",
+    "last_action_reset.py",
 )
 
 

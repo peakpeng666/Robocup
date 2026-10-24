@@ -7,7 +7,8 @@
 # ONNX export contract / GPU worker checklist /
 # K1 reward audit / history buffer shape / research-inputs table /
 # 13-D joint map / official-vs-draft diff / PR4 merge checklist /
-# gait_frequency slot / boosterJoints snapshot / PR4 selfcheck.
+# gait_frequency slot / boosterJoints snapshot / PR4 selfcheck /
+# deploy obs assembly 344 / last_action 13-zero reset.
 # Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
 # k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.

@@ -298,6 +298,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "PR #4 selfcheck (gate + no-gym + audits + GPU probe)",
         ),
+        (
+            "bhuman/docs/OBS-ASSEMBLY-344.md",
+            "deploy-side walk obs assembly 10×32+24=344 (not reactive concat)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/obs_assembly.py",
+            "walk obs assembly shape check (no fabricate)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/last_action_reset.py",
+            "return-to-walk last_action 13 zeros (refuse standup[:13])",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

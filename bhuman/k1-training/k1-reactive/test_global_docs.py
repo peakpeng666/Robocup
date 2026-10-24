@@ -106,6 +106,8 @@ REQUIRED_DOCS = {
         "gait_frequency_contract",
         "booster_joints_snapshot",
         "run_pr4_selfcheck",
+        "OBS-ASSEMBLY-344",
+        "last_action_reset",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -139,6 +141,8 @@ REQUIRED_DOCS = {
         "gait_frequency_contract.py",
         "booster_joints_snapshot.py",
         "run_pr4_selfcheck.sh",
+        "OBS-ASSEMBLY-344.md",
+        "last_action_reset.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -214,6 +218,8 @@ REQUIRED_DOCS = {
         "gait_frequency_contract",
         "booster-joints-walk13",
         "run_pr4_selfcheck",
+        "OBS-ASSEMBLY-344",
+        "last_action_reset",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -225,6 +231,7 @@ REQUIRED_DOCS = {
         "10×32+24=344",
         "joint_map_contract",
         "gait_frequency",
+        "OBS-ASSEMBLY-344",
     ),
     "bhuman/docs/P2-ACCEPTANCE.md": (
         "344→13",
@@ -248,6 +255,7 @@ REQUIRED_DOCS = {
         "必须先告知用户",
         "PR4-MERGE-CHECKLIST",
         "run_pr4_selfcheck",
+        "OBS-ASSEMBLY-344",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -308,6 +316,8 @@ REQUIRED_DOCS = {
         "PR4-MERGE-CHECKLIST",
         "gait_frequency_contract",
         "run_pr4_selfcheck",
+        "OBS-ASSEMBLY-344",
+        "last_action_reset",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -322,11 +332,24 @@ REQUIRED_DOCS = {
     "bhuman/docs/PR4-MERGE-CHECKLIST.md": (
         "run_contract_gate.sh",
         "run_unit_tests_no_gym.sh",
+        "run_pr4_selfcheck.sh",
         "344→13",
         "不要自动合并",
         "合并 ≠ 已训通",
         "未含权重",
         "GPU worker",
+        "可审",
+        "README-RL",
+        "阻塞",
+        "权重",
+        "真机",
+    ),
+    "bhuman/docs/OBS-ASSEMBLY-344.md": (
+        "344→13",
+        "10×32+24",
+        "不经",
+        "k1-reactive",
+        "WalkingEngine",
     ),
 }
 

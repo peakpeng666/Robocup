@@ -120,6 +120,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] gait_frequency 第 13 维合同：`k1-switcher/gait_frequency_contract.py`（action[12] = 步频，≠ 电机；与 joint_map 交叉断言）。
 - [x] WalkingEngine boosterJoints 只读快照：`scripts/booster_joints_snapshot.py` → `booster-joints-walk13-latest.json`（缺源码诚实 SKIP，不伪造关节名）。
 - [x] 全量自检：`scripts/run_pr4_selfcheck.sh`（门禁 + 无 Gym + reward audit + draft diff + GPU 清单）。
+- [x] 部署侧 walk 观测拼装只读对照：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) + `k1-switcher/obs_assembly.py`（10×32+24=344；缺 C++ 不伪造；默认不经 reactive concat）。
+- [x] last_action 清零合同：`k1-switcher/last_action_reset.py`（standup / fast_standup → walk 必须 13 个 0，含 gait_frequency；拒 standup[:13] 冒充）。
+- [x] 合并清单刷新：[PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（自检主入口；HEAD **可审、建议先读 README-RL**；阻塞仍是 GPU worker / 权重 / 真机；**不要合并**）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -251,6 +254,8 @@ python3 bhuman/k1-training/scripts/p1_draft_diff.py
 python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py
 python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py
 python3 bhuman/k1-training/scripts/booster_joints_snapshot.py
+python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py
+python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
