@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:38:01+00:00",
+  "generated_utc": "2026-10-24T07:42:05+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -46,7 +46,9 @@
     "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
     "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
     "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
-    "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]"
+    "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
+    "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
+    "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -136,6 +138,9 @@
       "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
       "walk obs assembly shape check (no fabricate) present",
       "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
+      "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
+      "official train.py registry (K1 in; bypass not registered) present",
+      "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -298,6 +303,7 @@
         "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
         "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
         "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
+        "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -697,11 +703,12 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 35 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_deploy_call.py",
+        "PASS test_env_registry_audit.py",
         "PASS test_gait_frequency_contract.py",
         "PASS test_gpu_worker_checklist.py",
         "PASS test_history_buffer_shape.py",
@@ -712,6 +719,7 @@
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_p1_draft_diff.py",
+        "PASS test_print_train_dry_run.py",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
@@ -754,6 +762,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_env_registry_audit.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_gait_frequency_contract.py",
           "status": "PASS"
         },
@@ -787,6 +799,10 @@
         },
         {
           "name": "test_p1_draft_diff.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_print_train_dry_run.py",
           "status": "PASS"
         },
         {
@@ -883,6 +899,7 @@
         "test_booster_joints_snapshot.py",
         "test_bt_deploy_crosscheck.py",
         "test_deploy_call.py",
+        "test_env_registry_audit.py",
         "test_gait_frequency_contract.py",
         "test_gpu_worker_checklist.py",
         "test_history_buffer_shape.py",
@@ -892,6 +909,7 @@
         "test_obs_assembly.py",
         "test_onnx_export_contract.py",
         "test_p1_draft_diff.py",
+        "test_print_train_dry_run.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
@@ -1171,10 +1189,46 @@
       "trainable": false,
       "write_yaml": false,
       "walk": "344→13"
+    },
+    "print_train_dry_run": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "source does not spawn train.py",
+        "no subprocess import in dry-run generator",
+        "negative: --exec refused",
+        "negative: --task K1_Reactive refused",
+        "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "injected ready=true still print-only / will_run_train_py=false",
+        "printed banner + official --task K1 draft; exit 0",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "env_registry_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "audit is read-only (no train.py spawn)",
+        "live: official K1 in; k1-reactive / estimators / switcher out",
+        "negative: dropped official K1 refused",
+        "negative: K1_Reactive listed as registered refused",
+        "negative: leaked envs/__init__ K1_Reactive refused",
+        "negative: missing K1 import refused",
+        "write-back of K1.yaml refused",
+        "wrote env-registry-audit-latest.json (K1 in; bypass out)",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:38:00+00:00",
+    "generated_utc": "2026-10-24T07:42:04+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1252,7 +1306,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "03cd51b91b5769c491f202e60c15fb19256a3743",
+    "workspace_head": "c2aff8b79f4a76b91dd5dae492e2c26e530390fd",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1683,6 +1737,9 @@
     "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
     "walk obs assembly shape check (no fabricate) present",
     "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
+    "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
+    "official train.py registry (K1 in; bypass not registered) present",
+    "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1730,6 +1787,7 @@
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
     "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
     "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
+    "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -1981,11 +2039,12 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 35 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_deploy_call.py",
+    "PASS test_env_registry_audit.py",
     "PASS test_gait_frequency_contract.py",
     "PASS test_gpu_worker_checklist.py",
     "PASS test_history_buffer_shape.py",
@@ -1996,6 +2055,7 @@
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_p1_draft_diff.py",
+    "PASS test_print_train_dry_run.py",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
@@ -2156,6 +2216,24 @@
     "deploy_call getup_done last_action 13 zeros",
     "standup_kick bypass still: getup_done → walk 344→13",
     "official K1.yaml untouched",
+    "source does not spawn train.py",
+    "no subprocess import in dry-run generator",
+    "negative: --exec refused",
+    "negative: --task K1_Reactive refused",
+    "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "injected ready=true still print-only / will_run_train_py=false",
+    "printed banner + official --task K1 draft; exit 0",
+    "official K1.yaml untouched",
+    "audit is read-only (no train.py spawn)",
+    "live: official K1 in; k1-reactive / estimators / switcher out",
+    "negative: dropped official K1 refused",
+    "negative: K1_Reactive listed as registered refused",
+    "negative: leaked envs/__init__ K1_Reactive refused",
+    "negative: missing K1 import refused",
+    "write-back of K1.yaml refused",
+    "wrote env-registry-audit-latest.json (K1 in; bypass out)",
+    "official K1.yaml untouched",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2204,6 +2282,10 @@
     "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
     "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
     "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+    "python3 bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+    "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
+    "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+    "python3 bhuman/k1-training/scripts/env_registry_audit.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
