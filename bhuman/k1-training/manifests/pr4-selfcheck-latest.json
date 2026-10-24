@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:47:44+00:00",
+  "generated_utc": "2026-10-24T08:50:42+00:00",
   "verdict": "PASS",
   "walk": "344→13",
   "trainable": false,
@@ -25,28 +25,29 @@
     "test_forbidden_regressions.py",
     "test_official_sibling_tasks_audit.py",
     "test_onnx_deploy_path_crosscheck.py",
+    "test_t1_k1_isolation.py",
     "render_selfcheck_summary.py"
   ],
   "step_timings": [
     {
       "id": "run_contract_gate.sh",
       "label": "contract gate",
-      "elapsed_s": 2.0
+      "elapsed_s": 2.053
     },
     {
       "id": "run_unit_tests_no_gym.sh",
       "label": "no-Gym unit tests",
-      "elapsed_s": 1.47
+      "elapsed_s": 1.491
     },
     {
       "id": "k1_reward_audit.py",
       "label": "K1 reward audit (read-only)",
-      "elapsed_s": 0.072
+      "elapsed_s": 0.07
     },
     {
       "id": "p1_draft_diff.py",
       "label": "official vs draft-only diff (read-only)",
-      "elapsed_s": 0.03
+      "elapsed_s": 0.029
     },
     {
       "id": "probe_reserved_gpu.sh",
@@ -61,12 +62,12 @@
     {
       "id": "env_registry_audit.py",
       "label": "env registry audit (read-only)",
-      "elapsed_s": 0.031
+      "elapsed_s": 0.03
     },
     {
       "id": "test_simrobot_acceptance.py",
       "label": "SimRobot six-robot acceptance (no sim; honest SKIP)",
-      "elapsed_s": 0.037
+      "elapsed_s": 0.035
     },
     {
       "id": "test_skill_request_map.py",
@@ -96,17 +97,17 @@
     {
       "id": "test_reference_motion_inventory.py",
       "label": "reference-motion inventory (T1 ≠ official walk default)",
-      "elapsed_s": 0.033
+      "elapsed_s": 0.034
     },
     {
       "id": "test_getup_engine_snapshot.py",
       "label": "GetUpEngine 22-D snapshot (match kick_standup or SKIP)",
-      "elapsed_s": 0.035
+      "elapsed_s": 0.034
     },
     {
       "id": "test_walk_stability_presets_audit.py",
       "label": "walk stability presets audit (draft-only excluded)",
-      "elapsed_s": 0.032
+      "elapsed_s": 0.03
     },
     {
       "id": "test_forbidden_regressions.py",
@@ -124,11 +125,16 @@
       "elapsed_s": 0.032
     },
     {
+      "id": "test_t1_k1_isolation.py",
+      "label": "T1/K1 isolation (365/62/76 must not replace walk)",
+      "elapsed_s": 0.028
+    },
+    {
       "id": "render_selfcheck_summary.py",
       "label": "selfcheck markdown summary (PASS/SKIP/WARN + timings)",
-      "elapsed_s": 0.028
+      "elapsed_s": 0.029
     }
   ],
-  "elapsed_s": 4.066,
+  "elapsed_s": 4.161,
   "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker; elapsed_s is wall time of timed steps"
 }
