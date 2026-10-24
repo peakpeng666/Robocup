@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Static K1 walk/kick/standup contract gate.
+# Static K1 walk/kick/standup contract gate + K1_Reactive skeleton + reserved GPU probe.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.
-# GPU, Isaac Gym, and official .pth/.onnx are optional; missing weights warn.
+# GPU, Isaac Gym, and official .pth/.onnx are optional; missing weights / worker warn.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -32,3 +32,4 @@ echo "[contract-gate] json=$OUT"
 "$PY" -B "$SCRIPT_DIR/check_policy_contracts.py" --repo "$REPO_ROOT" --json-out "$OUT"
 cp -f "$OUT" "$LATEST"
 echo "[contract-gate] also wrote $LATEST"
+"$PY" -B "$SCRIPT_DIR/probe_reserved_gpu.py" --json-out "$K1_TRAINING_ROOT/manifests/reserved-gpu-latest.json"

@@ -4,15 +4,16 @@
 本轮只读核验本仓 + `origin/research` / `origin/qh` 文档，并落地无 GPU 合同门禁。
 **未连接机器人，未下载大体积 PDF/ZIP，未把 T1 火神权重当作 K1 可用，未混用 NUSim 与 B-Human 合同。**
 
-配套门禁：
+配套门禁与预留探测：
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
-# 或
-python3 bhuman/k1-training/scripts/check_policy_contracts.py
+python3 bhuman/k1-training/k1-reactive/check_skeleton.py
+bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
-产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`（本轮云环境 **PASS**，见 §7.1）。
+产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`、`reserved-gpu-latest.json`。
+research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
 
 ---
 
@@ -30,7 +31,7 @@ python3 bhuman/k1-training/scripts/check_policy_contracts.py
 | **`research/02`、`research/06` 只在 `origin/research`**，不在 `main`。`huoshen_findings.md` 在 `main` | `git ls-tree origin/research` |
 | **`qh_robocup` 是另一仓**（`origin/qh` 上一份决策调研）。本任务不改该仓 | `research-inputs/qh-robocup-decisions-research.md` 仅在 `origin/qh` |
 
-工程准备状态：**P0 合同已可在无 GPU 机器上复现核对；P1 本体感强化与 P2 火神迁移都还没有可运行代码入口。**
+工程准备状态：**基线是 B-Human 官方步态运控（walk 344→13 不可破坏）。** P0 合同门禁可无 GPU 复现；P2 仅有平行骨架 `k1-reactive`（64→15 stub，未注册训练）；P1/P2 有 GPU 命令模板与预留探测，本环境跳过 Gym。操作手册见 [NEXT-P1-P2.md](NEXT-P1-P2.md)。
 
 ---
 
@@ -311,6 +312,8 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 | 权重 | 8 个官方 `.pth`/`.onnx` **缺席 → warn**（`--strict-weights` 则 FAIL，exit 1） |
 | `run_env_check.sh` | **exit 127**：`~/.venvs/bh-gym/bin/python` 不存在，未进入 Gym |
 | 解释器 / GPU | 系统 Python 3.12.3；`nvidia-smi` 无；`torch`/`isaacgym`/`onnx`/`mujoco` 均未装 |
+| `k1-reactive/check_skeleton.py` | **PASS**：64→15 平行于 344→13；官方 `envs/__init__.py` 未注册 |
+| `probe_reserved_gpu.sh` | **skipped + WARN**（无 CUDA / 无 bh-gym）；`will_run_isaac_gym=false` |
 
 ### 7.2 官方 walk 复现入口（可复制；本 VM 不执行 GPU/MuJoCo）
 
@@ -370,7 +373,10 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stabilit
 
 ## 8. 下一步（与用户 P1 / P2 对齐）
 
-`origin/research:research/06` 另有一套 P0–P5 实验矩阵（其 P0 是 4096 env 急停/抖动训练）。**不要和本 PR 的 P0（合同门禁）混名。** 下面按本次任务的编号：
+完整命令、Zenodo 本地步骤与架构图已移到 [NEXT-P1-P2.md](NEXT-P1-P2.md)。
+`origin/research:research/06` 另有一套 P0–P5 实验矩阵（其 P0 是 4096 env 急停/抖动训练）。**不要和本 PR 的 P0（合同门禁）混名。** 入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
+
+**基线不可改写：** 官方 IsaacGymRL walk/kick/standup。新技能只允许平行目录（现为 `k1-training/k1-reactive/`，建议 64→15）。GPU/`bh-gym` 用 `probe_reserved_gpu.sh` 预留，缺失则 WARN 并跳过。
 
 ### P1 · 本体感（现有 B-Human 栈，不改 344→13）
 
@@ -423,6 +429,10 @@ bhuman/MachineLearning/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg
 bhuman/k1-training/src/IsaacGymRL/          # 工作副本（同上结构）
 bhuman/k1-training/scripts/check_policy_contracts.py
 bhuman/k1-training/scripts/run_contract_gate.sh
+bhuman/k1-training/scripts/probe_reserved_gpu.sh
+bhuman/k1-training/k1-reactive/                 # P2 平行骨架，非 train.py 任务
+bhuman/docs/NEXT-P1-P2.md
+bhuman/docs/RESEARCH-BRANCH.md
 bhuman/k1-training/scripts/run_replay.sh
 bhuman/k1-training/scripts/check_actor_vs_onnx.py
 bhuman/k1-training/manifests/models-v2.json

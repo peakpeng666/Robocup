@@ -1,12 +1,66 @@
 {
-  "generated_utc": "2026-10-24T06:18:57+00:00",
+  "generated_utc": "2026-10-24T06:22:57+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
+  "architecture": {
+    "baseline": "B-Human IsaacGymRL official walk/kick/standup",
+    "rule": "new skills are parallel extensions; do not rewrite frozen dims",
+    "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task"
+  },
   "k1_contracts": {
     "walk": "344→13",
     "kick": "59→13",
     "standup": "73→22",
     "fast_standup_deploy_only": "72→22"
+  },
+  "k1_reactive": {
+    "ok": true,
+    "task": "K1_Reactive",
+    "contract": "64→15",
+    "baseline": "344→13",
+    "trainable": false,
+    "registered": false,
+    "errors": [],
+    "notes": [
+      "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+      "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+      "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+      "refuse_foreign_checkpoint blocks official walk weights",
+      "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+      "create_training_env() raises (stub is not a Gym task)"
+    ]
+  },
+  "reserved_gpu": {
+    "generated_utc": "2026-10-24T06:22:57+00:00",
+    "reserved": true,
+    "ready": false,
+    "skipped": true,
+    "skip_reasons": [
+      "nvidia-smi not found (no CUDA worker)",
+      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])"
+    ],
+    "nvidia_smi": null,
+    "gpu": null,
+    "bh_gym_python": null,
+    "bh_gym_version": null,
+    "isaacgym_in_bh_gym": false,
+    "auto_smoke_env": "0",
+    "will_run_isaac_gym": false,
+    "templates": {
+      "note": "All commands keep official K1 walk 344→13. Do not pass --task=K1_Reactive.",
+      "env_check": "bash bhuman/k1-training/scripts/run_env_check.sh",
+      "replay_walk": "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+      "replay_kick": "bash bhuman/k1-training/scripts/run_replay.sh K1_Ball 4 300",
+      "replay_standup": "bash bhuman/k1-training/scripts/run_replay.sh K1_Stand_Up 4 300",
+      "eval_s2027": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2027 100 8",
+      "eval_s2028": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2028 100 8",
+      "eval_s2029": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2029 100 8",
+      "stability_warm": "bash bhuman/k1-training/scripts/run_walk_stability.sh 4096 25 7 warm-start",
+      "sim2sim": "bash bhuman/sim2sim/run-mujoco.sh --seconds 120"
+    },
+    "baseline": "B-Human IsaacGymRL official walk 344→13 / kick 59→13 / standup 73→22"
   },
   "t1_bhuman_contracts": {
     "walk": "365→14",
@@ -15,7 +69,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "f3ea82c2ba15b9887a9d7a1b99c99bfc0c90f75b",
+    "workspace_head": "467e7b62f66a15030643f31b3a10e4bdf774be86",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -381,7 +435,10 @@
     "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
-    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt"
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+    "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
+    "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+    "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay"
   ],
   "notes": [
     "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
@@ -396,6 +453,15 @@
     "bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
     "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
     "Isaac Gym / official walk GPU replay cannot run here: need bh-gym (Python 3.8.20), Isaac Gym Preview 4, CUDA GPU, and K1_walk.pth",
+    "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+    "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+    "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+    "refuse_foreign_checkpoint blocks official walk weights",
+    "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+    "create_training_env() raises (stub is not a Gym task)",
+    "K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -405,6 +471,8 @@
   ],
   "reproduce_this_gate": [
     "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
-    "bash bhuman/k1-training/scripts/run_contract_gate.sh"
+    "bash bhuman/k1-training/scripts/run_contract_gate.sh",
+    "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+    "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }

@@ -28,6 +28,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from importlib.util import module_from_spec, spec_from_file_location
 
 try:
     import yaml
@@ -327,6 +328,48 @@ def check_history_formula(path: Path, errors: list[str]) -> bool:
         errors.append(f"walk history formula missing in {path}")
         return False
     return True
+
+
+def _load_sibling(repo: Path, relpath: str, name: str):
+    path = repo / relpath
+    spec = spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise FileNotFoundError(relpath)
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def check_k1_reactive_skeleton(repo: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
+    rel = "bhuman/k1-training/k1-reactive/check_skeleton.py"
+    path = repo / rel
+    if not path.is_file():
+        errors.append(f"missing {rel}")
+        return {"ok": False, "missing": True}
+    module = _load_sibling(repo, rel, "k1_reactive_check_skeleton")
+    report = module.check(repo)
+    errors.extend(report.get("errors") or [])
+    notes.extend(report.get("notes") or [])
+    if report.get("ok"):
+        notes.append("K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL")
+    return report
+
+
+def check_reserved_gpu(repo: Path, warnings: list[str], notes: list[str]) -> dict[str, Any]:
+    rel = "bhuman/k1-training/scripts/probe_reserved_gpu.py"
+    path = repo / rel
+    if not path.is_file():
+        warnings.append(f"missing reserved GPU probe {rel}")
+        return {"ready": False, "skipped": True, "missing": True}
+    module = _load_sibling(repo, rel, "k1_reserved_gpu_probe")
+    report = module.probe()
+    if report.get("skipped"):
+        for reason in report.get("skip_reasons") or []:
+            warnings.append(f"reserved GPU/bh-gym: {reason}")
+        warnings.append("reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay")
+    else:
+        notes.append("reserved GPU/bh-gym worker looks present; templates only (no auto-train)")
+    return report
 
 
 def find_repo_root(explicit: str | None) -> Path:
@@ -644,11 +687,14 @@ def main() -> int:
         )
 
     env = probe_environment()
+    reserved_gpu = check_reserved_gpu(repo, warnings, notes)
     if not env["can_run_isaac_gym_train"]:
         notes.append(
             "Isaac Gym / official walk GPU replay cannot run here: need bh-gym "
             "(Python 3.8.20), Isaac Gym Preview 4, CUDA GPU, and K1_walk.pth"
         )
+
+    reactive = check_k1_reactive_skeleton(repo, errors, notes)
 
     research = {
         "huoshen_findings_on_main": (
@@ -691,12 +737,19 @@ def main() -> int:
         "generated_utc": utc_now(),
         "verdict": verdict,
         "repo": str(repo),
+        "architecture": {
+            "baseline": "B-Human IsaacGymRL official walk/kick/standup",
+            "rule": "new skills are parallel extensions; do not rewrite frozen dims",
+            "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
+        },
         "k1_contracts": {
             "walk": "344→13",
             "kick": "59→13",
             "standup": "73→22",
             "fast_standup_deploy_only": "72→22",
         },
+        "k1_reactive": reactive,
+        "reserved_gpu": reserved_gpu,
         "t1_bhuman_contracts": {
             "walk": "365→14",
             "kick": "62→14",
@@ -723,6 +776,8 @@ def main() -> int:
         "reproduce_this_gate": [
             "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
             "bash bhuman/k1-training/scripts/run_contract_gate.sh",
+            "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+            "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
 
@@ -737,8 +792,9 @@ def main() -> int:
 
     print(f"[verdict] {verdict}")
     print(
-        "[k1] walk 344→13 | kick 59→13 | standup 73→22 | fast_standup 72→22 (deploy)"
+        "[k1] baseline walk 344→13 | kick 59→13 | standup 73→22 | fast_standup 72→22 (deploy)"
     )
+    print("[k1] parallel stub K1_Reactive 64→15 (not registered, not trainable)")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

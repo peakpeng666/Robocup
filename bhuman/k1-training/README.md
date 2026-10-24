@@ -84,6 +84,15 @@ v2 只保存 tensors 和 Python 基本类型，始终使用 `weights_only=True`�
 
 环境在恢复进程中重新创建并 reset；没有保存 PhysX 内部状态、全部课程/环境状态，不承诺逐步轨迹完全一致。
 
+## 基线与平行技能
+
+运控基线是本目录 `src/IsaacGymRL` 的官方 walk/kick/standup（**344→13 / 59→13 / 73→22**）。不要改这些维。火神式反应技能的设计骨架在旁路 [k1-reactive/](k1-reactive/README.md)，未注册进 `train.py`。有 GPU 后的 P1 命令与 Zenodo 本地步骤见 [NEXT-P1-P2.md](../docs/NEXT-P1-P2.md)。无 worker 时：
+
+```bash
+bash scripts/run_contract_gate.sh
+bash scripts/probe_reserved_gpu.sh
+```
+
 ## 下一阶段
 
 结合新调研资料，先补齐生产观测对照、普通起身到行走切换和 reset 时序验证，再在 64 env 上做有界试训，并用固定留出种子独立评估。保留公开 actor 作为同条件对照；检查参考动作完成、结束前严格站稳、跌倒姿态、超调持续时间及扰动强度，不用训练奖励代替这些指标。弱项包括后起身关键帧 5、持续站定和持续外力。完整顺序、工具复用和验收标准见 [研究成果接入方案](/home/peakpeng/Desktop/Robocup/bhuman/k1-training/experiments/RESEARCH-INTEGRATION-20261019.md)；原研究资料已保存至 [资料目录](/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019/README.md)。
