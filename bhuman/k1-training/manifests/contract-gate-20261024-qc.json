@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:44:10+00:00",
+  "generated_utc": "2026-10-24T07:45:49+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -1228,7 +1228,7 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:44:09+00:00",
+    "generated_utc": "2026-10-24T07:45:48+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1306,7 +1306,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "af00932a154cd187c0a7717f4c2c16baf30972da",
+    "workspace_head": "628a131e65ee4fadad8c86f5b7f8ee85f4a94054",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
