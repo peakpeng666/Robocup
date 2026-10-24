@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:25:13+00:00",
+  "generated_utc": "2026-10-24T07:28:49+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -38,7 +38,10 @@
     "gpu_worker_checklist": "probe JSON; missing items; never train.py",
     "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
     "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
-    "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk"
+    "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
+    "joint_map_contract": "walk 13-D legs+freq; refuse 12/15/22; standup ≠ walk",
+    "p1_draft_diff": "official stability vs draft-only; draft_only:true; live untouched",
+    "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -119,6 +122,9 @@
       "K1 reward read-only audit (no yaml write-back) present",
       "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
       "research-inputs / GLOBAL short migrate table present",
+      "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
+      "official vs draft-only key diff (draft_only:true; live untouched) present",
+      "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -279,6 +285,7 @@
         "bhuman/docs/P5-PREVIEW.md: required anchors present",
         "bhuman/docs/README-RL.md: required anchors present",
         "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
+        "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -677,15 +684,17 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 27 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 30 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_deploy_call.py",
         "PASS test_gpu_worker_checklist.py",
         "PASS test_history_buffer_shape.py",
+        "PASS test_joint_map_contract.py",
         "PASS test_k1_reward_audit.py",
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
+        "PASS test_p1_draft_diff.py",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
@@ -695,6 +704,7 @@
         "PASS test_hifar_boundary.py",
         "PASS test_migrate_table.py",
         "PASS test_obs_schema.py",
+        "PASS test_pr4_merge_checklist.py",
         "PASS test_reactive_hardening.py",
         "PASS test_research_migrate_table.py",
         "PASS test_skill_switch_continuity.py",
@@ -730,11 +740,19 @@
           "status": "PASS"
         },
         {
+          "name": "test_joint_map_contract.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_k1_reward_audit.py",
           "status": "PASS"
         },
         {
           "name": "test_onnx_export_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_p1_draft_diff.py",
           "status": "PASS"
         },
         {
@@ -771,6 +789,10 @@
         },
         {
           "name": "test_obs_schema.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_pr4_merge_checklist.py",
           "status": "PASS"
         },
         {
@@ -824,8 +846,10 @@
         "test_deploy_call.py",
         "test_gpu_worker_checklist.py",
         "test_history_buffer_shape.py",
+        "test_joint_map_contract.py",
         "test_k1_reward_audit.py",
         "test_onnx_export_contract.py",
+        "test_p1_draft_diff.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
@@ -835,6 +859,7 @@
         "test_hifar_boundary.py",
         "test_migrate_table.py",
         "test_obs_schema.py",
+        "test_pr4_merge_checklist.py",
         "test_reactive_hardening.py",
         "test_research_migrate_table.py",
         "test_skill_switch_continuity.py",
@@ -951,10 +976,67 @@
         "official walk still 344→13 (table is docs-only)"
       ],
       "walk": "344→13"
+    },
+    "joint_map_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "official extract: 13-D walk map",
+        "WalkingEngine boosterJoints + gait_frequency; K1.yaml unread-write",
+        "walk action map length 13 (12 legs + gait_frequency)",
+        "negative: length 12 refused",
+        "negative: length 15 refused",
+        "negative: length 22 refused",
+        "negative: 12-leg list refused (missing gait_frequency)",
+        "negative: standup 22-D must not impersonate walk action map",
+        "negative: standup prefix 13 refused",
+        "negative: standup skill 22 refused as walk map",
+        "negative: reactive 15 refused",
+        "kick 59→13 shared exit: only act=13 checked",
+        "negative: kick exit ≠13 refused",
+        "official K1.yaml untouched (read-only extract)"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "p1_draft_diff": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "live snapshot: draft_only:true and live paths untouched",
+        "official stability / K1.yaml listed separately from draft-only",
+        "proposed still_proportion / penalty anneal not applied live",
+        "negative: draft without draft_only:true refused",
+        "write-back API refused",
+        "drafts draft_only=true: ['walk-p1-factors-v0.json']",
+        "live paths untouched (K1.yaml + official stability-v1)",
+        "K1.yaml live rewards / dims untouched",
+        "walk-reference-stability-v1.json has no draft-only import",
+        "walk-critic-stability-v1.json has no draft-only import",
+        "official reference_mean_penalty stays 1.0",
+        "write-back of K1.yaml refused",
+        "K1.yaml sha256 unchanged (read-only)",
+        "wrote bhuman/k1-training/manifests/p1-draft-diff-latest.json",
+        "wrote manifests/p1-draft-diff-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "pr4_merge_checklist": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "PR4-MERGE-CHECKLIST.md anchors present",
+        "official walk still 344→13 (checklist is docs-only)"
+      ],
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:25:12+00:00",
+    "generated_utc": "2026-10-24T07:28:48+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1032,7 +1114,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "13bbda4d51c92abb61feedea910df1b096e03dc2",
+    "workspace_head": "31190acb1767cd91e9a3a690b69a333c83cafc43",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1454,6 +1536,9 @@
     "K1 reward read-only audit (no yaml write-back) present",
     "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
     "research-inputs / GLOBAL short migrate table present",
+    "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
+    "official vs draft-only key diff (draft_only:true; live untouched) present",
+    "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1499,6 +1584,7 @@
     "bhuman/docs/P5-PREVIEW.md: required anchors present",
     "bhuman/docs/README-RL.md: required anchors present",
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
+    "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -1749,15 +1835,17 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 27 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 30 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_deploy_call.py",
     "PASS test_gpu_worker_checklist.py",
     "PASS test_history_buffer_shape.py",
+    "PASS test_joint_map_contract.py",
     "PASS test_k1_reward_audit.py",
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
+    "PASS test_p1_draft_diff.py",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
@@ -1767,6 +1855,7 @@
     "PASS test_hifar_boundary.py",
     "PASS test_migrate_table.py",
     "PASS test_obs_schema.py",
+    "PASS test_pr4_merge_checklist.py",
     "PASS test_reactive_hardening.py",
     "PASS test_research_migrate_table.py",
     "PASS test_skill_switch_continuity.py",
@@ -1834,6 +1923,38 @@
     "research-inputs files: ['environment-audit-pasted.txt', 'research-pasted.txt']",
     "every research-inputs file is cited",
     "official walk still 344→13 (table is docs-only)",
+    "official extract: 13-D walk map",
+    "WalkingEngine boosterJoints + gait_frequency; K1.yaml unread-write",
+    "walk action map length 13 (12 legs + gait_frequency)",
+    "negative: length 12 refused",
+    "negative: length 15 refused",
+    "negative: length 22 refused",
+    "negative: 12-leg list refused (missing gait_frequency)",
+    "negative: standup 22-D must not impersonate walk action map",
+    "negative: standup prefix 13 refused",
+    "negative: standup skill 22 refused as walk map",
+    "negative: reactive 15 refused",
+    "kick 59→13 shared exit: only act=13 checked",
+    "negative: kick exit ≠13 refused",
+    "official K1.yaml untouched (read-only extract)",
+    "live snapshot: draft_only:true and live paths untouched",
+    "official stability / K1.yaml listed separately from draft-only",
+    "proposed still_proportion / penalty anneal not applied live",
+    "negative: draft without draft_only:true refused",
+    "write-back API refused",
+    "drafts draft_only=true: ['walk-p1-factors-v0.json']",
+    "live paths untouched (K1.yaml + official stability-v1)",
+    "K1.yaml live rewards / dims untouched",
+    "walk-reference-stability-v1.json has no draft-only import",
+    "walk-critic-stability-v1.json has no draft-only import",
+    "official reference_mean_penalty stays 1.0",
+    "write-back of K1.yaml refused",
+    "K1.yaml sha256 unchanged (read-only)",
+    "wrote bhuman/k1-training/manifests/p1-draft-diff-latest.json",
+    "wrote manifests/p1-draft-diff-latest.json",
+    "official K1.yaml untouched",
+    "PR4-MERGE-CHECKLIST.md anchors present",
+    "official walk still 344→13 (checklist is docs-only)",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -1874,6 +1995,9 @@
     "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
     "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
     "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+    "python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+    "python3 bhuman/k1-training/scripts/p1_draft_diff.py",
+    "python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
