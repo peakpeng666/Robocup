@@ -182,6 +182,8 @@ REQUIRED_LANDINGS = (
     "fast_standup_isolation.py",
     "getup_walk_handoff_chain.py",
     "upload_run_artifacts.py",
+    "skill_behavior_write_chain.py",
+    "pr4_index_nav.py",
     "LOCAL-RUN-ARTIFACTS.md",
 )
 

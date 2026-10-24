@@ -45,7 +45,9 @@ WalkPhase 延续 vs 新建 reset：`scripts/walk_phase_reset_allowlist.py`（仅
 standup 调用点维数：`scripts/standup_policy_apply_dims.py`（常规 GetUp `policy.apply()` **73→22** / `K1.onnx`；进入 = fallen+(fall|playDead)；≠ walk 344）。  
 fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.apply()` **72→22** / `K1_fast_standup.onnx`；≠ 常规 73 / Isaac）。  
 GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen→`createPhase`→standup/fast apply→Force walk afterwards→walkPolicy **344→13**）。  
-本地产物即推 GitHub：`scripts/upload_run_artifacts.py`（`TRAINABLE=false`；dry-run；不自动开训）。
+本地产物即推 GitHub：`scripts/upload_run_artifacts.py`（`TRAINABLE=false`；dry-run；不自动开训）。  
+SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 SkillRequest 无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空行为仍 walk **344→13**）。  
+PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py`（walk/kick/standup/handoff/artifacts/GAP；**status=GAP** / **gap_closed=false**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

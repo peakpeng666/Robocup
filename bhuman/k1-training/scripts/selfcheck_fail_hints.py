@@ -240,6 +240,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/upload_run_artifacts.py",
         "hint": "先看上传脚手架是否仍是 TRAINABLE=false / dry-run，而不是自动开训或把产物只留本地",
     },
+    "test_skill_behavior_write_chain.py": {
+        "look": "bhuman/k1-training/scripts/skill_behavior_write_chain.py",
+        "hint": "先看官方 SkillRequest 是否仍无 want_kick、拦截写入是否仍默认 false 走 walk，以及空行为是否仍是 walk 344→13",
+    },
+    "test_pr4_index_nav.py": {
+        "look": "bhuman/k1-training/scripts/pr4_index_nav.py",
+        "hint": "先看 PR4-INDEX 分组导航是否仍链到最新 manifests，以及 walk↔kick GAP 是否仍标 status=GAP / gap_closed=false",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

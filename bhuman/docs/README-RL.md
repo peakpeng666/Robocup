@@ -44,7 +44,7 @@
 | research-inputs 短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | 可旁路借鉴 ≠ 换 walk |
 | 13-DOF 关节图 | `k1-switcher/joint_map_contract.py` | 长度 13；standup 22 ≠ walk |
 | 官方 vs draft 差分 | `scripts/p1_draft_diff.py` | `draft_only:true`；未写进 live |
-| 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；审纪律不是曲线；约 190+ 文件、无权重 |
+| 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；审纪律不是曲线；约 335 文件 / +191k、无权重 |
 | gait_frequency 第 13 维 | `k1-switcher/gait_frequency_contract.py` | action[12] = 步频，≠ 电机 |
 | boosterJoints 快照 | `scripts/booster_joints_snapshot.py` | 12 腿 + gait_frequency；缺源 SKIP |
 | 全量自检 | `scripts/run_pr4_selfcheck.sh` | 一行：344→13 / TRAINABLE=false / ready_gpu |
@@ -106,6 +106,8 @@
 | fast standup 隔离 | `scripts/fast_standup_isolation.py` | fast 72→22 / K1_fast_standup.onnx；≠ 常规 73 / Isaac |
 | GetUp→walk 交接链 | `scripts/getup_walk_handoff_chain.py` | fallen→createPhase→apply→force-walk→walk 344→13 |
 | 本地产物即推 | `scripts/upload_run_artifacts.py` | 本机产物即上传 `artifacts/<run-id>/`；LFS/Release；不自动开训 |
+| SkillBehaviorControl 写入链 | `scripts/skill_behavior_write_chain.py` | 官方无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空=walk **344→13** |
+| PR 分组导航 / 体积 | `scripts/pr4_index_nav.py` | walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；GAP 仍开 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

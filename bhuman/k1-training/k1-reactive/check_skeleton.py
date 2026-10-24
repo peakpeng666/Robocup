@@ -539,6 +539,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "local artifact upload scaffold (dry-run; TRAINABLE=false; no train.py)",
         ),
         (
+            "bhuman/k1-training/scripts/skill_behavior_write_chain.py",
+            "SkillBehaviorControl write chain (want_kick deploy-only; intercept false; empty=walk 344→13)",
+        ),
+        (
+            "bhuman/k1-training/scripts/pr4_index_nav.py",
+            "PR4-INDEX grouped nav + volume health (GAP open; no large binaries)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

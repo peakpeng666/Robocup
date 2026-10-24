@@ -103,6 +103,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "force_walk_lands_on_kick",
         "standup_handoff_as_walk_344_obs",
         "local_artifacts_kept_without_upload_policy",
+        "want_kick_default_true",
+        "intercept_info_writes_kick_policy",
+        "behavior_empty_as_kick",
+        "pr_index_claims_gap_closed",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -133,7 +137,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "fast-as-regular-standup / getup-as-hot-swap-train / "
             "standup-onnx-as-kick-slot / getup-skips-force-walk / "
             "force-walk-lands-on-kick / standup-handoff-as-walk-344-obs / "
-            "local-artifacts-kept-without-upload-policy"
+            "local-artifacts-kept-without-upload-policy / "
+            "want-kick-default-true / intercept-info-writes-kick-policy / "
+            "behavior-empty-as-kick / pr-index-claims-gap-closed"
         )
 
     try:

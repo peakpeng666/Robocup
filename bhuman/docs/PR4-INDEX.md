@@ -44,6 +44,67 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 ---
 
+## 1.5 分组导航（最新 manifests）
+
+按 **walk / kick / standup / handoff / artifacts / GAP** 跳到本轮合同快照。默认入口仍是官方 walk **344→13**。  
+`walk↔kick` history **status=GAP** / **gap_closed=false**（**仍未闭合**；仅 draft）。机器校验：`scripts/pr4_index_nav.py`。
+
+### walk
+
+| 合同 | 最新 manifest |
+|---|---|
+| walk 调用点 344→13 | [walk-policy-apply-dims-latest.json](../k1-training/manifests/walk-policy-apply-dims-latest.json) |
+| 剩余 walk-stay | [walk-stay-remaining-latest.json](../k1-training/manifests/walk-stay-remaining-latest.json) |
+| walkingEngine.cfg | [walking-engine-cfg-audit-latest.json](../k1-training/manifests/walking-engine-cfg-audit-latest.json) |
+| ballNetwork 开关 | [ball-network-active-latest.json](../k1-training/manifests/ball-network-active-latest.json) |
+| 拦截/避障旁路 | [intercept-avoid-bypass-latest.json](../k1-training/manifests/intercept-avoid-bypass-latest.json) |
+| BehaviorControl 写入链 | [skill-behavior-write-chain-latest.json](../k1-training/manifests/skill-behavior-write-chain-latest.json) |
+
+### kick
+
+| 合同 | 最新 manifest |
+|---|---|
+| kick 调用点 59→13 | [kick-policy-apply-dims-latest.json](../k1-training/manifests/kick-policy-apply-dims-latest.json) |
+| KickEngine 边界 | [kick-engine-boundary-latest.json](../k1-training/manifests/kick-engine-boundary-latest.json) |
+| kick ONNX 命名 | [kick-onnx-naming-latest.json](../k1-training/manifests/kick-onnx-naming-latest.json) |
+| walkPolicy / kickPolicy 槽 | [walk-kick-policy-switch-latest.json](../k1-training/manifests/walk-kick-policy-switch-latest.json) |
+
+### standup
+
+| 合同 | 最新 manifest |
+|---|---|
+| 常规 GetUp 73→22 | [standup-policy-apply-dims-latest.json](../k1-training/manifests/standup-policy-apply-dims-latest.json) |
+| fast 72→22 隔离 | [fast-standup-isolation-latest.json](../k1-training/manifests/fast-standup-isolation-latest.json) |
+| getUpEngine.cfg | [getup-engine-cfg-audit-latest.json](../k1-training/manifests/getup-engine-cfg-audit-latest.json) |
+
+### handoff
+
+| 合同 | 最新 manifest |
+|---|---|
+| GetUp→walk 端到端 | [getup-walk-handoff-chain-latest.json](../k1-training/manifests/getup-walk-handoff-chain-latest.json) |
+| Force walk afterwards | [force-walk-afterwards-latest.json](../k1-training/manifests/force-walk-afterwards-latest.json) |
+| FallDown 跌倒链 | [falldown-motion-chain-latest.json](../k1-training/manifests/falldown-motion-chain-latest.json) |
+
+### artifacts
+
+| 合同 | 最新 manifest |
+|---|---|
+| 本机产物即推 | [upload-run-artifacts-latest.json](../k1-training/manifests/upload-run-artifacts-latest.json) |
+| 人读政策 | [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md) |
+
+### GAP
+
+| 合同 | 最新 manifest |
+|---|---|
+| walk↔kick history GAP | [policy-switch-history-gap-latest.json](../k1-training/manifests/policy-switch-history-gap-latest.json) |
+| last_action 缓冲 GAP | [policy-switch-last-action-latest.json](../k1-training/manifests/policy-switch-last-action-latest.json) |
+| WalkPhase reset 允许集 | [walk-phase-reset-allowlist-latest.json](../k1-training/manifests/walk-phase-reset-allowlist-latest.json) |
+| 人读 GAP | [POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md) |
+
+**status=GAP** / **gap_closed=false**。`resetHistoryData` 仅 draft；**仍未闭合**。索引不得写成已闭合。
+
+---
+
 ## 2. 官方 B-Human 基线（只读，本 PR 不改）
 
 这些是底座。门禁只核验维数与路径，**不改 YAML 奖励、不改观测维、不换官方 actor**。
@@ -166,6 +227,8 @@ scripts/
 ├── fast_standup_isolation.py    fast 72→22 / K1_fast_standup.onnx；≠ 常规 73 / Isaac
 ├── getup_walk_handoff_chain.py  fallen→createPhase→apply→force-walk→walk 344→13
 ├── upload_run_artifacts.py/.sh  本机产物即推 artifacts/<run-id>/；dry-run；不自动开训
+├── skill_behavior_write_chain.py SkillBehaviorControl 写入链：want_kick 部署口；拦截默认 false；空=walk
+├── pr4_index_nav.py             分组导航 + 体积健康；GAP 仍开；不删合同脚本
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -251,6 +314,8 @@ k1-switcher/
 ├── test_fast_standup_isolation.py
 ├── test_getup_walk_handoff_chain.py
 ├── test_upload_run_artifacts.py
+├── test_skill_behavior_write_chain.py
+├── test_pr4_index_nav.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -349,7 +414,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-wbuf.json   上轮（walk 调用点 344→13 + walk↔kick last_action GAP）
 ├── contract-gate-20261024-hgap.json   上轮（history GAP 清单 + WalkPhase reset 允许集；GAP 仍开）
 ├── contract-gate-20261024-sapp.json   上轮（standup 调用点 73→22 + fast 隔离 72→22）
-├── contract-gate-20261024-e2e.json    本轮（GetUp→walk 交接链 + 本地产物即推）
+├── contract-gate-20261024-e2e.json    上轮（GetUp→walk 交接链 + 本地产物即推）
+├── contract-gate-20261024-sbc.json    本轮（SkillBehaviorControl 写入链 + PR 索引分组/体积）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -400,6 +466,8 @@ k1-training/manifests/
 ├── fast-standup-isolation-latest.json    fast 72→22 / K1_fast_standup.onnx；≠ 常规 73
 ├── getup-walk-handoff-chain-latest.json  fallen→GetUp→force-walk→walk 344→13
 ├── upload-run-artifacts-latest.json      上传脚手架 dry-run；TRAINABLE=false
+├── skill-behavior-write-chain-latest.json want_kick 部署口默认 false；拦截默认 false；空=walk
+├── pr4-index-nav-latest.json            分组导航 + 体积健康；status=GAP / gap_closed=false
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -503,6 +571,8 @@ k1-training/manifests/
 | fast standup 隔离 | `fast_standup_isolation.py` | fast `policyFast.apply()` 72→22 / `K1_fast_standup.onnx`；≠ 常规 73 / walk / Isaac；Simulated 强制 `fastActive=false` |
 | GetUp→walk 端到端交接链 | `getup_walk_handoff_chain.py` | fallen→createPhase→standup/fast apply→Force walk afterwards→walk 344→13；跳步 / 进错网 FAIL |
 | 本地产物即推 GitHub | `upload_run_artifacts.py` + [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md) | 本机只留当前 run；产物即上传 `artifacts/<run-id>/`；LFS/Release；不自动开训 |
+| SkillBehaviorControl 写入链 | `skill_behavior_write_chain.py` | 官方 SkillRequest 无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空行为=walk **344→13** |
+| PR 分组导航 / 体积健康 | `pr4_index_nav.py` + 本页 §1.5 / §6 | walk/kick/standup/handoff/artifacts/GAP 链到最新 manifests；~+191k/335 files；勿再塞大二进制 |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
@@ -518,3 +588,21 @@ k1-training/manifests/
 - 权重 / ONNX / Zenodo `code.zip` / 大 PDF。
 - `origin/research` 的 `research/02`、`research/06`（见 [RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)）。
 - 真机、`booster_deploy`、固件、Isaac Gym 自动训练。
+
+---
+
+## 6. 体积健康（勿再塞大二进制）
+
+相对 `main` 当前约 **335** files / **+191k** insertions（`git diff --shortstat origin/main...HEAD`：335 files changed, 191077 insertions）。  
+性质仍是文档 + 纯 Python 合同 + JSON manifest，**不是**训练曲线、不是权重。
+
+**LFS 候选（巨型文件走 Git LFS 或 Release，不要静默进 PR #4）：** `.onnx` / `.pth` / `.zip` / 大二进制；本机 run 产物见 [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md) `artifacts/<run-id>/`。
+
+纪律：
+
+- **勿再塞大二进制** 进本 PR。
+- **不删合同脚本** 来「瘦身」。
+- **不 force-push**、**不改历史**。
+- 审的是默认 walk **344→13** 是否守住，不是行数。
+
+机器校验：`scripts/pr4_index_nav.py`（分组导航 + 体积针脚 + **status=GAP** / **gap_closed=false**）。

@@ -1,0 +1,119 @@
+{
+  "generated_utc": "2026-10-24T10:41:27+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "write_sites": [
+    {
+      "id": "want_kick_not_in_skill_request",
+      "source": "SkillRequest.h",
+      "official_field": null,
+      "official_default_skill": "none",
+      "deploy_port": "SkillSelectContext.want_kick",
+      "deploy_default": false,
+      "see": "bt_skill_select.py / skill_request_map.py"
+    },
+    {
+      "id": "official_playball_pose_not_kick_policy",
+      "source": "SkillBehaviorControl.cpp → PlayBall → WalkToBallAndKick / Dribble",
+      "writes": "MotionRequest.motion",
+      "values": [
+        "walkToBallAndKick",
+        "dribble"
+      ],
+      "not": "kickPolicy",
+      "see": "kick_policy_apply_dims.py"
+    },
+    {
+      "id": "intercept_info_to_motion_request",
+      "source": "SkillBehaviorControl.cpp",
+      "from": "InterceptBallInformation.intercept",
+      "to": "MotionRequest.shouldInterceptBall",
+      "default": false,
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "see": "intercept_avoid_bypass.py"
+    },
+    {
+      "id": "empty_skill_stays_walk",
+      "source": "SkillRequest::none / Builder::empty",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not": "kick",
+      "see": "walk_stay_remaining.py"
+    }
+  ],
+  "sources": {
+    "skill_request_h": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.h",
+    "skill_request_cpp": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.cpp",
+    "skill_behavior": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/SkillBehaviorControl.cpp",
+    "intercept_h": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/InterceptBallInformation.h",
+    "intercept_provider": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/InterceptBallInformationProvider/InterceptBallInformationProvider.cpp",
+    "motion_request": "bhuman/BHumanCodeRelease/Src/Representations/MotionControl/MotionRequest.h",
+    "walk_to_ball_and_kick": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/WalkToBallAndKick.cpp",
+    "dribble": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/Dribble.cpp",
+    "playball": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp",
+    "bt_skill_select": "bhuman/k1-training/k1-reactive/bt_skill_select.py"
+  },
+  "want_kick": {
+    "official_skill_request_field": false,
+    "official_default_skill": "none",
+    "builder_empty": "SkillRequest()",
+    "deploy_port": "SkillSelectContext.want_kick",
+    "deploy_default": false,
+    "official_playball_writes": "MotionRequest.motion pose (walkToBallAndKick / dribble)",
+    "official_playball_writes_kick_policy": false,
+    "kick_59_13_requires": "deploy want_kick + motion∈{dribble, walkToBallAndKick}"
+  },
+  "intercept": {
+    "info_defaults": {
+      "intercept": false,
+      "walkOutOfBallPath": false
+    },
+    "motion_request_default": false,
+    "write": "SkillBehaviorControl.cpp: theMotionRequest.shouldInterceptBall = theInterceptBallInformation.intercept && !remoteControlActive",
+    "provider_early_out_writes_false": true,
+    "provider_needles": [
+      "theInterceptBallInformation.intercept = false",
+      "theInterceptBallInformation.walkOutOfBallPath = false"
+    ],
+    "selects": "walkPolicy",
+    "contract": "344→13",
+    "writes_kick_policy": false
+  },
+  "empty_behavior": {
+    "skill_request": "none",
+    "executeRequest": "announce empty; no kick write",
+    "selects": "walkPolicy",
+    "contract": "344→13"
+  },
+  "siblings_referenced_not_reaudited": [
+    "walk_stay_remaining.py",
+    "intercept_avoid_bypass.py",
+    "ball_network_active.py",
+    "kick_policy_apply_dims.py",
+    "behavior_control_handoff.py",
+    "skill_request_map.py",
+    "bt_skill_select.py"
+  ],
+  "want_kick_default": false,
+  "intercept_writes_kick_policy": false,
+  "behavior_empty_as_kick": false,
+  "walk_kick_gap_closed": false,
+  "cross": {
+    "empty_skill_request": "walk",
+    "empty_bt": "walk",
+    "none": "walk",
+    "shoot_without_want_kick": "walk",
+    "deploy_want_kick": "kick"
+  },
+  "fabricated": false,
+  "note": "BehaviorControl write chain: official SkillRequest has no want_kick; deploy SkillSelectContext.want_kick defaults false; intercept copy stays walk-family default false; empty/default skill stays walk 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -97,6 +97,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -198,6 +200,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -292,6 +296,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation.py",
         "getup_walk_handoff_chain.py",
         "upload_run_artifacts.py",
+        "skill_behavior_write_chain.py",
+        "pr4_index_nav.py",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
@@ -303,6 +309,7 @@ REQUIRED_DOCS = {
         "skill_request_map",
         "SkillRequest",
         "behavior_control_handoff",
+        "skill_behavior_write_chain",
         "falldown_motion_chain",
         "force_walk_afterwards",
         "walking_engine_cfg_audit",
@@ -377,6 +384,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -472,6 +481,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -551,6 +562,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -678,6 +691,8 @@ REQUIRED_DOCS = {
         "fast_standup_isolation",
         "getup_walk_handoff_chain",
         "upload_run_artifacts",
+        "skill_behavior_write_chain",
+        "pr4_index_nav",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (

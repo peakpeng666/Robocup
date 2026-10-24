@@ -420,6 +420,8 @@ standup 调用点维数：`scripts/standup_policy_apply_dims.py`（常规 GetUp 
 fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.apply()` **72→22** / `K1_fast_standup.onnx`；≠ 常规 73 / walk / kick / Isaac；Simulated 强制 `fastActive=false`）。  
 GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen→`createPhase`→standup/fast apply→Force walk afterwards→walkPolicy **344→13**；跳步 / 进错网 FAIL）。  
 本地产物即推 GitHub：`scripts/upload_run_artifacts.py` + [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md)（本机只留当前 run；产物即上传；`TRAINABLE=false`；不自动开训）。  
+SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 `SkillRequest.h` 无 `want_kick`；部署口 `SkillSelectContext.want_kick` 默认 false；`InterceptBallInformation` → `shouldInterceptBall` 默认 false 仍 walkPolicy **344→13**；空 `SkillRequest::none` 仍 walk，不是 kick）。  
+PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py` + [PR4-INDEX.md](PR4-INDEX.md)（walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；勿再塞大二进制；**status=GAP** / **gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

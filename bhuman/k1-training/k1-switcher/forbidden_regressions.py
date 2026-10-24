@@ -27,7 +27,9 @@ fast as regular standup, GetUp as hot-swap train,
 standup ONNX as kick slot,
 GetUp skips Force walk, Force walk lands on kick,
 standup handoff as walk 344 obs,
-local artifacts kept without upload policy.
+local artifacts kept without upload policy,
+want_kick default true, intercept info writes kickPolicy,
+behavior empty as kick, PR index claims GAP closed.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -103,6 +105,12 @@ from getup_walk_handoff_chain import (  # noqa: E402
 from upload_run_artifacts import (  # noqa: E402
     refuse_local_artifacts_kept_without_upload_policy,
 )
+from skill_behavior_write_chain import (  # noqa: E402
+    refuse_behavior_empty_as_kick,
+    refuse_intercept_info_writes_kick_policy,
+    refuse_want_kick_default_true,
+)
+from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
 )
@@ -612,6 +620,44 @@ def _case_local_artifacts_kept_without_upload_policy() -> None:
     )
 
 
+def _case_want_kick_default_true() -> None:
+    refuse_want_kick_default_true(
+        {
+            "want_kick_default_true": True,
+            "default_want_kick": True,
+        }
+    )
+
+
+def _case_intercept_info_writes_kick_policy() -> None:
+    refuse_intercept_info_writes_kick_policy(
+        {
+            "intercept_info_writes_kick_policy": True,
+            "source": "InterceptBallInformation",
+            "selects": "kickPolicy",
+        }
+    )
+
+
+def _case_behavior_empty_as_kick() -> None:
+    refuse_behavior_empty_as_kick(
+        {
+            "behavior_empty_as_kick": True,
+            "source": "SkillRequest::none",
+            "skill": "kick",
+        }
+    )
+
+
+def _case_pr_index_claims_gap_closed() -> None:
+    refuse_pr_index_claims_gap_closed(
+        {
+            "pr_index_claims_gap_closed": True,
+            "gap_closed": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -674,6 +720,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("force_walk_lands_on_kick", _case_force_walk_lands_on_kick),
     ("standup_handoff_as_walk_344_obs", _case_standup_handoff_as_walk_344_obs),
     ("local_artifacts_kept_without_upload_policy", _case_local_artifacts_kept_without_upload_policy),
+    ("want_kick_default_true", _case_want_kick_default_true),
+    ("intercept_info_writes_kick_policy", _case_intercept_info_writes_kick_policy),
+    ("behavior_empty_as_kick", _case_behavior_empty_as_kick),
+    ("pr_index_claims_gap_closed", _case_pr_index_claims_gap_closed),
 )
 
 

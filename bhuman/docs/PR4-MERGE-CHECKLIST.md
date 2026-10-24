@@ -56,7 +56,7 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 ## 4. PR 体积健康（审纪律，不是性能曲线）
 
-截至 2026-10-24，相对 `main` 约 **190+** 个文件、**0** 个 `.pth` / `.onnx` / ZIP。性质是文档（md）+ 纯 Python 合同 / 负例 + 生成的 JSON manifest，**不是**训练曲线、不是权重、不是性能数字。
+截至 2026-10-24，相对 `main` 约 **335** 个文件 / **+191k** insertions、**0** 个 `.pth` / `.onnx` / ZIP。性质是文档（md）+ 纯 Python 合同 / 负例 + 生成的 JSON manifest，**不是**训练曲线、不是权重、不是性能数字。**勿再塞大二进制**；巨型文件走 Git LFS 或 Release。**不 force-push、不改历史、不删合同脚本。** 分组导航见 [PR4-INDEX.md](PR4-INDEX.md) §1.5。
 
 审的是：默认 walk **344→13** 是否守住、T1 是否冒充 K1、负例沉默是否会红、缺依赖是否诚实 SKIP。**不要删文件、不要大重构**来「瘦身」——体积来自合同快照，不是实现膨胀。
 
