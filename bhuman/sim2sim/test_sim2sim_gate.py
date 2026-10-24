@@ -20,6 +20,7 @@ from check_sim2sim_gate import (  # noqa: E402
     refuse_pd_claim,
     run as gate_run,
 )
+from test_recorded_result import run as recorded_result_regressions  # noqa: E402
 
 
 def _repo() -> Path:
@@ -34,6 +35,9 @@ def run_tests(repo: Path | None = None) -> dict[str, Any]:
     report = gate_run(repo)
     errors = list(report.get("errors") or [])
     notes = list(report.get("notes") or [])
+    regressions = recorded_result_regressions(repo)
+    errors.extend(regressions["errors"])
+    notes.extend(regressions["notes"])
 
     if report.get("walk_contract") != f"{WALK_OBS}->{WALK_ACT}":
         errors.append("gate walk contract drifted off 344->13")
@@ -104,3 +108,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

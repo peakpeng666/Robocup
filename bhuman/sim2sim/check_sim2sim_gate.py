@@ -152,29 +152,60 @@ def probe_stack() -> dict[str, Any]:
 
 
 def check_recorded_result(path: Path) -> dict[str, Any]:
-    data = json.loads(path.read_text(encoding="utf-8"))
+    """Validate recorded PASS evidence, not just the presence of its fields.
+
+    Live-stack SKIP handling belongs to run(). A recorded SKIP/FAIL is never
+    successful acceptance evidence, and its original status is preserved.
+    """
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return {"path": str(path), "ok": False, "errors": [f"{path.name} unreadable result: {exc}"], "status": None}
+    if not isinstance(data, dict):
+        return {"path": str(path), "ok": False, "errors": [f"{path.name} result must be an object"], "status": None}
     errors: list[str] = []
     for key in REQUIRED_RESULT_KEYS:
         if key not in data:
             errors.append(f"{path.name} missing {key}")
+    if data.get("status") != "PASS":
+        errors.append(f"{path.name} status must be PASS, got {data.get('status')!r}")
     shape = data.get("observations_shape") or []
-    if not (isinstance(shape, list) and len(shape) == 2 and shape[1] == WALK_OBS):
-        errors.append(f"{path.name} observations_shape {shape} is not (*, 344)")
+    shape_ok = (
+        isinstance(shape, list)
+        and len(shape) == 2
+        and type(shape[0]) is int
+        and shape[0] > 0
+        and type(shape[1]) is int
+        and shape[1] == WALK_OBS
+    )
+    if not shape_ok:
+        errors.append(f"{path.name} observations_shape {shape} is not (positive count, 344)")
     else:
         refuse_foreign_policy(int(shape[1]), WALK_ACT)
-    identity = data.get("policy_identity") or {}
-    if identity.get("critic_loaded") is True:
-        errors.append("recorded run loaded critic; walk overpass must be actor-only")
+    identity = data.get("policy_identity")
+    if not isinstance(identity, dict) or identity.get("critic_loaded") is not False:
+        errors.append("recorded run must explicitly declare critic_loaded=false; walk overpass is actor-only")
     if data.get("robot_connected") is not False:
         errors.append("recorded sim2sim run must keep robot_connected=false")
-    checks = data.get("checks") or {}
+    checks = data.get("checks")
+    if not isinstance(checks, dict):
+        errors.append(f"{path.name} checks must be an object")
+        checks = {}
     for name in REQUIRED_CHECKS:
-        if name not in checks:
-            errors.append(f"{path.name} checks missing {name}")
+        if checks.get(name) is not True:
+            errors.append(f"{path.name} checks.{name} must be true")
     policy_calls = data.get("policy_calls")
     physics_steps = data.get("physics_steps")
-    if policy_calls and physics_steps and physics_steps != policy_calls * 10:
+    # JSON booleans, floats (including NaN/Infinity), and strings are not counts.
+    counts_ok = True
+    for name, value in (("policy_calls", policy_calls), ("physics_steps", physics_steps)):
+        if type(value) is not int or value <= 0:
+            errors.append(f"{path.name} {name} must be a positive integer")
+            counts_ok = False
+    if counts_ok and physics_steps != policy_calls * 10:
         errors.append("physics_steps != policy_calls * 10 (dt 0.002, decimation 10)")
+    if counts_ok and shape_ok and shape[0] != policy_calls:
+        errors.append("observations_shape[0] != policy_calls")
     launch = path.with_name("launch.json")
     if launch.is_file():
         errors.extend(_check_recorded_pd(launch))
@@ -322,3 +353,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
