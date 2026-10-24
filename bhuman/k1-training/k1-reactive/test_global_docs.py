@@ -138,6 +138,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -280,6 +282,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -415,6 +419,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix.py",
         "getup_force_walk_handoff.py",
         "standup_eval_artifact_crosscheck.py",
+        "walk_stability_preset_inventory.py",
+        "competition_walk_allowlist_tighten.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -546,6 +552,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -682,6 +690,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -805,6 +815,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -848,6 +860,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
         "run_pr4_selfcheck",
         "forbidden_regressions",
         "merge_ready=false",
@@ -989,6 +1003,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -1034,6 +1050,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -1080,6 +1098,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -1126,6 +1146,8 @@ REQUIRED_DOCS = {
         "ball_task_isolation_matrix",
         "getup_force_walk_handoff",
         "standup_eval_artifact_crosscheck",
+        "walk_stability_preset_inventory",
+        "competition_walk_allowlist_tighten",
     ),
     "bhuman/docs/OBS-ASSEMBLY-344.md": (
         "344→13",

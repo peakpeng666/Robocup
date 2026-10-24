@@ -461,6 +461,8 @@ KickEngine 请求/中止边：`scripts/kick_engine_boundary_edges.py`（request/
 球任务隔离矩阵：`scripts/ball_task_isolation_matrix.py`（`K1` / `K1_Ball` / `K1_Stand_Up` 三槽；禁跨槽接线）。  
 GetUp → Force-walk-afterwards → walk344 交接：`scripts/getup_force_walk_handoff.py`（Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；PASS ≠ field-ready standup）。  
 standup-eval 产物交叉核对：`scripts/standup_eval_artifact_crosscheck.py`（现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级）。  
+walk-stability still/speed/stand 盘点：`scripts/walk_stability_preset_inventory.py`（对照 WalkingEngine；**PASS ≠ competition-ready gait**）。  
+Competition vs Default 允许集收紧：`scripts/competition_walk_allowlist_tighten.py`（**14-key** 允许集；禁 silent Competition cfg 改写）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

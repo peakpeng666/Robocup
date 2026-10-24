@@ -72,6 +72,10 @@ GetUp → Force-walk-afterwards → walk344 交接：`scripts/getup_force_walk_h
 
 standup-eval 产物交叉核对：`scripts/standup_eval_artifact_crosscheck.py`。现有 standup_eval 产物保持 REPORT_ONLY。quality_verdict 不得单靠清单升级。缺树 SKIP 诚实。**TRAINABLE=false**。**gap_closed=false**。
 
+walk-stability still/speed/stand 盘点：`scripts/walk_stability_preset_inventory.py`。still/speed/stand 对照 WalkingEngine。walk-*-stability-v1 不得改 plant。**PASS ≠ competition-ready gait**。**TRAINABLE=false**。**gap_closed=false**。
+
+Competition vs Default 允许集收紧：`scripts/competition_walk_allowlist_tighten.py`。文档化 **14-key** 允许集。哈希钉死。禁 **silent Competition** cfg 改写。**TRAINABLE=false**。**gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

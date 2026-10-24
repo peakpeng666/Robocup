@@ -703,6 +703,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "standup-eval artifact REPORT_ONLY; checklist cannot upgrade quality_verdict",
         ),
         (
+            "bhuman/k1-training/scripts/walk_stability_preset_inventory.py",
+            "walk-stability still/speed/stand vs WalkingEngine; PASS ≠ competition-ready gait",
+        ),
+        (
+            "bhuman/k1-training/scripts/competition_walk_allowlist_tighten.py",
+            "Competition 14-key allowlist pin; silent Competition cfg edits refused",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

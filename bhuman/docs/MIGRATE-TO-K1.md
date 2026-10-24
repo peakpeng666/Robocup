@@ -163,8 +163,10 @@
 | PR 体积健康复扫 | 门禁 | `scripts/pr_volume_health_rescan.py` | **P0** | 否 | 记增长；只建议日后可压缩 stamp；**不改历史**；**不删产物** | 上轮 volume-rescan |
 | KickEngine 请求/中止边 | 门禁 | `scripts/kick_engine_boundary_edges.py` | **P0** | 否 | request/abort vs kickPolicy **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署 | 上轮 kick-engine-edges |
 | 球任务隔离矩阵 | 门禁 | `scripts/ball_task_isolation_matrix.py` | **P0** | 否 | walk **344→13** / `K1_Ball` **59→13** / `K1_Stand_Up` **73→22**；禁跨槽接线 | 上轮 ball-isolation |
-| GetUp → Force-walk 交接 | 门禁 | `scripts/getup_force_walk_handoff.py` | **P0** | 否 | Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；返回 walk **344→13**；PASS ≠ field-ready standup | **本轮 getup-handoff** |
-| standup-eval 产物交叉核对 | 门禁 | `scripts/standup_eval_artifact_crosscheck.py` | **P0** | 否 | 现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实 | **本轮 standup-eval-artifact** |
+| GetUp → Force-walk 交接 | 门禁 | `scripts/getup_force_walk_handoff.py` | **P0** | 否 | Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；返回 walk **344→13**；PASS ≠ field-ready standup | 上轮 getup-handoff |
+| standup-eval 产物交叉核对 | 门禁 | `scripts/standup_eval_artifact_crosscheck.py` | **P0** | 否 | 现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实 | 上轮 standup-eval-artifact |
+| walk-stability still/speed/stand 盘点 | 门禁 | `scripts/walk_stability_preset_inventory.py` | **P0** | 否 | still/speed/stand 对照 WalkingEngine；walk-*-stability-v1 不得改 plant；PASS ≠ competition-ready gait | **本轮 walk-stability-inventory** |
+| Competition 允许集收紧 | 门禁 | `scripts/competition_walk_allowlist_tighten.py` | **P0** | 否 | 文档化 **14-key** 允许集；哈希钉死；禁 silent Competition cfg 改写 | **本轮 competition-allowlist** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

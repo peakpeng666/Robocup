@@ -270,6 +270,12 @@ from getup_force_walk_handoff import (  # noqa: E402
 from standup_eval_artifact_crosscheck import (  # noqa: E402
     refuse_standup_eval_artifact_upgrades_quality,
 )
+from walk_stability_preset_inventory import (  # noqa: E402
+    refuse_walk_stability_pass_as_competition_ready_gait,
+)
+from competition_walk_allowlist_tighten import (  # noqa: E402
+    refuse_silent_competition_cfg_edit,
+)
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
@@ -1429,6 +1435,26 @@ def _case_standup_eval_artifact_upgrades_quality() -> None:
     )
 
 
+def _case_walk_stability_pass_as_competition_ready_gait() -> None:
+    refuse_walk_stability_pass_as_competition_ready_gait(
+        {
+            "walk_stability_pass_as_competition_ready_gait": True,
+            "as_competition_ready_gait": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_competition_cfg_edit() -> None:
+    refuse_silent_competition_cfg_edit(
+        {
+            "silent_competition_cfg_edit": True,
+            "edit_competition_cfg": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1566,6 +1592,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("ball_task_cross_slot_wiring", _case_ball_task_cross_slot_wiring),
     ("handoff_pass_as_field_ready_standup", _case_handoff_pass_as_field_ready_standup),
     ("standup_eval_artifact_upgrades_quality", _case_standup_eval_artifact_upgrades_quality),
+    ("walk_stability_pass_as_competition_ready_gait", _case_walk_stability_pass_as_competition_ready_gait),
+    ("silent_competition_cfg_edit", _case_silent_competition_cfg_edit),
 )
 
 

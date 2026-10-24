@@ -223,6 +223,8 @@ REQUIRED_LANDINGS = (
     "ball_task_isolation_matrix.py",
     "getup_force_walk_handoff.py",
     "standup_eval_artifact_crosscheck.py",
+    "walk_stability_preset_inventory.py",
+    "competition_walk_allowlist_tighten.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

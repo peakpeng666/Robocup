@@ -404,6 +404,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/standup_eval_artifact_crosscheck.py",
         "hint": "先看 standup-eval 产物是否仍 REPORT_ONLY，或清单/指针 PASS 是否被当成 quality 升级",
     },
+    "test_walk_stability_preset_inventory.py": {
+        "look": "bhuman/k1-training/scripts/walk_stability_preset_inventory.py",
+        "hint": "先看 still/speed/stand 是否仍对照 WalkingEngine，或 overlay PASS 是否被写成 competition-ready gait",
+    },
+    "test_competition_walk_allowlist_tighten.py": {
+        "look": "bhuman/k1-training/scripts/competition_walk_allowlist_tighten.py",
+        "hint": "先看 Competition 14-key 允许集 / 哈希是否漂移，或是否出现静默 Competition cfg 改写",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

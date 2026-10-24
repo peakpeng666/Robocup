@@ -65,7 +65,9 @@ PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（相对 pin 335/+1
 KickEngine 请求/中止边：`scripts/kick_engine_boundary_edges.py`（request → kickPolicy **59→13**；abort/finish → walkPolicy **344→13**；PlayBall ≠ kickPolicy；standalone KickEngine 不伪造；overlay PASS ≠ live RL kick 部署；**apply_to_live=false**；**TRAINABLE=false**；**gap_closed=false**）。  
 球任务隔离矩阵：`scripts/ball_task_isolation_matrix.py`（walk **K1_walk.onnx** **344→13** / kick `K1_Ball` **59→13** / standup **73→22** 三槽；禁跨槽接线；**TRAINABLE=false**；**gap_closed=false**）。  
 GetUp → Force-walk-afterwards → walk344 交接：`scripts/getup_force_walk_handoff.py`（Force walk afterwards 不可跳过；standup **73→22** / fast **72→22** 隔离；返回 walk **344→13**；overlay PASS ≠ field-ready standup；**TRAINABLE=false**；**gap_closed=false**）。  
-standup-eval 产物交叉核对：`scripts/standup_eval_artifact_crosscheck.py`（现有 standup_eval 产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实；**TRAINABLE=false**；**gap_closed=false**）。
+standup-eval 产物交叉核对：`scripts/standup_eval_artifact_crosscheck.py`（现有 standup_eval 产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实；**TRAINABLE=false**；**gap_closed=false**）。  
+walk-stability still/speed/stand 盘点：`scripts/walk_stability_preset_inventory.py`（still/speed/stand 对照 WalkingEngine；walk-*-stability-v1 不得改 plant；**PASS ≠ competition-ready gait**；**TRAINABLE=false**；**gap_closed=false**）。  
+Competition vs Default 允许集收紧：`scripts/competition_walk_allowlist_tighten.py`（文档化 **14-key** 允许集；哈希钉死；禁 **silent Competition** cfg 改写；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 
