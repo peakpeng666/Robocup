@@ -1,0 +1,19 @@
+{
+  "run": "20261024_233601-demo-60s",
+  "result": "PASS",
+  "purpose": "Visible on-screen demo requested by the owner: the ADAPTED variant SimRobot (bhuman-local + delay-ring + hybrid-actuator patches, hybrid mode compiled but off; official gait unchanged) running the full official K1 stack with a window on DISPLAY=:0.",
+  "command": "SimRobot Config/Scenes/K1/BHumanLocalGait.ros3 (cwd=variant-20261024_baseline), windowed, real-time pacing, BH_AUDIT=1 BH_AUDIT_STEPS=30000, BH_SIM_VIEW=RoboCup.robots.robot5",
+  "audit_lines": 751,
+  "key_observations": [
+    "Full pipeline live: camera perception (544x448, ball_status=1 when in view) -> ball estimate -> localization -> behavior -> official B-Human gait -> physics.",
+    "Robot autonomously walked to the ball (started at (-2m,0), ball at (6,4)m), reached it (~0.7 m relative) and pushed it to (7.5m,-1.1m) by ~tick 15500.",
+    "One fall occurred mid-run (fall_frames=1001); the OFFICIAL GetUpEngine recovered the robot autonomously (getup_frames=4992, ~10 s) and walking resumed. Official gait/getup behavior is unchanged by the patches.",
+    "Clean completion: AUDIT completed steps=30000 simulated_ms=60000, nonfinite_total=0 throughout, exit 0."
+  ],
+  "totals": {
+    "walk_frames": 23914,
+    "fall_frames": 1001,
+    "getup_frames": 4992,
+    "simulated_ms": 60000
+  }
+}

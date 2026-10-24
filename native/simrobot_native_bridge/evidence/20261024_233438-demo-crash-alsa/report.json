@@ -1,0 +1,6 @@
+{
+  "run": "20261024_233438-demo-crash-alsa",
+  "result": "FAIL",
+  "cause": "SIGABRT from ALSA snd_pcm_hw_refine assertion at ~tick 2000. The launcher used `env -i` (stripped environment); ALSA could not open the dmix slave and its library hit an internal assertion. Not caused by the SimRobot patches: motion/perception/cognition/localization all ran normally until the abort (walk_frames=1703, stable=1, nonfinite_total=0 before the crash).",
+  "fix": "relaunch with the normal user environment (applied in the next run)"
+}
