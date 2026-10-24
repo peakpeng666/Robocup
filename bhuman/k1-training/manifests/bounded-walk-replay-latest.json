@@ -1,0 +1,45 @@
+{
+  "generated_utc": "2026-10-24T11:00:49+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+  "limits": {
+    "task": "K1",
+    "envs_default": 4,
+    "envs_max": 256,
+    "steps_default": 500,
+    "steps_max": 1000,
+    "timeout_s": 600,
+    "vram_mib_max": 12288,
+    "runs_root": "bhuman/k1-training/runs/<stamp>_replay_K1/",
+    "artifacts_root": "bhuman/k1-training/artifacts/<run-id>/"
+  },
+  "writes": {
+    "runs": "bhuman/k1-training/runs/<stamp>_replay_K1/",
+    "upload": "bhuman/k1-training/artifacts/<run-id>/",
+    "outside_runs": false,
+    "home_scan": false
+  },
+  "will_exec_replay_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "siblings_referenced_not_reaudited": [
+    "upload_run_artifacts.py",
+    "print_train_dry_run.py",
+    "local_bh_gym_dry_run.py",
+    "managed_run.py",
+    "run_replay.sh"
+  ],
+  "walk_kick_gap_closed": false,
+  "replay_writes_outside_runs": false,
+  "fabricated": false,
+  "note": "bounded K1 replay: 4/500 default, 256/1000 cap, 600s / 12 GiB; runs/<id>/ then artifacts/<run-id>/; this pin does not play",
+  "trainable": false,
+  "auto_replay": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

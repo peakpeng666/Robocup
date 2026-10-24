@@ -71,6 +71,8 @@ NEEDLES = (
     "test_reactive_stub_hardening.py",
     "test_deploy_two_chain_sequence.py",
     "test_walk_to_ball_engine_no_onnx.py",
+    "test_local_bh_gym_dry_run.py",
+    "test_bounded_walk_replay.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

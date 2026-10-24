@@ -188,6 +188,9 @@ REQUIRED_LANDINGS = (
     "reactive_stub_hardening.py",
     "deploy_two_chain_sequence.py",
     "walk_to_ball_engine_no_onnx.py",
+    "local_bh_gym_dry_run.py",
+    "bounded_walk_replay.py",
+    "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )
 

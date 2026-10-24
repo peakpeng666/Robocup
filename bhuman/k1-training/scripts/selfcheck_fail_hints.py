@@ -264,6 +264,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
         "hint": "先看 WalkToBallAndKickEngine 是否仍只出 kickPose / 轨迹，是否意外出现 CompiledNN / .onnx / policy.apply / T1",
     },
+    "test_local_bh_gym_dry_run.py": {
+        "look": "bhuman/k1-training/scripts/local_bh_gym_dry_run.py",
+        "hint": "先看开训干跑是否仍指向 ~/.venvs/bh-gym 与 ~/Desktop/Robocup-pr4，是否自动开训，或 ready_gpu 是否在 checklist 未全真时变 true",
+    },
+    "test_bounded_walk_replay.py": {
+        "look": "bhuman/k1-training/scripts/bounded_walk_replay.py",
+        "hint": "先看 run_replay.sh K1 是否仍是 4/500 默认、256/1000 上限、600s / 12GiB，以及产物是否只进 runs/ 再推 artifacts/",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

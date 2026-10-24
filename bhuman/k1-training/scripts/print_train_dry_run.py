@@ -25,11 +25,24 @@ OFFICIAL_TASK = "K1"
 K1_YAML_REL = "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml"
 PROBE_REL = "bhuman/k1-training/scripts/probe_reserved_gpu.py"
 
+LOCAL_VENV = "~/.venvs/bh-gym"
+LOCAL_BH_PY = "$HOME/.venvs/bh-gym/bin/python"
+LOCAL_WORKTREE = "$HOME/Desktop/Robocup-pr4"
+LOCAL_LINKS = ("third_party", "downloads", "cache")
 WRAPPER_DRAFT = (
     "bash bhuman/k1-training/scripts/run_walk_stability.sh 4096 25 7 warm-start"
 )
 TRAIN_PY_DRAFT = (
     "$BH_PY bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1 "
+    "--num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 "
+    "--headless true --checkpoint <operator-local K1_walk.pth> --load_mode warm-start"
+)
+LOCAL_WRAPPER_DRAFT = (
+    f"cd {LOCAL_WORKTREE} && BH_PY={LOCAL_BH_PY} {WRAPPER_DRAFT}"
+)
+LOCAL_TRAIN_PY_DRAFT = (
+    f"cd {LOCAL_WORKTREE} && {LOCAL_BH_PY} "
+    "bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1 "
     "--num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 "
     "--headless true --checkpoint <operator-local K1_walk.pth> --load_mode warm-start"
 )
@@ -120,6 +133,12 @@ def build_dry_run(
         "banner": BANNER,
         "wrapper_draft": WRAPPER_DRAFT,
         "train_py_draft": TRAIN_PY_DRAFT,
+        "local_venv": LOCAL_VENV,
+        "local_bh_py": LOCAL_BH_PY,
+        "local_worktree": LOCAL_WORKTREE,
+        "local_links": list(LOCAL_LINKS),
+        "local_wrapper_draft": LOCAL_WRAPPER_DRAFT,
+        "local_train_py_draft": LOCAL_TRAIN_PY_DRAFT,
         "note": "干跑成功 ≠ 可训；本脚本不调用 train.py / 不启 Isaac",
     }
 
@@ -142,6 +161,9 @@ def render(report: dict[str, Any]) -> str:
             f"[dry-run] official first train stays --task {OFFICIAL_TASK} {WALK}",
             f"[draft] {report['wrapper_draft']}",
             f"[draft] {report['train_py_draft']}",
+            f"[local] venv={report.get('local_venv')} worktree={report.get('local_worktree')}",
+            f"[local] {report.get('local_wrapper_draft')}",
+            f"[local] {report.get('local_train_py_draft')}",
             "[dry-run] will_run_train_py=false will_run_isaac_gym=false",
         ]
     )

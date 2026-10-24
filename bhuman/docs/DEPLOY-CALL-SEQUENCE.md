@@ -51,7 +51,9 @@ PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py`（walk/kick/standup/
 PlayBall ≠ kickPolicy 两条链：`scripts/playball_not_kick_policy.py`（运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13**）。  
 reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true）。  
 部署双链时序：`scripts/deploy_two_chain_sequence.py`（链 A ≠ 链 B；禁止把 PlayBall 画成 kick 网；**status=GAP** / **gap_closed=false**）。  
-WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出位姿/轨迹；不 `apply()` 任何 ONNX；与 kickPolicy 槽隔离）。
+WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出位姿/轨迹；不 `apply()` 任何 ONNX；与 kickPolicy 槽隔离）。  
+本机 bh-gym 开训干跑路径：`scripts/local_bh_gym_dry_run.py`（指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**）。  
+有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

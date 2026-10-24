@@ -4,6 +4,8 @@
 
 默认 / 主路径仍是官方 B-Human walk **344→13**（`K1_walk.onnx`）。本脚手架 **TRAINABLE=false**，**不自动开训**，不调用 `train.py` / Isaac，不扫描 `$HOME`。
 
+有界 walk 回放（操作者本机才跑）：`run_replay.sh K1` 默认 4 env / 500 step，上限 256 / 1000，超时 600 s，显存 12 GiB。产物只进 `runs/<id>/`，随即归档 `artifacts/<run-id>/`。机读合同：`scripts/bounded_walk_replay.py`。开训干跑本机路径：`scripts/local_bh_gym_dry_run.py`。
+
 ---
 
 ## 1. 本机角色

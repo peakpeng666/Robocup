@@ -103,6 +103,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -210,6 +212,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -310,6 +314,9 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening.py",
         "deploy_two_chain_sequence.py",
         "walk_to_ball_engine_no_onnx.py",
+        "local_bh_gym_dry_run.py",
+        "bounded_walk_replay.py",
+        "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
@@ -405,6 +412,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -506,6 +515,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -591,6 +602,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -724,6 +737,8 @@ REQUIRED_DOCS = {
         "reactive_stub_hardening",
         "deploy_two_chain_sequence",
         "walk_to_ball_engine_no_onnx",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -735,6 +750,20 @@ REQUIRED_DOCS = {
         "upload_run_artifacts",
         "不自动开训",
         "PR #4",
+        "bounded_walk_replay",
+        "local_bh_gym_dry_run",
+        "runs/<id>",
+    ),
+    "bhuman/docs/LOCAL-BH-GYM-COMPAT.md": (
+        "344→13",
+        "TRAINABLE=false",
+        "~/.venvs/bh-gym",
+        "~/Desktop/Robocup-pr4",
+        "third_party",
+        "ready_gpu",
+        "gap_closed=false",
+        "local_bh_gym_dry_run",
+        "bounded_walk_replay",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

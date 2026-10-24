@@ -115,6 +115,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "walk_to_ball_engine_applies_onnx",
         "chain_a_equals_chain_b",
         "deploy_doc_claims_gap_closed",
+        "dry_run_auto_starts_train",
+        "ready_gpu_true_without_checklist",
+        "replay_writes_outside_runs",
+        "local_compat_doc_claims_gap_closed",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -151,7 +155,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "playball-as-kick-policy / motion-walkToBallAndKick-as-59 / "
             "reactive-as-default-walk / stub-sets-ready-gpu-true / "
             "deploy-seq-draws-playball-as-kick-net / walk-to-ball-engine-applies-onnx / "
-            "chain-a-equals-chain-b / deploy-doc-claims-gap-closed"
+            "chain-a-equals-chain-b / deploy-doc-claims-gap-closed / "
+            "dry-run-auto-starts-train / ready-gpu-true-without-checklist / "
+            "replay-writes-outside-runs / local-compat-doc-claims-gap-closed"
         )
 
     try:

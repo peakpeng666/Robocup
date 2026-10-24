@@ -33,7 +33,9 @@ behavior empty as kick, PR index claims GAP closed,
 PlayBall as kickPolicy, motion walkToBallAndKick as 59,
 reactive as default walk, stub sets ready_gpu true,
 deploy seq draws PlayBall as kick net, WalkToBallEngine applies ONNX,
-chain A equals chain B, deploy doc claims GAP closed.
+chain A equals chain B, deploy doc claims GAP closed,
+dry-run auto-starts train, ready_gpu true without checklist,
+replay writes outside runs, local compat doc claims GAP closed.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -128,6 +130,12 @@ from deploy_two_chain_sequence import (  # noqa: E402
     refuse_deploy_seq_draws_playball_as_kick_net,
 )
 from walk_to_ball_engine_no_onnx import refuse_walk_to_ball_engine_applies_onnx  # noqa: E402
+from local_bh_gym_dry_run import (  # noqa: E402
+    refuse_dry_run_auto_starts_train,
+    refuse_local_compat_doc_claims_gap_closed,
+    refuse_ready_gpu_true_without_checklist,
+)
+from bounded_walk_replay import refuse_replay_writes_outside_runs  # noqa: E402
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
@@ -755,6 +763,46 @@ def _case_deploy_doc_claims_gap_closed() -> None:
     )
 
 
+def _case_dry_run_auto_starts_train() -> None:
+    refuse_dry_run_auto_starts_train(
+        {
+            "dry_run_auto_starts_train": True,
+            "will_run_train_py": True,
+            "source": "print_train_dry_run",
+        }
+    )
+
+
+def _case_ready_gpu_true_without_checklist() -> None:
+    refuse_ready_gpu_true_without_checklist(
+        {
+            "ready_gpu_true_without_checklist": True,
+            "ready_gpu": True,
+            "missing": ["cuda"],
+            "source": "stub",
+        }
+    )
+
+
+def _case_replay_writes_outside_runs() -> None:
+    refuse_replay_writes_outside_runs(
+        {
+            "replay_writes_outside_runs": True,
+            "dest": "/tmp/replay",
+        }
+    )
+
+
+def _case_local_compat_doc_claims_gap_closed() -> None:
+    refuse_local_compat_doc_claims_gap_closed(
+        {
+            "local_compat_doc_claims_gap_closed": True,
+            "source": "LOCAL-BH-GYM-COMPAT.md",
+            "gap_closed": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -829,6 +877,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("walk_to_ball_engine_applies_onnx", _case_walk_to_ball_engine_applies_onnx),
     ("chain_a_equals_chain_b", _case_chain_a_equals_chain_b),
     ("deploy_doc_claims_gap_closed", _case_deploy_doc_claims_gap_closed),
+    ("dry_run_auto_starts_train", _case_dry_run_auto_starts_train),
+    ("ready_gpu_true_without_checklist", _case_ready_gpu_true_without_checklist),
+    ("replay_writes_outside_runs", _case_replay_writes_outside_runs),
+    ("local_compat_doc_claims_gap_closed", _case_local_compat_doc_claims_gap_closed),
 )
 
 

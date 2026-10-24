@@ -563,6 +563,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "WalkToBallAndKickEngine pose-only; no CompiledNN / ONNX / T1 apply",
         ),
         (
+            "bhuman/k1-training/scripts/local_bh_gym_dry_run.py",
+            "local RTX 5090 / bh-gym dry-run paths; print-only; ready_gpu false unless checklist",
+        ),
+        (
+            "bhuman/k1-training/scripts/bounded_walk_replay.py",
+            "bounded run_replay.sh K1: 4/500 · 256/1000 · 600s / 12GiB; runs/ → artifacts/",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),
