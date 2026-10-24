@@ -405,6 +405,8 @@ policySwitch 球距阈值：`scripts/policy_switch_threshold.py`（Default 1500/
 shiftBallPosition 边界：`scripts/shift_ball_position.py`（Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344）。  
 walkPolicy / kickPolicy 切换只读：`scripts/walk_kick_policy_switch.py`（walkPolicy **344→13** / `K1_walk.onnx`；kickPolicy **59→13** / `K1_kick_inner.onnx` 共享 walk 出口；切换只换旁路；空上下文仍 walk）。  
 maxAcceleration 差分：`scripts/max_acceleration_diff.py`（Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；≠ 换网 / 改维；y 仍 20）。  
+getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图）。  
+speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

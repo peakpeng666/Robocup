@@ -11,7 +11,8 @@ getUp overwriting walk, T1 getUp as K1, fast standup as Isaac,
 Simulated speed as closed PD, fabricated Competition getUp,
 standAnkleStiffness as closed PD, Competition diffs changing net slot,
 policySwitch as net swap, shiftBall as dim change,
-kickPolicy as default walk, maxAcc as net swap.
+kickPolicy as default walk, maxAcc as net swap,
+getNextTargetRequest as hot-swap train graph, speed gear as net swap.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -52,8 +53,10 @@ from getup_engine_cfg_audit import (  # noqa: E402
 )
 from competition_walk_diff import refuse_competition_diff_net_slot  # noqa: E402
 from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
+from get_next_target_request import refuse_getnext_as_hot_swap_train  # noqa: E402
 from max_acceleration_diff import refuse_max_acc_as_net_swap  # noqa: E402
 from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
+from speed_gear_diff import refuse_speed_gear_as_net_swap  # noqa: E402
 from shift_ball_position import refuse_shift_ball_as_dim_change  # noqa: E402
 from stand_ankle_stiffness import refuse_stand_ankle_as_pd_closed  # noqa: E402
 from walk_kick_policy_switch import refuse_kick_policy_as_default_walk  # noqa: E402
@@ -265,6 +268,26 @@ def _case_max_acc_as_net_swap() -> None:
     )
 
 
+def _case_getnext_as_hot_swap_train() -> None:
+    refuse_getnext_as_hot_swap_train(
+        {
+            "getnext_as_hot_swap_train": True,
+            "source": "getNextTargetRequest",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_speed_gear_as_net_swap() -> None:
+    refuse_speed_gear_as_net_swap(
+        {
+            "speed_gear_as_net_swap": True,
+            "source": "fastWalkSpeed",
+            "walk_obs": 365,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -298,6 +321,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("shift_ball_as_dim_change", _case_shift_ball_as_dim_change),
     ("kick_policy_as_default_walk", _case_kick_policy_as_default_walk),
     ("max_acc_as_net_swap", _case_max_acc_as_net_swap),
+    ("getnext_as_hot_swap_train", _case_getnext_as_hot_swap_train),
+    ("speed_gear_as_net_swap", _case_speed_gear_as_net_swap),
 )
 
 

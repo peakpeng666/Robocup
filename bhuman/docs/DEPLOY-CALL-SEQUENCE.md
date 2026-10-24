@@ -30,7 +30,9 @@ CompetitionWalk / 11v11 差分：`scripts/competition_walk_diff.py`（14 个有�
 policySwitch 球距阈值：`scripts/policy_switch_threshold.py`（1500/300 vs 1100/200；≠ 换网 / 改 344；仍要 `want_kick`）。  
 shiftBallPosition 边界：`scripts/shift_ball_position.py`（false/80 vs true/40 踢球接近偏移；≠ 改维 / 旁系）。  
 walkPolicy / kickPolicy 切换只读：`scripts/walk_kick_policy_switch.py`（walk 344→13 / kick 59→13 旁路；空上下文仍 walk）。  
-maxAcceleration 差分：`scripts/max_acceleration_diff.py`（20/20 vs 60/20 vs 200/20 plant；≠ 换网 / 改维）。
+maxAcceleration 差分：`scripts/max_acceleration_diff.py`（20/20 vs 60/20 vs 200/20 plant；≠ 换网 / 改维）。  
+getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（10 条 walk-stay 条件；空上下文仍 walk；≠ 热换训练图）。  
+speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow 7 Sim / 8 Comp；≠ 换网）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

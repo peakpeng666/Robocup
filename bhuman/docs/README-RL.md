@@ -91,6 +91,8 @@
 | shiftBallPosition 边界 | `scripts/shift_ball_position.py` | false/80 vs true/40 踢球接近偏移；≠ 改维 / 旁系 |
 | walkPolicy / kickPolicy 切换 | `scripts/walk_kick_policy_switch.py` | walk 344→13 / kick 59→13 旁路；空上下文仍 walk |
 | maxAcceleration 差分 | `scripts/max_acceleration_diff.py` | 20/20 vs 60/20 vs 200/20 plant；≠ 换网 / 改维 |
+| getNextTargetRequest 钉死 | `scripts/get_next_target_request.py` | 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换训练图 |
+| speed 档位允许集 | `scripts/speed_gear_diff.py` | fast/normal/slow 7 Sim / 8 Comp；≠ 换网 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

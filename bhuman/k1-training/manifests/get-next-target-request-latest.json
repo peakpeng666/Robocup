@@ -1,0 +1,188 @@
+{
+  "generated_utc": "2026-10-24T09:56:04+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "function": {
+    "name": "WalkPhase::getNextTargetRequest",
+    "kind": "deploy_bypass_selection",
+    "not_hot_swap_train_graph": true,
+    "not_onnx_into_k1_yaml": true,
+    "empty_context_is_walk": true
+  },
+  "walk_stay_predicates": [
+    {
+      "id": "ball_network_inactive",
+      "needle": "ballNetworkParameters.active",
+      "means": "kick net disabled → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "phase_not_walk",
+      "needle": "type != MotionPhase::walk",
+      "means": "non-walk phase → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "should_stop",
+      "needle": "shouldStop",
+      "means": "stop request → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "obstacle_path",
+      "needle": "obstacleAvoidance.path.empty()",
+      "means": "avoidance path set → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "intercept_ball",
+      "needle": "shouldInterceptBall",
+      "means": "intercept → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "walk_out_of_ball_line",
+      "needle": "shouldWalkOutOfBallLine",
+      "means": "walk-out-of-line → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "motion_not_kick_skill",
+      "needle": "MotionRequest::walkToBallAndKick",
+      "means": "motion not dribble/walkToBallAndKick → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "phase_stand",
+      "needle": "type == MotionPhase::stand",
+      "means": "stand phase → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "ball_unseen",
+      "needle": "ballTimeWhenLastSeen",
+      "means": "ball unseen > 1000 ms → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    },
+    {
+      "id": "ball_farther_than_switch",
+      "needle": "ballDistancePolicySwitch",
+      "means": "ball farther than policySwitch ± hysteresis → walkPolicy",
+      "present": true,
+      "selects": "walkPolicy"
+    }
+  ],
+  "thresholds": {
+    "default": {
+      "ballDistancePolicySwitch": "1500",
+      "ballHysteresisPolicySwitch": "300"
+    },
+    "competition": {
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200"
+    },
+    "role": "ball_distance_term_inside_getNextTargetRequest",
+    "not_344_rewrite": true
+  },
+  "walk_slot": {
+    "compiled_nn": "walkPolicy",
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "contract": "344→13"
+  },
+  "kick_slot": {
+    "compiled_nn": "kickPolicy",
+    "modelName": "K1_kick_inner.onnx",
+    "numInput": 59,
+    "numOutput": 13,
+    "contract": "59→13"
+  },
+  "copies": [
+    {
+      "role": "SimulatedK1",
+      "ballDistancePolicySwitch": "1500",
+      "ballHysteresisPolicySwitch": "300",
+      "matches": true
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200",
+      "matches": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200",
+      "matches": true
+    }
+  ],
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "unknown": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_without_want_kick": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_with_want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    },
+    "bt_empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "bt_want_kick": "kick",
+    "empty_context_is_walk": true,
+    "policy_switch_overrides_want_kick": false,
+    "getnext_rewrites_skill_request": false,
+    "getnext_as_hot_swap_train": false
+  },
+  "cpp_needles": [
+    "void WalkPhase::getNextTargetRequest",
+    "engine.walkPolicy.apply()",
+    "CompiledNN& policy = !isOldKick ? engine.kickPolicy : engine.oldKickPolicy",
+    "MotionRequest::dribble",
+    "MotionRequest::walkToBallAndKick",
+    "ballDistancePolicySwitch",
+    "ballHysteresisPolicySwitch",
+    "ballNetworkParameters.active"
+  ],
+  "header_needles": [
+    "void getNextTargetRequest(JointAngles& target)",
+    "CompiledNN walkPolicy",
+    "CompiledNN kickPolicy"
+  ],
+  "getnext_as_hot_swap_train": false,
+  "empty_context_is_walk": true,
+  "fabricated": false,
+  "note": "WalkPhase::getNextTargetRequest stays on walkPolicy unless the ball net is active, the phase is walk, motion is dribble/walkToBallAndKick, and the ball is inside policySwitch ± hysteresis; empty SkillRequest still walk 344→13; this is not a hot-swap of ONNX into the official actor training graph",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

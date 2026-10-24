@@ -479,6 +479,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "maxAcceleration allowlist (20/20 vs 60/20 vs 200/20; ≠ net swap / dim change)",
         ),
         (
+            "bhuman/k1-training/scripts/get_next_target_request.py",
+            "getNextTargetRequest pin (walk-stay predicates; empty=walk; ≠ hot-swap train)",
+        ),
+        (
+            "bhuman/k1-training/scripts/speed_gear_diff.py",
+            "speed gear allowlist (fast/normal/slow; 7 Sim / 8 Comp; ≠ net swap)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),
