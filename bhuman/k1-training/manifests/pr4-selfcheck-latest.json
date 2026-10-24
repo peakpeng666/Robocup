@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T09:37:20+00:00",
+  "generated_utc": "2026-10-24T09:43:05+00:00",
   "verdict": "PASS",
   "walk": "344→13",
   "trainable": false,
@@ -43,6 +43,8 @@
     "test_cfg_copy_crosscheck.py",
     "test_motor_parameters_audit.py",
     "test_simulated_speed_diff.py",
+    "test_stand_ankle_stiffness.py",
+    "test_competition_walk_diff.py",
     "test_selfcheck_fail_hints.py",
     "render_selfcheck_summary.py"
   ],
@@ -50,27 +52,27 @@
     {
       "id": "run_contract_gate.sh",
       "label": "contract gate",
-      "elapsed_s": 2.915
+      "elapsed_s": 3.132
     },
     {
       "id": "run_unit_tests_no_gym.sh",
       "label": "no-Gym unit tests",
-      "elapsed_s": 2.263
+      "elapsed_s": 2.367
     },
     {
       "id": "k1_reward_audit.py",
       "label": "K1 reward audit (read-only)",
-      "elapsed_s": 0.075
+      "elapsed_s": 0.076
     },
     {
       "id": "p1_draft_diff.py",
       "label": "official vs draft-only diff (read-only)",
-      "elapsed_s": 0.032
+      "elapsed_s": 0.031
     },
     {
       "id": "probe_reserved_gpu.sh",
       "label": "GPU worker checklist (probe only)",
-      "elapsed_s": 0.037
+      "elapsed_s": 0.036
     },
     {
       "id": "print_train_dry_run.py",
@@ -85,37 +87,37 @@
     {
       "id": "test_simrobot_acceptance.py",
       "label": "SimRobot six-robot acceptance (no sim; honest SKIP)",
-      "elapsed_s": 0.037
+      "elapsed_s": 0.036
     },
     {
       "id": "test_skill_request_map.py",
       "label": "SkillRequest map (empty/unknown → walk)",
-      "elapsed_s": 0.033
+      "elapsed_s": 0.032
     },
     {
       "id": "test_pd_domain_gap.py",
       "label": "PD domain-gap (p60 vs p25; read-only)",
-      "elapsed_s": 0.027
+      "elapsed_s": 0.025
     },
     {
       "id": "test_teamcomm_budget.py",
       "label": "TeamComm 512 B (teammate not into 344; WLAN SKIP)",
-      "elapsed_s": 0.026
+      "elapsed_s": 0.024
     },
     {
       "id": "test_checkpoint_layout.py",
       "label": "checkpoint layout (missing weights honest SKIP)",
-      "elapsed_s": 0.023
+      "elapsed_s": 0.025
     },
     {
       "id": "test_kick_standup_joint_map.py",
       "label": "kick/standup joint map (standup[12] motor ≠ walk freq)",
-      "elapsed_s": 0.031
+      "elapsed_s": 0.032
     },
     {
       "id": "test_reference_motion_inventory.py",
       "label": "reference-motion inventory (T1 ≠ official walk default)",
-      "elapsed_s": 0.037
+      "elapsed_s": 0.035
     },
     {
       "id": "test_getup_engine_snapshot.py",
@@ -125,12 +127,12 @@
     {
       "id": "test_walk_stability_presets_audit.py",
       "label": "walk stability presets audit (draft-only excluded)",
-      "elapsed_s": 0.039
+      "elapsed_s": 0.032
     },
     {
       "id": "test_forbidden_regressions.py",
       "label": "forbidden regressions (silent refuse = red)",
-      "elapsed_s": 0.082
+      "elapsed_s": 0.081
     },
     {
       "id": "test_official_sibling_tasks_audit.py",
@@ -145,104 +147,114 @@
     {
       "id": "test_t1_k1_isolation.py",
       "label": "T1/K1 isolation (365/62/76 must not replace walk)",
-      "elapsed_s": 0.031
+      "elapsed_s": 0.028
     },
     {
       "id": "test_command_schedule_audit.py",
       "label": "command schedule (official commands ≠ draft applied)",
-      "elapsed_s": 0.031
+      "elapsed_s": 0.033
     },
     {
       "id": "test_disturbance_curriculum_audit.py",
       "label": "disturbance draft (live push_* intact; draft_only)",
-      "elapsed_s": 0.034
+      "elapsed_s": 0.032
     },
     {
       "id": "test_settle_jitter_audit.py",
       "label": "settle/jitter draft (new keys; live action_rate intact)",
-      "elapsed_s": 0.032
+      "elapsed_s": 0.031
     },
     {
       "id": "test_estimator_ab_audit.py",
       "label": "estimator A/B draft (bypass; not 344; unregistered)",
-      "elapsed_s": 0.034
+      "elapsed_s": 0.033
     },
     {
       "id": "test_reference_penalty_anneal_audit.py",
       "label": "reference-penalty anneal (live 1.0 intact)",
-      "elapsed_s": 0.034
+      "elapsed_s": 0.031
     },
     {
       "id": "test_behavior_control_handoff.py",
       "label": "BehaviorControl handoff (kick/standup owners; default walk)",
-      "elapsed_s": 0.046
+      "elapsed_s": 0.045
     },
     {
       "id": "test_compressed_teamcomm_shape.py",
       "label": "CompressedTeamCommunication shape (HSL 512 / official container; WLAN SKIP)",
-      "elapsed_s": 0.036
+      "elapsed_s": 0.033
     },
     {
       "id": "test_falldown_motion_chain.py",
       "label": "FallDown / MotionEngine chain (fallen→73→22→walk; not SkillRequest)",
-      "elapsed_s": 0.047
+      "elapsed_s": 0.045
     },
     {
       "id": "test_teamcomm_128_vs_512.py",
       "label": "TeamComm 128 vs 512 (do not mix; WLAN SKIP)",
-      "elapsed_s": 0.036
+      "elapsed_s": 0.032
     },
     {
       "id": "test_force_walk_afterwards.py",
       "label": "Force walk afterwards (getup_done→walk 344→13; 13-zero last_action)",
-      "elapsed_s": 0.043
+      "elapsed_s": 0.042
     },
     {
       "id": "test_kick_engine_boundary.py",
       "label": "KickEngine boundary (kick 59→13 bypass ≠ walk; missing KickEngine SKIP)",
-      "elapsed_s": 0.047
+      "elapsed_s": 0.043
     },
     {
       "id": "test_walking_engine_cfg_audit.py",
       "label": "walkingEngine.cfg audit (walk 344→13 / K1_walk.onnx; kick ≠ walk slot)",
-      "elapsed_s": 0.039
+      "elapsed_s": 0.033
     },
     {
       "id": "test_kick_onnx_naming.py",
       "label": "kick ONNX naming (K1_kick_inner ≠ Walk/ default; missing SKIP)",
-      "elapsed_s": 0.034
+      "elapsed_s": 0.035
     },
     {
       "id": "test_getup_engine_cfg_audit.py",
       "label": "getUpEngine.cfg audit (73→22 / K1.onnx; fast 72→22 deploy-only; T1 ≠ K1)",
-      "elapsed_s": 0.048
+      "elapsed_s": 0.046
     },
     {
       "id": "test_cfg_copy_crosscheck.py",
       "label": "cfg copy cross-check (Default/Simulated/Competition keys; unexpected drift FAIL)",
-      "elapsed_s": 0.054
+      "elapsed_s": 0.057
     },
     {
       "id": "test_motor_parameters_audit.py",
       "label": "motorParameters audit (regular p25 vs train p60; Simulated speed ≠ PD closed)",
-      "elapsed_s": 0.039
+      "elapsed_s": 0.035
     },
     {
       "id": "test_simulated_speed_diff.py",
       "label": "Simulated speed-diff allowlist (14 keys; net slot 344→13; unexpected FAIL)",
-      "elapsed_s": 0.039
+      "elapsed_s": 0.031
+    },
+    {
+      "id": "test_stand_ankle_stiffness.py",
+      "label": "standAnkleStiffness contrast (plant 60/80→100/100; ≠ p60→p25; PD open)",
+      "elapsed_s": 0.04
+    },
+    {
+      "id": "test_competition_walk_diff.py",
+      "label": "CompetitionWalk / 11v11 allowlist (14 keys; net slot 344→13; unexpected FAIL)",
+      "elapsed_s": 0.037
     },
     {
       "id": "test_selfcheck_fail_hints.py",
       "label": "FAIL locator hints (先看 file/test; PASS quiet)",
-      "elapsed_s": 0.027
+      "elapsed_s": 0.026
     },
     {
       "id": "render_selfcheck_summary.py",
       "label": "selfcheck markdown summary (PASS/SKIP/WARN + timings)",
-      "elapsed_s": 0.031
+      "elapsed_s": 0.032
     }
   ],
-  "elapsed_s": 6.581,
+  "elapsed_s": 6.926,
   "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker; elapsed_s is wall time of timed steps"
 }
