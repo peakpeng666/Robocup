@@ -89,6 +89,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -182,6 +184,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -268,6 +272,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining.py",
         "ball_distance_hysteresis.py",
         "kick_policy_apply_dims.py",
+        "walk_policy_apply_dims.py",
+        "policy_switch_last_action.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -344,6 +350,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -431,6 +439,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -502,6 +512,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -621,6 +633,8 @@ REQUIRED_DOCS = {
         "walk_stay_remaining",
         "ball_distance_hysteresis",
         "kick_policy_apply_dims",
+        "walk_policy_apply_dims",
+        "policy_switch_last_action",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

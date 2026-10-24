@@ -37,7 +37,9 @@ ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 active=true
 拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（三旁路仍 walkPolicy **344→13**；≠ kick / reactive / T1）。  
 剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（shouldStop / stand / 未见>1000 / 非 kick motion 仍 walkPolicy **344→13**；空=walk；仅 `want_kick` → kick）。  
 球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated 1500±300 vs Competition/11v11 1100±200；未越过仍 walk；越过才允许考虑 kick）。  
-kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + dribble/walkToBallAndKick 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344）。
+kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + dribble/walkToBallAndKick 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344）。  
+walk 调用点维数：`scripts/walk_policy_apply_dims.py`（默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽）。  
+walk↔kick last_action 缓冲：`scripts/policy_switch_last_action.py`（无显式清零 → 诚实 GAP；walk 344 来自 historyBuffer，kick 59 来自 lastTarget；禁止 344↔59 复用）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

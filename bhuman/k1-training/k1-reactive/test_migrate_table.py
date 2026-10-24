@@ -174,6 +174,8 @@ REQUIRED_LANDINGS = (
     "walk_stay_remaining.py",
     "ball_distance_hysteresis.py",
     "kick_policy_apply_dims.py",
+    "walk_policy_apply_dims.py",
+    "policy_switch_last_action.py",
 )
 
 

@@ -208,6 +208,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/kick_policy_apply_dims.py",
         "hint": "先看 kickPolicy 调用点是否仍是 59→13，而不是被写成 walk 344 或热换进 K1.yaml / train.py",
     },
+    "test_walk_policy_apply_dims.py": {
+        "look": "bhuman/k1-training/scripts/walk_policy_apply_dims.py",
+        "hint": "先看 walkPolicy 调用点是否仍是 344→13 / K1_walk.onnx，而不是被写成 kick 59 或 T1 / reactive",
+    },
+    "test_policy_switch_last_action.py": {
+        "look": "bhuman/k1-training/scripts/policy_switch_last_action.py",
+        "hint": "先看 walk↔kick last_action 是否仍是诚实 GAP（无显式清零），而不是被写成 344 历史塞进 59 或假绿闭合",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

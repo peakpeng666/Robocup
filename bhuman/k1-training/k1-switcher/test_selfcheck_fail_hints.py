@@ -70,6 +70,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_walk_stay_remaining.py",
         "test_ball_distance_hysteresis.py",
         "test_kick_policy_apply_dims.py",
+        "test_walk_policy_apply_dims.py",
+        "test_policy_switch_last_action.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

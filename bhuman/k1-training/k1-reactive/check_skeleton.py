@@ -507,6 +507,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "kickPolicy apply-site 59→13 (want_kick + dribble/walkToBallAndKick; ≠ walk 344)",
         ),
         (
+            "bhuman/k1-training/scripts/walk_policy_apply_dims.py",
+            "walkPolicy apply-site 344→13 / K1_walk.onnx; non-kick stays walk; ≠ kick 59 / T1",
+        ),
+        (
+            "bhuman/k1-training/scripts/policy_switch_last_action.py",
+            "walk↔kick last_action GAP (no explicit zero); no 344↔59 history reuse",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

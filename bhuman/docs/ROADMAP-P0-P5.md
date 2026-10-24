@@ -155,7 +155,7 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 128 vs 512 报文对照：`k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md)（用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP）。
 - [x] Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（getup_done → walk **344→13** + last_action 13 个 0；不得停在 standup；不得直接 kick）。
 - [x] KickEngine 边界只读：`scripts/kick_engine_boundary.py`（无独立 KickEngine；活链 59→13 旁路 ≠ 换 walk 基线；缺源 SKIP）。
-- [x] 自检加速评估：无 Gym 串行约 2 s / 82 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
+- [x] 自检加速评估：无 Gym 串行约 2 s / 84 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
 - [x] motorParameters 只读深化：`scripts/motor_parameters_audit.py`（regular 踝滚 **p25** vs 训侧 **p60** 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回）。
 - [x] Simulated 速度差分：`scripts/simulated_speed_diff.py`（14 个有意速度键；网槽仍 **344→13**；意外差分 FAIL）。
 - [x] standAnkleStiffness 对照：`scripts/stand_ankle_stiffness.py`（Default 60/80 vs Simulated 100/100 是 plant；≠ 训侧 p60→p25；≠ PD 闭合）。
@@ -171,7 +171,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（`shouldStop` / stand / 球未见>1000 ms / motion 非 dribble·walkToBallAndKick 仍 walkPolicy **344→13**；空 SkillRequest 仍 walk；仅 `want_kick` → kick 59→13）。
 - [x] 球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated **1500±300** vs Competition/11v11 **1100±200**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图）。
 - [x] kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + motion∈{dribble, walkToBallAndKick} 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344 / 热换 `K1.yaml`）。
-- [x] 禁令回归再扩：Simulated 速度差分当域差闭合 / 伪造 Competition getUp / standAnkle 冒充 PD 闭合 / Competition 差分改网槽 / policySwitch 当换网 / shiftBall 当改维 / kickPolicy 当默认 walk / maxAcc 差分当换网 / getNextTargetRequest 当热换训练图 / 速度档差分当换网 / 球网关当改维 / 拦截当默认 kick / 避障当热换训练图 / shouldStop 当默认 kick / stand 当改维 / 球未见当热换训练图 / 空 SkillRequest 当 kick / 滞回当改维 / kick 路径当 walk 344 / 策略切换当热换训练图 / Competition 滞回漂移。
+- [x] walk 调用点维数：`scripts/walk_policy_apply_dims.py`（默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽；≠ reactive / T1 / standup）。
+- [x] walk↔kick last_action 缓冲：`scripts/policy_switch_last_action.py`（源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿）。
+- [x] 禁令回归再扩：Simulated 速度差分当域差闭合 / 伪造 Competition getUp / standAnkle 冒充 PD 闭合 / Competition 差分改网槽 / policySwitch 当换网 / shiftBall 当改维 / kickPolicy 当默认 walk / maxAcc 差分当换网 / getNextTargetRequest 当热换训练图 / 速度档差分当换网 / 球网关当改维 / 拦截当默认 kick / 避障当热换训练图 / shouldStop 当默认 kick / stand 当改维 / 球未见当热换训练图 / 空 SkillRequest 当 kick / 滞回当改维 / kick 路径当 walk 344 / 策略切换当热换训练图 / Competition 滞回漂移 / walk 调用点当 59 / 切换保留陈旧 last_action / walk ONNX 占 kick 槽 / 缓冲跨维复用。
 - [x] walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk；standup 不在此 cfg）。
 - [x] kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT 交叉；占 Walk/ 默认槽 → FAIL；缺文件 SKIP）。
 - [x] getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署、未注册 Isaac；不得覆盖 walk **344→13**；T1 getUp 不得当 K1；SimRobot 强制 `fastActive=false`）。
