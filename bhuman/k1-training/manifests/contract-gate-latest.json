@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T06:48:24+00:00",
+  "generated_utc": "2026-10-24T06:52:08+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -81,6 +81,7 @@
       "P1 config diff draft present",
       "deploy call sequence present",
       "PR #4 file-tree index present",
+      "history/torque timeseries draft present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -232,6 +233,7 @@
         "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
         "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: required anchors present",
         "bhuman/docs/PR4-INDEX.md: required anchors present",
+        "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey"
       ]
     },
@@ -355,6 +357,49 @@
         "DEPLOY-CALL-SEQUENCE.md anchors present"
       ]
     },
+    "timeseries_contract": {
+      "ok": true,
+      "implemented": false,
+      "continuity": "SKIP",
+      "errors": [],
+      "notes": [
+        "timeseries frozen: TRAINABLE=false, IMPLEMENTED=false, walk 344",
+        "shape contract PASS: official walk 10×32+24=344",
+        "torque contract: (T,12) targets, not 13 currents",
+        "kick 59 rejected as walk history",
+        "reactive 64 rejected as walk history",
+        "NUSim 79 rejected as walk history",
+        "standup 22 rejected as walk torque",
+        "synthetic 344 buffer: shape_ok, continuity SKIP",
+        "synthetic 10×32 frames: shape_ok, continuity SKIP",
+        "live obs rewrite refused (344 stays official)",
+        "HISTORY-TORQUE-TIMESERIES.md anchors present",
+        "SKIP: H1/H2: no history trace → SKIP",
+        "SKIP: T4: no torque trace → SKIP",
+        "SKIP: H1–H6 / T4 all SKIP (no recorded switch traces)"
+      ],
+      "skips": [
+        "H1/H2: no history trace → SKIP",
+        "T4: no torque trace → SKIP",
+        "H1–H6 / T4 all SKIP (no recorded switch traces)"
+      ]
+    },
+    "estimator_bypass": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "hooks unwired: switcher / deploy_call do not eat latent",
+        "interface comment: latent is side-channel, not official 344",
+        "RMA: actor 344 copy; latent zeros stay off the vector",
+        "concat 344+latent refused",
+        "teammate/CTDE state refused from 344",
+        "switcher attach point documented, not wired",
+        "deploy_call attach point documented, not wired",
+        "official K1.yaml still 344→13 (estimators did not edit it)",
+        "DeployCall still defaults to official walk 344→13",
+        "estimator README: extras 不进 official 344"
+      ]
+    },
     "p1_draft": {
       "ok": true,
       "errors": [],
@@ -368,7 +413,7 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T06:48:24+00:00",
+    "generated_utc": "2026-10-24T06:52:08+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -404,7 +449,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "ace59d5b588fbaeeaec2f6060d29851c7be29d7e",
+    "workspace_head": "4032eb36f83a8689c4b1dc1c134f63cab150ca97",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -808,6 +853,7 @@
     "P1 config diff draft present",
     "deploy call sequence present",
     "PR #4 file-tree index present",
+    "history/torque timeseries draft present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -844,6 +890,7 @@
     "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
     "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: required anchors present",
     "bhuman/docs/PR4-INDEX.md: required anchors present",
+    "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and landings present",
     "official K1.yaml still 344->13 (read-only check)",
@@ -917,6 +964,30 @@
     "refused K1_Reactive before SM / engines",
     "T5 PASS: 13==13 is not an ONNX swap",
     "DEPLOY-CALL-SEQUENCE.md anchors present",
+    "timeseries frozen: TRAINABLE=false, IMPLEMENTED=false, walk 344",
+    "shape contract PASS: official walk 10×32+24=344",
+    "torque contract: (T,12) targets, not 13 currents",
+    "kick 59 rejected as walk history",
+    "reactive 64 rejected as walk history",
+    "NUSim 79 rejected as walk history",
+    "standup 22 rejected as walk torque",
+    "synthetic 344 buffer: shape_ok, continuity SKIP",
+    "synthetic 10×32 frames: shape_ok, continuity SKIP",
+    "live obs rewrite refused (344 stays official)",
+    "HISTORY-TORQUE-TIMESERIES.md anchors present",
+    "SKIP: H1/H2: no history trace → SKIP",
+    "SKIP: T4: no torque trace → SKIP",
+    "SKIP: H1–H6 / T4 all SKIP (no recorded switch traces)",
+    "hooks unwired: switcher / deploy_call do not eat latent",
+    "interface comment: latent is side-channel, not official 344",
+    "RMA: actor 344 copy; latent zeros stay off the vector",
+    "concat 344+latent refused",
+    "teammate/CTDE state refused from 344",
+    "switcher attach point documented, not wired",
+    "deploy_call attach point documented, not wired",
+    "official K1.yaml still 344→13 (estimators did not edit it)",
+    "DeployCall still defaults to official walk 344→13",
+    "estimator README: extras 不进 official 344",
     "draft baseline stays 344→13",
     "five P1 factors are draft-only and do not rewrite 344",
     "official K1.yaml rewards and stability v1 jsons unchanged",
@@ -945,6 +1016,8 @@
     "bash bhuman/sim2sim/run-sim2sim-gate.sh",
     "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
     "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
+    "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+    "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
     "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
