@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T06:27:30+00:00",
+  "generated_utc": "2026-10-24T06:31:52+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -7,7 +7,9 @@
     "rule": "new skills are parallel extensions; do not rewrite frozen dims",
     "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
     "unregistered_in_train_py": "PASS",
-    "skill_switch": "docs + empty shells (history/phase/torque); not implemented"
+    "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
+    "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
+    "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -63,6 +65,9 @@
       "unregistered in train.py = PASS (YAML lives in k1-reactive/; Runner cannot eval the stub)",
       "skill-switch continuity checklist present (docs + empty shells)",
       "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
+      "global humanoid survey present",
+      "P0–P5 roadmap present",
+      "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
       "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
@@ -181,10 +186,37 @@
           "reason": "empty shell: no switcher / no Gym / no torque trace"
         }
       ]
+    },
+    "skill_switch_map": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "T1 PASS: walk action[:12] == reactive[2:14]",
+        "T2 PASS: walk action[12] == reactive[14]; head from caller",
+        "T1 inverse PASS: reactive -> walk drops head",
+        "kick shares the 13-D family map",
+        "T3 PASS: first-step last_action keeps previous legs",
+        "P2 PASS: gait += dt*freq (mod 1)",
+        "T5 PASS: walk/kick 13==13 is not a swap permit",
+        "T5 PASS: reactive/T1 15==15 is not a load permit",
+        "H-doc PASS: walk history 10×32+24 documented, not memcpy'd",
+        "dim guard: short walk action rejected"
+      ]
+    },
+    "global_docs": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md: required anchors present",
+        "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
+        "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
+        "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
+        "method_catalog.json: 12 entries cross-checked against survey"
+      ]
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T06:27:30+00:00",
+    "generated_utc": "2026-10-24T06:31:52+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -220,7 +252,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "44771d9fb5b14b6c7435af811b5c5e14f0235731",
+    "workspace_head": "b1c0fd37b26aef2d4222b0c50b31a7213ec8a5ce",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -611,6 +643,9 @@
     "unregistered in train.py = PASS (YAML lives in k1-reactive/; Runner cannot eval the stub)",
     "skill-switch continuity checklist present (docs + empty shells)",
     "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
+    "global humanoid survey present",
+    "P0–P5 roadmap present",
+    "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
     "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
@@ -625,6 +660,21 @@
     "checked official tree bhuman/MachineLearning/IsaacGymRL/envs",
     "checked official tree bhuman/k1-training/src/IsaacGymRL/envs",
     "skill-switch continuity: 8 empty shells, implemented=false",
+    "T1 PASS: walk action[:12] == reactive[2:14]",
+    "T2 PASS: walk action[12] == reactive[14]; head from caller",
+    "T1 inverse PASS: reactive -> walk drops head",
+    "kick shares the 13-D family map",
+    "T3 PASS: first-step last_action keeps previous legs",
+    "P2 PASS: gait += dt*freq (mod 1)",
+    "T5 PASS: walk/kick 13==13 is not a swap permit",
+    "T5 PASS: reactive/T1 15==15 is not a load permit",
+    "H-doc PASS: walk history 10×32+24 documented, not memcpy'd",
+    "dim guard: short walk action rejected",
+    "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md: required anchors present",
+    "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
+    "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
+    "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
+    "method_catalog.json: 12 entries cross-checked against survey",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -638,6 +688,8 @@
     "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
     "python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
     "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+    "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+    "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
