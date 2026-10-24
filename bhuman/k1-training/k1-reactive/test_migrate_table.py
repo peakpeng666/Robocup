@@ -23,6 +23,8 @@ REQUIRED_ROWS = (
     "CTDE",
     "SimRobot",
     "切换器状态机",
+    "部署调用时序",
+    "Booster Lab",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -32,6 +34,8 @@ REQUIRED_LANDINGS = (
     "k1-switcher",
     "draft-only",
     "344→13",
+    "deploy_call",
+    "PR4-INDEX",
 )
 
 

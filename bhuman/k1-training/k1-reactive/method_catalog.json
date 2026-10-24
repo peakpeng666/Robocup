@@ -91,6 +91,21 @@
       "id": "bhuman-tdp-2026",
       "url": "https://hsl.robocup.org/wp-content/uploads/2026/03/B_Human-tdp-697c9beb6dc45.pdf",
       "phase": "P4"
+    },
+    {
+      "id": "booster-lab",
+      "url": "https://boosterlab.github.io/",
+      "phase": "P4-observe / P5"
+    },
+    {
+      "id": "booster-lab-arxiv",
+      "url": "https://arxiv.org/html/2606.27813",
+      "phase": "P4-observe / P5"
+    },
+    {
+      "id": "booster-deploy",
+      "url": "https://github.com/BoosterRobotics/booster_deploy",
+      "phase": "P5"
     }
   ]
 }

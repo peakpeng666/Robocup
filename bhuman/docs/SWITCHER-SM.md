@@ -1,7 +1,7 @@
 # 切换器状态机骨架（走 ↔ 踢 ↔ 起身）
 
 2026-10-24。代码：`bhuman/k1-training/k1-switcher/sm.py`。
-连续性清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。
+连续性清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。部署一拍（默认官方 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 **本文件只定义合法边。** 没有 Gym `step`，没有力矩时间序列，没有 ONNX 热加载。
 `TRAINABLE=false`。反应技能 **`implemented=false`**，状态机不得进入 `reactive`。
@@ -39,4 +39,4 @@
 
 ## 3. 和 P4 的关系
 
-本骨架只锁边。P4 还要：走↔踢历史/相位/力矩时间序列（清单 H/P/T 仍 SKIP）、SimRobot 六机对照、standup→walk 5 s 内不二次跌倒。无真机。
+本骨架只锁边。与 BT 口、槽位图的一拍编排见 [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)：默认入口仍是官方 walk **344→13**；`getup_done` 才回走。P4 还要：走↔踢历史/相位/力矩时间序列（清单 H/P/T 仍 SKIP）、SimRobot 六机对照、standup→walk 5 s 内不二次跌倒。无真机。

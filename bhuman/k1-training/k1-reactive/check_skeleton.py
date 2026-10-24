@@ -235,6 +235,8 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/schemas/obs-contract-v1.json", "obs contract JSON"),
         ("bhuman/docs/SWITCHER-SM.md", "switcher state-machine note"),
         ("bhuman/docs/P1-CONFIG-DIFF-DRAFT.md", "P1 config diff draft"),
+        ("bhuman/docs/DEPLOY-CALL-SEQUENCE.md", "deploy call sequence"),
+        ("bhuman/docs/PR4-INDEX.md", "PR #4 file-tree index"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

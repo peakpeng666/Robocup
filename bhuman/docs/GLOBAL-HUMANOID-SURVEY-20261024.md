@@ -302,6 +302,51 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 
 映射：**P4** = MuJoCo 门禁 + SimRobot 对照 + 切换/起身交接；**P5** = 真机才闭合剩余域差（ASAP / 固件），本授权不做。
 
+### 6.9 Booster Lab / real-to-sim 与本仓三道门
+
+厂家另有一条「先改仿真植物、再训、再过桥、再上真机」的数据闭环，不要和 §6.8 的三道门叠成同一张验收表。
+
+公开材料：
+
+- 项目页 【公开页】[Booster Lab](https://boosterlab.github.io/)
+- 论文 【论文】[arXiv:2606.27813](https://arxiv.org/html/2606.27813)（HTML；*Booster Lab: A Data-Centric Pipeline for Learning Deployable Humanoid Locomotion Policies*）
+- 部署仓 【仓库】[booster_deploy](https://github.com/BoosterRobotics/booster_deploy)（真机 / MuJoCo / Webots 同一套脚本；固件 ≥ v1.4）
+- 训练旁路仍是 §3.6 / §4 的 `booster_train` / `booster_gym`，**不是**本仓 `--task K1`
+
+论文四段（只读摘要+HTML，未下权重）：
+
+1. **数据整理**：异构动作 → 修复 → GMR 重定向 → BeyondMimic 式跟踪增广 → 可行性筛选，写成 AMP JSON。
+2. **real-to-sim**：用真机关节 **T–n 曲线拐点** 写仿真力矩/转速上限，并用 \(J_{\mathrm{arm}}=N^{2}J_{m}\) 补 armature；**先改植物，再训**。
+3. **AMP + Isaac Lab**：4096 env；本体 72 维 × 10 步历史 → **21** 路关节偏置（T1 含腰）；策略周期 20 ms（`dt=0.005` × decimation 4）。
+4. **跨仿真再真机**：先独立 MuJoCo，再 Webots（部署侧模型），最后 T1 户外走/跑；K1 只换形态/限位/驱动/重定向/部署口，作者称「稳定跑」——**初步跨平台，不是比赛步态**。
+
+和本仓三道门对齐：
+
+| Booster Lab 段 | 本仓对应门 | 职责是否同一件事 | 纪律 |
+|---|---|---|---|
+| Isaac Lab AMP（校准后的植物） | **门 1** Isaac Gym Preview 4 `--task K1` **344→13** | 都是「训练」，栈/观测/动作都不同 | **不迁主线**。21 路全身偏置 ≠ 12 腿 + 步频。20 ms 周期巧合 ≠ 可换权 |
+| 独立 MuJoCo 回放他们的 AMP 策略 | **门 2** `sim2sim/run-mujoco.sh` 官方 actor 344→13 | 都是「换引擎过桥」 | 他们的 PASS **不能**当本仓过桥。本仓门禁拒 59 维踢球权、拒 64/79 |
+| Webots + `booster_deploy` ROS 2 | **门 3** SimRobot + 行为树 / 正常视觉 / GC / TeamComm | **不是同一扇门** | Webots 是厂家部署侧；SimRobot 是比赛回放。都不是 PPO 训练器 |
+| real-to-sim（T–n / armature） | §6.8 已记的踝刚度 p60 训 vs 真机 **p25**；ASAP 是「真机轨迹 → delta action」 | 都是「植物/残差校准」 | **可迁纪律，不迁数字**。禁止为对齐 Booster Lab 去改 `K1.yaml` / 官方 XML / 默认奖励。K1 **无腰**，T1 表 II 的腰 25 N·m 写不进 344 |
+| 真机户外走跑 / K1「稳定跑」 | P5（未授权） | 厂家演示 ≠ HSL 比赛 | **禁止**用 Booster Lab 的 K1 跑步策略替换官方 walk 344→13 |
+
+三道门仍然互不冒充：**Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放**。验收口径仍以**官方 B-Human 合同**为准，不是厂家 AMP 合同：
+
+| 门禁轴 | 官方 B-Human 口径 | Booster Lab 不得用来做什么 |
+|---|---|---|
+| **合同维** | 过桥 / 部署默认仍是 walk **344→13**；kick 59→13、standup 73→22；fast 72→22 仅部署 | 不得用 72 维×10→21、T1 含腰、厂家 K1 跑步权冒充官方 actor |
+| **PD** | 训侧踝滚 p60 量级 vs 真机 regular **p25** 是有意域差；官方 `K1.yaml` / XML 不动 | 不得把 T–n / armature 表写进官方奖励或 PD，不得统一三套仿真的增益 |
+| **不冒充** | SimRobot PASS ≠ fast standup；MuJoCo 过桥 ≠ Isaac 训；Webots ≠ SimRobot | 不得用 Webots / 厂家 K1「稳定跑」替换比赛官方步态 |
+
+Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**多了一圈真机回灌——这两圈只属于 **P5**。P0/P4 的 CPU 门禁不闭合 real-to-sim。
+
+和 ASAP（§5）的分工：ASAP 学的是真机轨迹上的 **delta action**；Booster Lab 改的是仿真 **驱动/惯量植物**。两条都是 P5，都不得改 344。`booster_deploy` 不是 B-Human WalkingEngine；本授权不跑安装/固件脚本。
+
+**可迁：** 「先测真机驱动曲线 → 把域差写成验收项 → 换引擎过桥 → 再谈真机」的顺序；GMR / BeyondMimic 继续只当 P2 参考动作工具（仓外）。  
+**不迁：** Booster Lab 的 T1/K1 AMP 权、Webots PASS、Isaac Lab 主线、用厂家 K1 跑步替换比赛官方步态、统一 PD 组、把 T–n 表写进官方 `K1.yaml`。
+
+映射：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) **P4**（三道门保持分列；MuJoCo 过桥对象仍是 344→13）、**P5**（real-to-sim / ASAP / 固件，未授权）。
+
 ---
 
 ## 7. 可迁移矩阵（压缩）
@@ -324,6 +369,7 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 | HiFAR 课程起身 | 平行恢复实验 | 不改 73/72 |
 | 显式 TeamComm / 非 CTDE | **P4 单机切换 + SimRobot 六机；P5 带宽** | 不把 MAPPO 塞进 344 |
 | SimRobot ↔ Isaac 域差 | **P4 三道门；P5 真机** | 不统一 PD、不用 SimRobot 冒充 fast standup |
+| Booster Lab real-to-sim | **P4 对齐三道门；P5 才校准植物** | 不把 T–n / Webots / 厂家 K1 跑步写进 344 |
 
 ---
 
@@ -346,3 +392,5 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 - 论文清单：`origin/research:research/02-论文清单.md`
 - 旧实验矩阵：`origin/research:research/06-落地路线建议.md`（其 P0≠本 PR 的 P0）
 - 本轮路线：`ROADMAP-P0-P5.md`
+- 部署一拍时序：`DEPLOY-CALL-SEQUENCE.md`
+- PR 文件树：[PR4-INDEX.md](PR4-INDEX.md)

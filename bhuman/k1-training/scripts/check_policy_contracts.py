@@ -433,6 +433,12 @@ def check_gpu_free_shells(
             True,
         ),
         (
+            "bhuman/k1-training/k1-switcher/test_deploy_call.py",
+            "deploy_call",
+            "k1_deploy_call",
+            True,
+        ),
+        (
             "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "p1_draft",
             "k1_p1_draft",
@@ -909,6 +915,7 @@ def main() -> int:
             "python3 bhuman/sim2sim/test_sim2sim_gate.py",
             "bash bhuman/sim2sim/run-sim2sim-gate.sh",
             "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+            "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

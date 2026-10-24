@@ -83,6 +83,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 切换器状态机骨架（走↔踢↔起身）：`k1-training/k1-switcher/`；reactive 仍不可达。
 - [x] P1 配置 diff 草稿（draft-only，不改默认奖励）：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)。
 - [x] 调研补强：通信/CTDE、SimRobot vs Isaac 域差（survey §6.7–6.8 → P4/P5）。
+- [x] 部署调用时序（默认入口官方 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) + `k1-switcher/deploy_call.py`。
+- [x] 调研补强：Booster Lab / real-to-sim vs 三道门（合同维 / PD / 不冒充，survey §6.9）。
+- [x] PR 文件树索引：[PR4-INDEX.md](PR4-INDEX.md)（官方基线 vs 并行 stub / draft-only）。
 - [ ] 完整切换器时间序列（P4，仍无真机）。
 - [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
 
@@ -136,16 +139,17 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ### P4 · 切换 + sim2sim + 起身交接
 
-- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。时间序列仍 TODO。
+- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。**部署一拍**把 BT 口 + SM + 槽位图串起来，默认仍是官方 walk 344→13：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。时间序列仍 TODO。
 - 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。无 GPU 骨架：`sim2sim/run-sim2sim-gate.sh`（缺依赖 SKIP）。
-- standup→walk 5 s 窗口：状态机只计时；HiFAR/FRASA 只对照，不改 73/72。
+- standup→walk 5 s 窗口：状态机只计时；**必须 `getup_done`** 才回 walk；HiFAR/FRASA 只对照，不改 73/72。
 - **通信 / 非 CTDE**（survey §6.7）：SimRobot 六机是 TeamComm + GC 的验收场，不是 MAPPO 训练器。切换器按单机边工作，不把队友状态写入 344。
 - **域差**（survey §6.8）：Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放。PD 组不得统一；fast standup 72→22 不得用 SimRobot PASS 冒充。
+- **Booster Lab / real-to-sim**（survey §6.9）：三道门验收仍是官方合同维 / PD / 不冒充。厂家 AMP、Webots、T–n 表不得改写 `K1.yaml` 或替换官方 walk。
 
 ### P5 · 真机前置（未授权，只列）
 
 - SDK/固件版本冲突（文档 1.7.1 vs deploy ≥1.7.2）必须实测。
-- ASAP：真机轨迹 → delta action → 再训。
+- ASAP：真机轨迹 → delta action → 再训。Booster Lab：真机 T–n / armature → 改仿真植物。两条都是 P5，都不得改 344。
 - 机载：策略 50 Hz + 视觉 25 Hz，给 B-Human 比赛栈留算力；TeamComm 512 B / 端口 10000+队号的预算在真机上才能量。
 - 域差闭环：踝刚度 p25、Isaac 摩擦 workaround、WLAN 丢包，都只能在授权真机上收口。
 - **本轮与当前授权：不连接机器人，不跑安装/固件脚本。**
@@ -168,6 +172,7 @@ python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
 python3 bhuman/sim2sim/test_sim2sim_gate.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
 python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
+python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

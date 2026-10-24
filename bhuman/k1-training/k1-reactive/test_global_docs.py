@@ -46,6 +46,10 @@ REQUIRED_DOCS = {
         "CTDE",
         "SimRobot",
         "域差",
+        "Booster Lab",
+        "real-to-sim",
+        "合同维",
+        "不冒充",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -57,6 +61,9 @@ REQUIRED_DOCS = {
         "344→13",
         "k1-reactive",
         "未注册",
+        "DEPLOY-CALL-SEQUENCE",
+        "Booster Lab",
+        "PR4-INDEX",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": ("73→22", "72→22", "2502.20061"),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
@@ -72,6 +79,23 @@ REQUIRED_DOCS = {
     "bhuman/docs/schemas/obs-contract-v1.json": ("344", "64", "59", "73", "rewritable"),
     "bhuman/docs/SWITCHER-SM.md": ("344→13", "73→22", "implemented=false"),
     "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md": ("draft-only", "344→13", "不改默认"),
+    "bhuman/docs/DEPLOY-CALL-SEQUENCE.md": (
+        "344→13",
+        "getup_done",
+        "BehaviorControl",
+        "bt_skill_select",
+        "skill_switch_map",
+        "SwitcherSM",
+        "TRAINABLE=false",
+        "无 Gym",
+    ),
+    "bhuman/docs/PR4-INDEX.md": (
+        "344→13",
+        "官方 B-Human",
+        "并行 stub",
+        "draft-only",
+        "K1.yaml",
+    ),
 }
 
 
