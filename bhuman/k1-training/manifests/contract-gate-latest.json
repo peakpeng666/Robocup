@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:01:39+00:00",
+  "generated_utc": "2026-10-24T07:03:59+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -22,7 +22,8 @@
     "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
     "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
     "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
-    "p1_draft": "draft-only factor comments; official rewards untouched"
+    "p1_draft": "draft-only factor comments; official rewards untouched",
+    "draft_validator": "draft_only:true; live rewards not overwritten by draft"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -285,7 +286,27 @@
         "walk 10×32+24=344 layout sums",
         "reactive 64→15 matches contract.py and stays parallel to 344",
         "forbidden: Huoshen 58 and NUSim 79 listed",
-        "schema lists walk/kick/standup/fast_standup/reactive"
+        "schema lists walk/kick/standup/fast_standup/reactive",
+        "official walk 344→13 accepted",
+        "negative: 343 refused as walk obs",
+        "negative: 345 refused as walk obs",
+        "negative: 59 refused as walk obs",
+        "negative: 64 refused as walk obs",
+        "negative: 72 refused as walk obs",
+        "negative: 73 refused as walk obs",
+        "negative: 58 refused as walk obs",
+        "negative: 79 refused as walk obs",
+        "negative: 365 refused as walk obs",
+        "negative: kick is not walk 344",
+        "negative: standup is not walk 344",
+        "negative: fast_standup is not walk 344",
+        "negative: reactive is not walk 344",
+        "negative: huoshen_t1 is not walk 344",
+        "negative: nusim is not walk 344",
+        "negative: missing walk history window refused",
+        "negative: broken history formula refused",
+        "schema walk history 10×32+24 present",
+        "live walk obs rewrite refused"
       ]
     },
     "bt_skill_select": {
@@ -526,10 +547,30 @@
         "run_walk_stability.sh still uses official v1 presets only",
         "P1 config draft doc present"
       ]
+    },
+    "draft_validator": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "current draft: draft_only=true; stability script does not read it",
+        "negative: draft without draft_only:true refused",
+        "negative: draft apply_to_live / live config_patch refused",
+        "negative: draft_only=false refused as official patch",
+        "negative: draft must not overwrite live still_proportion",
+        "negative: draft must not overwrite live tracking_lin_vel_x",
+        "negative: draft must not overwrite live tracking_lin_vel_y",
+        "negative: draft must not overwrite live tracking_ang_vel",
+        "negative: draft must not overwrite live action_rate",
+        "negative: draft must not overwrite live reference_mean_penalty",
+        "negative: official config_patch cannot eat draft still_proportion",
+        "negative: run_walk_stability.sh loading draft-only refused",
+        "current run_walk_stability.sh stays on official v1 presets",
+        "non-live target may discuss proposed still_proportion"
+      ]
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:01:39+00:00",
+    "generated_utc": "2026-10-24T07:03:59+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -565,7 +606,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "642a61906afb8ba1040bc95810bc81c2d9015bec",
+    "workspace_head": "a19098b2b0aed643dff0d7e19fb21cacc70d051e",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1035,6 +1076,26 @@
     "reactive 64→15 matches contract.py and stays parallel to 344",
     "forbidden: Huoshen 58 and NUSim 79 listed",
     "schema lists walk/kick/standup/fast_standup/reactive",
+    "official walk 344→13 accepted",
+    "negative: 343 refused as walk obs",
+    "negative: 345 refused as walk obs",
+    "negative: 59 refused as walk obs",
+    "negative: 64 refused as walk obs",
+    "negative: 72 refused as walk obs",
+    "negative: 73 refused as walk obs",
+    "negative: 58 refused as walk obs",
+    "negative: 79 refused as walk obs",
+    "negative: 365 refused as walk obs",
+    "negative: kick is not walk 344",
+    "negative: standup is not walk 344",
+    "negative: fast_standup is not walk 344",
+    "negative: reactive is not walk 344",
+    "negative: huoshen_t1 is not walk 344",
+    "negative: nusim is not walk 344",
+    "negative: missing walk history window refused",
+    "negative: broken history formula refused",
+    "schema walk history 10×32+24 present",
+    "live walk obs rewrite refused",
     "port frozen: implemented=false, default walk 344→13",
     "B1 PASS: default is walk 344→13",
     "B2 PASS: reactive conditions still fall back to walk",
@@ -1189,6 +1250,20 @@
     "official K1.yaml rewards and stability v1 jsons unchanged",
     "run_walk_stability.sh still uses official v1 presets only",
     "P1 config draft doc present",
+    "current draft: draft_only=true; stability script does not read it",
+    "negative: draft without draft_only:true refused",
+    "negative: draft apply_to_live / live config_patch refused",
+    "negative: draft_only=false refused as official patch",
+    "negative: draft must not overwrite live still_proportion",
+    "negative: draft must not overwrite live tracking_lin_vel_x",
+    "negative: draft must not overwrite live tracking_lin_vel_y",
+    "negative: draft must not overwrite live tracking_ang_vel",
+    "negative: draft must not overwrite live action_rate",
+    "negative: draft must not overwrite live reference_mean_penalty",
+    "negative: official config_patch cannot eat draft still_proportion",
+    "negative: run_walk_stability.sh loading draft-only refused",
+    "current run_walk_stability.sh stays on official v1 presets",
+    "non-live target may discuss proposed still_proportion",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -1220,6 +1295,7 @@
     "python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
     "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
     "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+    "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
