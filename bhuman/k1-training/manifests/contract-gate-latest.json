@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:31:44+00:00",
+  "generated_utc": "2026-10-24T08:39:50+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -53,7 +53,10 @@
     "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused",
     "pd_domain_gap": "train ankle-roll p60 vs robot p25; no K1.yaml write-back",
     "teamcomm_budget": "512 B / 10000+team; teammate not into 344; WLAN SKIP",
-    "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused"
+    "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused",
+    "kick_standup_joint_map": "kick 59→13 shares walk exit; standup[12]=lHipYaw motor",
+    "reference_motion_inventory": "declared ref/motion paths; missing SKIP; T1 ≠ walk default",
+    "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -153,6 +156,9 @@
       "TeamComm 512 B (teammate not into 344; WLAN SKIP) present",
       "walk checkpoint layout (K1_walk.pth/onnx; missing SKIP) present",
       "checkpoint layout checker (T1/reactive refused on walk path) present",
+      "kick/standup joint map (standup[12] motor ≠ walk gait_frequency) present",
+      "reference-motion inventory (missing SKIP; T1 ≠ official walk default) present",
+      "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -717,7 +723,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 42 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 45 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
@@ -729,6 +735,7 @@
         "PASS test_history_buffer_shape.py",
         "PASS test_joint_map_contract.py",
         "PASS test_k1_reward_audit.py",
+        "PASS test_kick_standup_joint_map.py",
         "PASS test_last_action_reset.py",
         "PASS test_obs_assembly.py",
         "PASS test_onnx_export_contract.py",
@@ -736,6 +743,8 @@
         "PASS test_p1_draft_diff.py",
         "PASS test_pd_domain_gap.py",
         "PASS test_print_train_dry_run.py",
+        "PASS test_reference_motion_inventory.py",
+        "PASS test_render_selfcheck_summary.py",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
@@ -809,6 +818,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_kick_standup_joint_map.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_last_action_reset.py",
           "status": "PASS"
         },
@@ -830,6 +843,14 @@
         },
         {
           "name": "test_print_train_dry_run.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_reference_motion_inventory.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_render_selfcheck_summary.py",
           "status": "PASS"
         },
         {
@@ -945,12 +966,15 @@
         "test_history_buffer_shape.py",
         "test_joint_map_contract.py",
         "test_k1_reward_audit.py",
+        "test_kick_standup_joint_map.py",
         "test_last_action_reset.py",
         "test_obs_assembly.py",
         "test_onnx_export_contract.py",
         "test_p1_draft_diff.py",
         "test_pd_domain_gap.py",
         "test_print_train_dry_run.py",
+        "test_reference_motion_inventory.py",
+        "test_render_selfcheck_summary.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
@@ -1368,10 +1392,79 @@
       ],
       "skipped": true,
       "walk": "344→13"
+    },
+    "kick_standup_joint_map": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_maps_frozen: kick shares walk 13-exit; standup 22 extracted",
+        "kick 59→13 shares walk 12-legs+gait_frequency",
+        "standup 73→22 / fast 72→22; [12]=lHipYaw is_motor=true",
+        "standup[12]=lHipYaw is_motor=true (not gait_frequency)",
+        "kick shared-exit semantics: act=13, names=walk map",
+        "negative: standup[12] as gait_frequency refused",
+        "negative: standup[12] interpret_as frequency refused",
+        "negative: walk action[12] as lHipYaw refused",
+        "negative: standup[:13] refused as walk 13-D map",
+        "negative: kick joint remap refused",
+        "negative: kick as new walk baseline refused",
+        "negative: standup YAML gait_frequency ≠ action[12]",
+        "negative: fast standup 72→22 refused as walk",
+        "kick shared walk names accepted",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/kick-standup-joint-map-latest.json",
+        "official K1.yaml untouched (read-only extract)"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13",
+      "kick": "59→13",
+      "standup": "73→22"
+    },
+    "reference_motion_inventory": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_inventory_frozen: recipes present; T1 not walk default",
+        "official walk-reference-stability-v1 present (recipe, not clip)",
+        "T1 locomotion URDF recorded as foreign (not walk default)",
+        "GMR→K1 library SKIP (absent; not official walk default)",
+        "kick motion clip SKIP (no binary declared)",
+        "missing declared paths SKIP (4)",
+        "negative: T1 URDF as official walk default refused",
+        "negative: Huoshen clip as official walk default refused",
+        "negative: NUSim clip as official walk default refused",
+        "negative: GMR library as official walk default refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
+        "official K1.yaml untouched",
+        "official walk still 344→13"
+      ],
+      "warnings": [
+        "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries"
+      ],
+      "skipped": true,
+      "walk": "344→13"
+    },
+    "render_selfcheck_summary": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "scripts/render_selfcheck_summary.py present",
+        "pr4-selfcheck-latest.json readable",
+        "short PASS/SKIP/WARN markdown (not a new survey)",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/docs/PR4-SELFCHECK-LATEST.md",
+        "official K1.yaml untouched"
+      ],
+      "skipped": false,
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T08:31:42+00:00",
+    "generated_utc": "2026-10-24T08:39:48+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1449,7 +1542,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "0778bd67b52021b3e166a9a10cf0bbf7742e8429",
+    "workspace_head": "abf00b5dd7b3e0797551477b4cc2b73388bc0492",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1824,7 +1917,8 @@
     "sim2sim stack: python module mujoco missing",
     "sim2sim stack: isaacsim-gui python missing",
     "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
-    "sim2sim live replay skipped (no mujoco/weights); skeleton only"
+    "sim2sim live replay skipped (no mujoco/weights); skeleton only",
+    "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries"
   ],
   "notes": [
     "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
@@ -1890,6 +1984,9 @@
     "TeamComm 512 B (teammate not into 344; WLAN SKIP) present",
     "walk checkpoint layout (K1_walk.pth/onnx; missing SKIP) present",
     "checkpoint layout checker (T1/reactive refused on walk path) present",
+    "kick/standup joint map (standup[12] motor ≠ walk gait_frequency) present",
+    "reference-motion inventory (missing SKIP; T1 ≠ official walk default) present",
+    "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -2191,7 +2288,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 42 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 45 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
@@ -2203,6 +2300,7 @@
     "PASS test_history_buffer_shape.py",
     "PASS test_joint_map_contract.py",
     "PASS test_k1_reward_audit.py",
+    "PASS test_kick_standup_joint_map.py",
     "PASS test_last_action_reset.py",
     "PASS test_obs_assembly.py",
     "PASS test_onnx_export_contract.py",
@@ -2210,6 +2308,8 @@
     "PASS test_p1_draft_diff.py",
     "PASS test_pd_domain_gap.py",
     "PASS test_print_train_dry_run.py",
+    "PASS test_reference_motion_inventory.py",
+    "PASS test_render_selfcheck_summary.py",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
@@ -2455,6 +2555,44 @@
     "negative: write K1_walk.pth refused",
     "official K1.yaml untouched 344→13",
     "checkpoint_layout: skipped (missing optional runtime)",
+    "assert_maps_frozen: kick shares walk 13-exit; standup 22 extracted",
+    "kick 59→13 shares walk 12-legs+gait_frequency",
+    "standup 73→22 / fast 72→22; [12]=lHipYaw is_motor=true",
+    "standup[12]=lHipYaw is_motor=true (not gait_frequency)",
+    "kick shared-exit semantics: act=13, names=walk map",
+    "negative: standup[12] as gait_frequency refused",
+    "negative: standup[12] interpret_as frequency refused",
+    "negative: walk action[12] as lHipYaw refused",
+    "negative: standup[:13] refused as walk 13-D map",
+    "negative: kick joint remap refused",
+    "negative: kick as new walk baseline refused",
+    "negative: standup YAML gait_frequency ≠ action[12]",
+    "negative: fast standup 72→22 refused as walk",
+    "kick shared walk names accepted",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/kick-standup-joint-map-latest.json",
+    "official K1.yaml untouched (read-only extract)",
+    "assert_inventory_frozen: recipes present; T1 not walk default",
+    "official walk-reference-stability-v1 present (recipe, not clip)",
+    "T1 locomotion URDF recorded as foreign (not walk default)",
+    "GMR→K1 library SKIP (absent; not official walk default)",
+    "kick motion clip SKIP (no binary declared)",
+    "missing declared paths SKIP (4)",
+    "negative: T1 URDF as official walk default refused",
+    "negative: Huoshen clip as official walk default refused",
+    "negative: NUSim clip as official walk default refused",
+    "negative: GMR library as official walk default refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
+    "official K1.yaml untouched",
+    "official walk still 344→13",
+    "reference_motion_inventory: skipped (missing optional runtime)",
+    "scripts/render_selfcheck_summary.py present",
+    "pr4-selfcheck-latest.json readable",
+    "short PASS/SKIP/WARN markdown (not a new survey)",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/docs/PR4-SELFCHECK-LATEST.md",
+    "official K1.yaml untouched",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2512,6 +2650,10 @@
     "python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
     "python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
     "python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
+    "python3 bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py",
+    "python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
+    "python3 bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
+    "python3 bhuman/k1-training/scripts/render_selfcheck_summary.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]

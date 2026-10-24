@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:39:16+00:00",
+  "generated_utc": "2026-10-24T08:39:51+00:00",
   "status": "PASS",
   "skipped": false,
   "walk": "344→13",
@@ -242,6 +242,19 @@
     }
   ],
   "scan_extras": [
+    {
+      "id": "scan:bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
+      "rel": "bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
+      "kind": "undeclared_scan_hit",
+      "skill": "walk",
+      "official_walk_default": false,
+      "is_motion_clip": false,
+      "family": "bhuman_k1",
+      "exists": true,
+      "status": "PASS",
+      "skipped": false,
+      "note": "extra declared-path sibling from scan; not a clip"
+    },
     {
       "id": "scan:bhuman/k1-training/src/IsaacGymRL/resources/K1/Ball_K1_locomotion_feet_box_left_bias.urdf",
       "rel": "bhuman/k1-training/src/IsaacGymRL/resources/K1/Ball_K1_locomotion_feet_box_left_bias.urdf",
@@ -574,7 +587,7 @@
     "missing": 4,
     "skipped": 4,
     "official_walk_default_present": 2,
-    "scan_extras": 25
+    "scan_extras": 26
   },
   "present": [
     "walk-reference-stability-v1",
