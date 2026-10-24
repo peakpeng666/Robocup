@@ -34,7 +34,8 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 | 4 | [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md) | 「可迁」对照：目录 / GPU / 对 344→13 |
 | 5 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓合同核验 |
 | 6 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
-| 7 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
+| 7 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | 历史/力矩形状草案（连续性 SKIP） |
+| 8 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
 
 ---
 
@@ -73,7 +74,8 @@ bhuman/sim2sim/run-mujoco.sh                官方 walk 344→13 过桥（操作
 ```
 bhuman/docs/
 ├── PR4-INDEX.md                         本页（本轮）
-├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序（本轮）
+├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
+├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（本轮；连续性 SKIP）
 ├── ROADMAP-P0-P5.md                     P0 门禁 → P5 真机前置
 ├── GLOBAL-HUMANOID-SURVEY-20261024.md   全球调研（§6.9 Booster Lab 本轮）
 ├── MIGRATE-TO-K1.md                     可迁对照表
@@ -120,15 +122,18 @@ k1-reactive/
 ```
 k1-switcher/
 ├── sm.py                        合法边；reactive 不可达
-├── deploy_call.py               三模块一拍编排（本轮）
+├── deploy_call.py               三模块一拍编排
+├── timeseries_contract.py       历史/力矩形状 stub（连续性 SKIP，本轮）
 ├── test_switcher_sm.py
-└── test_deploy_call.py          纯 Python 集成；无 Gym（本轮）
+├── test_deploy_call.py          纯 Python 集成；无 Gym
+└── test_timeseries_contract.py  形状 PASS / 连续性 SKIP
 ```
 
 ### 3.5 估计器 / P1 草稿（并行 stub + draft-only）
 
 ```
-k1-estimators/                   passthrough / rma / dreamwaq；actor 仍 344
+k1-estimators/                   passthrough / rma / dreamwaq；latent **不进** 344
+                                 hooks.py 只文档化，不接线 switcher / deploy_call
 configs/draft-only/              只注释；run_walk_stability.sh 不读这里
 ```
 
@@ -164,6 +169,9 @@ k1-training/manifests/
 | 项 | 落点 | 验收 |
 |---|---|---|
 | 部署调用时序 | `DEPLOY-CALL-SEQUENCE.md` + `k1-switcher/deploy_call.py` | `python3 bhuman/k1-training/k1-switcher/test_deploy_call.py` |
+| 历史/力矩时间序列草案 | `HISTORY-TORQUE-TIMESERIES.md` + `timeseries_contract.py` | 形状 PASS；H1–H6/T4 **SKIP** |
+| 估计器旁路加深 | `k1-estimators/hooks.py` | latent 不进 344；挂接点未接线 |
+| BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |
 

@@ -347,6 +347,34 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 
 映射：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) **P4**（三道门保持分列；MuJoCo 过桥对象仍是 344→13）、**P5**（real-to-sim / ASAP / 固件，未授权）。
 
+### 6.10 官方 BehaviorControl / SkillRequest vs `bt_skill_select`
+
+**对照 ≠ 替换官方 walk。** 两层名字都叫「技能」，但不是同一张表。
+
+| 层 | 本仓已核 | 产出 | 谁拥有 walk 344→13 |
+|---|---|---|---|
+| 策略 → 技能 | `SkillRequest.h`：`none/stand/walk/shoot/pass/dribble/block/mark/observe/clear/waitShoot` | 角色意图（场地坐标） | 不拥有。shoot 仍先走再踢 |
+| 技能 → 运动请求 | `SkillBehaviorControl.cpp`：`walk`→`WalkToPointObstacle`；`shoot/pass/dribble/clear`→`PlayBall()`；`waitShoot`→`GoToBallWaitAndKick()` | `MotionRequest`（`walkToPose` / `walkToBallAndKick` / `stand` / …） | 走类请求默认仍进 WalkingEngine |
+| 运控网 | WalkingEngine / GetUpEngine | 官方 ONNX：walk **344→13**、kick 59→13、standup 73→22 | **底座** |
+| 本仓旁路口 | `bt_skill_select.py`（`implemented=false`） | 只点名 `walk` / `kick` / `handoff_getup`；reactive 回落 walk | **不得替换**上一行 |
+
+对照表（官方请求 → 旁路口该做什么）：
+
+| 官方 `SkillRequest` | 官方下一层（已核） | `bt_skill_select` | 是否替换官方 walk |
+|---|---|---|---|
+| `none` | 空请求注释 | 默认 **walk 344→13** | 否 |
+| `stand` / `walk` / `block` / `mark` / `observe` | Stand / WalkToPointObstacle 等 | **walk 344→13** | 否，就是底座 |
+| `shoot` / `pass` / `dribble` / `clear` / `waitShoot` | PlayBall / GoToBallWaitAndKick → 可能 `walkToBallAndKick` | 仅上层 `want_kick` 才 `kick` 59→13；未踢仍 walk | 否 |
+| （跌倒，不在 SkillRequest 枚举） | GetUpEngine | `handoff_getup` → standup 73→22 | 否：不改 73/72 |
+| （无官方对应） | — | `reactive` 64→15 | **未实现，回落 walk**；对照 ≠ 启用 |
+
+`MotionRequest::Motion` 另有 `walkAtAbsoluteSpeed` / `walkAtRelativeSpeed` / `walkToPose` / `walkToBallAndKick` / `dribble` / `stand` / `playDead` / `fallRequest` / `prepare`。【本仓已核】`MotionRequest.h`。这些走类请求在部署侧仍吃官方 `K1_walk.onnx` **344→13**，不是 `bt_skill_select` 的任务名，更不是火神 T1。
+
+**可迁：** 保持「策略层点角色、运控层默认官方 walk」；旁路口只在明确踢球 / 跌倒时离走。  
+**不迁：** 把 `walk/kick/reactive` 写进 `SkillRequest.h`；让 `shoot` 加载 T1 `model.pth`；为对齐行为树去改 344。
+
+映射：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
+
 ---
 
 ## 7. 可迁移矩阵（压缩）
@@ -370,6 +398,7 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 | 显式 TeamComm / 非 CTDE | **P4 单机切换 + SimRobot 六机；P5 带宽** | 不把 MAPPO 塞进 344 |
 | SimRobot ↔ Isaac 域差 | **P4 三道门；P5 真机** | 不统一 PD、不用 SimRobot 冒充 fast standup |
 | Booster Lab real-to-sim | **P4 对齐三道门；P5 才校准植物** | 不把 T–n / Webots / 厂家 K1 跑步写进 344 |
+| 官方 SkillRequest vs bt_skill_select | **对照口，不替换 walk** | 策略层 shoot ≠ 换掉 344 actor |
 
 ---
 
@@ -394,3 +423,4 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - 本轮路线：`ROADMAP-P0-P5.md`
 - 部署一拍时序：`DEPLOY-CALL-SEQUENCE.md`
 - PR 文件树：[PR4-INDEX.md](PR4-INDEX.md)
+- 历史/力矩时间序列草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)

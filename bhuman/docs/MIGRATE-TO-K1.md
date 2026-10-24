@@ -30,7 +30,10 @@
 | Digit 落足 / 负载导航 | §3.4 / §7 | 不换栈。指标挂在 P1 评估：`run_walk_eval.sh` 急停 / 窄通道 | **P1** | 训练要 | **指标不是新合同**：仍 `--task K1` 344→13 | 指标 TODO |
 | 火神行为树切入（主攻手近球） | §6.1 / §6.5 | `docs/BEHAVIOR-TREE-SKILL-SELECT.md` + `k1-reactive/bt_skill_select.py` | **P2 口 / P0 注释** | 否 | 默认技能 **必须是** 官方 walk 344→13；反应技能未实现时回落 walk | 上轮 stub |
 | 切换器状态机（走↔踢↔起身） | ROADMAP P4 | `k1-training/k1-switcher/` + [SWITCHER-SM.md](SWITCHER-SM.md) | **P4 / P0 骨架** | 否 | 默认 walk 344→13；`standup→kick` 非法；**reactive 不可达** | 上轮骨架 |
-| 部署调用时序（BT→SM→槽位） | ROADMAP P4 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) + `k1-switcher/deploy_call.py` | **P4 / P0 骨架** | 否 | **默认入口官方 walk 344→13**；`getup_done` 才回走；不热换 ONNX | **本轮骨架** |
+| 部署调用时序（BT→SM→槽位） | ROADMAP P4 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) + `k1-switcher/deploy_call.py` | **P4 / P0 骨架** | 否 | **默认入口官方 walk 344→13**；`getup_done` 才回走；不热换 ONNX | 上轮骨架 |
+| 历史/力矩时间序列合同草案 | ROADMAP P4 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) + `k1-switcher/timeseries_contract.py` | **P4 / P0 草案** | 否 | 形状锁 10×32+24=**344**；连续性 SKIP，不改 live obs | **本轮草案** |
+| 估计器旁路加深 | §5 / P1.4 | `k1-estimators/hooks.py` + `test_estimator_bypass.py` | **P1 口** | 否 | latent **不进** 344；不接线 switcher / deploy_call | **本轮加深** |
+| 官方 SkillRequest vs bt_skill_select | §6.10 | 只写 GLOBAL；不改 `SkillRequest.h` | **对照** | 否 | **对照 ≠ 替换官方 walk** | **本轮调研** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -68,6 +71,9 @@
 | 5 | 部署调用时序（默认 walk） | `k1-switcher/deploy_call.py` + [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | `python3 bhuman/k1-training/k1-switcher/test_deploy_call.py` |
 | 6 | Booster Lab / real-to-sim | survey §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 7 | PR 文件树索引 | [PR4-INDEX.md](PR4-INDEX.md) | 官方基线 vs 并行 stub / draft-only |
+| 8 | 历史/力矩时间序列草案 | `timeseries_contract.py` + [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | `python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`（连续性 SKIP） |
+| 9 | 估计器旁路加深 | `k1-estimators/hooks.py` | `python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py` |
+| 10 | SkillRequest 对照 | survey §6.10 | `test_global_docs.py` 锚点 |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

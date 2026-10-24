@@ -18,7 +18,8 @@
 上层仍是 B-Human 行为树。默认比赛行走 = 官方 walk。反应技能只在「主攻手 + 近球 + 前方有空间」时切入。
 选择口注释：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)（`implemented=false`，常态回落 344→13）。
 状态机骨架（走↔踢↔起身，reactive 不可达）：[SWITCHER-SM.md](SWITCHER-SM.md)。  
-部署一拍（默认官方 walk 344→13；`getup_done` 才回走）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
+部署一拍（默认官方 walk 344→13；`getup_done` 才回走）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。  
+历史/力矩形状草案（连续性仍 SKIP）：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。
 
 ```
 walk 344→13  ←→  kick 59→13     （同 13 维家族，WalkingEngine 已有）
@@ -86,7 +87,8 @@ walk 历史语义（契约 v1）：形状 `(num_envs,10,32)`，先左移再写�
 | `test_torque_first_step` | T3 部分 | **静态 PASS**：`first_step_last_action`；T4 力矩差分仍 SKIP |
 | `test_no_onnx_hot_swap` | T5 | **静态 PASS**：`refuse_hot_swap`；T6 PD 组仍 SKIP |
 
-活测试：`python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py`。
+活测试：`python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py`。  
+形状草案（无轨迹仍 SKIP）：`python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`。
 
 能跑、且现在就必须过的只有：本清单文件存在且含「历史 / 相位 / 力矩」三节；骨架 YAML 的 `skill_switch` 仍指向本文件。
 

@@ -439,6 +439,18 @@ def check_gpu_free_shells(
             True,
         ),
         (
+            "bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+            "timeseries_contract",
+            "k1_timeseries_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+            "estimator_bypass",
+            "k1_estimator_bypass",
+            True,
+        ),
+        (
             "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "p1_draft",
             "k1_p1_draft",
@@ -916,6 +928,8 @@ def main() -> int:
             "bash bhuman/sim2sim/run-sim2sim-gate.sh",
             "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
             "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
+            "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+            "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
@@ -941,7 +955,7 @@ def main() -> int:
     )
     print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
     print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5 + MIGRATE-TO-K1")
-    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / deploy-call / p1-draft")
+    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / deploy-call / timeseries / p1-draft")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

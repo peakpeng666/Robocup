@@ -64,7 +64,11 @@ def copy_walk_obs(flat_344) -> list[float]:
 
 
 class EstimatorInterface:
-    """CPU-only bypass. encode_latent is zeros until a real P1 experiment."""
+    """CPU-only bypass. encode_latent is zeros until a real P1 experiment.
+
+    Output rule: latent is a side-channel. It does not enter official walk
+    344, SwitcherSM, DeployCall, or K1.yaml. See hooks.py (documented only).
+    """
 
     name = "base"
     family = "base"
@@ -73,7 +77,11 @@ class EstimatorInterface:
     trainable = TRAINABLE
 
     def actor_observation(self, flat_344) -> list[float]:
-        """Return a 344-D copy. Subclasses must not pad, crop, or reorder."""
+        """Return a 344-D copy. Subclasses must not pad, crop, or reorder.
+
+        This is the only vector the official actor may see. Latent extras
+        from encode_latent stay off this path.
+        """
         if self.actor_obs_dim != WALK_OBS:
             raise RuntimeError(f"{self.name} drifted actor_obs_dim off 344")
         return copy_walk_obs(flat_344)

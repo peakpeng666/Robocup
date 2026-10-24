@@ -14,8 +14,12 @@
         └── dreamwaq      隐式地形 extras（同上）
 ```
 
+估计器输出是旁路，**不进** 官方 344。`TRAINABLE=false`。
+
 P1 真训时只允许改配方 / 旁路模块，**禁止**把 `num_observations` 改成 344+latent。
 latent 若将来进 critic，另开实验检查点，不得加载公开 `K1_walk.pth` 的 critic（359≠360 已是一坑）。
+
+与 switcher / deploy_call 的挂接点只写在 `hooks.py`，**未接线**：`SwitcherSM.request` / `DeployCall.tick` 不调用 `encode_latent`，不改官方 actor。
 
 ## 有 / 没有
 
@@ -24,8 +28,10 @@ latent 若将来进 critic，另开实验检查点，不得加载公开 `K1_walk
 | 三种注册名、344 拆帧、恒等 actor 观测 | 自适应模块权重、Isaac Gym `step` |
 | 改写 344 / 写 YAML 必抛 | 可训练 env、ONNX |
 | 拒绝火神 T1 / NUSim 维 | DreamWaQ 地形编码器实现 |
+| `hooks.py` 文档化挂接点（调用即抛） | 把 latent 接到 DeployCall / 改 344 |
 
 ```bash
 python3 bhuman/k1-training/k1-estimators/check_estimators.py
 python3 bhuman/k1-training/k1-estimators/test_estimators.py
+python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 ```

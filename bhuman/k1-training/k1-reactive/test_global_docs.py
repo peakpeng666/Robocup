@@ -50,6 +50,8 @@ REQUIRED_DOCS = {
         "real-to-sim",
         "合同维",
         "不冒充",
+        "SkillRequest",
+        "对照 ≠ 替换",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -64,6 +66,8 @@ REQUIRED_DOCS = {
         "DEPLOY-CALL-SEQUENCE",
         "Booster Lab",
         "PR4-INDEX",
+        "HISTORY-TORQUE-TIMESERIES",
+        "SkillRequest",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": ("73→22", "72→22", "2502.20061"),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
@@ -95,6 +99,13 @@ REQUIRED_DOCS = {
         "并行 stub",
         "draft-only",
         "K1.yaml",
+    ),
+    "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
+        "344→13",
+        "10×32",
+        "SKIP",
+        "不改 live obs",
+        "T4",
     ),
 }
 

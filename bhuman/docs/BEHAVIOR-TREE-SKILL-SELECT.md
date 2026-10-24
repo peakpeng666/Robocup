@@ -62,7 +62,8 @@ B-Human 行为树 / 角色 / GameController / 正常视觉     ← 保持，本�
 | B6 | 切换连续性 | 本口只选名字。历史/相位/力矩仍见切换清单；未实现 |
 
 活测试：`python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py`。  
-与切换器、槽位图串成一拍（默认仍 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
+与切换器、槽位图串成一拍（默认仍 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。  
+官方 `SkillRequest` 对照（对照 ≠ 替换官方 walk）：GLOBAL survey §6.10。
 
 ---
 

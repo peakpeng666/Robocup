@@ -86,7 +86,10 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 部署调用时序（默认入口官方 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) + `k1-switcher/deploy_call.py`。
 - [x] 调研补强：Booster Lab / real-to-sim vs 三道门（合同维 / PD / 不冒充，survey §6.9）。
 - [x] PR 文件树索引：[PR4-INDEX.md](PR4-INDEX.md)（官方基线 vs 并行 stub / draft-only）。
-- [ ] 完整切换器时间序列（P4，仍无真机）。
+- [x] 历史/力矩时间序列**合同草案**（形状可测，H1–H6/T4 仍 SKIP）：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。
+- [x] 估计器旁路加深：`hooks.py` + `test_estimator_bypass.py`（latent **不进** 344）。
+- [x] 调研补强：官方 BehaviorControl / SkillRequest vs `bt_skill_select`（survey §6.10；对照 ≠ 替换官方 walk）。
+- [ ] 完整切换器时间序列（P4，仍无真机；无录包不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
 
 ```bash
@@ -139,12 +142,13 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ### P4 · 切换 + sim2sim + 起身交接
 
-- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。**部署一拍**把 BT 口 + SM + 槽位图串起来，默认仍是官方 walk 344→13：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。时间序列仍 TODO。
+- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。**部署一拍**把 BT 口 + SM + 槽位图串起来，默认仍是官方 walk 344→13：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩**形状草案**已落地：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)（连续性仍 SKIP，不得假绿）。完整时间序列仍 TODO。
 - 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。无 GPU 骨架：`sim2sim/run-sim2sim-gate.sh`（缺依赖 SKIP）。
 - standup→walk 5 s 窗口：状态机只计时；**必须 `getup_done`** 才回 walk；HiFAR/FRASA 只对照，不改 73/72。
 - **通信 / 非 CTDE**（survey §6.7）：SimRobot 六机是 TeamComm + GC 的验收场，不是 MAPPO 训练器。切换器按单机边工作，不把队友状态写入 344。
 - **域差**（survey §6.8）：Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放。PD 组不得统一；fast standup 72→22 不得用 SimRobot PASS 冒充。
 - **Booster Lab / real-to-sim**（survey §6.9）：三道门验收仍是官方合同维 / PD / 不冒充。厂家 AMP、Webots、T–n 表不得改写 `K1.yaml` 或替换官方 walk。
+- **官方 SkillRequest vs 旁路口**（survey §6.10）：对照 ≠ 替换官方 walk。`shoot` 仍先走再踢，默认 actor 仍是 344→13。
 
 ### P5 · 真机前置（未授权，只列）
 
@@ -173,6 +177,8 @@ python3 bhuman/sim2sim/test_sim2sim_gate.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
 python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
 python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
+python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
+python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

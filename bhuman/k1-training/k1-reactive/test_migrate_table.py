@@ -25,6 +25,9 @@ REQUIRED_ROWS = (
     "切换器状态机",
     "部署调用时序",
     "Booster Lab",
+    "历史/力矩时间序列",
+    "估计器旁路加深",
+    "SkillRequest",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -36,6 +39,8 @@ REQUIRED_LANDINGS = (
     "344→13",
     "deploy_call",
     "PR4-INDEX",
+    "timeseries_contract",
+    "hooks.py",
 )
 
 
