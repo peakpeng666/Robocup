@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Static K1 walk/kick/standup contract gate.
+# Does not source env.sh: that file requires the operator bh-gym interpreter.
+# GPU, Isaac Gym, and official .pth/.onnx are optional; missing weights warn.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+K1_TRAINING_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd -- "$K1_TRAINING_ROOT/../.." && pwd)"
+
+if [[ ! -f "$REPO_ROOT/AGENTS.md" || ! -d "$REPO_ROOT/bhuman" ]]; then
+  echo "cannot locate Robocup workspace from $SCRIPT_DIR" >&2
+  exit 2
+fi
+
+if [[ -n "${CONTRACT_GATE_PY:-}" ]]; then
+  PY="$CONTRACT_GATE_PY"
+elif [[ -x "${BH_PY:-}" ]]; then
+  PY="$BH_PY"
+else
+  PY="python3"
+fi
+
+STAMP="${CONTRACT_GATE_STAMP:-$(date -u +%Y%m%d)}"
+OUT="${1:-$K1_TRAINING_ROOT/manifests/contract-gate-${STAMP}.json}"
+LATEST="$K1_TRAINING_ROOT/manifests/contract-gate-latest.json"
+
+echo "[contract-gate] repo=$REPO_ROOT"
+echo "[contract-gate] python=$PY"
+echo "[contract-gate] json=$OUT"
+
+"$PY" -B "$SCRIPT_DIR/check_policy_contracts.py" --repo "$REPO_ROOT" --json-out "$OUT"
+cp -f "$OUT" "$LATEST"
+echo "[contract-gate] also wrote $LATEST"
