@@ -1,11 +1,11 @@
 # PR #4 自检摘要（最新）
 
-由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T10:01:53+00:00；渲染 2026-10-24T10:01:53+00:00）。
+由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T10:05:56+00:00；渲染 2026-10-24T10:05:56+00:00）。
 人读一览，不是新调研。**PASS ≠ 已训通 ≠ 已上真机。**
 
 **PASS** 基底 **344→13** / TRAINABLE=false / ready_gpu=false
 
-计数：PASS 52 · SKIP 1 · WARN 3
+计数：PASS 53 · SKIP 1 · WARN 3
 
 | 项 | 状态 | 说明 |
 |---|---|---|
@@ -56,10 +56,11 @@
 | `test_speed_gear_diff.py` | **PASS** | selfcheck step |
 | `test_ball_network_active.py` | **PASS** | selfcheck step |
 | `test_intercept_avoid_bypass.py` | **PASS** | selfcheck step |
+| `test_walk_stay_remaining.py` | **PASS** | selfcheck step |
 | `test_selfcheck_fail_hints.py` | **PASS** | selfcheck step |
 | `render_selfcheck_summary.py` | **PASS** | selfcheck step |
 | `ready_gpu` | **WARN** | false (expected without CUDA worker) |
-| `selfcheck elapsed_s` | **PASS** | 8.267s over 49 timed steps |
+| `selfcheck elapsed_s` | **PASS** | 8.022s over 50 timed steps |
 | `reserved GPU` | **WARN** | cuda, isaacgym_or_alt, checkpoint |
 | `reference-motion inventory` | **SKIP** | missing declared: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries |
 | `T1 / GMR as walk default` | **PASS** | refused (foreign ≠ official walk) |
@@ -70,56 +71,57 @@
 
 | 步 | 秒 |
 |---|---|
-| `run_contract_gate.sh` | 3.64 |
-| `run_unit_tests_no_gym.sh` | 2.757 |
-| `k1_reward_audit.py` | 0.075 |
-| `p1_draft_diff.py` | 0.033 |
-| `probe_reserved_gpu.sh` | 0.037 |
-| `print_train_dry_run.py` | 0.032 |
-| `env_registry_audit.py` | 0.036 |
-| `test_simrobot_acceptance.py` | 0.04 |
+| `run_contract_gate.sh` | 3.467 |
+| `run_unit_tests_no_gym.sh` | 2.699 |
+| `k1_reward_audit.py` | 0.072 |
+| `p1_draft_diff.py` | 0.031 |
+| `probe_reserved_gpu.sh` | 0.036 |
+| `print_train_dry_run.py` | 0.03 |
+| `env_registry_audit.py` | 0.03 |
+| `test_simrobot_acceptance.py` | 0.036 |
 | `test_skill_request_map.py` | 0.033 |
-| `test_pd_domain_gap.py` | 0.025 |
+| `test_pd_domain_gap.py` | 0.024 |
 | `test_teamcomm_budget.py` | 0.024 |
 | `test_checkpoint_layout.py` | 0.024 |
 | `test_kick_standup_joint_map.py` | 0.031 |
-| `test_reference_motion_inventory.py` | 0.035 |
-| `test_getup_engine_snapshot.py` | 0.037 |
-| `test_walk_stability_presets_audit.py` | 0.034 |
-| `test_forbidden_regressions.py` | 0.105 |
-| `test_official_sibling_tasks_audit.py` | 0.037 |
-| `test_onnx_deploy_path_crosscheck.py` | 0.034 |
-| `test_t1_k1_isolation.py` | 0.031 |
-| `test_command_schedule_audit.py` | 0.033 |
-| `test_disturbance_curriculum_audit.py` | 0.034 |
-| `test_settle_jitter_audit.py` | 0.032 |
+| `test_reference_motion_inventory.py` | 0.04 |
+| `test_getup_engine_snapshot.py` | 0.043 |
+| `test_walk_stability_presets_audit.py` | 0.032 |
+| `test_forbidden_regressions.py` | 0.104 |
+| `test_official_sibling_tasks_audit.py` | 0.033 |
+| `test_onnx_deploy_path_crosscheck.py` | 0.033 |
+| `test_t1_k1_isolation.py` | 0.029 |
+| `test_command_schedule_audit.py` | 0.032 |
+| `test_disturbance_curriculum_audit.py` | 0.032 |
+| `test_settle_jitter_audit.py` | 0.03 |
 | `test_estimator_ab_audit.py` | 0.032 |
-| `test_reference_penalty_anneal_audit.py` | 0.034 |
-| `test_behavior_control_handoff.py` | 0.047 |
-| `test_compressed_teamcomm_shape.py` | 0.035 |
-| `test_falldown_motion_chain.py` | 0.059 |
-| `test_teamcomm_128_vs_512.py` | 0.034 |
-| `test_force_walk_afterwards.py` | 0.042 |
-| `test_kick_engine_boundary.py` | 0.051 |
+| `test_reference_penalty_anneal_audit.py` | 0.038 |
+| `test_behavior_control_handoff.py` | 0.044 |
+| `test_compressed_teamcomm_shape.py` | 0.034 |
+| `test_falldown_motion_chain.py` | 0.042 |
+| `test_teamcomm_128_vs_512.py` | 0.035 |
+| `test_force_walk_afterwards.py` | 0.043 |
+| `test_kick_engine_boundary.py` | 0.042 |
 | `test_walking_engine_cfg_audit.py` | 0.034 |
-| `test_kick_onnx_naming.py` | 0.032 |
+| `test_kick_onnx_naming.py` | 0.036 |
 | `test_getup_engine_cfg_audit.py` | 0.047 |
-| `test_cfg_copy_crosscheck.py` | 0.056 |
-| `test_motor_parameters_audit.py` | 0.036 |
-| `test_simulated_speed_diff.py` | 0.031 |
-| `test_stand_ankle_stiffness.py` | 0.04 |
+| `test_cfg_copy_crosscheck.py` | 0.055 |
+| `test_motor_parameters_audit.py` | 0.034 |
+| `test_simulated_speed_diff.py` | 0.032 |
+| `test_stand_ankle_stiffness.py` | 0.042 |
 | `test_competition_walk_diff.py` | 0.037 |
-| `test_policy_switch_threshold.py` | 0.047 |
-| `test_shift_ball_position.py` | 0.038 |
-| `test_walk_kick_policy_switch.py` | 0.047 |
-| `test_max_acceleration_diff.py` | 0.051 |
-| `test_get_next_target_request.py` | 0.049 |
-| `test_speed_gear_diff.py` | 0.037 |
-| `test_ball_network_active.py` | 0.05 |
-| `test_intercept_avoid_bypass.py` | 0.045 |
-| `test_selfcheck_fail_hints.py` | 0.026 |
-| `render_selfcheck_summary.py` | 0.031 |
-| **合计 elapsed_s** | **8.267** |
+| `test_policy_switch_threshold.py` | 0.046 |
+| `test_shift_ball_position.py` | 0.041 |
+| `test_walk_kick_policy_switch.py` | 0.049 |
+| `test_max_acceleration_diff.py` | 0.037 |
+| `test_get_next_target_request.py` | 0.046 |
+| `test_speed_gear_diff.py` | 0.036 |
+| `test_ball_network_active.py` | 0.047 |
+| `test_intercept_avoid_bypass.py` | 0.043 |
+| `test_walk_stay_remaining.py` | 0.048 |
+| `test_selfcheck_fail_hints.py` | 0.027 |
+| `render_selfcheck_summary.py` | 0.03 |
+| **合计 elapsed_s** | **8.022** |
 
 主入口：`bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh`
 
