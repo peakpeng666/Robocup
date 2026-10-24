@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T06:31:52+00:00",
+  "generated_utc": "2026-10-24T06:37:30+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -9,7 +9,12 @@
     "unregistered_in_train_py": "PASS",
     "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
     "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
-    "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md"
+    "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+    "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
+    "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
+    "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
+    "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
+    "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -67,6 +72,9 @@
       "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
       "global humanoid survey present",
       "P0–P5 roadmap present",
+      "migrate-to-K1 table present",
+      "BT skill-select interface present",
+      "obs contract JSON present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -211,12 +219,94 @@
         "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
         "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
         "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
-        "method_catalog.json: 12 entries cross-checked against survey"
+        "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
+        "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
+        "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
+        "method_catalog.json: 13 entries cross-checked against survey"
+      ]
+    },
+    "migrate_table": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and four landings present"
+      ]
+    },
+    "estimators": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "official K1.yaml still 344->13 (read-only check)",
+        "passthrough: actor observation is a 344-D copy",
+        "passthrough: rewrite_walk_obs refused",
+        "passthrough: attach_to_k1_yaml refused",
+        "passthrough: create_training_env refused",
+        "rma: actor observation is a 344-D copy",
+        "rma: rewrite_walk_obs refused",
+        "rma: attach_to_k1_yaml refused",
+        "rma: create_training_env refused",
+        "dreamwaq: actor observation is a 344-D copy",
+        "dreamwaq: rewrite_walk_obs refused",
+        "dreamwaq: attach_to_k1_yaml refused",
+        "dreamwaq: create_training_env refused",
+        "kick 59 rejected as walk estimator input",
+        "reactive 64 rejected as walk estimator input",
+        "NUSim 79 rejected",
+        "no huoshen_t1 estimator family",
+        "10x32+24 split matches walk 344",
+        "RMA vs DreamWaQ are distinct single-factor names"
+      ]
+    },
+    "obs_schema": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "walk 10×32+24=344 layout sums",
+        "reactive 64→15 matches contract.py and stays parallel to 344",
+        "forbidden: Huoshen 58 and NUSim 79 listed",
+        "schema lists walk/kick/standup/fast_standup/reactive"
+      ]
+    },
+    "bt_skill_select": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "port frozen: implemented=false, default walk 344→13",
+        "B1 PASS: default is walk 344→13",
+        "B2 PASS: reactive conditions still fall back to walk",
+        "B3 PASS: kick 59→13",
+        "B4 PASS: fallen -> handoff_getup",
+        "B5 PASS: refused huoshen_t1",
+        "B5 PASS: refused nusim",
+        "B5 PASS: refused t1_reactive",
+        "B5 PASS: refused K1_Reactive",
+        "BT interface doc anchors present"
+      ]
+    },
+    "sim2sim_gate": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "sim2sim README still names walk 344→13",
+        "recorded runs/20261020_220814_312153_mujoco_walk stays (*,344) actor-only, robot_connected=false",
+        "kick 59 refused as a walk overpass policy",
+        "live run-mujoco.sh not invoked",
+        "negative: kick 59 rejected",
+        "negative: NUSim 79 rejected",
+        "official walk 344->13 accepted",
+        "recorded 120 s walk result still (*,344)"
+      ],
+      "skipped": true,
+      "warnings": [
+        "sim2sim stack: python module mujoco missing",
+        "sim2sim stack: isaacsim-gui python missing",
+        "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
+        "sim2sim live replay skipped (no mujoco/weights); skeleton only"
       ]
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T06:31:52+00:00",
+    "generated_utc": "2026-10-24T06:37:30+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -252,7 +342,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "b1c0fd37b26aef2d4222b0c50b31a7213ec8a5ce",
+    "workspace_head": "f9ca16399a82f4e6713957f0c65117d4ce1d8c66",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -621,7 +711,11 @@
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
     "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
     "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
-    "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay"
+    "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay",
+    "sim2sim stack: python module mujoco missing",
+    "sim2sim stack: isaacsim-gui python missing",
+    "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
+    "sim2sim live replay skipped (no mujoco/weights); skeleton only"
   ],
   "notes": [
     "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
@@ -645,6 +739,9 @@
     "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
     "global humanoid survey present",
     "P0–P5 roadmap present",
+    "migrate-to-K1 table present",
+    "BT skill-select interface present",
+    "obs contract JSON present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -674,7 +771,53 @@
     "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
     "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
-    "method_catalog.json: 12 entries cross-checked against survey",
+    "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
+    "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
+    "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
+    "method_catalog.json: 13 entries cross-checked against survey",
+    "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and four landings present",
+    "official K1.yaml still 344->13 (read-only check)",
+    "passthrough: actor observation is a 344-D copy",
+    "passthrough: rewrite_walk_obs refused",
+    "passthrough: attach_to_k1_yaml refused",
+    "passthrough: create_training_env refused",
+    "rma: actor observation is a 344-D copy",
+    "rma: rewrite_walk_obs refused",
+    "rma: attach_to_k1_yaml refused",
+    "rma: create_training_env refused",
+    "dreamwaq: actor observation is a 344-D copy",
+    "dreamwaq: rewrite_walk_obs refused",
+    "dreamwaq: attach_to_k1_yaml refused",
+    "dreamwaq: create_training_env refused",
+    "kick 59 rejected as walk estimator input",
+    "reactive 64 rejected as walk estimator input",
+    "NUSim 79 rejected",
+    "no huoshen_t1 estimator family",
+    "10x32+24 split matches walk 344",
+    "RMA vs DreamWaQ are distinct single-factor names",
+    "walk 10×32+24=344 layout sums",
+    "reactive 64→15 matches contract.py and stays parallel to 344",
+    "forbidden: Huoshen 58 and NUSim 79 listed",
+    "schema lists walk/kick/standup/fast_standup/reactive",
+    "port frozen: implemented=false, default walk 344→13",
+    "B1 PASS: default is walk 344→13",
+    "B2 PASS: reactive conditions still fall back to walk",
+    "B3 PASS: kick 59→13",
+    "B4 PASS: fallen -> handoff_getup",
+    "B5 PASS: refused huoshen_t1",
+    "B5 PASS: refused nusim",
+    "B5 PASS: refused t1_reactive",
+    "B5 PASS: refused K1_Reactive",
+    "BT interface doc anchors present",
+    "sim2sim README still names walk 344→13",
+    "recorded runs/20261020_220814_312153_mujoco_walk stays (*,344) actor-only, robot_connected=false",
+    "kick 59 refused as a walk overpass policy",
+    "live run-mujoco.sh not invoked",
+    "negative: kick 59 rejected",
+    "negative: NUSim 79 rejected",
+    "official walk 344->13 accepted",
+    "recorded 120 s walk result still (*,344)",
+    "sim2sim_gate: skipped (missing optional runtime)",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -690,6 +833,12 @@
     "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
     "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
     "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
+    "python3 bhuman/k1-training/k1-reactive/test_migrate_table.py",
+    "python3 bhuman/k1-training/k1-estimators/test_estimators.py",
+    "python3 bhuman/k1-training/k1-reactive/test_obs_schema.py",
+    "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+    "python3 bhuman/sim2sim/test_sim2sim_gate.py",
+    "bash bhuman/sim2sim/run-sim2sim-gate.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
