@@ -1,0 +1,25 @@
+{
+  "started": "2026-10-24T13:37:40.141510+00:00",
+  "tool": "tools/verify_package.py",
+  "expected": {
+    "name": "pkg.tar.gz",
+    "size": 439,
+    "sha256": "67cd6e20d1c19e19305bdc4d8e29664207fea488d04580ffc9a96a6693349dc2"
+  },
+  "steps": {
+    "merge": "ok",
+    "failure": "sha256 mismatch: expected 67cd6e20d1c19e19305bdc4d8e29664207fea488d04580ffc9a96a6693349dc2, got ff6bbc05608289250846bbb0aa5db8d6cfdd34527901fe877fd13f066843990f"
+  },
+  "volumes": [
+    "/home/peakpeng/Desktop/Robocup/robocup-1/native/simrobot_native_bridge/work/verify-package-selftest-20261024_223740/vols_bad/native_harness_sources_evidence_20261024.tar.gz.part0000",
+    "/home/peakpeng/Desktop/Robocup/robocup-1/native/simrobot_native_bridge/work/verify-package-selftest-20261024_223740/vols_bad/native_harness_sources_evidence_20261024.tar.gz.part0001",
+    "/home/peakpeng/Desktop/Robocup/robocup-1/native/simrobot_native_bridge/work/verify-package-selftest-20261024_223740/vols_bad/native_harness_sources_evidence_20261024.tar.gz.part0002"
+  ],
+  "merged": {
+    "size": 439,
+    "sha256": "ff6bbc05608289250846bbb0aa5db8d6cfdd34527901fe877fd13f066843990f"
+  },
+  "result": "FAIL",
+  "error": "sha256 mismatch: expected 67cd6e20d1c19e19305bdc4d8e29664207fea488d04580ffc9a96a6693349dc2, got ff6bbc05608289250846bbb0aa5db8d6cfdd34527901fe877fd13f066843990f",
+  "finished": "2026-10-24T13:37:40.141670+00:00"
+}

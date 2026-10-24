@@ -1,0 +1,23 @@
+{
+  "schema": "bridge.build/1",
+  "variant": "variant-20261024_baseline",
+  "stamp": "20261024_224912",
+  "status": "PASS",
+  "jobs": 16,
+  "built_at": "2026-10-24T13:50:10.141656+00:00",
+  "products": {
+    "SimRobot": {
+      "sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157",
+      "size": 256192
+    },
+    "libSimulatedRobot.so": {
+      "sha256": "15e312c82a84bae3033f3b16eb9d06e368731e2e13b153d006c471e5fc2a71a5",
+      "size": 24078592
+    },
+    "libSimRobotCore3.so": {
+      "sha256": "eb053129ac55a9f39b0703ec0c8b7d914981e7272c260ccea30c44486446e8de",
+      "size": 776256
+    }
+  },
+  "log": "_builds/simrobot-Release/console-20261024_224912.log"
+}

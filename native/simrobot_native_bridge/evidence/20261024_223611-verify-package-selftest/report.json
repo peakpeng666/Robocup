@@ -1,0 +1,51 @@
+{
+  "started": "20261024_223611",
+  "results": [
+    {
+      "case": "happy-path-split-volumes",
+      "result": "FAIL",
+      "detail": ""
+    },
+    {
+      "case": "unpacked-exists-readonly",
+      "result": "FAIL",
+      "detail": ""
+    },
+    {
+      "case": "size-mismatch-rejected",
+      "result": "FAIL",
+      "detail": ""
+    },
+    {
+      "case": "sha-mismatch-rejected",
+      "result": "FAIL",
+      "detail": ""
+    },
+    {
+      "case": "malicious-absolute-rejected",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "case": "malicious-dotdot-rejected",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "case": "malicious-symlink-rejected",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "case": "malicious-device-rejected",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "case": "manifest-hash-mismatch-rejected",
+      "result": "PASS",
+      "detail": ""
+    }
+  ],
+  "all_pass": true
+}

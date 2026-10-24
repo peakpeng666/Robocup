@@ -1,0 +1,51 @@
+{
+  "started": "2026-10-24T13:37:40.262629+00:00",
+  "tool": "tools/verify_package.py",
+  "expected": {
+    "name": "lying.tar.gz",
+    "size": 455,
+    "sha256": "3a12bb91dc686ea0fcdb1f4ccd92e305b79c73073708d23333450d1a223dcb14"
+  },
+  "steps": {
+    "merge": "ok",
+    "identity": "ok",
+    "original_archived": "ok",
+    "safe_unpack": "ok",
+    "failure": "artifact_manifest.json verification FAILED"
+  },
+  "volumes": [
+    "/home/peakpeng/Desktop/Robocup/robocup-1/native/simrobot_native_bridge/work/verify-package-selftest-20261024_223740/lying/lying.tar.gz"
+  ],
+  "merged": {
+    "size": 455,
+    "sha256": "3a12bb91dc686ea0fcdb1f4ccd92e305b79c73073708d23333450d1a223dcb14"
+  },
+  "original": {
+    "path": "work/verify-package-selftest-20261024_223740/w_lying/original/lying.tar.gz",
+    "size": 455
+  },
+  "unpacked": {
+    "path": "work/verify-package-selftest-20261024_223740/w_lying/unpacked",
+    "members": 5
+  },
+  "manifest": {
+    "manifest_shape": "files-list",
+    "listed_files": 3,
+    "problems": [],
+    "failures": [
+      {
+        "file": "state_machine/NativeLifecycle.hpp",
+        "expected": "3bba8237ee47389c28e08b230f86616592afeb21b18d04b9562e5260a797d114",
+        "actual": "570123a520bbbf620710f97cc2bf89dc62729f4d42a874b6533a16dc46a1e72b"
+      }
+    ],
+    "verified": 2,
+    "missing_in_package": [],
+    "not_in_manifest": [
+      "artifact_manifest.json"
+    ]
+  },
+  "result": "FAIL",
+  "error": "artifact_manifest.json verification FAILED",
+  "finished": "2026-10-24T13:37:40.264066+00:00"
+}

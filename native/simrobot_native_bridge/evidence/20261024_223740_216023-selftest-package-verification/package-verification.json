@@ -1,0 +1,29 @@
+{
+  "started": "2026-10-24T13:37:40.215450+00:00",
+  "tool": "tools/verify_package.py",
+  "expected": {
+    "name": "evil.tar.gz",
+    "size": 161,
+    "sha256": "9c212aee6c6556828ad5db22fb1389cdeff7ee8d6d3944e8af785521ee534fe3"
+  },
+  "steps": {
+    "merge": "ok",
+    "identity": "ok",
+    "original_archived": "ok",
+    "failure": "escaping link: 'lnk' -> '../../outside'"
+  },
+  "volumes": [
+    "/home/peakpeng/Desktop/Robocup/robocup-1/native/simrobot_native_bridge/work/verify-package-selftest-20261024_223740/evil_symlink/evil.tar.gz"
+  ],
+  "merged": {
+    "size": 161,
+    "sha256": "9c212aee6c6556828ad5db22fb1389cdeff7ee8d6d3944e8af785521ee534fe3"
+  },
+  "original": {
+    "path": "work/verify-package-selftest-20261024_223740/we_symlink/original/evil.tar.gz",
+    "size": 161
+  },
+  "result": "FAIL",
+  "error": "escaping link: 'lnk' -> '../../outside'",
+  "finished": "2026-10-24T13:37:40.216019+00:00"
+}

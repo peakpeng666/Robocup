@@ -1,0 +1,44 @@
+{
+  "started": "2026-10-24T13:37:01.697032+00:00",
+  "tool": "tools/verify_package.py",
+  "expected": {
+    "name": "pkg.tar.gz",
+    "size": 310,
+    "sha256": "82dcd515aef8144eb8461e65ac7c70d5697480c9f408326c513cfdc27e1634e9"
+  },
+  "steps": {
+    "merge": "ok",
+    "identity": "ok",
+    "original_archived": "ok",
+    "safe_unpack": "ok",
+    "manifest": "ok"
+  },
+  "volumes": [
+    "work/verify-package-selftest-manual-223701/single/pkg.tar.gz"
+  ],
+  "merged": {
+    "size": 310,
+    "sha256": "82dcd515aef8144eb8461e65ac7c70d5697480c9f408326c513cfdc27e1634e9"
+  },
+  "original": {
+    "path": "work/verify-package-selftest-manual-223701/wsingle/original/pkg.tar.gz",
+    "size": 310
+  },
+  "unpacked": {
+    "path": "work/verify-package-selftest-manual-223701/wsingle/unpacked",
+    "members": 3
+  },
+  "manifest": {
+    "manifest_shape": "files-list",
+    "listed_files": 2,
+    "problems": [],
+    "failures": [],
+    "verified": 2,
+    "missing_in_package": [],
+    "not_in_manifest": [
+      "artifact_manifest.json"
+    ]
+  },
+  "result": "PASS",
+  "finished": "2026-10-24T13:37:01.697910+00:00"
+}

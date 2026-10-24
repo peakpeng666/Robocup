@@ -1,0 +1,38 @@
+{
+  "timestamp": "20261024_223108",
+  "purpose": "Re-verify applicability of booster16 reusable patches on this machine before the native 1.7 bridge work. Fresh copies; GIT_CEILING_DIRECTORIES set to the scratch root so git cannot see the parent repositories.",
+  "patch_order_simrobot": [
+    "simrobot-9deb6ae6-delay-ring.patch",
+    "simrobot-9deb6ae6-hybrid-actuator.patch"
+  ],
+  "results": [
+    {
+      "patch": "simrobot-9deb6ae6-delay-ring.patch",
+      "target": "bhuman-local/Util/SimRobot (ServoMotor.cpp)",
+      "result": "PASS (clean apply, first in order)"
+    },
+    {
+      "patch": "simrobot-9deb6ae6-hybrid-actuator.patch",
+      "target": "bhuman-local/Util/SimRobot (ServoMotor.cpp/.h + new SimRobotHybridActuator.h)",
+      "result": "PASS (clean apply, after delay-ring)"
+    },
+    {
+      "patch": "bhuman-2e3374-referee-frame-export.patch",
+      "target": "bhuman-local/Src/Libs/SimulatedRobot",
+      "result": "FAIL on RoboCupCtrl.cpp hunk at clean-2e3374 line ~347: bhuman-local inserts a profile-timing block between gameController.update() and the robot update loop, which breaks the patch context. GameController.h/.cpp hunks check clean.",
+      "note": "This is a context conflict with the local audit-hook changes, not a patch defect."
+    },
+    {
+      "patch": "bhuman-2e3374-referee-frame-export.patch",
+      "target": "BHumanCodeRelease/Src/Libs/SimulatedRobot (clean baseline matching 2e3374 context)",
+      "result": "PASS (clean apply)"
+    }
+  ],
+  "source_file_sha256": {
+    "bhuman-local/ServoMotor.cpp": "d5cffdfb8002f3ae499c8134d0775527e3a3b625d3d255381a023059af0fd589",
+    "bhuman-local/ServoMotor.h": "ff0319331e6e29ad05f061755927ec16989464eb0ecd239b98753f13fd2c1919",
+    "bhuman-local/RoboCupCtrl.cpp": "06870f81cca299e8bbe9ec8b9b3b6606ffb7db399b24164cfc639e1a2ab3edf1",
+    "BHumanCodeRelease/RoboCupCtrl.cpp": "5a0c1365405032b780765b94bacba5de9414bdfffbeb602a05f78406cab5634a"
+  },
+  "consequence_for_bridge": "Variants built from bhuman-local can apply both SimRobot patches as-is. The referee-frame patch is not needed for the minimal native 1.7 replacement layer; if it is later required in a bhuman-local-based variant, it must be re-based onto the audit-hook context as a clearly labeled bridge-side adaptation (the public patch stays untouched)."
+}
