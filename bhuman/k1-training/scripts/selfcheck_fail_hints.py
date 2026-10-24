@@ -178,7 +178,7 @@ HINTS: dict[str, dict[str, str]] = {
     },
     "test_max_acceleration_diff.py": {
         "look": "bhuman/k1-training/scripts/max_acceleration_diff.py",
-        "hint": "先看 maxAcceleration 是否仍是 plant 20/20 vs 60/20 vs 200/20，而不是被写成换 walk 网或改 344",
+        "hint": "先看 maxAcceleration 是否仍是 plant 20/20 vs 60/20 vs 200/20（Sim x20→60 / Comp x20→200 允许集），而不是被写成换 walk 网、改 344 或 Sim↔Comp 漂移",
     },
     "test_get_next_target_request.py": {
         "look": "bhuman/k1-training/scripts/get_next_target_request.py",
@@ -202,7 +202,7 @@ HINTS: dict[str, dict[str, str]] = {
     },
     "test_ball_distance_hysteresis.py": {
         "look": "bhuman/k1-training/scripts/ball_distance_hysteresis.py",
-        "hint": "先看球距滞回是否仍是 Default 1500±300 / Competition 1100±200，而不是被写成改 344 或热换训练图",
+        "hint": "先看球距滞回是否仍是 Default 1500±300→1200/1800 / Competition 1100±200→900/1300，而不是被写成改 344、热换训练图或倒置带边",
     },
     "test_kick_policy_apply_dims.py": {
         "look": "bhuman/k1-training/scripts/kick_policy_apply_dims.py",

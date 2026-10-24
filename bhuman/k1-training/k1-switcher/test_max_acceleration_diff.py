@@ -89,6 +89,14 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             errors.append("maxAcceleration must not swap net or change 344")
         else:
             notes.append("maxAcceleration ≠ net swap / 344 rewrite")
+        if snap.get("allowed_sim_count") != 1 or snap.get("allowed_comp_count") != 1:
+            errors.append("Simulated/Competition maxAcc allowlist counts must stay 1/1")
+        else:
+            notes.append("Simulated allowlist x 20→60; Competition allowlist x 20→200")
+        if snap.get("max_acc_allowlist_drift"):
+            errors.append("maxAcceleration allowlist must not drift")
+        else:
+            notes.append("maxAcceleration allowlist ≠ Simulated↔Competition swap / y drift")
         if (snap.get("walk_slot") or {}).get("numInput") != 344:
             errors.append("walk slot must stay 344")
         else:
@@ -106,6 +114,39 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("maxAcc as 344 rewrite must raise")
     except ValueError:
         notes.append("negative: maxAcc as 344 rewrite refused")
+    try:
+        mod.refuse_max_acc_allowlist_drift(
+            {
+                "simulated_matches_competition_max_acc": True,
+                "source": "SimulatedK1",
+                "pair": {"x": "200", "y": "20"},
+            }
+        )
+        errors.append("Simulated as Competition maxAcc must raise")
+    except ValueError:
+        notes.append("negative: Simulated as Competition maxAcc refused")
+    try:
+        mod.refuse_max_acc_allowlist_drift(
+            {
+                "competition_matches_simulated_max_acc": True,
+                "source": "CompetitionWalk/K1",
+                "pair": {"x": "60", "y": "20"},
+            }
+        )
+        errors.append("Competition as Simulated maxAcc must raise")
+    except ValueError:
+        notes.append("negative: Competition as Simulated maxAcc refused")
+    try:
+        mod.refuse_max_acc_allowlist_drift(
+            {
+                "max_acc_y_drift": True,
+                "source": "CompetitionWalk/K1",
+                "pair": {"x": "200", "y": "60"},
+            }
+        )
+        errors.append("maxAcc.y drift must raise")
+    except ValueError:
+        notes.append("negative: maxAcc.y drift refused")
     try:
         mod.refuse_write_yaml(yaml_path)
         errors.append("refuse_write_yaml must raise")
@@ -171,7 +212,7 @@ def main() -> int:
     report = run()
     print(
         f"[max-acc] {'PASS' if report['ok'] else 'FAIL'} "
-        "20/20 vs 60/20 vs 200/20; ≠ net swap"
+        "20/20 vs 60/20 vs 200/20; Sim/Comp allowlists pinned; ≠ net swap"
     )
     for item in report["errors"]:
         print(f"[error] {item}")

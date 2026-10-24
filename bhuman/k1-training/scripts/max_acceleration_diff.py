@@ -4,11 +4,11 @@ commonSpeedParameters.maxAcceleration is a plant ratchet (mm/s/step),
 not a net-slot or observation-dim change.
 
   Default              {x=20, y=20}
-  SimulatedK1          {x=60, y=20}
-  CompetitionWalk/K1   {x=200, y=20}
-  CompetitionWalk11v11 {x=200, y=20}
+  SimulatedK1          {x=60, y=20}   allowlist: x 20→60
+  CompetitionWalk/K1   {x=200, y=20}  allowlist: x 20→200
+  CompetitionWalk11v11 {x=200, y=20}  same as Competition
 
-y stays 20. Unexpected x/y or walk-slot drift → FAIL.
+y stays 20. Simulated ≠ Competition. Unexpected x/y or walk-slot drift → FAIL.
 Never writes walkingEngine.cfg or K1.yaml. TRAINABLE=false.
 """
 from __future__ import annotations
@@ -58,6 +58,17 @@ WALK_H_RELS = (
 DEFAULT_MAX_ACC = {"x": "20", "y": "20"}
 SIM_MAX_ACC = {"x": "60", "y": "20"}
 COMP_MAX_ACC = {"x": "200", "y": "20"}
+# Frozen intentional maxAcceleration diffs vs Default (x only; y stays 20).
+ALLOWED_SIM_MAX_ACC_DIFFS: frozenset[tuple[str, str, str]] = frozenset(
+    {
+        ("commonSpeedParameters.maxAcceleration.x", "20", "60"),
+    }
+)
+ALLOWED_COMP_MAX_ACC_DIFFS: frozenset[tuple[str, str, str]] = frozenset(
+    {
+        ("commonSpeedParameters.maxAcceleration.x", "20", "200"),
+    }
+)
 SLOT_KEYS = {
     "walkNeuronalNetworkParameters.modelName": WALK_DEFAULT_ONNX,
     "walkNeuronalNetworkParameters.numInput": str(WALK_OBS),
@@ -129,11 +140,76 @@ def refuse_max_acc_as_net_swap(claim: dict[str, Any]) -> None:
         )
 
 
+def refuse_max_acc_allowlist_drift(claim: dict[str, Any]) -> None:
+    """Refuse Simulated/Competition maxAcc claiming the wrong allowlist."""
+    if not isinstance(claim, dict):
+        raise ValueError("maxAcc-allowlist-drift claim must be a mapping")
+    source = str(claim.get("source") or claim.get("from") or "")
+    pair = claim.get("pair") or claim.get("max_acceleration") or {}
+    sim_diffs = claim.get("sim_diffs")
+    comp_diffs = claim.get("comp_diffs")
+    if (
+        claim.get("max_acc_allowlist_drift")
+        or claim.get("simulated_matches_competition_max_acc")
+        or claim.get("competition_matches_simulated_max_acc")
+        or claim.get("max_acc_y_drift")
+        or (
+            source in {"SimulatedK1", "Simulated"}
+            and pair
+            and pair != SIM_MAX_ACC
+        )
+        or (
+            source in {"CompetitionWalk/K1", "Competition", "competition"}
+            and pair
+            and pair != COMP_MAX_ACC
+        )
+        or (
+            source in {"CompetitionWalk11v11/K1", "11v11"}
+            and pair
+            and pair != COMP_MAX_ACC
+        )
+        or (
+            source in {"Default", "default"}
+            and pair
+            and pair != DEFAULT_MAX_ACC
+        )
+        or (isinstance(sim_diffs, (list, set, frozenset)) and set(map(tuple, sim_diffs)) != ALLOWED_SIM_MAX_ACC_DIFFS)
+        or (isinstance(comp_diffs, (list, set, frozenset)) and set(map(tuple, comp_diffs)) != ALLOWED_COMP_MAX_ACC_DIFFS)
+        or (
+            isinstance(pair, dict)
+            and pair.get("y") not in (None, "", "20")
+            and source
+            in {
+                "Default",
+                "SimulatedK1",
+                "CompetitionWalk/K1",
+                "CompetitionWalk11v11/K1",
+                "maxAcceleration",
+            }
+        )
+    ):
+        raise ValueError(
+            "maxAcceleration allowlist: Default 20/20; Simulated x 20→60; "
+            "Competition/11v11 x 20→200; y stays 20; unexpected drift is FAIL"
+        )
+
+
 def _pair(flat: dict[str, str]) -> dict[str, str]:
     return {
         "x": flat.get("commonSpeedParameters.maxAcceleration.x") or "",
         "y": flat.get("commonSpeedParameters.maxAcceleration.y") or "",
     }
+
+
+def _acc_diffs(left: dict[str, str], right: dict[str, str]) -> list[tuple[str, str, str]]:
+    rows: list[tuple[str, str, str]] = []
+    for axis in ("x", "y"):
+        lk = f"commonSpeedParameters.maxAcceleration.{axis}"
+        lv = left.get(axis) or ""
+        rv = right.get(axis) or ""
+        if lv != rv:
+            rows.append((lk, lv, rv))
+    return rows
 
 
 def _assert_slot(flat: dict[str, str], label: str) -> None:
@@ -158,6 +234,7 @@ def _skip_source(reason: str) -> dict[str, Any]:
         "write_cfg": False,
         "walk": "344→13",
         "max_acc_as_net_swap": False,
+        "max_acc_allowlist_drift": False,
         "note": "do not invent maxAcceleration when a cfg is missing",
     }
 
@@ -196,6 +273,16 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         raise AssertionError("maxAcceleration.y must stay 20 on every K1 copy")
     if default_acc == sim_acc or default_acc == comp_acc:
         raise AssertionError("expected Default vs Simulated/Competition maxAcc contrast")
+    sim_diffs = _acc_diffs(default_acc, sim_acc)
+    comp_diffs = _acc_diffs(default_acc, comp_acc)
+    if set(sim_diffs) != ALLOWED_SIM_MAX_ACC_DIFFS:
+        raise AssertionError(
+            f"Simulated maxAcc allowlist drifted: {sim_diffs} ≠ {sorted(ALLOWED_SIM_MAX_ACC_DIFFS)}"
+        )
+    if set(comp_diffs) != ALLOWED_COMP_MAX_ACC_DIFFS:
+        raise AssertionError(
+            f"Competition maxAcc allowlist drifted: {comp_diffs} ≠ {sorted(ALLOWED_COMP_MAX_ACC_DIFFS)}"
+        )
 
     extra_rows: list[dict[str, Any]] = []
     path11 = repo / COMP11_WALK_REL
@@ -244,6 +331,32 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
             "not_walk_dim": True,
             "y_stays": "20",
         },
+        "allowed_sim": [
+            {
+                "key": key,
+                "default": left,
+                "value": right,
+                "kind": "intentional_plant",
+            }
+            for key, left, right in sorted(ALLOWED_SIM_MAX_ACC_DIFFS)
+        ],
+        "allowed_comp": [
+            {
+                "key": key,
+                "default": left,
+                "value": right,
+                "kind": "intentional_plant",
+            }
+            for key, left, right in sorted(ALLOWED_COMP_MAX_ACC_DIFFS)
+        ],
+        "allowed_sim_count": len(ALLOWED_SIM_MAX_ACC_DIFFS),
+        "allowed_comp_count": len(ALLOWED_COMP_MAX_ACC_DIFFS),
+        "observed_sim_diffs": [
+            {"key": key, "default": left, "value": right} for key, left, right in sim_diffs
+        ],
+        "observed_comp_diffs": [
+            {"key": key, "default": left, "value": right} for key, left, right in comp_diffs
+        ],
         "allowed": [
             {
                 "role": "SimulatedK1",
@@ -271,11 +384,13 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         "cpp_needles": cpp_needles,
         "header_needles": h_needles,
         "max_acc_as_net_swap": False,
+        "max_acc_allowlist_drift": False,
         "accel_changes_344_contract": False,
         "fabricated": False,
         "note": (
             "maxAcceleration Default 20/20 vs Simulated 60/20 vs Competition "
             "200/20 is a commonSpeedParameters plant ratchet (mm/s/step); "
+            "Simulated allowlist = x 20→60; Competition allowlist = x 20→200; "
             "y stays 20; it does not swap the walk net or change 344→13"
         ),
         "trainable": False,
@@ -316,21 +431,40 @@ def assert_max_acc_frozen(repo: Path | None = None) -> dict[str, Any]:
         if snap.get("fabricated"):
             raise AssertionError("SKIP snapshot must not fabricate maxAcceleration")
         return snap
-    if snap.get("max_acc_as_net_swap") or snap.get("accel_changes_344_contract"):
-        raise AssertionError("maxAcceleration must not swap net or change 344")
+    if (
+        snap.get("max_acc_as_net_swap")
+        or snap.get("accel_changes_344_contract")
+        or snap.get("max_acc_allowlist_drift")
+    ):
+        raise AssertionError("maxAcceleration must not swap net / change 344 / drift allowlist")
     slot = snap.get("walk_slot") or {}
     if slot.get("numInput") != WALK_OBS or slot.get("modelName") != WALK_DEFAULT_ONNX:
         raise AssertionError("walk slot must stay 344→13 / K1_walk.onnx")
     plant = snap.get("max_acceleration") or {}
     if (plant.get("default") or {}).get("y") != "20":
         raise AssertionError("maxAcceleration.y must stay 20")
+    if snap.get("allowed_sim_count") != len(ALLOWED_SIM_MAX_ACC_DIFFS):
+        raise AssertionError("Simulated maxAcc allowlist count drifted")
+    if snap.get("allowed_comp_count") != len(ALLOWED_COMP_MAX_ACC_DIFFS):
+        raise AssertionError("Competition maxAcc allowlist count drifted")
     try:
         refuse_max_acc_as_net_swap(
             {"max_acc_as_net_swap": True, "source": "maxAcceleration", "walk_obs": 365}
         )
+        raise AssertionError("refuse_max_acc_as_net_swap must raise")
+    except ValueError:
+        pass
+    try:
+        refuse_max_acc_allowlist_drift(
+            {
+                "max_acc_allowlist_drift": True,
+                "source": "SimulatedK1",
+                "pair": COMP_MAX_ACC,
+            }
+        )
     except ValueError:
         return snap
-    raise AssertionError("refuse_max_acc_as_net_swap must raise")
+    raise AssertionError("refuse_max_acc_allowlist_drift must raise")
 
 
 def run(repo: Path | None = None) -> dict[str, Any]:
@@ -381,6 +515,42 @@ def run(repo: Path | None = None) -> dict[str, Any]:
                 "numInput": 365,
             },
             "maxAcc as 344 rewrite",
+        ),
+        (
+            refuse_max_acc_allowlist_drift,
+            {
+                "simulated_matches_competition_max_acc": True,
+                "source": "SimulatedK1",
+                "pair": COMP_MAX_ACC,
+            },
+            "Simulated as Competition maxAcc",
+        ),
+        (
+            refuse_max_acc_allowlist_drift,
+            {
+                "competition_matches_simulated_max_acc": True,
+                "source": "CompetitionWalk/K1",
+                "pair": SIM_MAX_ACC,
+            },
+            "Competition as Simulated maxAcc",
+        ),
+        (
+            refuse_max_acc_allowlist_drift,
+            {
+                "max_acc_y_drift": True,
+                "source": "CompetitionWalk/K1",
+                "pair": {"x": "200", "y": "60"},
+            },
+            "maxAcc.y drift",
+        ),
+        (
+            refuse_max_acc_allowlist_drift,
+            {
+                "max_acc_allowlist_drift": True,
+                "source": "SimulatedK1",
+                "sim_diffs": [("commonSpeedParameters.maxAcceleration.x", "20", "200")],
+            },
+            "Simulated maxAcc allowlist drift",
         ),
     ):
         try:

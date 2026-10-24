@@ -476,7 +476,7 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ),
         (
             "bhuman/k1-training/scripts/max_acceleration_diff.py",
-            "maxAcceleration allowlist (20/20 vs 60/20 vs 200/20; ≠ net swap / dim change)",
+            "maxAcceleration allowlist (20/20 vs 60/20 vs 200/20; Sim/Comp pinned; ≠ net swap / dim change)",
         ),
         (
             "bhuman/k1-training/scripts/get_next_target_request.py",
@@ -500,7 +500,7 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ),
         (
             "bhuman/k1-training/scripts/ball_distance_hysteresis.py",
-            "ballDistance ± hysteresis bands (1500±300 vs 1100±200; not crossing → walk)",
+            "ballDistance ± hysteresis bands (1500±300→1200/1800 vs 1100±200→900/1300; not crossing → walk)",
         ),
         (
             "bhuman/k1-training/scripts/kick_policy_apply_dims.py",

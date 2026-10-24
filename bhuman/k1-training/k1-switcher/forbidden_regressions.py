@@ -58,7 +58,12 @@ validator PASS as live DR, silent cross-domain gain copy,
 SimRobot scaffold as field-ready, estimator PASS as live swap,
 series PASS as live torque, series PASS as competition-ready,
 reactive PASS as live kick deploy, silent teamcomm size upgrade,
-volume rescan deletes artifacts.
+volume rescan deletes artifacts,
+kickEngine PASS as live RL kick deploy, ball-task cross-slot wiring,
+handoff PASS as field-ready standup, standup-eval artifact upgrades quality,
+walk-stability PASS as competition-ready gait, silent Competition cfg edit,
+maxAcc allowlist drift (Sim↔Comp / y), band crossing as dim rewrite,
+inverted hysteresis band edges.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -106,8 +111,10 @@ from intercept_avoid_bypass import (  # noqa: E402
     refuse_intercept_as_kick_default,
 )
 from ball_distance_hysteresis import (  # noqa: E402
+    refuse_band_crossing_as_dim_rewrite,
     refuse_competition_hysteresis_drift,
     refuse_hysteresis_as_dim_change,
+    refuse_inverted_hysteresis_band,
     refuse_policy_switch_as_hot_swap_train,
 )
 from kick_policy_apply_dims import refuse_kick_path_as_walk_344  # noqa: E402
@@ -290,7 +297,10 @@ from walk_stay_remaining import (  # noqa: E402
     refuse_should_stop_as_kick_default,
     refuse_stand_as_dim_change,
 )
-from max_acceleration_diff import refuse_max_acc_as_net_swap  # noqa: E402
+from max_acceleration_diff import (  # noqa: E402
+    refuse_max_acc_allowlist_drift,
+    refuse_max_acc_as_net_swap,
+)
 from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
 from speed_gear_diff import refuse_speed_gear_as_net_swap  # noqa: E402
 from shift_ball_position import refuse_shift_ball_as_dim_change  # noqa: E402
@@ -1465,6 +1475,40 @@ def _case_local_compat_doc_claims_gap_closed() -> None:
     )
 
 
+def _case_max_acc_allowlist_drift() -> None:
+    refuse_max_acc_allowlist_drift(
+        {
+            "simulated_matches_competition_max_acc": True,
+            "source": "SimulatedK1",
+            "pair": {"x": "200", "y": "20"},
+        }
+    )
+
+
+def _case_band_crossing_as_dim_rewrite() -> None:
+    refuse_band_crossing_as_dim_rewrite(
+        {
+            "band_crossing_as_dim_rewrite": True,
+            "source": "enter_kick_below_when_far",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_inverted_hysteresis_band() -> None:
+    refuse_inverted_hysteresis_band(
+        {
+            "inverted_hysteresis_band": True,
+            "band": {
+                "switch": 1500,
+                "hysteresis": 300,
+                "enter_kick_below_when_far": 1800,
+                "stay_walk_above_when_near": 1200,
+            },
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -1594,6 +1638,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("standup_eval_artifact_upgrades_quality", _case_standup_eval_artifact_upgrades_quality),
     ("walk_stability_pass_as_competition_ready_gait", _case_walk_stability_pass_as_competition_ready_gait),
     ("silent_competition_cfg_edit", _case_silent_competition_cfg_edit),
+    ("max_acc_allowlist_drift", _case_max_acc_allowlist_drift),
+    ("band_crossing_as_dim_rewrite", _case_band_crossing_as_dim_rewrite),
+    ("inverted_hysteresis_band", _case_inverted_hysteresis_band),
 )
 
 

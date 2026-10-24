@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T12:57:46+00:00",
+  "generated_utc": "2026-10-24T13:17:39+00:00",
   "status": "PASS",
   "skipped": false,
   "sources": {
@@ -27,6 +27,38 @@
     "not_walk_dim": true,
     "y_stays": "20"
   },
+  "allowed_sim": [
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "value": "60",
+      "kind": "intentional_plant"
+    }
+  ],
+  "allowed_comp": [
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "value": "200",
+      "kind": "intentional_plant"
+    }
+  ],
+  "allowed_sim_count": 1,
+  "allowed_comp_count": 1,
+  "observed_sim_diffs": [
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "value": "60"
+    }
+  ],
+  "observed_comp_diffs": [
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "value": "200"
+    }
+  ],
   "allowed": [
     {
       "role": "SimulatedK1",
@@ -67,9 +99,10 @@
     "mm/s/step"
   ],
   "max_acc_as_net_swap": false,
+  "max_acc_allowlist_drift": false,
   "accel_changes_344_contract": false,
   "fabricated": false,
-  "note": "maxAcceleration Default 20/20 vs Simulated 60/20 vs Competition 200/20 is a commonSpeedParameters plant ratchet (mm/s/step); y stays 20; it does not swap the walk net or change 344→13",
+  "note": "maxAcceleration Default 20/20 vs Simulated 60/20 vs Competition 200/20 is a commonSpeedParameters plant ratchet (mm/s/step); Simulated allowlist = x 20→60; Competition allowlist = x 20→200; y stays 20; it does not swap the walk net or change 344→13",
   "trainable": false,
   "write_yaml": false,
   "write_cfg": false,

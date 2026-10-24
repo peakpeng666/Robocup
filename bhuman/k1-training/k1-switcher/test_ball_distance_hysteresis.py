@@ -65,14 +65,24 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         bands = snap.get("bands") or {}
         default_band = bands.get("default") or {}
         comp_band = bands.get("competition") or {}
-        if default_band.get("switch") != 1500 or default_band.get("hysteresis") != 300:
-            errors.append("Default band must stay 1500±300")
+        if (
+            default_band.get("switch") != 1500
+            or default_band.get("hysteresis") != 300
+            or default_band.get("enter_kick_below_when_far") != 1200
+            or default_band.get("stay_walk_above_when_near") != 1800
+        ):
+            errors.append("Default band must stay 1500±300 → 1200/1800")
         else:
-            notes.append("Default/Simulated band 1500±300")
-        if comp_band.get("switch") != 1100 or comp_band.get("hysteresis") != 200:
-            errors.append("Competition band must stay 1100±200")
+            notes.append("Default/Simulated band 1500±300 → enter<1200 / stay>1800")
+        if (
+            comp_band.get("switch") != 1100
+            or comp_band.get("hysteresis") != 200
+            or comp_band.get("enter_kick_below_when_far") != 900
+            or comp_band.get("stay_walk_above_when_near") != 1300
+        ):
+            errors.append("Competition band must stay 1100±200 → 900/1300")
         else:
-            notes.append("Competition/11v11 band 1100±200")
+            notes.append("Competition/11v11 band 1100±200 → enter<900 / stay>1300")
         if not bands.get("not_crossing_stays_walk") or not bands.get("crossing_only_considers_kick"):
             errors.append("not crossing must stay walk; crossing only considers kick")
         else:
@@ -86,10 +96,16 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             snap.get("hysteresis_as_dim_change")
             or snap.get("policy_switch_as_hot_swap_train")
             or snap.get("competition_hysteresis_drift")
+            or snap.get("band_crossing_as_dim_rewrite")
+            or snap.get("inverted_hysteresis_band")
         ):
-            errors.append("hysteresis must not become dim / train swap / drift")
+            errors.append("hysteresis must not become dim / train swap / drift / inverted")
         else:
-            notes.append("≠ dim rewrite / train hot-swap / Competition drift")
+            notes.append("≠ dim rewrite / train hot-swap / Competition drift / inverted edges")
+        if not bands.get("edges_pinned"):
+            errors.append("hysteresis band edges must be pinned")
+        else:
+            notes.append("band edges pinned (switch±hysteresis)")
         if (snap.get("walk_slot") or {}).get("numInput") != 344:
             errors.append("walk slot must stay 344")
         else:
@@ -119,6 +135,32 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     except ValueError:
         notes.append("negative: Competition hysteresis drift refused")
     try:
+        mod.refuse_band_crossing_as_dim_rewrite(
+            {
+                "band_crossing_as_dim_rewrite": True,
+                "source": "enter_kick_below_when_far",
+                "walk_obs": 59,
+            }
+        )
+        errors.append("band crossing as dim rewrite must raise")
+    except ValueError:
+        notes.append("negative: band crossing as dim rewrite refused")
+    try:
+        mod.refuse_inverted_hysteresis_band(
+            {
+                "inverted_hysteresis_band": True,
+                "band": {
+                    "switch": 1500,
+                    "hysteresis": 300,
+                    "enter_kick_below_when_far": 1800,
+                    "stay_walk_above_when_near": 1200,
+                },
+            }
+        )
+        errors.append("inverted hysteresis band must raise")
+    except ValueError:
+        notes.append("negative: inverted hysteresis band refused")
+    try:
         mod.refuse_write_yaml(yaml_path)
         errors.append("refuse_write_yaml must raise")
     except RuntimeError:
@@ -141,6 +183,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             blob.get("hysteresis_as_dim_change")
             or blob.get("policy_switch_as_hot_swap_train")
             or blob.get("competition_hysteresis_drift")
+            or blob.get("band_crossing_as_dim_rewrite")
+            or blob.get("inverted_hysteresis_band")
         ):
             errors.append("written snapshot must keep hysteresis as walk-stay band")
         else:
@@ -175,7 +219,7 @@ def main() -> int:
     report = run()
     print(
         f"[hysteresis] {'PASS' if report['ok'] else 'FAIL'} "
-        "1500±300 vs 1100±200; not crossing → walk"
+        "1500±300→1200/1800 vs 1100±200→900/1300; not crossing → walk"
     )
     for item in report["errors"]:
         print(f"[error] {item}")

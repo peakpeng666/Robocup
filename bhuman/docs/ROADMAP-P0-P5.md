@@ -163,13 +163,13 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] policySwitch 球距阈值：`scripts/policy_switch_threshold.py`（Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344；SkillRequest 仍要 `want_kick`）。
 - [x] shiftBallPosition 边界：`scripts/shift_ball_position.py`（Default false/80 vs Competition true/40 是踢球接近偏移；≠ 改 walk 维 / 合并旁系进 344）。
 - [x] walkPolicy / kickPolicy 切换只读：`scripts/walk_kick_policy_switch.py`（walkPolicy **344→13** / `K1_walk.onnx`；kickPolicy **59→13** / `K1_kick_inner.onnx` 共享 walk 出口；切换只换旁路；空上下文仍 walk）。
-- [x] maxAcceleration 差分：`scripts/max_acceleration_diff.py`（Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；≠ 换网 / 改维；y 仍 20）。
+- [x] maxAcceleration 差分：`scripts/max_acceleration_diff.py`（Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；Sim 允许集 x20→60 / Comp 允许集 x20→200；≠ 换网 / 改维；y 仍 20）。
 - [x] getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；与 SkillRequest / `want_kick` / policySwitch 交叉；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图）。
 - [x] speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13**）。
 - [x] ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 `ballNetworkParameters.active=true`；未开强制 walkPolicy **344→13**；≠ 改 344 / 换训练图）。
 - [x] 拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（`shouldInterceptBall` / 避障 path 非空 / `shouldWalkOutOfBallLine` 仍走 walkPolicy **344→13**；≠ kick / reactive / T1）。
 - [x] 剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（`shouldStop` / stand / 球未见>1000 ms / motion 非 dribble·walkToBallAndKick 仍 walkPolicy **344→13**；空 SkillRequest 仍 walk；仅 `want_kick` → kick 59→13）。
-- [x] 球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated **1500±300** vs Competition/11v11 **1100±200**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图）。
+- [x] 球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated **1500±300→1200/1800** vs Competition/11v11 **1100±200→900/1300**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图 / 倒置带边）。
 - [x] kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + motion∈{dribble, walkToBallAndKick} 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344 / 热换 `K1.yaml`）。
 - [x] walk 调用点维数：`scripts/walk_policy_apply_dims.py`（默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽；≠ reactive / T1 / standup）。
 - [x] walk↔kick last_action 缓冲：`scripts/policy_switch_last_action.py`（源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿）。

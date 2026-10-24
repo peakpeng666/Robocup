@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T12:57:46+00:00",
+  "generated_utc": "2026-10-24T13:17:39+00:00",
   "status": "PASS",
   "skipped": false,
   "sources": {
@@ -24,7 +24,8 @@
     "not_crossing_stays_walk": true,
     "crossing_only_considers_kick": true,
     "not_344_rewrite": true,
-    "not_train_graph_swap": true
+    "not_train_graph_swap": true,
+    "edges_pinned": true
   },
   "align": [
     {
@@ -68,8 +69,10 @@
   "hysteresis_as_dim_change": false,
   "policy_switch_as_hot_swap_train": false,
   "competition_hysteresis_drift": false,
+  "band_crossing_as_dim_rewrite": false,
+  "inverted_hysteresis_band": false,
   "fabricated": false,
-  "note": "Default/Simulated 1500±300 vs Competition/11v11 1100±200; not crossing the band stays walkPolicy 344→13; crossing only allows considering kick 59→13; ≠ dim rewrite / train hot-swap",
+  "note": "Default/Simulated 1500±300 (enter<1200 / stay>1800) vs Competition/11v11 1100±200 (enter<900 / stay>1300); not crossing the band stays walkPolicy 344→13; crossing only allows considering kick 59→13; ≠ dim rewrite / train hot-swap / inverted edges",
   "trainable": false,
   "write_yaml": false,
   "write_cfg": false,

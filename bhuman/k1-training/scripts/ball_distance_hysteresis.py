@@ -1,14 +1,15 @@
 """Read-only ballDistancePolicySwitch ± hysteresis allowlist.
 
 Sibling of policy_switch_threshold: this pin records the hysteresis
-*band* and copy alignment, not just the two raw keys.
+*band*, copy alignment, and exact band edges, not just the two raw keys.
 
-  Default / SimulatedK1                 1500 ± 300
-  CompetitionWalk / CompetitionWalk11v11 1100 ± 200
+  Default / SimulatedK1                 1500 ± 300  → enter_kick<1200 / stay_walk>1800
+  CompetitionWalk / CompetitionWalk11v11 1100 ± 200  → enter_kick<900  / stay_walk>1300
 
 Crossing the band is required before kickPolicy may even be considered.
 Not crossing stays walkPolicy 344→13. Not a 344 rewrite and not a
-train-graph hot-swap.
+train-graph hot-swap. Inverted band edges or claiming crossing rewrites
+dims are refused.
 
 Never writes walkingEngine.cfg or K1.yaml. TRAINABLE=false.
 """
@@ -59,6 +60,19 @@ WALK_CPP_RELS = (
 )
 DEFAULT_THRESH = {"ballDistancePolicySwitch": "1500", "ballHysteresisPolicySwitch": "300"}
 COMP_THRESH = {"ballDistancePolicySwitch": "1100", "ballHysteresisPolicySwitch": "200"}
+# Exact deploy band edges (mm): switch ± hysteresis.
+DEFAULT_BAND_EDGES = {
+    "switch": 1500,
+    "hysteresis": 300,
+    "enter_kick_below_when_far": 1200,
+    "stay_walk_above_when_near": 1800,
+}
+COMP_BAND_EDGES = {
+    "switch": 1100,
+    "hysteresis": 200,
+    "enter_kick_below_when_far": 900,
+    "stay_walk_above_when_near": 1300,
+}
 ALIGN = {
     "SimulatedK1": ("Default", DEFAULT_THRESH, SIM_WALK_REL),
     "CompetitionWalk11v11/K1": ("Competition", COMP_THRESH, COMP11_WALK_REL),
@@ -192,6 +206,72 @@ def refuse_competition_hysteresis_drift(claim: dict[str, Any]) -> None:
         )
 
 
+def refuse_band_crossing_as_dim_rewrite(claim: dict[str, Any]) -> None:
+    """Crossing the hysteresis band only *considers* kick; it is not a dim rewrite."""
+    if not isinstance(claim, dict):
+        raise ValueError("band-crossing-as-dim claim must be a mapping")
+    source = str(claim.get("source") or claim.get("from") or "")
+    if (
+        claim.get("band_crossing_as_dim_rewrite")
+        or claim.get("crossing_rewrites_344")
+        or claim.get("crossing_forces_kick_obs")
+        or (
+            source
+            in {
+                "band_crossing",
+                "enter_kick_below_when_far",
+                "stay_walk_above_when_near",
+                "ballDistancePolicySwitch",
+                "ballHysteresisPolicySwitch",
+                "hysteresis",
+            }
+            and (
+                claim.get("walk_obs") not in (None, WALK_OBS)
+                or claim.get("numInput") in {365, 59, 73, 72}
+                or claim.get("rewrites_344")
+                or claim.get("forces_kick_contract")
+                or claim.get("train_graph")
+            )
+        )
+    ):
+        raise ValueError(
+            "crossing hysteresis only allows considering kickPolicy; "
+            "it does not rewrite walk 344→13 or force kick obs dims"
+        )
+
+
+def refuse_inverted_hysteresis_band(claim: dict[str, Any]) -> None:
+    """Refuse inverted / arithmetic-wrong band edges."""
+    if not isinstance(claim, dict):
+        raise ValueError("inverted-hysteresis-band claim must be a mapping")
+    band = claim.get("band") or claim.get("edges") or {}
+    switch = band.get("switch")
+    hyst = band.get("hysteresis")
+    enter = band.get("enter_kick_below_when_far")
+    stay = band.get("stay_walk_above_when_near")
+    inverted = False
+    if isinstance(enter, int) and isinstance(stay, int) and enter >= stay:
+        inverted = True
+    if (
+        isinstance(switch, int)
+        and isinstance(hyst, int)
+        and isinstance(enter, int)
+        and isinstance(stay, int)
+        and (enter != switch - hyst or stay != switch + hyst)
+    ):
+        inverted = True
+    if (
+        claim.get("inverted_hysteresis_band")
+        or claim.get("band_edges_inverted")
+        or claim.get("enter_above_stay")
+        or inverted
+    ):
+        raise ValueError(
+            "hysteresis band edges must stay switch±hysteresis "
+            "(enter_kick = switch−hyst < stay_walk = switch+hyst)"
+        )
+
+
 def _pair(flat: dict[str, str]) -> dict[str, str]:
     return {
         "ballDistancePolicySwitch": flat.get("ballDistancePolicySwitch") or "",
@@ -234,6 +314,8 @@ def _skip_source(reason: str) -> dict[str, Any]:
         "hysteresis_as_dim_change": False,
         "policy_switch_as_hot_swap_train": False,
         "competition_hysteresis_drift": False,
+        "band_crossing_as_dim_rewrite": False,
+        "inverted_hysteresis_band": False,
         "note": "do not invent hysteresis bands when a cfg is missing",
     }
 
@@ -264,6 +346,16 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         raise AssertionError(f"Competition hysteresis drifted: {comp_th}")
     if default_th == comp_th:
         raise AssertionError("expected Default vs Competition hysteresis contrast")
+    default_band = _band(default_th)
+    comp_band = _band(comp_th)
+    if default_band != DEFAULT_BAND_EDGES:
+        raise AssertionError(f"Default band edges drifted: {default_band}")
+    if comp_band != COMP_BAND_EDGES:
+        raise AssertionError(f"Competition band edges drifted: {comp_band}")
+    if default_band["enter_kick_below_when_far"] >= default_band["stay_walk_above_when_near"]:
+        raise AssertionError("Default hysteresis band inverted")
+    if comp_band["enter_kick_below_when_far"] >= comp_band["stay_walk_above_when_near"]:
+        raise AssertionError("Competition hysteresis band inverted")
 
     copies: list[dict[str, Any]] = []
     for role, (aligns, want, rel) in ALIGN.items():
@@ -304,13 +396,14 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
             "cpp": cpp_rel,
         },
         "bands": {
-            "default": _band(default_th),
-            "competition": _band(comp_th),
+            "default": default_band,
+            "competition": comp_band,
             "kind": "deploy_walk_stay_hysteresis",
             "not_crossing_stays_walk": True,
             "crossing_only_considers_kick": True,
             "not_344_rewrite": True,
             "not_train_graph_swap": True,
+            "edges_pinned": True,
         },
         "align": copies,
         "walk_slot": {
@@ -326,11 +419,15 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         "hysteresis_as_dim_change": False,
         "policy_switch_as_hot_swap_train": False,
         "competition_hysteresis_drift": False,
+        "band_crossing_as_dim_rewrite": False,
+        "inverted_hysteresis_band": False,
         "fabricated": False,
         "note": (
-            "Default/Simulated 1500±300 vs Competition/11v11 1100±200; "
+            "Default/Simulated 1500±300 (enter<1200 / stay>1800) vs "
+            "Competition/11v11 1100±200 (enter<900 / stay>1300); "
             "not crossing the band stays walkPolicy 344→13; crossing only "
-            "allows considering kick 59→13; ≠ dim rewrite / train hot-swap"
+            "allows considering kick 59→13; ≠ dim rewrite / train hot-swap / "
+            "inverted edges"
         ),
         "trainable": False,
         "write_yaml": False,
@@ -373,17 +470,23 @@ def assert_hysteresis_frozen(repo: Path | None = None) -> dict[str, Any]:
         snap.get("hysteresis_as_dim_change")
         or snap.get("policy_switch_as_hot_swap_train")
         or snap.get("competition_hysteresis_drift")
+        or snap.get("band_crossing_as_dim_rewrite")
+        or snap.get("inverted_hysteresis_band")
     ):
-        raise AssertionError("hysteresis must stay a walk-stay band, not dim/train/drift")
+        raise AssertionError(
+            "hysteresis must stay a walk-stay band, not dim/train/drift/inverted"
+        )
     bands = snap.get("bands") or {}
     default_band = bands.get("default") or {}
     comp_band = bands.get("competition") or {}
-    if default_band.get("switch") != 1500 or default_band.get("hysteresis") != 300:
-        raise AssertionError("Default band must stay 1500±300")
-    if comp_band.get("switch") != 1100 or comp_band.get("hysteresis") != 200:
-        raise AssertionError("Competition band must stay 1100±200")
+    if default_band != DEFAULT_BAND_EDGES:
+        raise AssertionError("Default band must stay 1500±300 → 1200/1800")
+    if comp_band != COMP_BAND_EDGES:
+        raise AssertionError("Competition band must stay 1100±200 → 900/1300")
     if not bands.get("not_crossing_stays_walk"):
         raise AssertionError("not crossing hysteresis must stay walk")
+    if not bands.get("edges_pinned"):
+        raise AssertionError("hysteresis band edges must be pinned")
     slot = snap.get("walk_slot") or {}
     if slot.get("numInput") != WALK_OBS:
         raise AssertionError("walk slot must stay 344")
@@ -403,6 +506,32 @@ def assert_hysteresis_frozen(repo: Path | None = None) -> dict[str, Any]:
             }
         )
         raise AssertionError("refuse_policy_switch_as_hot_swap_train must raise")
+    except ValueError:
+        pass
+    try:
+        refuse_band_crossing_as_dim_rewrite(
+            {
+                "band_crossing_as_dim_rewrite": True,
+                "source": "enter_kick_below_when_far",
+                "walk_obs": 59,
+            }
+        )
+        raise AssertionError("refuse_band_crossing_as_dim_rewrite must raise")
+    except ValueError:
+        pass
+    try:
+        refuse_inverted_hysteresis_band(
+            {
+                "inverted_hysteresis_band": True,
+                "band": {
+                    "switch": 1500,
+                    "hysteresis": 300,
+                    "enter_kick_below_when_far": 1800,
+                    "stay_walk_above_when_near": 1200,
+                },
+            }
+        )
+        raise AssertionError("refuse_inverted_hysteresis_band must raise")
     except ValueError:
         pass
     try:
@@ -437,8 +566,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         warnings.append(str(snap.get("reason") or "walkingEngine.cfg missing"))
         notes.append("honest SKIP: hysteresis not fabricated")
     elif snap:
-        notes.append("Default/Simulated 1500±300; Competition/11v11 1100±200")
-        notes.append("not crossing band stays walk 344→13; crossing only considers kick")
+        notes.append("Default/Simulated 1500±300 → 1200/1800; Competition/11v11 1100±200 → 900/1300")
+        notes.append("not crossing band stays walk 344→13; crossing only considers kick; edges pinned")
 
     for fn, claim, label in (
         (
@@ -468,6 +597,49 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             refuse_competition_hysteresis_drift,
             {"competition_hysteresis_drift": True, "source": "CompetitionWalk/K1"},
             "Competition hysteresis drift",
+        ),
+        (
+            refuse_band_crossing_as_dim_rewrite,
+            {
+                "band_crossing_as_dim_rewrite": True,
+                "source": "enter_kick_below_when_far",
+                "numInput": 59,
+            },
+            "band crossing as dim rewrite",
+        ),
+        (
+            refuse_band_crossing_as_dim_rewrite,
+            {
+                "crossing_forces_kick_obs": True,
+                "source": "stay_walk_above_when_near",
+                "forces_kick_contract": True,
+            },
+            "crossing forces kick obs",
+        ),
+        (
+            refuse_inverted_hysteresis_band,
+            {
+                "enter_above_stay": True,
+                "band": {
+                    "switch": 1100,
+                    "hysteresis": 200,
+                    "enter_kick_below_when_far": 1300,
+                    "stay_walk_above_when_near": 900,
+                },
+            },
+            "inverted Competition band edges",
+        ),
+        (
+            refuse_inverted_hysteresis_band,
+            {
+                "band": {
+                    "switch": 1500,
+                    "hysteresis": 300,
+                    "enter_kick_below_when_far": 1000,
+                    "stay_walk_above_when_near": 1800,
+                },
+            },
+            "Default band arithmetic drift",
         ),
     ):
         try:

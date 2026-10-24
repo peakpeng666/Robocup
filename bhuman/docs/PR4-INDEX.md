@@ -211,13 +211,13 @@ scripts/
 ├── policy_switch_threshold.py   球距阈值 1500/300 vs 1100/200；≠ 换网 / 改 344
 ├── shift_ball_position.py       踢球接近偏移 false/80 vs true/40；≠ 改维 / 旁系
 ├── walk_kick_policy_switch.py   walkPolicy 344→13 / kickPolicy 59→13 旁路；空上下文仍 walk
-├── max_acceleration_diff.py     Default 20/20 vs Sim 60/20 vs Comp 200/20；≠ 换网
+├── max_acceleration_diff.py     Default 20/20 vs Sim 60/20 vs Comp 200/20；Sim/Comp 允许集钉死；≠ 换网
 ├── get_next_target_request.py   10 条 walk-stay 条件；空上下文仍 walk；≠ 热换训练图
 ├── speed_gear_diff.py           fast/normal/slow 7 Sim / 8 Comp；≠ 换网
 ├── ball_network_active.py       官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图
 ├── intercept_avoid_bypass.py    拦截/避障/walkOut 仍 walkPolicy 344→13；≠ kick / T1
 ├── walk_stay_remaining.py       shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk
-├── ball_distance_hysteresis.py  Default/Simulated 1500±300 vs Comp/11v11 1100±200
+├── ball_distance_hysteresis.py  Default 1500±300→1200/1800 vs Comp 1100±200→900/1300
 ├── kick_policy_apply_dims.py    kick 调用点 59→13；WalkToBallAndKick 只出位姿；≠ walk 344
 ├── walk_policy_apply_dims.py    walk 调用点 344→13 / K1_walk.onnx；非 kick 仍此槽
 ├── policy_switch_last_action.py walk↔kick last_action 诚实 GAP；禁止 344↔59 复用
@@ -731,13 +731,13 @@ k1-training/manifests/
 | policySwitch 球距阈值 | `policy_switch_threshold.py` | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344 |
 | shiftBallPosition 边界 | `shift_ball_position.py` | Default false/80 vs Competition true/40 是踢球接近偏移；≠ 改维 / 合并旁系 |
 | walkPolicy / kickPolicy 切换只读 | `walk_kick_policy_switch.py` | walk 344→13 / kick 59→13 旁路；切换只换旁路；空上下文仍 walk |
-| maxAcceleration 差分 | `max_acceleration_diff.py` | Default 20/20 vs Simulated 60/20 vs Competition 200/20 plant；≠ 换网 / 改维 |
+| maxAcceleration 差分 | `max_acceleration_diff.py` | Default 20/20 vs Simulated 60/20 vs Competition 200/20 plant；Sim x20→60 / Comp x20→200 允许集钉死；≠ 换网 / 改维 |
 | getNextTargetRequest 只读钉死 | `get_next_target_request.py` | 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进训练图 |
 | speed 档位允许集 | `speed_gear_diff.py` | fast/normal/slow Default vs Simulated 7 键 / Competition 8 键；≠ 换网 |
 | ballNetwork 开关只读 | `ball_network_active.py` | 官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图 |
 | 拦截 / 避障 / walkOut 旁路 | `intercept_avoid_bypass.py` | 三旁路仍 walkPolicy 344→13；≠ kick / reactive / T1 |
 | 剩余 walk-stay 只读 | `walk_stay_remaining.py` | shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk；空=walk；仅 want_kick → kick |
-| 球距滞回允许集 | `ball_distance_hysteresis.py` | Default/Simulated 1500±300 vs Competition/11v11 1100±200；未越过仍 walk；≠ 改维 / 热换训练图 |
+| 球距滞回允许集 | `ball_distance_hysteresis.py` | Default/Simulated 1500±300→1200/1800 vs Competition/11v11 1100±200→900/1300；未越过仍 walk；≠ 改维 / 热换训练图 / 倒置带边 |
 | kick 调用点维数 | `kick_policy_apply_dims.py` | 仅 want_kick + dribble/walkToBallAndKick → kick 59→13；WalkToBallAndKick 只出位姿；≠ walk 344 |
 | walk 调用点维数 | `walk_policy_apply_dims.py` | 默认 walkPolicy.apply() 344→13 / K1_walk.onnx；非 kick 仍此槽；≠ reactive / T1 |
 | walk↔kick last_action 缓冲 | `policy_switch_last_action.py` | 无显式清零 → 诚实 GAP；walk 344≠kick 59 历史；禁止假绿 |

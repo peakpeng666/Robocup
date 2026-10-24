@@ -170,6 +170,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "standup_eval_artifact_upgrades_quality",
         "walk_stability_pass_as_competition_ready_gait",
         "silent_competition_cfg_edit",
+        "max_acc_allowlist_drift",
+        "band_crossing_as_dim_rewrite",
+        "inverted_hysteresis_band",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -235,7 +238,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "volume-rescan-deletes-artifacts / "
             "kick-engine-pass-as-live-rl-kick-deploy / ball-task-cross-slot-wiring / "
             "handoff-pass-as-field-ready-standup / standup-eval-artifact-upgrades-quality / "
-            "walk-stability-pass-as-competition-ready-gait / silent-competition-cfg-edit"
+            "walk-stability-pass-as-competition-ready-gait / silent-competition-cfg-edit / "
+            "maxAcc-allowlist-drift / band-crossing-as-dim / inverted-hysteresis-band"
         )
 
     try:
