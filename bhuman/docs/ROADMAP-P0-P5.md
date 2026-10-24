@@ -143,6 +143,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] T1/K1 隔离矩阵：`k1-switcher/t1_k1_isolation.py`（T1 365→14 / 62→14 / 76→23 不得替换 K1 walk；RESEARCH-MIGRATE / HiFAR 一行）。
 - [x] MuJoCo 过桥负例扩：`overpass_contract.py` 拒 T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥；缺 mujoco 诚实 SKIP。
 - [x] PR 体积健康：MERGE-CHECKLIST / README-RL 短节（文档+纯 Python 合同、无权重；审纪律不是曲线；不删文件）。
+- [x] 命令日程只读解析：`scripts/command_schedule_audit.py`（官方 `commands:` 快照；缺 schedule/curriculum 如实记录；draft `A_command_schedule` 不得当已应用）。
+- [x] 扰动课程草案校验：`scripts/disturbance_curriculum_audit.py`（`draft_only:true`；live `push_*` 不被覆盖；缺 draft_only / apply_to_live → FAIL）。
+- [x] 自检失败定位：`scripts/selfcheck_fail_hints.py`（FAIL 打印「先看」文件/测试；PASS 安静）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -289,6 +292,9 @@ python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py
 python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py
 python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py
 python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py
+python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py
+python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py
+python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py
 python3 bhuman/sim2sim/test_overpass_contract.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh

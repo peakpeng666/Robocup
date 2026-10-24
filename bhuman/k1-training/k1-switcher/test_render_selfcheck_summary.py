@@ -67,6 +67,37 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             errors.append("rendered markdown missing step timings")
         else:
             notes.append("step timings rendered")
+    if (bundle.get("selfcheck") or {}).get("verdict") != "FAIL" and "先看" in text:
+        errors.append("PASS summary must stay quiet (no 先看)")
+    else:
+        notes.append("PASS summary has no FAIL 先看")
+    fail_md = render_markdown(
+        {
+            "selfcheck": {
+                "generated_utc": "2026-10-24T00:00:00+00:00",
+                "verdict": "FAIL",
+                "walk": "344→13",
+                "trainable": False,
+                "ready_gpu": False,
+                "failed_step": "test_command_schedule_audit.py",
+                "fail_hint": (
+                    "先看 K1.yaml commands: 与 draft A_command_schedule "
+                    "是否被当成已应用 → bhuman/k1-training/scripts/command_schedule_audit.py"
+                ),
+                "fail_look": "bhuman/k1-training/scripts/command_schedule_audit.py",
+                "steps": ["test_command_schedule_audit.py"],
+            },
+            "gate": {},
+            "gpu": {},
+            "inventory": {},
+            "joints": {},
+            "missing_sources": [],
+        }
+    )
+    if "先看" not in fail_md or "command_schedule_audit.py" not in fail_md:
+        errors.append("FAIL summary must print 先看 file/test")
+    else:
+        notes.append("FAIL summary prints 先看 locator")
     if "长篇" in text or len(text) > 12000:
         errors.append("summary grew into a long survey")
     else:

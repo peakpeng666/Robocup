@@ -17,7 +17,7 @@
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 ```
 
-必须 **exit 0**。云端无 GPU 预期 **PASS + WARN**（缺 CUDA / Isaac / 权）。缺依赖的测试内 **SKIP**，不得假绿。一行应含 `PASS 基底 344→13 / TRAINABLE=false / ready_gpu=false`。
+必须 **exit 0**。云端无 GPU 预期 **PASS + WARN**（缺 CUDA / Isaac / 权）。缺依赖的测试内 **SKIP**，不得假绿。一行应含 `PASS 基底 344→13 / TRAINABLE=false / ready_gpu=false`。某步 FAIL 时脚本与摘要打印「先看」哪个文件/哪条测试，不只抛 exit code。
 
 拆开等价：
 

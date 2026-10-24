@@ -66,6 +66,9 @@ REQUIRED_ROWS = (
     "T1/K1 隔离矩阵",
     "MuJoCo 过桥负例",
     "PR 体积健康",
+    "命令日程只读解析",
+    "扰动课程草案校验",
+    "自检失败定位",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -131,6 +134,9 @@ REQUIRED_LANDINGS = (
     "official_sibling_tasks_audit.py",
     "onnx_deploy_path_crosscheck.py",
     "t1_k1_isolation.py",
+    "command_schedule_audit.py",
+    "disturbance_curriculum_audit.py",
+    "selfcheck_fail_hints.py",
 )
 
 

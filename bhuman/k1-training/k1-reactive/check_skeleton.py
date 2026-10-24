@@ -386,6 +386,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-switcher/t1_k1_isolation.py",
             "T1/K1 isolation matrix (T1 must not replace K1 walk)",
         ),
+        (
+            "bhuman/k1-training/scripts/command_schedule_audit.py",
+            "command schedule read-only extract (draft not applied)",
+        ),
+        (
+            "bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+            "disturbance draft validator (live push_* not overwritten)",
+        ),
+        (
+            "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
+            "selfcheck FAIL locator (先看 file/test; PASS quiet)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

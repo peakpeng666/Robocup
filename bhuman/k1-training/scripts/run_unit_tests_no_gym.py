@@ -74,6 +74,9 @@ REQUIRED_NAMES = (
     "test_official_sibling_tasks_audit.py",
     "test_onnx_deploy_path_crosscheck.py",
     "test_t1_k1_isolation.py",
+    "test_command_schedule_audit.py",
+    "test_disturbance_curriculum_audit.py",
+    "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

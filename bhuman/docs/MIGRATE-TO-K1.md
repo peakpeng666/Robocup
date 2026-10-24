@@ -86,6 +86,9 @@
 | T1/K1 隔离矩阵 | 契约 | `k1-switcher/t1_k1_isolation.py` | **P0** | 否 | T1 365/62/76 不得替换 K1 walk | **本轮隔离** |
 | MuJoCo 过桥负例 | 契约 | `sim2sim/overpass_contract.py` | **P0** | 否 | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP | **本轮过桥** |
 | PR 体积健康 | 门禁 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | **P0** | 否 | 文档+纯 Python 合同；无权重；审纪律不是曲线 | **本轮体积** |
+| 命令日程只读解析 | 契约 / P1 | `scripts/command_schedule_audit.py` | **P0 / P1** | 否 | 官方 `commands:` 快照；draft 日程不得当已应用；缺键如实记 | **本轮解析** |
+| 扰动课程草案校验 | 契约 / P1 | `scripts/disturbance_curriculum_audit.py` | **P0 / P1** | 否 | live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL | **本轮校验** |
+| 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -178,6 +181,9 @@
 | 60 | T1/K1 隔离矩阵 | `t1_k1_isolation.py` | `python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py` |
 | 61 | MuJoCo 过桥负例 | `overpass_contract.py` | `python3 bhuman/sim2sim/test_overpass_contract.py` |
 | 62 | PR 体积健康 | MERGE-CHECKLIST §4 | 审纪律不是性能曲线 |
+| 63 | 命令日程只读解析 | `command_schedule_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py` |
+| 64 | 扰动课程草案校验 | `disturbance_curriculum_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py` |
+| 65 | 自检失败定位 | `selfcheck_fail_hints.py` | `python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

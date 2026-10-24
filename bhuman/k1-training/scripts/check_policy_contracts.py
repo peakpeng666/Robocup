@@ -684,6 +684,24 @@ def check_gpu_free_shells(
             "k1_t1_k1_isolation",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_command_schedule_audit.py",
+            "command_schedule_audit",
+            "k1_command_schedule_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py",
+            "disturbance_curriculum_audit",
+            "k1_disturbance_curriculum_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
+            "selfcheck_fail_hints",
+            "k1_selfcheck_fail_hints",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1157,6 +1175,9 @@ def main() -> int:
             "official_sibling_tasks_audit": "K1_Ball/Stand_Up registered ≠ walk 344; no merge into 344",
             "onnx_deploy_path_crosscheck": "CHECKPOINT-LAYOUT × WalkingEngine; missing SKIP; mismatch FAIL",
             "t1_k1_isolation": "T1 365/62/76 must not replace K1 walk 344→13",
+            "command_schedule_audit": "official commands snapshot; draft A_command_schedule not applied",
+            "disturbance_curriculum_audit": "live push_* intact; missing draft_only / apply_to_live FAIL",
+            "selfcheck_fail_hints": "FAIL prints 先看 file/test; PASS stays quiet",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1254,6 +1275,12 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py",
             "python3 bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
             "python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py",
+            "python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py",
+            "python3 bhuman/k1-training/scripts/command_schedule_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py",
+            "python3 bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
+            "python3 bhuman/k1-training/scripts/selfcheck_fail_hints.py --step k1.yaml",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

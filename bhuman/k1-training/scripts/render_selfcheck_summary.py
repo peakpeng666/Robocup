@@ -70,8 +70,18 @@ def _rows_from_selfcheck(selfcheck: dict[str, Any] | None) -> list[tuple[str, st
     if not selfcheck:
         return [("pr4-selfcheck-latest.json", "SKIP", "missing selfcheck JSON")]
     verdict = str(selfcheck.get("verdict") or "SKIP")
+    failed = str(selfcheck.get("failed_step") or "")
+    hint = str(selfcheck.get("fail_hint") or "failed")
+    seen: set[str] = set()
     for step in selfcheck.get("steps") or []:
-        rows.append((str(step), verdict if verdict == "PASS" else "SKIP", "selfcheck step"))
+        sid = str(step)
+        seen.add(sid)
+        if verdict == "FAIL" and sid == failed:
+            rows.append((sid, "FAIL", hint))
+        else:
+            rows.append((sid, "PASS", "selfcheck step"))
+    if verdict == "FAIL" and failed and failed not in seen:
+        rows.append((failed, "FAIL", hint))
     if selfcheck.get("ready_gpu") is False:
         rows.append(("ready_gpu", "WARN", "false (expected without CUDA worker)"))
     if selfcheck.get("trainable") is not False:
@@ -79,7 +89,8 @@ def _rows_from_selfcheck(selfcheck: dict[str, Any] | None) -> list[tuple[str, st
     elapsed = selfcheck.get("elapsed_s")
     if elapsed is not None:
         n = len(selfcheck.get("step_timings") or [])
-        rows.append(("selfcheck elapsed_s", "PASS", f"{elapsed}s over {n} timed steps"))
+        status = "FAIL" if verdict == "FAIL" else "PASS"
+        rows.append(("selfcheck elapsed_s", status, f"{elapsed}s over {n} timed steps"))
     return rows
 
 
@@ -156,6 +167,10 @@ def render_markdown(bundle: dict[str, Any]) -> str:
     pass_n = sum(1 for _, status, _ in rows if status == "PASS")
     skip_n = sum(1 for _, status, _ in rows if status == "SKIP")
     warn_n = sum(1 for _, status, _ in rows if status == "WARN")
+    fail_n = sum(1 for _, status, _ in rows if status == "FAIL")
+    counts = f"计数：PASS {pass_n} · SKIP {skip_n} · WARN {warn_n}"
+    if fail_n:
+        counts += f" · FAIL {fail_n}"
 
     lines = [
         "# PR #4 自检摘要（最新）",
@@ -165,7 +180,7 @@ def render_markdown(bundle: dict[str, Any]) -> str:
         "",
         f"**{verdict}** 基底 **{walk}** / TRAINABLE={str(trainable).lower()} / ready_gpu={str(ready).lower()}",
         "",
-        f"计数：PASS {pass_n} · SKIP {skip_n} · WARN {warn_n}",
+        counts,
         "",
         "| 项 | 状态 | 说明 |",
         "|---|---|---|",
@@ -192,6 +207,18 @@ def render_markdown(bundle: dict[str, Any]) -> str:
         total = (selfcheck or {}).get("elapsed_s")
         if total is not None:
             lines.append(f"| **合计 elapsed_s** | **{total}** |")
+
+    if verdict == "FAIL":
+        hint = str((selfcheck or {}).get("fail_hint") or "").strip()
+        look = str((selfcheck or {}).get("fail_look") or "").strip()
+        step = str((selfcheck or {}).get("failed_step") or "").strip()
+        lines.extend(["", "## 失败定位", ""])
+        if hint:
+            lines.append(hint if "先看" in hint else f"先看 {hint}")
+        if look:
+            extra = f" （步 `{step}`）" if step else ""
+            lines.append(f"文件/测试：`{look}`{extra}")
+        lines.append("")
 
     lines.extend(
         [

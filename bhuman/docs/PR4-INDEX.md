@@ -128,6 +128,9 @@ scripts/
 ├── walk_stability_presets_audit.py 官方 walk-*-stability-v1 键审计
 ├── official_sibling_tasks_audit.py K1_Ball / Stand_Up ≠ walk 344
 ├── onnx_deploy_path_crosscheck.py  CHECKPOINT-LAYOUT × WalkingEngine
+├── command_schedule_audit.py    官方 commands: 只读快照；draft 日程不得当已应用
+├── disturbance_curriculum_audit.py live push_* 不被 draft 覆盖
+├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
@@ -190,6 +193,9 @@ k1-switcher/
 ├── test_onnx_deploy_path_crosscheck.py
 ├── t1_k1_isolation.py
 ├── test_t1_k1_isolation.py
+├── test_command_schedule_audit.py
+├── test_disturbance_curriculum_audit.py
+├── test_selfcheck_fail_hints.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -268,7 +274,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-map.json    上轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
 ├── contract-gate-20261024-reg.json    上轮（GetUpEngine 快照 + stability 审计 + 禁令回归）
 ├── contract-gate-20261024-sib.json    上轮（旁系任务 + ONNX 路径 + 自检耗时）
-├── contract-gate-20261024-iso.json    本轮（T1/K1 隔离 + 过桥负例 + PR 体积）
+├── contract-gate-20261024-iso.json    上轮（T1/K1 隔离 + 过桥负例 + PR 体积）
+├── contract-gate-20261024-cmd.json    本轮（命令日程 + 扰动草案 + 失败定位）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -283,6 +290,8 @@ k1-training/manifests/
 ├── official-sibling-tasks-audit-latest.json K1_Ball/Stand_Up ≠ walk 344；不进 344
 ├── onnx-deploy-path-crosscheck-latest.json CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP
 ├── t1-k1-isolation-latest.json        T1 365/62/76 不得替换 K1 walk
+├── command-schedule-audit-latest.json 官方 commands:；缺 schedule/curriculum；draft 未应用
+├── disturbance-curriculum-audit-latest.json live push_* 完整；draft C 未覆盖
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -347,6 +356,9 @@ k1-training/manifests/
 | ONNX 部署路径对照 | `onnx_deploy_path_crosscheck.py` | CHECKPOINT-LAYOUT × WalkingEngine；缺 onnx/pth → SKIP；路径声明不一致 → FAIL |
 | 自检耗时 | `pr4-selfcheck-latest.json` | 各步 `elapsed_s` 写入 JSON / 摘要 md |
 | T1/K1 隔离矩阵 | `t1_k1_isolation.py` | T1 365→14 / 62→14 / 76→23 不得替换 K1 walk；见 RESEARCH-MIGRATE / HiFAR |
+| 命令日程只读解析 | `command_schedule_audit.py` | 官方 `commands:` 快照；draft `A_command_schedule` 不得当已应用；缺键如实记 |
+| 扰动课程草案校验 | `disturbance_curriculum_audit.py` | live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL |
+| 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |

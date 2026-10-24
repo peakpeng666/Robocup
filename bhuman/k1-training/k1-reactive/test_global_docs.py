@@ -125,6 +125,9 @@ REQUIRED_DOCS = {
         "official_sibling_tasks_audit",
         "onnx_deploy_path_crosscheck",
         "t1_k1_isolation",
+        "command_schedule_audit",
+        "disturbance_curriculum_audit",
+        "selfcheck_fail_hints",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -179,6 +182,9 @@ REQUIRED_DOCS = {
         "official_sibling_tasks_audit.py",
         "onnx_deploy_path_crosscheck.py",
         "t1_k1_isolation.py",
+        "command_schedule_audit.py",
+        "disturbance_curriculum_audit.py",
+        "selfcheck_fail_hints.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -206,6 +212,8 @@ REQUIRED_DOCS = {
         "不改默认",
         "draft_validator",
         "p1_draft_diff",
+        "command_schedule_audit",
+        "disturbance_curriculum_audit",
     ),
     "bhuman/docs/DEPLOY-CALL-SEQUENCE.md": (
         "344→13",
@@ -276,6 +284,9 @@ REQUIRED_DOCS = {
         "official-sibling-tasks-audit",
         "onnx-deploy-path-crosscheck",
         "t1-k1-isolation",
+        "command-schedule-audit",
+        "disturbance-curriculum-audit",
+        "selfcheck_fail_hints",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -316,6 +327,10 @@ REQUIRED_DOCS = {
         "print_train_dry_run",
         "GPU-AFTER-ONLINE",
         "PR4-SELFCHECK-LATEST",
+        "command_schedule_audit",
+        "disturbance_curriculum_audit",
+        "selfcheck_fail_hints",
+        "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -401,6 +416,10 @@ REQUIRED_DOCS = {
         "onnx_deploy_path_crosscheck",
         "elapsed_s",
         "t1_k1_isolation",
+        "command_schedule_audit",
+        "disturbance_curriculum_audit",
+        "selfcheck_fail_hints",
+        "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
