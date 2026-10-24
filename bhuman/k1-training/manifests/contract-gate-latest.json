@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:17:18+00:00",
+  "generated_utc": "2026-10-24T07:20:48+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -33,7 +33,9 @@
     "ci_contract_gate": "bhuman/docs/CI-CONTRACT-GATE.md; draft-only workflow; PASS+WARN",
     "p5_preview": "bhuman/docs/P5-PREVIEW.md; domain-gap/CTDE location; docs≠on-robot",
     "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
-    "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands"
+    "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
+    "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
+    "gpu_worker_checklist": "probe JSON; missing items; never train.py"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -109,6 +111,8 @@
       "RL 5-min map (baseline / two commands / when to train) present",
       "no-Gym one-shot unit tests (walk 344→13; honest SKIP) present",
       "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
+      "ONNX export contract (walk 344→13 only; no real weights) present",
+      "GPU worker checklist (probe only; never train.py) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -666,10 +670,13 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 22 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 24 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_deploy_call.py",
+        "PASS test_gpu_worker_checklist.py",
+        "PASS test_onnx_export_contract.py",
+        "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
@@ -702,6 +709,14 @@
         },
         {
           "name": "test_deploy_call.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_gpu_worker_checklist.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_onnx_export_contract.py",
           "status": "PASS"
         },
         {
@@ -785,6 +800,8 @@
         "test_blockers.py",
         "test_bt_deploy_crosscheck.py",
         "test_deploy_call.py",
+        "test_gpu_worker_checklist.py",
+        "test_onnx_export_contract.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
@@ -807,16 +824,66 @@
       ],
       "walk": "344→13",
       "trainable": false
+    },
+    "onnx_export_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "export frozen: TRAINABLE=false; default walk 344→13; no write",
+        "default exportable path is official walk 344→13",
+        "negative: default export missing 344→13 declaration refused",
+        "negative: kick 59→13 refused as default walk export",
+        "negative: standup 73→22 refused as default walk export",
+        "negative: fast_standup 72→22 refused as default walk export",
+        "negative: reactive 64→15 refused as default walk export",
+        "negative: huoshen_t1 58→15 refused as default walk export",
+        "negative: nusim 79→22 refused as default walk export",
+        "negative: hot-swap ONNX into official actor refused",
+        "negative: replace official ONNX refused",
+        "negative: walk/kick ONNX swap refused",
+        "official K1_walk.onnx write refused",
+        "skipped (missing optional runtime): no K1_walk.pth",
+        "user approval still does not export (IMPLEMENTED=false)",
+        "skipped (missing optional runtime): no K1_walk.pth",
+        "official K1.yaml still 344→13 (export stub did not edit it)"
+      ],
+      "trainable": false,
+      "skipped": true,
+      "walk": "344→13"
+    },
+    "gpu_worker_checklist": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "probe source does not invoke train.py",
+        "will_run_train_py=false will_run_isaac_gym=false",
+        "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
+        "official K1 task visible (registry + K1.yaml 344→13)",
+        "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+        "probe JSON includes checklist",
+        "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
+        "probe_reserved_gpu.sh does not call train.py",
+        "official walk stays 344→13"
+      ],
+      "trainable": false,
+      "ready": false,
+      "missing": [
+        "cuda",
+        "isaacgym_or_alt",
+        "checkpoint"
+      ],
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:17:17+00:00",
+    "generated_utc": "2026-10-24T07:20:47+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
     "skip_reasons": [
       "nvidia-smi not found (no CUDA worker)",
-      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])"
+      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+      "K1_walk.pth absent (gitignored / local-only)"
     ],
     "nvidia_smi": null,
     "gpu": null,
@@ -825,6 +892,47 @@
     "isaacgym_in_bh_gym": false,
     "auto_smoke_env": "0",
     "will_run_isaac_gym": false,
+    "will_run_train_py": false,
+    "must_tell_user_before_train": true,
+    "tell_user": null,
+    "checklist": {
+      "cuda": {
+        "ok": false,
+        "detail": "nvidia-smi not found (no CUDA worker)",
+        "gpu": null
+      },
+      "isaacgym_or_alt": {
+        "ok": false,
+        "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+        "bh_gym_python": null,
+        "bh_gym_version": null,
+        "isaacgym": false,
+        "alternative": null
+      },
+      "disk": {
+        "ok": true,
+        "detail": "IsaacGymRL present; free≈246.2GiB"
+      },
+      "official_k1_task": {
+        "ok": true,
+        "detail": "official registry imports K1; K1.yaml 344→13",
+        "task": "K1"
+      },
+      "checkpoint": {
+        "ok": false,
+        "detail": "K1_walk.pth absent (gitignored / local-only)"
+      }
+    },
+    "missing": [
+      "cuda",
+      "isaacgym_or_alt",
+      "checkpoint"
+    ],
+    "official_k1_task": {
+      "ok": true,
+      "detail": "official registry imports K1; K1.yaml 344→13",
+      "task": "K1"
+    },
     "templates": {
       "note": "All commands keep official K1 walk 344→13. Do not pass --task=K1_Reactive.",
       "env_check": "bash bhuman/k1-training/scripts/run_env_check.sh",
@@ -846,7 +954,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "05bb2829bb1ae5ff39235f82dd19db29806ceefd",
+    "workspace_head": "cfafdbc4de664354c29d77401531d9f1d51a28a0",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1215,6 +1323,8 @@
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
     "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
     "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+    "reserved GPU/bh-gym: K1_walk.pth absent (gitignored / local-only)",
+    "GPU checklist missing: cuda, isaacgym_or_alt, checkpoint",
     "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay",
     "sim2sim stack: python module mujoco missing",
     "sim2sim stack: isaacsim-gui python missing",
@@ -1261,6 +1371,8 @@
     "RL 5-min map (baseline / two commands / when to train) present",
     "no-Gym one-shot unit tests (walk 344→13; honest SKIP) present",
     "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
+    "ONNX export contract (walk 344→13 only; no real weights) present",
+    "GPU worker checklist (probe only; never train.py) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1555,10 +1667,13 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 22 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 24 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_deploy_call.py",
+    "PASS test_gpu_worker_checklist.py",
+    "PASS test_onnx_export_contract.py",
+    "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
@@ -1579,6 +1694,33 @@
     "PASS test_overpass_contract.py",
     "PASS test_sim2sim_gate.py",
     "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)",
+    "export frozen: TRAINABLE=false; default walk 344→13; no write",
+    "default exportable path is official walk 344→13",
+    "negative: default export missing 344→13 declaration refused",
+    "negative: kick 59→13 refused as default walk export",
+    "negative: standup 73→22 refused as default walk export",
+    "negative: fast_standup 72→22 refused as default walk export",
+    "negative: reactive 64→15 refused as default walk export",
+    "negative: huoshen_t1 58→15 refused as default walk export",
+    "negative: nusim 79→22 refused as default walk export",
+    "negative: hot-swap ONNX into official actor refused",
+    "negative: replace official ONNX refused",
+    "negative: walk/kick ONNX swap refused",
+    "official K1_walk.onnx write refused",
+    "skipped (missing optional runtime): no K1_walk.pth",
+    "user approval still does not export (IMPLEMENTED=false)",
+    "skipped (missing optional runtime): no K1_walk.pth",
+    "official K1.yaml still 344→13 (export stub did not edit it)",
+    "onnx_export_contract: skipped (missing optional runtime)",
+    "probe source does not invoke train.py",
+    "will_run_train_py=false will_run_isaac_gym=false",
+    "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
+    "official K1 task visible (registry + K1.yaml 344→13)",
+    "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+    "probe JSON includes checklist",
+    "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
+    "probe_reserved_gpu.sh does not call train.py",
+    "official walk stays 344→13",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -1614,6 +1756,8 @@
     "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
     "python3 bhuman/sim2sim/test_overpass_contract.py",
     "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
+    "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+    "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
