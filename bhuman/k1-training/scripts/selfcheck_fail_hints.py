@@ -196,6 +196,10 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/intercept_avoid_bypass.py",
         "hint": "先看拦截/避障/walkOutOfBallLine 是否仍走 walkPolicy 344→13，而不是被写成默认 kick 或热换训练图",
     },
+    "test_walk_stay_remaining.py": {
+        "look": "bhuman/k1-training/scripts/walk_stay_remaining.py",
+        "hint": "先看 shouldStop / stand / 球未见>1000 / 空 SkillRequest 是否仍走 walkPolicy，而不是被写成默认 kick 或改 344 / 热换训练图",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

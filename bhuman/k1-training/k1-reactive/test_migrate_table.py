@@ -171,6 +171,7 @@ REQUIRED_LANDINGS = (
     "speed_gear_diff.py",
     "ball_network_active.py",
     "intercept_avoid_bypass.py",
+    "walk_stay_remaining.py",
 )
 
 

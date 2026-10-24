@@ -153,6 +153,7 @@ scripts/
 ├── speed_gear_diff.py           fast/normal/slow 7 Sim / 8 Comp；≠ 换网
 ├── ball_network_active.py       官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图
 ├── intercept_avoid_bypass.py    拦截/避障/walkOut 仍 walkPolicy 344→13；≠ kick / T1
+├── walk_stay_remaining.py       shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -323,7 +324,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-ball.json   上轮（policySwitch + shiftBallPosition）
 ├── contract-gate-20261024-policy.json 上轮（walkPolicy/kickPolicy 槽位 + maxAcceleration）
 ├── contract-gate-20261024-next.json   上轮（getNextTargetRequest 钉死 + speed 档位）
-├── contract-gate-20261024-bypass.json 本轮（ballNetwork 开关 + 拦截/避障旁路）
+├── contract-gate-20261024-bypass.json 上轮（ballNetwork 开关 + 拦截/避障旁路）
+├── contract-gate-20261024-stay.json   本轮（剩余 walk-stay：shouldStop / stand / 未见 / 空技能）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -363,6 +365,7 @@ k1-training/manifests/
 ├── speed-gear-diff-latest.json        7 Sim / 8 Comp 档位差分；≠ 换网
 ├── ball-network-active-latest.json    官方 active=true；未开强制 walk；≠ 改维
 ├── intercept-avoid-bypass-latest.json 三旁路仍 walkPolicy 344→13；≠ kick / T1
+├── walk-stay-remaining-latest.json    shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -455,6 +458,7 @@ k1-training/manifests/
 | speed 档位允许集 | `speed_gear_diff.py` | fast/normal/slow Default vs Simulated 7 键 / Competition 8 键；≠ 换网 |
 | ballNetwork 开关只读 | `ball_network_active.py` | 官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图 |
 | 拦截 / 避障 / walkOut 旁路 | `intercept_avoid_bypass.py` | 三旁路仍 walkPolicy 344→13；≠ kick / reactive / T1 |
+| 剩余 walk-stay 只读 | `walk_stay_remaining.py` | shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk；空=walk；仅 want_kick → kick |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

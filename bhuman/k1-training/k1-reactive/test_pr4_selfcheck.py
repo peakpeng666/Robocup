@@ -54,6 +54,7 @@ NEEDLES = (
     "test_speed_gear_diff.py",
     "test_ball_network_active.py",
     "test_intercept_avoid_bypass.py",
+    "test_walk_stay_remaining.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

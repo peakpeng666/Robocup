@@ -34,7 +34,8 @@ maxAcceleration 差分：`scripts/max_acceleration_diff.py`（20/20 vs 60/20 vs 
 getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（10 条 walk-stay 条件；空上下文仍 walk；≠ 热换训练图）。  
 speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow 7 Sim / 8 Comp；≠ 换网）。  
 ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图）。  
-拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（三旁路仍 walkPolicy **344→13**；≠ kick / reactive / T1）。
+拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（三旁路仍 walkPolicy **344→13**；≠ kick / reactive / T1）。  
+剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（shouldStop / stand / 未见>1000 / 非 kick motion 仍 walkPolicy **344→13**；空=walk；仅 `want_kick` → kick）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

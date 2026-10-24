@@ -86,6 +86,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -176,6 +177,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -259,6 +261,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff.py",
         "ball_network_active.py",
         "intercept_avoid_bypass.py",
+        "walk_stay_remaining.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -332,6 +335,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -416,6 +420,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -484,6 +489,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -600,6 +606,7 @@ REQUIRED_DOCS = {
         "speed_gear_diff",
         "ball_network_active",
         "intercept_avoid_bypass",
+        "walk_stay_remaining",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

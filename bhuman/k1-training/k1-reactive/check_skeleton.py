@@ -495,6 +495,10 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "intercept/avoid/walkOut stay walkPolicy 344→13; ≠ kick / reactive / T1",
         ),
         (
+            "bhuman/k1-training/scripts/walk_stay_remaining.py",
+            "remaining walk-stay (shouldStop / stand / unseen>1000 / empty=walk; only want_kick → kick)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),
