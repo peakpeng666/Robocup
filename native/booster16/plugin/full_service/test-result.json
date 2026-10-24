@@ -1,0 +1,95 @@
+{
+  "tested_at_utc": "2026-10-24T04:38:30.174375+00:00",
+  "scope": "Fake-peer scheduler and actual hybrid lease implementation with fake ports; no vendor or live physics execution",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "results": [
+    {
+      "test": "test_scheduler",
+      "mode": "normal",
+      "exit_code": 0,
+      "stdout": "30089 deterministic scheduler checks PASS (fake peer, not vendor runtime)",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "test_scheduler.cpp",
+        "-o",
+        "/tmp/booster_full_service_test_scheduler_normal"
+      ]
+    },
+    {
+      "test": "test_torque_binding",
+      "mode": "normal",
+      "exit_code": 0,
+      "stdout": "22 real hybrid lease semantics, one-step expiry and partial-commit revocation PASS (fake ports)",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "test_torque_binding.cpp",
+        "-o",
+        "/tmp/booster_full_service_test_torque_binding_normal"
+      ]
+    },
+    {
+      "test": "test_scheduler",
+      "mode": "NDEBUG",
+      "exit_code": 0,
+      "stdout": "30089 deterministic scheduler checks PASS (fake peer, not vendor runtime)",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DNDEBUG",
+        "test_scheduler.cpp",
+        "-o",
+        "/tmp/booster_full_service_test_scheduler_NDEBUG"
+      ]
+    },
+    {
+      "test": "test_torque_binding",
+      "mode": "NDEBUG",
+      "exit_code": 0,
+      "stdout": "22 real hybrid lease semantics, one-step expiry and partial-commit revocation PASS (fake ports)",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DNDEBUG",
+        "test_torque_binding.cpp",
+        "-o",
+        "/tmp/booster_full_service_test_torque_binding_NDEBUG"
+      ]
+    }
+  ],
+  "inputs_sha256": {
+    "test_scheduler.cpp": "b5bd4c133d24e45dd6c2ff0680781b8a0bfd01b3b00f430e4b8635628d916a69",
+    "Scheduler.h": "94fe8a46c015a700281e977980a78056e54b300b233d598bc096834638ba8f64",
+    "test_torque_binding.cpp": "677b1c46fe5e7459940202887ac4e6349a92451c3315de3bcaefad0cc0a905a7",
+    "Core3TorqueBinding.h": "43c52ca509400c269deb5dd93d41409ad75008d5f8e68835ab26060c78db44df",
+    "test_async_phase.py": "7d1368a478f12b2c9791e4271edb9cbda1e36eb9cc8ede1a8ca0034160dd2d09",
+    "async_phase.py": "84916e4dab4ce783a44e75f1e3a19eb3a8dc1999a26e7c311033269544d7bce5"
+  },
+  "async_bridge_integration": {
+    "exit_code": 0,
+    "tests": 7,
+    "output": "test_bad_phase_or_dt (test_async_phase.Tests.test_bad_phase_or_dt) ... ok\ntest_held_torque_is_counted_and_expires (test_async_phase.Tests.test_held_torque_is_counted_and_expires) ... ok\ntest_no_acceleration_by_early_wait (test_async_phase.Tests.test_no_acceleration_by_early_wait) ... ok\ntest_stock_no_echo_startup_holds_then_arms (test_async_phase.Tests.test_stock_no_echo_startup_holds_then_arms) ... ok\ntest_stock_sequence_progress_not_causal (test_async_phase.Tests.test_stock_sequence_progress_not_causal) ... ok\ntest_stop_does_not_destroy_peer_resources (test_async_phase.Tests.test_stop_does_not_destroy_peer_resources) ... ok\ntest_timeout_and_restart_owner (test_async_phase.Tests.test_timeout_and_restart_owner) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.011s\n\nOK\n",
+    "scope": "actual ServiceBridge and codec, in-memory FakeKernel only"
+  }
+}

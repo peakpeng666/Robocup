@@ -1,0 +1,28 @@
+test_cleanup_continues_and_retains_failed_handle (test_bridge.BridgeTests.test_cleanup_continues_and_retains_failed_handle) ... ok
+test_clock_regression (test_bridge.BridgeTests.test_clock_regression) ... ok
+test_close_needs_peer_exit (test_bridge.BridgeTests.test_close_needs_peer_exit) ... ok
+test_collision_does_not_remove_foreign (test_bridge.BridgeTests.test_collision_does_not_remove_foreign) ... ok
+test_counter_duplicates_fault (test_bridge.BridgeTests.test_counter_duplicates_fault) ... ok
+test_held_action_lease (test_bridge.BridgeTests.test_held_action_lease) ... ok
+test_latest_slot_backlog_measured (test_bridge.BridgeTests.test_latest_slot_backlog_measured) ... ok
+test_no_unbounded_drain (test_bridge.BridgeTests.test_no_unbounded_drain) ... ok
+test_noninteger_time_and_unbounded_lease_refused (test_bridge.BridgeTests.test_noninteger_time_and_unbounded_lease_refused) ... ok
+test_partial_create_cleanup (test_bridge.BridgeTests.test_partial_create_cleanup) ... ok
+test_restart_is_new_namespace_epoch_and_no_command (test_bridge.BridgeTests.test_restart_is_new_namespace_epoch_and_no_command) ... ok
+test_sensor_direction_and_counter (test_bridge.BridgeTests.test_sensor_direction_and_counter) ... ok
+test_startup_bound (test_bridge.BridgeTests.test_startup_bound) ... ok
+test_strict_lockstep_refused (test_bridge.BridgeTests.test_strict_lockstep_refused) ... ok
+test_torque_only_clamp_and_no_causal_claim (test_bridge.BridgeTests.test_torque_only_clamp_and_no_causal_claim) ... ok
+test_two_robots_do_not_cross_deliver (test_bridge.BridgeTests.test_two_robots_do_not_cross_deliver) ... ok
+test_unstable_read_fault (test_bridge.BridgeTests.test_unstable_read_fault) ... ok
+test_wall_lease_even_if_paused (test_bridge.BridgeTests.test_wall_lease_even_if_paused) ... ok
+test_command_offsets (test_codec.CodecFixtures.test_command_offsets) ... ok
+test_invalid_tlv (test_codec.CodecFixtures.test_invalid_tlv) ... ok
+test_key_fixture (test_codec.CodecFixtures.test_key_fixture) ... ok
+test_no_truncation_nan_or_bad_count (test_codec.CodecFixtures.test_no_truncation_nan_or_bad_count) ... ok
+test_sensor_literal_hex (test_codec.CodecFixtures.test_sensor_literal_hex) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.002s
+
+OK
