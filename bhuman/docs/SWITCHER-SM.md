@@ -4,7 +4,8 @@
 连续性清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。部署一拍（默认官方 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 **本文件只定义合法边。** 没有 Gym `step`，没有力矩时间序列，没有 ONNX 热加载。
-`TRAINABLE=false`。反应技能 **`implemented=false`**，状态机不得进入 `reactive`。
+`TRAINABLE=false`。反应技能 **`implemented=false`**，状态机不得进入 `reactive`。  
+**reactive = 旁路技能，≠ 新步态基线**（survey §6.11）。条件未满足则停在官方 walk 344→13。出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)。
 
 ---
 

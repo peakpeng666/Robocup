@@ -33,7 +33,9 @@
 | 部署调用时序（BT→SM→槽位） | ROADMAP P4 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) + `k1-switcher/deploy_call.py` | **P4 / P0 骨架** | 否 | **默认入口官方 walk 344→13**；`getup_done` 才回走；不热换 ONNX | 上轮骨架 |
 | 历史/力矩时间序列合同草案 | ROADMAP P4 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) + `k1-switcher/timeseries_contract.py` | **P4 / P0 草案** | 否 | 形状锁 10×32+24=**344**；连续性 SKIP，不改 live obs | **本轮草案** |
 | 估计器旁路加深 | §5 / P1.4 | `k1-estimators/hooks.py` + `test_estimator_bypass.py` | **P1 口** | 否 | latent **不进** 344；不接线 switcher / deploy_call | **本轮加深** |
-| 官方 SkillRequest vs bt_skill_select | §6.10 | 只写 GLOBAL；不改 `SkillRequest.h` | **对照** | 否 | **对照 ≠ 替换官方 walk** | **本轮调研** |
+| 官方 SkillRequest vs bt_skill_select | §6.10 | 只写 GLOBAL；不改 `SkillRequest.h` | **对照** | 否 | **对照 ≠ 替换官方 walk** | 上轮调研 |
+| P2 验收清单 | ROADMAP P2 / §6.11 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | **P2 出门条 / P0 文档** | 否（清单）；切真切 / 六机回放 / 真机各标依赖 | **P2 不改 344→13**；默认入口官方 walk | **本轮清单** |
+| reactive 旁路硬化 | §6.11 | `k1-reactive/hardening.py` + `test_reactive_hardening.py` | **P2 口 / P0 门禁** | 否 | **旁路技能，≠ 新步态基线**；未注册 `train.py`；禁换 walk actor；条件未满足停在 walk | **本轮硬化** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -74,8 +76,21 @@
 | 8 | 历史/力矩时间序列草案 | `timeseries_contract.py` + [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | `python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`（连续性 SKIP） |
 | 9 | 估计器旁路加深 | `k1-estimators/hooks.py` | `python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py` |
 | 10 | SkillRequest 对照 | survey §6.10 | `test_global_docs.py` 锚点 |
+| 11 | P2 验收清单 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | 切换 / SimRobot 六机 / 不冒充实机；每条标 合同门禁 / GPU worker / 真机 |
+| 12 | reactive 旁路硬化 | `hardening.py` | `python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
+
+---
+
+## 2.1 reactive = 旁路技能，≠ 新步态基线
+
+表里「火神虚拟感知」「行为树切入」「切换器」「SkillRequest」都指向同一条边界（survey §6.11）：
+
+- 默认 / 主路径永远是官方 walk **344→13**。
+- `k1-reactive` 64→15 是平行旁路，`TRAINABLE=false`，禁止注册 `train.py`，禁止替换 walk actor。
+- 与 switcher 的关系只文档化：reactive 条件未满足 / `implemented=false` → **停在 walk**。
+- P2 出门条见 [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)。**P2 不改 344→13。**
 
 ---
 

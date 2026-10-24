@@ -451,6 +451,12 @@ def check_gpu_free_shells(
             True,
         ),
         (
+            "bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
+            "reactive_hardening",
+            "k1_reactive_hardening",
+            True,
+        ),
+        (
             "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "p1_draft",
             "k1_p1_draft",
@@ -874,6 +880,8 @@ def main() -> int:
             "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
             "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
             "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
+            "p2_acceptance": "bhuman/docs/P2-ACCEPTANCE.md",
+            "reactive_hardening": "k1-reactive 64→15 bypass; not a new gait baseline",
             "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
             "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
             "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
@@ -930,6 +938,7 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
             "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
             "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+            "python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
@@ -955,7 +964,7 @@ def main() -> int:
     )
     print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
     print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5 + MIGRATE-TO-K1")
-    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / deploy-call / timeseries / p1-draft")
+    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / deploy-call / timeseries / reactive-hardening / p1-draft")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

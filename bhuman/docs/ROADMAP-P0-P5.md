@@ -89,6 +89,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 历史/力矩时间序列**合同草案**（形状可测，H1–H6/T4 仍 SKIP）：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。
 - [x] 估计器旁路加深：`hooks.py` + `test_estimator_bypass.py`（latent **不进** 344）。
 - [x] 调研补强：官方 BehaviorControl / SkillRequest vs `bt_skill_select`（survey §6.10；对照 ≠ 替换官方 walk）。
+- [x] P2 验收清单：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（官方 walk 为默认入口；切换 / SimRobot 六机 / 不冒充实机；**P2 不改 344→13**）。
+- [x] reactive 64→15 旁路硬化：`k1-reactive/hardening.py` + `test_reactive_hardening.py`（`TRAINABLE=false`；未注册 `train.py`；禁换 walk actor）。
+- [x] 调研收口：reactive = 旁路技能，≠ 新步态基线（survey §6.11 + MIGRATE §2.1）。
 - [ ] 完整切换器时间序列（P4，仍无真机；无录包不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
 
@@ -116,7 +119,8 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 
 ### P2 · 平行反应技能（火神方法 → K1）
 
-**目标：** 建议合同 64→15 的可训练 env **另开实验目录**，默认比赛仍走官方 walk。
+**目标：** 建议合同 64→15 的可训练 env **另开实验目录**，默认比赛仍走官方 walk。  
+**reactive = 旁路技能，≠ 新步态基线。P2 不改 344→13。** 出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（切换验收 / SimRobot 六机 / 不冒充实机；每条标 合同门禁 / GPU worker / 真机）。
 
 1. 仓外解压 Zenodo 21620490，只读核 58/15/stack50。
 2. 参考动作 **GMR → K1**（禁止对 T1 CSV 删腰）。BeyondMimic-on-K1（`booster_train`）可当跟踪工具。
@@ -149,6 +153,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 - **域差**（survey §6.8）：Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放。PD 组不得统一；fast standup 72→22 不得用 SimRobot PASS 冒充。
 - **Booster Lab / real-to-sim**（survey §6.9）：三道门验收仍是官方合同维 / PD / 不冒充。厂家 AMP、Webots、T–n 表不得改写 `K1.yaml` 或替换官方 walk。
 - **官方 SkillRequest vs 旁路口**（survey §6.10）：对照 ≠ 替换官方 walk。`shoot` 仍先走再踢，默认 actor 仍是 344→13。
+- **P2 出门条**：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) 把切换 / SimRobot 六机 / 不冒充实机收成可勾清单（依赖标 合同门禁 / GPU worker / 真机）。**P2 不改 344→13。** reactive 仍是旁路技能，不是新步态基线。
 
 ### P5 · 真机前置（未授权，只列）
 
@@ -179,6 +184,7 @@ python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
 python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
+python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

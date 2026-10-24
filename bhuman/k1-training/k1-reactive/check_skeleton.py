@@ -238,6 +238,7 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/DEPLOY-CALL-SEQUENCE.md", "deploy call sequence"),
         ("bhuman/docs/PR4-INDEX.md", "PR #4 file-tree index"),
         ("bhuman/docs/HISTORY-TORQUE-TIMESERIES.md", "history/torque timeseries draft"),
+        ("bhuman/docs/P2-ACCEPTANCE.md", "P2 acceptance (walk default; P2 does not change 344)"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

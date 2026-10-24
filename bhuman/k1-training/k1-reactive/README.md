@@ -12,7 +12,7 @@
 | kick | **59→13** | `--task=K1_Ball` |
 | standup | **73→22** | `--task=K1_Stand_Up` |
 
-本目录是**平行扩展**：新技能另开合同，不改写上面任何一维，也不替换比赛官方步态。
+本目录是**平行扩展 / 旁路技能，≠ 新步态基线**：新技能另开合同，不改写上面任何一维，也不替换比赛官方步态。出门条：[P2-ACCEPTANCE.md](../../docs/P2-ACCEPTANCE.md)（P2 不改 344→13）。
 
 ```
 官方 walk 344→13  ── 默认比赛行走 / P1 本体感仍走这条
@@ -44,6 +44,7 @@ HiFAR 起身对照：[HIFAR-VS-STANDUP.md](../../docs/HIFAR-VS-STANDUP.md)（不
 | `DelayBuffer`、2D FOV 占位 | 真实相机、YOLO、遮挡、K1 实测延迟 |
 | 拒绝官方 walk / 火神 T1 权重 | encoder-decoder、AMP、多 critic、PPO |
 | 静态 `check_skeleton.py`；**未注册进 train.py = PASS** | 任何可导出 ONNX |
+| `hardening.py`：维 / TRAINABLE / 禁换 walk actor；条件未满足停在 walk | 合法 `*→reactive` 边 |
 | 负向说明：泄漏进 `envs/__init__.py` 必须 FAIL | 可训练 env / `train.py --task=K1_Reactive` |
 | 技能切换空测试壳（历史仍 SKIP） | 完整时间序列切换器 |
 | `skill_switch_map.py` 静态槽位/相位 | Isaac Gym `step` |
@@ -57,6 +58,7 @@ python3 bhuman/k1-training/k1-reactive/test_global_docs.py
 python3 bhuman/k1-training/k1-reactive/test_migrate_table.py
 python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
 python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
+python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
 # 随总门禁一起跑：
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 ```

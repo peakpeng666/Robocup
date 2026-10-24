@@ -30,12 +30,13 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 |---|---|---|
 | 1 | 本页 | 目录 |
 | 2 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) | P0–P5 取舍与验收 |
-| 3 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.7 CTDE、§6.8 三道门、§6.9 Booster Lab） |
+| 3 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.11 reactive = 旁路技能，≠ 新步态基线） |
 | 4 | [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md) | 「可迁」对照：目录 / GPU / 对 344→13 |
 | 5 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓合同核验 |
 | 6 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
 | 7 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | 历史/力矩形状草案（连续性 SKIP） |
-| 8 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
+| 8 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | P2 出门条：切换 / 六机 / 不冒充实机；**不改 344→13** |
+| 9 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
 
 ---
 
@@ -73,12 +74,13 @@ bhuman/sim2sim/run-mujoco.sh                官方 walk 344→13 过桥（操作
 
 ```
 bhuman/docs/
-├── PR4-INDEX.md                         本页（本轮）
+├── PR4-INDEX.md                         本页
+├── P2-ACCEPTANCE.md                     P2 出门条（本轮；不改 344→13）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
-├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（本轮；连续性 SKIP）
+├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
 ├── ROADMAP-P0-P5.md                     P0 门禁 → P5 真机前置
-├── GLOBAL-HUMANOID-SURVEY-20261024.md   全球调研（§6.9 Booster Lab 本轮）
-├── MIGRATE-TO-K1.md                     可迁对照表
+├── GLOBAL-HUMANOID-SURVEY-20261024.md   全球调研（§6.11 reactive 旁路本轮）
+├── MIGRATE-TO-K1.md                     可迁对照表（§2.1 旁路 ≠ 基线）
 ├── SURVEY-20261024-motion-policy-rl.md  本仓合同 / 门禁记录
 ├── NEXT-P1-P2.md                        P1 GPU 命令 + Zenodo 仓外步骤
 ├── SWITCHER-SM.md                       走↔踢↔起身合法边
@@ -114,7 +116,8 @@ k1-reactive/
 ├── obs_schema.py                读 docs/schemas/obs-contract-v1.json
 ├── method_catalog.json          公开 URL，与 GLOBAL 交叉
 ├── check_skeleton.py            64→15 平行于 344→13
-└── test_*.py                    未注册 / 切换空壳 / 文档锚点 / BT / schema
+├── hardening.py                 旁路硬化：维 / TRAINABLE / 未注册 / 禁换 walk actor
+└── test_*.py                    未注册 / 切换空壳 / 文档锚点 / BT / schema / hardening
 ```
 
 ### 3.4 切换 / 部署时序 · `bhuman/k1-training/k1-switcher/`（并行 stub；默认仍 walk）
@@ -158,7 +161,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-migrate.json
 ├── contract-gate-20261024-switcher.json
 ├── contract-gate-20261024-deploy.json
-├── contract-gate-20261024-timeseries.json 本轮（时间序列草案 + 估计器旁路 + §6.10）
+├── contract-gate-20261024-timeseries.json 上轮（时间序列草案 + 估计器旁路 + §6.10）
+├── contract-gate-20261024-p2.json     本轮（P2 验收 + reactive 硬化 + §6.11）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
@@ -172,6 +176,9 @@ k1-training/manifests/
 | 部署调用时序 | `DEPLOY-CALL-SEQUENCE.md` + `k1-switcher/deploy_call.py` | `python3 bhuman/k1-training/k1-switcher/test_deploy_call.py` |
 | 历史/力矩时间序列草案 | `HISTORY-TORQUE-TIMESERIES.md` + `timeseries_contract.py` | 形状 PASS；H1–H6/T4 **SKIP** |
 | 估计器旁路加深 | `k1-estimators/hooks.py` | latent 不进 344；挂接点未接线 |
+| P2 验收清单 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | 默认 walk；依赖已标；P2 不改 344→13 |
+| reactive 旁路硬化 | `k1-reactive/hardening.py` | 64→15；未注册；禁换 walk actor |
+| reactive 边界收口 | GLOBAL §6.11 / MIGRATE §2.1 | 旁路技能，≠ 新步态基线 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

@@ -28,6 +28,8 @@ REQUIRED_ROWS = (
     "历史/力矩时间序列",
     "估计器旁路加深",
     "SkillRequest",
+    "P2 验收清单",
+    "reactive 旁路硬化",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -41,6 +43,9 @@ REQUIRED_LANDINGS = (
     "PR4-INDEX",
     "timeseries_contract",
     "hooks.py",
+    "P2-ACCEPTANCE",
+    "hardening.py",
+    "旁路技能，≠ 新步态基线",
 )
 
 

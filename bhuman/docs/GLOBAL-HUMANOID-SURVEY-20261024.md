@@ -377,6 +377,23 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 
 ---
 
+### 6.11 reactive = 旁路技能，≠ 新步态基线
+
+§6.1（火神方法）、§6.10（SkillRequest 对照）、§7（可迁矩阵）和 MIGRATE 表里的「虚拟感知 / 行为树切入 / 切换器」说的是**同一条纪律**，收在这里：
+
+| 说法 | 是 | 不是 |
+|---|---|---|
+| 默认 / 主路径 | 官方 B-Human walk **344→13**（`K1.yaml` / WalkingEngine） | 把 64→15 写成新步态基线 |
+| `k1-reactive` | 平行旁路技能（头 2 + 腿 12 + 步频；无腰） | `train.py --task=K1_Reactive`；替换 walk actor |
+| 切换 | 条件未满足 / `implemented=false` → **停在 walk** | 合法 `*→reactive` 边；13==13 / 15==15 热换 |
+| P2 验收 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（切换 / SimRobot 六机 / 不冒充实机） | 改 344→13、改默认奖励、冒充实机 |
+
+硬化（无 GPU）：`k1-reactive/hardening.py` + `test_reactive_hardening.py`。  
+**可迁：** 方法（虚拟感知、encoder、AMP）进另开实验目录。  
+**不迁：** 用旁路合同改写官方 walk；把 T1 `model.pth` / `K1_walk.pth` 当反应 actor。
+
+---
+
 ## 7. 可迁移矩阵（压缩）
 
 完整对照（拟议目录/模块、优先级、是否依赖 GPU、与 walk 344→13）：[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)。
@@ -384,7 +401,7 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 | 全球实践 | 本仓落点 | 前提 |
 |---|---|---|
 | B-Human 官方步态 | **底座，P0 门禁锁维** | 永不改 344/59/73 |
-| 火神虚拟感知 + encoder + AMP | **P2 `k1-reactive` 平行** | 64→15；T1 权禁止 |
+| 火神虚拟感知 + encoder + AMP | **P2 `k1-reactive` 旁路技能，≠ 新步态基线** | 64→15；T1 权禁止；默认仍 344→13 |
 | RMA / DreamWaQ | **P1 估计器单因素** | 仍 `--task K1` |
 | Noisy Striker 四阶段 | **P3 对照** | scratch 解压，不入库 |
 | TeleHuman 渐进 | P2 预案 / P3 | 不换 Isaac Lab 主线 |
@@ -399,6 +416,7 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 | SimRobot ↔ Isaac 域差 | **P4 三道门；P5 真机** | 不统一 PD、不用 SimRobot 冒充 fast standup |
 | Booster Lab real-to-sim | **P4 对齐三道门；P5 才校准植物** | 不把 T–n / Webots / 厂家 K1 跑步写进 344 |
 | 官方 SkillRequest vs bt_skill_select | **对照口，不替换 walk** | 策略层 shoot ≠ 换掉 344 actor |
+| P2 验收 / reactive 旁路硬化 | **出门条 + 合同门禁** | P2 不改 344→13；条件未满足停在 walk |
 
 ---
 
@@ -424,3 +442,4 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - 部署一拍时序：`DEPLOY-CALL-SEQUENCE.md`
 - PR 文件树：[PR4-INDEX.md](PR4-INDEX.md)
 - 历史/力矩时间序列草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)
+- P2 验收清单：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（reactive = 旁路技能，≠ 新步态基线）

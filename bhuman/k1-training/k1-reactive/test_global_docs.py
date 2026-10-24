@@ -52,6 +52,8 @@ REQUIRED_DOCS = {
         "不冒充",
         "SkillRequest",
         "对照 ≠ 替换",
+        "旁路技能，≠ 新步态基线",
+        "P2-ACCEPTANCE",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -68,6 +70,9 @@ REQUIRED_DOCS = {
         "PR4-INDEX",
         "HISTORY-TORQUE-TIMESERIES",
         "SkillRequest",
+        "P2-ACCEPTANCE",
+        "hardening",
+        "旁路技能，≠ 新步态基线",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": ("73→22", "72→22", "2502.20061"),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
@@ -78,6 +83,9 @@ REQUIRED_DOCS = {
         "344→13",
         "k1-estimators",
         "obs-contract-v1",
+        "P2-ACCEPTANCE",
+        "hardening.py",
+        "旁路技能，≠ 新步态基线",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": ("344→13", "handoff_getup", "implemented"),
     "bhuman/docs/schemas/obs-contract-v1.json": ("344", "64", "59", "73", "rewritable"),
@@ -99,6 +107,8 @@ REQUIRED_DOCS = {
         "并行 stub",
         "draft-only",
         "K1.yaml",
+        "P2-ACCEPTANCE",
+        "hardening",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -106,6 +116,15 @@ REQUIRED_DOCS = {
         "SKIP",
         "不改 live obs",
         "T4",
+    ),
+    "bhuman/docs/P2-ACCEPTANCE.md": (
+        "344→13",
+        "合同门禁",
+        "GPU worker",
+        "真机",
+        "不冒充实机",
+        "旁路技能",
+        "P2 不改",
     ),
 }
 
