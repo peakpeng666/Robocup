@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-24T10:55:27+00:00",
+  "generated_utc": "2026-10-24T10:56:56+00:00",
   "verdict": "PASS",
-  "repo": "/home/peakpeng/Desktop/Robocup-pr4",
+  "repo": "/workspace",
   "architecture": {
     "baseline": "B-Human IsaacGymRL official walk/kick/standup",
     "rule": "new skills are parallel extensions; do not rewrite frozen dims",
@@ -97,6 +97,8 @@
     "pr4_index_nav": "PR4-INDEX grouped nav + volume health; status=GAP / gap_closed=false; no large binaries",
     "playball_not_kick_policy": "PlayBall ≠ kickPolicy two-chain: MotionRequest.motion pose ≠ CompiledNN kick 59→13; empty=walk 344→13",
     "reactive_stub_hardening": "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub must not flip ready_gpu",
+    "deploy_two_chain_sequence": "deploy two-chain: 链 A PlayBall pose → walkPolicy 344→13; 链 B want_kick → kickPolicy 59→13; GAP open",
+    "walk_to_ball_engine_no_onnx": "WalkToBallAndKickEngine pose/trajectory only; no apply() ONNX / CompiledNN / T1",
     "official_sibling_tasks_audit": "K1_Ball/Stand_Up registered ≠ walk 344; no merge into 344",
     "onnx_deploy_path_crosscheck": "CHECKPOINT-LAYOUT × WalkingEngine; missing SKIP; mismatch FAIL",
     "t1_k1_isolation": "T1 365/62/76 must not replace K1 walk 344→13",
@@ -256,6 +258,8 @@
       "PR4-INDEX grouped nav + volume health (GAP open; no large binaries) present",
       "PlayBall ≠ kickPolicy two-chain (pose request ≠ CompiledNN 59→13; empty=walk) present",
       "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub ≠ ready_gpu present",
+      "deploy two-chain sequence (链 A pose → walk 344→13; 链 B want_kick → kick 59→13) present",
+      "WalkToBallAndKickEngine pose-only; no CompiledNN / ONNX / T1 apply present",
       "selfcheck FAIL locator (先看 file/test; PASS quiet) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
@@ -314,7 +318,7 @@
       "implemented": false,
       "anchors": {
         "ok": true,
-        "doc": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/docs/SKILL-SWITCH-CONTINUITY.md",
+        "doc": "/workspace/bhuman/docs/SKILL-SWITCH-CONTINUITY.md",
         "shells": 8,
         "errors": []
       },
@@ -555,6 +559,7 @@
       "skipped": true,
       "warnings": [
         "sim2sim stack: python module mujoco missing",
+        "sim2sim stack: isaacsim-gui python missing",
         "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
         "sim2sim live replay skipped (no mujoco/weights); skeleton only"
       ]
@@ -835,7 +840,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 94 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 96 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_ball_distance_hysteresis.py",
         "PASS test_ball_network_active.py",
         "PASS test_behavior_control_handoff.py",
@@ -848,6 +853,7 @@
         "PASS test_competition_walk_diff.py",
         "PASS test_compressed_teamcomm_shape.py",
         "PASS test_deploy_call.py",
+        "PASS test_deploy_two_chain_sequence.py",
         "PASS test_disturbance_curriculum_audit.py",
         "PASS test_env_registry_audit.py",
         "PASS test_estimator_ab_audit.py",
@@ -910,6 +916,7 @@
         "PASS test_walk_policy_apply_dims.py",
         "PASS test_walk_stability_presets_audit.py",
         "PASS test_walk_stay_remaining.py",
+        "PASS test_walk_to_ball_engine_no_onnx.py",
         "PASS test_walking_engine_cfg_audit.py",
         "PASS test_bt_skill_select.py",
         "PASS test_global_docs.py",
@@ -981,6 +988,10 @@
         },
         {
           "name": "test_deploy_call.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_deploy_two_chain_sequence.py",
           "status": "PASS"
         },
         {
@@ -1228,6 +1239,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_walk_to_ball_engine_no_onnx.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_walking_engine_cfg_audit.py",
           "status": "PASS"
         },
@@ -1325,6 +1340,7 @@
         "test_competition_walk_diff.py",
         "test_compressed_teamcomm_shape.py",
         "test_deploy_call.py",
+        "test_deploy_two_chain_sequence.py",
         "test_disturbance_curriculum_audit.py",
         "test_env_registry_audit.py",
         "test_estimator_ab_audit.py",
@@ -1386,6 +1402,7 @@
         "test_walk_policy_apply_dims.py",
         "test_walk_stability_presets_audit.py",
         "test_walk_stay_remaining.py",
+        "test_walk_to_ball_engine_no_onnx.py",
         "test_walking_engine_cfg_audit.py",
         "test_bt_skill_select.py",
         "test_global_docs.py",
@@ -1445,7 +1462,7 @@
         "will_run_train_py=false will_run_isaac_gym=false",
         "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
         "official K1 task visible (registry + K1.yaml 344→13)",
-        "ready=false missing: checkpoint",
+        "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
         "probe JSON includes checklist",
         "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
         "probe_reserved_gpu.sh does not call train.py",
@@ -1454,6 +1471,8 @@
       "trainable": false,
       "ready": false,
       "missing": [
+        "cuda",
+        "isaacgym_or_alt",
         "checkpoint"
       ],
       "walk": "344→13"
@@ -1671,8 +1690,8 @@
         "no subprocess import in dry-run generator",
         "negative: --exec refused",
         "negative: --task K1_Reactive refused",
-        "live dry-run ready_gpu=False missing=['checkpoint']",
-        "ready=false listed missing ['checkpoint']",
+        "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
         "injected ready=true still print-only / will_run_train_py=false",
         "printed banner + official --task K1 draft; exit 0",
         "official K1.yaml untouched"
@@ -1914,8 +1933,8 @@
       "ok": true,
       "errors": [],
       "notes": [
-        "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / 128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / stay-on-standup / getup-direct-kick / kick-replaces-walk / cfg-dim / kickModel-T1 / kick-on-walk-slot / getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / Simulated-speed-as-PD / fabricate-Competition-getUp / standAnkle-as-PD / Competition-net-slot / policySwitch-as-net-swap / shiftBall-as-dim / kickPolicy-as-default-walk / maxAcc-as-net-swap / getNext-as-hot-swap-train / speed-gear-as-net-swap / ball-net-off-as-dim / intercept-as-kick-default / avoid-as-hot-swap-train / shouldStop-as-kick-default / stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick / hysteresis-as-dim / kick-path-as-walk-344 / policySwitch-as-train-hot-swap / Competition-hysteresis-drift / walk-apply-as-59 / stale-last-action / walk-onnx-as-kick / buffer-cross-dim-reuse / claim-walk-kick-gap-closed / draft-mitigation-as-live / standup-zero-as-walk-kick-fix / continue-phase-skips-required-reset / standup-as-walk-344 / fast-as-regular-standup / getup-as-hot-swap-train / standup-onnx-as-kick-slot / getup-skips-force-walk / force-walk-lands-on-kick / standup-handoff-as-walk-344-obs / local-artifacts-kept-without-upload-policy / want-kick-default-true / intercept-info-writes-kick-policy / behavior-empty-as-kick / pr-index-claims-gap-closed / playball-as-kick-policy / motion-walkToBallAndKick-as-59 / reactive-as-default-walk / stub-sets-ready-gpu-true",
-        "assert_pack_frozen: 69 cases refused",
+        "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / 128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / stay-on-standup / getup-direct-kick / kick-replaces-walk / cfg-dim / kickModel-T1 / kick-on-walk-slot / getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / Simulated-speed-as-PD / fabricate-Competition-getUp / standAnkle-as-PD / Competition-net-slot / policySwitch-as-net-swap / shiftBall-as-dim / kickPolicy-as-default-walk / maxAcc-as-net-swap / getNext-as-hot-swap-train / speed-gear-as-net-swap / ball-net-off-as-dim / intercept-as-kick-default / avoid-as-hot-swap-train / shouldStop-as-kick-default / stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick / hysteresis-as-dim / kick-path-as-walk-344 / policySwitch-as-train-hot-swap / Competition-hysteresis-drift / walk-apply-as-59 / stale-last-action / walk-onnx-as-kick / buffer-cross-dim-reuse / claim-walk-kick-gap-closed / draft-mitigation-as-live / standup-zero-as-walk-kick-fix / continue-phase-skips-required-reset / standup-as-walk-344 / fast-as-regular-standup / getup-as-hot-swap-train / standup-onnx-as-kick-slot / getup-skips-force-walk / force-walk-lands-on-kick / standup-handoff-as-walk-344-obs / local-artifacts-kept-without-upload-policy / want-kick-default-true / intercept-info-writes-kick-policy / behavior-empty-as-kick / pr-index-claims-gap-closed / playball-as-kick-policy / motion-walkToBallAndKick-as-59 / reactive-as-default-walk / stub-sets-ready-gpu-true / deploy-seq-draws-playball-as-kick-net / walk-to-ball-engine-applies-onnx / chain-a-equals-chain-b / deploy-doc-claims-gap-closed",
+        "assert_pack_frozen: 73 cases refused",
         "negative: t1_as_walk refused",
         "negative: huoshen_obs_as_walk refused",
         "negative: t1_on_walk_slot refused",
@@ -1985,6 +2004,10 @@
         "negative: motion_walkToBallAndKick_as_59 refused",
         "negative: reactive_as_default_walk refused",
         "negative: stub_sets_ready_gpu_true refused",
+        "negative: deploy_seq_draws_playball_as_kick_net refused",
+        "negative: walk_to_ball_engine_applies_onnx refused",
+        "negative: chain_a_equals_chain_b refused",
+        "negative: deploy_doc_claims_gap_closed refused",
         "silent refuse scores FAIL (gate would go red)",
         "negative: K1.yaml write refused",
         "official walk still 344→13",
@@ -3530,6 +3553,76 @@
       "write_yaml": false,
       "write_cfg": false
     },
+    "deploy_two_chain_sequence": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_two_chain_sequence_frozen: 链 A ≠ 链 B; empty=walk 344→13",
+        "two-chain table frozen: 链 A 官方行为 vs 链 B 部署旁路",
+        "chain A: PlayBall pose → walkPolicy 344→13",
+        "chain B: want_kick + walk-stay → kickPolicy 59→13",
+        "PlayBall is not drawn as the kick net",
+        "walk↔kick GAP stays open",
+        "negative: deploy seq draws PlayBall as kick net refused",
+        "negative: chain A equals chain B refused",
+        "negative: deploy doc claims GAP closed refused",
+        "negative: K1.yaml write refused",
+        "assert_two_chain_sequence_frozen: 链 A ≠ 链 B; empty=walk 344→13",
+        "chain A: PlayBall pose → walkPolicy 344→13 (not kick net)",
+        "chain B: want_kick + walk-stay → kickPolicy 59→13",
+        "DEPLOY-CALL-SEQUENCE.md keeps two chains; GAP stays open",
+        "siblings referenced, not re-audited: playball / skill_behavior / kick_apply",
+        "negative: deploy seq draws PlayBall as kick net refused",
+        "negative: chain A equals chain B refused",
+        "negative: deploy doc claims GAP closed refused",
+        "write-back of K1.yaml refused",
+        "write-back of walkingEngine.cfg refused",
+        "wrote bhuman/k1-training/manifests/deploy-two-chain-sequence-latest.json",
+        "official K1.yaml untouched",
+        "official walkingEngine.cfg untouched",
+        "wrote manifests/deploy-two-chain-sequence-latest.json",
+        "official K1.yaml untouched",
+        "official walkingEngine.cfg untouched"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false,
+      "write_cfg": false
+    },
+    "walk_to_ball_engine_no_onnx": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_engine_pose_only: kickPose / createPhase; no ONNX",
+        "WalkToBallAndKickEngine is pose/trajectory only",
+        "isolated from kickPolicy slot; no CompiledNN / T1",
+        "walk↔kick GAP stays open; no ONNX apply",
+        "default empty/shoot stays walk 344→13",
+        "negative: WalkToBallAndKickEngine applies ONNX refused",
+        "negative: K1.yaml write refused",
+        "assert_engine_pose_only: kickPose / createPhase; no ONNX / CompiledNN",
+        "WalkToBallAndKickEngine is pose/trajectory only",
+        "isolated from kickPolicy slot; no CompiledNN / T1 / .onnx",
+        "siblings referenced, not re-audited: kick_apply / playball / kick_engine",
+        "negative: WalkToBallAndKickEngine applies ONNX refused",
+        "write-back of K1.yaml refused",
+        "write-back of walkingEngine.cfg refused",
+        "wrote bhuman/k1-training/manifests/walk-to-ball-engine-no-onnx-latest.json",
+        "official K1.yaml untouched",
+        "official walkingEngine.cfg untouched",
+        "wrote manifests/walk-to-ball-engine-no-onnx-latest.json",
+        "official K1.yaml untouched",
+        "official walkingEngine.cfg untouched"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false,
+      "write_cfg": false
+    },
     "selfcheck_fail_hints": {
       "ok": true,
       "errors": [],
@@ -3578,6 +3671,8 @@
         "FAIL hint: test_pr4_index_nav.py → bhuman/k1-training/scripts/pr4_index_nav.py",
         "FAIL hint: test_playball_not_kick_policy.py → bhuman/k1-training/scripts/playball_not_kick_policy.py",
         "FAIL hint: test_reactive_stub_hardening.py → bhuman/k1-training/scripts/reactive_stub_hardening.py",
+        "FAIL hint: test_deploy_two_chain_sequence.py → bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+        "FAIL hint: test_walk_to_ball_engine_no_onnx.py → bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
         "FAIL hint: test_selfcheck_fail_hints.py → bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "FAIL hint: k1.yaml → bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
         "selfcheck FAIL path prints 先看; PASS stays quiet"
@@ -3587,18 +3682,20 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T10:55:21+00:00",
+    "generated_utc": "2026-10-24T10:56:51+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
     "skip_reasons": [
+      "nvidia-smi not found (no CUDA worker)",
+      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
       "K1_walk.pth absent (gitignored / local-only)"
     ],
-    "nvidia_smi": "/usr/bin/nvidia-smi",
-    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
-    "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
-    "bh_gym_version": "3.8.20",
-    "isaacgym_in_bh_gym": true,
+    "nvidia_smi": null,
+    "gpu": null,
+    "bh_gym_python": null,
+    "bh_gym_version": null,
+    "isaacgym_in_bh_gym": false,
     "auto_smoke_env": "0",
     "will_run_isaac_gym": false,
     "will_run_train_py": false,
@@ -3606,21 +3703,21 @@
     "tell_user": null,
     "checklist": {
       "cuda": {
-        "ok": true,
-        "detail": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
-        "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB"
+        "ok": false,
+        "detail": "nvidia-smi not found (no CUDA worker)",
+        "gpu": null
       },
       "isaacgym_or_alt": {
-        "ok": true,
-        "detail": "isaacgym importable in /home/peakpeng/.venvs/bh-gym/bin/python (3.8.20)",
-        "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
-        "bh_gym_version": "3.8.20",
-        "isaacgym": true,
+        "ok": false,
+        "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+        "bh_gym_python": null,
+        "bh_gym_version": null,
+        "isaacgym": false,
         "alternative": null
       },
       "disk": {
         "ok": true,
-        "detail": "IsaacGymRL present; free≈45.4GiB"
+        "detail": "IsaacGymRL present; free≈245.6GiB"
       },
       "official_k1_task": {
         "ok": true,
@@ -3633,6 +3730,8 @@
       }
     },
     "missing": [
+      "cuda",
+      "isaacgym_or_alt",
       "checkpoint"
     ],
     "official_k1_task": {
@@ -3661,10 +3760,10 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "bb955dbe694215729069773e61e3a39144ea46b4",
+    "workspace_head": "46ca4083e371327fe417d4d7882a914bfabf1555",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
-    "last_touch_MachineLearning": "95c7fa85c5958166252587bcc22f3449b57ca2f8 Record verified public release, completed cleanup, and healthy retained environments",
-    "last_touch_k1_training_isaac": "95c7fa85c5958166252587bcc22f3449b57ca2f8 Record verified public release, completed cleanup, and healthy retained environments",
+    "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "pinned_upstream_MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
     "pinned_upstream_BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
     "git_origins": {
@@ -3674,23 +3773,23 @@
     "k1_training_source_fingerprint": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c"
   },
   "environment": {
-    "python": "3.8.20",
-    "executable": "/home/peakpeng/.venvs/bh-gym/bin/python",
-    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.2.5",
-    "nvidia_smi": "/usr/bin/nvidia-smi",
-    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
+    "python": "3.12.3",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "nvidia_smi": null,
+    "gpu": null,
     "modules": {
-      "torch": true,
+      "torch": false,
       "isaacgym": false,
-      "onnx": true,
-      "onnxruntime": true,
+      "onnx": false,
+      "onnxruntime": false,
       "mujoco": false
     },
-    "bh_gym_python_exists": true,
-    "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
-    "isaacsim_gui_python_exists": true,
+    "bh_gym_python_exists": false,
+    "bh_gym_python": "/home/ubuntu/.venvs/bh-gym/bin/python",
+    "isaacsim_gui_python_exists": false,
     "can_run_isaac_gym_train": false,
-    "can_run_mujoco_sim2sim": true
+    "can_run_mujoco_sim2sim": false
   },
   "trees": {
     "bhuman/MachineLearning/IsaacGymRL": {
@@ -3742,7 +3841,7 @@
         }
       },
       "model": {
-        "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
+        "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
         "actor_in_num_obs": true,
         "actor_out_num_act": true,
         "critic_in_obs_plus_priv": true,
@@ -3801,7 +3900,7 @@
         }
       },
       "model": {
-        "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
+        "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
         "actor_in_num_obs": true,
         "actor_out_num_act": true,
         "critic_in_obs_plus_priv": true,
@@ -3814,7 +3913,7 @@
   },
   "walk_cfgs": [
     {
-      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3832,7 +3931,7 @@
       }
     },
     {
-      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3850,7 +3949,7 @@
       }
     },
     {
-      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+      "path": "/workspace/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -3865,7 +3964,7 @@
       }
     },
     {
-      "path": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "path": "/workspace/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
       "walk": {
         "numInput": 344,
         "numOutput": 13
@@ -4028,10 +4127,13 @@
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
     "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+    "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
+    "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
     "reserved GPU/bh-gym: K1_walk.pth absent (gitignored / local-only)",
-    "GPU checklist missing: checkpoint",
+    "GPU checklist missing: cuda, isaacgym_or_alt, checkpoint",
     "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay",
     "sim2sim stack: python module mujoco missing",
+    "sim2sim stack: isaacsim-gui python missing",
     "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
     "sim2sim live replay skipped (no mujoco/weights); skeleton only",
     "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries",
@@ -4042,9 +4144,9 @@
     "official kick onnx/pth absent (gitignored / local-only); naming convention still recorded"
   ],
   "notes": [
-    "ActorCritic /home/peakpeng/Desktop/Robocup-pr4/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
     "bhuman/MachineLearning/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
-    "ActorCritic /home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "ActorCritic /workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
     "bhuman/k1-training/src/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
     "both IsaacGymRL trees agree on K1 walk env dims",
     "both IsaacGymRL trees agree on K1 kick env dims",
@@ -4156,6 +4258,8 @@
     "PR4-INDEX grouped nav + volume health (GAP open; no large binaries) present",
     "PlayBall ≠ kickPolicy two-chain (pose request ≠ CompiledNN 59→13; empty=walk) present",
     "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub ≠ ready_gpu present",
+    "deploy two-chain sequence (链 A pose → walk 344→13; 链 B want_kick → kick 59→13) present",
+    "WalkToBallAndKickEngine pose-only; no CompiledNN / ONNX / T1 apply present",
     "selfcheck FAIL locator (先看 file/test; PASS quiet) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
@@ -4473,7 +4577,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 94 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 96 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_ball_distance_hysteresis.py",
     "PASS test_ball_network_active.py",
     "PASS test_behavior_control_handoff.py",
@@ -4486,6 +4590,7 @@
     "PASS test_competition_walk_diff.py",
     "PASS test_compressed_teamcomm_shape.py",
     "PASS test_deploy_call.py",
+    "PASS test_deploy_two_chain_sequence.py",
     "PASS test_disturbance_curriculum_audit.py",
     "PASS test_env_registry_audit.py",
     "PASS test_estimator_ab_audit.py",
@@ -4548,6 +4653,7 @@
     "PASS test_walk_policy_apply_dims.py",
     "PASS test_walk_stability_presets_audit.py",
     "PASS test_walk_stay_remaining.py",
+    "PASS test_walk_to_ball_engine_no_onnx.py",
     "PASS test_walking_engine_cfg_audit.py",
     "PASS test_bt_skill_select.py",
     "PASS test_global_docs.py",
@@ -4593,7 +4699,7 @@
     "will_run_train_py=false will_run_isaac_gym=false",
     "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
     "official K1 task visible (registry + K1.yaml 344→13)",
-    "ready=false missing: checkpoint",
+    "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
     "probe JSON includes checklist",
     "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
     "probe_reserved_gpu.sh does not call train.py",
@@ -4712,8 +4818,8 @@
     "no subprocess import in dry-run generator",
     "negative: --exec refused",
     "negative: --task K1_Reactive refused",
-    "live dry-run ready_gpu=False missing=['checkpoint']",
-    "ready=false listed missing ['checkpoint']",
+    "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
     "injected ready=true still print-only / will_run_train_py=false",
     "printed banner + official --task K1 draft; exit 0",
     "official K1.yaml untouched",
@@ -4850,8 +4956,8 @@
     "negative: K1.yaml write refused",
     "wrote bhuman/k1-training/manifests/walk-stability-presets-audit-latest.json",
     "official K1.yaml untouched",
-    "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / 128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / stay-on-standup / getup-direct-kick / kick-replaces-walk / cfg-dim / kickModel-T1 / kick-on-walk-slot / getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / Simulated-speed-as-PD / fabricate-Competition-getUp / standAnkle-as-PD / Competition-net-slot / policySwitch-as-net-swap / shiftBall-as-dim / kickPolicy-as-default-walk / maxAcc-as-net-swap / getNext-as-hot-swap-train / speed-gear-as-net-swap / ball-net-off-as-dim / intercept-as-kick-default / avoid-as-hot-swap-train / shouldStop-as-kick-default / stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick / hysteresis-as-dim / kick-path-as-walk-344 / policySwitch-as-train-hot-swap / Competition-hysteresis-drift / walk-apply-as-59 / stale-last-action / walk-onnx-as-kick / buffer-cross-dim-reuse / claim-walk-kick-gap-closed / draft-mitigation-as-live / standup-zero-as-walk-kick-fix / continue-phase-skips-required-reset / standup-as-walk-344 / fast-as-regular-standup / getup-as-hot-swap-train / standup-onnx-as-kick-slot / getup-skips-force-walk / force-walk-lands-on-kick / standup-handoff-as-walk-344-obs / local-artifacts-kept-without-upload-policy / want-kick-default-true / intercept-info-writes-kick-policy / behavior-empty-as-kick / pr-index-claims-gap-closed / playball-as-kick-policy / motion-walkToBallAndKick-as-59 / reactive-as-default-walk / stub-sets-ready-gpu-true",
-    "assert_pack_frozen: 69 cases refused",
+    "high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / 128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / stay-on-standup / getup-direct-kick / kick-replaces-walk / cfg-dim / kickModel-T1 / kick-on-walk-slot / getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / Simulated-speed-as-PD / fabricate-Competition-getUp / standAnkle-as-PD / Competition-net-slot / policySwitch-as-net-swap / shiftBall-as-dim / kickPolicy-as-default-walk / maxAcc-as-net-swap / getNext-as-hot-swap-train / speed-gear-as-net-swap / ball-net-off-as-dim / intercept-as-kick-default / avoid-as-hot-swap-train / shouldStop-as-kick-default / stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick / hysteresis-as-dim / kick-path-as-walk-344 / policySwitch-as-train-hot-swap / Competition-hysteresis-drift / walk-apply-as-59 / stale-last-action / walk-onnx-as-kick / buffer-cross-dim-reuse / claim-walk-kick-gap-closed / draft-mitigation-as-live / standup-zero-as-walk-kick-fix / continue-phase-skips-required-reset / standup-as-walk-344 / fast-as-regular-standup / getup-as-hot-swap-train / standup-onnx-as-kick-slot / getup-skips-force-walk / force-walk-lands-on-kick / standup-handoff-as-walk-344-obs / local-artifacts-kept-without-upload-policy / want-kick-default-true / intercept-info-writes-kick-policy / behavior-empty-as-kick / pr-index-claims-gap-closed / playball-as-kick-policy / motion-walkToBallAndKick-as-59 / reactive-as-default-walk / stub-sets-ready-gpu-true / deploy-seq-draws-playball-as-kick-net / walk-to-ball-engine-applies-onnx / chain-a-equals-chain-b / deploy-doc-claims-gap-closed",
+    "assert_pack_frozen: 73 cases refused",
     "negative: t1_as_walk refused",
     "negative: huoshen_obs_as_walk refused",
     "negative: t1_on_walk_slot refused",
@@ -4921,6 +5027,10 @@
     "negative: motion_walkToBallAndKick_as_59 refused",
     "negative: reactive_as_default_walk refused",
     "negative: stub_sets_ready_gpu_true refused",
+    "negative: deploy_seq_draws_playball_as_kick_net refused",
+    "negative: walk_to_ball_engine_applies_onnx refused",
+    "negative: chain_a_equals_chain_b refused",
+    "negative: deploy_doc_claims_gap_closed refused",
     "silent refuse scores FAIL (gate would go red)",
     "negative: K1.yaml write refused",
     "official walk still 344→13",
@@ -5934,6 +6044,52 @@
     "wrote manifests/reactive-stub-hardening-latest.json",
     "official K1.yaml untouched",
     "official walkingEngine.cfg untouched",
+    "assert_two_chain_sequence_frozen: 链 A ≠ 链 B; empty=walk 344→13",
+    "two-chain table frozen: 链 A 官方行为 vs 链 B 部署旁路",
+    "chain A: PlayBall pose → walkPolicy 344→13",
+    "chain B: want_kick + walk-stay → kickPolicy 59→13",
+    "PlayBall is not drawn as the kick net",
+    "walk↔kick GAP stays open",
+    "negative: deploy seq draws PlayBall as kick net refused",
+    "negative: chain A equals chain B refused",
+    "negative: deploy doc claims GAP closed refused",
+    "negative: K1.yaml write refused",
+    "assert_two_chain_sequence_frozen: 链 A ≠ 链 B; empty=walk 344→13",
+    "chain A: PlayBall pose → walkPolicy 344→13 (not kick net)",
+    "chain B: want_kick + walk-stay → kickPolicy 59→13",
+    "DEPLOY-CALL-SEQUENCE.md keeps two chains; GAP stays open",
+    "siblings referenced, not re-audited: playball / skill_behavior / kick_apply",
+    "negative: deploy seq draws PlayBall as kick net refused",
+    "negative: chain A equals chain B refused",
+    "negative: deploy doc claims GAP closed refused",
+    "write-back of K1.yaml refused",
+    "write-back of walkingEngine.cfg refused",
+    "wrote bhuman/k1-training/manifests/deploy-two-chain-sequence-latest.json",
+    "official K1.yaml untouched",
+    "official walkingEngine.cfg untouched",
+    "wrote manifests/deploy-two-chain-sequence-latest.json",
+    "official K1.yaml untouched",
+    "official walkingEngine.cfg untouched",
+    "assert_engine_pose_only: kickPose / createPhase; no ONNX",
+    "WalkToBallAndKickEngine is pose/trajectory only",
+    "isolated from kickPolicy slot; no CompiledNN / T1",
+    "walk↔kick GAP stays open; no ONNX apply",
+    "default empty/shoot stays walk 344→13",
+    "negative: WalkToBallAndKickEngine applies ONNX refused",
+    "negative: K1.yaml write refused",
+    "assert_engine_pose_only: kickPose / createPhase; no ONNX / CompiledNN",
+    "WalkToBallAndKickEngine is pose/trajectory only",
+    "isolated from kickPolicy slot; no CompiledNN / T1 / .onnx",
+    "siblings referenced, not re-audited: kick_apply / playball / kick_engine",
+    "negative: WalkToBallAndKickEngine applies ONNX refused",
+    "write-back of K1.yaml refused",
+    "write-back of walkingEngine.cfg refused",
+    "wrote bhuman/k1-training/manifests/walk-to-ball-engine-no-onnx-latest.json",
+    "official K1.yaml untouched",
+    "official walkingEngine.cfg untouched",
+    "wrote manifests/walk-to-ball-engine-no-onnx-latest.json",
+    "official K1.yaml untouched",
+    "official walkingEngine.cfg untouched",
     "FAIL hint: run_contract_gate.sh → bhuman/k1-training/scripts/check_policy_contracts.py",
     "FAIL hint: run_unit_tests_no_gym.sh → bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
     "FAIL hint: test_command_schedule_audit.py → bhuman/k1-training/scripts/command_schedule_audit.py",
@@ -5978,6 +6134,8 @@
     "FAIL hint: test_pr4_index_nav.py → bhuman/k1-training/scripts/pr4_index_nav.py",
     "FAIL hint: test_playball_not_kick_policy.py → bhuman/k1-training/scripts/playball_not_kick_policy.py",
     "FAIL hint: test_reactive_stub_hardening.py → bhuman/k1-training/scripts/reactive_stub_hardening.py",
+    "FAIL hint: test_deploy_two_chain_sequence.py → bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+    "FAIL hint: test_walk_to_ball_engine_no_onnx.py → bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
     "FAIL hint: test_selfcheck_fail_hints.py → bhuman/k1-training/scripts/selfcheck_fail_hints.py",
     "FAIL hint: k1.yaml → bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
     "selfcheck FAIL path prints 先看; PASS stays quiet",
@@ -6135,6 +6293,10 @@
     "python3 bhuman/k1-training/scripts/playball_not_kick_policy.py",
     "python3 bhuman/k1-training/k1-switcher/test_reactive_stub_hardening.py",
     "python3 bhuman/k1-training/scripts/reactive_stub_hardening.py",
+    "python3 bhuman/k1-training/k1-switcher/test_deploy_two_chain_sequence.py",
+    "python3 bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+    "python3 bhuman/k1-training/k1-switcher/test_walk_to_ball_engine_no_onnx.py",
+    "python3 bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
     "python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
     "python3 bhuman/k1-training/scripts/selfcheck_fail_hints.py --step k1.yaml",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",

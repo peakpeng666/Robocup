@@ -1,24 +1,24 @@
 {
-  "generated_utc": "2026-10-24T10:55:31+00:00",
+  "generated_utc": "2026-10-24T10:57:00+00:00",
   "ready": false,
   "skipped": true,
   "checklist": {
     "cuda": {
-      "ok": true,
-      "detail": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB",
-      "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU, 24463 MiB"
+      "ok": false,
+      "detail": "nvidia-smi not found (no CUDA worker)",
+      "gpu": null
     },
     "isaacgym_or_alt": {
-      "ok": true,
-      "detail": "isaacgym importable in /home/peakpeng/.venvs/bh-gym/bin/python (3.8.20)",
-      "bh_gym_python": "/home/peakpeng/.venvs/bh-gym/bin/python",
-      "bh_gym_version": "3.8.20",
-      "isaacgym": true,
+      "ok": false,
+      "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+      "bh_gym_python": null,
+      "bh_gym_version": null,
+      "isaacgym": false,
       "alternative": null
     },
     "disk": {
       "ok": true,
-      "detail": "IsaacGymRL present; free≈47.6GiB"
+      "detail": "IsaacGymRL present; free≈245.6GiB"
     },
     "official_k1_task": {
       "ok": true,
@@ -31,6 +31,8 @@
     }
   },
   "missing": [
+    "cuda",
+    "isaacgym_or_alt",
     "checkpoint"
   ],
   "will_run_train_py": false,
