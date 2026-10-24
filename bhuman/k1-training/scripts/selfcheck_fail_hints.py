@@ -116,6 +116,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/k1-switcher/compressed_teamcomm_shape.py",
         "hint": "先看 HSL 512 / 官方容器是否被写成进 344，或缺源是否仍诚实 SKIP",
     },
+    "test_falldown_motion_chain.py": {
+        "look": "bhuman/k1-training/scripts/falldown_motion_chain.py",
+        "hint": "先看 fallen→GetUpEngine 73→22→walk 是否仍交叉，或跌倒是否被写成 SkillRequest",
+    },
+    "test_teamcomm_128_vs_512.py": {
+        "look": "bhuman/k1-training/k1-switcher/teamcomm_128_vs_512.py",
+        "hint": "先看 128 与 512 是否被混用，或 128 是否被误标成 HSL 预算已满足",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

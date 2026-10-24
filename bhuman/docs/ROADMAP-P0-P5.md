@@ -151,7 +151,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] P1 五因素 **已有机器校验**（[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md) 表；与 `draft_validator` / `p1_draft_diff` 衔接）。
 - [x] BehaviorControl 交接只读：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；与 `bt_skill_select` / `deploy_call` 交叉；缺源 SKIP）。
 - [x] CompressedTeamCommunication 形状 stub：`k1-switcher/compressed_teamcomm_shape.py`（HSL 512 / 官方容器；不进 344；无 WLAN 带宽 SKIP）。
-- [x] 禁令回归扩容：旁系合并进 344 / T1 onnx 当 K1 walk / BehaviorControl 替换 walk / TeamComm 进 344。
+- [x] FallDown / MotionEngine 跌倒链只读：`scripts/falldown_motion_chain.py`（fallen → GetUpEngine 73→22 → getup_done → walk 344→13；跌倒不是 SkillRequest；与 switcher / `handoff_getup` 交叉；缺源 SKIP）。
+- [x] 128 vs 512 报文对照：`k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md)（用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP）。
+- [x] 禁令回归扩容：旁系合并进 344 / T1 onnx 当 K1 walk / BehaviorControl 替换 walk / TeamComm 进 344 / 混用 128/512 / 跌倒当 SkillRequest Type / GetUp 未完就 kick。
 - [x] 自检失败定位：`scripts/selfcheck_fail_hints.py`（FAIL 打印「先看」文件/测试；PASS 安静）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。

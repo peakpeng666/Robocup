@@ -3,7 +3,8 @@
 Each case MUST raise. If a refuse is silent, the gate goes red.
 Cases: T1 as walk, standup→kick, SimRobot as fast standup, latent into 344,
 draft overwrite live, unified PD as closed gap, sibling merge into 344,
-T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344.
+T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
+mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -26,6 +27,10 @@ from behavior_control_handoff import refuse_behavior_replaces_walk  # noqa: E402
 from checkpoint_layout import refuse_foreign_on_walk_path  # noqa: E402
 from compressed_teamcomm_shape import refuse_teamcomm_into_344  # noqa: E402
 from draft_validator import refuse_overwrite_live_rewards  # noqa: E402
+from falldown_motion_chain import (  # noqa: E402
+    refuse_fallen_as_skill_request,
+    refuse_kick_before_getup_done,
+)
 from hifar_boundary import refuse_huoshen_obs_as_walk, refuse_t1_weight_on_k1_actor  # noqa: E402
 from hooks import refuse_concat_latent_onto_walk  # noqa: E402
 from official_sibling_tasks_audit import refuse_merge_sibling_into_344  # noqa: E402
@@ -33,6 +38,7 @@ from onnx_deploy_path_crosscheck import refuse_t1_onnx_as_k1_walk  # noqa: E402
 from pd_domain_gap_contract import refuse_unified_pd_as_closed_gap  # noqa: E402
 from sm import LEGAL_EDGES, SwitcherSM  # noqa: E402
 from standup_kick_contract import refuse_simrobot_as_fast_standup  # noqa: E402
+from teamcomm_128_vs_512 import refuse_mix_128_512  # noqa: E402
 
 TRAINABLE = False
 WRITE_YAML = False
@@ -109,6 +115,18 @@ def _case_teamcomm_into_344() -> None:
     refuse_teamcomm_into_344({"compressed_into_344": True, "obs": WALK_OBS})
 
 
+def _case_mix_128_512() -> None:
+    refuse_mix_128_512({"overwrite_128_with_512": True, "mix": True})
+
+
+def _case_fallen_as_skill_request() -> None:
+    refuse_fallen_as_skill_request({"fallen_is_skill_request_type": True})
+
+
+def _case_getup_incomplete_kick() -> None:
+    refuse_kick_before_getup_done()
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -122,6 +140,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_onnx_as_k1_walk", _case_t1_onnx_as_k1_walk),
     ("behavior_replaces_walk", _case_behavior_replaces_walk),
     ("teamcomm_into_344", _case_teamcomm_into_344),
+    ("mix_128_512", _case_mix_128_512),
+    ("fallen_as_skill_request", _case_fallen_as_skill_request),
+    ("getup_incomplete_kick", _case_getup_incomplete_kick),
 )
 
 

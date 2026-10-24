@@ -74,6 +74,8 @@ REQUIRED_ROWS = (
     "参考惩罚退火草案",
     "BehaviorControl 交接只读",
     "CompressedTeamCommunication 形状 stub",
+    "FallDown / MotionEngine 跌倒链只读",
+    "128 vs 512 报文对照",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -147,6 +149,8 @@ REQUIRED_LANDINGS = (
     "reference_penalty_anneal_audit.py",
     "behavior_control_handoff.py",
     "compressed_teamcomm_shape.py",
+    "falldown_motion_chain.py",
+    "teamcomm_128_vs_512.py",
 )
 
 

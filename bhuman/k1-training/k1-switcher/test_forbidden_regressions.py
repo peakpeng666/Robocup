@@ -54,6 +54,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "t1_onnx_as_k1_walk",
         "behavior_replaces_walk",
         "teamcomm_into_344",
+        "mix_128_512",
+        "fallen_as_skill_request",
+        "getup_incomplete_kick",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -62,7 +65,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     else:
         notes.append(
             "high-priority cases present: T1 / standup→kick / SimRobot / latent / "
-            "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm"
+            "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / "
+            "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick"
         )
 
     try:
@@ -116,7 +120,8 @@ def main() -> int:
     report = run()
     print(
         f"[forbid-regress] {'PASS' if report['ok'] else 'FAIL'} "
-        "T1/standup→kick/SimRobot/latent/draft/PD/sibling/T1-onnx; silent = red"
+        "T1/standup→kick/SimRobot/latent/draft/PD/sibling/T1-onnx/"
+        "128-512/fallen-Type/getup-kick; silent = red"
     )
     for item in report["errors"]:
         print(f"[error] {item}")

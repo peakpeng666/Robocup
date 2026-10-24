@@ -34,6 +34,8 @@ NEEDLES = (
     "test_reference_penalty_anneal_audit.py",
     "test_behavior_control_handoff.py",
     "test_compressed_teamcomm_shape.py",
+    "test_falldown_motion_chain.py",
+    "test_teamcomm_128_vs_512.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

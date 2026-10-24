@@ -75,6 +75,8 @@
 | 参考惩罚退火草案 | `scripts/reference_penalty_anneal_audit.py` | live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest |
 | BehaviorControl 交接 | `scripts/behavior_control_handoff.py` | 谁切 kick/standup；默认仍 walk；缺源 SKIP |
 | TeamComm 形状 stub | `k1-switcher/compressed_teamcomm_shape.py` | HSL 512 / 官方容器；不进 344；无 WLAN SKIP |
+| FallDown 跌倒链 | `scripts/falldown_motion_chain.py` | fallen→73→22→walk；跌倒不是 SkillRequest；缺源 SKIP |
+| 128 vs 512 对照 | `k1-switcher/teamcomm_128_vs_512.py` | 官方 128 ≠ HSL 512；不得混用；带宽 SKIP |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

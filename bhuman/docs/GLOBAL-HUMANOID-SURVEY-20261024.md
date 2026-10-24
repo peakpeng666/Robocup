@@ -278,7 +278,7 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 - 机器人回报：UDP 单播 **3939**，0.5–2 Hz。
 - 队内消息：UDP 广播端口 **10000+队号**，载荷最多 **512 字节**，格式自定。【仓库】[HSL GameController](https://github.com/RoboCup-HumanoidSoccerLeague/GameController)
 
-本仓对应实现是 `BHumanCodeRelease/Src/Tools/Communication/CompressedTeamCommunicationStreams.*`（结构化压缩，不是梯度共享）。HSL 队消息预算 **512 B**；官方 `TeamMessageContainer` 是规则书 `data[N]`（本仓已核 128），**不要假装二者同一数字**。形状 stub：`k1-switcher/compressed_teamcomm_shape.py`（载荷预算；队友 **不进** 344；缺 `teamMessage.def` 诚实 SKIP；无 WLAN 带宽 SKIP）。火神公开技能也写明：完整比赛系统的行为树 / GC / 队友通信 **不在** Zenodo 包里。
+本仓对应实现是 `BHumanCodeRelease/Src/Tools/Communication/CompressedTeamCommunicationStreams.*`（结构化压缩，不是梯度共享）。HSL 队消息预算 **512 B**；官方 `TeamMessageContainer` 是规则书 `data[N]`（本仓已核 128），**不要假装二者同一数字**。形状 stub：`k1-switcher/compressed_teamcomm_shape.py`（载荷预算；队友 **不进** 344；缺 `teamMessage.def` 诚实 SKIP；无 WLAN 带宽 SKIP）。128 vs 512 对照：`k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md)（用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 预算已满足；带宽仍 SKIP）。火神公开技能也写明：完整比赛系统的行为树 / GC / 队友通信 **不在** Zenodo 包里。
 
 多机学习对照（只作方法地图）：
 
@@ -390,6 +390,7 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 
 可测映射表：`bhuman/k1-training/k1-reactive/skill_request_map.py`（空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。  
 只读快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk **344→13**；与 `bt_skill_select` / `deploy_call` 交叉；缺源诚实 SKIP）。  
+跌倒链只读：`scripts/falldown_motion_chain.py`（FallDownState / MotionEngine / GetUpEngine：fallen → 73→22 → getup_done → walk 344→13；跌倒不是 SkillRequest Type；缺源 SKIP）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

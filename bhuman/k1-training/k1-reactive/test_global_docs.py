@@ -66,6 +66,8 @@ REQUIRED_DOCS = {
         "skill_request_map",
         "behavior_control_handoff",
         "compressed_teamcomm_shape",
+        "falldown_motion_chain",
+        "teamcomm_128_vs_512",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -136,6 +138,8 @@ REQUIRED_DOCS = {
         "已有机器校验",
         "behavior_control_handoff",
         "compressed_teamcomm_shape",
+        "falldown_motion_chain",
+        "teamcomm_128_vs_512",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -198,6 +202,8 @@ REQUIRED_DOCS = {
         "reference_penalty_anneal_audit.py",
         "behavior_control_handoff.py",
         "compressed_teamcomm_shape.py",
+        "falldown_motion_chain.py",
+        "teamcomm_128_vs_512.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -208,6 +214,7 @@ REQUIRED_DOCS = {
         "skill_request_map",
         "SkillRequest",
         "behavior_control_handoff",
+        "falldown_motion_chain",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -248,6 +255,7 @@ REQUIRED_DOCS = {
         "用户批准",
         "热换 ONNX",
         "behavior_control_handoff",
+        "falldown_motion_chain",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -312,6 +320,8 @@ REQUIRED_DOCS = {
         "已有机器校验",
         "behavior_control_handoff",
         "compressed_teamcomm_shape",
+        "falldown_motion_chain",
+        "teamcomm_128_vs_512",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -360,6 +370,8 @@ REQUIRED_DOCS = {
         "reference_penalty_anneal",
         "behavior_control_handoff",
         "compressed_teamcomm_shape",
+        "falldown_motion_chain",
+        "teamcomm_128_vs_512",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -403,6 +415,7 @@ REQUIRED_DOCS = {
         "pd_domain_gap_contract",
         "teamcomm_budget",
         "compressed_teamcomm_shape",
+        "teamcomm_128_vs_512",
         "CHECKPOINT-LAYOUT",
     ),
     "bhuman/docs/README-RL.md": (
@@ -455,6 +468,8 @@ REQUIRED_DOCS = {
         "reference_penalty_anneal",
         "behavior_control_handoff",
         "compressed_teamcomm_shape",
+        "falldown_motion_chain",
+        "teamcomm_128_vs_512",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
@@ -516,6 +531,17 @@ REQUIRED_DOCS = {
         "T1",
         "reactive",
         "不入库",
+    ),
+    "bhuman/docs/TEAMCOMM-128-VS-512.md": (
+        "128",
+        "512",
+        "用途不同",
+        "不得混用",
+        "不得用 512 覆盖",
+        "不得把 128 误标",
+        "带宽",
+        "SKIP",
+        "344→13",
     ),
 }
 
