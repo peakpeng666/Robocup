@@ -35,6 +35,12 @@ standup 评估指标门禁只读：`scripts/standup_eval_metrics.py`（`run_stan
 
 跌倒→起身→walk 干跑链：`scripts/fall_getup_walk_dry_run.py`（fallen → GetUp → standup 73→22 / fast 72→22 → Force walk afterwards → walk **344→13**；glue 已有分段；缺 sibling 诚实 SKIP；**gap_closed=false**）。对照 `getup_walk_handoff_chain.py`。
 
+kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`（K1_Ball **59→13** REPORT_ONLY overlay；**kick eval PASS ≠ 比赛合格**；≠ walk 344；≠ live kick 部署；本仓不要求 `evaluate_kick.py`；**TRAINABLE=false**；**gap_closed=false**）。
+
+有界 fast-standup 回放合同：`scripts/bounded_fast_standup_replay.py`（deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；`run_replay.sh` 不接受 `K1_fast_standup`；≠ walk **344→13**；≠ 常规 **73→22**；**gap_closed=false**）。
+
+双链切换干跑负例：`scripts/dual_chain_switch_dry_run.py`（PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 之前；live last_action 清零仍是 GAP；**gap_closed=false**）。
+
 ## 权重与网格（不进 Git）
 
 PR 工作树缺 `pre-trained/*.pth|onnx` 与 `resources/*/meshes`（gitignore / LFS）。从主仓软链：

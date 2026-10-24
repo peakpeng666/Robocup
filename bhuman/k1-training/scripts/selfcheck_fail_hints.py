@@ -292,6 +292,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/fall_getup_walk_dry_run.py",
         "hint": "先看跌倒→起身→Force walk→walk 344 干跑链是否跳过 Force walk，或是否把 walk↔kick GAP 写成已闭合",
     },
+    "test_kick_eval_metrics.py": {
+        "look": "bhuman/k1-training/scripts/kick_eval_metrics.py",
+        "hint": "先看 kick-eval 是否仍是 K1_Ball 59→13 REPORT_ONLY，或 PASS 是否被写成比赛合格 / walk 344 / live kick 部署",
+    },
+    "test_bounded_fast_standup_replay.py": {
+        "look": "bhuman/k1-training/scripts/bounded_fast_standup_replay.py",
+        "hint": "先看 fast standup 是否仍是 deploy-only 72→22，或是否被写成 walk 344 / 常规 standup 73 / Isaac 任务",
+    },
+    "test_dual_chain_switch_dry_run.py": {
+        "look": "bhuman/k1-training/scripts/dual_chain_switch_dry_run.py",
+        "hint": "先看双链干跑负例是否仍拒绝 PlayBall=kickPolicy / 官方 want_kick / 陈旧 last_action / 跳过 Force walk，或是否把 GAP 写成已闭合",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

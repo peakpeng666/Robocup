@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-10-24T11:28:04+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/dual_chain_switch_dry_run.py",
+  "checklist": [
+    "playball_not_kick_policy",
+    "skill_behavior_write_chain",
+    "policy_switch_last_action",
+    "force_walk_afterwards",
+    "deploy_two_chain_sequence"
+  ],
+  "checklist_negatives": [
+    "playball_as_kick_policy",
+    "want_kick_on_official_skill_request",
+    "walk_kick_stale_last_action",
+    "getup_skips_force_walk"
+  ],
+  "steps": [
+    {
+      "id": "playball_not_kick_policy",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "skill_behavior_write_chain",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "policy_switch_last_action",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "force_walk_afterwards",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "deploy_two_chain_sequence",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "official_skill_request_want_kick": false,
+  "walk_kick_last_action_live_zero": false,
+  "docs_pointer": {
+    "deploy": "bhuman/docs/DEPLOY-CALL-SEQUENCE.md",
+    "artifacts": "bhuman/docs/LOCAL-RUN-ARTIFACTS.md",
+    "skill_request": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.h"
+  },
+  "will_run_isaac": false,
+  "will_run_train_py": false,
+  "will_exec_eval_here": false,
+  "playball_as_kick_policy": false,
+  "want_kick_on_official_skill_request": false,
+  "walk_kick_stale_last_action": false,
+  "getup_skips_force_walk": false,
+  "dual_chain_dry_run_claims_gap_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "glue checklist: PlayBall≠kickPolicy; official SkillRequest has no want_kick; refuse stale last_action (live zero still GAP); Force walk required before walk 344; GAP stays open; no Isaac",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

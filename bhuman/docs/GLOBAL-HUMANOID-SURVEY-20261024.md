@@ -433,6 +433,9 @@ walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval.
 有界 kick 回放入口：`scripts/bounded_kick_replay.py`（`run_replay.sh K1_Ball` 建议 4/300、上限 256/1000；**59→13** ≠ walk **344→13**；history reset 仅 draft；缺权仍 PASS 清单）。  
 standup 评估指标门禁只读：`scripts/standup_eval_metrics.py`（`run_standup_eval.sh` 默认 published/2026/3000/28；REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格**）。  
 跌倒→起身→walk 干跑链：`scripts/fall_getup_walk_dry_run.py`（fallen→GetUp→Force walk afterwards→walk **344→13**；glue 已有分段；**gap_closed=false**）。  
+kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`（K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署）。  
+有界 fast-standup 回放合同：`scripts/bounded_fast_standup_replay.py`（deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22**）。  
+双链切换干跑负例：`scripts/dual_chain_switch_dry_run.py`（PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前；**gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

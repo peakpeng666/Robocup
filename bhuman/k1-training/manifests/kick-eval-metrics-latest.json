@@ -1,0 +1,57 @@
+{
+  "generated_utc": "2026-10-24T11:28:04+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "inventory overlay only; no live run_kick_eval.sh. Sibling replay: bash bhuman/k1-training/scripts/run_replay.sh K1_Ball 4 300",
+  "limits": {
+    "task": "K1_Ball",
+    "obs": 59,
+    "act": 13,
+    "seed_default": 2028,
+    "timeout_s": 900,
+    "vram_mib_max": 12288,
+    "runs_root": "bhuman/k1-training/runs/<stamp>_kick_eval_s<seed>/",
+    "artifacts_root": "bhuman/k1-training/artifacts/<run-id>/",
+    "existence_required_eval_script": false
+  },
+  "quality_allow": [
+    "quality_verdict"
+  ],
+  "quality_verdict": "REPORT_ONLY_QUALITY_NOT_CERTIFIED",
+  "competition_ready": false,
+  "existence_required_eval_script": false,
+  "dedicated_evaluate_kick_present": false,
+  "writes": {
+    "runs": "bhuman/k1-training/runs/<stamp>_kick_eval_s<seed>/",
+    "upload": "bhuman/k1-training/artifacts/<run-id>/",
+    "outside_runs": false,
+    "home_scan": false
+  },
+  "will_exec_eval_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "siblings_referenced_not_reaudited": [
+    "run_walk_eval.sh",
+    "evaluate_walk.py",
+    "bounded_kick_replay.py",
+    "walk_eval_metrics.py",
+    "standup_eval_metrics.py"
+  ],
+  "kick_eval_pass_as_competition_ready": false,
+  "kick_eval_as_walk_344": false,
+  "kick_eval_as_live_deploy": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "kick eval report-only overlay: K1_Ball 59→13; walk_eval stays task K1; no dedicated evaluate_kick.py required; PASS ≠ 比赛合格 ≠ walk 344 ≠ live kick deploy; GAP open",
+  "trainable": false,
+  "auto_eval": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "kick_yaml_sha256": "986f60387c717d5bbe68fbcc8f59b07c1b2854041682fd310e95c7523544c065"
+}

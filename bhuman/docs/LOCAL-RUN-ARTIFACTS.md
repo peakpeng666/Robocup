@@ -16,6 +16,12 @@ standup 评估指标门禁只读：`run_standup_eval.sh` 默认 published / seed
 
 跌倒→起身→walk 干跑链（无 GPU）：`python3 bhuman/k1-training/scripts/fall_getup_walk_dry_run.py`。顺序：fallen → GetUp createPhase → standup 73→22 / fast 72→22 → Force walk afterwards → walk **344→13** + 13-zero。glue 已有 `getup_walk_handoff_chain` 等分段；缺 sibling 诚实 SKIP，不伪造。**gap_closed=false**。不跑 Isaac。
 
+kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`。覆盖 `quality_verdict=REPORT_ONLY`。任务 **K1_Ball 59→13**，不是 walk **344→13**。本仓不要求 `evaluate_kick.py` / `run_kick_eval.sh`。**kick eval PASS ≠ 比赛合格**，也不得当成 walk 344 或 live kick 部署。**TRAINABLE=false**。walk↔kick **gap_closed=false**。
+
+有界 fast-standup 回放合同（部署专用，不是 Isaac）：`scripts/bounded_fast_standup_replay.py`。**72→22** / `K1_fast_standup.onnx` 仅 deploy-only；`run_replay.sh` 仍只接受 K1 / K1_Ball / K1_Stand_Up；无 `K1_fast_standup.yaml`。≠ walk **344→13**，≠ 常规 standup **73→22**。缺 ONNX 仍 PASS 清单。**TRAINABLE=false**。**gap_closed=false**。
+
+双链切换干跑负例（无 GPU）：`scripts/dual_chain_switch_dry_run.py`。PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；walk↔kick 陈旧 `last_action` 必须拒绝（live 清零仍是 GAP）；Force walk afterwards 必须在 walk 344 之前。**gap_closed=false**。不跑 Isaac。
+
 ---
 
 ## 1. 本机角色

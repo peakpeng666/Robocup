@@ -591,6 +591,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "fall→getup→force-walk→walk344 dry-run glue; no Isaac; GAP open",
         ),
         (
+            "bhuman/k1-training/scripts/kick_eval_metrics.py",
+            "kick-eval REPORT_ONLY overlay; PASS ≠ 比赛合格 ≠ walk 344 ≠ live deploy",
+        ),
+        (
+            "bhuman/k1-training/scripts/bounded_fast_standup_replay.py",
+            "bounded fast-standup replay 72→22 deploy-only; ≠ walk 344; ≠ regular 73",
+        ),
+        (
+            "bhuman/k1-training/scripts/dual_chain_switch_dry_run.py",
+            "dual-chain switch dry-run negatives; PlayBall≠kick; GAP open",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

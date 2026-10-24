@@ -195,6 +195,9 @@ REQUIRED_LANDINGS = (
     "bounded_kick_replay.py",
     "standup_eval_metrics.py",
     "fall_getup_walk_dry_run.py",
+    "kick_eval_metrics.py",
+    "bounded_fast_standup_replay.py",
+    "dual_chain_switch_dry_run.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )
