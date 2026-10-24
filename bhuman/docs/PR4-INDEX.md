@@ -105,6 +105,7 @@ bhuman/docs/
 ├── SKILL-SWITCH-CONTINUITY.md           历史 / 相位 / 力矩清单（实现仍 SKIP）
 ├── P1-CONFIG-DIFF-DRAFT.md              不改默认奖励的 P1 草稿说明
 ├── HIFAR-VS-STANDUP.md                  HiFAR ≠ 73→22 / 72→22（活测试 test_hifar_boundary）
+├── POLICY-SWITCH-HISTORY-GAP.md         walk↔kick historyBuffer GAP（未闭合；仅 draft）
 ├── RESEARCH-BRANCH.md                   origin/research 入口（02/06 不在 main）
 └── schemas/obs-contract-v1.json         walk 344 / kick 59 / standup 73 / reactive 64
 ```
@@ -158,6 +159,8 @@ scripts/
 ├── kick_policy_apply_dims.py    kick 调用点 59→13；WalkToBallAndKick 只出位姿；≠ walk 344
 ├── walk_policy_apply_dims.py    walk 调用点 344→13 / K1_walk.onnx；非 kick 仍此槽
 ├── policy_switch_last_action.py walk↔kick last_action 诚实 GAP；禁止 344↔59 复用
+├── policy_switch_history_gap.py walk↔kick historyBuffer GAP 清单（未闭合；draft 未进 live）
+├── walk_phase_reset_allowlist.py 仅构造 + 非延续新 WalkPhase 才 resetHistoryData
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -237,6 +240,8 @@ k1-switcher/
 ├── test_estimator_ab_audit.py
 ├── test_reference_penalty_anneal_audit.py
 ├── test_selfcheck_fail_hints.py
+├── test_policy_switch_history_gap.py
+├── test_walk_phase_reset_allowlist.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -261,6 +266,7 @@ k1-estimators/                   passthrough / rma / dreamwaq；latent **不进*
                                  hooks.py 只文档化，不接线 switcher / deploy_call
 configs/draft-only/              draft_only:true；run_walk_stability.sh 不读
                                  draft_validator.py 负例：禁覆盖 live 奖励
+                                 walk-kick-reset-history-v0.json（提案清零；未进 live）
                                  github-actions-contract-gate.draft.yml（非正式 CI）
 ```
 
@@ -331,7 +337,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-bypass.json 上轮（ballNetwork 开关 + 拦截/避障旁路）
 ├── contract-gate-20261024-stay.json   上轮（剩余 walk-stay：shouldStop / stand / 未见 / 空技能）
 ├── contract-gate-20261024-hyst.json   上轮（球距滞回 1500±300 / 1100±200 + kick 调用点 59→13）
-├── contract-gate-20261024-wbuf.json   本轮（walk 调用点 344→13 + walk↔kick last_action GAP）
+├── contract-gate-20261024-wbuf.json   上轮（walk 调用点 344→13 + walk↔kick last_action GAP）
+├── contract-gate-20261024-hgap.json   本轮（history GAP 清单 + WalkPhase reset 允许集；GAP 仍开）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -376,6 +383,8 @@ k1-training/manifests/
 ├── kick-policy-apply-dims-latest.json kick 调用点 59→13；WalkToBallAndKick 只出位姿
 ├── walk-policy-apply-dims-latest.json walk 调用点 344→13 / K1_walk.onnx；非 kick 仍此槽
 ├── policy-switch-last-action-latest.json walk↔kick last_action GAP；禁止 344↔59 复用
+├── policy-switch-history-gap-latest.json walk↔kick resetHistoryData GAP 仍开；draft 未进 live
+├── walk-phase-reset-allowlist-latest.json 仅构造 + 非延续新 WalkPhase 才 reset
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -473,6 +482,8 @@ k1-training/manifests/
 | kick 调用点维数 | `kick_policy_apply_dims.py` | 仅 want_kick + dribble/walkToBallAndKick → kick 59→13；WalkToBallAndKick 只出位姿；≠ walk 344 |
 | walk 调用点维数 | `walk_policy_apply_dims.py` | 默认 walkPolicy.apply() 344→13 / K1_walk.onnx；非 kick 仍此槽；≠ reactive / T1 |
 | walk↔kick last_action 缓冲 | `policy_switch_last_action.py` | 无显式清零 → 诚实 GAP；walk 344≠kick 59 历史；禁止假绿 |
+| walk↔kick history GAP 清单 | `policy_switch_history_gap.py` | 仅旁路切换不调 resetHistoryData；draft 未进 live；standup 13-zero 勿混称 |
+| WalkPhase reset 允许集 | `walk_phase_reset_allowlist.py` | 仅构造 + 非延续新 WalkPhase 才清零；延续 = walk/stand + WalkPhase* |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

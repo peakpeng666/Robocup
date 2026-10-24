@@ -176,6 +176,8 @@ REQUIRED_LANDINGS = (
     "kick_policy_apply_dims.py",
     "walk_policy_apply_dims.py",
     "policy_switch_last_action.py",
+    "policy_switch_history_gap.py",
+    "walk_phase_reset_allowlist.py",
 )
 
 

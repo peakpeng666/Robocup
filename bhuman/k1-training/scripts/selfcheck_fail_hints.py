@@ -216,6 +216,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/policy_switch_last_action.py",
         "hint": "先看 walk↔kick last_action 是否仍是诚实 GAP（无显式清零），而不是被写成 344 历史塞进 59 或假绿闭合",
     },
+    "test_policy_switch_history_gap.py": {
+        "look": "bhuman/k1-training/scripts/policy_switch_history_gap.py",
+        "hint": "先看 walk↔kick resetHistoryData 是否仍是诚实 GAP（仅旁路切换；draft 未进 live），而不是被写成已闭合或把 standup 13-zero 当修复",
+    },
+    "test_walk_phase_reset_allowlist.py": {
+        "look": "bhuman/k1-training/scripts/walk_phase_reset_allowlist.py",
+        "hint": "先看 resetHistoryData 是否仍只在 WalkingEngine 构造与非延续新 WalkPhase，而不是被写成延续相位跳过必清零",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

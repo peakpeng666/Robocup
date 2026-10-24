@@ -59,6 +59,8 @@ NEEDLES = (
     "test_kick_policy_apply_dims.py",
     "test_walk_policy_apply_dims.py",
     "test_policy_switch_last_action.py",
+    "test_policy_switch_history_gap.py",
+    "test_walk_phase_reset_allowlist.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

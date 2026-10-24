@@ -515,6 +515,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "walk↔kick last_action GAP (no explicit zero); no 344↔59 history reuse",
         ),
         (
+            "bhuman/k1-training/scripts/policy_switch_history_gap.py",
+            "walk↔kick historyBuffer GAP inventory (still open; draft not live)",
+        ),
+        (
+            "bhuman/k1-training/scripts/walk_phase_reset_allowlist.py",
+            "WalkPhase continue vs new reset allowlist (ctor + non-continue only)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

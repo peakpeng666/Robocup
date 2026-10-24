@@ -116,8 +116,10 @@
 | 剩余 walk-stay 只读 | §6.10 | `scripts/walk_stay_remaining.py` | **P0** | 否 | `shouldStop` / stand / 球未见>1000 ms / motion 非 dribble·walkToBallAndKick 仍 walkPolicy **344→13**；空 SkillRequest 仍 walk；仅 `want_kick` → kick 59→13 | 上轮剩余 |
 | 球距滞回允许集 | §6.10 | `scripts/ball_distance_hysteresis.py` | **P0** | 否 | Default/Simulated **1500±300** vs Competition/11v11 **1100±200**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图 | 上轮滞回 |
 | kick 调用点维数 | §6.10 | `scripts/kick_policy_apply_dims.py` | **P0** | 否 | 仅 `want_kick` + motion∈{dribble, walkToBallAndKick} 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344 / 热换 `K1.yaml` | 上轮调用点 |
-| walk 调用点维数 | §6.10 | `scripts/walk_policy_apply_dims.py` | **P0** | 否 | 默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽；≠ reactive / T1 / standup | **本轮调用点** |
-| walk↔kick last_action 缓冲 | §6.10 | `scripts/policy_switch_last_action.py` | **P0** | 否 | 源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿 | **本轮缓冲** |
+| walk 调用点维数 | §6.10 | `scripts/walk_policy_apply_dims.py` | **P0** | 否 | 默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽；≠ reactive / T1 / standup | 上轮调用点 |
+| walk↔kick last_action 缓冲 | §6.10 | `scripts/policy_switch_last_action.py` | **P0** | 否 | 源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿 | 上轮缓冲 |
+| walk↔kick history GAP 清单 | §6.10 | `scripts/policy_switch_history_gap.py` + [POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md) | **P0** | 否 | 仅 walk↔kick 编译旁路不调 `resetHistoryData`；kick 不吃 walk 窗仍记「未显式清零」；draft 未进 live；standup 13-zero 勿混称 | **本轮清单** |
+| WalkPhase 延续 vs 新建 reset | §6.10 | `scripts/walk_phase_reset_allowlist.py` | **P0** | 否 | 仅构造 + 非延续新 WalkPhase 才 `resetHistoryData`；延续 = walk/stand + `WalkPhase*`；意外漂移 FAIL | **本轮允许集** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

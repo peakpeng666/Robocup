@@ -100,6 +100,8 @@
 | kick 调用点维数 | `scripts/kick_policy_apply_dims.py` | 仅 want_kick + dribble/walkToBallAndKick → kick 59→13；WalkToBallAndKick 只出位姿；≠ walk 344 |
 | walk 调用点维数 | `scripts/walk_policy_apply_dims.py` | 默认 walkPolicy.apply() 344→13 / K1_walk.onnx；非 kick 仍此槽；≠ reactive / T1 |
 | walk↔kick last_action | `scripts/policy_switch_last_action.py` | 无显式清零 → 诚实 GAP；walk 344≠kick 59 历史；禁止假绿 |
+| walk↔kick history GAP | `scripts/policy_switch_history_gap.py` | 仅旁路切换不调 resetHistoryData；draft 未进 live；standup 13-zero 勿混称 |
+| WalkPhase reset 允许集 | `scripts/walk_phase_reset_allowlist.py` | 仅构造 + 非延续新 WalkPhase 才清零；延续相位保持缓冲 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

@@ -91,6 +91,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -186,6 +188,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -274,6 +278,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims.py",
         "walk_policy_apply_dims.py",
         "policy_switch_last_action.py",
+        "policy_switch_history_gap.py",
+        "walk_phase_reset_allowlist.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -352,6 +358,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -441,6 +449,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -514,6 +524,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -635,6 +647,8 @@ REQUIRED_DOCS = {
         "kick_policy_apply_dims",
         "walk_policy_apply_dims",
         "policy_switch_last_action",
+        "policy_switch_history_gap",
+        "walk_phase_reset_allowlist",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
@@ -701,6 +715,16 @@ REQUIRED_DOCS = {
         "getUpEngine.cfg",
         "K1_fast_standup.onnx",
         "73→22",
+    ),
+    "bhuman/docs/POLICY-SWITCH-HISTORY-GAP.md": (
+        "GAP",
+        "resetHistoryData",
+        "344→13",
+        "standup",
+        "draft_only",
+        "historyBuffer",
+        "未闭合",
+        "延续",
     ),
     "bhuman/docs/TEAMCOMM-128-VS-512.md": (
         "128",

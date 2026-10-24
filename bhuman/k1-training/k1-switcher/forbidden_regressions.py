@@ -20,7 +20,9 @@ empty SkillRequest as kick, hysteresis as dim change,
 kick path as walk 344, policySwitch as train hot-swap,
 Competition hysteresis drift, walk apply as 59,
 switch keeps stale last_action, walk ONNX as kick slot,
-buffer cross-dim reuse.
+buffer cross-dim reuse, claim walk↔kick GAP closed,
+draft mitigation as live, standup-zero as walk↔kick fix,
+continue-phase skips required reset.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -73,9 +75,17 @@ from ball_distance_hysteresis import (  # noqa: E402
     refuse_policy_switch_as_hot_swap_train,
 )
 from kick_policy_apply_dims import refuse_kick_path_as_walk_344  # noqa: E402
+from policy_switch_history_gap import (  # noqa: E402
+    refuse_claim_walk_kick_gap_closed,
+    refuse_draft_mitigation_as_live,
+    refuse_standup_zero_as_walk_kick_fix,
+)
 from policy_switch_last_action import (  # noqa: E402
     refuse_buffer_cross_dim_reuse,
     refuse_switch_keeps_stale_last_action,
+)
+from walk_phase_reset_allowlist import (  # noqa: E402
+    refuse_continue_phase_skips_required_reset,
 )
 from walk_policy_apply_dims import (  # noqa: E402
     refuse_walk_apply_as_59,
@@ -467,6 +477,44 @@ def _case_buffer_cross_dim_reuse() -> None:
     )
 
 
+def _case_claim_walk_kick_gap_closed() -> None:
+    refuse_claim_walk_kick_gap_closed(
+        {
+            "claim_walk_kick_gap_closed": True,
+            "closed": True,
+        }
+    )
+
+
+def _case_draft_mitigation_as_live() -> None:
+    refuse_draft_mitigation_as_live(
+        {
+            "draft_mitigation_as_live": True,
+            "apply_to_live": True,
+        }
+    )
+
+
+def _case_standup_zero_as_walk_kick_fix() -> None:
+    refuse_standup_zero_as_walk_kick_fix(
+        {
+            "standup_zero_as_walk_kick_fix": True,
+            "source": "last_action_reset",
+            "closes_walk_kick_gap": True,
+        }
+    )
+
+
+def _case_continue_phase_skips_required_reset() -> None:
+    refuse_continue_phase_skips_required_reset(
+        {
+            "continue_phase_skips_required_reset": True,
+            "source": "DummyPhase",
+            "skip_reset": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -517,6 +565,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("switch_keeps_stale_last_action", _case_switch_keeps_stale_last_action),
     ("walk_onnx_as_kick_slot", _case_walk_onnx_as_kick_slot),
     ("buffer_cross_dim_reuse", _case_buffer_cross_dim_reuse),
+    ("claim_walk_kick_gap_closed", _case_claim_walk_kick_gap_closed),
+    ("draft_mitigation_as_live", _case_draft_mitigation_as_live),
+    ("standup_zero_as_walk_kick_fix", _case_standup_zero_as_walk_kick_fix),
+    ("continue_phase_skips_required_reset", _case_continue_phase_skips_required_reset),
 )
 
 

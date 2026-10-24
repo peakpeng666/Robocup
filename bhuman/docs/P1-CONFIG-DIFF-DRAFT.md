@@ -11,7 +11,8 @@
 settle / 抖动新键：`python3 bhuman/k1-training/scripts/settle_jitter_audit.py`（`draft_settle_*` 仅 proposed；live 无对应键；`action_rate=-1.` 不被覆盖）。  
 估计器 A/B 草案：`python3 bhuman/k1-training/scripts/estimator_ab_audit.py`（只允许旁路声明；不得写入 344 / 不得注册 `train.py`；与 `k1-estimators` `TRAINABLE=false` 交叉）。  
 参考惩罚退火：`python3 bhuman/k1-training/scripts/reference_penalty_anneal_audit.py`（live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest）。  
-五个单因素均已 **已有机器校验**（与 `draft_validator` / `p1_draft_diff` 衔接，不另造轮子）。
+五个单因素均已 **已有机器校验**（与 `draft_validator` / `p1_draft_diff` 衔接，不另造轮子）。  
+walk↔kick 清零提案：`walk-kick-reset-history-v0.json`（`draft_only`；不进 WalkingEngine 正式路径；GAP 仍开）。
 
 底座：`--task K1`，观测/动作仍是 **344→13**。
 

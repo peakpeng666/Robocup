@@ -1,0 +1,35 @@
+{
+  "draft_only": true,
+  "do_not_pass_to_train_py": true,
+  "trainable": false,
+  "apply_to_live": false,
+  "apply_to_walking_engine": false,
+  "gap_closed": false,
+  "status": "draft",
+  "note": "Propose resetHistoryData() when getNextTargetRequest flips walk↔kick. Not applied. Official walk stays 344→13. standup→walk 13-zero is a different closed contract.",
+  "baseline": {
+    "task": "K1",
+    "num_observations": 344,
+    "num_actions": 13,
+    "walk_contract": "344→13",
+    "kick_contract": "59→13"
+  },
+  "do_not_edit": [
+    "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg"
+  ],
+  "gap": {
+    "id": "walk_kick_resetHistoryData",
+    "scope": "getNextTargetRequest compiled bypass walk↔kick only",
+    "not_scope": "standup→walk last_action 13-zero (already closed)",
+    "explicit_zero": false,
+    "closed": false
+  },
+  "proposed_only": {
+    "call": "engine.resetHistoryData()",
+    "when": "walk-stay predicate flips versus wasKicking inside getNextTargetRequest",
+    "rewrites_344": false,
+    "pseudocode": "void WalkPhase::getNextTargetRequest(JointAngles& target) {\n  const bool wantKickPath = /* existing kick-gate, unchanged */;\n  if (wantKickPath != wasKicking)\n    engine.resetHistoryData();  // DRAFT ONLY — not in official cpp\n  engine.updateHistoryData(lastTarget);\n  // existing walkPolicy.apply() 344→13 or policy.apply() 59→13\n}\n"
+  }
+}

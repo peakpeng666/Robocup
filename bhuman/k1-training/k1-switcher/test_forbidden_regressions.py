@@ -91,6 +91,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "switch_keeps_stale_last_action",
         "walk_onnx_as_kick_slot",
         "buffer_cross_dim_reuse",
+        "claim_walk_kick_gap_closed",
+        "draft_mitigation_as_live",
+        "standup_zero_as_walk_kick_fix",
+        "continue_phase_skips_required_reset",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -115,7 +119,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "hysteresis-as-dim / kick-path-as-walk-344 / "
             "policySwitch-as-train-hot-swap / Competition-hysteresis-drift / "
             "walk-apply-as-59 / stale-last-action / walk-onnx-as-kick / "
-            "buffer-cross-dim-reuse"
+            "buffer-cross-dim-reuse / claim-walk-kick-gap-closed / "
+            "draft-mitigation-as-live / standup-zero-as-walk-kick-fix / "
+            "continue-phase-skips-required-reset"
         )
 
     try:
