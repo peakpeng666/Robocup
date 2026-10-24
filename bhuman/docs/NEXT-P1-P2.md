@@ -144,7 +144,20 @@ python3 /home/peakpeng/Desktop/Robocup/bhuman/k1-training/k1-reactive/check_skel
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
+python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
+
+技能切换连续性（走↔踢↔反应，历史/相位/力矩）只验收文档+空壳：
+
+```bash
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
+python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
+```
+
+清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
+合同门禁对已存在的骨架 YAML 明确：**未注册进 `train.py` = PASS**；负向说明见 `test_unregistered_in_train_py.py`（泄漏进官方 `envs/` 必须 FAIL）。
+HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)（不实现训练代码）。
 
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。

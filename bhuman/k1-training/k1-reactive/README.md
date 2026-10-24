@@ -31,6 +31,8 @@
 - 禁止 NUSim 79→22，禁止把 `K1_walk.pth` 喂进本骨架。
 
 字段表、延迟 116 ms ≈ 6 个 50 Hz 步见 `K1_Reactive.yaml` 与 `contract.py`。
+走↔踢↔反应的历史/相位/力矩清单：[SKILL-SWITCH-CONTINUITY.md](../../docs/SKILL-SWITCH-CONTINUITY.md)（空测试壳，切换器未实现）。
+HiFAR 起身对照：[HIFAR-VS-STANDUP.md](../../docs/HIFAR-VS-STANDUP.md)（不是本技能）。
 
 ## 已实现 vs TODO
 
@@ -39,10 +41,14 @@
 | YAML / 布局求和 / 与 walk 撞维断言 | Isaac Gym `step`/`reset` |
 | `DelayBuffer`、2D FOV 占位 | 真实相机、YOLO、遮挡、K1 实测延迟 |
 | 拒绝官方 walk / 火神 T1 权重 | encoder-decoder、AMP、多 critic、PPO |
-| 静态 `check_skeleton.py` | 任何可导出 ONNX |
+| 静态 `check_skeleton.py`；**未注册进 train.py = PASS** | 任何可导出 ONNX |
+| 负向说明：泄漏进 `envs/__init__.py` 必须 FAIL | 可训练 env / `train.py --task=K1_Reactive` |
+| 技能切换空测试壳（全部 SKIP） | 历史/相位/力矩切换器 |
 
 ```bash
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
+python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 # 随总门禁一起跑：
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 ```

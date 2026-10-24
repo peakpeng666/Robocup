@@ -32,7 +32,7 @@
 |---|---|
 | `bhuman/k1-training/` | 当前训练源码、配置、脚本、补丁、评估器、版本锁、实验报告与小型日志 |
 | `bhuman/k1-training/k1-reactive/` | 火神→K1 反应技能**平行骨架**（建议 64→15 stub；不改官方 walk 344→13，未注册训练） |
-| `bhuman/docs/` | 策略契约、[2026-10-24 调研](bhuman/docs/SURVEY-20261024-motion-policy-rl.md)、[P1/P2 手册](bhuman/docs/NEXT-P1-P2.md)、[research 分支入口](bhuman/docs/RESEARCH-BRANCH.md) |
+| `bhuman/docs/` | 策略契约、[2026-10-24 调研](bhuman/docs/SURVEY-20261024-motion-policy-rl.md)、[P1/P2 手册](bhuman/docs/NEXT-P1-P2.md)、[技能切换清单](bhuman/docs/SKILL-SWITCH-CONTINUITY.md)、[HiFAR 与起身边界](bhuman/docs/HIFAR-VS-STANDUP.md)、[research 分支入口](bhuman/docs/RESEARCH-BRANCH.md) |
 | `bhuman/local-k1-validation-20261019/` | B-Human 本机比赛工作副本、正常视觉/速度适配、普通起身审计及报告 |
 | `bhuman/BHumanCodeRelease/`、`bhuman/MachineLearning/` | 固定公开版本的可浏览源码；上游身份见归档清单 |
 | `booster/` | 对应的 Booster SDK 与 demo 参考源码 |

@@ -33,4 +33,6 @@ git ls-tree -r --name-only origin/research -- research/
 | [huoshen_findings.md](../research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md) | 火神 T1 审阅（真机不是 K1） |
 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓现状与合同 |
 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 以官方步态为基线的 P1/P2 操作手册 |
+| [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md) | 走↔踢↔反应：历史/相位/力矩验收清单（空壳） |
+| [HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md) | HiFAR ≠ 普通起身 73→22 / 快速起身 72→22 |
 | [policy-contract-v1.md](policy-contract-v1.md) | walk 344→13 / kick 59→13 / standup 73→22 |

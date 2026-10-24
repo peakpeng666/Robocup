@@ -44,6 +44,80 @@ ISAAC_ENV_TREES = (
     "bhuman/k1-training/src/IsaacGymRL/envs",
 )
 
+# Runner (utils/runner.py) loads envs/{task}.yaml then eval(task) from
+# `from envs import *`. A YAML that only lives in k1-reactive/ is invisible.
+# Required gate result when the skeleton YAML exists: unregistered_in_train_py=PASS.
+TRAIN_PY_UNREGISTERED_RULE = (
+    "skeleton YAML present beside IsaacGymRL AND not imported by "
+    "envs/__init__.py AND not copied into envs/ = PASS"
+)
+
+
+def registration_is_leak(
+    init_text: str,
+    leaked_yaml: bool = False,
+    leaked_py: bool = False,
+    task: str = TASK_NAME,
+) -> bool:
+    """Negative-fixture helper. True = train.py could pick the stub up.
+
+    Official init mentioning TASK_NAME, or a leaked envs/K1_Reactive.yaml /
+    envs/k1_reactive.py, must FAIL the gate. Comments-only docs outside
+    IsaacGymRL/envs are irrelevant; this function only scores those inputs.
+    """
+    if leaked_yaml or leaked_py:
+        return True
+    return task in (init_text or "")
+
+
+def inspect_official_registry(repo: Path | None = None) -> dict[str, Any]:
+    """Score official trees. Skeleton YAML in k1-reactive/ is expected."""
+    repo = _repo_from(repo)
+    leaked: list[str] = []
+    notes: list[str] = []
+    trees: list[dict[str, Any]] = []
+    for rel in ISAAC_ENV_TREES:
+        tree = repo / rel
+        init = tree / "__init__.py"
+        leaked_yaml = (tree / "K1_Reactive.yaml").is_file()
+        leaked_py = (tree / "k1_reactive.py").is_file()
+        init_text = init.read_text(encoding="utf-8") if init.is_file() else ""
+        leak = registration_is_leak(init_text, leaked_yaml, leaked_py)
+        record = {
+            "rel": rel,
+            "init_exists": init.is_file(),
+            "mentions_task": TASK_NAME in init_text,
+            "leaked_yaml": leaked_yaml,
+            "leaked_py": leaked_py,
+            "leak": leak,
+        }
+        trees.append(record)
+        if leak:
+            if TASK_NAME in init_text:
+                leaked.append(f"{rel}/__init__.py must not import {TASK_NAME}")
+            if leaked_yaml or leaked_py:
+                leaked.append(
+                    f"{rel} must not contain a {TASK_NAME} task file "
+                    "(would be picked up by train.py)"
+                )
+        else:
+            notes.append(f"{rel}: official registry stays walk/kick/standup only")
+    yaml_exists = (ROOT / "K1_Reactive.yaml").is_file()
+    unregistered = not leaked
+    return {
+        "skeleton_yaml_exists": yaml_exists,
+        "unregistered_in_train_py": "PASS" if unregistered else "FAIL",
+        "rule": TRAIN_PY_UNREGISTERED_RULE,
+        "negative_fixture": (
+            f"If {TASK_NAME} appears in official envs/__init__.py OR "
+            "envs/K1_Reactive.yaml|k1_reactive.py exists, this MUST be FAIL. "
+            "See test_unregistered_in_train_py.py."
+        ),
+        "trees": trees,
+        "leaks": leaked,
+        "notes": notes,
+    }
+
 
 def _repo_from(explicit: Path | None) -> Path:
     if explicit is not None:
@@ -117,18 +191,38 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         vp = cfg.get("virtual_perception") or {}
         if vp.get("delay_ms_mean") != 116 or vp.get("delay_steps_default") != 6:
             errors.append("virtual_perception delay fields drifted from 116 ms / 6 steps")
+        switch = cfg.get("skill_switch") or {}
+        if switch.get("checklist") != "bhuman/docs/SKILL-SWITCH-CONTINUITY.md":
+            errors.append("YAML skill_switch.checklist must point at SKILL-SWITCH-CONTINUITY.md")
+        if switch.get("implemented") is not False:
+            errors.append("YAML skill_switch.implemented must stay false (empty shells only)")
 
-    for rel in ISAAC_ENV_TREES:
-        tree = repo / rel
-        init = tree / "__init__.py"
-        leaked_yaml = tree / "K1_Reactive.yaml"
-        leaked_py = tree / "k1_reactive.py"
-        if init.is_file() and TASK_NAME in init.read_text(encoding="utf-8"):
-            errors.append(f"{rel}/__init__.py must not import {TASK_NAME}")
-        if leaked_yaml.is_file() or leaked_py.is_file():
-            errors.append(f"{rel} must not contain a {TASK_NAME} task file (would be picked up by train.py)")
-        else:
-            notes.append(f"{rel}: official registry stays walk/kick/standup only")
+    registry = inspect_official_registry(repo)
+    errors.extend(registry.get("leaks") or [])
+    notes.extend(registry.get("notes") or [])
+    if not registry.get("skeleton_yaml_exists"):
+        errors.append("skeleton YAML missing (gate assumes K1_Reactive.yaml already exists)")
+    if registry.get("unregistered_in_train_py") == "PASS":
+        notes.append(
+            "unregistered in train.py = PASS "
+            "(YAML lives in k1-reactive/; Runner cannot eval the stub)"
+        )
+    else:
+        notes.append("unregistered in train.py = FAIL (see leaks)")
+
+    switch_doc = repo / "bhuman/docs/SKILL-SWITCH-CONTINUITY.md"
+    if not switch_doc.is_file():
+        errors.append("missing bhuman/docs/SKILL-SWITCH-CONTINUITY.md")
+    elif "历史缓冲" not in switch_doc.read_text(encoding="utf-8"):
+        errors.append("SKILL-SWITCH-CONTINUITY.md missing 历史缓冲 section")
+    else:
+        notes.append("skill-switch continuity checklist present (docs + empty shells)")
+
+    hifar_doc = repo / "bhuman/docs/HIFAR-VS-STANDUP.md"
+    if not hifar_doc.is_file():
+        errors.append("missing bhuman/docs/HIFAR-VS-STANDUP.md")
+    else:
+        notes.append("HiFAR vs standup 73→22 / fast 72→22 boundary note present")
 
     buf = DelayBuffer(delay_steps=6)
     for i in range(6):
@@ -177,6 +271,10 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         "baseline": f"{WALK_OBS}→{WALK_ACT}",
         "trainable": TRAINABLE,
         "registered": ISAAC_GYM_TASK_REGISTERED,
+        "skeleton_yaml_exists": registry.get("skeleton_yaml_exists"),
+        "unregistered_in_train_py": registry.get("unregistered_in_train_py"),
+        "train_py_rule": registry.get("rule"),
+        "registry": registry,
         "errors": errors,
         "notes": notes,
     }
@@ -184,7 +282,11 @@ def check(repo: Path | None = None) -> dict[str, Any]:
 
 def main() -> int:
     report = check()
-    print(f"[k1-reactive] {'PASS' if report['ok'] else 'FAIL'} {report['contract']} parallel to walk {report['baseline']}")
+    print(
+        f"[k1-reactive] {'PASS' if report['ok'] else 'FAIL'} "
+        f"{report['contract']} parallel to walk {report['baseline']}; "
+        f"unregistered_in_train_py={report.get('unregistered_in_train_py')}"
+    )
     for item in report["errors"]:
         print(f"[error] {item}")
     for item in report["notes"]:

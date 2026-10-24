@@ -9,8 +9,12 @@
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
+python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
+
+技能切换清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。HiFAR 与起身边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
 
 产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`、`reserved-gpu-latest.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
@@ -235,9 +239,9 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 
 `origin/research:research/02-论文清单.md` §E：
 
-- **HiFAR** = 跌倒恢复论文 arXiv:2502.20061（IROS 2025 系，火神 TDP 引用）。
-- **本仓 `main` 无 `HiFAR` 字符串，无其训练代码。**
-- 本仓普通起身是 B-Human 73→22；快速起身 72→22 配方未公开。不要把 HiFAR 与火神反应踢球、或与本仓 standup 混成一条实现。
+- **HiFAR** = 跌倒恢复论文 arXiv:2502.20061（IROS 2025 系，火神 TDP 引用）。真机是 **Booster T1**，两阶段课程 + KSI，不是足球反应技能。
+- **本仓训练源码树无 `HiFAR` 字符串，无其训练代码。** 短文：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
+- 本仓普通起身是 B-Human **73→22**；快速起身 **72→22** 仅部署、配方未公开。不要把 HiFAR 与火神反应踢球、或与本仓 standup 混成一条实现，也不要改 73/72 去「对齐」HiFAR。
 
 ### 6.3 映射到 K1（工程，不是论文已做的）
 
@@ -248,7 +252,7 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 | 动作 15（头/腰/腿） | walk/kick 13（12 腿 + 步频）；起身 22 | 建议新技能：头 2 + 腿 12 + 步频 1，或显式 22 DoF 全身；腰无法照搬 |
 | 虚拟感知 116 ms | kick 已有 0–2 帧球延迟与冻结，**不是**火神虚拟感知 | 需新建 wrapper，先用结构化球/门，不要先上原始像素 |
 | encoder-decoder + AMP + 多 critic | `ActorCritic` MLP + walk symmetry | 新实验树，勿改官方 actor 定义 |
-| 上层行为树切反应技能 | B-Human 行为树 + WalkingEngine / GetUpEngine | **保留 B-Human 上层**；技能切换连续性尚未验收 |
+| 上层行为树切反应技能 | B-Human 行为树 + WalkingEngine / GetUpEngine | **保留 B-Human 上层**；走↔踢↔反应的历史/相位/力矩清单已落文档+空壳，切换器未实现 |
 | 单阶段 PPO，论文 16384 env / 8×V100 | 本仓 4096 env 有界 walk 已跑通 | 可复用 KL/恢复基建，不能复用火神默认 8192 当论文复现 |
 
 `origin/research:research/06-落地路线建议.md` 的路线 B 与上述一致，且强调：上层仍用 B-Human 行为树，仅在「主攻手 + 近球 + 空间合适」时激活反应策略。
@@ -262,7 +266,7 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 | 虚拟感知（FOV/遮挡/漏检/116 ms）K1 版 | research/06 路线 B4 | 无独立模块 |
 | encoder-decoder / AMP / 多 critic | 同上 B5 | 无 |
 | GMR 重定向到 K1 的参考动作库 | 同上 B2 | 无 |
-| HiFAR 起身恢复实现 | research/02 §E | 无 |
+| HiFAR 起身恢复实现 | research/02 §E、[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md) | 无（本轮只写边界，不实现） |
 | `research/01`–`06` 活目录 | `origin/research` | **未合入 main** |
 | 生产 C++↔Python 逐字段观测对照 | 契约 v1 §H、接入方案步骤 2 | 未做 |
 | 起身→行走切换 5 s 窗口 | 接入方案 | 未做 |
@@ -292,6 +296,8 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 7. `archive/git-origins.json` 钉扎 `c3fed81` / `2e3374ba`。
 8. 训练源码树无火神/HiFAR/`num_stack` 标记。
 9. 权重若存在则核 SHA256；不存在记 **warn**（`--strict-weights` 才升为失败）。
+10. 骨架 YAML 已存在时，**未注册进 `train.py` = PASS**（负向说明：泄漏进 `envs/__init__.py` 或 `envs/K1_Reactive.yaml` 必须 FAIL）。
+11. 走↔踢↔反应技能切换清单存在（历史/相位/力矩）；空测试壳全部 SKIP。
 
 已有、但本环境跑不了的数值门（需权重 + ORT/Torch）：
 
@@ -312,7 +318,7 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 | 权重 | 8 个官方 `.pth`/`.onnx` **缺席 → warn**（`--strict-weights` 则 FAIL，exit 1） |
 | `run_env_check.sh` | **exit 127**：`~/.venvs/bh-gym/bin/python` 不存在，未进入 Gym |
 | 解释器 / GPU | 系统 Python 3.12.3；`nvidia-smi` 无；`torch`/`isaacgym`/`onnx`/`mujoco` 均未装 |
-| `k1-reactive/check_skeleton.py` | **PASS**：64→15 平行于 344→13；官方 `envs/__init__.py` 未注册 |
+| `k1-reactive/check_skeleton.py` | **PASS**：64→15 平行于 344→13；骨架 YAML 已存在且 **未注册进 train.py = PASS** |
 | `probe_reserved_gpu.sh` | **skipped + WARN**（无 CUDA / 无 bh-gym）；`will_run_isaac_gym=false` |
 
 ### 7.2 官方 walk 复现入口（可复制；本 VM 不执行 GPU/MuJoCo）
@@ -398,7 +404,7 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stabilit
 
 1. K1 URDF/MJCF 质量、惯量、足底、驱动限位。
 2. 参考动作 GMR → K1（不能对 T1 CSV 删腰）。
-3. **新观测/动作**（建议头 2 + 腿 12 + 步频 1；或全身 22）。与 344 并行，技能切换时对齐历史/相位/关节请求。
+3. **新观测/动作**（建议头 2 + 腿 12 + 步频 1；或全身 22）。与 344 并行。走↔踢↔反应的历史/相位/力矩验收见 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)（现仅空壳）。
 4. 虚拟感知：球 / 门中心 / 门法向（机器人系）+ FOV/遮挡/漏检/噪声；延迟先用 116±18 ms 再换成 K1 实测。
 5. 新 runner：encoder-decoder + 多 critic + AMP + 对称损失；输出目录与官方 walk 隔离。
 6. 单阶段 PPO，先 4096 env，复用本仓 KL/恢复，不复用火神权重。
@@ -431,6 +437,10 @@ bhuman/k1-training/scripts/check_policy_contracts.py
 bhuman/k1-training/scripts/run_contract_gate.sh
 bhuman/k1-training/scripts/probe_reserved_gpu.sh
 bhuman/k1-training/k1-reactive/                 # P2 平行骨架，非 train.py 任务
+bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
+bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
+bhuman/docs/SKILL-SWITCH-CONTINUITY.md
+bhuman/docs/HIFAR-VS-STANDUP.md
 bhuman/docs/NEXT-P1-P2.md
 bhuman/docs/RESEARCH-BRANCH.md
 bhuman/k1-training/scripts/run_replay.sh

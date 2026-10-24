@@ -350,9 +350,46 @@ def check_k1_reactive_skeleton(repo: Path, errors: list[str], notes: list[str]) 
     report = module.check(repo)
     errors.extend(report.get("errors") or [])
     notes.extend(report.get("notes") or [])
+    # Explicit gate rule: YAML may exist; train.py must not see it.
+    if report.get("skeleton_yaml_exists") and report.get("unregistered_in_train_py") == "PASS":
+        notes.append(
+            "unregistered in train.py = PASS "
+            "(skeleton YAML exists in k1-reactive/; not a train.py task)"
+        )
+    elif report.get("skeleton_yaml_exists"):
+        errors.append("skeleton YAML exists but unregistered_in_train_py is not PASS")
     if report.get("ok"):
         notes.append("K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL")
     return report
+
+
+def check_gpu_free_shells(repo: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
+    """Skill-switch empty shells + negative unregistered-in-train.py fixture."""
+    out: dict[str, Any] = {}
+    unreg_rel = "bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py"
+    switch_rel = "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
+    if not (repo / unreg_rel).is_file():
+        errors.append(f"missing {unreg_rel}")
+        out["unregistered_fixture"] = {"ok": False, "missing": True}
+    else:
+        module = _load_sibling(repo, unreg_rel, "k1_reactive_unregistered_fixture")
+        report = module.run(repo)
+        out["unregistered_fixture"] = report
+        errors.extend(report.get("errors") or [])
+        notes.extend(report.get("notes") or [])
+    if not (repo / switch_rel).is_file():
+        errors.append(f"missing {switch_rel}")
+        out["skill_switch_shells"] = {"ok": False, "missing": True}
+    else:
+        module = _load_sibling(repo, switch_rel, "k1_reactive_skill_switch_shells")
+        report = module.run()
+        out["skill_switch_shells"] = report
+        errors.extend((report.get("anchors") or {}).get("errors") or [])
+        if report.get("ok"):
+            notes.append(
+                f"skill-switch continuity: {len(report.get('shells') or [])} empty shells, implemented=false"
+            )
+    return out
 
 
 def check_reserved_gpu(repo: Path, warnings: list[str], notes: list[str]) -> dict[str, Any]:
@@ -695,6 +732,7 @@ def main() -> int:
         )
 
     reactive = check_k1_reactive_skeleton(repo, errors, notes)
+    shells = check_gpu_free_shells(repo, errors, notes)
 
     research = {
         "huoshen_findings_on_main": (
@@ -741,6 +779,8 @@ def main() -> int:
             "baseline": "B-Human IsaacGymRL official walk/kick/standup",
             "rule": "new skills are parallel extensions; do not rewrite frozen dims",
             "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
+            "unregistered_in_train_py": reactive.get("unregistered_in_train_py"),
+            "skill_switch": "docs + empty shells (history/phase/torque); not implemented",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -749,6 +789,7 @@ def main() -> int:
             "fast_standup_deploy_only": "72→22",
         },
         "k1_reactive": reactive,
+        "gpu_free_shells": shells,
         "reserved_gpu": reserved_gpu,
         "t1_bhuman_contracts": {
             "walk": "365→14",
@@ -777,6 +818,8 @@ def main() -> int:
             "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
             "bash bhuman/k1-training/scripts/run_contract_gate.sh",
             "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+            "python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
@@ -795,6 +838,11 @@ def main() -> int:
         "[k1] baseline walk 344→13 | kick 59→13 | standup 73→22 | fast_standup 72→22 (deploy)"
     )
     print("[k1] parallel stub K1_Reactive 64→15 (not registered, not trainable)")
+    print(
+        "[k1] skeleton YAML present; unregistered in train.py = "
+        f"{reactive.get('unregistered_in_train_py') or 'MISSING'}"
+    )
+    print("[k1] skill-switch continuity: docs + empty shells (history/phase/torque)")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

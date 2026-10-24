@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Static K1 walk/kick/standup contract gate + K1_Reactive skeleton + reserved GPU probe.
+# Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
+# k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.
 # GPU, Isaac Gym, and official .pth/.onnx are optional; missing weights / worker warn.
 set -euo pipefail

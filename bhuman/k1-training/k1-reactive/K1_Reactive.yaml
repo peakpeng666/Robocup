@@ -97,11 +97,15 @@ skill_switch:
   upper_layer: "B-Human behavior tree (unchanged)"
   activate_when: "striker and ball in range and space ahead"
   fallback: "official K1 walk 344→13"
+  checklist: "bhuman/docs/SKILL-SWITCH-CONTINUITY.md"
+  empty_shells: "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
+  implemented: false
   todo:
     - align gait phase
     - align last 12 leg requests with walk action[:-1]
     - reset or map the 10×32 walk history vs 50-stack reactive encoder
     - do not hot-swap ONNX by output-dim coincidence
+    - history / phase / torque acceptance items stay SKIP until a switcher exists
 
 forbidden_checkpoints:
   - K1_walk.pth
