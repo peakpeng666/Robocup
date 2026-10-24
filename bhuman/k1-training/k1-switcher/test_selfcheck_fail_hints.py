@@ -107,6 +107,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_reward_curriculum_draft_validator.py",
         "test_obs_history_window_contract.py",
         "test_ci_gate_wiring.py",
+        "test_domain_rand_disturbance_draft_validator.py",
+        "test_pd_gain_domain_gap_negatives.py",
+        "test_simrobot_six_robot_acceptance_gap.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

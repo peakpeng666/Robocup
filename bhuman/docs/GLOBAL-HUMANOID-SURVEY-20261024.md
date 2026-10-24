@@ -449,6 +449,9 @@ kick / standup 开训干跑：`scripts/kick_standup_train_dry_run.py`（`K1_Ball
 奖励课程草案校验：`scripts/reward_curriculum_draft_validator.py`（**apply_to_live=false**；PASS ≠ live curriculum）。  
 观测历史窗合同：`scripts/obs_history_window_contract.py`（walk **344→13** / kick **59→13** / standup **73→22**；跨技能复用仍是 GAP）。  
 CI 门禁接线：`scripts/ci_gate_wiring.py`（自检 + forbidden 无 Gym/GPU；**merge_ready=false**）。  
+域随机 / 扰动草案校验：`scripts/domain_rand_disturbance_draft_validator.py`（**apply_to_live=false**；PASS ≠ live DR）。  
+PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`（p60≠p25≠p65；禁静默跨域拷增益）。  
+SimRobot 六机验收缺口：`scripts/simrobot_six_robot_acceptance_gap.py`（脚手架 ≠ 上场就绪；**field_ready=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

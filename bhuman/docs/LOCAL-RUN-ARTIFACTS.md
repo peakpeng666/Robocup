@@ -48,6 +48,12 @@ kick / standup 开训干跑（只打印，镜像 walk dry-run）：`scripts/kick
 
 CI 门禁接线：`scripts/ci_gate_wiring.py`。`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU 即可挂。**merge_ready=false**。**TRAINABLE=false**。**gap_closed=false**。本 PR 不创建 `.github/workflows/`。
 
+域随机 / 扰动草案校验：`scripts/domain_rand_disturbance_draft_validator.py`。live `push_interval_s` / friction / mass 冻结；kick/standup 只注记。**apply_to_live=false**。校验 PASS ≠ live DR。**TRAINABLE=false**。**gap_closed=false**。
+
+PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`。train **p60** ≠ Default **p25** ≠ Simulated hang-test **p65**。Competition 用 Default 电机。walk/kick 刚度只是注记。禁 `silent_cross_domain_gain_copy`。**TRAINABLE=false**。**gap_closed=false**。
+
+SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`。S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5。**field_ready=false**。**TRAINABLE=false**。**gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

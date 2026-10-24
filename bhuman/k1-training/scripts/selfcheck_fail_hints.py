@@ -356,6 +356,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/ci_gate_wiring.py",
         "hint": "先看自检+forbidden 是否仍无 Gym/GPU 接线，或 CI 是否把 merge_ready 翻 true",
     },
+    "test_domain_rand_disturbance_draft_validator.py": {
+        "look": "bhuman/k1-training/scripts/domain_rand_disturbance_draft_validator.py",
+        "hint": "先看域随机草案是否仍 apply_to_live=false，或校验 PASS 是否被写成 live DR",
+    },
+    "test_pd_gain_domain_gap_negatives.py": {
+        "look": "bhuman/k1-training/scripts/pd_gain_domain_gap_negatives.py",
+        "hint": "先看 p60≠p25≠p65 是否漂移，或是否静默跨域拷增益进 live cfg",
+    },
+    "test_simrobot_six_robot_acceptance_gap.py": {
+        "look": "bhuman/k1-training/scripts/simrobot_six_robot_acceptance_gap.py",
+        "hint": "先看六机脚手架是否仍 field_ready=false，或活回放是否被写成上场就绪",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

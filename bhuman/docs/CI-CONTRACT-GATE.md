@@ -90,3 +90,5 @@ jobs:
 4. 草案 YAML 仍在 `configs/draft-only/`；人手审后再拷。
 
 **不要**在 CI 里把 `merge_ready` 翻 true。**不要**把自检 PASS 写成可合并。
+
+同门禁无 Gym 增量：`domain_rand_disturbance_draft_validator` / `pd_gain_domain_gap_negatives` / `simrobot_six_robot_acceptance_gap` 只盘点，不要求 GPU，不翻 `merge_ready`。

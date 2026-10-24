@@ -211,6 +211,9 @@ REQUIRED_LANDINGS = (
     "reward_curriculum_draft_validator.py",
     "obs_history_window_contract.py",
     "ci_gate_wiring.py",
+    "domain_rand_disturbance_draft_validator.py",
+    "pd_gain_domain_gap_negatives.py",
+    "simrobot_six_robot_acceptance_gap.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

@@ -135,6 +135,9 @@
 | 奖励课程草案校验 | `scripts/reward_curriculum_draft_validator.py` | walk live 奖励冻结；**apply_to_live=false**；PASS ≠ live curriculum |
 | 观测历史窗合同 | `scripts/obs_history_window_contract.py` | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；跨技能复用仍是 GAP |
 | CI 门禁接线 | `scripts/ci_gate_wiring.py` | 自检 + forbidden 无 Gym/GPU；**merge_ready=false** |
+| 域随机 / 扰动草案校验 | `scripts/domain_rand_disturbance_draft_validator.py` | live push/friction/mass 冻结；**apply_to_live=false**；PASS ≠ live DR |
+| PD 增益域差负例 | `scripts/pd_gain_domain_gap_negatives.py` | p60≠p25≠p65；Competition 用 Default 电机；禁静默跨域拷增益 |
+| SimRobot 六机验收缺口 | `scripts/simrobot_six_robot_acceptance_gap.py` | S6 脚手架在；活回放 SKIP；**field_ready=false** |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

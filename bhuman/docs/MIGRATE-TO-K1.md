@@ -150,9 +150,12 @@
 | walk 评估产物交叉核对 | 门禁 | `scripts/walk_eval_artifact_crosscheck.py` | **P0** | 否 | `20261024_200640_281778_walk_eval_s2027` 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 | 上轮 walk-eval-artifact |
 | kick / standup 开训干跑 | 门禁 | `scripts/kick_standup_train_dry_run.py` | **P0** | 否 | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；fast **72→22** 仅注记；**would_train=false**；打印命令 ≠ 开训授权 | 上轮 kick-standup-dry-run |
 | 本地产物上传+清理清单 | 门禁 | `scripts/local_artifact_upload_cleanup.py` | **P0** | 否 | 先推 `artifacts/<run-id>/` 再清已上传缓存；只盘点；不得 rm 用户 Desktop | 上轮 upload-cleanup |
-| 奖励课程草案校验 | 门禁 | `scripts/reward_curriculum_draft_validator.py` | **P0** | 否 | walk live 奖励冻结；kick/standup 只注记；**apply_to_live=false**；PASS ≠ live curriculum | **本轮 reward-curriculum** |
-| 观测历史窗合同 | 门禁 | `scripts/obs_history_window_contract.py` | **P0** | 否 | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；跨技能复用未 reset 仍是 GAP | **本轮 history-window** |
-| CI 门禁接线 | 门禁 | `scripts/ci_gate_wiring.py` | **P0** | 否 | 自检 + forbidden 无 Gym/GPU；不创建 `.github/workflows`；**merge_ready=false** | **本轮 ci-gate-wiring** |
+| 奖励课程草案校验 | 门禁 | `scripts/reward_curriculum_draft_validator.py` | **P0** | 否 | walk live 奖励冻结；kick/standup 只注记；**apply_to_live=false**；PASS ≠ live curriculum | 上轮 reward-curriculum |
+| 观测历史窗合同 | 门禁 | `scripts/obs_history_window_contract.py` | **P0** | 否 | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；跨技能复用未 reset 仍是 GAP | 上轮 history-window |
+| CI 门禁接线 | 门禁 | `scripts/ci_gate_wiring.py` | **P0** | 否 | 自检 + forbidden 无 Gym/GPU；不创建 `.github/workflows`；**merge_ready=false** | 上轮 ci-gate-wiring |
+| 域随机 / 扰动草案校验 | 门禁 | `scripts/domain_rand_disturbance_draft_validator.py` | **P0** | 否 | live `push_*` / friction / mass 冻结；kick/standup 只注记；**apply_to_live=false**；PASS ≠ live DR | **本轮 domain-rand** |
+| PD 增益域差负例 | 门禁 | `scripts/pd_gain_domain_gap_negatives.py` | **P0** | 否 | train **p60** ≠ Default **p25** ≠ Simulated **p65**；Competition 用 Default 电机；禁静默跨域拷增益 | **本轮 pd-gain-negatives** |
+| SimRobot 六机验收缺口 | 门禁 | `scripts/simrobot_six_robot_acceptance_gap.py` | **P0** | 否 | S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false** | **本轮 simrobot-gap** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

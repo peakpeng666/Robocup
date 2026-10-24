@@ -1,0 +1,61 @@
+{
+  "generated_utc": "2026-10-24T12:15:03+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/simrobot_six_robot_acceptance_gap.py",
+  "checklist": [
+    "scaffold_s6_1_to_s6_4",
+    "live_replay_still_skip",
+    "official_scene_is_5vs5",
+    "field_ready_false",
+    "gap_closed_false"
+  ],
+  "scaffold_cases": [
+    "S6-1",
+    "S6-2",
+    "S6-3",
+    "S6-4"
+  ],
+  "acceptance_robots": [
+    "r1",
+    "r2",
+    "r3",
+    "r4",
+    "r5",
+    "r6"
+  ],
+  "runtime": {
+    "ready": false,
+    "missing": [
+      "simrobot_binary"
+    ],
+    "will_run_sim": false,
+    "scene": "bhuman/BHumanCodeRelease/Config/Scenes/K1/Game.con"
+  },
+  "remaining_missing": [
+    "simrobot_binary_or_honest_skip",
+    "live_six_robot_replay",
+    "gamecontroller",
+    "wlan_bandwidth",
+    "official_5vs5_vs_six_slot_name",
+    "field_ready"
+  ],
+  "simrobot_scaffold_as_field_ready": false,
+  "field_ready": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "will_run_sim": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "scaffold S6-1..S6-4 present; live replay SKIP; official scene 5vs5; field_ready=false",
+  "trainable": false,
+  "implemented": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

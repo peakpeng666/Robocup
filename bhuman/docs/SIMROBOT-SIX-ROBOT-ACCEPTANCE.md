@@ -20,3 +20,5 @@
 Isaac 指标不得冒充六机。六机 PASS ≠ 真机。
 
 活测试：`python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py`。
+
+缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`。脚手架 S6-1..S6-4 在；活回放仍 SKIP；官方场景是 5vs5；**field_ready=false**；**gap_closed=false**。脚手架 PASS ≠ 上场就绪。

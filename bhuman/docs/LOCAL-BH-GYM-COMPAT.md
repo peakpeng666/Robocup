@@ -53,7 +53,10 @@ kick / standup 开训干跑（只打印）：`scripts/kick_standup_train_dry_run
 本地产物上传+清理清单：`scripts/local_artifact_upload_cleanup.py`（先推 `artifacts/<run-id>/` 再清已上传缓存；巨型走 **Git LFS** / Release；只盘点/文档；不得对用户 Desktop 做破坏性 rm；**TRAINABLE=false**；**gap_closed=false**）。  
 奖励课程草案校验：`scripts/reward_curriculum_draft_validator.py`（walk live `still_proportion` / tracking_* 冻结；kick/standup 只注记；**apply_to_live=false**；校验 PASS ≠ live curriculum；**TRAINABLE=false**；**gap_closed=false**）。  
 观测历史窗合同：`scripts/obs_history_window_contract.py`（walk **344→13** = **10×32+24**；kick **59→13** / standup **73→22** 无 walk 窗；跨技能复用未 reset 仍是 GAP；**TRAINABLE=false**；**gap_closed=false**）。  
-CI 门禁接线：`scripts/ci_gate_wiring.py`（`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU；**merge_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。
+CI 门禁接线：`scripts/ci_gate_wiring.py`（`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU；**merge_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。  
+域随机 / 扰动草案校验：`scripts/domain_rand_disturbance_draft_validator.py`（live `push_interval_s` / friction / mass 冻结；kick/standup 只注记；**apply_to_live=false**；校验 PASS ≠ live DR；**TRAINABLE=false**；**gap_closed=false**）。  
+PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`（train **p60** ≠ Default **p25** ≠ Simulated hang-test **p65**；Competition 用 Default 电机；walk/kick 刚度只是注记；禁 `silent_cross_domain_gain_copy`；**TRAINABLE=false**；**gap_closed=false**）。  
+SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`（S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 

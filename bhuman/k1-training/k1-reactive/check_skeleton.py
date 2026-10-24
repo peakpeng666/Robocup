@@ -655,6 +655,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "CI gate wiring; selfcheck+forbidden without Gym/GPU; merge_ready=false",
         ),
         (
+            "bhuman/k1-training/scripts/domain_rand_disturbance_draft_validator.py",
+            "domain-rand draft validator; apply_to_live=false; PASS ≠ live DR",
+        ),
+        (
+            "bhuman/k1-training/scripts/pd_gain_domain_gap_negatives.py",
+            "PD gain domain-gap negatives; p60≠p25≠p65; no silent live cfg copy",
+        ),
+        (
+            "bhuman/k1-training/scripts/simrobot_six_robot_acceptance_gap.py",
+            "SimRobot six-robot gap pin; scaffold ≠ field-ready; live SKIP",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

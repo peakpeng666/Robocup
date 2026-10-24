@@ -53,7 +53,9 @@ silent train launch, flip ready_gpu without user,
 merge-readiness PASS as merge OK, walk-eval artifact as competition-ready,
 generated cmd as launch auth, leftover cache without upload note,
 destructive Desktop rm, validator PASS as live curriculum,
-cross-skill history reuse as closed, CI gate flips merge_ready.
+cross-skill history reuse as closed, CI gate flips merge_ready,
+validator PASS as live DR, silent cross-domain gain copy,
+SimRobot scaffold as field-ready.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -227,6 +229,15 @@ from obs_history_window_contract import (  # noqa: E402
 )
 from ci_gate_wiring import (  # noqa: E402
     refuse_ci_gate_flips_merge_ready,
+)
+from domain_rand_disturbance_draft_validator import (  # noqa: E402
+    refuse_validator_pass_as_live_dr,
+)
+from pd_gain_domain_gap_negatives import (  # noqa: E402
+    refuse_silent_cross_domain_gain_copy,
+)
+from simrobot_six_robot_acceptance_gap import (  # noqa: E402
+    refuse_simrobot_scaffold_as_field_ready,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1255,6 +1266,36 @@ def _case_ci_gate_flips_merge_ready() -> None:
     )
 
 
+def _case_validator_pass_as_live_dr() -> None:
+    refuse_validator_pass_as_live_dr(
+        {
+            "validator_pass_as_live_dr": True,
+            "as_live_dr": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_cross_domain_gain_copy() -> None:
+    refuse_silent_cross_domain_gain_copy(
+        {
+            "silent_cross_domain_gain_copy": True,
+            "copy_sim_p65_to_default": True,
+            "write_live": True,
+        }
+    )
+
+
+def _case_simrobot_scaffold_as_field_ready() -> None:
+    refuse_simrobot_scaffold_as_field_ready(
+        {
+            "simrobot_scaffold_as_field_ready": True,
+            "field_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1379,6 +1420,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("validator_pass_as_live_curriculum", _case_validator_pass_as_live_curriculum),
     ("cross_skill_history_reuse_as_closed", _case_cross_skill_history_reuse_as_closed),
     ("ci_gate_flips_merge_ready", _case_ci_gate_flips_merge_ready),
+    ("validator_pass_as_live_dr", _case_validator_pass_as_live_dr),
+    ("silent_cross_domain_gain_copy", _case_silent_cross_domain_gain_copy),
+    ("simrobot_scaffold_as_field_ready", _case_simrobot_scaffold_as_field_ready),
 )
 
 

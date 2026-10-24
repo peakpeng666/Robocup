@@ -155,6 +155,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "validator_pass_as_live_curriculum",
         "cross_skill_history_reuse_as_closed",
         "ci_gate_flips_merge_ready",
+        "validator_pass_as_live_dr",
+        "silent_cross_domain_gain_copy",
+        "simrobot_scaffold_as_field_ready",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -211,7 +214,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "merge-readiness-pass-as-merge-ok / walk-eval-artifact-as-competition-ready / "
             "generated-cmd-as-launch-auth / leftover-cache-without-upload-note / "
             "destructive-desktop-rm / validator-pass-as-live-curriculum / "
-            "cross-skill-history-reuse-as-closed / ci-gate-flips-merge-ready"
+            "cross-skill-history-reuse-as-closed / ci-gate-flips-merge-ready / "
+            "validator-pass-as-live-dr / silent-cross-domain-gain-copy / "
+            "simrobot-scaffold-as-field-ready"
         )
 
     try:
