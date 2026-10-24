@@ -68,11 +68,18 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 
 **目标：** 任何机器都能复现「维没被改、新技能没进 train.py」。
 
-- 静态门禁：两套 IsaacGymRL + 部署 cfg + models-v2 I/O。
-- 骨架 YAML 已存在 ⇒ **未注册进 `train.py` = PASS**；泄漏必须 FAIL。
-- 全球调研 + 本路线图入库。
-- 技能切换：清单 + **静态映射函数**（槽位/相位）可测；完整切换器仍 TODO。
-- GPU 预留探测：缺 worker → WARN + skip。
+- [x] 静态门禁：两套 IsaacGymRL + 部署 cfg + models-v2 I/O。
+- [x] 骨架 YAML 已存在 ⇒ **未注册进 `train.py` = PASS**；泄漏必须 FAIL。
+- [x] 全球调研 + 本路线图入库。
+- [x] 技能切换：清单 + **静态映射函数**（槽位/相位）可测；完整切换器仍 TODO。
+- [x] GPU 预留探测：缺 worker → WARN + skip。
+- [x] 可迁对照表 [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)（目录 / 优先级 / GPU / 对 344→13）。
+- [x] 估计器接口 stub（RMA / DreamWaQ 旁路，actor 仍 344）：`k1-training/k1-estimators/`。
+- [x] sim2sim 门禁骨架：`sim2sim/check_sim2sim_gate.py`（无 mujoco/权 → SKIP）。
+- [x] 观测合同 JSON：`docs/schemas/obs-contract-v1.json`。
+- [x] 行为树↔技能选择接口注释：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。
+- [ ] 完整切换器时间序列（P4，仍无真机）。
+- [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
@@ -89,7 +96,7 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 1. 命令日程（驻立、急停、反转）。
 2. settle-time / 抖动惩罚。
 3. 扰动课程（对照 531 事件 55 跌倒）。
-4. 估计器 A/B：RMA 或 DreamWaQ **单因素**。
+4. 估计器 A/B：RMA 或 DreamWaQ **单因素**（[接口 stub 已落地](../k1-training/k1-estimators/README.md)；真训要 GPU，仍不改 344）。
 5. 参考惩罚退火。
 
 命令见 NEXT-P1-P2。留出种子 2027/2028/2029。`warm-start`/`actor`；公开 critic 359≠360。
@@ -104,7 +111,7 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 2. 参考动作 **GMR → K1**（禁止对 T1 CSV 删腰）。BeyondMimic-on-K1（`booster_train`）可当跟踪工具。
 3. 虚拟感知：球/门中心/门法向 + FOV/遮挡/漏检；延迟先 116±18 ms。
 4. encoder-decoder + 多 critic + AMP；输出 `runs/` 与官方隔离。
-5. 上层行为树仅主攻手近球切入（火神附录 G）。
+5. 上层行为树仅主攻手近球切入（火神附录 G）。接口注释已落地：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)；`implemented=false` 时回落 walk 344→13。
 
 禁止：`train.py --task=K1_Reactive` 在官方树里；加载 `model.pth` / `K1_walk.pth`；像素先于结构化观测。
 
@@ -125,7 +132,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 ### P4 · 切换 + sim2sim + 起身交接
 
 - 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；本阶段要有时间序列（仍无真机）。
-- 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。
+- 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。无 GPU 骨架：`sim2sim/run-sim2sim-gate.sh`（缺依赖 SKIP）。
 - standup→walk 5 s 窗口（接入方案旧项）；HiFAR/FRASA 只对照，不改 73/72。
 
 ### P5 · 真机前置（未授权，只列）
@@ -146,6 +153,12 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
 python3 bhuman/k1-training/k1-reactive/test_global_docs.py
+python3 bhuman/k1-training/k1-reactive/test_migrate_table.py
+python3 bhuman/k1-training/k1-estimators/test_estimators.py
+python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
+python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
+python3 bhuman/sim2sim/test_sim2sim_gate.py
+bash bhuman/sim2sim/run-sim2sim-gate.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

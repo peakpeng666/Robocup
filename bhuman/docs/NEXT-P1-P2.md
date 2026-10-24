@@ -149,6 +149,12 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
 python3 bhuman/k1-training/k1-reactive/test_global_docs.py
+python3 bhuman/k1-training/k1-reactive/test_migrate_table.py
+python3 bhuman/k1-training/k1-estimators/test_estimators.py
+python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
+python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
+python3 bhuman/sim2sim/test_sim2sim_gate.py
+bash bhuman/sim2sim/run-sim2sim-gate.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
@@ -164,5 +170,6 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 合同门禁对已存在的骨架 YAML 明确：**未注册进 `train.py` = PASS**；负向说明见 `test_unregistered_in_train_py.py`（泄漏进官方 `envs/` 必须 FAIL）。
 HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)（不实现训练代码）。
 
-全球调研与 P0–P5 取舍：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
+全球调研与 P0–P5 取舍：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)、[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
+行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。观测 schema：`schemas/obs-contract-v1.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。

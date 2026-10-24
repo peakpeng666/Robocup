@@ -1,0 +1,73 @@
+# 行为树 ↔ 技能选择接口（注释文档）
+
+2026-10-24。配套：[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)、
+[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P2.5、代码口 `bhuman/k1-training/k1-reactive/bt_skill_select.py`。
+
+**本文件只注释接口。** 不解释 B-Human 行为树，不改比赛上层，不实现切换器，不连接真机。
+`implemented: false`。默认比赛行走永远是官方 walk **344→13**。
+
+---
+
+## 1. 分层（和 344→13 的关系）
+
+```
+B-Human 行为树 / 角色 / GameController / 正常视觉     ← 保持，本口不改
+        │  只下「选哪个运控技能」
+        ▼
+技能选择口  bt_skill_select.select_skill(ctx)          ← 本文件 + stub
+        │
+        ├── walk      344→13   默认；未实现的反应技能也回落到这里
+        ├── kick       59→13   仅当上层明确要踢
+        ├── reactive   64→15   候选；implemented=false 时禁止选出
+        └── handoff_getup      跌倒交给 GetUpEngine（73→22 / 72→22），本口不选
+```
+
+火神附录 G / DeepMind 分层的可迁点：上层规则只在「主攻手 + 近球 + 前方有空间」时切入反应技能。
+**不可迁：** 把 VLA/像素端到端接到这层；用 T1 `model.pth`；用 NUSim 79→22。
+
+---
+
+## 2. 端口字段（上下文 → 决策）
+
+输入 `SkillSelectContext`（代码里是 dataclass，无 Gym）：
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `role` | str | `striker` / `supporter` / `goalkeeper` / `other` |
+| `ball_in_range` | bool | 上层已判定近球（本口不读相机） |
+| `space_ahead` | bool | 前方有空间 |
+| `want_kick` | bool | 上层明确要踢 |
+| `fallen` | bool | 跌倒。本口不选 standup，只回 `handoff_getup` |
+| `requested` | str \| None | 调试/单测强制请求；生产路径应为空 |
+
+输出 `SkillSelectDecision`：
+
+| 字段 | 含义 |
+|---|---|
+| `skill` | `walk` / `kick` / `reactive` / `handoff_getup` |
+| `reason` | 人读原因，门禁会检查 walk 回落句含 `344` |
+| `contract` | 该技能的输入→输出，walk 必须是 `344→13` |
+
+---
+
+## 3. 静态规则（implemented=false）
+
+| ID | 规则 | 现在必须 |
+|---|---|---|
+| B1 | 默认技能是官方 walk | `select_skill` 常态返回 `walk` / `344→13` |
+| B2 | 反应技能切入条件 | `striker ∧ ball_in_range ∧ space_ahead ∧ implemented`。`implemented=false` ⇒ **仍走 walk** |
+| B3 | 踢球 | 仅 `want_kick` 且未跌倒时返回 `kick` / `59→13` |
+| B4 | 跌倒 | 返回 `handoff_getup`，不返回 `standup` 字符串给 WalkingEngine |
+| B5 | 拒绝外族 | `requested ∈ {huoshen_t1, nusim, t1_reactive}` 必须抛错 |
+| B6 | 切换连续性 | 本口只选名字。历史/相位/力矩仍见切换清单；未实现 |
+
+活测试：`python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py`。
+
+---
+
+## 4. 明确不做
+
+- 不改 B-Human 行为树源码、不改 GameController。
+- 不在本口里 `eval` Isaac Gym 任务名。
+- 不把 standup / HiFAR 接进走踢反应闭环。
+- 不因 13==13 或 15==15 热换 ONNX。

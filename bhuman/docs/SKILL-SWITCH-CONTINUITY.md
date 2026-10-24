@@ -16,6 +16,7 @@
 普通起身 73→22 / 快速起身 72→22 **不在本清单**（跌倒恢复，不是走踢反应闭环）。对照：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
 
 上层仍是 B-Human 行为树。默认比赛行走 = 官方 walk。反应技能只在「主攻手 + 近球 + 前方有空间」时切入。
+选择口注释：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)（`implemented=false`，常态回落 344→13）。
 
 ```
 walk 344→13  ←→  kick 59→13     （同 13 维家族，WalkingEngine 已有）

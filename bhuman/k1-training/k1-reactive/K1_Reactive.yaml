@@ -100,6 +100,8 @@ skill_switch:
   checklist: "bhuman/docs/SKILL-SWITCH-CONTINUITY.md"
   empty_shells: "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
   static_mapper: "bhuman/k1-training/k1-reactive/skill_switch_map.py"
+  bt_port: "bhuman/k1-training/k1-reactive/bt_skill_select.py"
+  bt_doc: "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md"
   implemented: false
   todo:
     - align gait phase

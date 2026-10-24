@@ -230,6 +230,9 @@ def check(repo: Path | None = None) -> dict[str, Any]:
     for rel, label in (
         ("bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md", "global humanoid survey"),
         ("bhuman/docs/ROADMAP-P0-P5.md", "P0–P5 roadmap"),
+        ("bhuman/docs/MIGRATE-TO-K1.md", "migrate-to-K1 table"),
+        ("bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md", "BT skill-select interface"),
+        ("bhuman/docs/schemas/obs-contract-v1.json", "obs contract JSON"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

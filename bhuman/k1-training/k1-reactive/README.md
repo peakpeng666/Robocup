@@ -33,7 +33,8 @@
 字段表、延迟 116 ms ≈ 6 个 50 Hz 步见 `K1_Reactive.yaml` 与 `contract.py`。
 走↔踢↔反应的历史/相位/力矩清单：[SKILL-SWITCH-CONTINUITY.md](../../docs/SKILL-SWITCH-CONTINUITY.md)。静态槽位映射 `skill_switch_map.py` 已可测（T1/T2/T3/T5）；完整切换器未实现。
 HiFAR 起身对照：[HIFAR-VS-STANDUP.md](../../docs/HIFAR-VS-STANDUP.md)（不是本技能）。
-全球调研 / 路线：[GLOBAL-HUMANOID-SURVEY-20261024.md](../../docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[ROADMAP-P0-P5.md](../../docs/ROADMAP-P0-P5.md)。
+全球调研 / 路线：[GLOBAL-HUMANOID-SURVEY-20261024.md](../../docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[ROADMAP-P0-P5.md](../../docs/ROADMAP-P0-P5.md)、[MIGRATE-TO-K1.md](../../docs/MIGRATE-TO-K1.md)。
+行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](../../docs/BEHAVIOR-TREE-SKILL-SELECT.md)。观测 schema：`../../docs/schemas/obs-contract-v1.json`。P1 估计器旁路：[`../k1-estimators/`](../k1-estimators/README.md)。
 
 ## 已实现 vs TODO
 
@@ -53,6 +54,9 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
 python3 bhuman/k1-training/k1-reactive/test_global_docs.py
+python3 bhuman/k1-training/k1-reactive/test_migrate_table.py
+python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
+python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
 # 随总门禁一起跑：
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 ```

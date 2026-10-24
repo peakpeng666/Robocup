@@ -41,5 +41,14 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/verify-policy.sh \
   --export-dir /home/peakpeng/Desktop/Robocup/bhuman/k1-training/exports/restored-public-walk-20261020
 ```
 
+无 GPU / 无官方权时只跑门禁骨架（缺 mujoco 或权 → SKIP，不自动回放）：
+
+```bash
+python3 bhuman/sim2sim/test_sim2sim_gate.py
+bash bhuman/sim2sim/run-sim2sim-gate.sh
+```
+
+骨架核对：观测必须是 `(N, 344)`、动作 13、actor-only、`robot_connected=false`；拒绝踢球 59 维检查点冒充行走。真正的 120 秒回放仍用上面的 `run-mujoco.sh`，只在操作者本机、显式执行。
+
 本目录及另两套可运行工作区必须保留在本机。GitHub 是备份；常规清理仅限
 缓存和核验后的重复产物，规则见仓库根目录 `AGENTS.md`。

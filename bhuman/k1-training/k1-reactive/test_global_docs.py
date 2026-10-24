@@ -57,6 +57,16 @@ REQUIRED_DOCS = {
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": ("73→22", "72→22", "2502.20061"),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
+    "bhuman/docs/MIGRATE-TO-K1.md": (
+        "拟议目录/模块",
+        "优先级",
+        "依赖 GPU",
+        "344→13",
+        "k1-estimators",
+        "obs-contract-v1",
+    ),
+    "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": ("344→13", "handoff_getup", "implemented"),
+    "bhuman/docs/schemas/obs-contract-v1.json": ("344", "64", "59", "73", "rewritable"),
 }
 
 

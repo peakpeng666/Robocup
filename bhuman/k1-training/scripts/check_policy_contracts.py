@@ -363,8 +363,13 @@ def check_k1_reactive_skeleton(repo: Path, errors: list[str], notes: list[str]) 
     return report
 
 
-def check_gpu_free_shells(repo: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
-    """Skill-switch shells, static maps, global docs, unregistered fixture."""
+def check_gpu_free_shells(
+    repo: Path,
+    errors: list[str],
+    notes: list[str],
+    warnings: list[str] | None = None,
+) -> dict[str, Any]:
+    """Skill-switch shells, static maps, global docs, unregistered fixture, P0 stubs."""
     out: dict[str, Any] = {}
     specs = (
         (
@@ -391,6 +396,36 @@ def check_gpu_free_shells(repo: Path, errors: list[str], notes: list[str]) -> di
             "k1_reactive_global_docs",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-reactive/test_migrate_table.py",
+            "migrate_table",
+            "k1_reactive_migrate_table",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-estimators/test_estimators.py",
+            "estimators",
+            "k1_estimators",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_obs_schema.py",
+            "obs_schema",
+            "k1_reactive_obs_schema",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+            "bt_skill_select",
+            "k1_reactive_bt_skill_select",
+            True,
+        ),
+        (
+            "bhuman/sim2sim/test_sim2sim_gate.py",
+            "sim2sim_gate",
+            "k1_sim2sim_gate",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -409,6 +444,10 @@ def check_gpu_free_shells(repo: Path, errors: list[str], notes: list[str]) -> di
         else:
             errors.extend(report.get("errors") or [])
             notes.extend(report.get("notes") or [])
+        if warnings is not None:
+            warnings.extend(report.get("warnings") or [])
+        if report.get("skipped"):
+            notes.append(f"{key}: skipped (missing optional runtime)")
     return out
 
 
@@ -752,7 +791,7 @@ def main() -> int:
         )
 
     reactive = check_k1_reactive_skeleton(repo, errors, notes)
-    shells = check_gpu_free_shells(repo, errors, notes)
+    shells = check_gpu_free_shells(repo, errors, notes, warnings)
 
     research = {
         "huoshen_findings_on_main": (
@@ -803,6 +842,11 @@ def main() -> int:
             "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
             "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
             "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+            "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
+            "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
+            "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
+            "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
+            "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -844,6 +888,12 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
             "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
             "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
+            "python3 bhuman/k1-training/k1-reactive/test_migrate_table.py",
+            "python3 bhuman/k1-training/k1-estimators/test_estimators.py",
+            "python3 bhuman/k1-training/k1-reactive/test_obs_schema.py",
+            "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+            "python3 bhuman/sim2sim/test_sim2sim_gate.py",
+            "bash bhuman/sim2sim/run-sim2sim-gate.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
@@ -867,7 +917,8 @@ def main() -> int:
         f"{reactive.get('unregistered_in_train_py') or 'MISSING'}"
     )
     print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
-    print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5")
+    print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5 + MIGRATE-TO-K1")
+    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

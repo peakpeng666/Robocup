@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "title": "K1 observation / action contracts",
+  "baseline": "B-Human official walk 344→13",
+  "note": "Machine-readable companion to policy-contract-v1.md and k1-reactive/contract.py. Not a trainable env. Walk 344 is frozen; reactive 64 is parallel.",
+  "policy_hz": 50,
+  "sim_dt_s": 0.002,
+  "decimation": 10,
+  "skills": {
+    "walk": {
+      "task": "K1",
+      "obs": 344,
+      "act": 13,
+      "priv": 16,
+      "rewritable": false,
+      "history": {
+        "frames": 10,
+        "frame_dim": 32,
+        "tail_dim": 24,
+        "formula": "10*32+24"
+      },
+      "frame_layout": [
+        {"name": "projected_gravity", "dim": 3},
+        {"name": "base_ang_vel", "dim": 3},
+        {"name": "leg_pos", "dim": 12},
+        {"name": "prev_leg_action", "dim": 12},
+        {"name": "ball_xy_placeholder", "dim": 2}
+      ],
+      "tail_layout": [
+        {"name": "command_vx_vy_wz", "dim": 3},
+        {"name": "gait_cos_sin", "dim": 2},
+        {"name": "leg_vel", "dim": 12},
+        {"name": "gait_frequency_offset", "dim": 1},
+        {"name": "ball_flags_placeholder", "dim": 3},
+        {"name": "direction_sin_cos", "dim": 2},
+        {"name": "range_placeholder", "dim": 1}
+      ],
+      "action_layout": [
+        {"name": "leg_offsets", "dim": 12},
+        {"name": "gait_frequency_offset", "dim": 1}
+      ],
+      "relation_to_walk_344": "THIS is the frozen walk contract"
+    },
+    "kick": {
+      "task": "K1_Ball",
+      "obs": 59,
+      "act": 13,
+      "priv": 16,
+      "rewritable": false,
+      "layout": [
+        {"name": "projected_gravity", "dim": 3},
+        {"name": "base_ang_vel", "dim": 3},
+        {"name": "ball_xy", "dim": 2},
+        {"name": "kick_dir_over_pi", "dim": 1},
+        {"name": "gait_cos_sin", "dim": 2},
+        {"name": "leg_pos", "dim": 12},
+        {"name": "leg_vel", "dim": 12},
+        {"name": "last_action_13", "dim": 13},
+        {"name": "strong_kick", "dim": 1},
+        {"name": "inaccurate", "dim": 1},
+        {"name": "allow_deviation", "dim": 1},
+        {"name": "ball_vel_xy", "dim": 2},
+        {"name": "placeholder", "dim": 1},
+        {"name": "direction_sin_cos", "dim": 2},
+        {"name": "expected_exit_speed", "dim": 1},
+        {"name": "prev_ball_xy", "dim": 2}
+      ],
+      "relation_to_walk_344": "same 13-D action family; do not crop 344 into 59"
+    },
+    "standup": {
+      "task": "K1_Stand_Up",
+      "obs": 73,
+      "act": 22,
+      "priv": 38,
+      "rewritable": false,
+      "layout": [
+        {"name": "projected_gravity", "dim": 3},
+        {"name": "base_ang_vel", "dim": 3},
+        {"name": "phase", "dim": 1},
+        {"name": "joint_pos_22", "dim": 22},
+        {"name": "joint_vel_22", "dim": 22},
+        {"name": "last_action_22", "dim": 22}
+      ],
+      "relation_to_walk_344": "GetUpEngine; not on the walk/kick/reactive switch"
+    },
+    "fast_standup": {
+      "task": "K1_fast_standup",
+      "obs": 72,
+      "act": 22,
+      "rewritable": false,
+      "deploy_only": true,
+      "layout": [
+        {"name": "gyro", "dim": 3},
+        {"name": "gravity", "dim": 3},
+        {"name": "joint_pos_22", "dim": 22},
+        {"name": "joint_vel_22", "dim": 22},
+        {"name": "last_action_22", "dim": 22}
+      ],
+      "relation_to_walk_344": "deploy-only incremental 72→22; not a walk rewrite"
+    },
+    "reactive": {
+      "task": "K1_Reactive",
+      "obs": 64,
+      "act": 15,
+      "priv": 18,
+      "stack": 50,
+      "history_embedding_dim": 64,
+      "rewritable": false,
+      "registered_in_train_py": false,
+      "trainable": false,
+      "layout": [
+        {"name": "projected_gravity", "dim": 3},
+        {"name": "base_ang_vel", "dim": 3},
+        {"name": "head_pos", "dim": 2},
+        {"name": "head_vel", "dim": 2},
+        {"name": "leg_pos", "dim": 12},
+        {"name": "leg_vel", "dim": 12},
+        {"name": "last_action", "dim": 15},
+        {"name": "gait_cos_sin", "dim": 2},
+        {"name": "ball_xy", "dim": 2},
+        {"name": "ball_speed", "dim": 1},
+        {"name": "ball_valid", "dim": 1},
+        {"name": "ball_delay_norm", "dim": 1},
+        {"name": "goal_center_xy", "dim": 2},
+        {"name": "goal_normal_xy", "dim": 2},
+        {"name": "goal_valid", "dim": 1},
+        {"name": "ball_in_fov", "dim": 1},
+        {"name": "last_visible_ball_xy", "dim": 2}
+      ],
+      "action_layout": [
+        {"name": "head_yaw_offset", "dim": 1},
+        {"name": "head_pitch_offset", "dim": 1},
+        {"name": "leg_offsets", "dim": 12},
+        {"name": "gait_frequency_offset", "dim": 1}
+      ],
+      "forbidden_flat_stack": 3200,
+      "relation_to_walk_344": "parallel 64→15; do not pad to 344; do not flatten 64×50"
+    }
+  },
+  "forbidden": {
+    "huoshen_t1": {"obs": 58, "stack": 50, "act": 15, "reason": "T1 public skill; not K1"},
+    "nusim": {"obs": 79, "act": 22, "reason": "do not mix NUSim into WalkingEngine"}
+  }
+}
