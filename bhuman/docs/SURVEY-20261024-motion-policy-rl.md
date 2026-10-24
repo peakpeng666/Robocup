@@ -16,7 +16,7 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 技能切换清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。HiFAR 与起身边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
 
-产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`、`reserved-gpu-latest.json`。
+产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`（初版）、`contract-gate-20261024-skill-switch.json`（本轮：未注册 PASS + 空壳）、`reserved-gpu-latest.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
 
 ---
@@ -319,6 +319,8 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 | `run_env_check.sh` | **exit 127**：`~/.venvs/bh-gym/bin/python` 不存在，未进入 Gym |
 | 解释器 / GPU | 系统 Python 3.12.3；`nvidia-smi` 无；`torch`/`isaacgym`/`onnx`/`mujoco` 均未装 |
 | `k1-reactive/check_skeleton.py` | **PASS**：64→15 平行于 344→13；骨架 YAML 已存在且 **未注册进 train.py = PASS** |
+| `test_unregistered_in_train_py.py` | **PASS**：正例不泄漏；负向夹具（泄漏 import / YAML / py）判定必须 FAIL |
+| `test_skill_switch_continuity.py` | **PASS**：8 个空壳全部 SKIP；清单含历史/相位/力矩 |
 | `probe_reserved_gpu.sh` | **skipped + WARN**（无 CUDA / 无 bh-gym）；`will_run_isaac_gym=false` |
 
 ### 7.2 官方 walk 复现入口（可复制；本 VM 不执行 GPU/MuJoCo）
