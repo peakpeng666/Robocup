@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:56:48+00:00",
+  "generated_utc": "2026-10-24T09:01:54+00:00",
   "status": "PASS",
   "skipped": false,
   "walk": "344→13",
@@ -245,6 +245,19 @@
     {
       "id": "scan:bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
       "rel": "bhuman/k1-training/manifests/reference-motion-inventory-latest.json",
+      "kind": "undeclared_scan_hit",
+      "skill": "walk",
+      "official_walk_default": false,
+      "is_motion_clip": false,
+      "family": "bhuman_k1",
+      "exists": true,
+      "status": "PASS",
+      "skipped": false,
+      "note": "extra declared-path sibling from scan; not a clip"
+    },
+    {
+      "id": "scan:bhuman/k1-training/manifests/reference-penalty-anneal-audit-latest.json",
+      "rel": "bhuman/k1-training/manifests/reference-penalty-anneal-audit-latest.json",
       "kind": "undeclared_scan_hit",
       "skill": "walk",
       "official_walk_default": false,
@@ -587,7 +600,7 @@
     "missing": 4,
     "skipped": 4,
     "official_walk_default_present": 2,
-    "scan_extras": 26
+    "scan_extras": 27
   },
   "present": [
     "walk-reference-stability-v1",

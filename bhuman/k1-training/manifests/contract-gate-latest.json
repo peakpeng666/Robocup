@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:56:46+00:00",
+  "generated_utc": "2026-10-24T09:01:52+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -65,6 +65,9 @@
     "t1_k1_isolation": "T1 365/62/76 must not replace K1 walk 344→13",
     "command_schedule_audit": "official commands snapshot; draft A_command_schedule not applied",
     "disturbance_curriculum_audit": "live push_* intact; missing draft_only / apply_to_live FAIL",
+    "settle_jitter_audit": "draft settle_* new keys; live action_rate=-1. not overwritten",
+    "estimator_ab_audit": "estimator A/B bypass only; no 344 write; not registered in train.py",
+    "reference_penalty_anneal_audit": "live reference_mean_penalty stays 1.0; anneal proposed_only",
     "selfcheck_fail_hints": "FAIL prints 先看 file/test; PASS stays quiet"
   },
   "k1_contracts": {
@@ -176,6 +179,9 @@
       "T1/K1 isolation matrix (T1 must not replace K1 walk) present",
       "command schedule read-only extract (draft not applied) present",
       "disturbance draft validator (live push_* not overwritten) present",
+      "settle/jitter draft (new keys; live action_rate intact) present",
+      "estimator A/B draft (bypass; not 344 / not train.py) present",
+      "reference-penalty anneal (live 1.0 intact) present",
       "selfcheck FAIL locator (先看 file/test; PASS quiet) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
@@ -753,7 +759,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 54 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 57 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
@@ -762,6 +768,7 @@
         "PASS test_deploy_call.py",
         "PASS test_disturbance_curriculum_audit.py",
         "PASS test_env_registry_audit.py",
+        "PASS test_estimator_ab_audit.py",
         "PASS test_forbidden_regressions.py",
         "PASS test_gait_frequency_contract.py",
         "PASS test_getup_engine_snapshot.py",
@@ -780,8 +787,10 @@
         "PASS test_pd_domain_gap.py",
         "PASS test_print_train_dry_run.py",
         "PASS test_reference_motion_inventory.py",
+        "PASS test_reference_penalty_anneal_audit.py",
         "PASS test_render_selfcheck_summary.py",
         "PASS test_selfcheck_fail_hints.py",
+        "PASS test_settle_jitter_audit.py",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
@@ -843,6 +852,10 @@
         },
         {
           "name": "test_env_registry_audit.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_estimator_ab_audit.py",
           "status": "PASS"
         },
         {
@@ -914,11 +927,19 @@
           "status": "PASS"
         },
         {
+          "name": "test_reference_penalty_anneal_audit.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_render_selfcheck_summary.py",
           "status": "PASS"
         },
         {
           "name": "test_selfcheck_fail_hints.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_settle_jitter_audit.py",
           "status": "PASS"
         },
         {
@@ -1039,6 +1060,7 @@
         "test_deploy_call.py",
         "test_disturbance_curriculum_audit.py",
         "test_env_registry_audit.py",
+        "test_estimator_ab_audit.py",
         "test_forbidden_regressions.py",
         "test_gait_frequency_contract.py",
         "test_getup_engine_snapshot.py",
@@ -1056,8 +1078,10 @@
         "test_pd_domain_gap.py",
         "test_print_train_dry_run.py",
         "test_reference_motion_inventory.py",
+        "test_reference_penalty_anneal_audit.py",
         "test_render_selfcheck_summary.py",
         "test_selfcheck_fail_hints.py",
+        "test_settle_jitter_audit.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
@@ -1719,6 +1743,64 @@
       "trainable": false,
       "write_yaml": false
     },
+    "settle_jitter_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_settle_frozen: live has no draft settle keys",
+        "live action_rate=-1. intact",
+        "official absent settle keys: ['draft_settle_jitter_scale', 'draft_zero_cmd_root_acc_scale']",
+        "B_settle_jitter proposed_only; not applied",
+        "negative: missing draft_only refused",
+        "negative: apply_to_live refused",
+        "negative: draft overwrite live action_rate refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/settle-jitter-audit-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
+    },
+    "estimator_ab_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_estimator_ab_frozen: bypass only; TRAINABLE=false",
+        "draft actor_obs=344 bypass",
+        "D_estimator_ab not written into 344; not registered in train.py",
+        "k1-estimators TRAINABLE=false cross-checked",
+        "env registry: k1-estimators still a bypass",
+        "negative: write into 344 refused",
+        "negative: train.py registration refused",
+        "negative: missing draft_only refused",
+        "negative: apply_to_live refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/estimator-ab-audit-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
+    },
+    "reference_penalty_anneal_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_anneal_frozen: live reference_mean_penalty=1.0",
+        "live reference_mean_penalty=1.0",
+        "snapshot diff: official 1.0 vs proposed start/end; not applied",
+        "negative: live reference_mean_penalty overwrite refused",
+        "negative: missing draft_only refused",
+        "negative: apply_to_live refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/reference-penalty-anneal-audit-latest.json",
+        "official K1.yaml + reference stability untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
+    },
     "selfcheck_fail_hints": {
       "ok": true,
       "errors": [],
@@ -1727,6 +1809,9 @@
         "FAIL hint: run_unit_tests_no_gym.sh → bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
         "FAIL hint: test_command_schedule_audit.py → bhuman/k1-training/scripts/command_schedule_audit.py",
         "FAIL hint: test_disturbance_curriculum_audit.py → bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+        "FAIL hint: test_settle_jitter_audit.py → bhuman/k1-training/scripts/settle_jitter_audit.py",
+        "FAIL hint: test_estimator_ab_audit.py → bhuman/k1-training/scripts/estimator_ab_audit.py",
+        "FAIL hint: test_reference_penalty_anneal_audit.py → bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
         "FAIL hint: test_selfcheck_fail_hints.py → bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "FAIL hint: k1.yaml → bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
         "selfcheck FAIL path prints 先看; PASS stays quiet"
@@ -1736,7 +1821,7 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T08:56:44+00:00",
+    "generated_utc": "2026-10-24T09:01:50+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1814,7 +1899,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "c9e127eaf58d97c50b62ff73636a0d4877b73bc7",
+    "workspace_head": "879cfcdbcca7f9be36239d790282d3de12a20624",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -2268,6 +2353,9 @@
     "T1/K1 isolation matrix (T1 must not replace K1 walk) present",
     "command schedule read-only extract (draft not applied) present",
     "disturbance draft validator (live push_* not overwritten) present",
+    "settle/jitter draft (new keys; live action_rate intact) present",
+    "estimator A/B draft (bypass; not 344 / not train.py) present",
+    "reference-penalty anneal (live 1.0 intact) present",
     "selfcheck FAIL locator (先看 file/test; PASS quiet) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
@@ -2582,7 +2670,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 54 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 57 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
@@ -2591,6 +2679,7 @@
     "PASS test_deploy_call.py",
     "PASS test_disturbance_curriculum_audit.py",
     "PASS test_env_registry_audit.py",
+    "PASS test_estimator_ab_audit.py",
     "PASS test_forbidden_regressions.py",
     "PASS test_gait_frequency_contract.py",
     "PASS test_getup_engine_snapshot.py",
@@ -2609,8 +2698,10 @@
     "PASS test_pd_domain_gap.py",
     "PASS test_print_train_dry_run.py",
     "PASS test_reference_motion_inventory.py",
+    "PASS test_reference_penalty_anneal_audit.py",
     "PASS test_render_selfcheck_summary.py",
     "PASS test_selfcheck_fail_hints.py",
+    "PASS test_settle_jitter_audit.py",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
@@ -2991,10 +3082,44 @@
     "negative: K1.yaml write refused",
     "wrote bhuman/k1-training/manifests/disturbance-curriculum-audit-latest.json",
     "official K1.yaml untouched",
+    "assert_settle_frozen: live has no draft settle keys",
+    "live action_rate=-1. intact",
+    "official absent settle keys: ['draft_settle_jitter_scale', 'draft_zero_cmd_root_acc_scale']",
+    "B_settle_jitter proposed_only; not applied",
+    "negative: missing draft_only refused",
+    "negative: apply_to_live refused",
+    "negative: draft overwrite live action_rate refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/settle-jitter-audit-latest.json",
+    "official K1.yaml untouched",
+    "assert_estimator_ab_frozen: bypass only; TRAINABLE=false",
+    "draft actor_obs=344 bypass",
+    "D_estimator_ab not written into 344; not registered in train.py",
+    "k1-estimators TRAINABLE=false cross-checked",
+    "env registry: k1-estimators still a bypass",
+    "negative: write into 344 refused",
+    "negative: train.py registration refused",
+    "negative: missing draft_only refused",
+    "negative: apply_to_live refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/estimator-ab-audit-latest.json",
+    "official K1.yaml untouched",
+    "assert_anneal_frozen: live reference_mean_penalty=1.0",
+    "live reference_mean_penalty=1.0",
+    "snapshot diff: official 1.0 vs proposed start/end; not applied",
+    "negative: live reference_mean_penalty overwrite refused",
+    "negative: missing draft_only refused",
+    "negative: apply_to_live refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/reference-penalty-anneal-audit-latest.json",
+    "official K1.yaml + reference stability untouched",
     "FAIL hint: run_contract_gate.sh → bhuman/k1-training/scripts/check_policy_contracts.py",
     "FAIL hint: run_unit_tests_no_gym.sh → bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
     "FAIL hint: test_command_schedule_audit.py → bhuman/k1-training/scripts/command_schedule_audit.py",
     "FAIL hint: test_disturbance_curriculum_audit.py → bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+    "FAIL hint: test_settle_jitter_audit.py → bhuman/k1-training/scripts/settle_jitter_audit.py",
+    "FAIL hint: test_estimator_ab_audit.py → bhuman/k1-training/scripts/estimator_ab_audit.py",
+    "FAIL hint: test_reference_penalty_anneal_audit.py → bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
     "FAIL hint: test_selfcheck_fail_hints.py → bhuman/k1-training/scripts/selfcheck_fail_hints.py",
     "FAIL hint: k1.yaml → bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
     "selfcheck FAIL path prints 先看; PASS stays quiet",
@@ -3073,6 +3198,12 @@
     "python3 bhuman/k1-training/scripts/command_schedule_audit.py",
     "python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py",
     "python3 bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py",
+    "python3 bhuman/k1-training/scripts/settle_jitter_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py",
+    "python3 bhuman/k1-training/scripts/estimator_ab_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py",
+    "python3 bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
     "python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
     "python3 bhuman/k1-training/scripts/selfcheck_fail_hints.py --step k1.yaml",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
