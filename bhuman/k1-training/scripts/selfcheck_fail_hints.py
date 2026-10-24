@@ -248,6 +248,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/pr4_index_nav.py",
         "hint": "先看 PR4-INDEX 分组导航是否仍链到最新 manifests，以及 walk↔kick GAP 是否仍标 status=GAP / gap_closed=false",
     },
+    "test_playball_not_kick_policy.py": {
+        "look": "bhuman/k1-training/scripts/playball_not_kick_policy.py",
+        "hint": "先看官方 PlayBall 是否仍只写 MotionRequest.motion、是否被误标成 kickPolicy.apply 59→13，以及默认空技能是否仍是 walk 344→13",
+    },
+    "test_reactive_stub_hardening.py": {
+        "look": "bhuman/k1-training/scripts/reactive_stub_hardening.py",
+        "hint": "先看 reactive / 估计器 / draft stub 是否仍 TRAINABLE=false，是否被标成默认 walk，或 ready_gpu 是否因 stub 变 true",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

@@ -184,6 +184,8 @@ REQUIRED_LANDINGS = (
     "upload_run_artifacts.py",
     "skill_behavior_write_chain.py",
     "pr4_index_nav.py",
+    "playball_not_kick_policy.py",
+    "reactive_stub_hardening.py",
     "LOCAL-RUN-ARTIFACTS.md",
 )
 

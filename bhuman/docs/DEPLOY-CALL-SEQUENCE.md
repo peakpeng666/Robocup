@@ -47,7 +47,9 @@ fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.app
 GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen→`createPhase`→standup/fast apply→Force walk afterwards→walkPolicy **344→13**）。  
 本地产物即推 GitHub：`scripts/upload_run_artifacts.py`（`TRAINABLE=false`；dry-run；不自动开训）。  
 SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 SkillRequest 无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空行为仍 walk **344→13**）。  
-PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py`（walk/kick/standup/handoff/artifacts/GAP；**status=GAP** / **gap_closed=false**）。
+PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py`（walk/kick/standup/handoff/artifacts/GAP；**status=GAP** / **gap_closed=false**）。  
+PlayBall ≠ kickPolicy 两条链：`scripts/playball_not_kick_policy.py`（运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13**）。  
+reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

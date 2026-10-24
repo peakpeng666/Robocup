@@ -80,6 +80,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_upload_run_artifacts.py",
         "test_skill_behavior_write_chain.py",
         "test_pr4_index_nav.py",
+        "test_playball_not_kick_policy.py",
+        "test_reactive_stub_hardening.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

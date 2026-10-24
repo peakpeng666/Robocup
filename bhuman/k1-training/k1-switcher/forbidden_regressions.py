@@ -29,7 +29,9 @@ GetUp skips Force walk, Force walk lands on kick,
 standup handoff as walk 344 obs,
 local artifacts kept without upload policy,
 want_kick default true, intercept info writes kickPolicy,
-behavior empty as kick, PR index claims GAP closed.
+behavior empty as kick, PR index claims GAP closed,
+PlayBall as kickPolicy, motion walkToBallAndKick as 59,
+reactive as default walk, stub sets ready_gpu true.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -109,6 +111,14 @@ from skill_behavior_write_chain import (  # noqa: E402
     refuse_behavior_empty_as_kick,
     refuse_intercept_info_writes_kick_policy,
     refuse_want_kick_default_true,
+)
+from playball_not_kick_policy import (  # noqa: E402
+    refuse_motion_walkToBallAndKick_as_59,
+    refuse_playball_as_kick_policy,
+)
+from reactive_stub_hardening import (  # noqa: E402
+    refuse_reactive_as_default_walk,
+    refuse_stub_sets_ready_gpu_true,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -658,6 +668,46 @@ def _case_pr_index_claims_gap_closed() -> None:
     )
 
 
+def _case_playball_as_kick_policy() -> None:
+    refuse_playball_as_kick_policy(
+        {
+            "playball_as_kick_policy": True,
+            "source": "PlayBall",
+            "applies": "kickPolicy",
+        }
+    )
+
+
+def _case_motion_walkToBallAndKick_as_59() -> None:
+    refuse_motion_walkToBallAndKick_as_59(
+        {
+            "motion_walkToBallAndKick_as_59": True,
+            "source": "walkToBallAndKick",
+            "contract": "59→13",
+        }
+    )
+
+
+def _case_reactive_as_default_walk() -> None:
+    refuse_reactive_as_default_walk(
+        {
+            "reactive_as_default_walk": True,
+            "source": "K1_Reactive",
+            "default_baseline": "K1_Reactive",
+        }
+    )
+
+
+def _case_stub_sets_ready_gpu_true() -> None:
+    refuse_stub_sets_ready_gpu_true(
+        {
+            "stub_sets_ready_gpu_true": True,
+            "source": "stub",
+            "ready_gpu": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -724,6 +774,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("intercept_info_writes_kick_policy", _case_intercept_info_writes_kick_policy),
     ("behavior_empty_as_kick", _case_behavior_empty_as_kick),
     ("pr_index_claims_gap_closed", _case_pr_index_claims_gap_closed),
+    ("playball_as_kick_policy", _case_playball_as_kick_policy),
+    ("motion_walkToBallAndKick_as_59", _case_motion_walkToBallAndKick_as_59),
+    ("reactive_as_default_walk", _case_reactive_as_default_walk),
+    ("stub_sets_ready_gpu_true", _case_stub_sets_ready_gpu_true),
 )
 
 

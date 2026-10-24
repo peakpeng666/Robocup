@@ -108,6 +108,8 @@
 | 本地产物即推 | `scripts/upload_run_artifacts.py` | 本机产物即上传 `artifacts/<run-id>/`；LFS/Release；不自动开训 |
 | SkillBehaviorControl 写入链 | `scripts/skill_behavior_write_chain.py` | 官方无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空=walk **344→13** |
 | PR 分组导航 / 体积 | `scripts/pr4_index_nav.py` | walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；GAP 仍开 |
+| PlayBall ≠ kickPolicy | `scripts/playball_not_kick_policy.py` | 运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空=walk **344→13** |
+| reactive / 旁路 stub | `scripts/reactive_stub_hardening.py` | stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

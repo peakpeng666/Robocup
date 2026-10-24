@@ -547,6 +547,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "PR4-INDEX grouped nav + volume health (GAP open; no large binaries)",
         ),
         (
+            "bhuman/k1-training/scripts/playball_not_kick_policy.py",
+            "PlayBall ≠ kickPolicy two-chain (pose request ≠ CompiledNN 59→13; empty=walk)",
+        ),
+        (
+            "bhuman/k1-training/scripts/reactive_stub_hardening.py",
+            "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub ≠ ready_gpu",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

@@ -422,6 +422,8 @@ GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen
 本地产物即推 GitHub：`scripts/upload_run_artifacts.py` + [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md)（本机只留当前 run；产物即上传；`TRAINABLE=false`；不自动开训）。  
 SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 `SkillRequest.h` 无 `want_kick`；部署口 `SkillSelectContext.want_kick` 默认 false；`InterceptBallInformation` → `shouldInterceptBall` 默认 false 仍 walkPolicy **344→13**；空 `SkillRequest::none` 仍 walk，不是 kick）。  
 PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py` + [PR4-INDEX.md](PR4-INDEX.md)（walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；勿再塞大二进制；**status=GAP** / **gap_closed=false**）。  
+PlayBall ≠ kickPolicy 两条链：`scripts/playball_not_kick_policy.py`（「运动请求 walkToBallAndKick」与「CompiledNN kick 槽」是两条链；PlayBall 只写位姿/技能，**不会**单独触发 `kickPolicy.apply()` **59→13**；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13**）。  
+reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（reactive / 估计器 / draft stub 全 `TRAINABLE=false`；不得标成默认 walk 基；stub 不得把 `ready_gpu` 翻 true）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---
