@@ -60,6 +60,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "stay_on_standup_after_getup",
         "getup_done_direct_kick",
         "kick_replaces_walk",
+        "cfg_dim_rewrite",
+        "kickmodel_t1",
+        "kick_onnx_on_walk_slot",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -70,7 +73,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "high-priority cases present: T1 / standup→kick / SimRobot / latent / "
             "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / "
             "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / "
-            "stay-on-standup / getup-direct-kick / kick-replaces-walk"
+            "stay-on-standup / getup-direct-kick / kick-replaces-walk / "
+            "cfg-dim / kickModel-T1 / kick-on-walk-slot"
         )
 
     try:

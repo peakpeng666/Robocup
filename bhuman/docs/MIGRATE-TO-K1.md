@@ -97,6 +97,8 @@
 | 128 vs 512 报文对照 | §6.7 | `k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md) | **P4 / P5** | 否（声明）；实测要真机 | 用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP | **本轮对照** |
 | Force walk afterwards 合同 | §6.10 | `scripts/force_walk_afterwards.py` | **P0 / P4** | 否 | getup_done → walk **344→13** + last_action 13 个 0；不得停 standup / 直接 kick | **本轮合同** |
 | KickEngine 边界只读 | §6.10 | `scripts/kick_engine_boundary.py` | **P0 / P4** | 否 | kick **59→13** 旁路 ≠ 换 walk 基线；无独立 KickEngine → SKIP | **本轮快照** |
+| walkingEngine.cfg 只读审计 | §6.10 | `scripts/walking_engine_cfg_audit.py` | **P0** | 否 | walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk | **本轮审计** |
+| kick ONNX 命名对照 | 布局 | `scripts/kick_onnx_naming.py` | **P0 / P4** | 否 | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP | **本轮对照** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -202,6 +204,8 @@
 | 72 | 128 vs 512 报文对照 | `teamcomm_128_vs_512.py` | `python3 bhuman/k1-training/k1-switcher/test_teamcomm_128_vs_512.py` |
 | 73 | Force walk afterwards 合同 | `force_walk_afterwards.py` | `python3 bhuman/k1-training/k1-switcher/test_force_walk_afterwards.py` |
 | 74 | KickEngine 边界只读 | `kick_engine_boundary.py` | `python3 bhuman/k1-training/k1-switcher/test_kick_engine_boundary.py` |
+| 75 | walkingEngine.cfg 只读审计 | `walking_engine_cfg_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_walking_engine_cfg_audit.py` |
+| 76 | kick ONNX 命名对照 | `kick_onnx_naming.py` | `python3 bhuman/k1-training/k1-switcher/test_kick_onnx_naming.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

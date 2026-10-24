@@ -125,11 +125,13 @@ def recorded_layout(repo: Path) -> dict[str, Any]:
     for needle in (
         "K1_walk.pth",
         "K1_walk.onnx",
+        "K1_kick_inner.onnx",
         "344→13",
         "SKIP",
         "T1",
         "reactive",
         "不入库",
+        "默认槽",
     ):
         if needle not in text:
             raise AssertionError(f"CHECKPOINT-LAYOUT.md missing {needle}")

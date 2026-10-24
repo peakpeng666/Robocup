@@ -79,6 +79,8 @@
 | 128 vs 512 对照 | `k1-switcher/teamcomm_128_vs_512.py` | 官方 128 ≠ HSL 512；不得混用；带宽 SKIP |
 | Force walk afterwards | `scripts/force_walk_afterwards.py` | getup_done→walk 344→13；last_action 13 个 0；不得停 standup / 直接 kick |
 | KickEngine 边界 | `scripts/kick_engine_boundary.py` | kick 59→13 旁路 ≠ 换 walk；无独立 KickEngine SKIP |
+| walkingEngine.cfg 审计 | `scripts/walking_engine_cfg_audit.py` | walk 344→13 / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk |
+| kick ONNX 命名 | `scripts/kick_onnx_naming.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

@@ -51,6 +51,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_teamcomm_128_vs_512.py",
         "test_force_walk_afterwards.py",
         "test_kick_engine_boundary.py",
+        "test_walking_engine_cfg_audit.py",
+        "test_kick_onnx_naming.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

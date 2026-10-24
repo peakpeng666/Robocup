@@ -18,7 +18,9 @@
 只读交接快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。  
 跌倒链只读：`scripts/falldown_motion_chain.py`（FallDownState / MotionEngine / GetUpEngine：fallen → 73→22 → getup_done → walk；跌倒不是 SkillRequest）。  
 Force walk afterwards：`scripts/force_walk_afterwards.py`（getup_done → walk **344→13** + last_action 13 个 0；与 `last_action_reset` 交叉）。  
-踢球边界：`scripts/kick_engine_boundary.py`（PlayBall / WalkToBallAndKickEngine → kick **59→13** 旁路；不是换 walk 基线）。
+踢球边界：`scripts/kick_engine_boundary.py`（PlayBall / WalkToBallAndKickEngine → kick **59→13** 旁路；不是换 walk 基线）。  
+walkingEngine.cfg 只读：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽）。  
+kick ONNX 命名：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

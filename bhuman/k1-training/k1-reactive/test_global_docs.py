@@ -70,6 +70,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -144,6 +146,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -210,6 +214,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512.py",
         "force_walk_afterwards.py",
         "kick_engine_boundary.py",
+        "walking_engine_cfg_audit.py",
+        "kick_onnx_naming.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -222,6 +228,7 @@ REQUIRED_DOCS = {
         "behavior_control_handoff",
         "falldown_motion_chain",
         "force_walk_afterwards",
+        "walking_engine_cfg_audit",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -265,6 +272,8 @@ REQUIRED_DOCS = {
         "falldown_motion_chain",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -333,6 +342,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -385,6 +396,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -485,6 +498,8 @@ REQUIRED_DOCS = {
         "teamcomm_128_vs_512",
         "force_walk_afterwards",
         "kick_engine_boundary",
+        "walking_engine_cfg_audit",
+        "kick_onnx_naming",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
@@ -542,10 +557,12 @@ REQUIRED_DOCS = {
     "bhuman/docs/CHECKPOINT-LAYOUT.md": (
         "344→13",
         "K1_walk.pth",
+        "K1_kick_inner.onnx",
         "SKIP",
         "T1",
         "reactive",
         "不入库",
+        "默认槽",
     ),
     "bhuman/docs/TEAMCOMM-128-VS-512.md": (
         "128",

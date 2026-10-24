@@ -393,6 +393,8 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 跌倒链只读：`scripts/falldown_motion_chain.py`（FallDownState / MotionEngine / GetUpEngine：fallen → 73→22 → getup_done → walk 344→13；跌倒不是 SkillRequest Type；缺源 SKIP）。  
 Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（GetUp `Force walk afterwards` → walk **344→13** + last_action 13 个 0；不得停在 standup；不得直接 kick；与 switcher / `last_action_reset` 交叉）。  
 踢球边界只读：`scripts/kick_engine_boundary.py`（本仓无独立 KickEngine；活链 PlayBall → WalkToBallAndKickEngine → kickPolicy **59→13**；kick 是技能旁路，不是换 walk 基线；缺 KickEngine 诚实 SKIP）。  
+walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk 槽；standup 不在此 cfg）。  
+kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT / Walk/ 目录交叉；占默认槽 → FAIL；缺文件 SKIP）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

@@ -5,7 +5,8 @@ Cases: T1 as walk, standup→kick, SimRobot as fast standup, latent into 344,
 draft overwrite live, unified PD as closed gap, sibling merge into 344,
 T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
 mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick,
-stay on standup after getup, kick replacing walk.
+stay on standup after getup, kick replacing walk, cfg dim rewrite,
+kickModel pointing at T1, kick ONNX occupying the walk slot.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -37,6 +38,11 @@ from force_walk_afterwards import (  # noqa: E402
     refuse_stay_on_standup_after_getup,
 )
 from kick_engine_boundary import refuse_kick_replaces_walk  # noqa: E402
+from kick_onnx_naming import refuse_kick_onnx_on_walk_slot  # noqa: E402
+from walking_engine_cfg_audit import (  # noqa: E402
+    refuse_cfg_dim_rewrite,
+    refuse_kickmodel_points_t1,
+)
 from hifar_boundary import refuse_huoshen_obs_as_walk, refuse_t1_weight_on_k1_actor  # noqa: E402
 from hooks import refuse_concat_latent_onto_walk  # noqa: E402
 from official_sibling_tasks_audit import refuse_merge_sibling_into_344  # noqa: E402
@@ -145,6 +151,24 @@ def _case_kick_replaces_walk() -> None:
     refuse_kick_replaces_walk({"replaces_walk": True, "kick_as_walk_baseline": True})
 
 
+def _case_cfg_dim_rewrite() -> None:
+    refuse_cfg_dim_rewrite({"cfg_dim_changed": True, "numInput": 365, "slot": "walk"})
+
+
+def _case_kickmodel_t1() -> None:
+    refuse_kickmodel_points_t1({"kickModel": "T1_kick_inner.onnx"})
+
+
+def _case_kick_onnx_on_walk_slot() -> None:
+    refuse_kick_onnx_on_walk_slot(
+        {
+            "dest": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+            "name": "K1_kick_inner.onnx",
+            "family": "kick",
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -164,6 +188,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("stay_on_standup_after_getup", _case_stay_on_standup_after_getup),
     ("getup_done_direct_kick", _case_getup_done_direct_kick),
     ("kick_replaces_walk", _case_kick_replaces_walk),
+    ("cfg_dim_rewrite", _case_cfg_dim_rewrite),
+    ("kickmodel_t1", _case_kickmodel_t1),
+    ("kick_onnx_on_walk_slot", _case_kick_onnx_on_walk_slot),
 )
 
 

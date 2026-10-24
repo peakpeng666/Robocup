@@ -431,6 +431,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "KickEngine boundary (kick 59→13 bypass ≠ walk; missing KickEngine SKIP)",
         ),
         (
+            "bhuman/k1-training/scripts/walking_engine_cfg_audit.py",
+            "walkingEngine.cfg audit (walk 344→13 / K1_walk.onnx; kick ≠ walk slot)",
+        ),
+        (
+            "bhuman/k1-training/scripts/kick_onnx_naming.py",
+            "kick ONNX naming (K1_kick_inner ≠ Walk/ default; missing SKIP)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

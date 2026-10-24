@@ -137,6 +137,8 @@ scripts/
 ├── falldown_motion_chain.py     fallen→73→22→walk；跌倒不是 SkillRequest；缺源 SKIP
 ├── force_walk_afterwards.py     getup_done→walk 344→13 + last_action 13 个 0
 ├── kick_engine_boundary.py      kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
+├── walking_engine_cfg_audit.py  walk 344→13 / K1_walk.onnx；kick ≠ walk 槽
+├── kick_onnx_naming.py          K1_kick_inner ≠ Walk/ 默认槽；缺文件 SKIP
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -190,6 +192,8 @@ k1-switcher/
 ├── test_teamcomm_128_vs_512.py
 ├── test_force_walk_afterwards.py
 ├── test_kick_engine_boundary.py
+├── test_walking_engine_cfg_audit.py
+├── test_kick_onnx_naming.py
 ├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
 ├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
 ├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
@@ -297,7 +301,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-p1f.json    上轮（settle / 估计器 A/B / 退火 + 五因素机器校验）
 ├── contract-gate-20261024-bc.json     上轮（BehaviorControl 交接 + TeamComm 形状）
 ├── contract-gate-20261024-fall.json   上轮（FallDown 跌倒链 + 128 vs 512）
-├── contract-gate-20261024-fw.json     本轮（Force walk afterwards + KickEngine 边界）
+├── contract-gate-20261024-fw.json     上轮（Force walk afterwards + KickEngine 边界）
+├── contract-gate-20261024-cfg.json    本轮（walkingEngine.cfg 审计 + kick ONNX 命名）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -321,6 +326,8 @@ k1-training/manifests/
 ├── teamcomm-128-vs-512-latest.json    官方 128 ≠ HSL 512；不得混用
 ├── force-walk-afterwards-latest.json  getup_done→walk 344→13；last_action 13 个 0
 ├── kick-engine-boundary-latest.json   kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
+├── walking-engine-cfg-audit-latest.json walk 344→13 / K1_walk.onnx；kick ≠ walk 槽
+├── kick-onnx-naming-latest.json       K1_kick_inner ≠ Walk/ 默认槽；缺文件 SKIP
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -397,6 +404,8 @@ k1-training/manifests/
 | 128 vs 512 报文对照 | `teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md) | 用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP |
 | Force walk afterwards 合同 | `force_walk_afterwards.py` | getup_done → walk 344→13 + last_action 13 个 0；不得停 standup / 直接 kick |
 | KickEngine 边界只读 | `kick_engine_boundary.py` | kick 59→13 旁路 ≠ 换 walk 基线；无独立 KickEngine → SKIP |
+| walkingEngine.cfg 只读审计 | `walking_engine_cfg_audit.py` | walk 344→13 / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk |
+| kick ONNX 命名对照 | `kick_onnx_naming.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

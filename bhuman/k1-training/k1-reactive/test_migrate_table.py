@@ -155,6 +155,8 @@ REQUIRED_LANDINGS = (
     "teamcomm_128_vs_512.py",
     "force_walk_afterwards.py",
     "kick_engine_boundary.py",
+    "walking_engine_cfg_audit.py",
+    "kick_onnx_naming.py",
 )
 
 

@@ -1,0 +1,182 @@
+{
+  "generated_utc": "2026-10-24T09:26:01+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "walking_engine_cfg": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "getup_engine_cfg": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg"
+  },
+  "cfgs": [
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "contract": "344→13"
+      },
+      "kick": {
+        "kickModel": "K1_kick_inner.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13,
+        "contract": "59→13"
+      },
+      "kick_soft": {
+        "kickModel": "K1_kick_inner_soft.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13
+      },
+      "standup_in_walking_engine_cfg": false,
+      "kick_overwrites_walk": false,
+      "t1_in_k1_walk_slot": false
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+      "walk": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "contract": "344→13"
+      },
+      "kick": {
+        "kickModel": "K1_kick_inner.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13,
+        "contract": "59→13"
+      },
+      "kick_soft": {
+        "kickModel": "K1_kick_inner_soft.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13
+      },
+      "standup_in_walking_engine_cfg": false,
+      "kick_overwrites_walk": false,
+      "t1_in_k1_walk_slot": false
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+      "walk": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "contract": "344→13"
+      },
+      "kick": {
+        "kickModel": "K1_kick_inner.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13,
+        "contract": "59→13"
+      },
+      "kick_soft": {
+        "kickModel": "K1_kick_inner_soft.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13
+      },
+      "standup_in_walking_engine_cfg": false,
+      "kick_overwrites_walk": false,
+      "t1_in_k1_walk_slot": false
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk11v11/K1/walkingEngine.cfg",
+      "walk": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "contract": "344→13"
+      },
+      "kick": {
+        "kickModel": "K1_kick_inner.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13,
+        "contract": "59→13"
+      },
+      "kick_soft": {
+        "kickModel": "K1_kick_inner_soft.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13
+      },
+      "standup_in_walking_engine_cfg": false,
+      "kick_overwrites_walk": false,
+      "t1_in_k1_walk_slot": false
+    },
+    {
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "contract": "344→13"
+      },
+      "kick": {
+        "kickModel": "K1_kick_inner.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13,
+        "contract": "59→13"
+      },
+      "kick_soft": {
+        "kickModel": "K1_kick_inner_soft.onnx",
+        "numInput": 59,
+        "numOutput_in_cfg": null,
+        "implied_act": 13
+      },
+      "standup_in_walking_engine_cfg": false,
+      "kick_overwrites_walk": false,
+      "t1_in_k1_walk_slot": false
+    }
+  ],
+  "walk": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "contract": "344→13"
+  },
+  "kick": {
+    "kickModel": "K1_kick_inner.onnx",
+    "numInput": 59,
+    "numOutput_in_cfg": null,
+    "implied_act": 13,
+    "contract": "59→13"
+  },
+  "kick_soft": {
+    "kickModel": "K1_kick_inner_soft.onnx",
+    "numInput": 59,
+    "numOutput_in_cfg": null,
+    "implied_act": 13
+  },
+  "standup": {
+    "in_walking_engine_cfg": false,
+    "note": "standup lives in getUpEngine.cfg, not walkingEngine.cfg",
+    "sibling_rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+    "policyName": "K1.onnx",
+    "numInput": 73,
+    "numOutput": 22,
+    "contract": "73→22"
+  },
+  "t1": {
+    "rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/T1/walkingEngine.cfg",
+    "modelName": "T1_walk.onnx",
+    "numInput": 365,
+    "numOutput": 14,
+    "is_k1_walk_slot": false
+  },
+  "kick_overwrites_walk": false,
+  "t1_in_k1_walk_slot": false,
+  "fabricated": false,
+  "note": "official K1 walkingEngine.cfg: walk 344→13 / K1_walk.onnx; kick 59 / K1_kick_inner.onnx (not walk default); standup not in this cfg",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

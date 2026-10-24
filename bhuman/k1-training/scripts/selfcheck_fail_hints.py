@@ -132,6 +132,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/kick_engine_boundary.py",
         "hint": "先看 kick 59→13 是否被写成换 walk 基线，或缺 KickEngine 是否仍诚实 SKIP",
     },
+    "test_walking_engine_cfg_audit.py": {
+        "look": "bhuman/k1-training/scripts/walking_engine_cfg_audit.py",
+        "hint": "先看 walkingEngine.cfg walk 是否仍 344→13 / K1_walk.onnx，或 kickModel/T1 是否占了 walk 槽",
+    },
+    "test_kick_onnx_naming.py": {
+        "look": "bhuman/k1-training/scripts/kick_onnx_naming.py",
+        "hint": "先看 K1_kick_inner.onnx 是否被放到 Walk/ 默认槽 K1_walk.onnx，或缺文件是否仍诚实 SKIP",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",
