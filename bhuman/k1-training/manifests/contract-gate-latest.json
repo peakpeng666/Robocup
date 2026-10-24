@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:45:49+00:00",
+  "generated_utc": "2026-10-24T08:28:06+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -48,7 +48,9 @@
     "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
     "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
     "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
-    "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered"
+    "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
+    "simrobot_acceptance": "six-robot table; live SKIP without SimRobot; no fake-green",
+    "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -141,6 +143,9 @@
       "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
       "official train.py registry (K1 in; bypass not registered) present",
       "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
+      "SimRobot six-robot acceptance (no sim; live SKIP; no fake-green) present",
+      "six-robot case table S6-1..S6-4 (default walk 344→13) present",
+      "SkillRequest map (empty/unknown → walk; shoot/pass stay walk) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -304,6 +309,7 @@
         "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
         "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
         "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
+        "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -703,7 +709,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 39 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
@@ -733,6 +739,7 @@
         "PASS test_pr4_selfcheck.py",
         "PASS test_reactive_hardening.py",
         "PASS test_research_migrate_table.py",
+        "PASS test_skill_request_map.py",
         "PASS test_skill_switch_continuity.py",
         "PASS test_skill_switch_map.py",
         "PASS test_unregistered_in_train_py.py",
@@ -742,7 +749,8 @@
         "PASS test_p1_draft.py",
         "PASS test_overpass_contract.py",
         "PASS test_sim2sim_gate.py",
-        "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)"
+        "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)",
+        "PASS test_simrobot_acceptance.py"
       ],
       "results": [
         {
@@ -858,6 +866,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_skill_request_map.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_skill_switch_continuity.py",
           "status": "PASS"
         },
@@ -892,6 +904,10 @@
         {
           "name": "test_sim2sim_gate.py",
           "status": "PASS"
+        },
+        {
+          "name": "test_simrobot_acceptance.py",
+          "status": "PASS"
         }
       ],
       "discovered": [
@@ -923,6 +939,7 @@
         "test_pr4_selfcheck.py",
         "test_reactive_hardening.py",
         "test_research_migrate_table.py",
+        "test_skill_request_map.py",
         "test_skill_switch_continuity.py",
         "test_skill_switch_map.py",
         "test_unregistered_in_train_py.py",
@@ -931,7 +948,8 @@
         "test_draft_validator.py",
         "test_p1_draft.py",
         "test_overpass_contract.py",
-        "test_sim2sim_gate.py"
+        "test_sim2sim_gate.py",
+        "test_simrobot_acceptance.py"
       ],
       "walk": "344→13",
       "trainable": false
@@ -1225,10 +1243,58 @@
       "trainable": false,
       "write_yaml": false,
       "walk": "344→13"
+    },
+    "simrobot_acceptance": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "TRAINABLE=false / IMPLEMENTED=false / will_run_sim=false",
+        "assert_acceptance_frozen: table 344→13; live not PASS",
+        "S6-1 table PASS: six slots walk 344→13",
+        "S6-2 static PASS: fallen→73→22→getup_done→344→13",
+        "S6-3 PASS: standup→kick refused",
+        "S6-4 PASS: SimRobot ≠ fast 72→22",
+        "S6-1/S6-2 live SKIP (honest): missing=['simrobot_binary']",
+        "negative: live PASS without SimRobot/scene refused",
+        "negative: Isaac metrics ≠ SimRobot six-robot",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE.md anchors present",
+        "cases S6-1..S6-4 present",
+        "official K1.yaml untouched 344→13"
+      ],
+      "skipped": true,
+      "walk": "344→13"
+    },
+    "skill_request_map": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_map_frozen: empty/unknown → walk; shoot stays walk",
+        "OFFICIAL_TYPES match SkillRequest.h",
+        "empty/unknown None → walk 344→13",
+        "empty/unknown '' → walk 344→13",
+        "empty/unknown 'unknown' → walk 344→13",
+        "empty/unknown '???' → walk 344→13",
+        "walk-family SkillRequest stays 344→13",
+        "shoot/pass/dribble/clear/waitShoot stay walk unless want_kick",
+        "fallen → handoff_getup (not a SkillRequest Type)",
+        "refused foreign 79",
+        "refused foreign K1_Reactive",
+        "refused foreign T1",
+        "refused foreign hifar",
+        "refused foreign huoshen_t1",
+        "refused foreign model.pth",
+        "refused foreign nusim",
+        "refused foreign nusim_79",
+        "refused foreign t1_reactive",
+        "BT doc still carries SkillRequest / walk discipline",
+        "GLOBAL §6.10 points at skill_request_map",
+        "official K1.yaml untouched 344→13"
+      ],
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:45:48+00:00",
+    "generated_utc": "2026-10-24T08:28:04+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1306,7 +1372,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "628a131e65ee4fadad8c86f5b7f8ee85f4a94054",
+    "workspace_head": "6a93963e0fab5d7f172091463bc1febdc81a5a5f",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1740,6 +1806,9 @@
     "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
     "official train.py registry (K1 in; bypass not registered) present",
     "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
+    "SimRobot six-robot acceptance (no sim; live SKIP; no fake-green) present",
+    "six-robot case table S6-1..S6-4 (default walk 344→13) present",
+    "SkillRequest map (empty/unknown → walk; shoot/pass stay walk) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1788,6 +1857,7 @@
     "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
     "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
     "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
+    "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -2039,7 +2109,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 39 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
@@ -2069,6 +2139,7 @@
     "PASS test_pr4_selfcheck.py",
     "PASS test_reactive_hardening.py",
     "PASS test_research_migrate_table.py",
+    "PASS test_skill_request_map.py",
     "PASS test_skill_switch_continuity.py",
     "PASS test_skill_switch_map.py",
     "PASS test_unregistered_in_train_py.py",
@@ -2079,6 +2150,7 @@
     "PASS test_overpass_contract.py",
     "PASS test_sim2sim_gate.py",
     "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)",
+    "PASS test_simrobot_acceptance.py",
     "export frozen: TRAINABLE=false; default walk 344→13; no write",
     "default exportable path is official walk 344→13",
     "negative: default export missing 344→13 declaration refused",
@@ -2234,6 +2306,40 @@
     "write-back of K1.yaml refused",
     "wrote env-registry-audit-latest.json (K1 in; bypass out)",
     "official K1.yaml untouched",
+    "TRAINABLE=false / IMPLEMENTED=false / will_run_sim=false",
+    "assert_acceptance_frozen: table 344→13; live not PASS",
+    "S6-1 table PASS: six slots walk 344→13",
+    "S6-2 static PASS: fallen→73→22→getup_done→344→13",
+    "S6-3 PASS: standup→kick refused",
+    "S6-4 PASS: SimRobot ≠ fast 72→22",
+    "S6-1/S6-2 live SKIP (honest): missing=['simrobot_binary']",
+    "negative: live PASS without SimRobot/scene refused",
+    "negative: Isaac metrics ≠ SimRobot six-robot",
+    "SIMROBOT-SIX-ROBOT-ACCEPTANCE.md anchors present",
+    "cases S6-1..S6-4 present",
+    "official K1.yaml untouched 344→13",
+    "simrobot_acceptance: skipped (missing optional runtime)",
+    "assert_map_frozen: empty/unknown → walk; shoot stays walk",
+    "OFFICIAL_TYPES match SkillRequest.h",
+    "empty/unknown None → walk 344→13",
+    "empty/unknown '' → walk 344→13",
+    "empty/unknown 'unknown' → walk 344→13",
+    "empty/unknown '???' → walk 344→13",
+    "walk-family SkillRequest stays 344→13",
+    "shoot/pass/dribble/clear/waitShoot stay walk unless want_kick",
+    "fallen → handoff_getup (not a SkillRequest Type)",
+    "refused foreign 79",
+    "refused foreign K1_Reactive",
+    "refused foreign T1",
+    "refused foreign hifar",
+    "refused foreign huoshen_t1",
+    "refused foreign model.pth",
+    "refused foreign nusim",
+    "refused foreign nusim_79",
+    "refused foreign t1_reactive",
+    "BT doc still carries SkillRequest / walk discipline",
+    "GLOBAL §6.10 points at skill_request_map",
+    "official K1.yaml untouched 344→13",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2286,6 +2392,8 @@
     "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
     "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
     "python3 bhuman/k1-training/scripts/env_registry_audit.py",
+    "python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
+    "python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
