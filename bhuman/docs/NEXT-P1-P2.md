@@ -178,6 +178,9 @@ python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py
 python3 bhuman/k1-training/scripts/k1_reward_audit.py
 python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py
 python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py
+python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py
+python3 bhuman/k1-training/scripts/p1_draft_diff.py
+python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
@@ -204,6 +207,9 @@ GPU 清单：`probe_reserved_gpu.sh`（`ready=true` 必须先告知用户，不�
 奖励只读审计：`scripts/k1_reward_audit.py`（禁止写回 `K1.yaml`）。
 历史缓冲形状：`history_buffer_shape.py`（10×32+24=344；全 0 不得连续性 PASS）。
 research-inputs 短表：[RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md)。
+13-DOF 关节图：`joint_map_contract.py`（长度 13；standup 22 不得冒充 walk）。
+官方 vs draft 差分：`scripts/p1_draft_diff.py`（`draft_only:true`；未写进 live）。
+合并清单：[PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（不要自动合并；合并 ≠ 已训通）。
 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 CI 草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI；云端 PASS+WARN）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。

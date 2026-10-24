@@ -100,6 +100,9 @@ REQUIRED_DOCS = {
         "k1_reward_audit",
         "history_buffer_shape",
         "RESEARCH-MIGRATE-TABLE",
+        "joint_map_contract",
+        "p1_draft_diff",
+        "PR4-MERGE-CHECKLIST",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -127,6 +130,9 @@ REQUIRED_DOCS = {
         "k1_reward_audit.py",
         "history_buffer_shape.py",
         "RESEARCH-MIGRATE-TABLE",
+        "joint_map_contract.py",
+        "p1_draft_diff.py",
+        "PR4-MERGE-CHECKLIST",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -151,6 +157,7 @@ REQUIRED_DOCS = {
         "344→13",
         "不改默认",
         "draft_validator",
+        "p1_draft_diff",
     ),
     "bhuman/docs/DEPLOY-CALL-SEQUENCE.md": (
         "344→13",
@@ -195,6 +202,9 @@ REQUIRED_DOCS = {
         "k1_reward_audit",
         "history_buffer_shape",
         "RESEARCH-MIGRATE-TABLE",
+        "joint_map_contract",
+        "p1-draft-diff",
+        "PR4-MERGE-CHECKLIST",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -204,6 +214,7 @@ REQUIRED_DOCS = {
         "T4",
         "history_buffer_shape",
         "10×32+24=344",
+        "joint_map_contract",
     ),
     "bhuman/docs/P2-ACCEPTANCE.md": (
         "344→13",
@@ -225,6 +236,7 @@ REQUIRED_DOCS = {
         "README-RL",
         "gpu-worker-checklist",
         "必须先告知用户",
+        "PR4-MERGE-CHECKLIST",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -280,6 +292,9 @@ REQUIRED_DOCS = {
         "k1_reward_audit",
         "history_buffer_shape",
         "RESEARCH-MIGRATE-TABLE",
+        "joint_map_contract",
+        "p1_draft_diff",
+        "PR4-MERGE-CHECKLIST",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -290,6 +305,15 @@ REQUIRED_DOCS = {
         "RMA",
         "火神",
         "K1.yaml",
+    ),
+    "bhuman/docs/PR4-MERGE-CHECKLIST.md": (
+        "run_contract_gate.sh",
+        "run_unit_tests_no_gym.sh",
+        "344→13",
+        "不要自动合并",
+        "合并 ≠ 已训通",
+        "未含权重",
+        "GPU worker",
     ),
 }
 

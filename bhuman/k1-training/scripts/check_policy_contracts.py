@@ -540,6 +540,24 @@ def check_gpu_free_shells(
             "k1_research_migrate_table",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+            "joint_map_contract",
+            "k1_joint_map_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_p1_draft_diff.py",
+            "p1_draft_diff",
+            "k1_p1_draft_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
+            "pr4_merge_checklist",
+            "k1_pr4_merge_checklist",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -989,6 +1007,9 @@ def main() -> int:
             "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
             "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
             "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
+            "joint_map_contract": "walk 13-D legs+freq; refuse 12/15/22; standup ≠ walk",
+            "p1_draft_diff": "official stability vs draft-only; draft_only:true; live untouched",
+            "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1055,6 +1076,9 @@ def main() -> int:
             "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
             "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
             "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+            "python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+            "python3 bhuman/k1-training/scripts/p1_draft_diff.py",
+            "python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }

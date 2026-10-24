@@ -62,3 +62,5 @@ T4（切入后跳变）在有真实 Gym/MuJoCo 轨迹之前必须 **SKIP**。阈
 活测试：`python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`。
 
 构造 / 校验 API：`k1-switcher/history_buffer_shape.py`（`10×32+24=344`）。无录包时只能 **shape PASS + continuity SKIP**；合成全 0 不得报连续性 PASS。`python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py`。
+
+13 维动作关节序（只读）：`k1-switcher/joint_map_contract.py`（12 腿 URDF 序 + `gait_frequency`；standup 22 不得冒充）。

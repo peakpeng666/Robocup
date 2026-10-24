@@ -274,6 +274,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/docs/RESEARCH-MIGRATE-TABLE.md",
             "research-inputs / GLOBAL short migrate table",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/joint_map_contract.py",
+            "walk 13-D joint map (refuse 12/15/22; standup ≠ walk)",
+        ),
+        (
+            "bhuman/k1-training/scripts/p1_draft_diff.py",
+            "official vs draft-only key diff (draft_only:true; live untouched)",
+        ),
+        (
+            "bhuman/docs/PR4-MERGE-CHECKLIST.md",
+            "PR #4 merge checklist (merge ≠ trained; no auto-merge)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

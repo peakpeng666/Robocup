@@ -4,7 +4,8 @@
 
 **本文件不是 `config_patch`。** 官方 `K1.yaml` 奖励数值与 `configs/walk-*-stability-v1.json` **保持原值**。
 `run_walk_stability.sh` 仍然只读 `walk-reference|critic-stability-v1.json`。有 GPU 后若要试某一因素，必须显式另存实验 JSON，不得改本草稿为默认。
-门禁校验：`python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py`（`draft_only: true`；禁止被 stability / 官方 config_patch 读取；`still_proportion` / `tracking_*` / `action_rate` / `reference_mean_penalty` 不得覆盖到 live）。
+门禁校验：`python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py`（`draft_only: true`；禁止被 stability / 官方 config_patch 读取；`still_proportion` / `tracking_*` / `action_rate` / `reference_mean_penalty` 不得覆盖到 live）。  
+官方 vs draft 键差分（只读）：`python3 bhuman/k1-training/scripts/p1_draft_diff.py` → `manifests/p1-draft-diff-latest.json`。
 
 底座：`--task K1`，观测/动作仍是 **344→13**。
 

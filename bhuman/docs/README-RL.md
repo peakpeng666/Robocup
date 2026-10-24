@@ -40,6 +40,9 @@
 | 奖励只读审计 | `scripts/k1_reward_audit.py` | 只读 `K1.yaml`；篡改快照失败 |
 | 历史缓冲形状 | `k1-switcher/history_buffer_shape.py` | 10×32+24=344；全 0 ≠ 连续性 PASS |
 | research-inputs 短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | 可旁路借鉴 ≠ 换 walk |
+| 13-DOF 关节图 | `k1-switcher/joint_map_contract.py` | 长度 13；standup 22 ≠ walk |
+| 官方 vs draft 差分 | `scripts/p1_draft_diff.py` | `draft_only:true`；未写进 live |
+| 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；不要自动合并 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -87,3 +90,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么读；**PASS ≠ 已训通** |
 | [PR4-INDEX.md](PR4-INDEX.md) | 文件树 |
 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | research-inputs / GLOBAL 可迁短表 |
+| [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并前两条命令；**不要自动合并** |

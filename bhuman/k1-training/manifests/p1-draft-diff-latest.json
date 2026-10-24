@@ -1,0 +1,133 @@
+{
+  "generated_utc": "2026-10-24T07:27:44+00:00",
+  "read_only": true,
+  "write_yaml": false,
+  "trainable": false,
+  "walk": "344→13",
+  "sources": {
+    "stability": [
+      "bhuman/k1-training/configs/walk-reference-stability-v1.json",
+      "bhuman/k1-training/configs/walk-critic-stability-v1.json"
+    ],
+    "k1_yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    "draft_dir": "bhuman/k1-training/configs/draft-only"
+  },
+  "all_drafts_draft_only": true,
+  "live_paths_untouched": true,
+  "official_algorithm": {
+    "walk-reference-stability-v1.json": {
+      "max_update_kl": 0.02,
+      "guard_min_lr": 1e-08,
+      "critic_warmup_iterations": 20,
+      "critic_warmup_lr": 0.0003,
+      "critic_learning_rate": 0.0003,
+      "reference_mean_penalty": 1.0,
+      "reference_action_std": 0.1353352832366127,
+      "reference_checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+      "reference_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff"
+    },
+    "walk-critic-stability-v1.json": {
+      "max_update_kl": 0.02,
+      "guard_min_lr": 1e-08,
+      "critic_warmup_iterations": 20,
+      "critic_warmup_lr": 0.0003,
+      "critic_learning_rate": 0.0003
+    }
+  },
+  "drafts": [
+    {
+      "name": "walk-p1-factors-v0.json",
+      "draft_only": true,
+      "proposed_keys": [
+        "A_command_schedule.commands.still_proportion",
+        "A_command_schedule.schedule",
+        "B_settle_jitter.draft_settle_jitter_scale",
+        "B_settle_jitter.draft_zero_cmd_root_acc_scale",
+        "C_disturbance_curriculum.reference_end_events",
+        "C_disturbance_curriculum.reference_fall_events",
+        "D_estimator_ab.actor_obs",
+        "D_estimator_ab.allowed",
+        "D_estimator_ab.estimator",
+        "E_reference_penalty_anneal.anneal_iters",
+        "E_reference_penalty_anneal.reference_mean_penalty_end",
+        "E_reference_penalty_anneal.reference_mean_penalty_start",
+        "commands.still_proportion"
+      ]
+    }
+  ],
+  "live_rewards": {
+    "still_proportion": 0.1,
+    "tracking_lin_vel_x": 0.75,
+    "tracking_lin_vel_y": 0.75,
+    "tracking_ang_vel": 0.375,
+    "action_rate": -1.0,
+    "reference_mean_penalty": 1.0
+  },
+  "diff": {
+    "official_only": [
+      "critic_learning_rate",
+      "critic_warmup_iterations",
+      "critic_warmup_lr",
+      "guard_min_lr",
+      "max_update_kl",
+      "reference_action_std",
+      "reference_checkpoint",
+      "reference_mean_penalty",
+      "reference_sha256"
+    ],
+    "draft_proposed_only": [
+      "actor_obs",
+      "allowed",
+      "anneal_iters",
+      "draft_settle_jitter_scale",
+      "draft_zero_cmd_root_acc_scale",
+      "estimator",
+      "reference_end_events",
+      "reference_fall_events",
+      "reference_mean_penalty_end",
+      "reference_mean_penalty_start",
+      "schedule",
+      "still_proportion"
+    ],
+    "draft_proposed_full": [
+      "A_command_schedule.commands.still_proportion",
+      "A_command_schedule.schedule",
+      "B_settle_jitter.draft_settle_jitter_scale",
+      "B_settle_jitter.draft_zero_cmd_root_acc_scale",
+      "C_disturbance_curriculum.reference_end_events",
+      "C_disturbance_curriculum.reference_fall_events",
+      "D_estimator_ab.actor_obs",
+      "D_estimator_ab.allowed",
+      "D_estimator_ab.estimator",
+      "E_reference_penalty_anneal.anneal_iters",
+      "E_reference_penalty_anneal.reference_mean_penalty_end",
+      "E_reference_penalty_anneal.reference_mean_penalty_start",
+      "commands.still_proportion"
+    ],
+    "name_overlap": [],
+    "related_live_vs_proposed": [
+      {
+        "key": "commands.still_proportion",
+        "official": 0.1,
+        "proposed": 0.25,
+        "live_updated": false
+      },
+      {
+        "key": "algorithm.reference_mean_penalty",
+        "official": 1.0,
+        "proposed": {
+          "start": 1.0,
+          "end": 0.3
+        },
+        "live_updated": false
+      }
+    ]
+  },
+  "notes": [
+    "K1.yaml live rewards / dims untouched",
+    "walk-reference-stability-v1.json has no draft-only import",
+    "walk-critic-stability-v1.json has no draft-only import",
+    "official reference_mean_penalty stays 1.0"
+  ],
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

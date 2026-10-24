@@ -87,6 +87,9 @@ REQUIRED_LANDINGS = (
     "k1_reward_audit.py",
     "history_buffer_shape.py",
     "RESEARCH-MIGRATE-TABLE",
+    "joint_map_contract.py",
+    "p1_draft_diff.py",
+    "PR4-MERGE-CHECKLIST",
 )
 
 

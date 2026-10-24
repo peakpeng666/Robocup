@@ -490,4 +490,7 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - GPU 就绪清单：`scripts/probe_reserved_gpu.sh`（checklist JSON；不启训）
 - research-inputs 可迁短表：[RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md)
 - K1 奖励只读审计：`scripts/k1_reward_audit.py`（禁止写回 yaml）
+- 13-DOF 关节映射：`k1-switcher/joint_map_contract.py`（长度 13；standup ≠ walk）
+- 官方 vs draft 差分：`scripts/p1_draft_diff.py`
+- 合并清单：[PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（不要自动合并）
 - CI 门禁草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI）
