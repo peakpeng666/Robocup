@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T11:38:17+00:00",
+  "generated_utc": "2026-10-24T11:46:50+00:00",
   "status": "PASS",
   "skipped": false,
   "reason": null,
@@ -26,9 +26,9 @@
   ],
   "dispatch": {
     "none": "empty",
+    "clear": "PlayBall",
     "shoot": "PlayBall",
     "pass": "PlayBall",
-    "clear": "PlayBall",
     "dribble": "PlayBall",
     "waitShoot": "GoToBallWaitAndKick",
     "walk": "WalkToPointObstacle",
