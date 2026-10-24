@@ -1,0 +1,206 @@
+diff --git a/Src/Libs/SimulatedRobot/GameController.h b/Src/Libs/SimulatedRobot/GameController.h
+--- a/Src/Libs/SimulatedRobot/GameController.h
++++ b/Src/Libs/SimulatedRobot/GameController.h
+@@ -17,6 +17,7 @@
+ #include <SimRobot.h>
+ #include <set>
+ #include <string>
++#include "BoosterGameController/frame_publisher.hpp"
+ 
+ class SimulatedRobot;
+ class TeamMessageChannel; // Importing the header would create Windows.h/WinSock2.h conflicts on Windows
+@@ -114,6 +115,9 @@
+   FieldDimensions fieldDimensions;
+   BallSpecification ballSpecification;
+   GameControllerData gameControllerData;
++  booster16::game_controller::FramePublisher refereeFramePublisher;
++  uint64_t refereeFrameTimeNs = 0;
++  bool refereeFrameConfigured = false;
+   Whistle whistle;
+   uint8_t lastState = STATE_INITIAL;
+   uint8_t kickingTeamBeforeGoal = 0;
+@@ -190,6 +194,9 @@
+   /** Executes the automatic referee. */
+   void update();
+ 
++  /** Optional once-per-match export; called only by RoboCupCtrl, never per robot. */
++  void exportRefereeFrame(uint64_t stepNs);
++
+   /**
+    * Proclaims which robot touched the ball at last
+    * @param robot The robot
+diff --git a/Src/Libs/SimulatedRobot/GameController.cpp b/Src/Libs/SimulatedRobot/GameController.cpp
+--- a/Src/Libs/SimulatedRobot/GameController.cpp
++++ b/Src/Libs/SimulatedRobot/GameController.cpp
+@@ -757,6 +757,23 @@
+   gameControllerData.isTrueData = automatic & bit(trueGameState);
+ }
+ 
++void GameController::exportRefereeFrame(uint64_t stepNs)
++{
++  if(!refereeFrameConfigured)
++  {
++    refereeFramePublisher.enableFileFromEnvironment(); // absent/empty means disabled
++    refereeFrameConfigured = true;
++  }
++  if(!refereeFramePublisher.enabled())
++    return;
++  if(!stepNs || refereeFrameTimeNs > std::numeric_limits<uint64_t>::max() - stepNs)
++    throw std::overflow_error("invalid referee simulation clock");
++  GameControllerData visibleData;
++  getGameControllerData(visibleData); // Preserve public delay/score masking and team order.
++  refereeFramePublisher.publish(refereeFrameTimeNs, visibleData);
++  refereeFrameTimeNs += stepNs;
++}
++
+ void GameController::addTimeInCurrentState()
+ {
+   timeBeforeCurrentState += Time::getCurrentSystemTime() - timeWhenStateBegan;
+diff --git a/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp b/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
+--- a/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
++++ b/Src/Libs/SimulatedRobot/RoboCupCtrl.cpp
+@@ -347,6 +347,8 @@
+   SimulatedRobot::applyBallFriction(ballFriction);
+ 
+   gameController.update();
++  // Same integer millisecond increment used by Time::addSimulatedTime below.
++  gameController.exportRefereeFrame(static_cast<uint64_t>(simStepLength + 0.5f) * 1000000ULL);
+ 
+   for(ControllerRobot* robot : robots)
+     robot->update();
+diff --git a/Src/Libs/SimulatedRobot/BoosterGameController/encode_v20.hpp b/Src/Libs/SimulatedRobot/BoosterGameController/encode_v20.hpp
+new file mode 100644
+--- /dev/null
++++ b/Src/Libs/SimulatedRobot/BoosterGameController/encode_v20.hpp
+@@ -0,0 +1,46 @@
++#pragma once
++#include <array>
++#include <cstddef>
++#include <cstdint>
++#include <stdexcept>
++
++namespace booster16::game_controller {
++template<class T> auto fieldColour(const T& t, int) -> decltype(t.fieldPlayerColour) { return t.fieldPlayerColour; }
++template<class T> auto fieldColour(const T& t, long) -> decltype(t.fieldPlayerColor) { return t.fieldPlayerColor; }
++template<class T> auto keeperColour(const T& t, int) -> decltype(t.goalkeeperColour) { return t.goalkeeperColour; }
++template<class T> auto keeperColour(const T& t, long) -> decltype(t.goalkeeperColor) { return t.goalkeeperColor; }
++// Explicit little-endian wire serialization. Source is the BHuman RoboCup base
++// packet, not its derived GameControllerData timestamp/true-data metadata.
++// No socket, timer, referee mutation, or version/penalty normalization occurs here.
++template<class Packet>
++std::array<std::uint8_t, 158> encodeV20(const Packet& p) {
++  if(p.version != 20 || p.playersPerTeam == 0 || p.playersPerTeam > 20 ||
++     p.state > 4 || p.setPlay > 6 || p.stopped > 1 || p.firstHalf > 1 ||
++     p.gamePhase > 3 || p.competitionType > 2 ||
++     p.teams[0].teamNumber == p.teams[1].teamNumber)
++    throw std::invalid_argument("invalid v20 referee packet");
++  if(p.kickingTeam != 255 && p.kickingTeam != p.teams[0].teamNumber &&
++     p.kickingTeam != p.teams[1].teamNumber)
++    throw std::invalid_argument("kicking team is not in this match");
++  std::array<std::uint8_t, 158> out{};
++  std::size_t n=0;
++  auto byte=[&](std::uint8_t v){out.at(n++)=v;};
++  auto word=[&](std::uint16_t v){byte(v & 255);byte(v >> 8);};
++  for(char c : {'R','G','m','e'}) byte(c);
++  byte(20);byte(p.packetNumber);byte(p.playersPerTeam);byte(p.competitionType);
++  byte(p.stopped);byte(p.gamePhase);byte(p.state);byte(p.setPlay);
++  byte(p.firstHalf);byte(p.kickingTeam);word(p.secsRemaining);word(p.secondaryTime);
++  for(const auto& t:p.teams) {
++    if(t.goalkeeper > 20 || fieldColour(t,0) > 9 || keeperColour(t,0) > 9)
++      throw std::invalid_argument("invalid team metadata");
++    byte(t.teamNumber);byte(fieldColour(t,0));byte(keeperColour(t,0));
++    byte(t.goalkeeper);byte(t.score);byte(t.penaltyShot);word(t.singleShots);word(t.messageBudget);
++    for(const auto& r:t.players) {
++      if(r.penalty > 13) throw std::invalid_argument("unknown v20 penalty");
++      byte(r.penalty);byte(r.secsTillUnpenalised);byte(r.cautions);
++    }
++  }
++  if(n != out.size()) throw std::invalid_argument("incorrect player array length");
++  return out;
++}
++} // namespace booster16::game_controller
+diff --git a/Src/Libs/SimulatedRobot/BoosterGameController/frame_publisher.hpp b/Src/Libs/SimulatedRobot/BoosterGameController/frame_publisher.hpp
+new file mode 100644
+--- /dev/null
++++ b/Src/Libs/SimulatedRobot/BoosterGameController/frame_publisher.hpp
+@@ -0,0 +1,80 @@
++#pragma once
++#include "encode_v20.hpp"
++#include <functional>
++#include <fstream>
++#include <memory>
++#include <limits>
++#include <cstdlib>
++#include <string>
++
++namespace booster16::game_controller {
++struct RefereeFrame {
++  std::uint64_t epoch=0, time_ns=0;
++  std::array<std::uint8_t,158> packet{};
++};
++// File format: repeated 184-byte records: BGCF, u16 version1, u16 payload158,
++// u64 epoch, u64 simulation nanoseconds,158 wire bytes,u16 reserved0. All LE.
++class FileFrameSink {
++  std::ofstream out;
++public:
++  explicit FileFrameSink(const std::string& path):out(path,std::ios::binary|std::ios::app) {
++    if(!out) throw std::runtime_error("cannot open referee frame sink");
++    if(out.tellp()!=std::streampos(0))throw std::runtime_error("referee sink must be new or empty; preserve previous runs");
++  }
++  void operator()(const RefereeFrame& frame) {
++    std::array<std::uint8_t,184> bytes{};
++    std::size_t n=0;
++    auto put=[&](std::uint64_t value,unsigned count){for(unsigned i=0;i<count;++i){bytes.at(n++)=value&255;value>>=8;}};
++    for(char c:{'B','G','C','F'})put(c,1);
++    put(1,2);put(158,2);put(frame.epoch,8);put(frame.time_ns,8);
++    for(auto b:frame.packet)put(b,1);
++    put(0,2);
++    out.write(reinterpret_cast<const char*>(bytes.data()),bytes.size());out.flush();
++    if(!out)throw std::runtime_error("referee frame sink write failed");
++  }
++};
++class FramePublisher {
++public:
++  using Sink=std::function<void(const RefereeFrame&)>;
++private:
++  Sink sink;
++  std::uint64_t epoch=0, period_ns=200000000, last_ns=0, next_ns=0;
++  bool seen=false, faulted=false;
++public:
++  bool enabled()const noexcept{return bool(sink);}
++  bool failed()const noexcept{return faulted;}
++  void configure(Sink target,std::uint64_t period,std::uint64_t newEpoch=0) {
++    if(!target || !period)throw std::invalid_argument("publisher needs sink and positive period");
++    sink=std::move(target);period_ns=period;epoch=newEpoch;last_ns=next_ns=0;seen=faulted=false;
++  }
++  void reset(std::uint64_t newEpoch) {
++    if(newEpoch<=epoch)throw std::invalid_argument("reset epoch must increase");
++    epoch=newEpoch;last_ns=next_ns=0;seen=faulted=false;
++  }
++  void enableFileFromEnvironment() {
++    const char* path=std::getenv("BHUMAN_GC_FRAME_FILE");
++    if(path && *path) {
++      auto file=std::make_shared<FileFrameSink>(path);
++      configure([file](const RefereeFrame& frame){(*file)(frame);},200000000);
++    }
++  }
++  template<class Packet> bool publish(std::uint64_t now,const Packet& packet) {
++    if(!sink)return false;
++    if(faulted)throw std::logic_error("publisher faulted; explicit reset required");
++    try {
++      if(seen && now<last_ns)throw std::invalid_argument("simulation clock regressed without reset");
++      if(seen && now==last_ns)return false; // per-robot duplicate calls cannot emit twice
++      last_ns=now;seen=true;
++      if(now<next_ns)return false;
++      RefereeFrame frame{epoch,now,encodeV20(packet)};
++      // No catch-up bursts after skipped steps: latest snapshot, next grid boundary.
++      const auto slot=now/period_ns;
++      if(slot==std::numeric_limits<std::uint64_t>::max() ||
++         slot+1>std::numeric_limits<std::uint64_t>::max()/period_ns)
++        throw std::overflow_error("publisher time overflow");
++      sink(frame);next_ns=(slot+1)*period_ns;
++      return true;
++    } catch(...) {faulted=true;throw;}
++  }
++};
++} // namespace booster16::game_controller

@@ -1,0 +1,29 @@
+{
+  "description": "Verified-reusable patches imported from the public booster16 adapter branch for the native 1.7 bridge. Byte-identical copies; no local modification. SimRobot patches target Util/SimRobot at 9deb6ae6; the referee-frame patch targets B-Human Src at 2e3374.",
+  "simrobot_baseline": "9deb6ae6b2a553211612affb757490736f96bfb3",
+  "bhuman_baseline": "2e3374ba896da8288607f9a1881b876642fe18b8",
+  "apply_order": [
+    "simrobot-9deb6ae6-delay-ring.patch",
+    "simrobot-9deb6ae6-hybrid-actuator.patch"
+  ],
+  "patches": [
+    {
+      "file": "patches/simrobot-9deb6ae6-delay-ring.patch",
+      "origin": "origin/adapt/booster16-simrobot @ 1f2e161c0425501bbf09e1852bd0420a93342ec5 (public branch of peakpeng666/robocup)",
+      "git_blob_sha1": "7e89948a389b4ad3f80d58a2a7195f7a3e440519",
+      "local_sha256": "ff2bb8115d32916647cd379f2dc413601198c4efa802be2bfe6caa8cb9cb063f"
+    },
+    {
+      "file": "patches/simrobot-9deb6ae6-hybrid-actuator.patch",
+      "origin": "origin/adapt/booster16-simrobot @ 1f2e161c0425501bbf09e1852bd0420a93342ec5 (public branch of peakpeng666/robocup)",
+      "git_blob_sha1": "07b6f4a0d7458a359b806643ca73f98a8225f3f2",
+      "local_sha256": "52849885afacc6bcb38dce496ff70c70ce735f8f3265233225ba3a889481d659"
+    },
+    {
+      "file": "patches/bhuman-2e3374-referee-frame-export.patch",
+      "origin": "origin/adapt/booster16-simrobot @ 1f2e161c0425501bbf09e1852bd0420a93342ec5 (public branch of peakpeng666/robocup)",
+      "git_blob_sha1": "8db1d06bc5fb2a88c6b0e0009d7532ec7020e505",
+      "local_sha256": "6313c2307a46d27b9a1fbe5eb953db2a03d8026001322e56feb4e06ce0868405"
+    }
+  ]
+}

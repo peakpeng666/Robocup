@@ -1,0 +1,222 @@
+diff --git a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
+--- a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
++++ b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
+@@ -68,6 +68,27 @@
+       target[i] = { static_cast<float>(Simulation::simulation->data->qpos[Simulation::simulation->model->jnt_qposadr[joint->jointIndex]]), static_cast<float>(Simulation::simulation->simulatedTime) };
+   }
+ 
++  // Explicit opt-in: untouched legacy controller below remains the default.
++  // Consume exactly one lease per physics step, including rejected/disabled inputs.
++  if(hybridLease.active())
++  {
++    const auto* model = Simulation::simulation->model;
++    auto* data = Simulation::simulation->data;
++    const double q = data->qpos[model->jnt_qposadr[joint->jointIndex]];
++    const double dq = data->qvel[model->jnt_dofadr[joint->jointIndex]];
++    const double compiledLimit = std::min(-model->actuator_ctrlrange[2 * ctrlIndex],
++                                          model->actuator_ctrlrange[2 * ctrlIndex + 1]);
++    double torque = 0.;
++    if(!isPuppet && model->jnt_type[joint->jointIndex] == mjJNT_HINGE)
++      hybridLease.consume(q, dq,
++                                 std::min(static_cast<double>(maxForce), compiledLimit), torque);
++    data->ctrl[ctrlIndex] = torque;
++    if(isPuppet) hybridLease.reject();
++    if(std::isfinite(q))
++      lastPos = static_cast<float>(q);
++    return;
++  }
++
+   // For puppets just overwrite the values
+   if(isPuppet)
+   {
+@@ -232,3 +253,37 @@
+   CoreModule::application->registerObject(*CoreModule::module, torqueSensor, joint);
+   CoreModule::application->registerObject(*CoreModule::module, *this, joint);
+ }
++
++// This capability is intentionally independent of setValue()/GUI position controls.
++bool ServoMotor::setHybridCommand(const SimRobotCore3::HybridCommand& command)
++{
++  hybridLease.reject();
++  if(!joint || isPuppet || !SimRobotCore3::validHybridCommand(command))
++    return false;
++  const auto* model = Simulation::simulation->model;
++  if(!model || model->jnt_type[joint->jointIndex] != mjJNT_HINGE)
++    return false; // API units here are radians and Nm, not slider units.
++  const auto* deflection = joint->axis->deflection;
++  if(deflection && !SimRobotCore3::validHybridTargetReference(command, deflection->min, deflection->max))
++    return false;
++  return hybridLease.submit(command);
++}
++
++void ServoMotor::useLegacyControl()
++{
++  if(!hybridLease.active())
++    return;
++  hybridLease.clear();
++  // Do not resurrect a pre-hybrid delay-queue target.
++  if(joint && Simulation::simulation->model && Simulation::simulation->data)
++  {
++    const auto* model = Simulation::simulation->model;
++    const auto* data = Simulation::simulation->data;
++    setpoint = lastPos = static_cast<float>(data->qpos[model->jnt_qposadr[joint->jointIndex]]);
++    currentAngularVelocity = static_cast<float>(data->qvel[model->jnt_dofadr[joint->jointIndex]]);
++    lastExecutedSetpoint = {setpoint, static_cast<float>(Simulation::simulation->simulatedTime)};
++    for(unsigned i = 0; i < targetSize; ++i)
++      target[i] = lastExecutedSetpoint;
++    index = 0;
++  }
++}
+diff --git a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.h b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.h
+--- a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.h
++++ b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.h
+@@ -8,12 +8,13 @@
+ 
+ #include "Simulation/Motors/Motor.h"
+ #include "Simulation/Sensors/Sensor.h"
++#include "SimRobotHybridActuator.h"
+ 
+ /**
+  * @class ServoMotor
+  * A motor for controlling the angle of an axis
+  */
+-class ServoMotor : public Motor
++class ServoMotor : public Motor, public SimRobotCore3::HybridActuatorPort
+ {
+ public:
+   /**
+@@ -50,6 +51,9 @@
+ 
+   /** Default constructor */
+   ServoMotor();
++
++  bool setHybridCommand(const SimRobotCore3::HybridCommand& command) override;
++  void useLegacyControl() override;
+ 
+ private:
+   /**
+@@ -109,6 +113,7 @@
+   NextTargets lastExecutedSetpoint;
+ 
+   bool isPuppet = false;
++  SimRobotCore3::HybridCommandLease hybridLease;
+ 
+   /**
+    * Initializes the motor
+diff --git a/Src/SimRobotCore3/SimRobotHybridActuator.h b/Src/SimRobotCore3/SimRobotHybridActuator.h
+new file mode 100644
+--- /dev/null
++++ b/Src/SimRobotCore3/SimRobotHybridActuator.h
+@@ -0,0 +1,112 @@
++/** Optional Core3 hybrid actuation capability. New adapter code, not vendor control code.
++ * Values are SI (hinge: rad, rad/s, Nm). Call only on the simulation thread.
++ * A successful command is a one-physics-step lease; refresh every servo tick.
++ */
++#pragma once
++#include <algorithm>
++#include <cmath>
++
++namespace SimRobotCore3
++{
++  enum class HybridMode { disabled, torque, hybrid };
++  // PD reference != physical state. Strict remains the default; verified policy
++  // profiles may explicitly retain an out-of-range reference with bounded torque.
++  enum class TargetReferencePolicy { withinMechanicalRange, finiteReference };
++
++  struct HybridCommand
++  {
++    HybridMode mode = HybridMode::disabled;
++    double q_target_rad = 0.;
++    double dq_target_rad_s = 0.;
++    double kp = 0.;
++    double kd = 0.;
++    double tau_ff_nm = 0.;
++    double torque_limit_nm = 0.;
++    TargetReferencePolicy target_reference_policy = TargetReferencePolicy::withinMechanicalRange;
++  };
++
++  inline bool validHybridCommand(const HybridCommand& c)
++  {
++    if(!std::isfinite(c.q_target_rad) || !std::isfinite(c.dq_target_rad_s) ||
++       !std::isfinite(c.kp) || !std::isfinite(c.kd) || !std::isfinite(c.tau_ff_nm) ||
++       !std::isfinite(c.torque_limit_nm) || c.kp < 0. || c.kd < 0. || c.torque_limit_nm < 0.)
++      return false;
++    if(c.target_reference_policy != TargetReferencePolicy::withinMechanicalRange &&
++       c.target_reference_policy != TargetReferencePolicy::finiteReference) return false;
++    switch(c.mode)
++    {
++      case HybridMode::disabled: return c.kp == 0. && c.kd == 0. && c.tau_ff_nm == 0.;
++      case HybridMode::torque: return c.kp == 0. && c.kd == 0.;
++      case HybridMode::hybrid: return true;
++      default: return false;
++    }
++  }
++
++  inline bool validHybridTargetReference(const HybridCommand& c, double minimum, double maximum)
++  {
++    if(!validHybridCommand(c) || !std::isfinite(minimum) || !std::isfinite(maximum) || minimum>maximum)
++      return false;
++    return c.target_reference_policy == TargetReferencePolicy::finiteReference ||
++           c.mode != HybridMode::hybrid || c.kp == 0. ||
++           (c.q_target_rad >= minimum && c.q_target_rad <= maximum);
++  }
++
++  /** False => zero output. No silent acceptance of overflow or non-finite state. */
++  inline bool hybridTorque(const HybridCommand& c, double q, double dq,
++                           double physicalLimit, double& output)
++  {
++    output = 0.;
++    if(!validHybridCommand(c) || !std::isfinite(q) || !std::isfinite(dq) ||
++       !std::isfinite(physicalLimit) || physicalLimit < 0.)
++      return false;
++    if(c.mode == HybridMode::disabled)
++      return true;
++    double torque = c.tau_ff_nm;
++    if(c.mode == HybridMode::hybrid)
++      torque += c.kp * (c.q_target_rad - q) + c.kd * (c.dq_target_rad_s - dq);
++    if(!std::isfinite(torque))
++      return false;
++    const double limit = std::min(c.torque_limit_nm, physicalLimit);
++    output = std::clamp(torque, -limit, limit);
++    return true;
++  }
++
++  /** The exact one-step lease state machine used by patched ServoMotor. */
++  class HybridCommandLease
++  {
++  public:
++    bool active() const { return active_; }
++    bool submit(const HybridCommand& command)
++    {
++      reject();
++      if(!validHybridCommand(command)) return false;
++      command_ = command;
++      pending_ = true;
++      return true;
++    }
++    void reject() { active_ = true; pending_ = false; command_ = {}; }
++    void clear() { active_ = false; pending_ = false; command_ = {}; }
++    bool consume(double q, double dq, double physicalLimit, double& output)
++    {
++      output = 0.;
++      if(!active_ || !pending_) return false;
++      pending_ = false;
++      return hybridTorque(command_, q, dq, physicalLimit, output);
++    }
++  private:
++    bool active_ = false;
++    bool pending_ = false;
++    HybridCommand command_;
++  };
++
++  /** Separate capability: existing ActuatorPort vtable is not expanded. */
++  class HybridActuatorPort
++  {
++  public:
++    virtual ~HybridActuatorPort() = default;
++    // Rejection latches hybrid disabled, never leaves an earlier command active.
++    virtual bool setHybridCommand(const HybridCommand& command) = 0;
++    // Explicit opt-out; stale hybrid commands never automatically resume legacy PD.
++    virtual void useLegacyControl() = 0;
++  };
++}
