@@ -164,6 +164,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/competition_walk_diff.py",
         "hint": "先看 CompetitionWalk / 11v11 相对 Default 是否仍在有意允许集，或网槽是否漂离 344→13 / K1_walk.onnx",
     },
+    "test_policy_switch_threshold.py": {
+        "look": "bhuman/k1-training/scripts/policy_switch_threshold.py",
+        "hint": "先看 ballDistance/HysteresisPolicySwitch 是否仍是行为阈值，而不是被写成换 walk 网或改 344 合同",
+    },
+    "test_shift_ball_position.py": {
+        "look": "bhuman/k1-training/scripts/shift_ball_position.py",
+        "hint": "先看 shiftBallPosition 是否仍是踢球接近球位偏移，而不是被写成改 walk 维或合并旁系进 344",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

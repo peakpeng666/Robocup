@@ -1,0 +1,92 @@
+{
+  "generated_utc": "2026-10-24T09:46:20+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "competition": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp"
+  },
+  "thresholds": {
+    "default": {
+      "ballDistancePolicySwitch": "1500",
+      "ballHysteresisPolicySwitch": "300"
+    },
+    "competition": {
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200"
+    },
+    "kind": "behavior_policy_threshold",
+    "not_walk_obs_dim": true,
+    "not_actor_swap": true
+  },
+  "table": [
+    {
+      "key": "ballDistancePolicySwitch",
+      "default": "1500",
+      "competition": "1100",
+      "kind": "behavior_threshold"
+    },
+    {
+      "key": "ballHysteresisPolicySwitch",
+      "default": "300",
+      "competition": "200",
+      "kind": "behavior_threshold"
+    }
+  ],
+  "copies": [
+    {
+      "role": "SimulatedK1",
+      "ballDistancePolicySwitch": "1500",
+      "ballHysteresisPolicySwitch": "300",
+      "matches": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200",
+      "matches": true
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_without_want_kick": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_with_want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    },
+    "bt_want_kick": "kick",
+    "threshold_overrides_want_kick": false,
+    "threshold_changes_344_contract": false
+  },
+  "cpp_needles": [
+    "ballDistancePolicySwitch",
+    "ballHysteresisPolicySwitch",
+    "walkPolicy",
+    "kickPolicy"
+  ],
+  "policy_switch_as_net_swap": false,
+  "threshold_changes_344_contract": false,
+  "fabricated": false,
+  "note": "ballDistance/HysteresisPolicySwitch Default 1500/300 vs Competition 1100/200 are runtime behavior thresholds (walkPolicy vs kickPolicy when already walkToBallAndKick/dribble); they do not rewrite walk 344→13 or swap the walk actor; SkillRequest still needs want_kick",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

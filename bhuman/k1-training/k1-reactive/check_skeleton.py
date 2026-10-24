@@ -463,6 +463,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "CompetitionWalk / 11v11 allowlist (net slot 344→13; unexpected extras FAIL)",
         ),
         (
+            "bhuman/k1-training/scripts/policy_switch_threshold.py",
+            "policySwitch thresholds (1500/300 vs 1100/200; ≠ net swap / 344 rewrite)",
+        ),
+        (
+            "bhuman/k1-training/scripts/shift_ball_position.py",
+            "shiftBallPosition boundary (kick-approach offset; ≠ dim rewrite / sibling merge)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

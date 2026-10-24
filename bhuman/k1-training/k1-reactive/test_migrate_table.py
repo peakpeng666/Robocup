@@ -163,6 +163,8 @@ REQUIRED_LANDINGS = (
     "simulated_speed_diff.py",
     "stand_ankle_stiffness.py",
     "competition_walk_diff.py",
+    "policy_switch_threshold.py",
+    "shift_ball_position.py",
 )
 
 

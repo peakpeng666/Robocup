@@ -401,6 +401,8 @@ motorParameters 只读深化：`scripts/motor_parameters_audit.py`（regular 踝
 Simulated 速度差分：`scripts/simulated_speed_diff.py`（有意允许集；网槽/维数差分 FAIL）。  
 standAnkleStiffness 对照：`scripts/stand_ankle_stiffness.py`（Default 60/80 vs Simulated 100/100 是 walkingEngine plant；≠ 训侧 p60→p25；≠ PD 闭合）。  
 CompetitionWalk / 11v11 差分：`scripts/competition_walk_diff.py`（相对 Default 14 个有意差分键；网槽仍 **344→13** / `K1_walk.onnx`；意外网槽漂移 FAIL）。  
+policySwitch 球距阈值：`scripts/policy_switch_threshold.py`（Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344；SkillRequest 仍要 `want_kick`）。  
+shiftBallPosition 边界：`scripts/shift_ball_position.py`（Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

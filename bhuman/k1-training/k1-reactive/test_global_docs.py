@@ -78,6 +78,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -160,6 +162,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -235,6 +239,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff.py",
         "stand_ankle_stiffness.py",
         "competition_walk_diff.py",
+        "policy_switch_threshold.py",
+        "shift_ball_position.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -300,6 +306,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -376,6 +384,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -436,6 +446,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -544,6 +556,8 @@ REQUIRED_DOCS = {
         "simulated_speed_diff",
         "stand_ankle_stiffness",
         "competition_walk_diff",
+        "policy_switch_threshold",
+        "shift_ball_position",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

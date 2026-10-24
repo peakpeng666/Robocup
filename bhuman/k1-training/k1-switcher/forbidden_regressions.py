@@ -9,7 +9,8 @@ stay on standup after getup, kick replacing walk, cfg dim rewrite,
 kickModel pointing at T1, kick ONNX occupying the walk slot,
 getUp overwriting walk, T1 getUp as K1, fast standup as Isaac,
 Simulated speed as closed PD, fabricated Competition getUp,
-standAnkleStiffness as closed PD, Competition diffs changing net slot.
+standAnkleStiffness as closed PD, Competition diffs changing net slot,
+policySwitch as net swap, shiftBall as dim change.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -50,6 +51,8 @@ from getup_engine_cfg_audit import (  # noqa: E402
 )
 from competition_walk_diff import refuse_competition_diff_net_slot  # noqa: E402
 from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
+from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
+from shift_ball_position import refuse_shift_ball_as_dim_change  # noqa: E402
 from stand_ankle_stiffness import refuse_stand_ankle_as_pd_closed  # noqa: E402
 from walking_engine_cfg_audit import (  # noqa: E402
     refuse_cfg_dim_rewrite,
@@ -219,6 +222,26 @@ def _case_competition_diff_net_slot() -> None:
     )
 
 
+def _case_policy_switch_as_net_swap() -> None:
+    refuse_policy_switch_as_net_swap(
+        {
+            "policy_switch_as_net_swap": True,
+            "source": "ballDistancePolicySwitch",
+            "walk_obs": 365,
+        }
+    )
+
+
+def _case_shift_ball_as_dim_change() -> None:
+    refuse_shift_ball_as_dim_change(
+        {
+            "shift_ball_as_dim_change": True,
+            "source": "shiftBallPosition",
+            "walk_obs": 59,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -248,6 +271,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("fabricate_competition_getup", _case_fabricate_competition_getup),
     ("stand_ankle_as_pd_closed", _case_stand_ankle_as_pd_closed),
     ("competition_diff_net_slot", _case_competition_diff_net_slot),
+    ("policy_switch_as_net_swap", _case_policy_switch_as_net_swap),
+    ("shift_ball_as_dim_change", _case_shift_ball_as_dim_change),
 )
 
 

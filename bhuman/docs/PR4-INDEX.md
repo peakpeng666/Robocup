@@ -145,6 +145,8 @@ scripts/
 ├── simulated_speed_diff.py      Simulated vs Default 速度允许集；网槽漂移 FAIL
 ├── stand_ankle_stiffness.py     plant 60/80→100/100；≠ 训侧 p60→p25；≠ PD 闭合
 ├── competition_walk_diff.py     CompetitionWalk / 11v11 允许集；网槽仍 344→13
+├── policy_switch_threshold.py   球距阈值 1500/300 vs 1100/200；≠ 换网 / 改 344
+├── shift_ball_position.py       踢球接近偏移 false/80 vs true/40；≠ 改维 / 旁系
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -424,6 +426,8 @@ k1-training/manifests/
 | Simulated 速度差分 | `simulated_speed_diff.py` | Simulated vs Default 速度键有意允许集；网槽/维数差分 FAIL |
 | standAnkleStiffness 对照 | `stand_ankle_stiffness.py` | Default 60/80 vs Simulated 100/100 是 plant；≠ 训侧 p60→p25；≠ PD 闭合 |
 | CompetitionWalk / 11v11 差分 | `competition_walk_diff.py` | 相对 Default 14 个有意差分键；网槽仍 344→13 / `K1_walk.onnx`；意外漂移 FAIL |
+| policySwitch 球距阈值 | `policy_switch_threshold.py` | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344 |
+| shiftBallPosition 边界 | `shift_ball_position.py` | Default false/80 vs Competition true/40 是踢球接近偏移；≠ 改维 / 合并旁系 |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
