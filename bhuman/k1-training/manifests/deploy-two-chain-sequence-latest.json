@@ -1,0 +1,108 @@
+{
+  "generated_utc": "2026-10-24T10:55:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "chains": [
+    {
+      "id": "chain_a_official_behavior",
+      "name": "链 A（官方行为 / 运动请求）",
+      "hop": [
+        "SkillBehaviorControl",
+        "PlayBall",
+        "WalkToBallAndKick / Dribble",
+        "MotionRequest.motion pose",
+        "WalkingEngine walkPolicy 344→13"
+      ],
+      "writes": "MotionRequest.motion",
+      "values": [
+        "walkToBallAndKick",
+        "dribble"
+      ],
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "applies_kick_policy": false,
+      "is_kick_net": false
+    },
+    {
+      "id": "chain_b_deploy_bypass",
+      "name": "链 B（部署旁路 / CompiledNN kick 槽）",
+      "hop": [
+        "SkillSelectContext.want_kick=true",
+        "all other walk-stay false",
+        "WalkingEngine kickPolicy.apply() 59→13"
+      ],
+      "writes": "kickPolicy.apply()",
+      "selects": "kickPolicy",
+      "contract": "59→13",
+      "legal_when": "want_kick=true AND walk-stay all false",
+      "official_want_kick_field": false
+    }
+  ],
+  "doc": {
+    "rel": "bhuman/docs/DEPLOY-CALL-SEQUENCE.md",
+    "needles": [
+      "链 A",
+      "链 B",
+      "walkPolicy **344→13**",
+      "kickPolicy.apply() **59→13**",
+      "SkillSelectContext.want_kick=true",
+      "MotionRequest.motion",
+      "WalkToBallAndKick",
+      "gap_closed=false",
+      "官方踢球技能 ≠ kick 网",
+      "deploy_two_chain_sequence.py",
+      "walk_to_ball_engine_no_onnx.py"
+    ],
+    "forbidden_absent": [
+      "PlayBall / WalkToBallAndKickEngine → kick **59→13**",
+      "PlayBall → kickPolicy",
+      "PlayBall → kick **59→13**",
+      "chain A = chain B",
+      "GAP 已闭合",
+      "gap_closed=true"
+    ]
+  },
+  "chain_a": {
+    "name": "链 A（官方行为 / 运动请求）",
+    "selects": "walkPolicy",
+    "contract": "344→13",
+    "is_kick_net": false
+  },
+  "chain_b": {
+    "name": "链 B（部署旁路 / CompiledNN kick 槽）",
+    "selects": "kickPolicy",
+    "contract": "59→13",
+    "legal_when": "want_kick=true AND walk-stay all false"
+  },
+  "chain_a_equals_chain_b": false,
+  "deploy_seq_draws_playball_as_kick_net": false,
+  "deploy_doc_claims_gap_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "siblings_referenced_not_reaudited": [
+    "playball_not_kick_policy.py",
+    "skill_behavior_write_chain.py",
+    "kick_policy_apply_dims.py",
+    "walk_stay_remaining.py",
+    "kick_engine_boundary.py",
+    "deploy_call.py"
+  ],
+  "cross": {
+    "empty_skill_request": "walk",
+    "empty_bt": "walk",
+    "shoot_without_want_kick": "walk",
+    "deploy_want_kick": "kick",
+    "deploy_call_default": "walk",
+    "playball_snapshot_walk": "344→13"
+  },
+  "fabricated": false,
+  "note": "deploy sequence keeps two chains: official PlayBall pose stays walkPolicy 344→13; kickPolicy 59→13 is deploy want_kick only; doc must not draw chain A as the kick net; GAP stays open",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

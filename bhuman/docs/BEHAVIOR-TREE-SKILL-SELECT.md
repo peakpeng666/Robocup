@@ -68,6 +68,8 @@ B-Human 行为树 / 角色 / GameController / 正常视觉     ← 保持，本�
 官方交接只读快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。  
 SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 `SkillRequest` 无 `want_kick` 字段；本口 `want_kick` 默认 **false**；拦截写入默认 false 仍 walk；空行为仍 walk **344→13**）。  
 PlayBall ≠ kickPolicy 两条链：`scripts/playball_not_kick_policy.py`（PlayBall 只写 `MotionRequest.motion` 位姿/技能；**不会**单独触发 `kickPolicy.apply()` **59→13**；官方踢球技能 ≠ kick 网）。  
+部署双链时序：`scripts/deploy_two_chain_sequence.py`（链 A = PlayBall 位姿 → walkPolicy **344→13**；链 B = 仅 `want_kick` → kickPolicy **59→13**；禁止把链 A 画成 kick 网）。  
+WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出 kickPose / 轨迹；不 `apply()` 任何 ONNX / CompiledNN；与 kickPolicy 槽隔离）。  
 跌倒链只读：`scripts/falldown_motion_chain.py`（fallen → GetUpEngine 73→22 → getup_done → walk；跌倒不是 SkillRequest Type；缺源 SKIP）。  
 Force walk afterwards：`scripts/force_walk_afterwards.py`（getup_done 必须回 walk **344→13** + last_action 13 个 0；不得停 standup / 直接 kick）。  
 walkingEngine.cfg 只读：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽）。  

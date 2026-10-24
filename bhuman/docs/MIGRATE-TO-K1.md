@@ -126,8 +126,10 @@
 | 本地产物即推 GitHub | 门禁 | `scripts/upload_run_artifacts.py` + [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md) | **P0** | 否 | 本机只留当前 run；产物即上传 `artifacts/<run-id>/`；巨型文件 LFS/Release；`TRAINABLE=false`；不自动开训 | 上轮脚手架 |
 | SkillBehaviorControl 写入链 | §6.10 | `scripts/skill_behavior_write_chain.py` | **P0** | 否 | 官方 SkillRequest 无 `want_kick`；部署口默认 false；拦截默认 false 仍 walkPolicy；空行为 / 默认技能仍 walk **344→13** | 上轮写入链 |
 | PR 分组导航 / 体积健康 | 门禁 | `scripts/pr4_index_nav.py` + [PR4-INDEX.md](PR4-INDEX.md) §1.5 / §6 | **P0** | 否 | walk/kick/standup/handoff/artifacts/GAP 链到最新 manifests；~+191k/335 files；勿再塞大二进制；**status=GAP** / **gap_closed=false** | 上轮索引 |
-| PlayBall ≠ kickPolicy 两条链 | §6.10 | `scripts/playball_not_kick_policy.py` | **P0** | 否 | PlayBall → WalkToBallAndKick / Dribble 只写 `MotionRequest.motion`（位姿/技能）；**不会**单独触发 `kickPolicy.apply()` **59→13**；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13** | **本轮两条链** |
-| reactive / 旁路 stub 硬化 | §6.11 | `scripts/reactive_stub_hardening.py` | **P0 / P2 口** | 否 | 所有 reactive / 估计器 / draft stub `TRAINABLE=false`；不得标成默认 walk 基；stub 不得把 `ready_gpu` 翻 true | **本轮旁路** |
+| PlayBall ≠ kickPolicy 两条链 | §6.10 | `scripts/playball_not_kick_policy.py` | **P0** | 否 | PlayBall → WalkToBallAndKick / Dribble 只写 `MotionRequest.motion`（位姿/技能）；**不会**单独触发 `kickPolicy.apply()` **59→13**；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13** | 上轮两条链 |
+| reactive / 旁路 stub 硬化 | §6.11 | `scripts/reactive_stub_hardening.py` | **P0 / P2 口** | 否 | 所有 reactive / 估计器 / draft stub `TRAINABLE=false`；不得标成默认 walk 基；stub 不得把 `ready_gpu` 翻 true | 上轮旁路 |
+| 部署双链时序 | §6.10 | `scripts/deploy_two_chain_sequence.py` + [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | **P0** | 否 | 链 A = PlayBall 位姿 → walkPolicy **344→13**；链 B = 仅 `want_kick` → kickPolicy **59→13**；禁止把链 A 画成 kick 网；**gap_closed=false** | **本轮双链时序** |
+| WalkToBallAndKickEngine 无 ONNX | §6.10 | `scripts/walk_to_ball_engine_no_onnx.py` | **P0** | 否 | 引擎只出 kickPose / 轨迹；不 `apply()` 任何 ONNX / CompiledNN；与 kickPolicy 槽隔离；意外 T1 → FAIL | **本轮引擎钉** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

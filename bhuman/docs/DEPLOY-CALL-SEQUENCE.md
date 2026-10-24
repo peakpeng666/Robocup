@@ -18,7 +18,7 @@
 只读交接快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。  
 跌倒链只读：`scripts/falldown_motion_chain.py`（FallDownState / MotionEngine / GetUpEngine：fallen → 73→22 → getup_done → walk；跌倒不是 SkillRequest）。  
 Force walk afterwards：`scripts/force_walk_afterwards.py`（getup_done → walk **344→13** + last_action 13 个 0；与 `last_action_reset` 交叉）。  
-踢球边界：`scripts/kick_engine_boundary.py`（PlayBall / WalkToBallAndKickEngine → kick **59→13** 旁路；不是换 walk 基线）。  
+踢球边界：`scripts/kick_engine_boundary.py`（kick **59→13** 是**链 B** 旁路，≠ 换 walk 基线；PlayBall / WalkToBallAndKickEngine 属**链 A**，不是 kick 网）。  
 walkingEngine.cfg 只读：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽）。  
 kick ONNX 命名：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP）。  
 getUpEngine.cfg 只读：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署；T1 getUp 不得当 K1）。  
@@ -49,13 +49,45 @@ GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen
 SkillBehaviorControl 写入链：`scripts/skill_behavior_write_chain.py`（官方 SkillRequest 无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空行为仍 walk **344→13**）。  
 PR 分组导航 / 体积健康：`scripts/pr4_index_nav.py`（walk/kick/standup/handoff/artifacts/GAP；**status=GAP** / **gap_closed=false**）。  
 PlayBall ≠ kickPolicy 两条链：`scripts/playball_not_kick_policy.py`（运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空/默认仍 walk **344→13**）。  
-reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true）。
+reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true）。  
+部署双链时序：`scripts/deploy_two_chain_sequence.py`（链 A ≠ 链 B；禁止把 PlayBall 画成 kick 网；**status=GAP** / **gap_closed=false**）。  
+WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出位姿/轨迹；不 `apply()` 任何 ONNX；与 kickPolicy 槽隔离）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 
 ---
 
-## 1. 一拍时序
+## 0. 两条链（官方踢球技能 ≠ kick 网）
+
+链 A 与链 B **不是同一条链**。禁止把 PlayBall / WalkToBallAndKick 画成 kick 网。  
+walk↔kick history GAP **仍未闭合**（仅 draft；**gap_closed=false**）。
+
+### 链 A（官方行为 / 运动请求）
+
+```
+SkillBehaviorControl → PlayBall
+        → WalkToBallAndKick / Dribble
+        → MotionRequest.motion = walkToBallAndKick / dribble（位姿/技能）
+        → WalkingEngine 仍默认 walkPolicy **344→13**
+```
+
+WalkToBallAndKickEngine 只出 kickPose / 轨迹，**不** `apply()` 任何 ONNX，也不是 CompiledNN kick 槽。
+
+### 链 B（部署旁路 / CompiledNN kick 槽）
+
+```
+仅 SkillSelectContext.want_kick=true 且其它 walk-stay 全假
+        → WalkingEngine kickPolicy.apply() **59→13**
+```
+
+官方 `SkillRequest` 无 `want_kick`；默认 `skill=none` → walk **344→13**。  
+空上下文 / 未开 `want_kick` 时，链 A 的 `walkToBallAndKick` 运动请求**仍落 walkPolicy**。
+
+机器校验：`scripts/deploy_two_chain_sequence.py` + `scripts/playball_not_kick_policy.py`。
+
+---
+
+## 1. 一拍时序（部署口；默认仍 walk 344→13）
 
 ```
 BehaviorControl / Skill

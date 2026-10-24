@@ -111,6 +111,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "motion_walkToBallAndKick_as_59",
         "reactive_as_default_walk",
         "stub_sets_ready_gpu_true",
+        "deploy_seq_draws_playball_as_kick_net",
+        "walk_to_ball_engine_applies_onnx",
+        "chain_a_equals_chain_b",
+        "deploy_doc_claims_gap_closed",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -145,7 +149,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "want-kick-default-true / intercept-info-writes-kick-policy / "
             "behavior-empty-as-kick / pr-index-claims-gap-closed / "
             "playball-as-kick-policy / motion-walkToBallAndKick-as-59 / "
-            "reactive-as-default-walk / stub-sets-ready-gpu-true"
+            "reactive-as-default-walk / stub-sets-ready-gpu-true / "
+            "deploy-seq-draws-playball-as-kick-net / walk-to-ball-engine-applies-onnx / "
+            "chain-a-equals-chain-b / deploy-doc-claims-gap-closed"
         )
 
     try:

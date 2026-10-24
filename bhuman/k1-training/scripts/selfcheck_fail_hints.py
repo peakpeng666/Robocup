@@ -256,6 +256,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/reactive_stub_hardening.py",
         "hint": "先看 reactive / 估计器 / draft stub 是否仍 TRAINABLE=false，是否被标成默认 walk，或 ready_gpu 是否因 stub 变 true",
     },
+    "test_deploy_two_chain_sequence.py": {
+        "look": "bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+        "hint": "先看部署时序是否仍分链 A（PlayBall 位姿 → walkPolicy 344→13）与链 B（仅 want_kick → kickPolicy 59→13），以及文档是否把链 A 画成 kick 网或声称 GAP 已闭合",
+    },
+    "test_walk_to_ball_engine_no_onnx.py": {
+        "look": "bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
+        "hint": "先看 WalkToBallAndKickEngine 是否仍只出 kickPose / 轨迹，是否意外出现 CompiledNN / .onnx / policy.apply / T1",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

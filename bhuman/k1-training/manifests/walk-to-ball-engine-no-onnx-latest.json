@@ -1,0 +1,66 @@
+{
+  "generated_utc": "2026-10-24T10:55:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "engine": {
+    "kind": "pose_generator",
+    "writes": "kickPose / WalkToBallGenerator.createPhase",
+    "applies_onnx": false,
+    "applies_compilednn": false,
+    "owns_kick_policy": false,
+    "isolated_from_kick_slot": true,
+    "t1": false
+  },
+  "sources": {
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkGenerators/WalkToBallAndKickEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkGenerators/WalkToBallAndKickEngine.h",
+    "k1_training_copy_checked": true
+  },
+  "cpp_needles": [
+    "void WalkToBallAndKickEngine::update",
+    "walkToBallAndKickGenerator.createPhase",
+    "Pose2f kickPose",
+    "theWalkToBallGenerator.createPhase",
+    "calcInterceptionPosition"
+  ],
+  "header_needles": [
+    "MODULE(WalkToBallAndKickEngine",
+    "PROVIDES(WalkToBallAndKickGenerator)",
+    "REQUIRES(WalkToBallGenerator)"
+  ],
+  "forbidden_absent": [
+    "CompiledNN",
+    "kickPolicy",
+    "walkPolicy",
+    ".onnx",
+    "policy.apply",
+    "NeuralNetwork",
+    "Isaac",
+    "train.py",
+    "T1_walk",
+    "T1_Ball",
+    "K1_kick"
+  ],
+  "siblings_referenced_not_reaudited": [
+    "kick_policy_apply_dims.py",
+    "playball_not_kick_policy.py",
+    "kick_engine_boundary.py",
+    "walk_policy_apply_dims.py"
+  ],
+  "walk_to_ball_engine_applies_onnx": false,
+  "walk_kick_gap_closed": false,
+  "cross": {
+    "empty": "walk",
+    "shoot_without_want_kick": "walk"
+  },
+  "fabricated": false,
+  "note": "WalkToBallAndKickEngine is a pose/trajectory generator; it does not apply() ONNX / CompiledNN and is not the kick slot",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

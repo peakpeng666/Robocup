@@ -31,7 +31,9 @@ local artifacts kept without upload policy,
 want_kick default true, intercept info writes kickPolicy,
 behavior empty as kick, PR index claims GAP closed,
 PlayBall as kickPolicy, motion walkToBallAndKick as 59,
-reactive as default walk, stub sets ready_gpu true.
+reactive as default walk, stub sets ready_gpu true,
+deploy seq draws PlayBall as kick net, WalkToBallEngine applies ONNX,
+chain A equals chain B, deploy doc claims GAP closed.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -120,6 +122,12 @@ from reactive_stub_hardening import (  # noqa: E402
     refuse_reactive_as_default_walk,
     refuse_stub_sets_ready_gpu_true,
 )
+from deploy_two_chain_sequence import (  # noqa: E402
+    refuse_chain_a_equals_chain_b,
+    refuse_deploy_doc_claims_gap_closed,
+    refuse_deploy_seq_draws_playball_as_kick_net,
+)
+from walk_to_ball_engine_no_onnx import refuse_walk_to_ball_engine_applies_onnx  # noqa: E402
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
@@ -708,6 +716,45 @@ def _case_stub_sets_ready_gpu_true() -> None:
     )
 
 
+def _case_deploy_seq_draws_playball_as_kick_net() -> None:
+    refuse_deploy_seq_draws_playball_as_kick_net(
+        {
+            "deploy_seq_draws_playball_as_kick_net": True,
+            "source": "PlayBall",
+            "selects": "kickPolicy",
+        }
+    )
+
+
+def _case_walk_to_ball_engine_applies_onnx() -> None:
+    refuse_walk_to_ball_engine_applies_onnx(
+        {
+            "walk_to_ball_engine_applies_onnx": True,
+            "source": "WalkToBallAndKickEngine",
+            "applies": "onnx",
+        }
+    )
+
+
+def _case_chain_a_equals_chain_b() -> None:
+    refuse_chain_a_equals_chain_b(
+        {
+            "chain_a_equals_chain_b": True,
+            "same_chain": True,
+        }
+    )
+
+
+def _case_deploy_doc_claims_gap_closed() -> None:
+    refuse_deploy_doc_claims_gap_closed(
+        {
+            "deploy_doc_claims_gap_closed": True,
+            "source": "DEPLOY-CALL-SEQUENCE.md",
+            "gap_closed": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -778,6 +825,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("motion_walkToBallAndKick_as_59", _case_motion_walkToBallAndKick_as_59),
     ("reactive_as_default_walk", _case_reactive_as_default_walk),
     ("stub_sets_ready_gpu_true", _case_stub_sets_ready_gpu_true),
+    ("deploy_seq_draws_playball_as_kick_net", _case_deploy_seq_draws_playball_as_kick_net),
+    ("walk_to_ball_engine_applies_onnx", _case_walk_to_ball_engine_applies_onnx),
+    ("chain_a_equals_chain_b", _case_chain_a_equals_chain_b),
+    ("deploy_doc_claims_gap_closed", _case_deploy_doc_claims_gap_closed),
 )
 
 

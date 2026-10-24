@@ -555,6 +555,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub ≠ ready_gpu",
         ),
         (
+            "bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+            "deploy two-chain sequence (链 A pose → walk 344→13; 链 B want_kick → kick 59→13)",
+        ),
+        (
+            "bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
+            "WalkToBallAndKickEngine pose-only; no CompiledNN / ONNX / T1 apply",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

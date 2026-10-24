@@ -110,6 +110,8 @@
 | PR 分组导航 / 体积 | `scripts/pr4_index_nav.py` | walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；GAP 仍开 |
 | PlayBall ≠ kickPolicy | `scripts/playball_not_kick_policy.py` | 运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空=walk **344→13** |
 | reactive / 旁路 stub | `scripts/reactive_stub_hardening.py` | stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true |
+| 部署双链时序 | `scripts/deploy_two_chain_sequence.py` | 链 A 位姿 → walk **344→13**；链 B 仅 want_kick → kick **59→13**；禁止把链 A 画成 kick 网 |
+| WalkToBallEngine 无 ONNX | `scripts/walk_to_ball_engine_no_onnx.py` | 只出 kickPose / 轨迹；不 apply 任何 ONNX / CompiledNN；与 kick 槽隔离 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

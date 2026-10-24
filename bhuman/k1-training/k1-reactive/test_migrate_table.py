@@ -186,6 +186,8 @@ REQUIRED_LANDINGS = (
     "pr4_index_nav.py",
     "playball_not_kick_policy.py",
     "reactive_stub_hardening.py",
+    "deploy_two_chain_sequence.py",
+    "walk_to_ball_engine_no_onnx.py",
     "LOCAL-RUN-ARTIFACTS.md",
 )
 

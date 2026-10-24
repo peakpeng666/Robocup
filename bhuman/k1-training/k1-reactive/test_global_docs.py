@@ -101,6 +101,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -206,6 +208,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -304,6 +308,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav.py",
         "playball_not_kick_policy.py",
         "reactive_stub_hardening.py",
+        "deploy_two_chain_sequence.py",
+        "walk_to_ball_engine_no_onnx.py",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
@@ -317,6 +323,8 @@ REQUIRED_DOCS = {
         "behavior_control_handoff",
         "skill_behavior_write_chain",
         "playball_not_kick_policy",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
         "falldown_motion_chain",
         "force_walk_afterwards",
         "walking_engine_cfg_audit",
@@ -395,6 +403,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -494,6 +504,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -577,6 +589,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -708,6 +722,8 @@ REQUIRED_DOCS = {
         "pr4_index_nav",
         "playball_not_kick_policy",
         "reactive_stub_hardening",
+        "deploy_two_chain_sequence",
+        "walk_to_ball_engine_no_onnx",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (

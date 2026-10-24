@@ -231,6 +231,8 @@ scripts/
 ├── pr4_index_nav.py             分组导航 + 体积健康；GAP 仍开；不删合同脚本
 ├── playball_not_kick_policy.py  PlayBall ≠ kickPolicy 两条链；官方踢球技能 ≠ kick 网
 ├── reactive_stub_hardening.py   reactive / 估计器 / draft stub TRAINABLE=false；≠ 默认 walk
+├── deploy_two_chain_sequence.py 链 A 位姿 → walk 344→13；链 B 仅 want_kick → kick 59→13
+├── walk_to_ball_engine_no_onnx.py WalkToBallAndKickEngine 只出位姿；无 CompiledNN / ONNX
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -320,6 +322,8 @@ k1-switcher/
 ├── test_pr4_index_nav.py
 ├── test_playball_not_kick_policy.py
 ├── test_reactive_stub_hardening.py
+├── test_deploy_two_chain_sequence.py
+├── test_walk_to_ball_engine_no_onnx.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -420,7 +424,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-sapp.json   上轮（standup 调用点 73→22 + fast 隔离 72→22）
 ├── contract-gate-20261024-e2e.json    上轮（GetUp→walk 交接链 + 本地产物即推）
 ├── contract-gate-20261024-sbc.json    上轮（SkillBehaviorControl 写入链 + PR 索引分组/体积）
-├── contract-gate-20261024-pbk.json    本轮（PlayBall ≠ kickPolicy 两条链 + reactive stub 硬化）
+├── contract-gate-20261024-pbk.json    上轮（PlayBall ≠ kickPolicy 两条链 + reactive stub 硬化）
+├── contract-gate-20261024-dseq.json   本轮（部署双链时序 + WalkToBallAndKickEngine 无 ONNX）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -475,6 +480,8 @@ k1-training/manifests/
 ├── pr4-index-nav-latest.json            分组导航 + 体积健康；status=GAP / gap_closed=false
 ├── playball-not-kick-policy-latest.json 运动请求 walkToBallAndKick ≠ CompiledNN kick 槽
 ├── reactive-stub-hardening-latest.json  stub TRAINABLE=false；≠ 默认 walk；stub ≠ ready_gpu
+├── deploy-two-chain-sequence-latest.json 链 A ≠ 链 B；禁止把 PlayBall 画成 kick 网；GAP 仍开
+├── walk-to-ball-engine-no-onnx-latest.json WalkToBallAndKickEngine 只出位姿；无 ONNX / CompiledNN
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -484,6 +491,8 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| 部署双链时序 | `scripts/deploy_two_chain_sequence.py` + [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 链 A 位姿 → walk **344→13**；链 B 仅 want_kick → kick **59→13**；禁止把链 A 画成 kick 网 |
+| WalkToBallAndKickEngine 无 ONNX | `scripts/walk_to_ball_engine_no_onnx.py` | 只出 kickPose / 轨迹；不 apply 任何 ONNX / CompiledNN；与 kick 槽隔离 |
 | PlayBall ≠ kickPolicy 两条链 | `scripts/playball_not_kick_policy.py` | 运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网 |
 | reactive / 旁路 stub 硬化 | `scripts/reactive_stub_hardening.py` | stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true |
 | 部署调用时序 | `DEPLOY-CALL-SEQUENCE.md` + `k1-switcher/deploy_call.py` | `python3 bhuman/k1-training/k1-switcher/test_deploy_call.py` |
@@ -584,7 +593,9 @@ k1-training/manifests/
 | PR 分组导航 / 体积健康 | `pr4_index_nav.py` + 本页 §1.5 / §6 | walk/kick/standup/handoff/artifacts/GAP 链到最新 manifests；~+191k/335 files；勿再塞大二进制 |
 | PlayBall ≠ kickPolicy 两条链 | `playball_not_kick_policy.py` | PlayBall 只写 MotionRequest.motion；官方踢球技能 ≠ kick 网；空=walk **344→13** |
 | reactive / 旁路 stub 硬化 | `reactive_stub_hardening.py` | stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true |
-| 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静
+| 部署双链时序 | `deploy_two_chain_sequence.py` | 链 A 位姿 → walk **344→13**；链 B 仅 want_kick → kick **59→13**；禁止把链 A 画成 kick 网 |
+| WalkToBallAndKickEngine 无 ONNX | `walk_to_ball_engine_no_onnx.py` | 只出 kickPose / 轨迹；不 apply 任何 ONNX / CompiledNN；与 kick 槽隔离 |
+| 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
