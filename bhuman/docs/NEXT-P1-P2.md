@@ -169,6 +169,7 @@ python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
 python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
+python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

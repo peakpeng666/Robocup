@@ -30,7 +30,7 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 |---|---|---|
 | 1 | 本页 | 目录 |
 | 2 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) | P0–P5 取舍与验收 |
-| 3 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.11 reactive = 旁路技能，≠ 新步态基线） |
+| 3 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.12 可迁点 vs 不可替换 walk） |
 | 4 | [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md) | 「可迁」对照：目录 / GPU / 对 344→13 |
 | 5 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓合同核验 |
 | 6 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
@@ -142,7 +142,8 @@ k1-switcher/
 ```
 k1-estimators/                   passthrough / rma / dreamwaq；latent **不进** 344
                                  hooks.py 只文档化，不接线 switcher / deploy_call
-configs/draft-only/              只注释；run_walk_stability.sh 不读这里
+configs/draft-only/              draft_only:true；run_walk_stability.sh 不读
+                                 draft_validator.py 负例：禁覆盖 live 奖励
 ```
 
 ### 3.6 sim2sim 门禁骨架 · `bhuman/sim2sim/`（过桥对象 = 官方 344→13）
@@ -168,7 +169,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-deploy.json
 ├── contract-gate-20261024-timeseries.json 上轮（时间序列草案 + 估计器旁路 + §6.10）
 ├── contract-gate-20261024-p2.json     上轮（P2 验收 + reactive 硬化 + §6.11）
-├── contract-gate-20261024-standup.json 本轮（standup/kick 硬化 + HiFAR 边界 + 阻塞项清单）
+├── contract-gate-20261024-standup.json 上轮（standup/kick 硬化 + HiFAR 边界 + 阻塞项清单）
+├── contract-gate-20261024-draft.json  本轮（draft 校验器 + schema 负例 + §6.12）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
@@ -190,6 +192,9 @@ k1-training/manifests/
 | ROADMAP 阻塞项 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5 | 缺什么 / 谁提供 / SKIP→PASS；GPU 先告知 |
 | standup / kick 硬化 | `standup_kick_contract.py` | 仅 fallen→standup；禁 standup→kick；禁 SimRobot 冒充 72→22 |
 | HiFAR / 火神边界 | `test_hifar_boundary.py` | T1 `model.pth` 不得进 K1；58 ≠ 344 |
+| P1 draft 校验器 | `configs/draft-only/draft_validator.py` | `draft_only:true`；禁覆盖 live 奖励 |
+| 观测 schema 负例 | `obs_schema.py` | 拒 345/343、拒外族当 walk、拒缺历史窗 |
+| 开源方法可迁短表 | GLOBAL §6.12 | 旁路灵感 / **不可**替换 B-Human walk |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

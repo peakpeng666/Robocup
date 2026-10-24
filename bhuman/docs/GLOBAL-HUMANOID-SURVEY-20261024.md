@@ -394,6 +394,25 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 
 ---
 
+### 6.12 开源人形足球 / 步态运控：可迁点 vs 不可迁点
+
+短表。每一行都可以当**旁路灵感**；**不可**替换官方 B-Human walk **344→13**。完整目录对照仍见 [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)。
+
+| 方法 | 可作旁路灵感 | **不可**替换 B-Human walk |
+|---|---|---|
+| AMP | P2 反应技能风格判别；另开实验目录 | 不得叠进官方 344 actor，不得改默认奖励 |
+| RMA | P1 估计器旁路；`passthrough` 对照 | latent **不进** 344；不得改 `K1.yaml` |
+| DreamWaQ / ++ | P1 单因素外感知记忆 | 记忆通道 ≠ 改写 10×32+24 |
+| Noisy Striker | P3 蒸馏对照（scratch 解压） | 谁赢都不许改官方维 |
+| TeleHuman / PAiD | P3 / P2 预案：先技能后感知 | 不迁 Isaac Lab 主线 |
+| BeyondMimic | 仓外跟踪，出 GMR→K1 参考动作 | 不替换 WalkingEngine actor |
+| 火神虚拟感知 + AMP | P2 `k1-reactive` 64→15 旁路 | 不加载 T1 `model.pth`；不改 344 |
+| HiFAR | P4 起身对照文档 | 不改 73→22 / 72→22 |
+| Isaac Lab / rsl_rl | P3 后对照仿真器 | 不换 `--task K1` 训练主线 |
+| MuJoCo Playground | 对照本仓 sim2sim 过桥 | 不训 T1 摇杆任务当官方走 |
+
+---
+
 ## 7. 可迁移矩阵（压缩）
 
 完整对照（拟议目录/模块、优先级、是否依赖 GPU、与 walk 344→13）：[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)。
@@ -443,3 +462,4 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - PR 文件树：[PR4-INDEX.md](PR4-INDEX.md)
 - 历史/力矩时间序列草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)
 - P2 验收清单：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（reactive = 旁路技能，≠ 新步态基线）
+- 开源方法可迁短表：§6.12（旁路灵感 / 不可替换 B-Human walk）

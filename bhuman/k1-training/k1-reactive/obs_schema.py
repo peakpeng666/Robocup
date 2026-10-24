@@ -32,6 +32,36 @@ EXPECTED = {
     "fast_standup": {"obs": 72, "act": 22},
     "reactive": {"obs": 64, "act": 15},
 }
+NOT_WALK_OBS = (343, 345, 59, 64, 72, 73, 58, 79, 365)
+NOT_WALK_SKILLS = ("kick", "standup", "fast_standup", "reactive", "huoshen_t1", "nusim")
+
+
+def refuse_walk_obs_dim(obs_dim: int, act_dim: int | None = None) -> None:
+    """Official walk is exactly 344->13. Off-by-one and foreign dims are not walk."""
+    if obs_dim == 344 and act_dim in (None, 13):
+        return
+    raise ValueError(f"not official walk 344→13: got {obs_dim}->{act_dim}")
+
+
+def refuse_foreign_skill_as_walk(skill: str) -> None:
+    if skill in NOT_WALK_SKILLS:
+        raise ValueError(f"{skill} contract is not official walk 344")
+
+
+def refuse_missing_walk_history(walk_skill: dict[str, Any] | None) -> None:
+    hist = (walk_skill or {}).get("history") or {}
+    frames = hist.get("frames")
+    frame_dim = hist.get("frame_dim")
+    tail = hist.get("tail_dim")
+    if not frames or not frame_dim or tail is None:
+        raise ValueError("walk must declare history window frames/frame_dim/tail_dim")
+    computed = int(frames) * int(frame_dim) + int(tail)
+    if computed != 344:
+        raise ValueError(f"walk history {frames}×{frame_dim}+{tail}={computed} != 344")
+
+
+def refuse_rewrite_live_obs() -> None:
+    raise RuntimeError("obs schema must not rewrite live official walk observations")
 
 
 def _repo(explicit: Path | None = None) -> Path:

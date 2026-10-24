@@ -35,6 +35,9 @@ REQUIRED_ROWS = (
     "standup / kick 旁路硬化",
     "HiFAR / 火神边界",
     "阻塞项可执行清单",
+    "P1 draft 校验器",
+    "观测 schema 负例",
+    "开源方法可迁短表",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -53,6 +56,8 @@ REQUIRED_LANDINGS = (
     "旁路技能，≠ 新步态基线",
     "test_bt_deploy_crosscheck",
     "refuse_pd_claim",
+    "draft_validator.py",
+    "refuse_walk_obs_dim",
 )
 
 

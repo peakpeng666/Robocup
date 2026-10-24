@@ -97,6 +97,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] standup / kick 旁路硬化：仅 fallen→standup、`getup_done`→walk、禁止 standup→kick、禁止 SimRobot 冒充 fast 72→22。
 - [x] HiFAR / 火神边界可执行测试：`test_hifar_boundary.py`（T1 权不得进 K1；58 ≠ 344）。
 - [x] 阻塞项可执行清单（§5：缺什么 / 谁提供 / SKIP→PASS；GPU 上线先告知用户，不启训）。
+- [x] P1 draft 校验器：`draft_only: true`；stability / config_patch 不读；live 奖励不被覆盖。
+- [x] 观测 schema 负例：拒 345/343、拒 kick/standup/reactive 当 walk、拒缺历史窗。
+- [x] 调研补强：GLOBAL §6.12 开源方法可迁点 vs 不可替换 walk。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -199,6 +202,7 @@ python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
 python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
+python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

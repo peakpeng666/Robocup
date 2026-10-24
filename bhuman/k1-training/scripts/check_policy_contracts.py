@@ -486,6 +486,12 @@ def check_gpu_free_shells(
             "k1_p1_draft",
             True,
         ),
+        (
+            "bhuman/k1-training/configs/draft-only/test_draft_validator.py",
+            "draft_validator",
+            "k1_draft_validator",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -915,6 +921,7 @@ def main() -> int:
             "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
             "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
             "p1_draft": "draft-only factor comments; official rewards untouched",
+            "draft_validator": "draft_only:true; live rewards not overwritten by draft",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -972,6 +979,7 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
             "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+            "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }

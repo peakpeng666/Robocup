@@ -10,7 +10,17 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from obs_schema import EXPECTED, check_schema, load_schema  # noqa: E402
+from obs_schema import (  # noqa: E402
+    EXPECTED,
+    NOT_WALK_OBS,
+    NOT_WALK_SKILLS,
+    check_schema,
+    load_schema,
+    refuse_foreign_skill_as_walk,
+    refuse_missing_walk_history,
+    refuse_rewrite_live_obs,
+    refuse_walk_obs_dim,
+)
 
 
 def run(repo: Path | None = None) -> dict[str, Any]:
@@ -25,6 +35,46 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append(f"schema skills missing {set(EXPECTED) - set(data.get('skills') or {})}")
     else:
         notes.append("schema lists walk/kick/standup/fast_standup/reactive")
+
+    try:
+        refuse_walk_obs_dim(344, 13)
+        notes.append("official walk 344→13 accepted")
+    except ValueError:
+        errors.append("official walk 344→13 must be accepted")
+    for dim in NOT_WALK_OBS:
+        try:
+            refuse_walk_obs_dim(dim, 13 if dim != 64 else 15)
+            errors.append(f"walk obs dim {dim} must raise")
+        except ValueError:
+            notes.append(f"negative: {dim} refused as walk obs")
+    for skill in NOT_WALK_SKILLS:
+        try:
+            refuse_foreign_skill_as_walk(skill)
+            errors.append(f"{skill} claimed as walk must raise")
+        except ValueError:
+            notes.append(f"negative: {skill} is not walk 344")
+    try:
+        refuse_missing_walk_history({"obs": 344, "act": 13})
+        errors.append("walk without history window must raise")
+    except ValueError:
+        notes.append("negative: missing walk history window refused")
+    try:
+        refuse_missing_walk_history({"history": {"frames": 10, "frame_dim": 32, "tail_dim": 23}})
+        errors.append("walk history 10×32+23 must raise")
+    except ValueError:
+        notes.append("negative: broken history formula refused")
+    walk = (data.get("skills") or {}).get("walk") or {}
+    try:
+        refuse_missing_walk_history(walk)
+        notes.append("schema walk history 10×32+24 present")
+    except ValueError as exc:
+        errors.append(str(exc))
+    try:
+        refuse_rewrite_live_obs()
+        errors.append("live obs rewrite must raise")
+    except RuntimeError:
+        notes.append("live walk obs rewrite refused")
+
     return {"ok": not errors, "errors": errors, "notes": notes}
 
 

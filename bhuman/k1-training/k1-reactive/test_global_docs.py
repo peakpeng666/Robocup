@@ -54,6 +54,8 @@ REQUIRED_DOCS = {
         "对照 ≠ 替换",
         "旁路技能，≠ 新步态基线",
         "P2-ACCEPTANCE",
+        "可迁点 vs 不可迁点",
+        "不可替换 B-Human walk",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -131,6 +133,8 @@ REQUIRED_DOCS = {
         "阻塞项",
         "standup_kick",
         "test_hifar_boundary",
+        "draft_validator",
+        "§6.12",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
