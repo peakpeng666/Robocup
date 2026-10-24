@@ -147,6 +147,8 @@ scripts/
 ├── competition_walk_diff.py     CompetitionWalk / 11v11 允许集；网槽仍 344→13
 ├── policy_switch_threshold.py   球距阈值 1500/300 vs 1100/200；≠ 换网 / 改 344
 ├── shift_ball_position.py       踢球接近偏移 false/80 vs true/40；≠ 改维 / 旁系
+├── walk_kick_policy_switch.py   walkPolicy 344→13 / kickPolicy 59→13 旁路；空上下文仍 walk
+├── max_acceleration_diff.py     Default 20/20 vs Sim 60/20 vs Comp 200/20；≠ 换网
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -312,7 +314,10 @@ k1-training/manifests/
 ├── contract-gate-20261024-fw.json     上轮（Force walk afterwards + KickEngine 边界）
 ├── contract-gate-20261024-cfg.json    上轮（walkingEngine.cfg 审计 + kick ONNX 命名）
 ├── contract-gate-20261024-getup.json  上轮（getUpEngine.cfg 审计 + cfg 副本交叉）
-├── contract-gate-20261024-motor.json  本轮（motorParameters + Simulated 速度差分）
+├── contract-gate-20261024-motor.json  上轮（motorParameters + Simulated 速度差分）
+├── contract-gate-20261024-plant.json  上轮（standAnkle + CompetitionWalk 允许集）
+├── contract-gate-20261024-ball.json   上轮（policySwitch + shiftBallPosition）
+├── contract-gate-20261024-policy.json 本轮（walkPolicy/kickPolicy 槽位 + maxAcceleration）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -342,6 +347,12 @@ k1-training/manifests/
 ├── cfg-copy-crosscheck-latest.json    Default/Simulated/Competition 关键字段；有意 sha 差分
 ├── motor-parameters-audit-latest.json regular p25 vs 训侧 p60；Simulated ≠ PD 闭合
 ├── simulated-speed-diff-latest.json   14 个有意速度差分；网槽仍 344→13
+├── stand-ankle-stiffness-latest.json  plant 60/80→100/100；≠ p60→p25
+├── competition-walk-diff-latest.json  14 个有意差分键；网槽仍 344→13
+├── policy-switch-threshold-latest.json 1500/300 vs 1100/200；≠ 换网
+├── shift-ball-position-latest.json    false/80 vs true/40；≠ 改维
+├── walk-kick-policy-switch-latest.json walk 344→13 / kick 59→13；空上下文仍 walk
+├── max-acceleration-diff-latest.json  20/20 vs 60/20 vs 200/20；≠ 换网
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -428,6 +439,8 @@ k1-training/manifests/
 | CompetitionWalk / 11v11 差分 | `competition_walk_diff.py` | 相对 Default 14 个有意差分键；网槽仍 344→13 / `K1_walk.onnx`；意外漂移 FAIL |
 | policySwitch 球距阈值 | `policy_switch_threshold.py` | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344 |
 | shiftBallPosition 边界 | `shift_ball_position.py` | Default false/80 vs Competition true/40 是踢球接近偏移；≠ 改维 / 合并旁系 |
+| walkPolicy / kickPolicy 切换只读 | `walk_kick_policy_switch.py` | walk 344→13 / kick 59→13 旁路；切换只换旁路；空上下文仍 walk |
+| maxAcceleration 差分 | `max_acceleration_diff.py` | Default 20/20 vs Simulated 60/20 vs Competition 200/20 plant；≠ 换网 / 改维 |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

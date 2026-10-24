@@ -72,6 +72,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "competition_diff_net_slot",
         "policy_switch_as_net_swap",
         "shift_ball_as_dim_change",
+        "kick_policy_as_default_walk",
+        "max_acc_as_net_swap",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -87,7 +89,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / "
             "Simulated-speed-as-PD / fabricate-Competition-getUp / "
             "standAnkle-as-PD / Competition-net-slot / "
-            "policySwitch-as-net-swap / shiftBall-as-dim"
+            "policySwitch-as-net-swap / shiftBall-as-dim / "
+            "kickPolicy-as-default-walk / maxAcc-as-net-swap"
         )
 
     try:

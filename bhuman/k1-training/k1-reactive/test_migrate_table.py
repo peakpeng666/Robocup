@@ -165,6 +165,8 @@ REQUIRED_LANDINGS = (
     "competition_walk_diff.py",
     "policy_switch_threshold.py",
     "shift_ball_position.py",
+    "walk_kick_policy_switch.py",
+    "max_acceleration_diff.py",
 )
 
 

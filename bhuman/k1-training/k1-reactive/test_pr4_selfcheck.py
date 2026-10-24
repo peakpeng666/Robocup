@@ -48,6 +48,8 @@ NEEDLES = (
     "test_competition_walk_diff.py",
     "test_policy_switch_threshold.py",
     "test_shift_ball_position.py",
+    "test_walk_kick_policy_switch.py",
+    "test_max_acceleration_diff.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

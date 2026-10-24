@@ -155,130 +155,136 @@ print(json.dumps({
 echo "[pr4-selfcheck] repo=$REPO_ROOT"
 echo "[pr4-selfcheck] python=$PY"
 
-run_step "1/43" "run_contract_gate.sh" "contract gate" \
+run_step "1/45" "run_contract_gate.sh" "contract gate" \
   env CONTRACT_GATE_STAMP="$STAMP" bash "$SCRIPT_DIR/run_contract_gate.sh" "$GATE_JSON"
 
-run_step "2/43" "run_unit_tests_no_gym.sh" "no-Gym unit tests" \
+run_step "2/45" "run_unit_tests_no_gym.sh" "no-Gym unit tests" \
   bash "$SCRIPT_DIR/run_unit_tests_no_gym.sh"
 
-run_step "3/43" "k1_reward_audit.py" "K1 reward audit (read-only)" \
+run_step "3/45" "k1_reward_audit.py" "K1 reward audit (read-only)" \
   "$PY" -B "$SCRIPT_DIR/k1_reward_audit.py"
 
-run_step "4/43" "p1_draft_diff.py" "official vs draft-only diff (read-only)" \
+run_step "4/45" "p1_draft_diff.py" "official vs draft-only diff (read-only)" \
   "$PY" -B "$SCRIPT_DIR/p1_draft_diff.py"
 
-run_step "5/43" "probe_reserved_gpu.sh" "GPU worker checklist (probe only)" \
+run_step "5/45" "probe_reserved_gpu.sh" "GPU worker checklist (probe only)" \
   bash "$SCRIPT_DIR/probe_reserved_gpu.sh"
 
-run_step "6/43" "print_train_dry_run.py" "first-train dry-run (print only; never spawn trainer)" \
+run_step "6/45" "print_train_dry_run.py" "first-train dry-run (print only; never spawn trainer)" \
   "$PY" -B "$SCRIPT_DIR/print_train_dry_run.py"
 
-run_step "7/43" "env_registry_audit.py" "env registry audit (read-only)" \
+run_step "7/45" "env_registry_audit.py" "env registry audit (read-only)" \
   "$PY" -B "$SCRIPT_DIR/env_registry_audit.py"
 
-run_step "8/43" "test_simrobot_acceptance.py" "SimRobot six-robot acceptance (no sim; honest SKIP)" \
+run_step "8/45" "test_simrobot_acceptance.py" "SimRobot six-robot acceptance (no sim; honest SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/simrobot_acceptance/test_simrobot_acceptance.py"
 
-run_step "9/43" "test_skill_request_map.py" "SkillRequest map (empty/unknown → walk)" \
+run_step "9/45" "test_skill_request_map.py" "SkillRequest map (empty/unknown → walk)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-reactive/test_skill_request_map.py"
 
-run_step "10/43" "test_pd_domain_gap.py" "PD domain-gap (p60 vs p25; read-only)" \
+run_step "10/45" "test_pd_domain_gap.py" "PD domain-gap (p60 vs p25; read-only)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_pd_domain_gap.py"
 
-run_step "11/43" "test_teamcomm_budget.py" "TeamComm 512 B (teammate not into 344; WLAN SKIP)" \
+run_step "11/45" "test_teamcomm_budget.py" "TeamComm 512 B (teammate not into 344; WLAN SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_teamcomm_budget.py"
 
-run_step "12/43" "test_checkpoint_layout.py" "checkpoint layout (missing weights honest SKIP)" \
+run_step "12/45" "test_checkpoint_layout.py" "checkpoint layout (missing weights honest SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_checkpoint_layout.py"
 
-run_step "13/43" "test_kick_standup_joint_map.py" "kick/standup joint map (standup[12] motor ≠ walk freq)" \
+run_step "13/45" "test_kick_standup_joint_map.py" "kick/standup joint map (standup[12] motor ≠ walk freq)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_standup_joint_map.py"
 
-run_step "14/43" "test_reference_motion_inventory.py" "reference-motion inventory (T1 ≠ official walk default)" \
+run_step "14/45" "test_reference_motion_inventory.py" "reference-motion inventory (T1 ≠ official walk default)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_reference_motion_inventory.py"
 
-run_step "15/43" "test_getup_engine_snapshot.py" "GetUpEngine 22-D snapshot (match kick_standup or SKIP)" \
+run_step "15/45" "test_getup_engine_snapshot.py" "GetUpEngine 22-D snapshot (match kick_standup or SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_getup_engine_snapshot.py"
 
-run_step "16/43" "test_walk_stability_presets_audit.py" "walk stability presets audit (draft-only excluded)" \
+run_step "16/45" "test_walk_stability_presets_audit.py" "walk stability presets audit (draft-only excluded)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walk_stability_presets_audit.py"
 
-run_step "17/43" "test_forbidden_regressions.py" "forbidden regressions (silent refuse = red)" \
+run_step "17/45" "test_forbidden_regressions.py" "forbidden regressions (silent refuse = red)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_forbidden_regressions.py"
 
-run_step "18/43" "test_official_sibling_tasks_audit.py" "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344)" \
+run_step "18/45" "test_official_sibling_tasks_audit.py" "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_official_sibling_tasks_audit.py"
 
-run_step "19/43" "test_onnx_deploy_path_crosscheck.py" "ONNX deploy path (layout × WalkingEngine; missing SKIP)" \
+run_step "19/45" "test_onnx_deploy_path_crosscheck.py" "ONNX deploy path (layout × WalkingEngine; missing SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_onnx_deploy_path_crosscheck.py"
 
-run_step "20/43" "test_t1_k1_isolation.py" "T1/K1 isolation (365/62/76 must not replace walk)" \
+run_step "20/45" "test_t1_k1_isolation.py" "T1/K1 isolation (365/62/76 must not replace walk)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_t1_k1_isolation.py"
 
-run_step "21/43" "test_command_schedule_audit.py" "command schedule (official commands ≠ draft applied)" \
+run_step "21/45" "test_command_schedule_audit.py" "command schedule (official commands ≠ draft applied)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_command_schedule_audit.py"
 
-run_step "22/43" "test_disturbance_curriculum_audit.py" "disturbance draft (live push_* intact; draft_only)" \
+run_step "22/45" "test_disturbance_curriculum_audit.py" "disturbance draft (live push_* intact; draft_only)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_disturbance_curriculum_audit.py"
 
-run_step "23/43" "test_settle_jitter_audit.py" "settle/jitter draft (new keys; live action_rate intact)" \
+run_step "23/45" "test_settle_jitter_audit.py" "settle/jitter draft (new keys; live action_rate intact)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_settle_jitter_audit.py"
 
-run_step "24/43" "test_estimator_ab_audit.py" "estimator A/B draft (bypass; not 344; unregistered)" \
+run_step "24/45" "test_estimator_ab_audit.py" "estimator A/B draft (bypass; not 344; unregistered)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_estimator_ab_audit.py"
 
-run_step "25/43" "test_reference_penalty_anneal_audit.py" "reference-penalty anneal (live 1.0 intact)" \
+run_step "25/45" "test_reference_penalty_anneal_audit.py" "reference-penalty anneal (live 1.0 intact)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_reference_penalty_anneal_audit.py"
 
-run_step "26/43" "test_behavior_control_handoff.py" "BehaviorControl handoff (kick/standup owners; default walk)" \
+run_step "26/45" "test_behavior_control_handoff.py" "BehaviorControl handoff (kick/standup owners; default walk)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_behavior_control_handoff.py"
 
-run_step "27/43" "test_compressed_teamcomm_shape.py" "CompressedTeamCommunication shape (HSL 512 / official container; WLAN SKIP)" \
+run_step "27/45" "test_compressed_teamcomm_shape.py" "CompressedTeamCommunication shape (HSL 512 / official container; WLAN SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_compressed_teamcomm_shape.py"
 
-run_step "28/43" "test_falldown_motion_chain.py" "FallDown / MotionEngine chain (fallen→73→22→walk; not SkillRequest)" \
+run_step "28/45" "test_falldown_motion_chain.py" "FallDown / MotionEngine chain (fallen→73→22→walk; not SkillRequest)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_falldown_motion_chain.py"
 
-run_step "29/43" "test_teamcomm_128_vs_512.py" "TeamComm 128 vs 512 (do not mix; WLAN SKIP)" \
+run_step "29/45" "test_teamcomm_128_vs_512.py" "TeamComm 128 vs 512 (do not mix; WLAN SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_teamcomm_128_vs_512.py"
 
-run_step "30/43" "test_force_walk_afterwards.py" "Force walk afterwards (getup_done→walk 344→13; 13-zero last_action)" \
+run_step "30/45" "test_force_walk_afterwards.py" "Force walk afterwards (getup_done→walk 344→13; 13-zero last_action)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_force_walk_afterwards.py"
 
-run_step "31/43" "test_kick_engine_boundary.py" "KickEngine boundary (kick 59→13 bypass ≠ walk; missing KickEngine SKIP)" \
+run_step "31/45" "test_kick_engine_boundary.py" "KickEngine boundary (kick 59→13 bypass ≠ walk; missing KickEngine SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_engine_boundary.py"
 
-run_step "32/43" "test_walking_engine_cfg_audit.py" "walkingEngine.cfg audit (walk 344→13 / K1_walk.onnx; kick ≠ walk slot)" \
+run_step "32/45" "test_walking_engine_cfg_audit.py" "walkingEngine.cfg audit (walk 344→13 / K1_walk.onnx; kick ≠ walk slot)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walking_engine_cfg_audit.py"
 
-run_step "33/43" "test_kick_onnx_naming.py" "kick ONNX naming (K1_kick_inner ≠ Walk/ default; missing SKIP)" \
+run_step "33/45" "test_kick_onnx_naming.py" "kick ONNX naming (K1_kick_inner ≠ Walk/ default; missing SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_onnx_naming.py"
 
-run_step "34/43" "test_getup_engine_cfg_audit.py" "getUpEngine.cfg audit (73→22 / K1.onnx; fast 72→22 deploy-only; T1 ≠ K1)" \
+run_step "34/45" "test_getup_engine_cfg_audit.py" "getUpEngine.cfg audit (73→22 / K1.onnx; fast 72→22 deploy-only; T1 ≠ K1)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_getup_engine_cfg_audit.py"
 
-run_step "35/43" "test_cfg_copy_crosscheck.py" "cfg copy cross-check (Default/Simulated/Competition keys; unexpected drift FAIL)" \
+run_step "35/45" "test_cfg_copy_crosscheck.py" "cfg copy cross-check (Default/Simulated/Competition keys; unexpected drift FAIL)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_cfg_copy_crosscheck.py"
 
-run_step "36/43" "test_motor_parameters_audit.py" "motorParameters audit (regular p25 vs train p60; Simulated speed ≠ PD closed)" \
+run_step "36/45" "test_motor_parameters_audit.py" "motorParameters audit (regular p25 vs train p60; Simulated speed ≠ PD closed)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_motor_parameters_audit.py"
 
-run_step "37/43" "test_simulated_speed_diff.py" "Simulated speed-diff allowlist (14 keys; net slot 344→13; unexpected FAIL)" \
+run_step "37/45" "test_simulated_speed_diff.py" "Simulated speed-diff allowlist (14 keys; net slot 344→13; unexpected FAIL)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_simulated_speed_diff.py"
 
-run_step "38/43" "test_stand_ankle_stiffness.py" "standAnkleStiffness contrast (plant 60/80→100/100; ≠ p60→p25; PD open)" \
+run_step "38/45" "test_stand_ankle_stiffness.py" "standAnkleStiffness contrast (plant 60/80→100/100; ≠ p60→p25; PD open)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_stand_ankle_stiffness.py"
 
-run_step "39/43" "test_competition_walk_diff.py" "CompetitionWalk / 11v11 allowlist (14 keys; net slot 344→13; unexpected FAIL)" \
+run_step "39/45" "test_competition_walk_diff.py" "CompetitionWalk / 11v11 allowlist (14 keys; net slot 344→13; unexpected FAIL)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_competition_walk_diff.py"
 
-run_step "40/43" "test_policy_switch_threshold.py" "policySwitch thresholds (1500/300 vs 1100/200; ≠ net swap / 344 rewrite)" \
+run_step "40/45" "test_policy_switch_threshold.py" "policySwitch thresholds (1500/300 vs 1100/200; ≠ net swap / 344 rewrite)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_policy_switch_threshold.py"
 
-run_step "41/43" "test_shift_ball_position.py" "shiftBallPosition boundary (false/80 vs true/40; ≠ dim rewrite / sibling merge)" \
+run_step "41/45" "test_shift_ball_position.py" "shiftBallPosition boundary (false/80 vs true/40; ≠ dim rewrite / sibling merge)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_shift_ball_position.py"
 
-run_step "42/43" "test_selfcheck_fail_hints.py" "FAIL locator hints (先看 file/test; PASS quiet)" \
+run_step "42/45" "test_walk_kick_policy_switch.py" "walkPolicy/kickPolicy slots (walk 344→13 / kick 59→13; empty context still walk)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walk_kick_policy_switch.py"
+
+run_step "43/45" "test_max_acceleration_diff.py" "maxAcceleration allowlist (20/20 vs 60/20 vs 200/20; ≠ net swap / dim change)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_max_acceleration_diff.py"
+
+run_step "44/45" "test_selfcheck_fail_hints.py" "FAIL locator hints (先看 file/test; PASS quiet)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_selfcheck_fail_hints.py"
 
 READY="$("$PY" -B - <<PY
@@ -305,12 +311,12 @@ fi
 
 write_summary_json "PASS"
 
-run_step "43/43" "render_selfcheck_summary.py" "selfcheck markdown summary (PASS/SKIP/WARN + timings)" \
+run_step "45/45" "render_selfcheck_summary.py" "selfcheck markdown summary (PASS/SKIP/WARN + timings)" \
   "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
 
 write_summary_json "PASS"
 
-echo "[pr4-selfcheck] 43/43 rewrite summary JSON with render elapsed_s"
+echo "[pr4-selfcheck] 45/45 rewrite summary JSON with render elapsed_s"
 "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
 
 rm -f "$TIMING_FILE"

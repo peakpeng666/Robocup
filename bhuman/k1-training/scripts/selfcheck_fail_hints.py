@@ -172,6 +172,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/shift_ball_position.py",
         "hint": "先看 shiftBallPosition 是否仍是踢球接近球位偏移，而不是被写成改 walk 维或合并旁系进 344",
     },
+    "test_walk_kick_policy_switch.py": {
+        "look": "bhuman/k1-training/scripts/walk_kick_policy_switch.py",
+        "hint": "先看 walkPolicy 是否仍是 344→13、kickPolicy 是否仍是 59→13 旁路，或空上下文是否被写成默认 kick",
+    },
+    "test_max_acceleration_diff.py": {
+        "look": "bhuman/k1-training/scripts/max_acceleration_diff.py",
+        "hint": "先看 maxAcceleration 是否仍是 plant 20/20 vs 60/20 vs 200/20，而不是被写成换 walk 网或改 344",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

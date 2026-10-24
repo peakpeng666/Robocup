@@ -105,8 +105,10 @@
 | Simulated 速度差分 | §6.10 | `scripts/simulated_speed_diff.py` | **P0** | 否 | Simulated vs Default 速度键有意允许集；网槽/维数差分 FAIL | **上轮清单** |
 | standAnkleStiffness 对照 | §6.8 / §6.10 | `scripts/stand_ankle_stiffness.py` | **P0 / P5** | 否 | Default 60/80 vs Simulated 100/100 是 walkingEngine plant；≠ 训侧 p60→p25；≠ PD 闭合 | **上轮对照** |
 | CompetitionWalk / 11v11 差分 | §6.10 | `scripts/competition_walk_diff.py` | **P0** | 否 | 相对 Default 14 个有意差分键；网槽仍 **344→13** / `K1_walk.onnx`；意外网槽漂移 FAIL | **上轮允许集** |
-| policySwitch 球距阈值 | §6.10 | `scripts/policy_switch_threshold.py` | **P0** | 否 | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344；SkillRequest 仍要 `want_kick` | **本轮阈值** |
-| shiftBallPosition 边界 | §6.10 | `scripts/shift_ball_position.py` | **P0** | 否 | Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344 | **本轮边界** |
+| policySwitch 球距阈值 | §6.10 | `scripts/policy_switch_threshold.py` | **P0** | 否 | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344；SkillRequest 仍要 `want_kick` | **上轮阈值** |
+| shiftBallPosition 边界 | §6.10 | `scripts/shift_ball_position.py` | **P0** | 否 | Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344 | **上轮边界** |
+| walkPolicy / kickPolicy 切换只读 | §6.10 | `scripts/walk_kick_policy_switch.py` | **P0** | 否 | walkPolicy **344→13** / `K1_walk.onnx`；kickPolicy **59→13** / `K1_kick_inner.onnx` 共享 walk 出口；切换只换旁路；空上下文仍 walk | **本轮槽位** |
+| maxAcceleration 差分 | §6.10 | `scripts/max_acceleration_diff.py` | **P0** | 否 | Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；≠ 换网 / 改维；y 仍 20 | **本轮允许集** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -222,6 +224,8 @@
 | 82 | CompetitionWalk / 11v11 差分 | `competition_walk_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_competition_walk_diff.py` |
 | 83 | policySwitch 球距阈值 | `policy_switch_threshold.py` | `python3 bhuman/k1-training/k1-switcher/test_policy_switch_threshold.py` |
 | 84 | shiftBallPosition 边界 | `shift_ball_position.py` | `python3 bhuman/k1-training/k1-switcher/test_shift_ball_position.py` |
+| 85 | walkPolicy / kickPolicy 切换只读 | `walk_kick_policy_switch.py` | `python3 bhuman/k1-training/k1-switcher/test_walk_kick_policy_switch.py` |
+| 86 | maxAcceleration 差分 | `max_acceleration_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_max_acceleration_diff.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

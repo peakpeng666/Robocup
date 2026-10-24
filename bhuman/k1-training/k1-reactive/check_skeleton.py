@@ -471,6 +471,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "shiftBallPosition boundary (kick-approach offset; ≠ dim rewrite / sibling merge)",
         ),
         (
+            "bhuman/k1-training/scripts/walk_kick_policy_switch.py",
+            "walkPolicy/kickPolicy slots (walk 344→13 / kick 59→13; empty context still walk)",
+        ),
+        (
+            "bhuman/k1-training/scripts/max_acceleration_diff.py",
+            "maxAcceleration allowlist (20/20 vs 60/20 vs 200/20; ≠ net swap / dim change)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

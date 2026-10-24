@@ -89,6 +89,8 @@
 | CompetitionWalk / 11v11 差分 | `scripts/competition_walk_diff.py` | 14 个有意差分键；网槽仍 344→13 / `K1_walk.onnx` |
 | policySwitch 球距阈值 | `scripts/policy_switch_threshold.py` | 1500/300 vs 1100/200 行为阈值；≠ 换网 / 改 344 |
 | shiftBallPosition 边界 | `scripts/shift_ball_position.py` | false/80 vs true/40 踢球接近偏移；≠ 改维 / 旁系 |
+| walkPolicy / kickPolicy 切换 | `scripts/walk_kick_policy_switch.py` | walk 344→13 / kick 59→13 旁路；空上下文仍 walk |
+| maxAcceleration 差分 | `scripts/max_acceleration_diff.py` | 20/20 vs 60/20 vs 200/20 plant；≠ 换网 / 改维 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

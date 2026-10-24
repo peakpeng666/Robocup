@@ -1,0 +1,81 @@
+{
+  "generated_utc": "2026-10-24T09:51:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "simulated": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+    "competition": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "max_acceleration": {
+    "default": {
+      "x": "20",
+      "y": "20"
+    },
+    "simulated": {
+      "x": "60",
+      "y": "20"
+    },
+    "competition": {
+      "x": "200",
+      "y": "20"
+    },
+    "kind": "plant_step_ratchet_mm_s_step",
+    "not_net_slot": true,
+    "not_walk_dim": true,
+    "y_stays": "20"
+  },
+  "allowed": [
+    {
+      "role": "SimulatedK1",
+      "axis": "x",
+      "default": "20",
+      "value": "60",
+      "kind": "intentional_plant"
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "axis": "x",
+      "default": "20",
+      "value": "200",
+      "kind": "intentional_plant"
+    }
+  ],
+  "copies": [
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "x": "200",
+      "y": "20",
+      "matches": "CompetitionWalk/K1"
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "cpp_needles": [
+    "maxAcceleration",
+    "maxStepSizeChange"
+  ],
+  "header_needles": [
+    "maxAcceleration",
+    "mm/s/step"
+  ],
+  "max_acc_as_net_swap": false,
+  "accel_changes_344_contract": false,
+  "fabricated": false,
+  "note": "maxAcceleration Default 20/20 vs Simulated 60/20 vs Competition 200/20 is a commonSpeedParameters plant ratchet (mm/s/step); y stays 20; it does not swap the walk net or change 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "simulated_sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

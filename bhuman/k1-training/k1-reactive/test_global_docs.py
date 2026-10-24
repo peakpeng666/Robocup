@@ -80,6 +80,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -164,6 +166,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -241,6 +245,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff.py",
         "policy_switch_threshold.py",
         "shift_ball_position.py",
+        "walk_kick_policy_switch.py",
+        "max_acceleration_diff.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -308,6 +314,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -386,6 +394,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -448,6 +458,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -558,6 +570,8 @@ REQUIRED_DOCS = {
         "competition_walk_diff",
         "policy_switch_threshold",
         "shift_ball_position",
+        "walk_kick_policy_switch",
+        "max_acceleration_diff",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

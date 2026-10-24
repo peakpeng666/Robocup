@@ -10,7 +10,8 @@ kickModel pointing at T1, kick ONNX occupying the walk slot,
 getUp overwriting walk, T1 getUp as K1, fast standup as Isaac,
 Simulated speed as closed PD, fabricated Competition getUp,
 standAnkleStiffness as closed PD, Competition diffs changing net slot,
-policySwitch as net swap, shiftBall as dim change.
+policySwitch as net swap, shiftBall as dim change,
+kickPolicy as default walk, maxAcc as net swap.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -51,9 +52,11 @@ from getup_engine_cfg_audit import (  # noqa: E402
 )
 from competition_walk_diff import refuse_competition_diff_net_slot  # noqa: E402
 from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
+from max_acceleration_diff import refuse_max_acc_as_net_swap  # noqa: E402
 from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
 from shift_ball_position import refuse_shift_ball_as_dim_change  # noqa: E402
 from stand_ankle_stiffness import refuse_stand_ankle_as_pd_closed  # noqa: E402
+from walk_kick_policy_switch import refuse_kick_policy_as_default_walk  # noqa: E402
 from walking_engine_cfg_audit import (  # noqa: E402
     refuse_cfg_dim_rewrite,
     refuse_kickmodel_points_t1,
@@ -242,6 +245,26 @@ def _case_shift_ball_as_dim_change() -> None:
     )
 
 
+def _case_kick_policy_as_default_walk() -> None:
+    refuse_kick_policy_as_default_walk(
+        {
+            "kick_policy_as_default_walk": True,
+            "empty_context": True,
+            "skill": "kick",
+        }
+    )
+
+
+def _case_max_acc_as_net_swap() -> None:
+    refuse_max_acc_as_net_swap(
+        {
+            "max_acc_as_net_swap": True,
+            "source": "maxAcceleration",
+            "walk_obs": 365,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -273,6 +296,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("competition_diff_net_slot", _case_competition_diff_net_slot),
     ("policy_switch_as_net_swap", _case_policy_switch_as_net_swap),
     ("shift_ball_as_dim_change", _case_shift_ball_as_dim_change),
+    ("kick_policy_as_default_walk", _case_kick_policy_as_default_walk),
+    ("max_acc_as_net_swap", _case_max_acc_as_net_swap),
 )
 
 
