@@ -36,6 +36,8 @@ NEEDLES = (
     "test_compressed_teamcomm_shape.py",
     "test_falldown_motion_chain.py",
     "test_teamcomm_128_vs_512.py",
+    "test_force_walk_afterwards.py",
+    "test_kick_engine_boundary.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

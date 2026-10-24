@@ -423,6 +423,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "TeamComm 128 vs 512 contrast (do not mix; WLAN SKIP)",
         ),
         (
+            "bhuman/k1-training/scripts/force_walk_afterwards.py",
+            "Force walk afterwards (getup_done→walk 344→13; 13-zero last_action)",
+        ),
+        (
+            "bhuman/k1-training/scripts/kick_engine_boundary.py",
+            "KickEngine boundary (kick 59→13 bypass ≠ walk; missing KickEngine SKIP)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

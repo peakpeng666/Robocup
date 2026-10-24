@@ -135,6 +135,8 @@ scripts/
 ├── reference_penalty_anneal_audit.py live reference_mean_penalty 1.0 不改
 ├── behavior_control_handoff.py  谁切 kick/standup；默认仍 walk；缺源 SKIP
 ├── falldown_motion_chain.py     fallen→73→22→walk；跌倒不是 SkillRequest；缺源 SKIP
+├── force_walk_afterwards.py     getup_done→walk 344→13 + last_action 13 个 0
+├── kick_engine_boundary.py      kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -186,6 +188,8 @@ k1-switcher/
 ├── test_behavior_control_handoff.py
 ├── test_falldown_motion_chain.py
 ├── test_teamcomm_128_vs_512.py
+├── test_force_walk_afterwards.py
+├── test_kick_engine_boundary.py
 ├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
 ├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
 ├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
@@ -290,7 +294,10 @@ k1-training/manifests/
 ├── contract-gate-20261024-sib.json    上轮（旁系任务 + ONNX 路径 + 自检耗时）
 ├── contract-gate-20261024-iso.json    上轮（T1/K1 隔离 + 过桥负例 + PR 体积）
 ├── contract-gate-20261024-cmd.json    上轮（命令日程 + 扰动草案 + 失败定位）
-├── contract-gate-20261024-p1f.json    本轮（settle / 估计器 A/B / 退火 + 五因素机器校验）
+├── contract-gate-20261024-p1f.json    上轮（settle / 估计器 A/B / 退火 + 五因素机器校验）
+├── contract-gate-20261024-bc.json     上轮（BehaviorControl 交接 + TeamComm 形状）
+├── contract-gate-20261024-fall.json   上轮（FallDown 跌倒链 + 128 vs 512）
+├── contract-gate-20261024-fw.json     本轮（Force walk afterwards + KickEngine 边界）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -310,6 +317,10 @@ k1-training/manifests/
 ├── settle-jitter-audit-latest.json    draft_settle_* 新键；live 无对应键
 ├── estimator-ab-audit-latest.json     旁路声明；不写 344；不注册 train.py
 ├── reference-penalty-anneal-audit-latest.json live 1.0 vs anneal proposed；未应用
+├── falldown-motion-chain-latest.json  fallen→73→22→walk；跌倒不是 SkillRequest
+├── teamcomm-128-vs-512-latest.json    官方 128 ≠ HSL 512；不得混用
+├── force-walk-afterwards-latest.json  getup_done→walk 344→13；last_action 13 个 0
+├── kick-engine-boundary-latest.json   kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -384,6 +395,8 @@ k1-training/manifests/
 | CompressedTeamCommunication 形状 | `compressed_teamcomm_shape.py` | HSL 512 / 官方容器；队友 **不进** 344；无 WLAN 带宽 SKIP |
 | FallDown / MotionEngine 跌倒链 | `falldown_motion_chain.py` | fallen → GetUpEngine 73→22 → getup_done → walk；跌倒不是 SkillRequest；缺源 SKIP |
 | 128 vs 512 报文对照 | `teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md) | 用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP |
+| Force walk afterwards 合同 | `force_walk_afterwards.py` | getup_done → walk 344→13 + last_action 13 个 0；不得停 standup / 直接 kick |
+| KickEngine 边界只读 | `kick_engine_boundary.py` | kick 59→13 旁路 ≠ 换 walk 基线；无独立 KickEngine → SKIP |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

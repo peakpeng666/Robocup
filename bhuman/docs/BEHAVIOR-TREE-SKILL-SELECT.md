@@ -66,7 +66,8 @@ B-Human 行为树 / 角色 / GameController / 正常视觉     ← 保持，本�
 官方 `SkillRequest` 对照（对照 ≠ 替换官方 walk）：GLOBAL survey §6.10。  
 可测表：`bhuman/k1-training/k1-reactive/skill_request_map.py`（空/未知 → walk **344→13**；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。活测试：`python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py`。  
 官方交接只读快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。  
-跌倒链只读：`scripts/falldown_motion_chain.py`（fallen → GetUpEngine 73→22 → getup_done → walk；跌倒不是 SkillRequest Type；缺源 SKIP）。
+跌倒链只读：`scripts/falldown_motion_chain.py`（fallen → GetUpEngine 73→22 → getup_done → walk；跌倒不是 SkillRequest Type；缺源 SKIP）。  
+Force walk afterwards：`scripts/force_walk_afterwards.py`（getup_done 必须回 walk **344→13** + last_action 13 个 0；不得停 standup / 直接 kick）。
 
 ---
 

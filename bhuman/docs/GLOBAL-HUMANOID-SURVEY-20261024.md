@@ -391,6 +391,8 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 可测映射表：`bhuman/k1-training/k1-reactive/skill_request_map.py`（空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。  
 只读快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk **344→13**；与 `bt_skill_select` / `deploy_call` 交叉；缺源诚实 SKIP）。  
 跌倒链只读：`scripts/falldown_motion_chain.py`（FallDownState / MotionEngine / GetUpEngine：fallen → 73→22 → getup_done → walk 344→13；跌倒不是 SkillRequest Type；缺源 SKIP）。  
+Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（GetUp `Force walk afterwards` → walk **344→13** + last_action 13 个 0；不得停在 standup；不得直接 kick；与 switcher / `last_action_reset` 交叉）。  
+踢球边界只读：`scripts/kick_engine_boundary.py`（本仓无独立 KickEngine；活链 PlayBall → WalkToBallAndKickEngine → kickPolicy **59→13**；kick 是技能旁路，不是换 walk 基线；缺 KickEngine 诚实 SKIP）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

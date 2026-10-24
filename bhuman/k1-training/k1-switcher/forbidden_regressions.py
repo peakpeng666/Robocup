@@ -4,7 +4,8 @@ Each case MUST raise. If a refuse is silent, the gate goes red.
 Cases: T1 as walk, standup→kick, SimRobot as fast standup, latent into 344,
 draft overwrite live, unified PD as closed gap, sibling merge into 344,
 T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
-mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick.
+mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick,
+stay on standup after getup, kick replacing walk.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -31,6 +32,11 @@ from falldown_motion_chain import (  # noqa: E402
     refuse_fallen_as_skill_request,
     refuse_kick_before_getup_done,
 )
+from force_walk_afterwards import (  # noqa: E402
+    refuse_getup_done_direct_kick,
+    refuse_stay_on_standup_after_getup,
+)
+from kick_engine_boundary import refuse_kick_replaces_walk  # noqa: E402
 from hifar_boundary import refuse_huoshen_obs_as_walk, refuse_t1_weight_on_k1_actor  # noqa: E402
 from hooks import refuse_concat_latent_onto_walk  # noqa: E402
 from official_sibling_tasks_audit import refuse_merge_sibling_into_344  # noqa: E402
@@ -127,6 +133,18 @@ def _case_getup_incomplete_kick() -> None:
     refuse_kick_before_getup_done()
 
 
+def _case_stay_on_standup_after_getup() -> None:
+    refuse_stay_on_standup_after_getup({"stay_on_standup_after_getup": True})
+
+
+def _case_getup_done_direct_kick() -> None:
+    refuse_getup_done_direct_kick()
+
+
+def _case_kick_replaces_walk() -> None:
+    refuse_kick_replaces_walk({"replaces_walk": True, "kick_as_walk_baseline": True})
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -143,6 +161,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("mix_128_512", _case_mix_128_512),
     ("fallen_as_skill_request", _case_fallen_as_skill_request),
     ("getup_incomplete_kick", _case_getup_incomplete_kick),
+    ("stay_on_standup_after_getup", _case_stay_on_standup_after_getup),
+    ("getup_done_direct_kick", _case_getup_done_direct_kick),
+    ("kick_replaces_walk", _case_kick_replaces_walk),
 )
 
 

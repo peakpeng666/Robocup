@@ -124,6 +124,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/k1-switcher/teamcomm_128_vs_512.py",
         "hint": "先看 128 与 512 是否被混用，或 128 是否被误标成 HSL 预算已满足",
     },
+    "test_force_walk_afterwards.py": {
+        "look": "bhuman/k1-training/scripts/force_walk_afterwards.py",
+        "hint": "先看 getup_done 是否回 walk 344→13、last_action 是否 13 个 0，或是否停在 standup / 直接 kick",
+    },
+    "test_kick_engine_boundary.py": {
+        "look": "bhuman/k1-training/scripts/kick_engine_boundary.py",
+        "hint": "先看 kick 59→13 是否被写成换 walk 基线，或缺 KickEngine 是否仍诚实 SKIP",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

@@ -68,6 +68,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape",
         "falldown_motion_chain",
         "teamcomm_128_vs_512",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -140,6 +142,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape",
         "falldown_motion_chain",
         "teamcomm_128_vs_512",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -204,6 +208,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape.py",
         "falldown_motion_chain.py",
         "teamcomm_128_vs_512.py",
+        "force_walk_afterwards.py",
+        "kick_engine_boundary.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -215,6 +221,7 @@ REQUIRED_DOCS = {
         "SkillRequest",
         "behavior_control_handoff",
         "falldown_motion_chain",
+        "force_walk_afterwards",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -256,6 +263,8 @@ REQUIRED_DOCS = {
         "热换 ONNX",
         "behavior_control_handoff",
         "falldown_motion_chain",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -322,6 +331,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape",
         "falldown_motion_chain",
         "teamcomm_128_vs_512",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -372,6 +383,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape",
         "falldown_motion_chain",
         "teamcomm_128_vs_512",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -470,6 +483,8 @@ REQUIRED_DOCS = {
         "compressed_teamcomm_shape",
         "falldown_motion_chain",
         "teamcomm_128_vs_512",
+        "force_walk_afterwards",
+        "kick_engine_boundary",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

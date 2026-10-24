@@ -57,6 +57,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "mix_128_512",
         "fallen_as_skill_request",
         "getup_incomplete_kick",
+        "stay_on_standup_after_getup",
+        "getup_done_direct_kick",
+        "kick_replaces_walk",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -66,7 +69,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         notes.append(
             "high-priority cases present: T1 / standup→kick / SimRobot / latent / "
             "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / "
-            "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick"
+            "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / "
+            "stay-on-standup / getup-direct-kick / kick-replaces-walk"
         )
 
     try:
