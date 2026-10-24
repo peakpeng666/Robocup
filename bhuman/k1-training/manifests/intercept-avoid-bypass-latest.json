@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-10-24T10:00:55+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "motion_h": "bhuman/BHumanCodeRelease/Src/Representations/MotionControl/MotionRequest.h",
+    "behavior": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/SkillBehaviorControl.cpp"
+  },
+  "bypasses": [
+    {
+      "id": "shouldInterceptBall",
+      "needle": "shouldInterceptBall",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true
+    },
+    {
+      "id": "obstacleAvoidance.path",
+      "needle": "obstacleAvoidance.path.empty()",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true
+    },
+    {
+      "id": "shouldWalkOutOfBallLine",
+      "needle": "shouldWalkOutOfBallLine",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "empty_context": {
+    "skill": "walk",
+    "contract": "344→13"
+  },
+  "cpp_needles": [
+    "void WalkPhase::getNextTargetRequest",
+    "engine.walkPolicy.apply()",
+    "shouldInterceptBall",
+    "obstacleAvoidance.path.empty()",
+    "shouldWalkOutOfBallLine"
+  ],
+  "header_needles": [
+    "(bool)(false) shouldInterceptBall",
+    "(bool)(false) shouldWalkOutOfBallLine",
+    "obstacleAvoidance"
+  ],
+  "behavior_needles": [
+    "theMotionRequest.shouldInterceptBall",
+    "theMotionRequest.shouldWalkOutOfBallLine"
+  ],
+  "intercept_as_kick_default": false,
+  "avoid_as_hot_swap_train": false,
+  "not_reactive": true,
+  "not_t1": true,
+  "fabricated": false,
+  "note": "shouldInterceptBall, non-empty obstacleAvoidance.path, and shouldWalkOutOfBallLine keep getNextTargetRequest on walkPolicy 344→13; they are not kick default, reactive, T1, or a train-graph hot-swap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

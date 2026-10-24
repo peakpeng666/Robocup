@@ -407,6 +407,8 @@ walkPolicy / kickPolicy 切换只读：`scripts/walk_kick_policy_switch.py`（wa
 maxAcceleration 差分：`scripts/max_acceleration_diff.py`（Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；≠ 换网 / 改维；y 仍 20）。  
 getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图）。  
 speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13**）。  
+ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 `ballNetworkParameters.active=true`；未开强制 walkPolicy **344→13**；≠ 改 344 / 换训练图）。  
+拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（`shouldInterceptBall` / 避障 path 非空 / `shouldWalkOutOfBallLine` 仍走 walkPolicy **344→13**；≠ kick / reactive / T1）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

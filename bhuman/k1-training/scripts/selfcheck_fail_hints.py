@@ -188,6 +188,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/speed_gear_diff.py",
         "hint": "先看 fast/normal/slow 速度档是否仍在有意允许集，而不是被写成换 walk 网或改 344",
     },
+    "test_ball_network_active.py": {
+        "look": "bhuman/k1-training/scripts/ball_network_active.py",
+        "hint": "先看 ballNetworkParameters.active 是否仍是部署旁路开关，而不是被写成改 344 或换训练图",
+    },
+    "test_intercept_avoid_bypass.py": {
+        "look": "bhuman/k1-training/scripts/intercept_avoid_bypass.py",
+        "hint": "先看拦截/避障/walkOutOfBallLine 是否仍走 walkPolicy 344→13，而不是被写成默认 kick 或热换训练图",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

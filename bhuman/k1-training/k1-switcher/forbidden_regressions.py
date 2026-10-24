@@ -12,7 +12,9 @@ Simulated speed as closed PD, fabricated Competition getUp,
 standAnkleStiffness as closed PD, Competition diffs changing net slot,
 policySwitch as net swap, shiftBall as dim change,
 kickPolicy as default walk, maxAcc as net swap,
-getNextTargetRequest as hot-swap train graph, speed gear as net swap.
+getNextTargetRequest as hot-swap train graph, speed gear as net swap,
+ball-net off as dim change, intercept as kick default,
+avoidance as hot-swap train.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -53,7 +55,12 @@ from getup_engine_cfg_audit import (  # noqa: E402
 )
 from competition_walk_diff import refuse_competition_diff_net_slot  # noqa: E402
 from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
+from ball_network_active import refuse_ball_net_off_as_dim_change  # noqa: E402
 from get_next_target_request import refuse_getnext_as_hot_swap_train  # noqa: E402
+from intercept_avoid_bypass import (  # noqa: E402
+    refuse_avoid_as_hot_swap_train,
+    refuse_intercept_as_kick_default,
+)
 from max_acceleration_diff import refuse_max_acc_as_net_swap  # noqa: E402
 from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
 from speed_gear_diff import refuse_speed_gear_as_net_swap  # noqa: E402
@@ -288,6 +295,35 @@ def _case_speed_gear_as_net_swap() -> None:
     )
 
 
+def _case_ball_net_off_as_dim_change() -> None:
+    refuse_ball_net_off_as_dim_change(
+        {
+            "ball_net_off_as_dim_change": True,
+            "source": "ballNetworkParameters.active",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_intercept_as_kick_default() -> None:
+    refuse_intercept_as_kick_default(
+        {
+            "intercept_as_kick_default": True,
+            "source": "shouldInterceptBall",
+        }
+    )
+
+
+def _case_avoid_as_hot_swap_train() -> None:
+    refuse_avoid_as_hot_swap_train(
+        {
+            "avoid_as_hot_swap_train": True,
+            "source": "obstacleAvoidance",
+            "train_graph": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -323,6 +359,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("max_acc_as_net_swap", _case_max_acc_as_net_swap),
     ("getnext_as_hot_swap_train", _case_getnext_as_hot_swap_train),
     ("speed_gear_as_net_swap", _case_speed_gear_as_net_swap),
+    ("ball_net_off_as_dim_change", _case_ball_net_off_as_dim_change),
+    ("intercept_as_kick_default", _case_intercept_as_kick_default),
+    ("avoid_as_hot_swap_train", _case_avoid_as_hot_swap_train),
 )
 
 

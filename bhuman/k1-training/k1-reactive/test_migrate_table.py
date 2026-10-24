@@ -169,6 +169,8 @@ REQUIRED_LANDINGS = (
     "max_acceleration_diff.py",
     "get_next_target_request.py",
     "speed_gear_diff.py",
+    "ball_network_active.py",
+    "intercept_avoid_bypass.py",
 )
 
 

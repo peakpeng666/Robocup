@@ -487,6 +487,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "speed gear allowlist (fast/normal/slow; 7 Sim / 8 Comp; ≠ net swap)",
         ),
         (
+            "bhuman/k1-training/scripts/ball_network_active.py",
+            "ballNetworkParameters.active gate (!active → walkPolicy; ≠ dim / train swap)",
+        ),
+        (
+            "bhuman/k1-training/scripts/intercept_avoid_bypass.py",
+            "intercept/avoid/walkOut stay walkPolicy 344→13; ≠ kick / reactive / T1",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

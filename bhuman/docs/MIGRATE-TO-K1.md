@@ -109,8 +109,10 @@
 | shiftBallPosition 边界 | §6.10 | `scripts/shift_ball_position.py` | **P0** | 否 | Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344 | **上轮边界** |
 | walkPolicy / kickPolicy 切换只读 | §6.10 | `scripts/walk_kick_policy_switch.py` | **P0** | 否 | walkPolicy **344→13** / `K1_walk.onnx`；kickPolicy **59→13** / `K1_kick_inner.onnx` 共享 walk 出口；切换只换旁路；空上下文仍 walk | **上轮槽位** |
 | maxAcceleration 差分 | §6.10 | `scripts/max_acceleration_diff.py` | **P0** | 否 | Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；≠ 换网 / 改维；y 仍 20 | **上轮允许集** |
-| getNextTargetRequest 只读钉死 | §6.10 | `scripts/get_next_target_request.py` | **P0** | 否 | 抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图 | **本轮钉死** |
-| speed 档位允许集 | §6.10 | `scripts/speed_gear_diff.py` | **P0** | 否 | fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13** | **本轮允许集** |
+| getNextTargetRequest 只读钉死 | §6.10 | `scripts/get_next_target_request.py` | **P0** | 否 | 抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图 | **上轮钉死** |
+| speed 档位允许集 | §6.10 | `scripts/speed_gear_diff.py` | **P0** | 否 | fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13** | **上轮允许集** |
+| ballNetwork 开关只读 | §6.10 | `scripts/ball_network_active.py` | **P0** | 否 | 官方 `ballNetworkParameters.active=true`；未开强制 walkPolicy **344→13**；≠ 改 344 / 换训练图 | **本轮开关** |
+| 拦截 / 避障 / walkOut 旁路 | §6.10 | `scripts/intercept_avoid_bypass.py` | **P0** | 否 | `shouldInterceptBall` / 避障 path 非空 / `shouldWalkOutOfBallLine` 仍走 walkPolicy **344→13**；≠ kick / reactive / T1 | **本轮旁路** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -230,6 +232,8 @@
 | 86 | maxAcceleration 差分 | `max_acceleration_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_max_acceleration_diff.py` |
 | 87 | getNextTargetRequest 只读钉死 | `get_next_target_request.py` | `python3 bhuman/k1-training/k1-switcher/test_get_next_target_request.py` |
 | 88 | speed 档位允许集 | `speed_gear_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_speed_gear_diff.py` |
+| 89 | ballNetwork 开关只读 | `ball_network_active.py` | `python3 bhuman/k1-training/k1-switcher/test_ball_network_active.py` |
+| 90 | 拦截 / 避障 / walkOut 旁路 | `intercept_avoid_bypass.py` | `python3 bhuman/k1-training/k1-switcher/test_intercept_avoid_bypass.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

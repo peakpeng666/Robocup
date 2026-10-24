@@ -99,6 +99,8 @@ REQUIRED_NAMES = (
     "test_max_acceleration_diff.py",
     "test_get_next_target_request.py",
     "test_speed_gear_diff.py",
+    "test_ball_network_active.py",
+    "test_intercept_avoid_bypass.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
@@ -196,7 +198,7 @@ def run(repo: Path | None = None) -> dict[str, Any]:
 
     py = _python()
     execute = os.environ.get("UNIT_TESTS_NO_GYM_DISCOVER_ONLY") != "1"
-    # Serial by default. Limited parallelism was evaluated (~2s / 77 tests) and
+    # Serial by default. Limited parallelism was evaluated (~2s / 79 tests) and
     # left off: many tests write manifests/*.json and would race; gate order
     # and honest SKIP must stay intact. Set UNIT_TESTS_NO_GYM_WORKERS only
     # after a per-test isolation pass.
