@@ -1,0 +1,41 @@
+# draft_only: true
+# do_not_pass_to_train_py: true
+# trainable: false
+# NOT a live GitHub Actions workflow. Do not copy to .github/ without review.
+# See bhuman/docs/CI-CONTRACT-GATE.md.
+# This repository currently has no .github/workflows/; this file must not
+# become a forced check by itself.
+#
+# Cloud / ubuntu-latest (no GPU) expected: PASS + WARN.
+# PASS ≠ trained. Do not source env.sh. Do not run train.py.
+
+name: k1-contract-gate
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  contract-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run GPU-free contract gate
+        env:
+          CONTRACT_GATE_STAMP: gha
+        run: bash bhuman/k1-training/scripts/run_contract_gate.sh
+      - name: Assert PASS (WARN/SKIP allowed)
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("bhuman/k1-training/manifests/contract-gate-gha.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          if data.get("verdict") != "PASS":
+              raise SystemExit(f"gate FAIL: {data.get('errors')}")
+          print("verdict=PASS; GPU absence WARN/SKIP is expected")
+          print("walk", (data.get("k1_contracts") or {}).get("walk"))
+          PY

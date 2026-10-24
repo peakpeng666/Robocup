@@ -38,7 +38,9 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 | 8 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | P2 出门条：切换 / 六机 / 不冒充实机；**不改 344→13** |
 | 9 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么跑；PASS / SKIP / WARN；**PASS ≠ 已训通** |
 | 10 | [P3-PREVIEW.md](P3-PREVIEW.md) | P3 预研：可做 stub / 等 GPU / 等真机；默认仍 walk |
-| 11 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
+| 11 | [P4-PREVIEW.md](P4-PREVIEW.md) | P4 预研：单机切换 + 六机目标；三道门；默认 walk |
+| 12 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | CI 草案；云端无 GPU 预期 PASS+WARN |
+| 13 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
 
 ---
 
@@ -80,6 +82,8 @@ bhuman/docs/
 ├── P2-ACCEPTANCE.md                     P2 出门条（不改 344→13）
 ├── CONTRACT-GATE-GUIDE.md               门禁一键汇总（PASS ≠ 已训通）
 ├── P3-PREVIEW.md                        P3 预研（不实现训练；默认 walk）
+├── P4-PREVIEW.md                        P4 预研（不实现六机/真机；三道门）
+├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
 ├── ROADMAP-P0-P5.md                     P0 门禁 → P5 真机前置
@@ -149,12 +153,15 @@ k1-estimators/                   passthrough / rma / dreamwaq；latent **不进*
                                  hooks.py 只文档化，不接线 switcher / deploy_call
 configs/draft-only/              draft_only:true；run_walk_stability.sh 不读
                                  draft_validator.py 负例：禁覆盖 live 奖励
+                                 github-actions-contract-gate.draft.yml（非正式 CI）
 ```
 
 ### 3.6 sim2sim 门禁骨架 · `bhuman/sim2sim/`（过桥对象 = 官方 344→13）
 
 ```
 check_sim2sim_gate.py            过桥对象必须是 344→13；缺 mujoco/权 → SKIP
+overpass_contract.py             Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot；默认 344→13
+test_overpass_contract.py        负例：拒 kick/standup/reactive 冒充 walk 过桥
 run-sim2sim-gate.sh
 test_sim2sim_gate.py
 README.md                        真正的 120 s 回放仍是 run-mujoco.sh（本机）
@@ -177,7 +184,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-standup.json 上轮（standup/kick 硬化 + HiFAR 边界 + 阻塞项清单）
 ├── contract-gate-20261024-draft.json  上轮（draft 校验器 + schema 负例 + §6.12）
 ├── contract-gate-20261024-isol.json   上轮（draft 全目录隔离 + forbidden_as_walk）
-├── contract-gate-20261024-p3.json     本轮（门禁指南 + P3 预研 + 切换套件）
+├── contract-gate-20261024-p3.json     上轮（门禁指南 + P3 预研 + 切换套件）
+├── contract-gate-20261024-p4.json     本轮（P4 预研 + 过桥合同 + CI 草案）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
@@ -205,6 +213,9 @@ k1-training/manifests/
 | 门禁一键汇总 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | PASS / SKIP / WARN；**PASS ≠ 已训通** |
 | P3 预研 | [P3-PREVIEW.md](P3-PREVIEW.md) | 可做 stub / 等 GPU / 等真机；不实现训练 |
 | 切换集成回归套件 | `test_switcher_integration_suite.py` | 空上下文 → walk **344→13** |
+| P4 预研 | [P4-PREVIEW.md](P4-PREVIEW.md) | 单机切换 + 六机目标；三道门；不实现六机/真机 |
+| MuJoCo 过桥合同 | `sim2sim/overpass_contract.py` | 过桥必须 344→13；Isaac ≠ MuJoCo ≠ SimRobot |
+| CI 门禁接入说明 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | 草案在 draft-only；云端 PASS+WARN |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

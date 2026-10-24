@@ -103,6 +103,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 门禁一键汇总：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 - [x] P3 预研（不实现训练）：[P3-PREVIEW.md](P3-PREVIEW.md)（默认入口仍 walk 344→13）。
 - [x] 切换集成回归套件：`k1-switcher/test_switcher_integration_suite.py`（空上下文 → walk 344→13）。
+- [x] P4 预研（不实现六机/真机）：[P4-PREVIEW.md](P4-PREVIEW.md)（三道门：合同维 / PD / 不冒充）。
+- [x] MuJoCo 过桥合同 stub：`sim2sim/overpass_contract.py`（Isaac ≠ MuJoCo ≠ SimRobot；过桥维 344→13）。
+- [x] CI 门禁接入说明：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（草案在 draft-only；不改强制 CI）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -167,6 +170,11 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ### P4 · 切换 + sim2sim + 起身交接
 
+预研（不实现六机 / 真机）：[P4-PREVIEW.md](P4-PREVIEW.md)。**默认入口仍是官方 walk 344→13。**
+
+- [x] 预研文档：单机切换 + SimRobot 六机验收目标；守三道门（合同维 / PD / 不冒充）。
+- [x] MuJoCo 过桥合同 stub（`overpass_contract.py`）：过桥必须声明 344→13；拒 kick/standup/reactive 冒充。
+
 - 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。**部署一拍**把 BT 口 + SM + 槽位图串起来，默认仍是官方 walk 344→13：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩**形状草案**已落地：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)（连续性仍 SKIP，不得假绿）。完整时间序列仍 TODO。
 - 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。无 GPU 骨架：`sim2sim/run-sim2sim-gate.sh`（缺依赖 SKIP）。
 - standup→walk 5 s 窗口：状态机只计时；**必须 `getup_done`** 才回 walk；HiFAR/FRASA 只对照，不改 73/72。
@@ -213,6 +221,7 @@ python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
 python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
+python3 bhuman/sim2sim/test_overpass_contract.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

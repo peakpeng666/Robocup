@@ -41,6 +41,9 @@ REQUIRED_ROWS = (
     "门禁一键汇总",
     "P3 预研",
     "切换集成回归套件",
+    "P4 预研",
+    "MuJoCo 过桥合同",
+    "CI 门禁接入说明",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -65,6 +68,9 @@ REQUIRED_LANDINGS = (
     "CONTRACT-GATE-GUIDE",
     "P3-PREVIEW",
     "test_switcher_integration_suite",
+    "P4-PREVIEW",
+    "overpass_contract.py",
+    "CI-CONTRACT-GATE",
 )
 
 

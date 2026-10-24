@@ -46,7 +46,10 @@
 | 开源方法可迁短表 | §6.12 | 只写 GLOBAL；不换底座 | **对照** | 否 | 旁路灵感 / **不可替换 B-Human walk** | 上轮调研 |
 | 门禁一键汇总 | ROADMAP P0 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | **P0** | 否 | **PASS ≠ 已训通**；缺 GPU 仍锁 344→13 | **本轮文档** |
 | P3 预研 | ROADMAP P3 | [P3-PREVIEW.md](P3-PREVIEW.md) | **P3 / P0 文档** | 否（预研）；对照训要 | 默认入口仍 walk；谁赢都不改 344 | **本轮预研** |
-| 切换集成回归套件 | ROADMAP P4 | `k1-switcher/test_switcher_integration_suite.py` | **P0** | 否 | 空上下文 → 官方 walk **344→13** | **本轮套件** |
+| 切换集成回归套件 | ROADMAP P4 | `k1-switcher/test_switcher_integration_suite.py` | **P0** | 否 | 空上下文 → 官方 walk **344→13** | 上轮套件 |
+| P4 预研 | ROADMAP P4 | [P4-PREVIEW.md](P4-PREVIEW.md) | **P4 / P0 文档** | 否（预研）；六机要本机比赛栈 | 默认入口仍 walk；不实现六机/真机 | **本轮预研** |
+| MuJoCo 过桥合同 | §6.8 | `sim2sim/overpass_contract.py` | **P4 / P0** | 否 | 过桥必须声明 **344→13**；Isaac ≠ MuJoCo ≠ SimRobot | **本轮 stub** |
+| CI 门禁接入说明 | 门禁 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) + draft-only YAML | **P0** | 否 | 云端无 GPU 预期 PASS+WARN；不改强制 CI | **本轮文档** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -100,6 +103,9 @@
 | 21 | 门禁一键汇总 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | `test_global_docs.py` 锚点 |
 | 22 | P3 预研 | [P3-PREVIEW.md](P3-PREVIEW.md) | `test_global_docs.py` 锚点 |
 | 23 | 切换集成回归套件 | `test_switcher_integration_suite.py` | `python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py` |
+| 24 | P4 预研 | [P4-PREVIEW.md](P4-PREVIEW.md) | `test_global_docs.py` 锚点 |
+| 25 | MuJoCo 过桥合同 | `overpass_contract.py` | `python3 bhuman/sim2sim/test_overpass_contract.py` |
+| 26 | CI 门禁接入说明 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | 草案 YAML 在 draft-only |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

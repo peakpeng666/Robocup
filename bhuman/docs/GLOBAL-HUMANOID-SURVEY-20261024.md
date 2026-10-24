@@ -482,3 +482,5 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - 开源方法可迁短表：§6.12（旁路灵感 / 不可替换 B-Human walk）
 - 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（PASS ≠ 已训通）
 - P3 预研：[P3-PREVIEW.md](P3-PREVIEW.md)（对照，不换底座）
+- P4 预研：[P4-PREVIEW.md](P4-PREVIEW.md)（单机切换 + 六机目标；三道门）
+- CI 门禁草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI）

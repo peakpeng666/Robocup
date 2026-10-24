@@ -45,6 +45,7 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/verify-policy.sh \
 
 ```bash
 python3 bhuman/sim2sim/test_sim2sim_gate.py
+python3 bhuman/sim2sim/test_overpass_contract.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
 ```
 

@@ -242,6 +242,8 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/HIFAR-VS-STANDUP.md", "HiFAR ≠ standup 73→22 / fast 72→22"),
         ("bhuman/docs/CONTRACT-GATE-GUIDE.md", "contract-gate guide (PASS ≠ trained)"),
         ("bhuman/docs/P3-PREVIEW.md", "P3 preview (no training; walk stays default)"),
+        ("bhuman/docs/P4-PREVIEW.md", "P4 preview (no six-robot/real-robot; three gates)"),
+        ("bhuman/docs/CI-CONTRACT-GATE.md", "CI contract-gate draft (PASS+WARN, no forced CI)"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

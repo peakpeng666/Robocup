@@ -59,6 +59,7 @@ REQUIRED_DOCS = {
         "## 目录",
         "CONTRACT-GATE-GUIDE",
         "P3-PREVIEW",
+        "P4-PREVIEW",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -84,7 +85,10 @@ REQUIRED_DOCS = {
         "SKIP→PASS",
         "CONTRACT-GATE-GUIDE",
         "P3-PREVIEW",
+        "P4-PREVIEW",
         "test_switcher_integration_suite",
+        "overpass_contract",
+        "CI-CONTRACT-GATE",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -157,7 +161,10 @@ REQUIRED_DOCS = {
         "§6.12",
         "CONTRACT-GATE-GUIDE",
         "P3-PREVIEW",
+        "P4-PREVIEW",
+        "CI-CONTRACT-GATE",
         "test_switcher_integration_suite",
+        "overpass_contract",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -192,6 +199,24 @@ REQUIRED_DOCS = {
         "默认",
         "Noisy Striker",
         "TeleHuman",
+    ),
+    "bhuman/docs/P4-PREVIEW.md": (
+        "344→13",
+        "三道门",
+        "合同维",
+        "不冒充",
+        "SimRobot",
+        "默认",
+        "P0",
+        "不实现",
+    ),
+    "bhuman/docs/CI-CONTRACT-GATE.md": (
+        "run_contract_gate.sh",
+        "PASS + WARN",
+        "draft-only",
+        ".github/workflows",
+        "PASS ≠ 已训通",
+        "ubuntu-latest",
     ),
 }
 
@@ -228,6 +253,20 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             if url and url not in survey:
                 errors.append(f"survey does not cite catalog url {url}")
         notes.append(f"method_catalog.json: {len(items)} entries cross-checked against survey")
+
+    draft_ci = repo / "bhuman/k1-training/configs/draft-only/github-actions-contract-gate.draft.yml"
+    if not draft_ci.is_file():
+        errors.append("missing draft-only GitHub Actions workflow")
+    else:
+        text = draft_ci.read_text(encoding="utf-8")
+        if "draft_only: true" not in text or "run_contract_gate.sh" not in text:
+            errors.append("draft CI workflow must stay draft_only and call the gate")
+        else:
+            notes.append("CI workflow draft stays in draft-only (not .github)")
+    if (repo / ".github/workflows").is_dir():
+        notes.append(".github/workflows exists; follow CI-CONTRACT-GATE patch advice, do not overwrite")
+    else:
+        notes.append("no live .github/workflows; cloud PASS+WARN documented only")
 
     return {"ok": not errors, "errors": errors, "notes": notes}
 
