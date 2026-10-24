@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:32:18+00:00",
+  "generated_utc": "2026-10-24T07:38:01+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -44,7 +44,9 @@
     "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained",
     "gait_frequency_contract": "walk action[12]=gait_frequency; not a 13th motor",
     "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
-    "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu"
+    "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
+    "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
+    "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -131,6 +133,9 @@
       "walk action[12]=gait_frequency (not a 13th motor) present",
       "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
       "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
+      "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
+      "walk obs assembly shape check (no fabricate) present",
+      "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -292,6 +297,7 @@
         "bhuman/docs/README-RL.md: required anchors present",
         "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
         "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
+        "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -556,6 +562,7 @@
         "standup only after fallen",
         "standup→kick refused; must walk first",
         "getup_done returns to walk 344→13",
+        "getup_done last_action constructed 13 zeros (gait_frequency included)",
         "want_kick selects official kick 59→13",
         "refused SimRobot as fast standup",
         "refused SimRobot as 72→22",
@@ -690,7 +697,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 33 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 35 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
@@ -700,6 +707,8 @@
         "PASS test_history_buffer_shape.py",
         "PASS test_joint_map_contract.py",
         "PASS test_k1_reward_audit.py",
+        "PASS test_last_action_reset.py",
+        "PASS test_obs_assembly.py",
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_p1_draft_diff.py",
@@ -762,6 +771,14 @@
         },
         {
           "name": "test_k1_reward_audit.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_last_action_reset.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_obs_assembly.py",
           "status": "PASS"
         },
         {
@@ -871,6 +888,8 @@
         "test_history_buffer_shape.py",
         "test_joint_map_contract.py",
         "test_k1_reward_audit.py",
+        "test_last_action_reset.py",
+        "test_obs_assembly.py",
         "test_onnx_export_contract.py",
         "test_p1_draft_diff.py",
         "test_standup_kick_hardening.py",
@@ -1113,10 +1132,49 @@
         "official walk still 344→13"
       ],
       "walk": "344→13"
+    },
+    "obs_assembly": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assembly 10×32+24=344 sources present",
+        "deploy default official walk; not reactive concat",
+        "WalkingEngine.h RingBuffer<HistoryData, 10>",
+        "OBS-ASSEMBLY-344.md: deploy stays official walk",
+        "negative: refused {'via_reactive': True, 'obs': 344}",
+        "negative: refused {'obs': 64}",
+        "negative: refused {'obs': 3200}",
+        "negative: refused {'latent_into_344': True}",
+        "negative: refused {'obs': 59}",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "last_action_reset": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "cross SM/deploy/standup_kick: reset 13 zeros, slot 12=0",
+        "constructed last_action = 13 zeros (freq slot included)",
+        "negative: freq slot nonzero refused",
+        "negative: 22-D vector refused as walk reset",
+        "negative: standup_slice source refused (not a constructed 13-zero)",
+        "negative: standup[:13] (even zeros) refused as walk reset",
+        "SM incoming_last_action standup→walk is constructed 13 zeros",
+        "SM getup_done last_action 13 zeros (not standup memcpy)",
+        "deploy_call getup_done last_action 13 zeros",
+        "standup_kick bypass still: getup_done → walk 344→13",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:32:17+00:00",
+    "generated_utc": "2026-10-24T07:38:00+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1194,7 +1252,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "903c5bec8ee0e888e35a8d494f6f4e2b2a9bbb0a",
+    "workspace_head": "03cd51b91b5769c491f202e60c15fb19256a3743",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1622,6 +1680,9 @@
     "walk action[12]=gait_frequency (not a 13th motor) present",
     "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
     "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
+    "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
+    "walk obs assembly shape check (no fabricate) present",
+    "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1668,6 +1729,7 @@
     "bhuman/docs/README-RL.md: required anchors present",
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
     "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
+    "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -1847,6 +1909,7 @@
     "standup only after fallen",
     "standup→kick refused; must walk first",
     "getup_done returns to walk 344→13",
+    "getup_done last_action constructed 13 zeros (gait_frequency included)",
     "want_kick selects official kick 59→13",
     "refused SimRobot as fast standup",
     "refused SimRobot as 72→22",
@@ -1918,7 +1981,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 33 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 35 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
@@ -1928,6 +1991,8 @@
     "PASS test_history_buffer_shape.py",
     "PASS test_joint_map_contract.py",
     "PASS test_k1_reward_audit.py",
+    "PASS test_last_action_reset.py",
+    "PASS test_obs_assembly.py",
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_p1_draft_diff.py",
@@ -2070,6 +2135,27 @@
     "run_pr4_selfcheck.sh steps + 344→13 / TRAINABLE=false / ready_gpu",
     "selfcheck does not invoke train.py",
     "official walk still 344→13",
+    "assembly 10×32+24=344 sources present",
+    "deploy default official walk; not reactive concat",
+    "WalkingEngine.h RingBuffer<HistoryData, 10>",
+    "OBS-ASSEMBLY-344.md: deploy stays official walk",
+    "negative: refused {'via_reactive': True, 'obs': 344}",
+    "negative: refused {'obs': 64}",
+    "negative: refused {'obs': 3200}",
+    "negative: refused {'latent_into_344': True}",
+    "negative: refused {'obs': 59}",
+    "official K1.yaml untouched",
+    "cross SM/deploy/standup_kick: reset 13 zeros, slot 12=0",
+    "constructed last_action = 13 zeros (freq slot included)",
+    "negative: freq slot nonzero refused",
+    "negative: 22-D vector refused as walk reset",
+    "negative: standup_slice source refused (not a constructed 13-zero)",
+    "negative: standup[:13] (even zeros) refused as walk reset",
+    "SM incoming_last_action standup→walk is constructed 13 zeros",
+    "SM getup_done last_action 13 zeros (not standup memcpy)",
+    "deploy_call getup_done last_action 13 zeros",
+    "standup_kick bypass still: getup_done → walk 344→13",
+    "official K1.yaml untouched",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2116,6 +2202,8 @@
     "python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
     "python3 bhuman/k1-training/scripts/booster_joints_snapshot.py",
     "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+    "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+    "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
