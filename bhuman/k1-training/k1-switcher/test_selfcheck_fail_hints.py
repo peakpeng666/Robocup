@@ -55,6 +55,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_kick_onnx_naming.py",
         "test_getup_engine_cfg_audit.py",
         "test_cfg_copy_crosscheck.py",
+        "test_motor_parameters_audit.py",
+        "test_simulated_speed_diff.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

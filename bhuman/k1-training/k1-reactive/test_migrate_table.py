@@ -159,6 +159,8 @@ REQUIRED_LANDINGS = (
     "kick_onnx_naming.py",
     "getup_engine_cfg_audit.py",
     "cfg_copy_crosscheck.py",
+    "motor_parameters_audit.py",
+    "simulated_speed_diff.py",
 )
 
 

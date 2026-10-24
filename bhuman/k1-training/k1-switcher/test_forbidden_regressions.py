@@ -66,6 +66,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "getup_overwrites_walk",
         "t1_getup_as_k1",
         "fast_standup_as_isaac",
+        "simulated_speed_as_pd_closed",
+        "fabricate_competition_getup",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -78,7 +80,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / "
             "stay-on-standup / getup-direct-kick / kick-replaces-walk / "
             "cfg-dim / kickModel-T1 / kick-on-walk-slot / "
-            "getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac"
+            "getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / "
+            "Simulated-speed-as-PD / fabricate-Competition-getUp"
         )
 
     try:

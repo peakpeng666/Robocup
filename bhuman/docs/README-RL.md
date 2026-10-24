@@ -83,6 +83,8 @@
 | kick ONNX 命名 | `scripts/kick_onnx_naming.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP |
 | getUpEngine.cfg 审计 | `scripts/getup_engine_cfg_audit.py` | 73→22 / `K1.onnx`；fast 72→22 仅部署；不得覆盖 walk；T1 getUp 不得当 K1 |
 | cfg 副本交叉 | `scripts/cfg_copy_crosscheck.py` | Default / Simulated / Competition 关键字段；有意 sha 差分；意外漂移 FAIL |
+| motorParameters 深化 | `scripts/motor_parameters_audit.py` | regular p25 vs 训侧 p60；Simulated 速度 ≠ PD 闭合；拒写回 |
+| Simulated 速度差分 | `scripts/simulated_speed_diff.py` | 有意允许集；网槽/维数差分 FAIL |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

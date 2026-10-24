@@ -397,6 +397,8 @@ walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **
 kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT / Walk/ 目录交叉；占默认槽 → FAIL；缺文件 SKIP）。  
 getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 / `K1_fast_standup.onnx` 仅部署、未注册 Isaac；不得覆盖 walk **344→13**；T1 getUp 不得当 K1；SimRobot 强制 `fastActive=false`）。  
 cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default，缺副本不伪造；意外漂移 FAIL）。  
+motorParameters 只读深化：`scripts/motor_parameters_audit.py`（regular 踝滚 **p25** vs 训侧 **p60** 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回）。  
+Simulated 速度差分：`scripts/simulated_speed_diff.py`（有意允许集；网槽/维数差分 FAIL）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

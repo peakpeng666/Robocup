@@ -22,7 +22,9 @@ Force walk afterwards：`scripts/force_walk_afterwards.py`（getup_done → walk
 walkingEngine.cfg 只读：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽）。  
 kick ONNX 命名：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP）。  
 getUpEngine.cfg 只读：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署；T1 getUp 不得当 K1）。  
-cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition 关键字段；意外漂移 FAIL）。
+cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition 关键字段；意外漂移 FAIL）。  
+motorParameters 深化：`scripts/motor_parameters_audit.py`（regular p25 vs 训侧 p60；Simulated 速度 ≠ PD 闭合）。  
+Simulated 速度差分：`scripts/simulated_speed_diff.py`（有意允许集；网槽仍 **344→13**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

@@ -108,6 +108,11 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("refuse_unexpected_cfg_copy_drift must raise")
     except ValueError:
         notes.append("negative: unexpected key drift refused")
+    try:
+        mod.refuse_fabricate_competition_getup({"invent_getup": True, "role": "CompetitionWalk/K1"})
+        errors.append("refuse_fabricate_competition_getup must raise")
+    except ValueError:
+        notes.append("negative: fabricate Competition getUp refused")
 
     try:
         mod.refuse_write_yaml(yaml_path)

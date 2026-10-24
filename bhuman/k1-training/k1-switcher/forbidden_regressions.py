@@ -7,7 +7,8 @@ T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
 mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick,
 stay on standup after getup, kick replacing walk, cfg dim rewrite,
 kickModel pointing at T1, kick ONNX occupying the walk slot,
-getUp overwriting walk, T1 getUp as K1, fast standup as Isaac.
+getUp overwriting walk, T1 getUp as K1, fast standup as Isaac,
+Simulated speed as closed PD, fabricated Competition getUp.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -40,11 +41,13 @@ from force_walk_afterwards import (  # noqa: E402
 )
 from kick_engine_boundary import refuse_kick_replaces_walk  # noqa: E402
 from kick_onnx_naming import refuse_kick_onnx_on_walk_slot  # noqa: E402
+from cfg_copy_crosscheck import refuse_fabricate_competition_getup  # noqa: E402
 from getup_engine_cfg_audit import (  # noqa: E402
     refuse_fast_standup_as_isaac,
     refuse_getup_overwrites_walk,
     refuse_t1_getup_as_k1,
 )
+from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
 from walking_engine_cfg_audit import (  # noqa: E402
     refuse_cfg_dim_rewrite,
     refuse_kickmodel_points_t1,
@@ -189,6 +192,18 @@ def _case_fast_standup_as_isaac() -> None:
     refuse_fast_standup_as_isaac({"task": "K1_fast_standup", "registered": True})
 
 
+def _case_simulated_speed_as_pd_closed() -> None:
+    refuse_simulated_speed_as_pd_closed(
+        {"simulated_speed_closes_pd": True, "source": "simulated_speed"}
+    )
+
+
+def _case_fabricate_competition_getup() -> None:
+    refuse_fabricate_competition_getup(
+        {"fabricate_competition_getup": True, "role": "CompetitionWalk/K1"}
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -214,6 +229,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("getup_overwrites_walk", _case_getup_overwrites_walk),
     ("t1_getup_as_k1", _case_t1_getup_as_k1),
     ("fast_standup_as_isaac", _case_fast_standup_as_isaac),
+    ("simulated_speed_as_pd_closed", _case_simulated_speed_as_pd_closed),
+    ("fabricate_competition_getup", _case_fabricate_competition_getup),
 )
 
 

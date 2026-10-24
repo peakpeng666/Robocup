@@ -118,6 +118,31 @@ def refuse_write_cfg(path: str | Path | None = None) -> None:
     )
 
 
+def refuse_fabricate_competition_getup(claim: dict[str, Any]) -> None:
+    if not isinstance(claim, dict):
+        raise ValueError("fabricate-getUp claim must be a mapping")
+    role = str(claim.get("role") or claim.get("copy") or "")
+    if (
+        claim.get("fabricate_competition_getup")
+        or claim.get("invent_getup")
+        or claim.get("fabricated")
+        or (
+            claim.get("expected_absent")
+            and claim.get("present")
+            and claim.get("source") in {None, "invented", "fabricated"}
+        )
+        or (
+            ("Competition" in role or role.startswith("Simulated"))
+            and claim.get("family") == "getup"
+            and claim.get("fabricated") is not False
+            and claim.get("present")
+        )
+    ):
+        raise ValueError(
+            "must not fabricate Simulated/Competition getUpEngine.cfg when the copy is absent"
+        )
+
+
 def refuse_unexpected_cfg_copy_drift(claim: dict[str, Any]) -> None:
     if not isinstance(claim, dict):
         raise ValueError("cfg-copy-drift claim must be a mapping")
@@ -513,6 +538,13 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("refuse_unexpected_cfg_copy_drift must raise")
     except ValueError:
         notes.append("negative: unexpected key drift refused")
+    try:
+        refuse_fabricate_competition_getup(
+            {"fabricate_competition_getup": True, "role": "CompetitionWalk/K1"}
+        )
+        errors.append("refuse_fabricate_competition_getup must raise")
+    except ValueError:
+        notes.append("negative: fabricate Competition getUp refused")
     try:
         refuse_write_yaml(yaml_path)
         errors.append("refuse_write_yaml must raise")

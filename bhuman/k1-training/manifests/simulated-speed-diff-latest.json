@@ -1,0 +1,129 @@
+{
+  "generated_utc": "2026-10-24T09:36:54+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "simulated": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg"
+  },
+  "speed_diffs": [
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "simulated": "60",
+      "kind": "speed"
+    },
+    {
+      "key": "commonSpeedParameters.rotationTargetScaling.walkSpeed.max",
+      "default": "3",
+      "simulated": "2",
+      "kind": "speed"
+    },
+    {
+      "key": "commonSpeedParameters.rotationTargetScaling.walkSpeed.min",
+      "default": "2",
+      "simulated": "1.5",
+      "kind": "speed"
+    },
+    {
+      "key": "commonSpeedParameters.xTargetScaling.walkSpeed.min",
+      "default": "1000",
+      "simulated": "400",
+      "kind": "speed"
+    },
+    {
+      "key": "commonSpeedParameters.yTargetScaling.walkSpeed.min",
+      "default": "1000",
+      "simulated": "300",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "simulated": "2000",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "simulated": "1500",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeedBackwards",
+      "default": "500",
+      "simulated": "1000",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.maxForwardAtMaxSide",
+      "default": "600",
+      "simulated": "1000",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.maxPossibleSpeed.maxSpeed.translation.y",
+      "default": "1000",
+      "simulated": "1500",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.rotation",
+      "default": "120deg",
+      "simulated": "90deg",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "simulated": "1250",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "simulated": "750",
+      "kind": "speed"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "simulated": "750",
+      "kind": "speed"
+    }
+  ],
+  "plant_diffs": [
+    {
+      "key": "standAnkleStiffness.max",
+      "default": "80",
+      "simulated": "100",
+      "kind": "plant"
+    },
+    {
+      "key": "standAnkleStiffness.min",
+      "default": "60",
+      "simulated": "100",
+      "kind": "plant"
+    }
+  ],
+  "allowed_speed_count": 14,
+  "observed_speed_count": 14,
+  "net_slot_diff": false,
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "simulated_speed_diff_closes_pd": false,
+  "fabricated": false,
+  "note": "Simulated vs Default speed diffs are an intentional allowlist; net slot stays 344→13 / K1_walk.onnx / kick 59; these diffs do not close the PD domain gap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "simulated_sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

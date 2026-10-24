@@ -447,6 +447,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "cfg copy cross-check (Default/Simulated/Competition keys; unexpected drift FAIL)",
         ),
         (
+            "bhuman/k1-training/scripts/motor_parameters_audit.py",
+            "motorParameters audit (regular p25 vs train p60; Simulated speed ≠ PD closed)",
+        ),
+        (
+            "bhuman/k1-training/scripts/simulated_speed_diff.py",
+            "Simulated speed-diff allowlist (net slot 344→13; unexpected extras FAIL)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),
