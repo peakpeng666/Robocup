@@ -110,6 +110,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_domain_rand_disturbance_draft_validator.py",
         "test_pd_gain_domain_gap_negatives.py",
         "test_simrobot_six_robot_acceptance_gap.py",
+        "test_estimator_bypass_draft_contract.py",
+        "test_torque_effort_timeseries_contract.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

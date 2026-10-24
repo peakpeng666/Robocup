@@ -214,6 +214,8 @@ REQUIRED_LANDINGS = (
     "domain_rand_disturbance_draft_validator.py",
     "pd_gain_domain_gap_negatives.py",
     "simrobot_six_robot_acceptance_gap.py",
+    "estimator_bypass_draft_contract.py",
+    "torque_effort_timeseries_contract.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

@@ -667,6 +667,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "SimRobot six-robot gap pin; scaffold ≠ field-ready; live SKIP",
         ),
         (
+            "bhuman/k1-training/scripts/estimator_bypass_draft_contract.py",
+            "estimator-bypass draft contract; apply_to_live=false; PASS ≠ live swap",
+        ),
+        (
+            "bhuman/k1-training/scripts/torque_effort_timeseries_contract.py",
+            "torque/effort series; (T,13)/(T,12); PASS ≠ live torque",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

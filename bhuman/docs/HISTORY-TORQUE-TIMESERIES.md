@@ -59,7 +59,10 @@ T4（切入后跳变）在有真实 Gym/MuJoCo 轨迹之前必须 **SKIP**。阈
 3. `check_history_trace` / `check_torque_trace` 在 `IMPLEMENTED=true` **且** 轨迹来自录包时，才把 H1/H2/T4 从 SKIP 改为真假判定。
 4. 估计器 latent、队友状态、火神 58、NUSim 79 **永远**不得写入这 344。
 
-活测试：`python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`。
+本轮加深（只读 overlay，不改 stub）：`scripts/torque_effort_timeseries_contract.py`（**TRAINABLE=false**；**gap_closed=false**）。形状 PASS ≠ live torque control ≠ 比赛合格。**T4** 无录包仍 SKIP。
+
+活测试：`python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py`。  
+overlay：`python3 bhuman/k1-training/k1-switcher/test_torque_effort_timeseries_contract.py`。
 
 构造 / 校验 API：`k1-switcher/history_buffer_shape.py`（`10×32+24=344`）。无录包时只能 **shape PASS + continuity SKIP**；合成全 0 不得报连续性 PASS。`python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py`。
 

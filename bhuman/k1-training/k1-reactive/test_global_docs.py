@@ -129,6 +129,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -262,6 +264,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -388,6 +392,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator.py",
         "pd_gain_domain_gap_negatives.py",
         "simrobot_six_robot_acceptance_gap.py",
+        "estimator_bypass_draft_contract.py",
+        "torque_effort_timeseries_contract.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -510,6 +516,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -637,6 +645,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -649,6 +659,9 @@ REQUIRED_DOCS = {
         "joint_map_contract",
         "gait_frequency",
         "OBS-ASSEMBLY-344",
+        "torque_effort_timeseries_contract",
+        "TRAINABLE=false",
+        "gap_closed=false",
     ),
     "bhuman/docs/P2-ACCEPTANCE.md": (
         "344→13",
@@ -748,6 +761,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -782,6 +797,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
         "run_pr4_selfcheck",
         "forbidden_regressions",
         "merge_ready=false",
@@ -914,6 +931,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -950,6 +969,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -987,6 +1008,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -1024,6 +1047,8 @@ REQUIRED_DOCS = {
         "domain_rand_disturbance_draft_validator",
         "pd_gain_domain_gap_negatives",
         "simrobot_six_robot_acceptance_gap",
+        "estimator_bypass_draft_contract",
+        "torque_effort_timeseries_contract",
     ),
     "bhuman/docs/OBS-ASSEMBLY-344.md": (
         "344→13",

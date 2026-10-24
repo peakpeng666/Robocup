@@ -368,6 +368,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/simrobot_six_robot_acceptance_gap.py",
         "hint": "先看六机脚手架是否仍 field_ready=false，或活回放是否被写成上场就绪",
     },
+    "test_estimator_bypass_draft_contract.py": {
+        "look": "bhuman/k1-training/scripts/estimator_bypass_draft_contract.py",
+        "hint": "先看估计器旁路是否仍 apply_to_live=false，或 overlay PASS 是否被写成 live swap",
+    },
+    "test_torque_effort_timeseries_contract.py": {
+        "look": "bhuman/k1-training/scripts/torque_effort_timeseries_contract.py",
+        "hint": "先看 (T,13)/(T,12) 是否漂移，或序列 PASS 是否被写成 live torque / 比赛合格",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

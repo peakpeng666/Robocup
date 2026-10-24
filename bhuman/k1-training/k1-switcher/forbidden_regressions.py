@@ -55,7 +55,8 @@ generated cmd as launch auth, leftover cache without upload note,
 destructive Desktop rm, validator PASS as live curriculum,
 cross-skill history reuse as closed, CI gate flips merge_ready,
 validator PASS as live DR, silent cross-domain gain copy,
-SimRobot scaffold as field-ready.
+SimRobot scaffold as field-ready, estimator PASS as live swap,
+series PASS as live torque, series PASS as competition-ready.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -238,6 +239,13 @@ from pd_gain_domain_gap_negatives import (  # noqa: E402
 )
 from simrobot_six_robot_acceptance_gap import (  # noqa: E402
     refuse_simrobot_scaffold_as_field_ready,
+)
+from estimator_bypass_draft_contract import (  # noqa: E402
+    refuse_estimator_pass_as_live_swap,
+)
+from torque_effort_timeseries_contract import (  # noqa: E402
+    refuse_series_pass_as_live_torque,
+    refuse_series_pass_as_competition_ready,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1296,6 +1304,36 @@ def _case_simrobot_scaffold_as_field_ready() -> None:
     )
 
 
+def _case_estimator_pass_as_live_swap() -> None:
+    refuse_estimator_pass_as_live_swap(
+        {
+            "estimator_pass_as_live_swap": True,
+            "as_live_estimator_swap": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_series_pass_as_live_torque() -> None:
+    refuse_series_pass_as_live_torque(
+        {
+            "series_pass_as_live_torque": True,
+            "as_live_torque_control": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_series_pass_as_competition_ready() -> None:
+    refuse_series_pass_as_competition_ready(
+        {
+            "series_pass_as_competition_ready": True,
+            "competition_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1423,6 +1461,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("validator_pass_as_live_dr", _case_validator_pass_as_live_dr),
     ("silent_cross_domain_gain_copy", _case_silent_cross_domain_gain_copy),
     ("simrobot_scaffold_as_field_ready", _case_simrobot_scaffold_as_field_ready),
+    ("estimator_pass_as_live_swap", _case_estimator_pass_as_live_swap),
+    ("series_pass_as_live_torque", _case_series_pass_as_live_torque),
+    ("series_pass_as_competition_ready", _case_series_pass_as_competition_ready),
 )
 
 

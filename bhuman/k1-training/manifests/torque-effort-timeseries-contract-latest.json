@@ -1,0 +1,52 @@
+{
+  "generated_utc": "2026-10-24T12:22:30+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/torque_effort_timeseries_contract.py",
+  "checklist": [
+    "walk_action_t13_shape",
+    "torque_window_t12_shape",
+    "standup_t22_not_walk",
+    "series_pass_not_live_torque",
+    "series_pass_not_competition_ready"
+  ],
+  "shapes": {
+    "walk_history": "10×32+24=344",
+    "walk_kick_action": "(T, 13)",
+    "torque_window": "(T, 12)",
+    "window_steps": 10,
+    "dt_s": 0.02,
+    "unit": "joint target offset, not motor current",
+    "standup_action": "(T, 22) forbidden as walk torque"
+  },
+  "continuity": {
+    "H1": "SKIP",
+    "H2": "SKIP",
+    "H3": "SKIP",
+    "H4": "SKIP",
+    "H5": "SKIP",
+    "H6": "SKIP",
+    "T4": "SKIP"
+  },
+  "implemented": false,
+  "draft_rel": "bhuman/k1-training/configs/draft-only/walk-p1-factors-v0.json",
+  "draft_only": true,
+  "apply_to_live": false,
+  "draft_torque_effort_keys": [],
+  "series_pass_as_live_torque": false,
+  "series_pass_as_competition_ready": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "read-only torque/effort shapes + draft notes; T4 SKIP; series PASS ≠ live torque control ≠ competition-ready",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

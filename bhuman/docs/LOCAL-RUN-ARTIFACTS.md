@@ -54,6 +54,10 @@ PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`。train **p60*
 
 SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`。S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5。**field_ready=false**。**TRAINABLE=false**。**gap_closed=false**。
 
+估计器旁路草案合同：`scripts/estimator_bypass_draft_contract.py`。`D_estimator_ab` + `k1-estimators` stub 只盘点；hooks 未接线；latent 不进 344。**apply_to_live=false**。校验 PASS ≠ live estimator swap。**TRAINABLE=false**。**gap_closed=false**。
+
+力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`。(T,13) 目标偏置 ≠ 电流；(T,12) 窗；standup 22 不得当 walk。**T4** 仍 SKIP。序列 PASS ≠ live torque / 比赛合格。**TRAINABLE=false**。**gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

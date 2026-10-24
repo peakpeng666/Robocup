@@ -56,7 +56,9 @@ kick / standup 开训干跑（只打印）：`scripts/kick_standup_train_dry_run
 CI 门禁接线：`scripts/ci_gate_wiring.py`（`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU；**merge_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。  
 域随机 / 扰动草案校验：`scripts/domain_rand_disturbance_draft_validator.py`（live `push_interval_s` / friction / mass 冻结；kick/standup 只注记；**apply_to_live=false**；校验 PASS ≠ live DR；**TRAINABLE=false**；**gap_closed=false**）。  
 PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`（train **p60** ≠ Default **p25** ≠ Simulated hang-test **p65**；Competition 用 Default 电机；walk/kick 刚度只是注记；禁 `silent_cross_domain_gain_copy`；**TRAINABLE=false**；**gap_closed=false**）。  
-SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`（S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。
+SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`（S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。  
+估计器旁路草案合同：`scripts/estimator_bypass_draft_contract.py`（`D_estimator_ab` + `k1-estimators` stub 只盘点；hooks 未接线；latent 不进 344；**apply_to_live=false**；校验 PASS ≠ live estimator swap；**TRAINABLE=false**；**gap_closed=false**）。  
+力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（(T,13) 目标偏置 ≠ 电流；(T,12) 窗；standup 22 不得当 walk；**T4** 仍 SKIP；序列 PASS ≠ live torque / 比赛合格；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 
