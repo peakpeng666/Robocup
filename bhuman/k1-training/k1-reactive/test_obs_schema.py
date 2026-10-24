@@ -15,6 +15,7 @@ from obs_schema import (  # noqa: E402
     NOT_WALK_OBS,
     NOT_WALK_SKILLS,
     check_schema,
+    forbidden_as_walk_from_schema,
     load_schema,
     refuse_foreign_skill_as_walk,
     refuse_missing_walk_history,
@@ -41,7 +42,12 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         notes.append("official walk 344→13 accepted")
     except ValueError:
         errors.append("official walk 344→13 must be accepted")
-    for dim in NOT_WALK_OBS:
+    declared = forbidden_as_walk_from_schema(data)
+    if 343 not in declared or 345 not in declared:
+        errors.append("obs-contract-v1.json must list 343/345 as forbidden_as_walk")
+    else:
+        notes.append("schema contract lists 343/345 as not-walk")
+    for dim in set(NOT_WALK_OBS) | set(declared):
         try:
             refuse_walk_obs_dim(dim, 13 if dim != 64 else 15)
             errors.append(f"walk obs dim {dim} must raise")
@@ -59,6 +65,11 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     except ValueError:
         notes.append("negative: missing walk history window refused")
     try:
+        refuse_missing_walk_history({"history": {"frames": 10, "frame_dim": 32}})
+        errors.append("walk history missing tail_dim must raise")
+    except ValueError:
+        notes.append("negative: history without tail_dim refused")
+    try:
         refuse_missing_walk_history({"history": {"frames": 10, "frame_dim": 32, "tail_dim": 23}})
         errors.append("walk history 10×32+23 must raise")
     except ValueError:
@@ -69,6 +80,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         notes.append("schema walk history 10×32+24 present")
     except ValueError as exc:
         errors.append(str(exc))
+    if walk.get("obs") != 344 or walk.get("rewritable") is not False:
+        errors.append("live walk obs in schema must stay 344 / rewritable=false")
+    else:
+        notes.append("live walk obs layout untouched")
     try:
         refuse_rewrite_live_obs()
         errors.append("live obs rewrite must raise")

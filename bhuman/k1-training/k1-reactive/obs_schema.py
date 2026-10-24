@@ -34,6 +34,7 @@ EXPECTED = {
 }
 NOT_WALK_OBS = (343, 345, 59, 64, 72, 73, 58, 79, 365)
 NOT_WALK_SKILLS = ("kick", "standup", "fast_standup", "reactive", "huoshen_t1", "nusim")
+HISTORY_FIELDS = ("frames", "frame_dim", "tail_dim")
 
 
 def refuse_walk_obs_dim(obs_dim: int, act_dim: int | None = None) -> None:
@@ -62,6 +63,14 @@ def refuse_missing_walk_history(walk_skill: dict[str, Any] | None) -> None:
 
 def refuse_rewrite_live_obs() -> None:
     raise RuntimeError("obs schema must not rewrite live official walk observations")
+
+
+def forbidden_as_walk_from_schema(data: dict[str, Any]) -> tuple[int, ...]:
+    block = data.get("forbidden_as_walk") or {}
+    dims = [int(item) for item in (block.get("off_by_one") or [])]
+    foreign = block.get("foreign_obs") or {}
+    dims.extend(int(value) for value in foreign.values())
+    return tuple(dims)
 
 
 def _repo(explicit: Path | None = None) -> Path:
@@ -154,6 +163,45 @@ def check_schema(repo: Path | None = None) -> dict[str, Any]:
         errors.append("schema must keep Huoshen T1 58 in the forbidden list")
     else:
         notes.append("forbidden: Huoshen 58 and NUSim 79 listed")
+
+    block = data.get("forbidden_as_walk") or {}
+    if block.get("rewrite_live_obs") is not False:
+        errors.append("schema forbidden_as_walk must keep rewrite_live_obs=false")
+    off_by_one = set(int(item) for item in (block.get("off_by_one") or []))
+    if off_by_one != {343, 345}:
+        errors.append("schema must list 343/345 as forbidden_as_walk off_by_one")
+    foreign = block.get("foreign_obs") or {}
+    for skill, dim in (
+        ("kick", 59),
+        ("standup", 73),
+        ("fast_standup", 72),
+        ("reactive", 64),
+        ("huoshen_t1", 58),
+        ("nusim", 79),
+    ):
+        if foreign.get(skill) != dim:
+            errors.append(f"schema must refuse {skill} {dim} as walk")
+    required = tuple(block.get("require_history_declaration") or ())
+    if required != HISTORY_FIELDS:
+        errors.append("schema must require walk history frames/frame_dim/tail_dim")
+    if block.get("history_formula") != "10*32+24":
+        errors.append("schema walk history formula must stay 10*32+24")
+    declared = forbidden_as_walk_from_schema(data)
+    if not declared:
+        errors.append("schema forbidden_as_walk produced no negative dims")
+    else:
+        notes.append(f"schema forbidden_as_walk dims {declared}")
+        for dim in declared:
+            try:
+                refuse_walk_obs_dim(dim)
+                errors.append(f"schema-declared walk obs {dim} must raise")
+            except ValueError:
+                pass
+    walk_skill = skills.get("walk") or {}
+    try:
+        refuse_missing_walk_history(walk_skill)
+    except ValueError as exc:
+        errors.append(str(exc))
 
     if layout_dims(OBS_LAYOUT) != 64 or layout_dims(ACTION_LAYOUT) != 15:
         errors.append("contract.py layouts drifted; schema check is not enough")

@@ -58,6 +58,7 @@ REQUIRED_LANDINGS = (
     "refuse_pd_claim",
     "draft_validator.py",
     "refuse_walk_obs_dim",
+    "forbidden_as_walk",
 )
 
 

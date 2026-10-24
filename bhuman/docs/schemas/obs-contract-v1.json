@@ -140,5 +140,21 @@
   "forbidden": {
     "huoshen_t1": {"obs": 58, "stack": 50, "act": 15, "reason": "T1 public skill; not K1"},
     "nusim": {"obs": 79, "act": 22, "reason": "do not mix NUSim into WalkingEngine"}
+  },
+  "forbidden_as_walk": {
+    "note": "Negative fixtures. These dims/skills are not official walk 344→13. This block does not rewrite live obs.",
+    "rewrite_live_obs": false,
+    "off_by_one": [343, 345],
+    "foreign_obs": {
+      "kick": 59,
+      "standup": 73,
+      "fast_standup": 72,
+      "reactive": 64,
+      "huoshen_t1": 58,
+      "nusim": 79,
+      "t1_bhuman_walk": 365
+    },
+    "require_history_declaration": ["frames", "frame_dim", "tail_dim"],
+    "history_formula": "10*32+24"
   }
 }

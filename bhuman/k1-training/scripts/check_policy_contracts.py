@@ -921,7 +921,8 @@ def main() -> int:
             "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
             "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
             "p1_draft": "draft-only factor comments; official rewards untouched",
-            "draft_validator": "draft_only:true; live rewards not overwritten by draft",
+            "draft_validator": "draft_only:true; stability/config_patch isolated; live rewards not overwritten",
+            "obs_schema_negatives": "refuse 343/345, foreign skills as walk, missing history; no live-obs rewrite",
         },
         "k1_contracts": {
             "walk": "344→13",

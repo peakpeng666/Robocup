@@ -406,6 +406,8 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 | Noisy Striker | P3 蒸馏对照（scratch 解压） | 谁赢都不许改官方维 |
 | TeleHuman / PAiD | P3 / P2 预案：先技能后感知 | 不迁 Isaac Lab 主线 |
 | BeyondMimic | 仓外跟踪，出 GMR→K1 参考动作 | 不替换 WalkingEngine actor |
+| ASAP | P5 真机回灌方法记录 | 未授权；不得改 344 / 不得当官方走 |
+| CTDE / MAPPO | P4 单机切换 + TeamComm 对照 | 队友状态 **不进** 344 |
 | 火神虚拟感知 + AMP | P2 `k1-reactive` 64→15 旁路 | 不加载 T1 `model.pth`；不改 344 |
 | HiFAR | P4 起身对照文档 | 不改 73→22 / 72→22 |
 | Isaac Lab / rsl_rl | P3 后对照仿真器 | 不换 `--task K1` 训练主线 |

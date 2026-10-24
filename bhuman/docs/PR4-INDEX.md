@@ -79,7 +79,7 @@ bhuman/docs/
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
 ├── ROADMAP-P0-P5.md                     P0 门禁 → P5 真机前置
-├── GLOBAL-HUMANOID-SURVEY-20261024.md   全球调研（§6.11 reactive 旁路本轮）
+├── GLOBAL-HUMANOID-SURVEY-20261024.md   全球调研（§6.12 可迁点 vs 不可替换 walk）
 ├── MIGRATE-TO-K1.md                     可迁对照表（§2.1 旁路 ≠ 基线）
 ├── SURVEY-20261024-motion-policy-rl.md  本仓合同 / 门禁记录
 ├── NEXT-P1-P2.md                        P1 GPU 命令 + Zenodo 仓外步骤
@@ -192,8 +192,8 @@ k1-training/manifests/
 | ROADMAP 阻塞项 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5 | 缺什么 / 谁提供 / SKIP→PASS；GPU 先告知 |
 | standup / kick 硬化 | `standup_kick_contract.py` | 仅 fallen→standup；禁 standup→kick；禁 SimRobot 冒充 72→22 |
 | HiFAR / 火神边界 | `test_hifar_boundary.py` | T1 `model.pth` 不得进 K1；58 ≠ 344 |
-| P1 draft 校验器 | `configs/draft-only/draft_validator.py` | `draft_only:true`；禁覆盖 live 奖励 |
-| 观测 schema 负例 | `obs_schema.py` | 拒 345/343、拒外族当 walk、拒缺历史窗 |
+| P1 draft 校验器 | `configs/draft-only/draft_validator.py` | 全目录 `draft_only:true`；stability / config_patch 隔离；禁覆盖 live 奖励 |
+| 观测 schema 负例 | `obs_schema.py` + `obs-contract-v1.json` `forbidden_as_walk` | 拒 345/343、拒外族当 walk、拒缺历史窗；不改 live obs |
 | 开源方法可迁短表 | GLOBAL §6.12 | 旁路灵感 / **不可**替换 B-Human walk |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |

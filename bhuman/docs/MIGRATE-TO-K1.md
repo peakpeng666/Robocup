@@ -42,7 +42,7 @@
 | HiFAR / 火神边界 | §6.1 / §6.2 | `k1-reactive/hifar_boundary.py` + `test_hifar_boundary.py` | **对照** | 否 | T1 权不得进 K1；58 ≠ 344；不改 73/72 | **本轮边界** |
 | 阻塞项可执行清单 | ROADMAP §5 | §5.1–5.2 + `test_blockers.py` | **P0** | 否 | GPU 上线先告知用户；第一训仍 344→13 | 上轮清单 |
 | P1 draft 校验器 | P1 草稿 | `configs/draft-only/draft_validator.py` | **P1 口 / P0 门禁** | 否 | 不覆盖 live `still_proportion` / `action_rate` / `reference_mean_penalty` | **本轮校验** |
-| 观测 schema 负例 | 契约 v1 | `obs_schema.py`（`refuse_walk_obs_dim` / 缺历史窗） | **P0** | 否 | 不改 live obs；历史窗必须 10×32+24 | **本轮负例** |
+| 观测 schema 负例 | 契约 v1 | `obs_schema.py`（`refuse_walk_obs_dim` / `forbidden_as_walk`） | **P0** | 否 | 不改 live obs；拒 343/345 / 外族维 / 缺历史窗 | **本轮负例** |
 | 开源方法可迁短表 | §6.12 | 只写 GLOBAL；不换底座 | **对照** | 否 | 旁路灵感 / **不可替换 B-Human walk** | **本轮调研** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
