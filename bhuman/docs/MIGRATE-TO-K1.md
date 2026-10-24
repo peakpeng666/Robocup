@@ -54,7 +54,10 @@
 | 无 Gym 一键测试 | ROADMAP P0 | `scripts/run_unit_tests_no_gym.sh` | **P0** | 否 | 默认断言 walk **344→13**；缺依赖 SKIP，不得假绿 | **本轮入口** |
 | 新人五分钟地图 | ROADMAP P0 | [README-RL.md](README-RL.md) | **P0 文档** | 否 | 先跑门禁 + 无 Gym；开训仍 `--task K1` 344→13 | 上轮文档 |
 | 官方 walk ONNX 导出合同 | 部署 | `k1-switcher/onnx_export_contract.py` | **P0 / P4** | 否（合同）；真导出要 checkpoint | 只许声明 **344→13**；拒外族维 / 热换；无权重 SKIP | **本轮 stub** |
-| GPU worker 就绪清单 | ROADMAP §5 | `scripts/probe_reserved_gpu.sh` checklist JSON | **P0** | 探测否；真训要 | 缺项写入 `missing`；`ready=true` 必须先告知用户；不调用 `train.py` | **本轮清单** |
+| GPU worker 就绪清单 | ROADMAP §5 | `scripts/probe_reserved_gpu.sh` checklist JSON | **P0** | 探测否；真训要 | 缺项写入 `missing`；`ready=true` 必须先告知用户；不调用 `train.py` | 上轮清单 |
+| K1 奖励只读审计 | 契约 / P1 | `scripts/k1_reward_audit.py` | **P0** | 否 | 只读 `K1.yaml` + official stability-v1；禁止写回；篡改快照失败 | **本轮审计** |
+| 历史缓冲形状 stub | ROADMAP P4 | `k1-switcher/history_buffer_shape.py` | **P4 / P0** | 否 | 构造/校验 **10×32+24=344**；全 0 不得连续性 PASS | **本轮 stub** |
+| research-inputs 可迁短表 | GLOBAL §6.12 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | **对照** | 否 | 每行：可旁路借鉴 / **不可**替换 walk | **本轮短表** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -116,6 +119,9 @@
 | 29 | 新人五分钟地图 | [README-RL.md](README-RL.md) | 先跑门禁 + 无 Gym；开训见 NEXT |
 | 30 | 官方 walk ONNX 导出合同 | `onnx_export_contract.py` | `python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py` |
 | 31 | GPU worker 就绪清单 | `probe_reserved_gpu.py` checklist | `python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py` |
+| 32 | K1 奖励只读审计 | `k1_reward_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_k1_reward_audit.py` |
+| 33 | 历史缓冲形状 stub | `history_buffer_shape.py` | `python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py` |
+| 34 | research-inputs 可迁短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | `python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

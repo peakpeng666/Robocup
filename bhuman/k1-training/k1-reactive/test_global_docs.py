@@ -62,6 +62,7 @@ REQUIRED_DOCS = {
         "P4-PREVIEW",
         "P5-PREVIEW",
         "README-RL",
+        "RESEARCH-MIGRATE-TABLE",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -96,6 +97,9 @@ REQUIRED_DOCS = {
         "run_unit_tests_no_gym",
         "onnx_export_contract",
         "test_gpu_worker_checklist",
+        "k1_reward_audit",
+        "history_buffer_shape",
+        "RESEARCH-MIGRATE-TABLE",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -120,6 +124,9 @@ REQUIRED_DOCS = {
         "run_unit_tests_no_gym.sh",
         "onnx_export_contract.py",
         "probe_reserved_gpu.py",
+        "k1_reward_audit.py",
+        "history_buffer_shape.py",
+        "RESEARCH-MIGRATE-TABLE",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -185,6 +192,9 @@ REQUIRED_DOCS = {
         "run_unit_tests_no_gym",
         "onnx_export_contract",
         "gpu-worker-checklist",
+        "k1_reward_audit",
+        "history_buffer_shape",
+        "RESEARCH-MIGRATE-TABLE",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -192,6 +202,8 @@ REQUIRED_DOCS = {
         "SKIP",
         "不改 live obs",
         "T4",
+        "history_buffer_shape",
+        "10×32+24=344",
     ),
     "bhuman/docs/P2-ACCEPTANCE.md": (
         "344→13",
@@ -265,6 +277,19 @@ REQUIRED_DOCS = {
         "必须先告知用户",
         "P3-PREVIEW",
         "P4-PREVIEW",
+        "k1_reward_audit",
+        "history_buffer_shape",
+        "RESEARCH-MIGRATE-TABLE",
+    ),
+    "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
+        "344→13",
+        "不可",
+        "research-inputs/environment-audit-pasted.txt",
+        "research-inputs/research-pasted.txt",
+        "AMP",
+        "RMA",
+        "火神",
+        "K1.yaml",
     ),
 }
 

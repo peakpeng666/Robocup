@@ -37,6 +37,9 @@
 | 过桥合同 | `bhuman/sim2sim/overpass_contract.py` | Isaac ≠ MuJoCo ≠ SimRobot |
 | ONNX 导出合同 | `k1-switcher/onnx_export_contract.py` | 只许 walk 344→13；无权重 SKIP；不热换 |
 | GPU 就绪清单 | `scripts/probe_reserved_gpu.sh` | 只探测；`ready=true` 仍须先告知用户 |
+| 奖励只读审计 | `scripts/k1_reward_audit.py` | 只读 `K1.yaml`；篡改快照失败 |
+| 历史缓冲形状 | `k1-switcher/history_buffer_shape.py` | 10×32+24=344；全 0 ≠ 连续性 PASS |
+| research-inputs 短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | 可旁路借鉴 ≠ 换 walk |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -83,3 +86,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍 + ONNX 导出合同 |
 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么读；**PASS ≠ 已训通** |
 | [PR4-INDEX.md](PR4-INDEX.md) | 文件树 |
+| [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | research-inputs / GLOBAL 可迁短表 |

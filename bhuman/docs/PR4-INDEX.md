@@ -85,6 +85,7 @@ bhuman/docs/
 ├── P3-PREVIEW.md                        P3 预研（不实现训练；默认 walk）
 ├── P4-PREVIEW.md                        P4 预研（不实现六机/真机；三道门）
 ├── P5-PREVIEW.md                        P5 预研（不碰真机；≠ 已上真机）
+├── RESEARCH-MIGRATE-TABLE.md            research-inputs / GLOBAL 可迁短表
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -112,6 +113,7 @@ scripts/
 ├── run_contract_gate.sh         入口（不 source env.sh）
 ├── run_unit_tests_no_gym.sh/.py 发现并跑齐纯 Python 测试；默认 344→13
 ├── probe_reserved_gpu.py/.sh    checklist JSON；缺 worker → WARN；永不 train.py
+├── k1_reward_audit.py           只读 K1.yaml + official stability；禁止写回
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
 └── （已有）run_replay.sh / run_env_check.sh / run_walk_*.sh   操作者本机才跑
 ```
@@ -146,7 +148,10 @@ k1-switcher/
 ├── test_bt_deploy_crosscheck.py BT × 部署交叉核对（默认 walk）
 ├── standup_kick_contract.py     kick/standup 旁路：fallen / getup_done / 禁 standup→kick
 ├── onnx_export_contract.py      只许 walk 344→13 默认导出；无权重 SKIP；拒热换
+├── history_buffer_shape.py      10×32+24=344；合成全 0 不得连续性 PASS
 ├── test_onnx_export_contract.py
+├── test_history_buffer_shape.py
+├── test_k1_reward_audit.py
 ├── test_standup_kick_hardening.py
 ├── test_switcher_integration_suite.py  一键：SM+deploy+standup/kick+BT；空→walk
 ├── test_gpu_worker_checklist.py 只探测；ready=true 必须先告知用户
@@ -194,10 +199,12 @@ k1-training/manifests/
 ├── contract-gate-20261024-p3.json     上轮（门禁指南 + P3 预研 + 切换套件）
 ├── contract-gate-20261024-p4.json     上轮（P4 预研 + 过桥合同 + CI 草案）
 ├── contract-gate-20261024-p5.json     上轮（P5 预研 + 无 Gym 测试 + README-RL）
-├── contract-gate-20261024-onnx.json   本轮（ONNX 导出合同 + GPU 清单）
+├── contract-gate-20261024-onnx.json   上轮（ONNX 导出合同 + GPU 清单）
+├── contract-gate-20261024-audit.json  本轮（奖励审计 + 历史缓冲 + research 短表）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
-└── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
+├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
+└── k1-reward-audit-latest.json        官方奖励只读快照（禁止写回）
 ```
 
 ---
@@ -231,6 +238,9 @@ k1-training/manifests/
 | 新人五分钟地图 | [README-RL.md](README-RL.md) | 基线在哪、先跑哪两令、何时开训 |
 | 官方 walk ONNX 导出合同 | `onnx_export_contract.py` | 只许 344→13；无权重 SKIP；拒热换 / 外族维 |
 | GPU worker 就绪清单 | `probe_reserved_gpu.sh` + `gpu-worker-checklist` | 只探测；`missing` 写缺项；不调用 train.py |
+| K1 奖励只读审计 | `scripts/k1_reward_audit.py` | 清单 + 快照；篡改失败；不写回 yaml |
+| 历史缓冲形状 stub | `history_buffer_shape.py` | 10×32+24=344；全 0 不得连续性 PASS |
+| research-inputs 可迁短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | 可旁路借鉴 / **不可**替换 walk |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

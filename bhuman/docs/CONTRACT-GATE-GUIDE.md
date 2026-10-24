@@ -87,6 +87,8 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 探测现在写出 checklist JSON（`reserved-gpu-latest.json` 与 `gpu-worker-checklist-latest.json`）：CUDA / IsaacGym 或替代 / 磁盘 / 官方 `--task K1` / `K1_walk.pth`。`ready=false` 看 `missing`；`ready=true` 必须先告知用户，等明确开训。脚本不调用 `train.py`。
 
+官方奖励只读快照：`python3 bhuman/k1-training/scripts/k1_reward_audit.py` → `k1-reward-audit-latest.json`。禁止写回 `K1.yaml`。
+
 worker 以后出现：先跑探测 → **告知用户** → 等明确说开训。见 ROADMAP §5。
 
 ---

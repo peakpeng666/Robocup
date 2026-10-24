@@ -522,6 +522,24 @@ def check_gpu_free_shells(
             "k1_gpu_worker_checklist",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_k1_reward_audit.py",
+            "k1_reward_audit",
+            "k1_reward_audit_gate",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+            "history_buffer_shape",
+            "k1_history_buffer_shape",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+            "research_migrate_table",
+            "k1_research_migrate_table",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -968,6 +986,9 @@ def main() -> int:
             "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
             "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
             "gpu_worker_checklist": "probe JSON; missing items; never train.py",
+            "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
+            "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
+            "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1031,6 +1052,9 @@ def main() -> int:
             "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
             "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
             "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+            "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+            "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }

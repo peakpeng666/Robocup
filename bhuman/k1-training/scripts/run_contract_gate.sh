@@ -4,7 +4,8 @@
 # switcher SM, deploy-call sequence, history/torque draft, estimator bypass,
 # P2 acceptance / reactive hardening, P1 draft-only, switcher suite,
 # contract-gate guide / P3–P5 preview / no-Gym unit tests / README-RL /
-# ONNX export contract / GPU worker checklist.
+# ONNX export contract / GPU worker checklist /
+# K1 reward audit / history buffer shape / research-inputs table.
 # Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
 # k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.

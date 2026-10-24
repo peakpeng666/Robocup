@@ -49,6 +49,9 @@ REQUIRED_ROWS = (
     "新人五分钟地图",
     "官方 walk ONNX 导出合同",
     "GPU worker 就绪清单",
+    "K1 奖励只读审计",
+    "历史缓冲形状 stub",
+    "research-inputs 可迁短表",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -81,6 +84,9 @@ REQUIRED_LANDINGS = (
     "README-RL",
     "onnx_export_contract.py",
     "probe_reserved_gpu.py",
+    "k1_reward_audit.py",
+    "history_buffer_shape.py",
+    "RESEARCH-MIGRATE-TABLE",
 )
 
 

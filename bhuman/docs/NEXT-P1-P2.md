@@ -175,6 +175,9 @@ python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 python3 bhuman/sim2sim/test_overpass_contract.py
 python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py
 python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py
+python3 bhuman/k1-training/scripts/k1_reward_audit.py
+python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py
+python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
@@ -198,6 +201,9 @@ P5 预研：[P5-PREVIEW.md](P5-PREVIEW.md)（不碰真机；文档/门禁就绪 
 新人五分钟地图：[README-RL.md](README-RL.md)（先跑门禁 + 无 Gym；何时开训；文档地图链到 P3/P4/P5）。
 ONNX 导出合同：`k1-switcher/onnx_export_contract.py`（只许 walk 344→13；无权重 SKIP）。
 GPU 清单：`probe_reserved_gpu.sh`（`ready=true` 必须先告知用户，不调用 `train.py`）。
+奖励只读审计：`scripts/k1_reward_audit.py`（禁止写回 `K1.yaml`）。
+历史缓冲形状：`history_buffer_shape.py`（10×32+24=344；全 0 不得连续性 PASS）。
+research-inputs 短表：[RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md)。
 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 CI 草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI；云端 PASS+WARN）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。

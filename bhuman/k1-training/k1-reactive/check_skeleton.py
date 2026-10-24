@@ -262,6 +262,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
             "GPU worker checklist (probe only; never train.py)",
         ),
+        (
+            "bhuman/k1-training/scripts/k1_reward_audit.py",
+            "K1 reward read-only audit (no yaml write-back)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/history_buffer_shape.py",
+            "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS)",
+        ),
+        (
+            "bhuman/docs/RESEARCH-MIGRATE-TABLE.md",
+            "research-inputs / GLOBAL short migrate table",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

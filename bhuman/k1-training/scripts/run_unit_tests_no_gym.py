@@ -46,6 +46,9 @@ REQUIRED_NAMES = (
     "test_unregistered_in_train_py.py",
     "test_onnx_export_contract.py",
     "test_gpu_worker_checklist.py",
+    "test_k1_reward_audit.py",
+    "test_history_buffer_shape.py",
+    "test_research_migrate_table.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 
