@@ -17,7 +17,7 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 技能切换清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。HiFAR 与起身边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
 全球人形调研：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)（含通信/CTDE、SimRobot vs Isaac 域差）。可迁对照表：[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)。P0–P5 路线：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。P1 配置草稿：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)。
 
-产物：`contract-gate-20261024.json`（初版）、`contract-gate-20261024-skill-switch.json`、`contract-gate-20261024-global.json`（全球调研 + 静态槽位映射）、`contract-gate-20261024-migrate.json`（对照表 + 四个无 GPU stub）、`reserved-gpu-latest.json`。
+产物：`contract-gate-20261024.json`（初版）、`contract-gate-20261024-skill-switch.json`、`contract-gate-20261024-global.json`、`contract-gate-20261024-migrate.json`、`contract-gate-20261024-switcher.json`（状态机 + P1 draft + CTDE/域差）、`reserved-gpu-latest.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
 
 ---

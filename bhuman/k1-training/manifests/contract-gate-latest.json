@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T06:37:30+00:00",
+  "generated_utc": "2026-10-24T06:42:04+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -7,14 +7,16 @@
     "rule": "new skills are parallel extensions; do not rewrite frozen dims",
     "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
     "unregistered_in_train_py": "PASS",
-    "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
+    "skill_switch": "docs + empty shells + static slot map + walk/kick/standup SM; reactive blocked",
     "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
     "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
     "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
     "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
     "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
     "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
-    "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13"
+    "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
+    "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
+    "p1_draft": "draft-only factor comments; official rewards untouched"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -75,6 +77,8 @@
       "migrate-to-K1 table present",
       "BT skill-select interface present",
       "obs contract JSON present",
+      "switcher state-machine note present",
+      "P1 config diff draft present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -222,14 +226,16 @@
         "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
         "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
         "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
-        "method_catalog.json: 13 entries cross-checked against survey"
+        "bhuman/docs/SWITCHER-SM.md: required anchors present",
+        "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
+        "method_catalog.json: 18 entries cross-checked against survey"
       ]
     },
     "migrate_table": {
       "ok": true,
       "errors": [],
       "notes": [
-        "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and four landings present"
+        "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and landings present"
       ]
     },
     "estimators": {
@@ -303,10 +309,39 @@
         "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
         "sim2sim live replay skipped (no mujoco/weights); skeleton only"
       ]
+    },
+    "switcher_sm": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "skeleton frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+        "walk→kick PASS (59→13, no memcpy claimed)",
+        "kick→walk PASS: history_reset_pending, contract 344→13",
+        "walk→standup PASS only when fallen",
+        "standup→walk PASS: 5 s hold + history reset",
+        "5 s hold tick is a timer only (no physics)",
+        "standup→kick rejected (must walk first)",
+        "reactive implemented=false: stay walk 344→13",
+        "refused huoshen_t1",
+        "refused nusim",
+        "T5 PASS: 13==13 is not an ONNX swap",
+        "SWITCHER-SM.md anchors present"
+      ]
+    },
+    "p1_draft": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "draft baseline stays 344→13",
+        "five P1 factors are draft-only and do not rewrite 344",
+        "official K1.yaml rewards and stability v1 jsons unchanged",
+        "run_walk_stability.sh still uses official v1 presets only",
+        "P1 config draft doc present"
+      ]
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T06:37:30+00:00",
+    "generated_utc": "2026-10-24T06:42:04+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -342,7 +377,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "f9ca16399a82f4e6713957f0c65117d4ce1d8c66",
+    "workspace_head": "0b02f7bba2f46e666e6f8277166389021da7ea59",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -742,6 +777,8 @@
     "migrate-to-K1 table present",
     "BT skill-select interface present",
     "obs contract JSON present",
+    "switcher state-machine note present",
+    "P1 config diff draft present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -774,8 +811,10 @@
     "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
     "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
-    "method_catalog.json: 13 entries cross-checked against survey",
-    "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and four landings present",
+    "bhuman/docs/SWITCHER-SM.md: required anchors present",
+    "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
+    "method_catalog.json: 18 entries cross-checked against survey",
+    "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and landings present",
     "official K1.yaml still 344->13 (read-only check)",
     "passthrough: actor observation is a 344-D copy",
     "passthrough: rewrite_walk_obs refused",
@@ -818,6 +857,23 @@
     "official walk 344->13 accepted",
     "recorded 120 s walk result still (*,344)",
     "sim2sim_gate: skipped (missing optional runtime)",
+    "skeleton frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+    "walk→kick PASS (59→13, no memcpy claimed)",
+    "kick→walk PASS: history_reset_pending, contract 344→13",
+    "walk→standup PASS only when fallen",
+    "standup→walk PASS: 5 s hold + history reset",
+    "5 s hold tick is a timer only (no physics)",
+    "standup→kick rejected (must walk first)",
+    "reactive implemented=false: stay walk 344→13",
+    "refused huoshen_t1",
+    "refused nusim",
+    "T5 PASS: 13==13 is not an ONNX swap",
+    "SWITCHER-SM.md anchors present",
+    "draft baseline stays 344→13",
+    "five P1 factors are draft-only and do not rewrite 344",
+    "official K1.yaml rewards and stability v1 jsons unchanged",
+    "run_walk_stability.sh still uses official v1 presets only",
+    "P1 config draft doc present",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -839,6 +895,8 @@
     "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
     "python3 bhuman/sim2sim/test_sim2sim_gate.py",
     "bash bhuman/sim2sim/run-sim2sim-gate.sh",
+    "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+    "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
