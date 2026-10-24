@@ -23,6 +23,8 @@ SECTION_NEEDLES = (
     "--task K1",
     "344→13",
     "probe_reserved_gpu",
+    "print_train_dry_run",
+    "干跑",
 )
 BLOCKER_IDS = ("B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8")
 ROW_NEEDLES = (

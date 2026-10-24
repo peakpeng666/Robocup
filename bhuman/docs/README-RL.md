@@ -48,6 +48,9 @@
 | 全量自检 | `scripts/run_pr4_selfcheck.sh` | 一行：344→13 / TRAINABLE=false / ready_gpu |
 | 部署侧观测拼装 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 10×32+24=344；默认不经 reactive concat |
 | last_action 清零 | `k1-switcher/last_action_reset.py` | standup→walk = 13 个 0；拒 standup[:13] |
+| 开训干跑 | `scripts/print_train_dry_run.py` | 只打印 `--task K1`；干跑成功 ≠ 可训 |
+| env 注册审计 | `scripts/env_registry_audit.py` | 官方 K1 在册；旁路未注册 |
+| GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -73,11 +76,13 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 ## 4. 什么时候才能开训
 
-同时满足才谈 P1 真训（仍是官方 `--task K1` **344→13**）：
+同时满足才谈 P1 真训（仍是官方 `--task K1` **344→13**）。顺序见 [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)：
 
-1. `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh` 得到 `ready=true`（CUDA + Isaac Gym 或批准替代 + 磁盘 + 看得到官方 `--task K1` + `K1_walk.pth`）。`ready=false` 时 JSON 的 `missing` 写明缺哪一项。
-2. **必须先告知用户，等明确开训。** 探测脚本本身不调用 `train.py`。
-3. 第一训不是 reactive 64→15，不是改 `K1.yaml`。命令正文：[NEXT-P1-P2.md](NEXT-P1-P2.md)。
+1. **probe** — `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh` 得到 `ready=true`（CUDA + Isaac Gym 或批准替代 + 磁盘 + 看得到官方 `--task K1` + `K1_walk.pth`）。`ready=false` 时 JSON 的 `missing` 写明缺哪一项。
+2. **告知用户** — **必须先告知用户，等明确开训。** 探测脚本本身不调用 `train.py`。
+3. **等「开训」** — 用户明确说开训之前，门禁 / 干跑 / 探测都 **永不** 调 `train.py`。
+4. **dry-run 核对** — `python3 bhuman/k1-training/scripts/print_train_dry_run.py`（只打印官方 `--task K1`；**干跑成功 ≠ 可训**）。
+5. **才允许真训** — 第一训不是 reactive 64→15，不是改 `K1.yaml`。命令正文：[NEXT-P1-P2.md](NEXT-P1-P2.md)。本文档不执行真训。
 
 ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。见 [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) §6。
 
@@ -98,3 +103,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | research-inputs / GLOBAL 可迁短表 |
 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 自检主入口；可审、先读本文；**不要合并** |
 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 部署侧 344 拼装只读；不经 reactive concat |
+| [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | GPU 到位后：probe → 告知用户 → 等开训 → dry-run |

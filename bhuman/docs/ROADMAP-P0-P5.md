@@ -123,6 +123,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 部署侧 walk 观测拼装只读对照：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) + `k1-switcher/obs_assembly.py`（10×32+24=344；缺 C++ 不伪造；默认不经 reactive concat）。
 - [x] last_action 清零合同：`k1-switcher/last_action_reset.py`（standup / fast_standup → walk 必须 13 个 0，含 gait_frequency；拒 standup[:13] 冒充）。
 - [x] 合并清单刷新：[PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（自检主入口；HEAD **可审、建议先读 README-RL**；阻塞仍是 GPU worker / 权重 / 真机；**不要合并**）。
+- [x] 开训干跑命令生成器：`scripts/print_train_dry_run.py`（只打印官方 `--task K1` 草案；**干跑成功 ≠ 可训**；不调 `train.py`）。
+- [x] env 注册只读清单：`scripts/env_registry_audit.py` → `env-registry-audit-latest.json`（官方 K1 在册；k1-reactive / estimators / switcher **未**注册）。
+- [x] GPU 到位后步骤：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)（probe → 告知用户 → 等「开训」→ dry-run → 才允许真训；本文档不执行真训）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -256,6 +259,8 @@ python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py
 python3 bhuman/k1-training/scripts/booster_joints_snapshot.py
 python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py
 python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py
+python3 bhuman/k1-training/scripts/print_train_dry_run.py
+python3 bhuman/k1-training/scripts/env_registry_audit.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
@@ -271,10 +276,15 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 ### 5.1 GPU worker 上线后第一件事（本任务只写清单，不启训）
 
-1. 跑 `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh`，确认 `ready=true`。
-2. **先告知用户** worker 已在、拟跑哪条命令；**等用户明确说开训**。本清单与门禁**永不**自动 `train.py`。
-3. 用户同意后的第一训仍是官方 `--task K1` **344→13** 回放 / `run_env_check.sh` / `run_replay.sh K1`，**不是** reactive 64→15，不是改 `K1.yaml`。
-4. 命令正文见 [NEXT-P1-P2.md](NEXT-P1-P2.md)「P1 · 本机有 GPU 之后」。未同意前保持 SKIP。
+顺序全文：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)。缺一步都不得真训。
+
+1. **probe** — `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh`，确认 `ready=true`。
+2. **告知用户** worker 已在、拟跑哪条命令；横幅 **必须先告知用户并等待明确开训**。
+3. **等「开训」** — 用户明确说开训之前，本清单与门禁**永不**自动 `train.py`。
+4. **dry-run 核对** — `python3 bhuman/k1-training/scripts/print_train_dry_run.py`（只打印官方 `--task K1`；**干跑成功 ≠ 可训**）。
+5. 用户同意后的第一训仍是官方 `--task K1` **344→13** 回放 / `run_env_check.sh` / `run_replay.sh K1`，**不是** reactive 64→15，不是改 `K1.yaml`。
+
+命令正文见 [NEXT-P1-P2.md](NEXT-P1-P2.md)「P1 · 本机有 GPU 之后」。未同意前保持 SKIP。
 
 ### 5.2 条目（缺什么 / 谁提供 / 门禁如何 SKIP→PASS）
 

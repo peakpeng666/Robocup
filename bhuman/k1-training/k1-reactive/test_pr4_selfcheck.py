@@ -12,6 +12,8 @@ NEEDLES = (
     "k1_reward_audit.py",
     "p1_draft_diff.py",
     "probe_reserved_gpu.sh",
+    "print_train_dry_run.py",
+    "env_registry_audit.py",
     "344→13",
     "TRAINABLE=false",
     "ready_gpu",

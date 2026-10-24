@@ -108,6 +108,8 @@ REQUIRED_DOCS = {
         "run_pr4_selfcheck",
         "OBS-ASSEMBLY-344",
         "last_action_reset",
+        "print_train_dry_run",
+        "GPU-AFTER-ONLINE",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -143,6 +145,9 @@ REQUIRED_DOCS = {
         "run_pr4_selfcheck.sh",
         "OBS-ASSEMBLY-344.md",
         "last_action_reset.py",
+        "print_train_dry_run.py",
+        "env_registry_audit.py",
+        "GPU-AFTER-ONLINE.md",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -220,6 +225,9 @@ REQUIRED_DOCS = {
         "run_pr4_selfcheck",
         "OBS-ASSEMBLY-344",
         "last_action_reset",
+        "print_train_dry_run",
+        "GPU-AFTER-ONLINE",
+        "env-registry-audit",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -256,6 +264,8 @@ REQUIRED_DOCS = {
         "PR4-MERGE-CHECKLIST",
         "run_pr4_selfcheck",
         "OBS-ASSEMBLY-344",
+        "print_train_dry_run",
+        "GPU-AFTER-ONLINE",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -318,6 +328,9 @@ REQUIRED_DOCS = {
         "run_pr4_selfcheck",
         "OBS-ASSEMBLY-344",
         "last_action_reset",
+        "print_train_dry_run",
+        "GPU-AFTER-ONLINE",
+        "env_registry_audit",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -350,6 +363,16 @@ REQUIRED_DOCS = {
         "不经",
         "k1-reactive",
         "WalkingEngine",
+    ),
+    "bhuman/docs/GPU-AFTER-ONLINE.md": (
+        "probe",
+        "告知用户",
+        "开训",
+        "print_train_dry_run.py",
+        "--task K1",
+        "干跑成功 ≠ 可训",
+        "不执行真训",
+        "344→13",
     ),
 }
 

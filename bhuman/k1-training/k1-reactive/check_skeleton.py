@@ -310,6 +310,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-switcher/last_action_reset.py",
             "return-to-walk last_action 13 zeros (refuse standup[:13])",
         ),
+        (
+            "bhuman/k1-training/scripts/print_train_dry_run.py",
+            "print-only first-train draft --task K1 (干跑成功 ≠ 可训)",
+        ),
+        (
+            "bhuman/k1-training/scripts/env_registry_audit.py",
+            "official train.py registry (K1 in; bypass not registered)",
+        ),
+        (
+            "bhuman/docs/GPU-AFTER-ONLINE.md",
+            "GPU worker online steps (probe → tell user → wait 开训 → dry-run)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

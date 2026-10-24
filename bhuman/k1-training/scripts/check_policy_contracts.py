@@ -588,6 +588,18 @@ def check_gpu_free_shells(
             "k1_last_action_reset",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+            "print_train_dry_run",
+            "k1_print_train_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+            "env_registry_audit",
+            "k1_env_registry_audit",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1045,6 +1057,8 @@ def main() -> int:
             "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
             "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
             "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
+            "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
+            "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1119,6 +1133,10 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
             "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
             "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+            "python3 bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+            "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+            "python3 bhuman/k1-training/scripts/env_registry_audit.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

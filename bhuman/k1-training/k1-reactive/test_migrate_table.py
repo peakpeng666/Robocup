@@ -95,6 +95,9 @@ REQUIRED_LANDINGS = (
     "run_pr4_selfcheck.sh",
     "OBS-ASSEMBLY-344.md",
     "last_action_reset.py",
+    "print_train_dry_run.py",
+    "env_registry_audit.py",
+    "GPU-AFTER-ONLINE.md",
 )
 
 

@@ -57,6 +57,8 @@ REQUIRED_NAMES = (
     "test_pr4_selfcheck.py",
     "test_obs_assembly.py",
     "test_last_action_reset.py",
+    "test_print_train_dry_run.py",
+    "test_env_registry_audit.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

@@ -88,6 +88,7 @@ bhuman/docs/
 ├── RESEARCH-MIGRATE-TABLE.md            research-inputs / GLOBAL 可迁短表
 ├── PR4-MERGE-CHECKLIST.md               自检主入口；可审、先读 README-RL；不要合并
 ├── OBS-ASSEMBLY-344.md                  部署侧 walk 拼装 10×32+24=344（不经 reactive）
+├── GPU-AFTER-ONLINE.md                  GPU 到位后：probe → 告知用户 → 等开训 → dry-run
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -118,7 +119,9 @@ scripts/
 ├── k1_reward_audit.py           只读 K1.yaml + official stability；禁止写回
 ├── p1_draft_diff.py             官方 stability vs draft-only；禁止写回
 ├── booster_joints_snapshot.py   WalkingEngine boosterJoints 只读快照
-├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU）
+├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU+干跑+注册）
+├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
+├── env_registry_audit.py        官方 K1 在册；旁路未注册
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
 └── （已有）run_replay.sh / run_env_check.sh / run_walk_*.sh   操作者本机才跑
 ```
@@ -164,6 +167,8 @@ k1-switcher/
 ├── test_gait_frequency_contract.py
 ├── test_obs_assembly.py
 ├── test_last_action_reset.py
+├── test_print_train_dry_run.py
+├── test_env_registry_audit.py
 ├── test_booster_joints_snapshot.py
 ├── test_p1_draft_diff.py
 ├── test_k1_reward_audit.py
@@ -218,13 +223,15 @@ k1-training/manifests/
 ├── contract-gate-20261024-audit.json  上轮（奖励审计 + 历史缓冲 + research 短表）
 ├── contract-gate-20261024-joints.json 上轮（13-D 关节图 + draft 差分 + 合并清单）
 ├── contract-gate-20261024-gait.json   上轮（gait_frequency + boosterJoints + 自检）
-├── contract-gate-20261024-obs.json    本轮（观测拼装 + last_action 清零 + 清单刷新）
+├── contract-gate-20261024-obs.json    上轮（观测拼装 + last_action 清零 + 清单刷新）
+├── contract-gate-20261024-dry.json    本轮（开训干跑 + env 注册审计 + GPU 到位步骤）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
 ├── k1-reward-audit-latest.json        官方奖励只读快照（禁止写回）
 ├── p1-draft-diff-latest.json          官方 vs draft-only 键差分（未写进 live）
 ├── booster-joints-walk13-latest.json  WalkingEngine 12 腿 + gait_frequency
+├── env-registry-audit-latest.json     官方 K1 在册；k1-reactive / estimators / switcher 未注册
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu
 ```
 
@@ -271,6 +278,9 @@ k1-training/manifests/
 | 部署侧观测拼装 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) + `obs_assembly.py` | 10×32+24=344；不经 reactive；缺源不伪造 |
 | last_action 清零合同 | `last_action_reset.py` | standup→walk 13 个 0（含步频位）；拒 standup[:13] |
 | 合并清单刷新 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 自检主入口；可审、先读 README-RL；阻塞 GPU worker / 权重 / 真机 |
+| 开训干跑命令生成器 | `print_train_dry_run.py` | 只打印 `--task K1`；干跑成功 ≠ 可训；不调 train.py |
+| env 注册只读清单 | `env_registry_audit.py` | 官方 K1 在册；reactive / estimators / switcher 未注册 |
+| GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run → 才允许真训 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

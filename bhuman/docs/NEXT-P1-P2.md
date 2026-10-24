@@ -185,6 +185,8 @@ python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py
 python3 bhuman/k1-training/scripts/booster_joints_snapshot.py
 python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py
 python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py
+python3 bhuman/k1-training/scripts/print_train_dry_run.py
+python3 bhuman/k1-training/scripts/env_registry_audit.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
@@ -220,6 +222,9 @@ boosterJoints 快照：`booster_joints_snapshot.py`（缺源码 SKIP）。
 全量自检：`run_pr4_selfcheck.sh`。
 部署侧观测拼装：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md)（10×32+24=344；不经 reactive）。
 last_action 清零：`last_action_reset.py`（standup→walk = 13 个 0；拒 standup[:13]）。
+开训干跑：`print_train_dry_run.py`（只打印 `--task K1`；干跑成功 ≠ 可训）。
+env 注册审计：`env_registry_audit.py`（官方 K1 在册；旁路未注册）。
+GPU 到位后步骤：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)（probe → 告知用户 → 等开训 → dry-run）。
 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 CI 草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI；云端 PASS+WARN）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。

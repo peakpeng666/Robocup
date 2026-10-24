@@ -65,7 +65,10 @@
 | WalkingEngine boosterJoints 快照 | 契约 | `scripts/booster_joints_snapshot.py` | **P0** | 否 | 与 joint_map 一致 PASS；缺源码 SKIP，不伪造关节名 | **本轮快照** |
 | PR #4 全量自检 | 门禁 | `scripts/run_pr4_selfcheck.sh` | **P0** | 否 | 门禁+无 Gym+audit+diff+GPU 探测；一行 344→13 / TRAINABLE=false / ready_gpu | 上轮入口 |
 | 部署侧 walk 观测拼装 | 契约 v1 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) + `k1-switcher/obs_assembly.py` | **P0** | 否 | 只读 10×32+24=**344**；默认不经 reactive concat；缺 C++ 不伪造 | **本轮对照** |
-| last_action 清零合同 | ROADMAP P4 | `k1-switcher/last_action_reset.py` | **P0 / P4** | 否 | standup→walk 必须 13 个 0（含 gait_frequency）；拒 standup[:13] | **本轮加深** |
+| last_action 清零合同 | ROADMAP P4 | `k1-switcher/last_action_reset.py` | **P0 / P4** | 否 | standup→walk 必须 13 个 0（含 gait_frequency）；拒 standup[:13] | 上轮加深 |
+| 开训干跑命令生成器 | 门禁 | `scripts/print_train_dry_run.py` | **P0** | 否 | 只打印官方 `--task K1`；**干跑成功 ≠ 可训**；不调 `train.py` | **本轮干跑** |
+| env 注册只读清单 | 门禁 | `scripts/env_registry_audit.py` | **P0** | 否 | 官方 K1 在册；k1-reactive / estimators / switcher **未**注册 | **本轮审计** |
+| GPU 到位后步骤 | ROADMAP §5 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | **P0** | 否（文档）；真训要 | probe → 告知用户 → 等「开训」→ dry-run → 才允许真训；本文档不执行真训 | **本轮短文** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -138,6 +141,9 @@
 | 40 | PR #4 全量自检 | `run_pr4_selfcheck.sh` | `bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh` |
 | 41 | 部署侧 walk 观测拼装 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | `python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py` |
 | 42 | last_action 清零合同 | `last_action_reset.py` | `python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py` |
+| 43 | 开训干跑命令生成器 | `print_train_dry_run.py` | `python3 bhuman/k1-training/scripts/print_train_dry_run.py` |
+| 44 | env 注册只读清单 | `env_registry_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py` |
+| 45 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等开训 → dry-run；不执行真训 |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 
