@@ -52,6 +52,9 @@ REQUIRED_NAMES = (
     "test_joint_map_contract.py",
     "test_p1_draft_diff.py",
     "test_pr4_merge_checklist.py",
+    "test_gait_frequency_contract.py",
+    "test_booster_joints_snapshot.py",
+    "test_pr4_selfcheck.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

@@ -16,7 +16,7 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 ```
 
-门禁锁合同；无 Gym 入口发现并跑齐 switcher / reactive / estimators / sim2sim / draft 纯 Python 测试。缺 mujoco / 权时测试内 **SKIP**，不得假绿。默认断言仍是 walk **344→13**。合并前另见 [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（**不要自动合并**；合并 ≠ 已训通）。
+门禁锁合同；无 Gym 入口发现并跑齐 switcher / reactive / estimators / sim2sim / draft 纯 Python 测试。缺 mujoco / 权时测试内 **SKIP**，不得假绿。默认断言仍是 walk **344→13**。合并前另见 [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（**不要自动合并**；合并 ≠ 已训通）。一键自检：`bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh`。
 
 仓库根只跑门禁：
 

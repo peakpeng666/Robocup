@@ -43,6 +43,9 @@
 | 13-DOF 关节图 | `k1-switcher/joint_map_contract.py` | 长度 13；standup 22 ≠ walk |
 | 官方 vs draft 差分 | `scripts/p1_draft_diff.py` | `draft_only:true`；未写进 live |
 | 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；不要自动合并 |
+| gait_frequency 第 13 维 | `k1-switcher/gait_frequency_contract.py` | action[12] = 步频，≠ 电机 |
+| boosterJoints 快照 | `scripts/booster_joints_snapshot.py` | 12 腿 + gait_frequency；缺源 SKIP |
+| 全量自检 | `scripts/run_pr4_selfcheck.sh` | 一行：344→13 / TRAINABLE=false / ready_gpu |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -54,6 +57,7 @@
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
+# 一键等价：bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 ```
 
 | 命令 | 做什么 | 云端无 GPU |

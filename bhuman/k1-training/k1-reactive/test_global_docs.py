@@ -103,6 +103,9 @@ REQUIRED_DOCS = {
         "joint_map_contract",
         "p1_draft_diff",
         "PR4-MERGE-CHECKLIST",
+        "gait_frequency_contract",
+        "booster_joints_snapshot",
+        "run_pr4_selfcheck",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -133,6 +136,9 @@ REQUIRED_DOCS = {
         "joint_map_contract.py",
         "p1_draft_diff.py",
         "PR4-MERGE-CHECKLIST",
+        "gait_frequency_contract.py",
+        "booster_joints_snapshot.py",
+        "run_pr4_selfcheck.sh",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -205,6 +211,9 @@ REQUIRED_DOCS = {
         "joint_map_contract",
         "p1-draft-diff",
         "PR4-MERGE-CHECKLIST",
+        "gait_frequency_contract",
+        "booster-joints-walk13",
+        "run_pr4_selfcheck",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -215,6 +224,7 @@ REQUIRED_DOCS = {
         "history_buffer_shape",
         "10×32+24=344",
         "joint_map_contract",
+        "gait_frequency",
     ),
     "bhuman/docs/P2-ACCEPTANCE.md": (
         "344→13",
@@ -237,6 +247,7 @@ REQUIRED_DOCS = {
         "gpu-worker-checklist",
         "必须先告知用户",
         "PR4-MERGE-CHECKLIST",
+        "run_pr4_selfcheck",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -295,6 +306,8 @@ REQUIRED_DOCS = {
         "joint_map_contract",
         "p1_draft_diff",
         "PR4-MERGE-CHECKLIST",
+        "gait_frequency_contract",
+        "run_pr4_selfcheck",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

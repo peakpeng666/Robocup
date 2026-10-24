@@ -116,6 +116,8 @@ scripts/
 ├── probe_reserved_gpu.py/.sh    checklist JSON；缺 worker → WARN；永不 train.py
 ├── k1_reward_audit.py           只读 K1.yaml + official stability；禁止写回
 ├── p1_draft_diff.py             官方 stability vs draft-only；禁止写回
+├── booster_joints_snapshot.py   WalkingEngine boosterJoints 只读快照
+├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU）
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
 └── （已有）run_replay.sh / run_env_check.sh / run_walk_*.sh   操作者本机才跑
 ```
@@ -152,9 +154,12 @@ k1-switcher/
 ├── onnx_export_contract.py      只许 walk 344→13 默认导出；无权重 SKIP；拒热换
 ├── history_buffer_shape.py      10×32+24=344；合成全 0 不得连续性 PASS
 ├── joint_map_contract.py        13-D 腿+步频；拒 12/15/22；standup ≠ walk
+├── gait_frequency_contract.py   action[12]=gait_frequency；≠ 第 13 路电机
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
+├── test_gait_frequency_contract.py
+├── test_booster_joints_snapshot.py
 ├── test_p1_draft_diff.py
 ├── test_k1_reward_audit.py
 ├── test_standup_kick_hardening.py
@@ -206,12 +211,15 @@ k1-training/manifests/
 ├── contract-gate-20261024-p5.json     上轮（P5 预研 + 无 Gym 测试 + README-RL）
 ├── contract-gate-20261024-onnx.json   上轮（ONNX 导出合同 + GPU 清单）
 ├── contract-gate-20261024-audit.json  上轮（奖励审计 + 历史缓冲 + research 短表）
-├── contract-gate-20261024-joints.json 本轮（13-D 关节图 + draft 差分 + 合并清单）
+├── contract-gate-20261024-joints.json 上轮（13-D 关节图 + draft 差分 + 合并清单）
+├── contract-gate-20261024-gait.json   本轮（gait_frequency + boosterJoints + 自检）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
 ├── k1-reward-audit-latest.json        官方奖励只读快照（禁止写回）
-└── p1-draft-diff-latest.json          官方 vs draft-only 键差分（未写进 live）
+├── p1-draft-diff-latest.json          官方 vs draft-only 键差分（未写进 live）
+├── booster-joints-walk13-latest.json  WalkingEngine 12 腿 + gait_frequency
+└── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu
 ```
 
 ---
@@ -251,6 +259,9 @@ k1-training/manifests/
 | 13-DOF 关节映射合同 | `joint_map_contract.py` | 长度 13；拒 12/15/22；standup ≠ walk；kick 只校出口维=13 |
 | 官方 vs draft 差分 | `p1_draft_diff.py` | 全带 `draft_only:true`；proposed 未写进 live |
 | PR 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 两条命令；合并 ≠ 已训通；不要自动合并 |
+| gait_frequency 第 13 维 | `gait_frequency_contract.py` | action[12] = 步频，≠ 电机；standup/reactive 不得冒充 |
+| WalkingEngine boosterJoints 快照 | `booster_joints_snapshot.py` | 与 joint_map 一致；缺源码 SKIP，不伪造关节名 |
+| PR #4 全量自检 | `run_pr4_selfcheck.sh` | 门禁+无 Gym+audit+diff+GPU；一行 344→13 / TRAINABLE=false / ready_gpu |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

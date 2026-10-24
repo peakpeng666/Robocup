@@ -18,6 +18,12 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 两条都必须 **exit 0**。云端无 GPU 预期 **PASS + WARN**（缺 CUDA / Isaac / 权）。缺依赖的测试内 **SKIP**，不得假绿。
 
+一键等价（再加 reward audit / draft diff / GPU 探测）：
+
+```bash
+bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
+```
+
 ---
 
 ## 2. 必须仍为 PASS 的项

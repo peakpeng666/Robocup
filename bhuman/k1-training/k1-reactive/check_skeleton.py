@@ -286,6 +286,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/docs/PR4-MERGE-CHECKLIST.md",
             "PR #4 merge checklist (merge ≠ trained; no auto-merge)",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/gait_frequency_contract.py",
+            "walk action[12]=gait_frequency (not a 13th motor)",
+        ),
+        (
+            "bhuman/k1-training/scripts/booster_joints_snapshot.py",
+            "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate)",
+        ),
+        (
+            "bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
+            "PR #4 selfcheck (gate + no-gym + audits + GPU probe)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

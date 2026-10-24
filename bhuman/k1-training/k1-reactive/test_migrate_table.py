@@ -90,6 +90,9 @@ REQUIRED_LANDINGS = (
     "joint_map_contract.py",
     "p1_draft_diff.py",
     "PR4-MERGE-CHECKLIST",
+    "gait_frequency_contract.py",
+    "booster_joints_snapshot.py",
+    "run_pr4_selfcheck.sh",
 )
 
 
