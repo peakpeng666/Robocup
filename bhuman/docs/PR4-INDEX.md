@@ -4,10 +4,11 @@
 默认 / 主路径 = 官方 walk **344→13**（`K1.yaml` / WalkingEngine）。kick 59→13、standup 73→22 / fast 72→22 只按官方边。  
 本 PR 新增的 reactive / estimators / switcher / draft-only **全部是并行旁路**，不得改写官方合同、不得改默认奖励、不得热换 ONNX。
 
-**先读本页，再按 §1 的顺序点进去。** 门禁：
+**先读 [README-RL.md](README-RL.md)，再按 §1 的顺序点进去。** 门禁 + 无 Gym 测试：
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 ```
 
 `TRAINABLE=false` / `implemented=false` 在所有新模块上成立。骨架 YAML 已存在 ⇒ **未注册进 `train.py` = PASS**。
@@ -28,19 +29,18 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 
 | # | 文件 | 为什么先读它 |
 |---|---|---|
-| 1 | 本页 | 目录 |
-| 2 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) | P0–P5 取舍与验收 |
-| 3 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.12 可迁点 vs 不可替换 walk） |
-| 4 | [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md) | 「可迁」对照：目录 / GPU / 对 344→13 |
-| 5 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓合同核验 |
-| 6 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
-| 7 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | 历史/力矩形状草案（连续性 SKIP） |
-| 8 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | P2 出门条：切换 / 六机 / 不冒充实机；**不改 344→13** |
-| 9 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么跑；PASS / SKIP / WARN；**PASS ≠ 已训通** |
-| 10 | [P3-PREVIEW.md](P3-PREVIEW.md) | P3 预研：可做 stub / 等 GPU / 等真机；默认仍 walk |
-| 11 | [P4-PREVIEW.md](P4-PREVIEW.md) | P4 预研：单机切换 + 六机目标；三道门；默认 walk |
-| 12 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | CI 草案；云端无 GPU 预期 PASS+WARN |
-| 13 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
+| 1 | [README-RL.md](README-RL.md) | 五分钟地图：基线 / PR4 / 先跑哪两令 |
+| 2 | 本页 | 目录 |
+| 3 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) | P0–P5 取舍与验收 |
+| 4 | [GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) | 全球地图（含 §6.12 可迁点 vs 不可替换 walk） |
+| 5 | [MIGRATE-TO-K1.md](MIGRATE-TO-K1.md) | 「可迁」对照：目录 / GPU / 对 344→13 |
+| 6 | [SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) | 本仓合同核验 |
+| 7 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
+| 8 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | P2 出门条；**不改 344→13** |
+| 9 | [P3-PREVIEW.md](P3-PREVIEW.md) / [P4-PREVIEW.md](P4-PREVIEW.md) / [P5-PREVIEW.md](P5-PREVIEW.md) | 预研；文档就绪 ≠ 已训 / 已上真机 |
+| 10 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么跑；**PASS ≠ 已训通** |
+| 11 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | CI 草案；云端 PASS+WARN |
+| 12 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令 |
 
 ---
 
@@ -78,11 +78,13 @@ bhuman/sim2sim/run-mujoco.sh                官方 walk 344→13 过桥（操作
 
 ```
 bhuman/docs/
+├── README-RL.md                         五分钟地图（先读）
 ├── PR4-INDEX.md                         本页
 ├── P2-ACCEPTANCE.md                     P2 出门条（不改 344→13）
 ├── CONTRACT-GATE-GUIDE.md               门禁一键汇总（PASS ≠ 已训通）
 ├── P3-PREVIEW.md                        P3 预研（不实现训练；默认 walk）
 ├── P4-PREVIEW.md                        P4 预研（不实现六机/真机；三道门）
+├── P5-PREVIEW.md                        P5 预研（不碰真机；≠ 已上真机）
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -108,6 +110,7 @@ bhuman/docs/
 scripts/
 ├── check_policy_contracts.py    静态锁维 + 拉起下列测试
 ├── run_contract_gate.sh         入口（不 source env.sh）
+├── run_unit_tests_no_gym.sh/.py 发现并跑齐纯 Python 测试；默认 344→13
 ├── probe_reserved_gpu.py/.sh    缺 worker → WARN + skip；永不自动训练
 └── （已有）run_replay.sh / run_env_check.sh / run_walk_*.sh   操作者本机才跑
 ```
@@ -185,7 +188,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-draft.json  上轮（draft 校验器 + schema 负例 + §6.12）
 ├── contract-gate-20261024-isol.json   上轮（draft 全目录隔离 + forbidden_as_walk）
 ├── contract-gate-20261024-p3.json     上轮（门禁指南 + P3 预研 + 切换套件）
-├── contract-gate-20261024-p4.json     本轮（P4 预研 + 过桥合同 + CI 草案）
+├── contract-gate-20261024-p4.json     上轮（P4 预研 + 过桥合同 + CI 草案）
+├── contract-gate-20261024-p5.json     本轮（P5 预研 + 无 Gym 测试 + README-RL）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
@@ -216,6 +220,9 @@ k1-training/manifests/
 | P4 预研 | [P4-PREVIEW.md](P4-PREVIEW.md) | 单机切换 + 六机目标；三道门；不实现六机/真机 |
 | MuJoCo 过桥合同 | `sim2sim/overpass_contract.py` | 过桥必须 344→13；Isaac ≠ MuJoCo ≠ SimRobot |
 | CI 门禁接入说明 | [CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md) | 草案在 draft-only；云端 PASS+WARN |
+| P5 预研 | [P5-PREVIEW.md](P5-PREVIEW.md) | 域差 / 带宽位置；**≠ 已上真机** |
+| 无 Gym 一键测试 | `scripts/run_unit_tests_no_gym.sh` | 发现并跑齐；缺依赖 SKIP；默认 344→13 |
+| 新人五分钟地图 | [README-RL.md](README-RL.md) | 基线在哪、先跑哪两令、何时开训 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

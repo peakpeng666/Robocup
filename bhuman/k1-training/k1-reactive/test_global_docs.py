@@ -60,6 +60,8 @@ REQUIRED_DOCS = {
         "CONTRACT-GATE-GUIDE",
         "P3-PREVIEW",
         "P4-PREVIEW",
+        "P5-PREVIEW",
+        "README-RL",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -89,6 +91,9 @@ REQUIRED_DOCS = {
         "test_switcher_integration_suite",
         "overpass_contract",
         "CI-CONTRACT-GATE",
+        "P5-PREVIEW",
+        "README-RL",
+        "run_unit_tests_no_gym",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -108,6 +113,9 @@ REQUIRED_DOCS = {
         "P2-ACCEPTANCE",
         "hardening.py",
         "旁路技能，≠ 新步态基线",
+        "P5-PREVIEW",
+        "README-RL",
+        "run_unit_tests_no_gym.sh",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -165,6 +173,9 @@ REQUIRED_DOCS = {
         "CI-CONTRACT-GATE",
         "test_switcher_integration_suite",
         "overpass_contract",
+        "P5-PREVIEW",
+        "README-RL",
+        "run_unit_tests_no_gym",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -189,6 +200,8 @@ REQUIRED_DOCS = {
         "WARN",
         "reserved-gpu",
         "344→13",
+        "run_unit_tests_no_gym",
+        "README-RL",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -217,6 +230,25 @@ REQUIRED_DOCS = {
         ".github/workflows",
         "PASS ≠ 已训通",
         "ubuntu-latest",
+    ),
+    "bhuman/docs/P5-PREVIEW.md": (
+        "344→13",
+        "已上真机",
+        "TeamComm",
+        "512",
+        "默认",
+        "不连接机器人",
+        "README-RL",
+        "CompressedTeamCommunicationStreams",
+    ),
+    "bhuman/docs/README-RL.md": (
+        "344→13",
+        "run_contract_gate.sh",
+        "run_unit_tests_no_gym.sh",
+        "P5-PREVIEW",
+        "开训",
+        "K1.yaml",
+        "TRAINABLE=false",
     ),
 }
 

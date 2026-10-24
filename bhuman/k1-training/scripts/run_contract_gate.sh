@@ -3,7 +3,7 @@
 # Also: migrate table, estimator stubs, obs schema, BT skill-select, sim2sim gate,
 # switcher SM, deploy-call sequence, history/torque draft, estimator bypass,
 # P2 acceptance / reactive hardening, P1 draft-only, switcher suite,
-# contract-gate guide / P3 preview.
+# contract-gate guide / P3–P5 preview / no-Gym unit tests / README-RL.
 # Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
 # k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.

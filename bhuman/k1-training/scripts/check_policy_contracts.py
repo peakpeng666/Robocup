@@ -504,6 +504,12 @@ def check_gpu_free_shells(
             "k1_overpass_contract",
             True,
         ),
+        (
+            "bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
+            "unit_tests_no_gym",
+            "k1_unit_tests_no_gym",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -941,6 +947,9 @@ def main() -> int:
             "p4_preview": "bhuman/docs/P4-PREVIEW.md; single-robot + six-robot goals; three gates",
             "overpass_contract": "Isaac≠MuJoCo≠SimRobot; overpass 344→13; no live sim rewrite",
             "ci_contract_gate": "bhuman/docs/CI-CONTRACT-GATE.md; draft-only workflow; PASS+WARN",
+            "p5_preview": "bhuman/docs/P5-PREVIEW.md; domain-gap/CTDE location; docs≠on-robot",
+            "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
+            "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1001,6 +1010,7 @@ def main() -> int:
             "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
             "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
             "python3 bhuman/sim2sim/test_overpass_contract.py",
+            "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }

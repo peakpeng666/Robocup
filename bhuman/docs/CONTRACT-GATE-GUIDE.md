@@ -1,14 +1,24 @@
 # 合同门禁一键汇总
 
-2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)、[PR4-INDEX.md](PR4-INDEX.md)、`bhuman/k1-training/scripts/run_contract_gate.sh`。
+2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)、[PR4-INDEX.md](PR4-INDEX.md)、[README-RL.md](README-RL.md)、`bhuman/k1-training/scripts/run_contract_gate.sh`。
 
-**PASS ≠ 已训通。** 本门禁锁官方 B-Human walk **344→13** 与旁路纪律，不跑 `train.py`，不启 Isaac Gym，不连真机。
+**PASS ≠ 已训通。** 本门禁锁官方 B-Human walk **344→13** 与旁路纪律，不跑 `train.py`，不启 Isaac Gym，不连真机。  
+**文档 / 门禁就绪 ≠ 已上真机**（[P5-PREVIEW.md](P5-PREVIEW.md)）。
 
 ---
 
 ## 0. 怎么跑
 
-仓库根：
+新人先跑这两句（无 GPU）：
+
+```bash
+bash bhuman/k1-training/scripts/run_contract_gate.sh
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
+```
+
+门禁锁合同；无 Gym 入口发现并跑齐 switcher / reactive / estimators / sim2sim / draft 纯 Python 测试。缺 mujoco / 权时测试内 **SKIP**，不得假绿。默认断言仍是 walk **344→13**。
+
+仓库根只跑门禁：
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
@@ -26,6 +36,7 @@ CONTRACT_GATE_STAMP=20261024-p3 bash bhuman/k1-training/scripts/run_contract_gat
 
 ```bash
 python3 bhuman/k1-training/scripts/check_policy_contracts.py
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

@@ -244,6 +244,16 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/P3-PREVIEW.md", "P3 preview (no training; walk stays default)"),
         ("bhuman/docs/P4-PREVIEW.md", "P4 preview (no six-robot/real-robot; three gates)"),
         ("bhuman/docs/CI-CONTRACT-GATE.md", "CI contract-gate draft (PASS+WARN, no forced CI)"),
+        ("bhuman/docs/P5-PREVIEW.md", "P5 preview (no robot; docs/gate ready ≠ on robot)"),
+        ("bhuman/docs/README-RL.md", "RL 5-min map (baseline / two commands / when to train)"),
+        (
+            "bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
+            "no-Gym one-shot unit tests (walk 344→13; honest SKIP)",
+        ),
+        (
+            "bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
+            "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

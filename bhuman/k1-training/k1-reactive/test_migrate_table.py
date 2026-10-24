@@ -44,6 +44,9 @@ REQUIRED_ROWS = (
     "P4 预研",
     "MuJoCo 过桥合同",
     "CI 门禁接入说明",
+    "P5 预研",
+    "无 Gym 一键测试",
+    "新人五分钟地图",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -71,6 +74,9 @@ REQUIRED_LANDINGS = (
     "P4-PREVIEW",
     "overpass_contract.py",
     "CI-CONTRACT-GATE",
+    "P5-PREVIEW",
+    "run_unit_tests_no_gym.sh",
+    "README-RL",
 )
 
 

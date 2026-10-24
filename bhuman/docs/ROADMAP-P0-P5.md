@@ -106,6 +106,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] P4 预研（不实现六机/真机）：[P4-PREVIEW.md](P4-PREVIEW.md)（三道门：合同维 / PD / 不冒充）。
 - [x] MuJoCo 过桥合同 stub：`sim2sim/overpass_contract.py`（Isaac ≠ MuJoCo ≠ SimRobot；过桥维 344→13）。
 - [x] CI 门禁接入说明：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（草案在 draft-only；不改强制 CI）。
+- [x] P5 预研（不碰真机）：[P5-PREVIEW.md](P5-PREVIEW.md)（文档/门禁就绪 ≠ 已上真机）。
+- [x] 无 Gym 一键测试：`scripts/run_unit_tests_no_gym.sh`（缺依赖 SKIP，不得假绿；默认 walk 344→13）。
+- [x] 新人五分钟地图：[README-RL.md](README-RL.md)。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -186,6 +189,10 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ### P5 · 真机前置（未授权，只列）
 
+预研（不碰真机）：[P5-PREVIEW.md](P5-PREVIEW.md)。**默认入口仍是官方 walk 344→13。文档 / 门禁就绪 ≠ 已上真机。**
+
+- [x] 预研文档：域差闭合目标、带宽/CTDE 实测位置、默认仍 walk。
+
 - SDK/固件版本冲突（文档 1.7.1 vs deploy ≥1.7.2）必须实测。
 - ASAP：真机轨迹 → delta action → 再训。Booster Lab：真机 T–n / armature → 改仿真植物。两条都是 P5，都不得改 344。
 - 机载：策略 50 Hz + 视觉 25 Hz，给 B-Human 比赛栈留算力；TeamComm 512 B / 端口 10000+队号的预算在真机上才能量。
@@ -198,6 +205,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
 python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py

@@ -148,6 +148,7 @@ python3 /home/peakpeng/Desktop/Robocup/bhuman/k1-training/k1-reactive/check_skel
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
 python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
@@ -191,6 +192,8 @@ HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STAND
 P2 出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（旁路技能，≠ 新步态基线）。
 P3 预研：[P3-PREVIEW.md](P3-PREVIEW.md)（不实现训练；默认仍 walk）。
 P4 预研：[P4-PREVIEW.md](P4-PREVIEW.md)（不实现六机/真机；三道门）。
+P5 预研：[P5-PREVIEW.md](P5-PREVIEW.md)（不碰真机；文档/门禁就绪 ≠ 已上真机）。
+新人五分钟地图：[README-RL.md](README-RL.md)（先跑门禁 + 无 Gym；何时开训）。
 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 CI 草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI；云端 PASS+WARN）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。
