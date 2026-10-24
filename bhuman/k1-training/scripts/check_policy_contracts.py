@@ -630,6 +630,24 @@ def check_gpu_free_shells(
             "k1_checkpoint_layout",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py",
+            "kick_standup_joint_map",
+            "k1_kick_standup_joint_map",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
+            "reference_motion_inventory",
+            "k1_reference_motion_inventory",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
+            "render_selfcheck_summary",
+            "k1_render_selfcheck_summary",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1094,6 +1112,9 @@ def main() -> int:
             "pd_domain_gap": "train ankle-roll p60 vs robot p25; no K1.yaml write-back",
             "teamcomm_budget": "512 B / 10000+team; teammate not into 344; WLAN SKIP",
             "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused",
+            "kick_standup_joint_map": "kick 59→13 shares walk exit; standup[12]=lHipYaw motor",
+            "reference_motion_inventory": "declared ref/motion paths; missing SKIP; T1 ≠ walk default",
+            "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1177,6 +1198,10 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
             "python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
             "python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
+            "python3 bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
+            "python3 bhuman/k1-training/scripts/render_selfcheck_summary.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

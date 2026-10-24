@@ -91,6 +91,7 @@ bhuman/docs/
 ├── GPU-AFTER-ONLINE.md                  GPU 到位后：probe → 告知用户 → 等开训 → dry-run
 ├── SIMROBOT-SIX-ROBOT-ACCEPTANCE.md     六机脚手架（不跑仿真；活回放 SKIP）
 ├── CHECKPOINT-LAYOUT.md                 官方 walk 权路径（缺文件 SKIP）
+├── PR4-SELFCHECK-LATEST.md              自检 PASS/SKIP/WARN 一览（生成，不新增长文）
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -121,7 +122,8 @@ scripts/
 ├── k1_reward_audit.py           只读 K1.yaml + official stability；禁止写回
 ├── p1_draft_diff.py             官方 stability vs draft-only；禁止写回
 ├── booster_joints_snapshot.py   WalkingEngine boosterJoints 只读快照
-├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU+干跑+注册）
+├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU+干跑+注册+关节图+清单）
+├── render_selfcheck_summary.py  读 pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
@@ -167,9 +169,14 @@ k1-switcher/
 ├── pd_domain_gap_contract.py    训侧踝滚 p60 vs 真机 p25；拒写回 K1.yaml
 ├── teamcomm_budget.py           512 B / 10000+队号；队友不进 344；WLAN SKIP
 ├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
+├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
+├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
 ├── test_pd_domain_gap.py
 ├── test_teamcomm_budget.py
 ├── test_checkpoint_layout.py
+├── test_kick_standup_joint_map.py
+├── test_reference_motion_inventory.py
+├── test_render_selfcheck_summary.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -244,7 +251,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-dry.json    上轮（开训干跑 + env 注册审计 + GPU 到位步骤）
 ├── contract-gate-20261024-qc.json     上轮（文档去重 QC）
 ├── contract-gate-20261024-six.json    上轮（六机脚手架 + SkillRequest 对照）
-├── contract-gate-20261024-gap.json    本轮（PD 域差 + TeamComm 512 + checkpoint 布局）
+├── contract-gate-20261024-gap.json    上轮（PD 域差 + TeamComm 512 + checkpoint 布局）
+├── contract-gate-20261024-map.json    本轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -252,6 +260,8 @@ k1-training/manifests/
 ├── p1-draft-diff-latest.json          官方 vs draft-only 键差分（未写进 live）
 ├── booster-joints-walk13-latest.json  WalkingEngine 12 腿 + gait_frequency
 ├── env-registry-audit-latest.json     官方 K1 在册；k1-reactive / estimators / switcher 未注册
+├── kick-standup-joint-map-latest.json kick 共享 walk 13 出口；standup[12]=lHipYaw
+├── reference-motion-inventory-latest.json 参考/clip 声明；缺文件 SKIP；T1 ≠ walk 默认
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu
 ```
 
@@ -306,6 +316,9 @@ k1-training/manifests/
 | PD 域差合同 | `pd_domain_gap_contract.py` | 训侧 p60 vs 真机 p25；拒写回 / 拒统一冒充已闭合 |
 | 队通信 512 B stub | `teamcomm_budget.py` | 队友 **不进** 344；无 WLAN 带宽 SKIP |
 | checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `K1_walk.pth`/onnx；T1/reactive 不得占用；缺文件 SKIP |
+| kick / standup 关节图交叉 | `kick_standup_joint_map.py` | kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机 ≠ 步频；负例拒混淆 |
+| 参考运动只读清单 | `reference-motion-inventory-latest.json` | 声明路径；缺文件 SKIP；T1/GMR 不得标成官方 walk 默认 |
+| 自检人读摘要 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | `render_selfcheck_summary.py` 读 JSON → PASS/SKIP/WARN；不新增长文 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

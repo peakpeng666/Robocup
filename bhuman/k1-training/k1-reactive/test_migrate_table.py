@@ -54,6 +54,9 @@ REQUIRED_ROWS = (
     "PD 域差合同",
     "队通信 512 B stub",
     "checkpoint 布局",
+    "kick / standup 关节图交叉",
+    "参考运动只读清单",
+    "自检人读摘要",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -109,6 +112,10 @@ REQUIRED_LANDINGS = (
     "pd_domain_gap_contract.py",
     "teamcomm_budget.py",
     "CHECKPOINT-LAYOUT",
+    "kick_standup_joint_map.py",
+    "reference_motion_inventory.py",
+    "render_selfcheck_summary.py",
+    "PR4-SELFCHECK-LATEST",
 )
 
 

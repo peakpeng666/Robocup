@@ -65,6 +65,9 @@ REQUIRED_NAMES = (
     "test_pd_domain_gap.py",
     "test_teamcomm_budget.py",
     "test_checkpoint_layout.py",
+    "test_kick_standup_joint_map.py",
+    "test_reference_motion_inventory.py",
+    "test_render_selfcheck_summary.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

@@ -58,6 +58,9 @@
 | PD 域差合同 | `k1-switcher/pd_domain_gap_contract.py` | 训侧 p60 vs 真机 p25；不写回 `K1.yaml` |
 | 队通信 512 B | `k1-switcher/teamcomm_budget.py` | 队友不进 344；无 WLAN SKIP |
 | checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `K1_walk.pth`/onnx；缺文件 SKIP |
+| kick / standup 关节图 | `k1-switcher/kick_standup_joint_map.py` | kick 共享 walk 13 出口；standup[12] 是电机 |
+| 参考运动清单 | `k1-switcher/reference_motion_inventory.py` | 缺文件 SKIP；T1 ≠ 官方 walk 默认 |
+| 自检人读摘要 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | PASS/SKIP/WARN 一览；`render_selfcheck_summary.py` |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -114,3 +117,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | GPU 到位后：probe → 告知用户 → 等开训 → dry-run |
 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) | 六机脚手架；不跑仿真；活回放 SKIP |
 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | 官方 walk 权路径；T1/reactive 不得占用 |
+| [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | 自检 PASS/SKIP/WARN 一览（生成，不新增长文） |

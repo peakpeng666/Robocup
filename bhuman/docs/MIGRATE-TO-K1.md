@@ -73,7 +73,10 @@
 | SkillRequest 对照硬化 | §6.10 | `k1-reactive/skill_request_map.py` | **P0 / P2** | 否 | 空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒 | 上轮 stub |
 | PD 域差合同 | §6.8 / P5 | `k1-switcher/pd_domain_gap_contract.py` | **P0 / P5** | 否 | 训侧踝滚 **p60** vs 真机 **p25** 有意域差；拒写回 `K1.yaml` | **本轮 stub** |
 | 队通信 512 B stub | §6.7 | `k1-switcher/teamcomm_budget.py` | **P4 / P5** | 否（声明）；实测要真机 | 512 B / `10000+队号`；队友 **不进** 344；WLAN SKIP | **本轮 stub** |
-| checkpoint 布局 | 部署 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | **P0** | 否 | 官方 `K1_walk.pth`/onnx；T1/reactive 不得占 walk 路径；缺文件 SKIP | **本轮约定** |
+| checkpoint 布局 | 部署 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | **P0** | 否 | 官方 `K1_walk.pth`/onnx；T1/reactive 不得占 walk 路径；缺文件 SKIP | 上轮约定 |
+| kick / standup 关节图交叉 | 契约 | `k1-switcher/kick_standup_joint_map.py` | **P0** | 否 | kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机 ≠ 步频；缺源 SKIP | **本轮 stub** |
+| 参考运动只读清单 | 契约 | `k1-switcher/reference_motion_inventory.py` | **P0** | 否 | 声明路径；缺文件 SKIP；T1/GMR 不得标成官方 walk 默认 | **本轮清单** |
+| 自检人读摘要 | 门禁 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) + `render_selfcheck_summary.py` | **P0** | 否 | 读 `pr4-selfcheck-latest.json` → PASS/SKIP/WARN；不新增长文 | **本轮摘要** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -154,6 +157,9 @@
 | 48 | PD 域差合同 | `pd_domain_gap_contract.py` | `python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py` |
 | 49 | 队通信 512 B stub | `teamcomm_budget.py` | `python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py` |
 | 50 | checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py` |
+| 51 | kick / standup 关节图交叉 | `kick_standup_joint_map.py` | `python3 bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py` |
+| 52 | 参考运动只读清单 | `reference_motion_inventory.py` | `python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py` |
+| 53 | 自检人读摘要 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | `python3 bhuman/k1-training/scripts/render_selfcheck_summary.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

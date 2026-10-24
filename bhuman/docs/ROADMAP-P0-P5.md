@@ -131,6 +131,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] PD 域差合同：`k1-switcher/pd_domain_gap_contract.py`（训侧踝滚 **p60** vs 真机 **p25** 有意域差；拒写回 `K1.yaml`；拒统一 PD 冒充已闭合）。
 - [x] 队通信 512 B stub：`k1-switcher/teamcomm_budget.py`（端口 `10000+队号`；队友状态 **不进** 344；无真机/WLAN 带宽 SKIP）。
 - [x] checkpoint 布局：[CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) + `checkpoint_layout.py`（官方 `K1_walk.pth`/onnx；T1/reactive 不得占 walk 默认路径；缺文件 SKIP）。
+- [x] kick / standup 关节图只读交叉：`k1-switcher/kick_standup_joint_map.py`（kick 59→13 共享 walk 12 腿+gait_frequency；standup 73→22 / fast 72→22 的 [12]=lHipYaw 电机；负例拒混淆；缺源 SKIP）。
+- [x] 参考运动只读清单：`k1-switcher/reference_motion_inventory.py` → `reference-motion-inventory-latest.json`（缺文件 SKIP；T1/GMR 不得标成官方 walk 默认）。
+- [x] 自检人读摘要：`scripts/render_selfcheck_summary.py` → [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md)（PASS/SKIP/WARN；不新增长文）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -268,6 +271,9 @@ python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py
 python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py
 python3 bhuman/k1-training/scripts/print_train_dry_run.py
 python3 bhuman/k1-training/scripts/env_registry_audit.py
+python3 bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py
+python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py
+python3 bhuman/k1-training/scripts/render_selfcheck_summary.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

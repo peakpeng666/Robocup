@@ -116,6 +116,9 @@ REQUIRED_DOCS = {
         "CHECKPOINT-LAYOUT",
         "pd_domain_gap",
         "teamcomm_budget",
+        "kick_standup_joint_map",
+        "reference_motion_inventory",
+        "PR4-SELFCHECK-LATEST",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -159,6 +162,10 @@ REQUIRED_DOCS = {
         "CHECKPOINT-LAYOUT",
         "pd_domain_gap_contract.py",
         "teamcomm_budget.py",
+        "kick_standup_joint_map.py",
+        "reference_motion_inventory.py",
+        "render_selfcheck_summary.py",
+        "PR4-SELFCHECK-LATEST",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -247,6 +254,9 @@ REQUIRED_DOCS = {
         "CHECKPOINT-LAYOUT",
         "pd_domain_gap",
         "teamcomm_budget",
+        "kick_standup_joint_map",
+        "reference-motion-inventory",
+        "PR4-SELFCHECK-LATEST",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -286,6 +296,7 @@ REQUIRED_DOCS = {
         "OBS-ASSEMBLY-344",
         "print_train_dry_run",
         "GPU-AFTER-ONLINE",
+        "PR4-SELFCHECK-LATEST",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -360,6 +371,10 @@ REQUIRED_DOCS = {
         "CHECKPOINT-LAYOUT",
         "pd_domain_gap",
         "teamcomm_budget",
+        "kick_standup_joint_map",
+        "reference_motion_inventory",
+        "PR4-SELFCHECK-LATEST",
+        "render_selfcheck_summary",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

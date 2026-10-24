@@ -350,6 +350,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-switcher/checkpoint_layout.py",
             "checkpoint layout checker (T1/reactive refused on walk path)",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/kick_standup_joint_map.py",
+            "kick/standup joint map (standup[12] motor ≠ walk gait_frequency)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/reference_motion_inventory.py",
+            "reference-motion inventory (missing SKIP; T1 ≠ official walk default)",
+        ),
+        (
+            "bhuman/k1-training/scripts/render_selfcheck_summary.py",
+            "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")
