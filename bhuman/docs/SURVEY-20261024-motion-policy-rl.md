@@ -12,7 +12,7 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 python3 bhuman/k1-training/scripts/check_policy_contracts.py
 ```
 
-产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`。
+产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`（本轮云环境 **PASS**，见 §7.1）。
 
 ---
 
@@ -299,6 +299,18 @@ sim2sim 已有反例：把 59→13 踢球检查点喂给 344→13 行走加载�
 - `sim2sim/verify_policy.py`（6000×344 录包 vs `.pt` / 官方 ONNX）
 
 操作者本机 2026-10-20 已记录 walk 三方误差：TorchScript max abs **7.15e-7**，官方 ONNX **1.43e-6**（`sim2sim/runs/20261020_220814_312153_mujoco_walk/policy-parity.json`）。
+
+本轮云环境实测（2026-10-24T06:18:57Z，提交 `f3ea82c`）：
+
+| 项 | 结果 |
+|---|---|
+| `run_contract_gate.sh` | **PASS**（exit 0） |
+| 合同 | walk 344→13、kick 59→13、standup 73→22、fast 72→22；两套 IsaacGymRL 一致 |
+| 上游钉扎 | ML `c3fed81…`、比赛库 `2e3374ba…`；工作副本指纹 `efd4263e…` |
+| 火神标记 | 两套训练源码树 **0 命中** |
+| 权重 | 8 个官方 `.pth`/`.onnx` **缺席 → warn**（`--strict-weights` 则 FAIL，exit 1） |
+| `run_env_check.sh` | **exit 127**：`~/.venvs/bh-gym/bin/python` 不存在，未进入 Gym |
+| 解释器 / GPU | 系统 Python 3.12.3；`nvidia-smi` 无；`torch`/`isaacgym`/`onnx`/`mujoco` 均未装 |
 
 ### 7.2 官方 walk 复现入口（可复制；本 VM 不执行 GPU/MuJoCo）
 
