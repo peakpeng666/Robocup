@@ -41,7 +41,9 @@ kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + d
 walk 调用点维数：`scripts/walk_policy_apply_dims.py`（默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽）。  
 walk↔kick last_action 缓冲：`scripts/policy_switch_last_action.py`（无显式清零 → 诚实 GAP；walk 344 来自 historyBuffer，kick 59 来自 lastTarget；禁止 344↔59 复用）。  
 walk↔kick history GAP 清单：`scripts/policy_switch_history_gap.py`（仅 walk↔kick 编译旁路不调 `resetHistoryData`；draft 未进 live；standup 13-zero 勿混称）。  
-WalkPhase 延续 vs 新建 reset：`scripts/walk_phase_reset_allowlist.py`（仅构造 + 非延续新 WalkPhase 才 `resetHistoryData`；延续相位保持缓冲）。
+WalkPhase 延续 vs 新建 reset：`scripts/walk_phase_reset_allowlist.py`（仅构造 + 非延续新 WalkPhase 才 `resetHistoryData`；延续相位保持缓冲）。  
+standup 调用点维数：`scripts/standup_policy_apply_dims.py`（常规 GetUp `policy.apply()` **73→22** / `K1.onnx`；进入 = fallen+(fall|playDead)；≠ walk 344）。  
+fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.apply()` **72→22** / `K1_fast_standup.onnx`；≠ 常规 73 / Isaac）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

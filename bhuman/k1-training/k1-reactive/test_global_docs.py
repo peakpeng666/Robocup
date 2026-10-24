@@ -93,6 +93,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -190,6 +192,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -280,6 +284,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action.py",
         "policy_switch_history_gap.py",
         "walk_phase_reset_allowlist.py",
+        "standup_policy_apply_dims.py",
+        "fast_standup_isolation.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -360,6 +366,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -451,6 +459,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -526,6 +536,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -649,6 +661,8 @@ REQUIRED_DOCS = {
         "policy_switch_last_action",
         "policy_switch_history_gap",
         "walk_phase_reset_allowlist",
+        "standup_policy_apply_dims",
+        "fast_standup_isolation",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

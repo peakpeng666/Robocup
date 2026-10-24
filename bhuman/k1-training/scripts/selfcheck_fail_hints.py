@@ -224,6 +224,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/walk_phase_reset_allowlist.py",
         "hint": "先看 resetHistoryData 是否仍只在 WalkingEngine 构造与非延续新 WalkPhase，而不是被写成延续相位跳过必清零",
     },
+    "test_standup_policy_apply_dims.py": {
+        "look": "bhuman/k1-training/scripts/standup_policy_apply_dims.py",
+        "hint": "先看常规 GetUp apply 是否仍是 73→22 / K1.onnx，而不是被写成 walk 344、kick 59 或热换进 train.py",
+    },
+    "test_fast_standup_isolation.py": {
+        "look": "bhuman/k1-training/scripts/fast_standup_isolation.py",
+        "hint": "先看 fast standup 是否仍是 72→22 / K1_fast_standup.onnx，而不是被写成常规 73 或 Isaac 任务",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

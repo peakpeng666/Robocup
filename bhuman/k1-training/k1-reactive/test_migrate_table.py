@@ -178,6 +178,8 @@ REQUIRED_LANDINGS = (
     "policy_switch_last_action.py",
     "policy_switch_history_gap.py",
     "walk_phase_reset_allowlist.py",
+    "standup_policy_apply_dims.py",
+    "fast_standup_isolation.py",
 )
 
 

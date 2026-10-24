@@ -22,7 +22,9 @@ Competition hysteresis drift, walk apply as 59,
 switch keeps stale last_action, walk ONNX as kick slot,
 buffer cross-dim reuse, claim walk↔kick GAP closed,
 draft mitigation as live, standup-zero as walk↔kick fix,
-continue-phase skips required reset.
+continue-phase skips required reset, standup as walk 344,
+fast as regular standup, GetUp as hot-swap train,
+standup ONNX as kick slot.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -84,6 +86,12 @@ from policy_switch_last_action import (  # noqa: E402
     refuse_buffer_cross_dim_reuse,
     refuse_switch_keeps_stale_last_action,
 )
+from standup_policy_apply_dims import (  # noqa: E402
+    refuse_getup_as_hot_swap_train,
+    refuse_standup_as_walk_344,
+    refuse_standup_onnx_as_kick_slot,
+)
+from fast_standup_isolation import refuse_fast_as_regular_standup  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
 )
@@ -515,6 +523,46 @@ def _case_continue_phase_skips_required_reset() -> None:
     )
 
 
+def _case_standup_as_walk_344() -> None:
+    refuse_standup_as_walk_344(
+        {
+            "standup_as_walk_344": True,
+            "source": "policy",
+            "numInput": 344,
+        }
+    )
+
+
+def _case_fast_as_regular_standup() -> None:
+    refuse_fast_as_regular_standup(
+        {
+            "fast_as_regular_standup": True,
+            "source": "K1_fast_standup.onnx",
+            "numInput": 73,
+        }
+    )
+
+
+def _case_getup_as_hot_swap_train() -> None:
+    refuse_getup_as_hot_swap_train(
+        {
+            "getup_as_hot_swap_train": True,
+            "source": "GetUpEngine",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_standup_onnx_as_kick_slot() -> None:
+    refuse_standup_onnx_as_kick_slot(
+        {
+            "standup_onnx_as_kick_slot": True,
+            "source": "K1.onnx",
+            "kick_slot": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -569,6 +617,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("draft_mitigation_as_live", _case_draft_mitigation_as_live),
     ("standup_zero_as_walk_kick_fix", _case_standup_zero_as_walk_kick_fix),
     ("continue_phase_skips_required_reset", _case_continue_phase_skips_required_reset),
+    ("standup_as_walk_344", _case_standup_as_walk_344),
+    ("fast_as_regular_standup", _case_fast_as_regular_standup),
+    ("getup_as_hot_swap_train", _case_getup_as_hot_swap_train),
+    ("standup_onnx_as_kick_slot", _case_standup_onnx_as_kick_slot),
 )
 
 

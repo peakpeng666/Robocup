@@ -416,6 +416,8 @@ walk 调用点维数：`scripts/walk_policy_apply_dims.py`（默认 `walkPolicy.
 walk↔kick last_action 缓冲：`scripts/policy_switch_last_action.py`（源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿）。  
 walk↔kick history GAP 清单：`scripts/policy_switch_history_gap.py`（仅 walk↔kick 编译旁路不调 `resetHistoryData`；kick 不吃 walk 窗仍记「未显式清零」；draft 未进 live；standup 13-zero 勿混称）。  
 WalkPhase 延续 vs 新建 reset：`scripts/walk_phase_reset_allowlist.py`（仅构造 + 非延续新 WalkPhase 才 `resetHistoryData`；延续 = walk/stand + `WalkPhase*`；意外漂移 FAIL）。  
+standup 调用点维数：`scripts/standup_policy_apply_dims.py`（常规 GetUp `policy.apply()` **73→22** / `K1.onnx`；进入 = fallen+(fall|playDead)；≠ walk 344 / kick 59；13-zero 交接已有合同）。  
+fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.apply()` **72→22** / `K1_fast_standup.onnx`；≠ 常规 73 / walk / kick / Isaac；Simulated 强制 `fastActive=false`）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

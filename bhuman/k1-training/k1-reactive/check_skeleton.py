@@ -523,6 +523,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "WalkPhase continue vs new reset allowlist (ctor + non-continue only)",
         ),
         (
+            "bhuman/k1-training/scripts/standup_policy_apply_dims.py",
+            "standup apply-site 73→22 / K1.onnx; ≠ walk 344 / kick 59",
+        ),
+        (
+            "bhuman/k1-training/scripts/fast_standup_isolation.py",
+            "fast standup 72→22 isolated from regular 73 / walk / kick / Isaac",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

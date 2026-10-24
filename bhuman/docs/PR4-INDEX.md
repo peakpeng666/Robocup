@@ -161,6 +161,8 @@ scripts/
 ├── policy_switch_last_action.py walk↔kick last_action 诚实 GAP；禁止 344↔59 复用
 ├── policy_switch_history_gap.py walk↔kick historyBuffer GAP 清单（未闭合；draft 未进 live）
 ├── walk_phase_reset_allowlist.py 仅构造 + 非延续新 WalkPhase 才 resetHistoryData
+├── standup_policy_apply_dims.py 常规 GetUp apply 73→22 / K1.onnx；≠ walk 344 / kick 59
+├── fast_standup_isolation.py    fast 72→22 / K1_fast_standup.onnx；≠ 常规 73 / Isaac
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -242,6 +244,8 @@ k1-switcher/
 ├── test_selfcheck_fail_hints.py
 ├── test_policy_switch_history_gap.py
 ├── test_walk_phase_reset_allowlist.py
+├── test_standup_policy_apply_dims.py
+├── test_fast_standup_isolation.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -338,7 +342,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-stay.json   上轮（剩余 walk-stay：shouldStop / stand / 未见 / 空技能）
 ├── contract-gate-20261024-hyst.json   上轮（球距滞回 1500±300 / 1100±200 + kick 调用点 59→13）
 ├── contract-gate-20261024-wbuf.json   上轮（walk 调用点 344→13 + walk↔kick last_action GAP）
-├── contract-gate-20261024-hgap.json   本轮（history GAP 清单 + WalkPhase reset 允许集；GAP 仍开）
+├── contract-gate-20261024-hgap.json   上轮（history GAP 清单 + WalkPhase reset 允许集；GAP 仍开）
+├── contract-gate-20261024-sapp.json   本轮（standup 调用点 73→22 + fast 隔离 72→22）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -385,6 +390,8 @@ k1-training/manifests/
 ├── policy-switch-last-action-latest.json walk↔kick last_action GAP；禁止 344↔59 复用
 ├── policy-switch-history-gap-latest.json walk↔kick resetHistoryData GAP 仍开；draft 未进 live
 ├── walk-phase-reset-allowlist-latest.json 仅构造 + 非延续新 WalkPhase 才 reset
+├── standup-policy-apply-dims-latest.json 常规 GetUp apply 73→22 / K1.onnx；≠ walk 344
+├── fast-standup-isolation-latest.json    fast 72→22 / K1_fast_standup.onnx；≠ 常规 73
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -484,6 +491,8 @@ k1-training/manifests/
 | walk↔kick last_action 缓冲 | `policy_switch_last_action.py` | 无显式清零 → 诚实 GAP；walk 344≠kick 59 历史；禁止假绿 |
 | walk↔kick history GAP 清单 | `policy_switch_history_gap.py` | 仅旁路切换不调 resetHistoryData；draft 未进 live；standup 13-zero 勿混称 |
 | WalkPhase reset 允许集 | `walk_phase_reset_allowlist.py` | 仅构造 + 非延续新 WalkPhase 才清零；延续 = walk/stand + WalkPhase* |
+| standup 调用点维数 | `standup_policy_apply_dims.py` | 常规 GetUp `policy.apply()` 73→22 / `K1.onnx`；进入 = fallen+(fall\|playDead)；≠ walk 344 / kick 59；13-zero 已有合同 |
+| fast standup 隔离 | `fast_standup_isolation.py` | fast `policyFast.apply()` 72→22 / `K1_fast_standup.onnx`；≠ 常规 73 / walk / Isaac；Simulated 强制 `fastActive=false` |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
