@@ -89,6 +89,7 @@ bhuman/docs/
 ├── PR4-MERGE-CHECKLIST.md               自检主入口；可审、先读 README-RL；不要合并
 ├── OBS-ASSEMBLY-344.md                  部署侧 walk 拼装 10×32+24=344（不经 reactive）
 ├── GPU-AFTER-ONLINE.md                  GPU 到位后：probe → 告知用户 → 等开训 → dry-run
+├── SIMROBOT-SIX-ROBOT-ACCEPTANCE.md     六机脚手架（不跑仿真；活回放 SKIP）
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -134,6 +135,7 @@ scripts/
 k1-reactive/
 ├── contract.py / K1_Reactive.yaml / env_stub.py / virtual_perception.py
 ├── bt_skill_select.py           选技能口（默认 walk 344→13）
+├── skill_request_map.py         SkillRequest 对照；空/未知 → walk；shoot/pass 不跳过 walk
 ├── skill_switch_map.py          12 腿 + 步频槽；T5 拒热换
 ├── obs_schema.py                读 docs/schemas/obs-contract-v1.json
 ├── method_catalog.json          公开 URL，与 GLOBAL 交叉
@@ -201,6 +203,14 @@ README.md                        真正的 120 s 回放仍是 run-mujoco.sh（�
 
 三道门职责见 GLOBAL §6.8；和 Booster Lab / real-to-sim 的对齐见 §6.9。
 
+### 3.8 SimRobot 六机脚手架 · `bhuman/k1-training/simrobot_acceptance/`（不跑仿真）
+
+```
+simrobot_acceptance/
+├── acceptance.py                用例表 S6-1..S6-4；缺二进制活回放 SKIP；拒假绿
+└── test_simrobot_acceptance.py  表 PASS / 活 SKIP / Isaac ≠ 六机
+```
+
 ### 3.7 门禁产物（证据，可重跑覆盖）
 
 ```
@@ -224,7 +234,9 @@ k1-training/manifests/
 ├── contract-gate-20261024-joints.json 上轮（13-D 关节图 + draft 差分 + 合并清单）
 ├── contract-gate-20261024-gait.json   上轮（gait_frequency + boosterJoints + 自检）
 ├── contract-gate-20261024-obs.json    上轮（观测拼装 + last_action 清零 + 清单刷新）
-├── contract-gate-20261024-dry.json    本轮（开训干跑 + env 注册审计 + GPU 到位步骤）
+├── contract-gate-20261024-dry.json    上轮（开训干跑 + env 注册审计 + GPU 到位步骤）
+├── contract-gate-20261024-qc.json     上轮（文档去重 QC）
+├── contract-gate-20261024-six.json    本轮（六机脚手架 + SkillRequest 对照）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -281,6 +293,8 @@ k1-training/manifests/
 | 开训干跑命令生成器 | `print_train_dry_run.py` | 只打印 `--task K1`；干跑成功 ≠ 可训；不调 train.py |
 | env 注册只读清单 | `env_registry_audit.py` | 官方 K1 在册；reactive / estimators / switcher 未注册 |
 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run → 才允许真训 |
+| SimRobot 六机脚手架 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) + `simrobot_acceptance/` | 表 PASS；活回放缺 SimRobot **SKIP** |
+| SkillRequest 对照硬化 | `skill_request_map.py` | 空/未知 → walk；shoot/pass 不得跳过 walk；外族拒 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

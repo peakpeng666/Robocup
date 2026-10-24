@@ -20,6 +20,7 @@ ALLOW_REL = (
     "bhuman/k1-training/k1-estimators",
     "bhuman/k1-training/configs/draft-only",
     "bhuman/sim2sim",
+    "bhuman/k1-training/simrobot_acceptance",
 )
 REQUIRED_NAMES = (
     "test_switcher_sm.py",
@@ -59,6 +60,8 @@ REQUIRED_NAMES = (
     "test_last_action_reset.py",
     "test_print_train_dry_run.py",
     "test_env_registry_audit.py",
+    "test_simrobot_acceptance.py",
+    "test_skill_request_map.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

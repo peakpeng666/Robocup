@@ -55,7 +55,7 @@
 | P4.2 | 走↔踢↔起身边 | SM + deploy_call | SimRobot 5 s 不二次跌倒 | — |
 | P4.3 | 三道门合同 | `overpass_contract.py`：Isaac ≠ MuJoCo ≠ SimRobot | 本机 `run-mujoco.sh` 120 s | — |
 | P4.4 | 过桥维 344→13 | 负例拒 59/64/73/72 | 真回放仍只认 `(N,344)` / 13 | — |
-| P4.5 | SimRobot 六机 | 纪律已写（R1–R5） | 本机比赛栈回放 | 不是真机 |
+| P4.5 | SimRobot 六机 | 纪律已写（R1–R5）+ 脚手架 [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md)（表 PASS / 活回放 SKIP） | 本机比赛栈回放 | 不是真机 |
 | P4.6 | 不统一 PD / 不改 p60→p25 | 门禁负例 | 过桥 launch 核 p60 | 真机才能量 p25 |
 | P4.7 | ASAP / 厂家 T–n | 只列 P5 | — | **真机**（未授权） |
 

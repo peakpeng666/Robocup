@@ -14,6 +14,8 @@ NEEDLES = (
     "probe_reserved_gpu.sh",
     "print_train_dry_run.py",
     "env_registry_audit.py",
+    "test_simrobot_acceptance.py",
+    "test_skill_request_map.py",
     "344→13",
     "TRAINABLE=false",
     "ready_gpu",

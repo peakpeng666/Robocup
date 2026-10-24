@@ -388,7 +388,8 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 **可迁：** 保持「策略层点角色、运控层默认官方 walk」；旁路口只在明确踢球 / 跌倒时离走。  
 **不迁：** 把 `walk/kick/reactive` 写进 `SkillRequest.h`；让 `shoot` 加载 T1 `model.pth`；为对齐行为树去改 344。
 
-映射：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
+可测映射表：`bhuman/k1-training/k1-reactive/skill_request_map.py`（空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。  
+映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---
 

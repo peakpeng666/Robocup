@@ -600,6 +600,18 @@ def check_gpu_free_shells(
             "k1_env_registry_audit",
             True,
         ),
+        (
+            "bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
+            "simrobot_acceptance",
+            "k1_simrobot_acceptance",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_request_map.py",
+            "skill_request_map",
+            "k1_skill_request_map",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1059,6 +1071,8 @@ def main() -> int:
             "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
             "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
             "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
+            "simrobot_acceptance": "six-robot table; live SKIP without SimRobot; no fake-green",
+            "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1137,6 +1151,8 @@ def main() -> int:
             "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
             "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
             "python3 bhuman/k1-training/scripts/env_registry_audit.py",
+            "python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

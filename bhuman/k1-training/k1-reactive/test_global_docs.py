@@ -63,6 +63,7 @@ REQUIRED_DOCS = {
         "P5-PREVIEW",
         "README-RL",
         "RESEARCH-MIGRATE-TABLE",
+        "skill_request_map",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -110,6 +111,8 @@ REQUIRED_DOCS = {
         "last_action_reset",
         "print_train_dry_run",
         "GPU-AFTER-ONLINE",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
+        "skill_request_map",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -148,6 +151,8 @@ REQUIRED_DOCS = {
         "print_train_dry_run.py",
         "env_registry_audit.py",
         "GPU-AFTER-ONLINE.md",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
+        "skill_request_map.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -155,6 +160,8 @@ REQUIRED_DOCS = {
         "implemented",
         "交叉核对",
         "不离开",
+        "skill_request_map",
+        "SkillRequest",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -228,6 +235,9 @@ REQUIRED_DOCS = {
         "print_train_dry_run",
         "GPU-AFTER-ONLINE",
         "env-registry-audit",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
+        "skill_request_map",
+        "simrobot_acceptance",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -249,6 +259,7 @@ REQUIRED_DOCS = {
         "不冒充实机",
         "旁路技能",
         "P2 不改",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
     ),
     "bhuman/docs/CONTRACT-GATE-GUIDE.md": (
         "run_contract_gate.sh",
@@ -286,6 +297,7 @@ REQUIRED_DOCS = {
         "默认",
         "P0",
         "不实现",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
     ),
     "bhuman/docs/CI-CONTRACT-GATE.md": (
         "run_contract_gate.sh",
@@ -331,6 +343,8 @@ REQUIRED_DOCS = {
         "print_train_dry_run",
         "GPU-AFTER-ONLINE",
         "env_registry_audit",
+        "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
+        "skill_request_map",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -373,6 +387,15 @@ REQUIRED_DOCS = {
         "干跑成功 ≠ 可训",
         "不执行真训",
         "344→13",
+    ),
+    "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md": (
+        "344→13",
+        "SKIP",
+        "standup→kick",
+        "72→22",
+        "不跑",
+        "P2-ACCEPTANCE",
+        "P4",
     ),
 }
 

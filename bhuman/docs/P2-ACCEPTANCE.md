@@ -47,7 +47,7 @@
 
 | ID | 条目 | 现状 | 依赖 |
 |---|---|---|---|
-| R1 | 六机正常视觉 + 行为树 + GC + TeamComm 回放（官方 walk） | [ ] | 本机比赛栈；**不是** GPU 训，**不是**真机 |
+| R1 | 六机正常视觉 + 行为树 + GC + TeamComm 回放（官方 walk） | [x] 脚手架表；活回放 [ ] SKIP | 本机比赛栈；**不是** GPU 训，**不是**真机。脚手架：[SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) |
 | R2 | Isaac 4096 env 指标不得冒充六机定位 / 通信成绩 | [x] 纪律 | 合同门禁（文档） |
 | R3 | 不把队友状态写入 walk 344 / reactive 64 | [x] 纪律 | 合同门禁 |
 | R4 | 六机里默认运控仍是官方 walk；reactive 未实现不得上场 | [x] 纪律 | 合同门禁 |
@@ -86,4 +86,5 @@
 - 不把 P2 验收过的 SimRobot 六机当成真机。
 - 不在本云环境开 Isaac Gym 或连机器人。
 
-活测试（合同门禁已纳入）：`python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py`。
+活测试（合同门禁已纳入）：`python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py`。  
+六机脚手架（不跑仿真）：`python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py`。

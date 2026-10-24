@@ -49,6 +49,8 @@ REQUIRED_ROWS = (
     "新人五分钟地图",
     "官方 walk ONNX 导出合同",
     "GPU worker 就绪清单",
+    "SimRobot 六机脚手架",
+    "SkillRequest 对照硬化",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -98,6 +100,9 @@ REQUIRED_LANDINGS = (
     "print_train_dry_run.py",
     "env_registry_audit.py",
     "GPU-AFTER-ONLINE.md",
+    "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
+    "skill_request_map.py",
+    "simrobot_acceptance",
 )
 
 

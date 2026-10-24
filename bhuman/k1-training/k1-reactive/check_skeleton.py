@@ -322,6 +322,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/docs/GPU-AFTER-ONLINE.md",
             "GPU worker online steps (probe → tell user → wait 开训 → dry-run)",
         ),
+        (
+            "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md",
+            "SimRobot six-robot acceptance (no sim; live SKIP; no fake-green)",
+        ),
+        (
+            "bhuman/k1-training/simrobot_acceptance/acceptance.py",
+            "six-robot case table S6-1..S6-4 (default walk 344→13)",
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/skill_request_map.py",
+            "SkillRequest map (empty/unknown → walk; shoot/pass stay walk)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

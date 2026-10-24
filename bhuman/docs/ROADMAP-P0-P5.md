@@ -126,6 +126,8 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 开训干跑命令生成器：`scripts/print_train_dry_run.py`（只打印官方 `--task K1` 草案；**干跑成功 ≠ 可训**；不调 `train.py`）。
 - [x] env 注册只读清单：`scripts/env_registry_audit.py` → `env-registry-audit-latest.json`（官方 K1 在册；k1-reactive / estimators / switcher **未**注册）。
 - [x] GPU 到位后步骤：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)（probe → 告知用户 → 等「开训」→ dry-run → 才允许真训；本文档不执行真训）。
+- [x] SimRobot 六机验收脚手架：[SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) + `simrobot_acceptance/`（不跑仿真；缺 SimRobot 活回放诚实 SKIP）。
+- [x] SkillRequest 对照硬化：`k1-reactive/skill_request_map.py`（空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -193,6 +195,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 预研（不实现六机 / 真机）：[P4-PREVIEW.md](P4-PREVIEW.md)。**默认入口仍是官方 walk 344→13。**
 
 - [x] 预研文档：单机切换 + SimRobot 六机验收目标；守三道门（合同维 / PD / 不冒充）。
+- [x] SimRobot 六机验收脚手架（不跑仿真）：各机默认 344→13；禁 standup→kick；禁冒充 fast 72→22；活回放缺 SimRobot 保持 SKIP。
 - [x] MuJoCo 过桥合同 stub（`overpass_contract.py`）：过桥必须声明 344→13；拒 kick/standup/reactive 冒充。
 
 - 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。**部署一拍**把 BT 口 + SM + 槽位图串起来，默认仍是官方 walk 344→13：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩**形状草案**已落地：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)（连续性仍 SKIP，不得假绿）。完整时间序列仍 TODO。
@@ -201,7 +204,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 - **通信 / 非 CTDE**（survey §6.7）：SimRobot 六机是 TeamComm + GC 的验收场，不是 MAPPO 训练器。切换器按单机边工作，不把队友状态写入 344。
 - **域差**（survey §6.8）：Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放。PD 组不得统一；fast standup 72→22 不得用 SimRobot PASS 冒充。
 - **Booster Lab / real-to-sim**（survey §6.9）：三道门验收仍是官方合同维 / PD / 不冒充。厂家 AMP、Webots、T–n 表不得改写 `K1.yaml` 或替换官方 walk。
-- **官方 SkillRequest vs 旁路口**（survey §6.10）：对照 ≠ 替换官方 walk。`shoot` 仍先走再踢，默认 actor 仍是 344→13。
+- **官方 SkillRequest vs 旁路口**（survey §6.10）：对照 ≠ 替换官方 walk。`shoot` 仍先走再踢，默认 actor 仍是 344→13。可测表：`skill_request_map.py`。
 - **P2 出门条**：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) 把切换 / SimRobot 六机 / 不冒充实机收成可勾清单（依赖标 合同门禁 / GPU worker / 真机）。**P2 不改 344→13。** reactive 仍是旁路技能，不是新步态基线。
 
 ### P5 · 真机前置（未授权，只列）
@@ -295,7 +298,7 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 | B3 | P1 估计器 A/B 真训 | 同上 | **GPU worker** | stub 已 PASS；真训另开 `runs/`，latent 仍不进 344 |
 | B4 | P2 可训练 64→15 env | 另开实验目录 + GPU | **GPU worker** + 操作者建目录 | stub `TRAINABLE=false` 保持 PASS；真 env **不得**进 `envs/` / `train.py` |
 | B5 | Zenodo 58/15 只读核 | `code.zip`（不入库） | 操作者本机磁盘 | 仓外核完在调研笔记打勾；Git 门禁不因缺 ZIP 失败 |
-| B6 | SimRobot 六机回放 | 本机比赛栈（B-Human + GC + TeamComm） | 操作者本机（**非真机**） | P2-ACCEPTANCE R1 从 `[ ]` 变 `[x]`；Isaac 指标不得冒充 |
+| B6 | SimRobot 六机回放 | 本机比赛栈（B-Human + GC + TeamComm） | 操作者本机（**非真机**） | 脚手架表已 PASS / 活回放保持 SKIP（[SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md)）；有栈后 R1 活回放才从 SKIP 变 PASS；Isaac 指标不得冒充 |
 | B7 | 走↔踢 5 s 不二次跌倒 | SimRobot 或录包 | 操作者本机比赛栈 | S7 从 SKIP/`[ ]` 变 PASS；禁止用 SimRobot 冒充 fast 72→22 |
 | B8 | 真机 / ASAP / 厂家校准 | 授权机器人 | **真机**（本轮禁止） | 保持未授权；`robot_connected=false`；不跑安装/固件 |
 

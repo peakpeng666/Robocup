@@ -53,6 +53,8 @@
 | 开训干跑 | `scripts/print_train_dry_run.py` | 只打印 `--task K1`；干跑成功 ≠ 可训 |
 | env 注册审计 | `scripts/env_registry_audit.py` | 官方 K1 在册；旁路未注册 |
 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run |
+| SimRobot 六机脚手架 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) | 不跑仿真；表 PASS / 活回放 SKIP |
+| SkillRequest 对照表 | `k1-reactive/skill_request_map.py` | 空/未知 → walk；shoot/pass 不得跳过 walk |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -107,3 +109,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 自检主入口；可审、先读本文；**不要合并** |
 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 部署侧 344 拼装只读；不经 reactive concat |
 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | GPU 到位后：probe → 告知用户 → 等开训 → dry-run |
+| [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) | 六机脚手架；不跑仿真；活回放 SKIP |

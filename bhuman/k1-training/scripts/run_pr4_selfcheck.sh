@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # PR #4 one-shot self-check (read-only / probe only).
 # Runs: contract gate → no-Gym tests → reward audit → draft diff → GPU checklist
-# → print-only train dry-run → env registry audit.
+# → print-only train dry-run → env registry audit
+# → SimRobot six-robot acceptance (no sim) → SkillRequest map.
 # Never trains, never writes K1.yaml, never merges, never connects a robot.
 # Summary line: 基底 344→13 / TRAINABLE=false / ready_gpu=...
 set -euo pipefail
@@ -30,26 +31,32 @@ SUMMARY="$K1_TRAINING_ROOT/manifests/pr4-selfcheck-latest.json"
 
 echo "[pr4-selfcheck] repo=$REPO_ROOT"
 echo "[pr4-selfcheck] python=$PY"
-echo "[pr4-selfcheck] 1/7 contract gate"
+echo "[pr4-selfcheck] 1/9 contract gate"
 CONTRACT_GATE_STAMP="$STAMP" bash "$SCRIPT_DIR/run_contract_gate.sh" "$GATE_JSON"
 
-echo "[pr4-selfcheck] 2/7 no-Gym unit tests"
+echo "[pr4-selfcheck] 2/9 no-Gym unit tests"
 bash "$SCRIPT_DIR/run_unit_tests_no_gym.sh"
 
-echo "[pr4-selfcheck] 3/7 K1 reward audit (read-only)"
+echo "[pr4-selfcheck] 3/9 K1 reward audit (read-only)"
 "$PY" -B "$SCRIPT_DIR/k1_reward_audit.py"
 
-echo "[pr4-selfcheck] 4/7 official vs draft-only diff (read-only)"
+echo "[pr4-selfcheck] 4/9 official vs draft-only diff (read-only)"
 "$PY" -B "$SCRIPT_DIR/p1_draft_diff.py"
 
-echo "[pr4-selfcheck] 5/7 GPU worker checklist (probe only)"
+echo "[pr4-selfcheck] 5/9 GPU worker checklist (probe only)"
 bash "$SCRIPT_DIR/probe_reserved_gpu.sh"
 
-echo "[pr4-selfcheck] 6/7 first-train dry-run (print only; never spawn trainer)"
+echo "[pr4-selfcheck] 6/9 first-train dry-run (print only; never spawn trainer)"
 "$PY" -B "$SCRIPT_DIR/print_train_dry_run.py"
 
-echo "[pr4-selfcheck] 7/7 env registry audit (read-only)"
+echo "[pr4-selfcheck] 7/9 env registry audit (read-only)"
 "$PY" -B "$SCRIPT_DIR/env_registry_audit.py"
+
+echo "[pr4-selfcheck] 8/9 SimRobot six-robot acceptance (no sim; honest SKIP)"
+"$PY" -B "$K1_TRAINING_ROOT/simrobot_acceptance/test_simrobot_acceptance.py"
+
+echo "[pr4-selfcheck] 9/9 SkillRequest map (empty/unknown → walk)"
+"$PY" -B "$K1_TRAINING_ROOT/k1-reactive/test_skill_request_map.py"
 
 READY="$("$PY" -B - <<PY
 import json
@@ -92,6 +99,8 @@ summary = {
         "probe_reserved_gpu.sh",
         "print_train_dry_run.py",
         "env_registry_audit.py",
+        "test_simrobot_acceptance.py",
+        "test_skill_request_map.py",
     ],
     "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker",
 }
