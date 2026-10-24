@@ -188,6 +188,8 @@ k1-switcher/
 ├── test_forbidden_regressions.py
 ├── test_official_sibling_tasks_audit.py
 ├── test_onnx_deploy_path_crosscheck.py
+├── t1_k1_isolation.py
+├── test_t1_k1_isolation.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -265,7 +267,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-gap.json    上轮（PD 域差 + TeamComm 512 + checkpoint 布局）
 ├── contract-gate-20261024-map.json    上轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
 ├── contract-gate-20261024-reg.json    上轮（GetUpEngine 快照 + stability 审计 + 禁令回归）
-├── contract-gate-20261024-sib.json    本轮（旁系任务 + ONNX 路径 + 自检耗时）
+├── contract-gate-20261024-sib.json    上轮（旁系任务 + ONNX 路径 + 自检耗时）
+├── contract-gate-20261024-iso.json    本轮（T1/K1 隔离 + 过桥负例 + PR 体积）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -279,6 +282,7 @@ k1-training/manifests/
 ├── walk-stability-presets-audit-latest.json 官方 walk-*-stability-v1；draft-only 未污染
 ├── official-sibling-tasks-audit-latest.json K1_Ball/Stand_Up ≠ walk 344；不进 344
 ├── onnx-deploy-path-crosscheck-latest.json CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP
+├── t1-k1-isolation-latest.json        T1 365/62/76 不得替换 K1 walk
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -342,6 +346,9 @@ k1-training/manifests/
 | 官方旁系任务边界 | `official_sibling_tasks_audit.py` | K1_Ball 59→13 / K1_Stand_Up 73→22 已注册但不是 walk 基线，也不是合并进 344 的许可 |
 | ONNX 部署路径对照 | `onnx_deploy_path_crosscheck.py` | CHECKPOINT-LAYOUT × WalkingEngine；缺 onnx/pth → SKIP；路径声明不一致 → FAIL |
 | 自检耗时 | `pr4-selfcheck-latest.json` | 各步 `elapsed_s` 写入 JSON / 摘要 md |
+| T1/K1 隔离矩阵 | `t1_k1_isolation.py` | T1 365→14 / 62→14 / 76→23 不得替换 K1 walk；见 RESEARCH-MIGRATE / HiFAR |
+| MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
+| PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

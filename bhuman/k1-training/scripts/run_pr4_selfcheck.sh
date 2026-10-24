@@ -6,7 +6,8 @@
 # → PD domain-gap / TeamComm 512 B / checkpoint layout
 # → kick/standup joint map → reference-motion inventory
 # → GetUpEngine snapshot → walk stability presets → forbidden regressions
-# → official sibling tasks → ONNX deploy path → selfcheck summary.
+# → official sibling tasks → ONNX deploy path → T1/K1 isolation
+# → selfcheck summary.
 # Each step records elapsed_s into pr4-selfcheck-latest.json.
 # Never trains, never writes K1.yaml, never merges, never connects a robot.
 # Summary line: 基底 344→13 / TRAINABLE=false / ready_gpu=...
@@ -111,8 +112,11 @@ run_step "17/21" "test_forbidden_regressions.py" "forbidden regressions (silent 
 run_step "18/21" "test_official_sibling_tasks_audit.py" "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_official_sibling_tasks_audit.py"
 
-run_step "19/21" "test_onnx_deploy_path_crosscheck.py" "ONNX deploy path (layout × WalkingEngine; missing SKIP)" \
+run_step "19/22" "test_onnx_deploy_path_crosscheck.py" "ONNX deploy path (layout × WalkingEngine; missing SKIP)" \
   "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_onnx_deploy_path_crosscheck.py"
+
+run_step "20/22" "test_t1_k1_isolation.py" "T1/K1 isolation (365/62/76 must not replace walk)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_t1_k1_isolation.py"
 
 READY="$("$PY" -B - <<PY
 import json
@@ -168,12 +172,12 @@ PY
 
 write_summary_json
 
-run_step "20/21" "render_selfcheck_summary.py" "selfcheck markdown summary (PASS/SKIP/WARN + timings)" \
+run_step "21/22" "render_selfcheck_summary.py" "selfcheck markdown summary (PASS/SKIP/WARN + timings)" \
   "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
 
 write_summary_json
 
-echo "[pr4-selfcheck] 21/21 rewrite summary JSON with render elapsed_s"
+echo "[pr4-selfcheck] 22/22 rewrite summary JSON with render elapsed_s"
 "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
 
 rm -f "$TIMING_FILE"

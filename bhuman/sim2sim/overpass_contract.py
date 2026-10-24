@@ -25,11 +25,19 @@ DEFAULT_OVERPASS = {
 
 NOT_WALK_OVERPASS = {
     "kick": (59, 13),
+    "K1_Ball": (59, 13),
     "standup": (73, 22),
+    "K1_Stand_Up": (73, 22),
     "fast_standup": (72, 22),
     "reactive": (64, 15),
     "huoshen_t1": (58, 15),
     "nusim": (79, 22),
+    "t1_walk": (365, 14),
+    "T1": (365, 14),
+    "t1_kick": (62, 14),
+    "T1_Ball": (62, 14),
+    "t1_standup": (76, 23),
+    "T1_Stand_Up": (76, 23),
 }
 
 
@@ -77,7 +85,36 @@ def refuse_rewrite_live_sim() -> None:
     raise RuntimeError("overpass contract must not rewrite live mujoco / run-mujoco.sh")
 
 
+def live_overpass_status() -> dict[str, Any]:
+    """Live MuJoCo overpass is never run here. Missing mujoco → honest SKIP."""
+    try:
+        import mujoco  # noqa: F401
+        present = True
+    except ImportError:
+        present = False
+    reason = (
+        "IMPLEMENTED=false; mujoco present but live overpass is not run"
+        if present
+        else "skipped (missing optional runtime): mujoco"
+    )
+    return {
+        "skipped": True,
+        "status": "SKIP",
+        "would_run": False,
+        "mujoco_present": present,
+        "reason": reason,
+        "walk": "344→13",
+        "implemented": False,
+    }
+
+
 def assert_overpass_frozen() -> None:
     if TRAINABLE or IMPLEMENTED or REWRITE_LIVE_SIM:
         raise AssertionError("overpass stub must stay TRAINABLE=false / not live sim")
     require_walk_overpass_claim(DEFAULT_OVERPASS)
+    live = live_overpass_status()
+    if not live.get("skipped") or live.get("would_run"):
+        raise AssertionError("live MuJoCo overpass must stay honest SKIP")
+    for key in ("T1", "T1_Ball", "K1_Stand_Up"):
+        if key not in NOT_WALK_OVERPASS:
+            raise AssertionError(f"overpass missing {key} walk-impersonation refuse")

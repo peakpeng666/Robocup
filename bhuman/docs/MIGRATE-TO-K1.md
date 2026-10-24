@@ -82,7 +82,10 @@
 | 禁令回归包 | 门禁 | `k1-switcher/test_forbidden_regressions.py` | **P0** | 否 | T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即红 | 上轮回归 |
 | 官方旁系任务边界 | 契约 | `scripts/official_sibling_tasks_audit.py` | **P0** | 否 | K1_Ball / K1_Stand_Up 已注册 ≠ walk 基线；不合并进 344 | **本轮边界** |
 | ONNX 部署路径对照 | 契约 | `scripts/onnx_deploy_path_crosscheck.py` | **P0** | 否 | CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP；路径不一致 FAIL | **本轮对照** |
-| 自检耗时报告 | 门禁 | `run_pr4_selfcheck.sh` `elapsed_s` | **P0** | 否 | 各步写入 `pr4-selfcheck-latest.json` / 摘要 md | **本轮耗时** |
+| 自检耗时报告 | 门禁 | `run_pr4_selfcheck.sh` `elapsed_s` | **P0** | 否 | 各步写入 `pr4-selfcheck-latest.json` / 摘要 md | 上轮耗时 |
+| T1/K1 隔离矩阵 | 契约 | `k1-switcher/t1_k1_isolation.py` | **P0** | 否 | T1 365/62/76 不得替换 K1 walk | **本轮隔离** |
+| MuJoCo 过桥负例 | 契约 | `sim2sim/overpass_contract.py` | **P0** | 否 | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP | **本轮过桥** |
+| PR 体积健康 | 门禁 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | **P0** | 否 | 文档+纯 Python 合同；无权重；审纪律不是曲线 | **本轮体积** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -172,6 +175,9 @@
 | 57 | 官方旁系任务边界 | `official_sibling_tasks_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py` |
 | 58 | ONNX 部署路径对照 | `onnx_deploy_path_crosscheck.py` | `python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py` |
 | 59 | 自检耗时报告 | `elapsed_s` / `step_timings` | `bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh` |
+| 60 | T1/K1 隔离矩阵 | `t1_k1_isolation.py` | `python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py` |
+| 61 | MuJoCo 过桥负例 | `overpass_contract.py` | `python3 bhuman/sim2sim/test_overpass_contract.py` |
+| 62 | PR 体积健康 | MERGE-CHECKLIST §4 | 审纪律不是性能曲线 |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

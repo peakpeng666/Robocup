@@ -20,6 +20,7 @@ from overpass_contract import (  # noqa: E402
     NOT_WALK_OVERPASS,
     TRAINABLE,
     assert_overpass_frozen,
+    live_overpass_status,
     refuse_foreign_as_walk_overpass,
     refuse_gate_impersonation,
     refuse_rewrite_live_sim,
@@ -70,6 +71,18 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             errors.append(f"{skill} {obs}→{act} as walk overpass must raise")
         except ValueError:
             notes.append(f"negative: {skill} {obs}→{act} refused as walk overpass")
+
+    for skill, expect in (("T1", (365, 14)), ("T1_Ball", (62, 14)), ("K1_Stand_Up", (73, 22))):
+        if NOT_WALK_OVERPASS.get(skill) != expect:
+            errors.append(f"overpass {skill} must stay {expect[0]}→{expect[1]}")
+        else:
+            notes.append(f"expanded negative: {skill} {expect[0]}→{expect[1]} ≠ walk overpass")
+
+    live = live_overpass_status()
+    if not live.get("skipped") or live.get("would_run") or live.get("status") != "SKIP":
+        errors.append("missing mujoco / unimplemented live overpass must honest SKIP")
+    else:
+        notes.append(f"live overpass SKIP ({live.get('reason')})")
 
     try:
         refuse_gate_impersonation(

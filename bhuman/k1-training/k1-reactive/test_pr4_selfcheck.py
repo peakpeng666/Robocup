@@ -26,6 +26,7 @@ NEEDLES = (
     "test_forbidden_regressions.py",
     "test_official_sibling_tasks_audit.py",
     "test_onnx_deploy_path_crosscheck.py",
+    "test_t1_k1_isolation.py",
     "render_selfcheck_summary.py",
     "step_timings",
     "elapsed_s",

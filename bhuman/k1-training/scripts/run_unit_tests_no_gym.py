@@ -73,6 +73,7 @@ REQUIRED_NAMES = (
     "test_forbidden_regressions.py",
     "test_official_sibling_tasks_audit.py",
     "test_onnx_deploy_path_crosscheck.py",
+    "test_t1_k1_isolation.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

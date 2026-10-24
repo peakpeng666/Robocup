@@ -13,7 +13,7 @@
 - `origin/research:research/02-论文清单.md` §E 把它和 FRASA / HumanUP 列在同一条「跌倒恢复」线上。
 
 本仓训练源码树对 `HiFAR` / `hifar` **零命中**（合同门禁硬断言）。没有 vendoring，没有权重。  
-活测试：`python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py`（拒 T1 `model.pth`、拒 58 当 344；指针 GLOBAL §6.1/§6.2 与 research-inputs `huoshen_findings.md`）。
+活测试：`python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py`（拒 T1 `model.pth`、拒 58 当 344；指针 GLOBAL §6.1/§6.2 与 research-inputs `huoshen_findings.md`）。T1/K1 维数隔离矩阵：`k1-switcher/t1_k1_isolation.py`（B-Human T1 365→14 也不得替换 K1 walk；见 [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) #13）。
 
 ## 本仓已经有的起身（冻结）
 

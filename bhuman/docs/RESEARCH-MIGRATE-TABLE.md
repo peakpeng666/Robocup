@@ -17,5 +17,6 @@
 | 10 | GLOBAL §6.12 火神虚拟感知 | P2 `k1-reactive` 64→15 旁路 | 不加载 T1 `model.pth`；默认仍 walk |
 | 11 | GLOBAL §6.12 HiFAR | P4 起身对照 | 不改 73→22 / 72→22 |
 | 12 | GLOBAL §6.12 CTDE / MAPPO | P4 单机切换 + TeamComm | 队友状态 **不进** 344 |
+| 13 | T1/K1 隔离矩阵 | `t1_k1_isolation.py` 可测矩阵；B-Human T1 365→14 / 62→14 / 76→23 | **T1 绝不能冒充 K1 walk 344→13**（权 / 维 / ONNX 名）。另见 [HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md) |
 
 活验收：`python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py`。

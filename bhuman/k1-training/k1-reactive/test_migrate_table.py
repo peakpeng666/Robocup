@@ -63,6 +63,9 @@ REQUIRED_ROWS = (
     "官方旁系任务边界",
     "ONNX 部署路径对照",
     "自检耗时报告",
+    "T1/K1 隔离矩阵",
+    "MuJoCo 过桥负例",
+    "PR 体积健康",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -127,6 +130,7 @@ REQUIRED_LANDINGS = (
     "test_forbidden_regressions.py",
     "official_sibling_tasks_audit.py",
     "onnx_deploy_path_crosscheck.py",
+    "t1_k1_isolation.py",
 )
 
 

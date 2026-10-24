@@ -44,7 +44,7 @@
 | research-inputs 短表 | [RESEARCH-MIGRATE-TABLE.md](RESEARCH-MIGRATE-TABLE.md) | 可旁路借鉴 ≠ 换 walk |
 | 13-DOF 关节图 | `k1-switcher/joint_map_contract.py` | 长度 13；standup 22 ≠ walk |
 | 官方 vs draft 差分 | `scripts/p1_draft_diff.py` | `draft_only:true`；未写进 live |
-| 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；不要自动合并 |
+| 合并就绪清单 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) | 合并 ≠ 已训通；审纪律不是曲线；约 190+ 文件、无权重 |
 | gait_frequency 第 13 维 | `k1-switcher/gait_frequency_contract.py` | action[12] = 步频，≠ 电机 |
 | boosterJoints 快照 | `scripts/booster_joints_snapshot.py` | 12 腿 + gait_frequency；缺源 SKIP |
 | 全量自检 | `scripts/run_pr4_selfcheck.sh` | 一行：344→13 / TRAINABLE=false / ready_gpu |
@@ -67,6 +67,8 @@
 | 官方旁系任务 | `scripts/official_sibling_tasks_audit.py` | K1_Ball / Stand_Up 已注册 ≠ walk 基线；不进 344 |
 | ONNX 部署路径 | `scripts/onnx_deploy_path_crosscheck.py` | CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP |
 | 自检耗时 | `pr4-selfcheck-latest.json` | 各步 `elapsed_s`；回归看膨胀 |
+| T1/K1 隔离矩阵 | `k1-switcher/t1_k1_isolation.py` | T1 365/62/76 不得替换 K1 walk；见 RESEARCH-MIGRATE / HiFAR |
+| PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---

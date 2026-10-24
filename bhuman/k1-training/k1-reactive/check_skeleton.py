@@ -382,6 +382,10 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
             "ONNX deploy path (CHECKPOINT-LAYOUT × WalkingEngine)",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/t1_k1_isolation.py",
+            "T1/K1 isolation matrix (T1 must not replace K1 walk)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

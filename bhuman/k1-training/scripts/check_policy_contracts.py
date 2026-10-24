@@ -678,6 +678,12 @@ def check_gpu_free_shells(
             "k1_onnx_deploy_path_crosscheck",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py",
+            "t1_k1_isolation",
+            "k1_t1_k1_isolation",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1150,6 +1156,7 @@ def main() -> int:
             "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD; silent=red",
             "official_sibling_tasks_audit": "K1_Ball/Stand_Up registered ≠ walk 344; no merge into 344",
             "onnx_deploy_path_crosscheck": "CHECKPOINT-LAYOUT × WalkingEngine; missing SKIP; mismatch FAIL",
+            "t1_k1_isolation": "T1 365/62/76 must not replace K1 walk 344→13",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1246,6 +1253,7 @@ def main() -> int:
             "python3 bhuman/k1-training/scripts/official_sibling_tasks_audit.py",
             "python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py",
             "python3 bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

@@ -124,6 +124,7 @@ REQUIRED_DOCS = {
         "forbidden_regressions",
         "official_sibling_tasks_audit",
         "onnx_deploy_path_crosscheck",
+        "t1_k1_isolation",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -131,6 +132,7 @@ REQUIRED_DOCS = {
         "2502.20061",
         "test_hifar_boundary",
         "research-inputs",
+        "t1_k1_isolation",
     ),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
     "bhuman/docs/MIGRATE-TO-K1.md": (
@@ -176,6 +178,7 @@ REQUIRED_DOCS = {
         "test_forbidden_regressions.py",
         "official_sibling_tasks_audit.py",
         "onnx_deploy_path_crosscheck.py",
+        "t1_k1_isolation.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -272,6 +275,7 @@ REQUIRED_DOCS = {
         "forbidden_regressions",
         "official-sibling-tasks-audit",
         "onnx-deploy-path-crosscheck",
+        "t1-k1-isolation",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -396,6 +400,7 @@ REQUIRED_DOCS = {
         "official_sibling_tasks_audit",
         "onnx_deploy_path_crosscheck",
         "elapsed_s",
+        "t1_k1_isolation",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -406,6 +411,7 @@ REQUIRED_DOCS = {
         "RMA",
         "火神",
         "K1.yaml",
+        "t1_k1_isolation",
     ),
     "bhuman/docs/PR4-MERGE-CHECKLIST.md": (
         "run_contract_gate.sh",

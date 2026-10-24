@@ -24,6 +24,7 @@ NEEDLES = (
     "MAPPO",
     "latent",
     "K1.yaml",
+    "t1_k1_isolation",
 )
 
 
