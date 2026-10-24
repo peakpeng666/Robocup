@@ -1,6 +1,14 @@
+#ifdef BOOSTER_NATIVE_SHARED
+#include "native_shared/EmbeddedPolicy.hpp"
+#endif
 #include <SimRobotCore3.h>
 #include "../simrobot/SimRobotHybridActuator.h"
+#ifdef BOOSTER_NATIVE_SHARED
+using PolicyExecution = EmbeddedPolicy;
+#else
 #include "PolicyProcess.hpp"
+using PolicyExecution = PolicyProcess;
+#endif
 #include "SafetyLifecycle.hpp"
 #include "CommandSchedule.hpp"
 #include <optional>
@@ -52,7 +60,7 @@ class BoosterK1Policy final : public SimRobot::Module
  std::array<SimRobotCore3::SensorPort*,22> position{},velocity{},torque{};
  std::array<SimRobotCore3::HybridActuatorPort*,22> actuators{};
  std::array<SimRobotCore3::HybridCommand,22> held{};
- PolicyProcess process;
+ PolicyExecution process;
  QFile trace;
  bool ready=false;
  booster_plugin::PolicyPhaseClock phase;
@@ -258,6 +266,9 @@ public:
        trace.setFileName(tracePath);
        if(!trace.open(QIODevice::WriteOnly|QIODevice::NewOnly))throw std::runtime_error("Cannot create trace file");
      }
+#ifdef BOOSTER_NATIVE_SHARED
+     fprintf(stderr,"BoosterK1Native: embedded CPython official computation; no policy subprocess\n");
+#endif
      process.start(qEnvironmentVariable("BOOSTER_PYTHON"),qEnvironmentVariable("BOOSTER_POLICY_SCRIPT"));
      resetPolicy();
      infer(); // Initial sensor state, policy tick0, before Core3 advances physics.

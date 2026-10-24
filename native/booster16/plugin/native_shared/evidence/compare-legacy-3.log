@@ -1,0 +1,36 @@
+Surfaceless QPA: genuine EGL 1.5; official Qt raster backend
+BoosterK1Policy inference tick 0 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 50 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 100 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 150 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 250 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 350 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 400 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 550 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 650 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 750 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 800 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 900 accepted; body-pose orientation oracle
+This plugin does not support propagateSizeHints()
+BoosterK1Policy inference tick 950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1000 accepted; body-pose orientation oracle
+BoosterK1Policy completed policy_frames=1001 physics_steps=10000

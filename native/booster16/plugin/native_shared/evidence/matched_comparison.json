@@ -1,0 +1,174 @@
+{
+  "scope": "Matched official walking-only physics/diagnostic-camera/trace workload; NOT full BHuman vision comparison",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "native",
+        "legacy"
+      ],
+      "runs": [
+        {
+          "implementation": "native",
+          "wall_startup_inclusive_s": 3.283799868000642,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 6.090505147677315,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "implementation": "legacy",
+          "wall_startup_inclusive_s": 3.8246065819985233,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 5.229296025932458,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "trace_bytes_identical": true
+    },
+    {
+      "pair": 2,
+      "order": [
+        "legacy",
+        "native"
+      ],
+      "runs": [
+        {
+          "implementation": "native",
+          "wall_startup_inclusive_s": 3.6775943860011466,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 5.438337647058221,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "implementation": "legacy",
+          "wall_startup_inclusive_s": 3.526703321000241,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 5.671018563117357,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "trace_bytes_identical": true
+    },
+    {
+      "pair": 3,
+      "order": [
+        "native",
+        "legacy"
+      ],
+      "runs": [
+        {
+          "implementation": "native",
+          "wall_startup_inclusive_s": 3.3740024369981256,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 5.927677994742098,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "implementation": "legacy",
+          "wall_startup_inclusive_s": 3.529866167002183,
+          "exit_code": 0,
+          "frames": 1001,
+          "sim_seconds": 20.0,
+          "rtf_startup_inclusive": 5.6659371924532325,
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "camera_sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "trace_bytes_identical": true
+    }
+  ],
+  "median_wall_s": {
+    "native": 3.3740024369981256,
+    "legacy": 3.529866167002183
+  },
+  "native_median_elapsed_reduction_percent": 4.415570523922385,
+  "native_median_rtf": 5.927677994742098,
+  "legacy_median_rtf": 5.6659371924532325,
+  "limitations": [
+    "Includes startup, one544x448diagnostic camera frame,1001trace writes, software rendering and teardown",
+    "No separately measured loop-only RTF",
+    "One of three paired native runs was slower; small noisy sample, no robust speedup guarantee",
+    "No full vision/brain/kick/getup workload; cannot compare these RTFs with BHuman full-vision baseline"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "native/booster16/plugin/BoosterK1Policy.cpp": "b99a6157b6dde1b3f645f5d21b06e55500a4d1f21bb0a6dba180a885beb12b00",
+  "native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+  "native/booster16/plugin/native_shared/EmbeddedPolicy.hpp": "13bcc95733701c2db6c0c0e80c805393011f87e61a673252396d97adb951d9a5",
+  "native/booster16/plugin/native_shared/native_core_test.cpp": "a947fa28aafff799b2e40d4a9cc666eaef85991f384e5f292fd8ae053439e9b0",
+  "native/booster16/plugin/native_shared/create_reference.py": "a79ae2ff0fffa42cca3e81c59d8812224fc6287ab864505d1a75e51b5b94053c"
+}

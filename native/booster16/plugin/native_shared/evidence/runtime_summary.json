@@ -1,0 +1,531 @@
+{
+  "scope": "actual simulation; diagnostic camera only, no vision/complete skill claim",
+  "runs": [
+    {
+      "run": "standing-offscreen-01",
+      "exit_code": -11,
+      "wall_seconds_including_startup": 0.6156043990013131,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "result.json": "cc2d7c08066315e173f04709d96b6faeb2ef1dc0abafd65a197a15c10689e34a",
+        "run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "manifest.json": "6474e43fb2955140b7934ace72b82534aafbfb31c99518f71335ebb3b71604de"
+      },
+      "input_sha256": {
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "standing-native-02",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.375303217002511,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "1a6c6581132fb115dbf68a7dd17232d0175dd0353cc78de08257f04b79d73816",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "d53b0acb41ed375d39d642152ebb4d4e4d1e39da3f37c58eec015fb8063ec6da",
+        "run.log": "daf51f05d74f62d01e942af01be9ff1832b9bbdb311e5043fbeff928d3c27115",
+        "manifest.json": "26700183859d66796199859ef58dcc9af15b4904e439f02a07051859a960fdec"
+      },
+      "input_sha256": {
+        "run_native.py": "21f561082b375c9062c302b48c12e54ffa89d63688a0fad3f91a818ee5713434",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      },
+      "invariants": {
+        "status": "PASS_TRACE_INVARIANTS",
+        "frames": 1001,
+        "policy_seconds": 20.0,
+        "physics_steps": 10000,
+        "min_body_height_m": 0.5370000004768372,
+        "max_body_height_m": 0.5500010251998901,
+        "max_lean_deg": 6.222856554168273,
+        "max_abs_actual_torque_nm": 14.658777236938477,
+        "max_actual_torque_to_command_limit_ratio": 1.0,
+        "max_abs_gyro_rad_s": 1.7601460218429565,
+        "max_quaternion_norm_squared_error": 1.0118794824265365e-07,
+        "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+        "initial_body_world_m": [
+          0,
+          0,
+          0.5370000004768372
+        ],
+        "final_body_world_m": [
+          0.002642802894115448,
+          -0.003209763439372182,
+          0.5493534803390503
+        ],
+        "xy_displacement_m": 0.004157762435959434,
+        "velocity_command": [
+          0,
+          0,
+          0
+        ],
+        "trace_sha256": "1a6c6581132fb115dbf68a7dd17232d0175dd0353cc78de08257f04b79d73816",
+        "limitations": [
+          "body orientation/position use simulation truth",
+          "camera smoke is separate, not vision control",
+          "static zero command is standing not commanded walking",
+          "trace checks do not by themselves certify clean process exit"
+        ]
+      }
+    },
+    {
+      "run": "forward-native-03",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.3744577880024735,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "b5947f962b91faf294bef0509d7310ea32c262330b09f8476cf76e5128930e72",
+        "run.log": "0f57965589c685ff510a31f4b2e1f13c5ee91a686e6602ed676813cf0d293bcf",
+        "invariants.json": "3523ee3adf1460e4ca458f302e11c1dda9edf3a58da5b68e2e4e522cbcc35667",
+        "tracking.json": "3e3503e64321db6dd066140178236c20395aabe6d6cd71c55cc9a90b8b9bc3ea",
+        "manifest.json": "6868323d941d7f6b1174f770a2685cbf94aba685a654ea553485400127137741"
+      },
+      "input_sha256": {
+        "run_native.py": "21f561082b375c9062c302b48c12e54ffa89d63688a0fad3f91a818ee5713434",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      },
+      "invariants": {
+        "status": "PASS_TRACE_INVARIANTS",
+        "frames": 1001,
+        "policy_seconds": 20.0,
+        "physics_steps": 10000,
+        "min_body_height_m": 0.5119427442550659,
+        "max_body_height_m": 0.5500010251998901,
+        "max_lean_deg": 6.222856554168273,
+        "max_abs_actual_torque_nm": 24,
+        "max_actual_torque_to_command_limit_ratio": 1.0,
+        "max_abs_gyro_rad_s": 1.7601460218429565,
+        "max_quaternion_norm_squared_error": 1.0566301011927237e-07,
+        "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+        "initial_body_world_m": [
+          0,
+          0,
+          0.5370000004768372
+        ],
+        "final_body_world_m": [
+          4.440794944763184,
+          0.17818115651607513,
+          0.5428084135055542
+        ],
+        "xy_displacement_m": 4.444368151489214,
+        "velocity_command": [
+          0,
+          0,
+          0
+        ],
+        "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "limitations": [
+          "body orientation/position use simulation truth",
+          "camera smoke is separate, not vision control",
+          "static zero command is standing not commanded walking",
+          "trace checks do not by themselves certify clean process exit"
+        ]
+      },
+      "tracking": {
+        "status": "NOT_QUALIFIED",
+        "checks": {
+          "clean_exit": true,
+          "full_correct_schedule": true,
+          "minimum_height": true,
+          "maximum_lean": true,
+          "torque_limit": true,
+          "stop_planar_speed": true,
+          "stop_yaw_rate": true,
+          "trace_invariants": true,
+          "track_vx": true,
+          "track_vy": false,
+          "track_yaw_rate": false
+        },
+        "command": [
+          0.5,
+          0,
+          0
+        ],
+        "steady_metrics": {
+          "vx": {
+            "command": 0.5,
+            "steady_mean": 0.45317949863268864,
+            "steady_mean_abs": 0.45317949863268864,
+            "steady_mean_abs_error": 0.05462865641248887
+          },
+          "vy": {
+            "command": 0,
+            "steady_mean": 0.010340444114460397,
+            "steady_mean_abs": 0.13222466122564663,
+            "steady_mean_abs_error": 0.13222466122564663
+          },
+          "yaw_rate": {
+            "command": 0,
+            "steady_mean": 0.006724370097949373,
+            "steady_mean_abs": 0.15682737830625557,
+            "steady_mean_abs_error": 0.15682737830625557
+          }
+        },
+        "steady_mean_full_body_velocity_m_s": [
+          0.4533122139901926,
+          0.010315604073168633,
+          -0.015296604182628024
+        ],
+        "stop_mean_planar_speed_m_s": 0.0012493155268964154,
+        "stop_mean_abs_yaw_rate_rad_s": 0.0005564458955644101,
+        "total_heading_change_rad": 0.038029076978206906,
+        "command_phase_world_displacement_m": [
+          4.350627376465127,
+          0.18922639172524214,
+          -0.0014712214469909668
+        ],
+        "criteria_sha256": "bd083106cfb21f02ad7aaf6f365590f9b4404ea59bea05783bbed0353a6041b6",
+        "trace_summary": {
+          "status": "PASS_TRACE_INVARIANTS",
+          "frames": 1001,
+          "policy_seconds": 20.0,
+          "physics_steps": 10000,
+          "min_body_height_m": 0.5119427442550659,
+          "max_body_height_m": 0.5500010251998901,
+          "max_lean_deg": 6.222856554168273,
+          "max_abs_actual_torque_nm": 24,
+          "max_actual_torque_to_command_limit_ratio": 1.0,
+          "max_abs_gyro_rad_s": 1.7601460218429565,
+          "max_quaternion_norm_squared_error": 1.0566301011927237e-07,
+          "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+          "initial_body_world_m": [
+            0,
+            0,
+            0.5370000004768372
+          ],
+          "final_body_world_m": [
+            4.440794944763184,
+            0.17818115651607513,
+            0.5428084135055542
+          ],
+          "xy_displacement_m": 4.444368151489214,
+          "velocity_command": [
+            0,
+            0,
+            0
+          ],
+          "trace_sha256": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+          "limitations": [
+            "body orientation/position use simulation truth",
+            "camera smoke is separate, not vision control",
+            "static zero command is standing not commanded walking",
+            "trace checks do not by themselves certify clean process exit"
+          ]
+        },
+        "limitations": "This particular official model + BHuman body + test floor + oracle orientation; not general gait or firmware1.6 qualification"
+      }
+    },
+    {
+      "run": "yaw-native-04",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.2753432070021518,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "6411085e5c5868feeb8fb2c2de1865d15f87e8b225fa3ff1a40307795011ffef",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "77e54fb315154dec11a2bd378463623a25adc72fa77c3653c77c444b998a322b",
+        "run.log": "d21ba4403c144352522850f8663078bd2dfb430a5e85d8fb1e01c3f8c4b58535",
+        "invariants.json": "8af152cbc43f7dbec517adc5d5339c7f6f7746136477bf3fd822af4c586ce7b7",
+        "tracking.json": "5c28142af569753668e8f729272bff4c773e0ae678b4d5d01cfcbf1c6104ee6b",
+        "manifest.json": "88646ab53f293183b007027d354e9169004034ee0b5f2f657121fbee97f490fc"
+      },
+      "input_sha256": {
+        "run_native.py": "21f561082b375c9062c302b48c12e54ffa89d63688a0fad3f91a818ee5713434",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      },
+      "invariants": {
+        "status": "PASS_TRACE_INVARIANTS",
+        "frames": 1001,
+        "policy_seconds": 20.0,
+        "physics_steps": 10000,
+        "min_body_height_m": 0.479142963886261,
+        "max_body_height_m": 0.5500010251998901,
+        "max_lean_deg": 6.640666020253187,
+        "max_abs_actual_torque_nm": 16.097822189331055,
+        "max_actual_torque_to_command_limit_ratio": 1.0,
+        "max_abs_gyro_rad_s": 1.7601460218429565,
+        "max_quaternion_norm_squared_error": 1.3094254769363545e-07,
+        "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+        "initial_body_world_m": [
+          0,
+          0,
+          0.5370000004768372
+        ],
+        "final_body_world_m": [
+          -0.09048327058553696,
+          0.05175284296274185,
+          0.5487638115882874
+        ],
+        "xy_displacement_m": 0.10423808809922464,
+        "velocity_command": [
+          0,
+          0,
+          0
+        ],
+        "trace_sha256": "6411085e5c5868feeb8fb2c2de1865d15f87e8b225fa3ff1a40307795011ffef",
+        "limitations": [
+          "body orientation/position use simulation truth",
+          "camera smoke is separate, not vision control",
+          "static zero command is standing not commanded walking",
+          "trace checks do not by themselves certify clean process exit"
+        ]
+      },
+      "tracking": {
+        "status": "NOT_QUALIFIED",
+        "checks": {
+          "clean_exit": true,
+          "full_correct_schedule": true,
+          "minimum_height": true,
+          "maximum_lean": true,
+          "torque_limit": true,
+          "stop_planar_speed": true,
+          "stop_yaw_rate": true,
+          "trace_invariants": true,
+          "track_vx": true,
+          "track_vy": false,
+          "track_yaw_rate": true
+        },
+        "command": [
+          0,
+          0,
+          0.3
+        ],
+        "steady_metrics": {
+          "vx": {
+            "command": 0,
+            "steady_mean": 0.009176689387796259,
+            "steady_mean_abs": 0.012814141462686108,
+            "steady_mean_abs_error": 0.012814141462686108
+          },
+          "vy": {
+            "command": 0,
+            "steady_mean": -0.004648547806368213,
+            "steady_mean_abs": 0.06972570166426943,
+            "steady_mean_abs_error": 0.06972570166426943
+          },
+          "yaw_rate": {
+            "command": 0.3,
+            "steady_mean": 0.3141000962958061,
+            "steady_mean_abs": 0.3141000962958061,
+            "steady_mean_abs_error": 0.0893062716256348
+          }
+        },
+        "steady_mean_full_body_velocity_m_s": [
+          0.008978816202181182,
+          -0.004657205536016975,
+          0.0014428240024195818
+        ],
+        "stop_mean_planar_speed_m_s": 0.0017631881410325348,
+        "stop_mean_abs_yaw_rate_rad_s": 0.0026697881378261457,
+        "total_heading_change_rad": 3.1419049657879525,
+        "command_phase_world_displacement_m": [
+          -0.03480142471380532,
+          0.04596709366887808,
+          -0.06498393416404724
+        ],
+        "criteria_sha256": "bd083106cfb21f02ad7aaf6f365590f9b4404ea59bea05783bbed0353a6041b6",
+        "trace_summary": {
+          "status": "PASS_TRACE_INVARIANTS",
+          "frames": 1001,
+          "policy_seconds": 20.0,
+          "physics_steps": 10000,
+          "min_body_height_m": 0.479142963886261,
+          "max_body_height_m": 0.5500010251998901,
+          "max_lean_deg": 6.640666020253187,
+          "max_abs_actual_torque_nm": 16.097822189331055,
+          "max_actual_torque_to_command_limit_ratio": 1.0,
+          "max_abs_gyro_rad_s": 1.7601460218429565,
+          "max_quaternion_norm_squared_error": 1.3094254769363545e-07,
+          "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+          "initial_body_world_m": [
+            0,
+            0,
+            0.5370000004768372
+          ],
+          "final_body_world_m": [
+            -0.09048327058553696,
+            0.05175284296274185,
+            0.5487638115882874
+          ],
+          "xy_displacement_m": 0.10423808809922464,
+          "velocity_command": [
+            0,
+            0,
+            0
+          ],
+          "trace_sha256": "6411085e5c5868feeb8fb2c2de1865d15f87e8b225fa3ff1a40307795011ffef",
+          "limitations": [
+            "body orientation/position use simulation truth",
+            "camera smoke is separate, not vision control",
+            "static zero command is standing not commanded walking",
+            "trace checks do not by themselves certify clean process exit"
+          ]
+        },
+        "limitations": "This particular official model + BHuman body + test floor + oracle orientation; not general gait or firmware1.6 qualification"
+      }
+    },
+    {
+      "run": "compare-native-1",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.283799868000642,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "ff00ef8113998258500edd0d167b15d3408cd7c08a3f9493a8426edc844e9def",
+        "run.log": "6e73c594b7c97fce52e9861503aeeb93d2c08dac1f1922fb7b4b4d9f1ae0890e",
+        "manifest.json": "4a32430fde360ed6f5192015adad2cd418955633722156c9d50b4a446c77d4ab"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "compare-legacy-1",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.8246065819985233,
+      "implementation": "QProcess pipe",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "966ac94f589c2bee289c71783be1579fa69b703222e649983bba2276383a9118",
+        "run.log": "4fbeb151ac8546d574e244b21fc24d5069f25fc9e0e0ce6c8aa25b50f4e477a6",
+        "manifest.json": "46544352c96c24415498ba4c6a903d4bdb572df665a3b873551d229a3cf1d746"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "a00aabc09804c706e6109b92e98ea5a159945ed036584f29deafa716c55f5304",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1.ros3": "9ba1a610e0d6945f953c7295e41654e7d62a7bc2c379e181a126c72798962736",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "compare-native-2",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.6775943860011466,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "b763a54d35644928ee992d5b25ae9838c81058a9e58c83cb28b462dace4c817f",
+        "run.log": "e017693959e046744f7d542712740080cba9c52d001ee0d13e8c979d74411a6c",
+        "manifest.json": "fe083ef37f011e75ab50f0b764b03bee43849ddd50051d4f524483e21b9e226e"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "compare-legacy-2",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.526703321000241,
+      "implementation": "QProcess pipe",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "131a57e3e68ae1ce4ad6cc93558871b7835fa66483790e933f4793d58f09d319",
+        "run.log": "f87f1bb9d7c1d10e9520b4500fca6340fd64dbedb1a4a7b9df7ae0599436eb87",
+        "manifest.json": "a3780806a0dfb2332a74425c432ed77195094414bd31abb78ba3de338e24a56e"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "a00aabc09804c706e6109b92e98ea5a159945ed036584f29deafa716c55f5304",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1.ros3": "9ba1a610e0d6945f953c7295e41654e7d62a7bc2c379e181a126c72798962736",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "compare-native-3",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.3740024369981256,
+      "implementation": "embedded CPython",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "4b85bca23136e4fcae360b21d3c882a54019d43329080fa500a3e6502d6dd04f",
+        "run.log": "d215b8e6cd0302a21e7ad3dc8d3348ba3aab53e6525932a85911e8bf30147991",
+        "manifest.json": "80414901ec00566a1d800d2a9ebd10a5a7d2d63430510036f85181d83c4d6d93"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Native.so": "55e7224d275482aeaa5f220bcd96b1de2296f63f5f8929afa699db95f839d1f9",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1Native.ros3": "19e81a481ccc916c2c5abf85ce87e5894933e788b91f4ac19a867b945557765e",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    },
+    {
+      "run": "compare-legacy-3",
+      "exit_code": 0,
+      "wall_seconds_including_startup": 3.529866167002183,
+      "implementation": "QProcess pipe",
+      "artifacts_sha256": {
+        "camera.png.json": "0599b006fa3b7f6d4158c511119ab3d200cc67572daa075f91b143002b6fbf09",
+        "trace.jsonl": "3a9ef24dd5ae3273f10cfaf80bfcddfa9c3c7cc81c59136e2ba0c63cb9df61a0",
+        "camera.png": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+        "result.json": "cf3cdbba9c6a9e70da4dfda57fcc66c8829e74957283066d3cf974263d71e9ed",
+        "run.log": "2bebc05a692ca47ba68a98fa3aa64757ddf0cd341d5b95b105327843833bd636",
+        "manifest.json": "344f8a363e7d36a3e184caa61d4f94f2f23b4971fd814ec597e3b9c5a0679e3b"
+      },
+      "input_sha256": {
+        "run_native.py": "cd9689cdc06797a6ee14bcf9575a354b619c0c48ab3056713a4053995972235a",
+        "qpa/platforms/libqsurfaceless.so": "ae8a2a8bf858bcc7218705455c9930a952e3e16f30f7e484bb4a384cdab74663",
+        "simrobot/Build/Linux/SimRobot/Release/SimRobot": "958451be8e011b1ff1775465f728efac6fd1058cb8f1f2c73eb416adce8ba10b",
+        "simrobot/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "a00aabc09804c706e6109b92e98ea5a159945ed036584f29deafa716c55f5304",
+        "simrobot/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "bf2934f1bef1dad4522bf1d0f93f65553076fc9382a3b4bd2796d030ddc50749",
+        "adapt/native/booster16/plugin/scenes/OfficialK1.ros3": "9ba1a610e0d6945f953c7295e41654e7d62a7bc2c379e181a126c72798962736",
+        "adapt/native/booster16/official_policy/backend.py": "6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715"
+      }
+    }
+  ]
+}

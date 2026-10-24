@@ -1,0 +1,16 @@
+<Simulation>
+  <Include href="vendor/bhuman/K1.rsi3"/>
+  <Surface name="GroundSurface" albedo="rgb(40%, 50%, 40%)" roughness="1"/>
+  <Scene name="OfficialK1" controller="BoosterK1Native" stepLength="0.002" color="rgb(80%, 80%, 80%)">
+    <PointLight z="5m" intensity="10"/>
+    <Compound name="Ground">
+      <Translation z="-0.05m"/>
+      <BoxAppearance width="10m" depth="10m" height="0.1m"><Surface ref="GroundSurface"/></BoxAppearance>
+      <BoxGeometry width="10m" depth="10m" height="0.1m"/>
+    </Compound>
+    <Body ref="K1" name="K1">
+      <Set name="TeamColor" value="skin"/>
+      <Translation z="0.537m"/>
+    </Body>
+  </Scene>
+</Simulation>
