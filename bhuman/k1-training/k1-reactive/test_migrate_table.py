@@ -172,6 +172,8 @@ REQUIRED_LANDINGS = (
     "ball_network_active.py",
     "intercept_avoid_bypass.py",
     "walk_stay_remaining.py",
+    "ball_distance_hysteresis.py",
+    "kick_policy_apply_dims.py",
 )
 
 

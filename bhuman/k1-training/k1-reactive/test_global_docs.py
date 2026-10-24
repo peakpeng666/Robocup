@@ -87,6 +87,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -178,6 +180,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -262,6 +266,8 @@ REQUIRED_DOCS = {
         "ball_network_active.py",
         "intercept_avoid_bypass.py",
         "walk_stay_remaining.py",
+        "ball_distance_hysteresis.py",
+        "kick_policy_apply_dims.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -336,6 +342,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -421,6 +429,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -490,6 +500,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -607,6 +619,8 @@ REQUIRED_DOCS = {
         "ball_network_active",
         "intercept_avoid_bypass",
         "walk_stay_remaining",
+        "ball_distance_hysteresis",
+        "kick_policy_apply_dims",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

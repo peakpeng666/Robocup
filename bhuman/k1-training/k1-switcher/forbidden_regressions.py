@@ -16,7 +16,9 @@ getNextTargetRequest as hot-swap train graph, speed gear as net swap,
 ball-net off as dim change, intercept as kick default,
 avoidance as hot-swap train, shouldStop as kick default,
 stand as dim change, ball unseen as hot-swap train,
-empty SkillRequest as kick.
+empty SkillRequest as kick, hysteresis as dim change,
+kick path as walk 344, policySwitch as train hot-swap,
+Competition hysteresis drift.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -63,6 +65,12 @@ from intercept_avoid_bypass import (  # noqa: E402
     refuse_avoid_as_hot_swap_train,
     refuse_intercept_as_kick_default,
 )
+from ball_distance_hysteresis import (  # noqa: E402
+    refuse_competition_hysteresis_drift,
+    refuse_hysteresis_as_dim_change,
+    refuse_policy_switch_as_hot_swap_train,
+)
+from kick_policy_apply_dims import refuse_kick_path_as_walk_344  # noqa: E402
 from walk_stay_remaining import (  # noqa: E402
     refuse_ball_unseen_as_hot_swap_train,
     refuse_empty_skill_as_kick,
@@ -371,6 +379,44 @@ def _case_empty_skill_as_kick() -> None:
     )
 
 
+def _case_hysteresis_as_dim_change() -> None:
+    refuse_hysteresis_as_dim_change(
+        {
+            "hysteresis_as_dim_change": True,
+            "source": "ballHysteresisPolicySwitch",
+        }
+    )
+
+
+def _case_kick_path_as_walk_344() -> None:
+    refuse_kick_path_as_walk_344(
+        {
+            "kick_path_as_walk_344": True,
+            "source": "kickPolicy",
+            "numInput": 344,
+        }
+    )
+
+
+def _case_policy_switch_as_hot_swap_train() -> None:
+    refuse_policy_switch_as_hot_swap_train(
+        {
+            "policy_switch_as_hot_swap_train": True,
+            "source": "ballDistancePolicySwitch",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_competition_hysteresis_drift() -> None:
+    refuse_competition_hysteresis_drift(
+        {
+            "competition_hysteresis_drift": True,
+            "source": "CompetitionWalk/K1",
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -413,6 +459,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("stand_as_dim_change", _case_stand_as_dim_change),
     ("ball_unseen_as_hot_swap_train", _case_ball_unseen_as_hot_swap_train),
     ("empty_skill_as_kick", _case_empty_skill_as_kick),
+    ("hysteresis_as_dim_change", _case_hysteresis_as_dim_change),
+    ("kick_path_as_walk_344", _case_kick_path_as_walk_344),
+    ("policy_switch_as_hot_swap_train", _case_policy_switch_as_hot_swap_train),
+    ("competition_hysteresis_drift", _case_competition_hysteresis_drift),
 )
 
 

@@ -410,6 +410,8 @@ speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow Default 
 ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 `ballNetworkParameters.active=true`；未开强制 walkPolicy **344→13**；≠ 改 344 / 换训练图）。  
 拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（`shouldInterceptBall` / 避障 path 非空 / `shouldWalkOutOfBallLine` 仍走 walkPolicy **344→13**；≠ kick / reactive / T1）。  
 剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（`shouldStop` / stand / 球未见>1000 ms / motion 非 dribble·walkToBallAndKick 仍 walkPolicy **344→13**；空 SkillRequest 仍 walk；仅 `want_kick` → kick 59→13）。  
+球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated **1500±300** vs Competition/11v11 **1100±200**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图）。  
+kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + motion∈{dribble, walkToBallAndKick} 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344 / 热换 `K1.yaml`）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

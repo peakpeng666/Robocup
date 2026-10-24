@@ -200,6 +200,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/walk_stay_remaining.py",
         "hint": "先看 shouldStop / stand / 球未见>1000 / 空 SkillRequest 是否仍走 walkPolicy，而不是被写成默认 kick 或改 344 / 热换训练图",
     },
+    "test_ball_distance_hysteresis.py": {
+        "look": "bhuman/k1-training/scripts/ball_distance_hysteresis.py",
+        "hint": "先看球距滞回是否仍是 Default 1500±300 / Competition 1100±200，而不是被写成改 344 或热换训练图",
+    },
+    "test_kick_policy_apply_dims.py": {
+        "look": "bhuman/k1-training/scripts/kick_policy_apply_dims.py",
+        "hint": "先看 kickPolicy 调用点是否仍是 59→13，而不是被写成 walk 344 或热换进 K1.yaml / train.py",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

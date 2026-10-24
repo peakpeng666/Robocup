@@ -499,6 +499,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "remaining walk-stay (shouldStop / stand / unseen>1000 / empty=walk; only want_kick → kick)",
         ),
         (
+            "bhuman/k1-training/scripts/ball_distance_hysteresis.py",
+            "ballDistance ± hysteresis bands (1500±300 vs 1100±200; not crossing → walk)",
+        ),
+        (
+            "bhuman/k1-training/scripts/kick_policy_apply_dims.py",
+            "kickPolicy apply-site 59→13 (want_kick + dribble/walkToBallAndKick; ≠ walk 344)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

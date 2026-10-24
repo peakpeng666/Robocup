@@ -96,6 +96,8 @@
 | ballNetwork 开关 | `scripts/ball_network_active.py` | 官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图 |
 | 拦截 / 避障 / walkOut | `scripts/intercept_avoid_bypass.py` | 三旁路仍 walkPolicy 344→13；≠ kick / reactive / T1 |
 | 剩余 walk-stay | `scripts/walk_stay_remaining.py` | shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk；空=walk；仅 want_kick → kick |
+| 球距滞回允许集 | `scripts/ball_distance_hysteresis.py` | Default/Simulated 1500±300 vs Competition/11v11 1100±200；未越过仍 walk；≠ 改维 / 热换训练图 |
+| kick 调用点维数 | `scripts/kick_policy_apply_dims.py` | 仅 want_kick + dribble/walkToBallAndKick → kick 59→13；WalkToBallAndKick 只出位姿；≠ walk 344 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

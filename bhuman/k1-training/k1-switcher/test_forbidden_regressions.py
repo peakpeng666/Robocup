@@ -83,6 +83,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "stand_as_dim_change",
         "ball_unseen_as_hot_swap_train",
         "empty_skill_as_kick",
+        "hysteresis_as_dim_change",
+        "kick_path_as_walk_344",
+        "policy_switch_as_hot_swap_train",
+        "competition_hysteresis_drift",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -103,7 +107,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "getNext-as-hot-swap-train / speed-gear-as-net-swap / "
             "ball-net-off-as-dim / intercept-as-kick-default / "
             "avoid-as-hot-swap-train / shouldStop-as-kick-default / "
-            "stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick"
+            "stand-as-dim / ball-unseen-as-hot-swap / empty-skill-as-kick / "
+            "hysteresis-as-dim / kick-path-as-walk-344 / "
+            "policySwitch-as-train-hot-swap / Competition-hysteresis-drift"
         )
 
     try:

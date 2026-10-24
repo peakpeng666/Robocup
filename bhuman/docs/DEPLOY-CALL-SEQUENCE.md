@@ -35,7 +35,9 @@ getNextTargetRequest 只读钉死：`scripts/get_next_target_request.py`（10 �
 speed 档位允许集：`scripts/speed_gear_diff.py`（fast/normal/slow 7 Sim / 8 Comp；≠ 换网）。  
 ballNetwork 开关只读：`scripts/ball_network_active.py`（官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图）。  
 拦截 / 避障 / walkOut 旁路：`scripts/intercept_avoid_bypass.py`（三旁路仍 walkPolicy **344→13**；≠ kick / reactive / T1）。  
-剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（shouldStop / stand / 未见>1000 / 非 kick motion 仍 walkPolicy **344→13**；空=walk；仅 `want_kick` → kick）。
+剩余 walk-stay 只读：`scripts/walk_stay_remaining.py`（shouldStop / stand / 未见>1000 / 非 kick motion 仍 walkPolicy **344→13**；空=walk；仅 `want_kick` → kick）。  
+球距滞回允许集：`scripts/ball_distance_hysteresis.py`（Default/Simulated 1500±300 vs Competition/11v11 1100±200；未越过仍 walk；越过才允许考虑 kick）。  
+kick 调用点维数：`scripts/kick_policy_apply_dims.py`（仅 `want_kick` + dribble/walkToBallAndKick 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 
