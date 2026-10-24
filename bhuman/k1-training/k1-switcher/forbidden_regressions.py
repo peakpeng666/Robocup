@@ -6,7 +6,8 @@ draft overwrite live, unified PD as closed gap, sibling merge into 344,
 T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
 mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick,
 stay on standup after getup, kick replacing walk, cfg dim rewrite,
-kickModel pointing at T1, kick ONNX occupying the walk slot.
+kickModel pointing at T1, kick ONNX occupying the walk slot,
+getUp overwriting walk, T1 getUp as K1, fast standup as Isaac.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -39,6 +40,11 @@ from force_walk_afterwards import (  # noqa: E402
 )
 from kick_engine_boundary import refuse_kick_replaces_walk  # noqa: E402
 from kick_onnx_naming import refuse_kick_onnx_on_walk_slot  # noqa: E402
+from getup_engine_cfg_audit import (  # noqa: E402
+    refuse_fast_standup_as_isaac,
+    refuse_getup_overwrites_walk,
+    refuse_t1_getup_as_k1,
+)
 from walking_engine_cfg_audit import (  # noqa: E402
     refuse_cfg_dim_rewrite,
     refuse_kickmodel_points_t1,
@@ -169,6 +175,20 @@ def _case_kick_onnx_on_walk_slot() -> None:
     )
 
 
+def _case_getup_overwrites_walk() -> None:
+    refuse_getup_overwrites_walk(
+        {"getup_overwrites_walk": True, "policyName": "K1_walk.onnx"}
+    )
+
+
+def _case_t1_getup_as_k1() -> None:
+    refuse_t1_getup_as_k1({"policyName": "T1.onnx", "slot": "k1_getup"})
+
+
+def _case_fast_standup_as_isaac() -> None:
+    refuse_fast_standup_as_isaac({"task": "K1_fast_standup", "registered": True})
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -191,6 +211,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("cfg_dim_rewrite", _case_cfg_dim_rewrite),
     ("kickmodel_t1", _case_kickmodel_t1),
     ("kick_onnx_on_walk_slot", _case_kick_onnx_on_walk_slot),
+    ("getup_overwrites_walk", _case_getup_overwrites_walk),
+    ("t1_getup_as_k1", _case_t1_getup_as_k1),
+    ("fast_standup_as_isaac", _case_fast_standup_as_isaac),
 )
 
 

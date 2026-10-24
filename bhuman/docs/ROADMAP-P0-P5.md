@@ -155,11 +155,13 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 128 vs 512 报文对照：`k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md)（用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP）。
 - [x] Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（getup_done → walk **344→13** + last_action 13 个 0；不得停在 standup；不得直接 kick）。
 - [x] KickEngine 边界只读：`scripts/kick_engine_boundary.py`（无独立 KickEngine；活链 59→13 旁路 ≠ 换 walk 基线；缺源 SKIP）。
-- [x] 自检加速评估：无 Gym 串行约 2 s / 65 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
+- [x] 自检加速评估：无 Gym 串行约 2 s / 67 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
 - [x] walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk；standup 不在此 cfg）。
 - [x] kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT 交叉；占 Walk/ 默认槽 → FAIL；缺文件 SKIP）。
-- [x] 禁令回归再扩：cfg 维数改声明 / kickModel 指向 T1 / kick ONNX 占 walk 槽。
-- [x] 禁令回归扩容：旁系合并进 344 / T1 onnx 当 K1 walk / BehaviorControl 替换 walk / TeamComm 进 344 / 混用 128/512 / 跌倒当 SkillRequest Type / GetUp 未完就 kick / 起身后停 standup / kick 换 walk / cfg 维改声明 / kickModel 指向 T1 / kick ONNX 占 walk 槽。
+- [x] getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署、未注册 Isaac；不得覆盖 walk **344→13**；T1 getUp 不得当 K1；SimRobot 强制 `fastActive=false`）。
+- [x] cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default；意外漂移 FAIL）。
+- [x] 禁令回归再扩：cfg 维数改声明 / kickModel 指向 T1 / kick ONNX 占 walk 槽 / getUp 覆盖 walk / T1 getUp 当 K1 / fast 当 Isaac。
+- [x] 禁令回归扩容：旁系合并进 344 / T1 onnx 当 K1 walk / BehaviorControl 替换 walk / TeamComm 进 344 / 混用 128/512 / 跌倒当 SkillRequest Type / GetUp 未完就 kick / 起身后停 standup / kick 换 walk / cfg 维改声明 / kickModel 指向 T1 / kick ONNX 占 walk 槽 / getUp 覆盖 walk / T1 getUp 当 K1 / fast 当 Isaac。
 - [x] 自检失败定位：`scripts/selfcheck_fail_hints.py`（FAIL 打印「先看」文件/测试；PASS 安静）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。

@@ -40,6 +40,8 @@ NEEDLES = (
     "test_kick_engine_boundary.py",
     "test_walking_engine_cfg_audit.py",
     "test_kick_onnx_naming.py",
+    "test_getup_engine_cfg_audit.py",
+    "test_cfg_copy_crosscheck.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

@@ -22,7 +22,8 @@
 | 普通起身 | **73→22** | IsaacGymRL `--task K1_Stand_Up` + 部署 `K1.onnx` | 22 维**绝对目标** = clip(±3)(输出) + offset；观测含 phase=执行时间/关键帧总长 | 官方 `ActorCritic`：73→256→…→22 |
 | 快速起身 | **72→22** | **仅部署** `K1_fast_standup.onnx` | 22 维**增量** = clip(±3)(输出) + 当前关节角；观测 gyro 在前、gravity 在后，**无 phase** | 72→512→256→128→22，**不是**本仓 ActorCritic |
 
-普通起身布局：3+3+1+22+22+22=73。快速起身：3+3+22+22+22=72。offsetFast 的踝距与普通版不同（AnklePitch −0.2 vs −0.25）。快速起身训练配方（mjlab_playground）**未公开核实**。
+普通起身布局：3+3+1+22+22+22=73。快速起身：3+3+22+22+22=72。offsetFast 的踝距与普通版不同（AnklePitch −0.2 vs −0.25）。快速起身训练配方（mjlab_playground）**未公开核实**。  
+cfg 只读：`scripts/getup_engine_cfg_audit.py`（`getUpEngine.cfg` 73→22 / `K1.onnx`；fast 72→22 仅部署；T1 getUp 不得当 K1）。
 
 本机已有普通起身仿真长测（参考完成率约 99.61%）。完整侧躺恢复、起身→行走 5 s 交接、快速起身、真机均**未验收**。
 

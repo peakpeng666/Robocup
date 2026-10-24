@@ -140,6 +140,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/kick_onnx_naming.py",
         "hint": "先看 K1_kick_inner.onnx 是否被放到 Walk/ 默认槽 K1_walk.onnx，或缺文件是否仍诚实 SKIP",
     },
+    "test_getup_engine_cfg_audit.py": {
+        "look": "bhuman/k1-training/scripts/getup_engine_cfg_audit.py",
+        "hint": "先看 getUpEngine.cfg 是否仍 73→22 / K1.onnx、fast 72→22 是否仍仅部署，或 T1 getUp / getUp 是否占了 walk 槽",
+    },
+    "test_cfg_copy_crosscheck.py": {
+        "look": "bhuman/k1-training/scripts/cfg_copy_crosscheck.py",
+        "hint": "先看 Default/Simulated/Competition walkingEngine 关键字段是否仍 344→13，或 getUp 缺副本是否被伪造",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

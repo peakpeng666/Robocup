@@ -63,6 +63,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "cfg_dim_rewrite",
         "kickmodel_t1",
         "kick_onnx_on_walk_slot",
+        "getup_overwrites_walk",
+        "t1_getup_as_k1",
+        "fast_standup_as_isaac",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -74,7 +77,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm / "
             "128-vs-512 / fallen-as-Type / GetUp-incomplete-kick / "
             "stay-on-standup / getup-direct-kick / kick-replaces-walk / "
-            "cfg-dim / kickModel-T1 / kick-on-walk-slot"
+            "cfg-dim / kickModel-T1 / kick-on-walk-slot / "
+            "getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac"
         )
 
     try:

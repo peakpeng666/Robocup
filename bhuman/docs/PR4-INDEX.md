@@ -139,6 +139,8 @@ scripts/
 ├── kick_engine_boundary.py      kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
 ├── walking_engine_cfg_audit.py  walk 344→13 / K1_walk.onnx；kick ≠ walk 槽
 ├── kick_onnx_naming.py          K1_kick_inner ≠ Walk/ 默认槽；缺文件 SKIP
+├── getup_engine_cfg_audit.py    73→22 / K1.onnx；fast 72→22 仅部署；T1 ≠ K1
+├── cfg_copy_crosscheck.py       Default/Simulated/Competition 关键字段；意外漂移 FAIL
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -302,7 +304,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-bc.json     上轮（BehaviorControl 交接 + TeamComm 形状）
 ├── contract-gate-20261024-fall.json   上轮（FallDown 跌倒链 + 128 vs 512）
 ├── contract-gate-20261024-fw.json     上轮（Force walk afterwards + KickEngine 边界）
-├── contract-gate-20261024-cfg.json    本轮（walkingEngine.cfg 审计 + kick ONNX 命名）
+├── contract-gate-20261024-cfg.json    上轮（walkingEngine.cfg 审计 + kick ONNX 命名）
+├── contract-gate-20261024-getup.json  本轮（getUpEngine.cfg 审计 + cfg 副本交叉）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -328,6 +331,8 @@ k1-training/manifests/
 ├── kick-engine-boundary-latest.json   kick 59→13 旁路 ≠ 换 walk；无 KickEngine SKIP
 ├── walking-engine-cfg-audit-latest.json walk 344→13 / K1_walk.onnx；kick ≠ walk 槽
 ├── kick-onnx-naming-latest.json       K1_kick_inner ≠ Walk/ 默认槽；缺文件 SKIP
+├── getup-engine-cfg-audit-latest.json 73→22 / K1.onnx；fast 72→22 仅部署；T1 ≠ K1
+├── cfg-copy-crosscheck-latest.json    Default/Simulated/Competition 关键字段；有意 sha 差分
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -406,6 +411,8 @@ k1-training/manifests/
 | KickEngine 边界只读 | `kick_engine_boundary.py` | kick 59→13 旁路 ≠ 换 walk 基线；无独立 KickEngine → SKIP |
 | walkingEngine.cfg 只读审计 | `walking_engine_cfg_audit.py` | walk 344→13 / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk |
 | kick ONNX 命名对照 | `kick_onnx_naming.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP |
+| getUpEngine.cfg 只读审计 | `getup_engine_cfg_audit.py` | 73→22 / `K1.onnx`；fast 72→22 仅部署、未注册 Isaac；不得覆盖 walk；T1 getUp 不得当 K1 |
+| cfg 副本交叉 | `cfg_copy_crosscheck.py` | Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default；意外漂移 FAIL |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

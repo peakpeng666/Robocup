@@ -395,6 +395,8 @@ Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（GetUp `Force
 踢球边界只读：`scripts/kick_engine_boundary.py`（本仓无独立 KickEngine；活链 PlayBall → WalkToBallAndKickEngine → kickPolicy **59→13**；kick 是技能旁路，不是换 walk 基线；缺 KickEngine 诚实 SKIP）。  
 walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk 槽；standup 不在此 cfg）。  
 kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT / Walk/ 目录交叉；占默认槽 → FAIL；缺文件 SKIP）。  
+getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 / `K1_fast_standup.onnx` 仅部署、未注册 Isaac；不得覆盖 walk **344→13**；T1 getUp 不得当 K1；SimRobot 强制 `fastActive=false`）。  
+cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default，缺副本不伪造；意外漂移 FAIL）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

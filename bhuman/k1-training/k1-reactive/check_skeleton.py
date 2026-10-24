@@ -439,6 +439,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "kick ONNX naming (K1_kick_inner ≠ Walk/ default; missing SKIP)",
         ),
         (
+            "bhuman/k1-training/scripts/getup_engine_cfg_audit.py",
+            "getUpEngine.cfg audit (73→22 / K1.onnx; fast 72→22 deploy-only; T1 ≠ K1)",
+        ),
+        (
+            "bhuman/k1-training/scripts/cfg_copy_crosscheck.py",
+            "cfg copy cross-check (Default/Simulated/Competition keys; unexpected drift FAIL)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

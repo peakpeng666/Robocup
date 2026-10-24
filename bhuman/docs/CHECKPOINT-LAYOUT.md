@@ -42,3 +42,18 @@ kick ONNX 与 walk 同目录 `Config/NeuralNets/Walk/`，文件名是 **`K1_kick
 
 活测试：`python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py`。  
 cfg / 命名：`python3 bhuman/k1-training/k1-switcher/test_walking_engine_cfg_audit.py`、`python3 bhuman/k1-training/k1-switcher/test_kick_onnx_naming.py`。
+
+---
+
+## 官方 getUp 旁路（GetUpEngine/，不是 Walk/ 默认槽）
+
+standup 不在 `walkingEngine.cfg`，在 sibling `getUpEngine.cfg`：`policyName = K1.onnx` **73→22**；同文件 `policyNameFast = K1_fast_standup.onnx` **72→22**（仅部署，未注册 Isaac）。  
+**不得**把 `K1.onnx` / `K1_fast_standup.onnx` 改名为 Walk/ **默认槽** `K1_walk.onnx`。T1 `T1.onnx` / `T1_fast_standup.onnx` 不得当 K1。SimRobot PASS 不得冒充 fast。
+
+| 角色 | 相对仓库根 | 命名 |
+|---|---|---|
+| 部署 standup ONNX | `bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx` | **`K1.onnx`** |
+| 部署 fast standup | 同目录 `K1_fast_standup.onnx` | 仅部署 72→22，不是 Isaac 任务 |
+
+getUp 覆盖 walk 槽 / T1 getUp 当 K1 / fast 当 Isaac → **FAIL**。`getUpEngine.cfg` / `K1.yaml` 只读。  
+cfg：`python3 bhuman/k1-training/k1-switcher/test_getup_engine_cfg_audit.py`、`python3 bhuman/k1-training/k1-switcher/test_cfg_copy_crosscheck.py`。

@@ -72,6 +72,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -148,6 +150,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -156,6 +160,7 @@ REQUIRED_DOCS = {
         "test_hifar_boundary",
         "research-inputs",
         "t1_k1_isolation",
+        "getup_engine_cfg_audit",
     ),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
     "bhuman/docs/MIGRATE-TO-K1.md": (
@@ -216,6 +221,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary.py",
         "walking_engine_cfg_audit.py",
         "kick_onnx_naming.py",
+        "getup_engine_cfg_audit.py",
+        "cfg_copy_crosscheck.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -229,6 +236,7 @@ REQUIRED_DOCS = {
         "falldown_motion_chain",
         "force_walk_afterwards",
         "walking_engine_cfg_audit",
+        "getup_engine_cfg_audit",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -274,6 +282,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -344,6 +354,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -398,6 +410,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -500,6 +514,8 @@ REQUIRED_DOCS = {
         "kick_engine_boundary",
         "walking_engine_cfg_audit",
         "kick_onnx_naming",
+        "getup_engine_cfg_audit",
+        "cfg_copy_crosscheck",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
@@ -563,6 +579,9 @@ REQUIRED_DOCS = {
         "reactive",
         "不入库",
         "默认槽",
+        "getUpEngine.cfg",
+        "K1_fast_standup.onnx",
+        "73→22",
     ),
     "bhuman/docs/TEAMCOMM-128-VS-512.md": (
         "128",

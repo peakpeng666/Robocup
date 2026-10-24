@@ -157,6 +157,8 @@ REQUIRED_LANDINGS = (
     "kick_engine_boundary.py",
     "walking_engine_cfg_audit.py",
     "kick_onnx_naming.py",
+    "getup_engine_cfg_audit.py",
+    "cfg_copy_crosscheck.py",
 )
 
 
