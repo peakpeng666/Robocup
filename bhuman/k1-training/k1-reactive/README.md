@@ -59,6 +59,7 @@ python3 bhuman/k1-training/k1-reactive/test_migrate_table.py
 python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
 python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
 python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
+python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
 # 随总门禁一起跑：
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 ```

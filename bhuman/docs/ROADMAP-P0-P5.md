@@ -94,6 +94,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 调研收口：reactive = 旁路技能，≠ 新步态基线（survey §6.11 + MIGRATE §2.1）。
 - [x] sim2sim 负例加深：错误维（59/64/58/73/72/79/365/错配）+ 错误 PD 声明（统一增益 / 训侧改 p25）。
 - [x] BT × 部署一拍交叉核对表（两边同一张；默认 walk 344→13）。
+- [x] standup / kick 旁路硬化：仅 fallen→standup、`getup_done`→walk、禁止 standup→kick、禁止 SimRobot 冒充 fast 72→22。
+- [x] HiFAR / 火神边界可执行测试：`test_hifar_boundary.py`（T1 权不得进 K1；58 ≠ 344）。
+- [x] 阻塞项可执行清单（§5：缺什么 / 谁提供 / SKIP→PASS；GPU 上线先告知用户，不启训）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -192,6 +195,9 @@ python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
 python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
+python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
+python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
+python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
@@ -200,20 +206,30 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 ---
 
-## 5. 阻塞项（P0–P2 现在过不去的）
+## 5. 阻塞项（可执行清单）
 
-本 PR 只清无 GPU 合同/文档/骨架。下面这些**不是本云环境能勾的**；缺依赖时保持 SKIP / 未实现，不得假绿。
+本 PR 只清无 GPU 合同/文档/骨架。下面这些**不是本云环境能勾的**；缺依赖时保持 SKIP / 未实现，**不得假绿**。  
+活测试：`python3 bhuman/k1-training/k1-switcher/test_blockers.py`。
 
-| 项 | 卡在哪 | 本 PR 已有 | 需要 |
-|---|---|---|---|
-| 完整切换时间序列 H1–H6 / T4 | 无录包 | 形状草案 + SKIP | GPU worker 或本机 MuJoCo 录包 |
-| P1 急停 / vx vy wz 统计 | 无 `bh-gym` / GPU | draft-only 配方 | **GPU worker** |
-| P1 估计器 A/B 真训 | 同上 | `k1-estimators` stub；latent 不进 344 | **GPU worker** |
-| P2 可训练 64→15 env | stub `TRAINABLE=false` | 硬化 + P2-ACCEPTANCE | **GPU worker** + 另开实验目录 |
-| Zenodo 58/15 只读核 | ZIP 不入库 | 仓外步骤（NEXT） | 本机磁盘 |
-| SimRobot 六机回放 | 无本机比赛栈 | 纪律条目（P2-ACCEPTANCE R1） | 本机比赛栈（**非真机**） |
-| 走↔踢 5 s 不二次跌倒 | 无 SimRobot / 录包 | SM 边 + 部署一拍 | 本机比赛栈 |
-| 真机 / ASAP / 厂家校准 | 未授权 | 禁止清单 | **真机**（本轮禁止） |
+### 5.1 GPU worker 上线后第一件事（本任务只写清单，不启训）
+
+1. 跑 `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh`，确认 `ready=true`。
+2. **先告知用户** worker 已在、拟跑哪条命令；**等用户明确说开训**。本清单与门禁**永不**自动 `train.py`。
+3. 用户同意后的第一训仍是官方 `--task K1` **344→13** 回放 / `run_env_check.sh` / `run_replay.sh K1`，**不是** reactive 64→15，不是改 `K1.yaml`。
+4. 命令正文见 [NEXT-P1-P2.md](NEXT-P1-P2.md)「P1 · 本机有 GPU 之后」。未同意前保持 SKIP。
+
+### 5.2 条目（缺什么 / 谁提供 / 门禁如何 SKIP→PASS）
+
+| ID | 项 | 缺什么 | 谁提供 | 门禁如何 SKIP→PASS |
+|---|---|---|---|---|
+| B1 | 完整切换时间序列 H1–H6 / T4 | 走↔踢真实录包（非全 0） | 操作者本机 MuJoCo 或 **GPU worker** 回放 | `test_timeseries_contract.py` 在有轨迹后把 H1–H6/T4 从 SKIP 改 PASS；无包保持 SKIP |
+| B2 | P1 急停 / vx vy wz 统计 | `bh-gym` + Isaac Gym + `K1_walk.pth` | **GPU worker** 操作者 | 现 draft-only；有 GPU 后跑 NEXT P1 评估，门禁仍锁 344→13 |
+| B3 | P1 估计器 A/B 真训 | 同上 | **GPU worker** | stub 已 PASS；真训另开 `runs/`，latent 仍不进 344 |
+| B4 | P2 可训练 64→15 env | 另开实验目录 + GPU | **GPU worker** + 操作者建目录 | stub `TRAINABLE=false` 保持 PASS；真 env **不得**进 `envs/` / `train.py` |
+| B5 | Zenodo 58/15 只读核 | `code.zip`（不入库） | 操作者本机磁盘 | 仓外核完在调研笔记打勾；Git 门禁不因缺 ZIP 失败 |
+| B6 | SimRobot 六机回放 | 本机比赛栈（B-Human + GC + TeamComm） | 操作者本机（**非真机**） | P2-ACCEPTANCE R1 从 `[ ]` 变 `[x]`；Isaac 指标不得冒充 |
+| B7 | 走↔踢 5 s 不二次跌倒 | SimRobot 或录包 | 操作者本机比赛栈 | S7 从 SKIP/`[ ]` 变 PASS；禁止用 SimRobot 冒充 fast 72→22 |
+| B8 | 真机 / ASAP / 厂家校准 | 授权机器人 | **真机**（本轮禁止） | 保持未授权；`robot_connected=false`；不跑安装/固件 |
 
 默认 / 主路径在上述全部阻塞解除之前，仍是官方 B-Human walk **344→13**。
 

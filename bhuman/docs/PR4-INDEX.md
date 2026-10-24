@@ -87,7 +87,7 @@ bhuman/docs/
 ├── BEHAVIOR-TREE-SKILL-SELECT.md        行为树口字段与 B1–B6
 ├── SKILL-SWITCH-CONTINUITY.md           历史 / 相位 / 力矩清单（实现仍 SKIP）
 ├── P1-CONFIG-DIFF-DRAFT.md              不改默认奖励的 P1 草稿说明
-├── HIFAR-VS-STANDUP.md                  HiFAR ≠ 73→22 / 72→22
+├── HIFAR-VS-STANDUP.md                  HiFAR ≠ 73→22 / 72→22（活测试 test_hifar_boundary）
 ├── RESEARCH-BRANCH.md                   origin/research 入口（02/06 不在 main）
 └── schemas/obs-contract-v1.json         walk 344 / kick 59 / standup 73 / reactive 64
 ```
@@ -117,7 +117,8 @@ k1-reactive/
 ├── method_catalog.json          公开 URL，与 GLOBAL 交叉
 ├── check_skeleton.py            64→15 平行于 344→13
 ├── hardening.py                 旁路硬化：维 / TRAINABLE / 未注册 / 禁换 walk actor
-└── test_*.py                    未注册 / 切换空壳 / 文档锚点 / BT / schema / hardening
+├── hifar_boundary.py            HiFAR / 火神边界：T1 权不得进 K1；58 ≠ 344
+└── test_*.py                    未注册 / 切换空壳 / 文档锚点 / BT / schema / hardening / HiFAR
 ```
 
 ### 3.4 切换 / 部署时序 · `bhuman/k1-training/k1-switcher/`（并行 stub；默认仍 walk）
@@ -130,7 +131,10 @@ k1-switcher/
 ├── test_switcher_sm.py
 ├── test_deploy_call.py          纯 Python 集成；无 Gym
 ├── test_timeseries_contract.py  形状 PASS / 连续性 SKIP
-└── test_bt_deploy_crosscheck.py BT × 部署交叉核对（默认 walk）
+├── test_bt_deploy_crosscheck.py BT × 部署交叉核对（默认 walk）
+├── standup_kick_contract.py     kick/standup 旁路：fallen / getup_done / 禁 standup→kick
+├── test_standup_kick_hardening.py
+└── test_blockers.py             ROADMAP §5 可执行清单（先告知用户，不启训）
 ```
 
 ### 3.5 估计器 / P1 草稿（并行 stub + draft-only）
@@ -182,7 +186,9 @@ k1-training/manifests/
 | reactive 边界收口 | GLOBAL §6.11 / MIGRATE §2.1 | 旁路技能，≠ 新步态基线 |
 | sim2sim 负例 | `check_sim2sim_gate.py` | 错误维 + 错误 PD（统一增益 / 训侧 p25）必拒 |
 | BT × 部署交叉核对 | BT §4 + DEPLOY §4 | 一张表：默认 walk **不离开** 344→13 |
-| ROADMAP 阻塞项 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5 | P1/P2 真训 / 六机 / 真机仍阻塞 |
+| ROADMAP 阻塞项 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5 | 缺什么 / 谁提供 / SKIP→PASS；GPU 先告知 |
+| standup / kick 硬化 | `standup_kick_contract.py` | 仅 fallen→standup；禁 standup→kick；禁 SimRobot 冒充 72→22 |
+| HiFAR / 火神边界 | `test_hifar_boundary.py` | T1 `model.pth` 不得进 K1；58 ≠ 344 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

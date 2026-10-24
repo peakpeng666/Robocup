@@ -12,7 +12,8 @@
 - 方法：两阶段课程（先限制在 (x,z) 平面仰卧/俯卧，再扩到三维侧倒并加入髋 roll 等关节）；KSI + 奖励塑形；Booster Gym + PPO + RMA；动作为受控关节的**目标位置**；跨阶段用零初始化层扩维。
 - `origin/research:research/02-论文清单.md` §E 把它和 FRASA / HumanUP 列在同一条「跌倒恢复」线上。
 
-本仓训练源码树对 `HiFAR` / `hifar` **零命中**（合同门禁硬断言）。没有 vendoring，没有权重。
+本仓训练源码树对 `HiFAR` / `hifar` **零命中**（合同门禁硬断言）。没有 vendoring，没有权重。  
+活测试：`python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py`（拒 T1 `model.pth`、拒 58 当 344；指针 GLOBAL §6.1/§6.2 与 research-inputs `huoshen_findings.md`）。
 
 ## 本仓已经有的起身（冻结）
 

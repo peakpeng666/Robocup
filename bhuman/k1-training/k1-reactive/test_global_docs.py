@@ -74,8 +74,17 @@ REQUIRED_DOCS = {
         "hardening",
         "旁路技能，≠ 新步态基线",
         "阻塞项",
+        "可执行清单",
+        "先告知用户",
+        "SKIP→PASS",
     ),
-    "bhuman/docs/HIFAR-VS-STANDUP.md": ("73→22", "72→22", "2502.20061"),
+    "bhuman/docs/HIFAR-VS-STANDUP.md": (
+        "73→22",
+        "72→22",
+        "2502.20061",
+        "test_hifar_boundary",
+        "research-inputs",
+    ),
     "bhuman/docs/SKILL-SWITCH-CONTINUITY.md": ("历史缓冲", "步态相位", "力矩"),
     "bhuman/docs/MIGRATE-TO-K1.md": (
         "拟议目录/模块",
@@ -120,6 +129,8 @@ REQUIRED_DOCS = {
         "hardening",
         "交叉核对",
         "阻塞项",
+        "standup_kick",
+        "test_hifar_boundary",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",

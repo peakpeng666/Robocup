@@ -32,6 +32,9 @@ REQUIRED_ROWS = (
     "reactive 旁路硬化",
     "sim2sim 负例",
     "BT × 部署交叉核对",
+    "standup / kick 旁路硬化",
+    "HiFAR / 火神边界",
+    "阻塞项可执行清单",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",

@@ -36,6 +36,8 @@ RUN_RESERVED_WALK_SMOKE=1 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 ## P1 · 本机有 GPU 之后（不改 344→13）
 
+**GPU worker 上线后第一件事：** 先跑预留探测，**告知用户** `ready=true` 与拟跑命令，**等用户明确说开训**。本手册与门禁永不自动 `train.py`。同意后的第一训仍是官方 `--task K1` **344→13**（下面 §1–2），不是 reactive 64→15。阻塞项全文：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5。
+
 解释器必须是 `/home/peakpeng/.venvs/bh-gym/bin/python`（或 `BH_PY`），Python 3.8.20。
 路径按操作者本机；云环境把前缀换成仓库根即可。
 
@@ -163,6 +165,9 @@ python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
 python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
+python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
+python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
+python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

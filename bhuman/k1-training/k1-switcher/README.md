@@ -30,4 +30,6 @@ walk 344→13  ←→  kick 59→13     同 13 维家族；禁止 memcpy 历史�
 python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
 python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
+python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
+python3 bhuman/k1-training/k1-switcher/test_blockers.py
 ```

@@ -37,7 +37,10 @@
 | P2 验收清单 | ROADMAP P2 / §6.11 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | **P2 出门条 / P0 文档** | 否（清单）；切真切 / 六机回放 / 真机各标依赖 | **P2 不改 344→13**；默认入口官方 walk | **本轮清单** |
 | reactive 旁路硬化 | §6.11 | `k1-reactive/hardening.py` + `test_reactive_hardening.py` | **P2 口 / P0 门禁** | 否 | **旁路技能，≠ 新步态基线**；未注册 `train.py`；禁换 walk actor；条件未满足停在 walk | **本轮硬化** |
 | sim2sim 负例 | §6.8 / §6.9 | `sim2sim/check_sim2sim_gate.py`（`refuse_foreign_policy` / `refuse_pd_claim`） | **P4 / P0 门禁** | 否 | 过桥只认 344→13；拒统一 PD / 训侧改 p25 | **本轮负例** |
-| BT × 部署交叉核对 | §6.10 / §6.11 | BT 文档 §4 + DEPLOY §4 + `test_bt_deploy_crosscheck.py` | **P0** | 否 | 两边同一张表；默认永远官方 walk **344→13** | **本轮交叉表** |
+| BT × 部署交叉核对 | §6.10 / §6.11 | BT 文档 §4 + DEPLOY §4 + `test_bt_deploy_crosscheck.py` | **P0** | 否 | 两边同一张表；默认永远官方 walk **344→13** | 上轮交叉表 |
+| standup / kick 旁路硬化 | ROADMAP P4 | `k1-switcher/standup_kick_contract.py` | **P0 门禁** | 否 | 仅 fallen→standup；`getup_done`→walk；禁 standup→kick | **本轮硬化** |
+| HiFAR / 火神边界 | §6.1 / §6.2 | `k1-reactive/hifar_boundary.py` + `test_hifar_boundary.py` | **对照** | 否 | T1 权不得进 K1；58 ≠ 344；不改 73/72 | **本轮边界** |
+| 阻塞项可执行清单 | ROADMAP §5 | §5.1–5.2 + `test_blockers.py` | **P0** | 否 | GPU 上线先告知用户；第一训仍 344→13 | **本轮清单** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -82,6 +85,9 @@
 | 12 | reactive 旁路硬化 | `hardening.py` | `python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py` |
 | 13 | sim2sim 负例 | `check_sim2sim_gate.py` 错误维 / 错误 PD | `python3 bhuman/sim2sim/test_sim2sim_gate.py` |
 | 14 | BT × 部署交叉核对 | 两边同一张表；默认 walk | `python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py` |
+| 15 | standup / kick 旁路硬化 | `standup_kick_contract.py` | `python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py` |
+| 16 | HiFAR / 火神边界 | `hifar_boundary.py` | `python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py` |
+| 17 | 阻塞项可执行清单 | ROADMAP §5 | `python3 bhuman/k1-training/k1-switcher/test_blockers.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 
