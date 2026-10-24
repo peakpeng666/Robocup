@@ -43,6 +43,9 @@ REQUIRED_DOCS = {
         "火神",
         "HiFAR",
         "344→13",
+        "CTDE",
+        "SimRobot",
+        "域差",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -67,6 +70,8 @@ REQUIRED_DOCS = {
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": ("344→13", "handoff_getup", "implemented"),
     "bhuman/docs/schemas/obs-contract-v1.json": ("344", "64", "59", "73", "rewritable"),
+    "bhuman/docs/SWITCHER-SM.md": ("344→13", "73→22", "implemented=false"),
+    "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md": ("draft-only", "344→13", "不改默认"),
 }
 
 

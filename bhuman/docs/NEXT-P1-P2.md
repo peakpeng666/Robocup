@@ -76,6 +76,7 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stabilit
 ```
 
 单因素实验（命令日程、settle-time、扰动、估计器、参考惩罚退火）只允许改 `configs/walk-*-stability-v1.json` 或 `--config_patch`，**禁止改 `K1.yaml` 的 `num_observations` / `num_actions`。**
+草稿（不改默认奖励、不进 `run_walk_stability.sh`）：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)、`configs/draft-only/`。
 
 `full` 恢复只接受本项目 v2 检查点；公开 `K1_walk.pth` 的 critic 是 359，当前配置 360，必须 `warm-start`/`actor`。
 
@@ -155,6 +156,8 @@ python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
 python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
 python3 bhuman/sim2sim/test_sim2sim_gate.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
+python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
+python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
@@ -171,5 +174,5 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)（不实现训练代码）。
 
 全球调研与 P0–P5 取舍：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)、[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
-行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。观测 schema：`schemas/obs-contract-v1.json`。
+行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。观测 schema：`schemas/obs-contract-v1.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。

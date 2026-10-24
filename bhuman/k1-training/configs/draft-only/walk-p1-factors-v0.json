@@ -1,0 +1,83 @@
+{
+  "draft_only": true,
+  "do_not_pass_to_train_py": true,
+  "trainable": false,
+  "note": "P1 factor proposals. Not a config_patch. Official walk stays 344→13. Do not edit K1.yaml rewards.",
+  "baseline": {
+    "task": "K1",
+    "num_observations": 344,
+    "num_actions": 13,
+    "history": "10*32+24"
+  },
+  "do_not_edit": [
+    "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml",
+    "bhuman/k1-training/configs/walk-reference-stability-v1.json",
+    "bhuman/k1-training/configs/walk-critic-stability-v1.json"
+  ],
+  "official_snapshot": {
+    "num_observations": 344,
+    "num_actions": 13,
+    "commands.still_proportion": 0.1,
+    "rewards.scales.tracking_lin_vel_x": 0.75,
+    "rewards.scales.tracking_lin_vel_y": 0.75,
+    "rewards.scales.tracking_ang_vel": 0.375,
+    "rewards.scales.action_rate": -1.0,
+    "algorithm.reference_mean_penalty": 1.0,
+    "algorithm.critic_warmup_iterations": 20
+  },
+  "factors": {
+    "A_command_schedule": {
+      "status": "draft",
+      "needs_gpu": true,
+      "rewrites_344": false,
+      "comment": "More stand / emergency-stop / reverse samples. Official still_proportion stays 0.1 until an experiment json is opted in.",
+      "proposed_only": {
+        "commands.still_proportion": 0.25,
+        "schedule": ["stand", "forward", "stop", "reverse"]
+      }
+    },
+    "B_settle_jitter": {
+      "status": "draft",
+      "needs_gpu": true,
+      "rewrites_344": false,
+      "comment": "New keys only. Do not retune official action_rate=-1.",
+      "proposed_only": {
+        "draft_settle_jitter_scale": 0.0,
+        "draft_zero_cmd_root_acc_scale": 0.0
+      }
+    },
+    "C_disturbance_curriculum": {
+      "status": "draft",
+      "needs_gpu": true,
+      "rewrites_344": false,
+      "comment": "Record the 531/55 fall baseline. Do not write domain_rand into K1.yaml from this file.",
+      "proposed_only": {
+        "reference_fall_events": 55,
+        "reference_end_events": 531
+      }
+    },
+    "D_estimator_ab": {
+      "status": "draft",
+      "needs_gpu": false,
+      "rewrites_344": false,
+      "comment": "Select k1-estimators family. Actor observation stays 344.",
+      "proposed_only": {
+        "estimator": "passthrough",
+        "allowed": ["passthrough", "rma", "dreamwaq"],
+        "actor_obs": 344
+      }
+    },
+    "E_reference_penalty_anneal": {
+      "status": "draft",
+      "needs_gpu": true,
+      "rewrites_344": false,
+      "comment": "Official reference_mean_penalty stays 1.0 in walk-reference-stability-v1.json.",
+      "proposed_only": {
+        "reference_mean_penalty_start": 1.0,
+        "reference_mean_penalty_end": 0.3,
+        "anneal_iters": 50
+      }
+    }
+  }
+}

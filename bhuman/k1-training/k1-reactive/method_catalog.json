@@ -66,6 +66,31 @@
       "id": "amp",
       "url": "https://arxiv.org/abs/2104.02180",
       "phase": "P2"
+    },
+    {
+      "id": "deepmind-team-football",
+      "url": "https://arxiv.org/abs/2205.12107",
+      "phase": "observe"
+    },
+    {
+      "id": "hsl-gamecontroller",
+      "url": "https://github.com/RoboCup-HumanoidSoccerLeague/GameController",
+      "phase": "P4"
+    },
+    {
+      "id": "mappo",
+      "url": "https://arxiv.org/abs/2103.01955",
+      "phase": "observe"
+    },
+    {
+      "id": "spl-limited-comm",
+      "url": "https://arxiv.org/abs/2401.15026",
+      "phase": "observe"
+    },
+    {
+      "id": "bhuman-tdp-2026",
+      "url": "https://hsl.robocup.org/wp-content/uploads/2026/03/B_Human-tdp-697c9beb6dc45.pdf",
+      "phase": "P4"
     }
   ]
 }

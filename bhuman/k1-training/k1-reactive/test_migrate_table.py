@@ -20,12 +20,17 @@ REQUIRED_ROWS = (
     "MuJoCo Playground",
     "HiFAR",
     "NUSim",
+    "CTDE",
+    "SimRobot",
+    "切换器状态机",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
     "check_sim2sim_gate",
     "obs-contract-v1",
     "BEHAVIOR-TREE-SKILL-SELECT",
+    "k1-switcher",
+    "draft-only",
     "344→13",
 )
 
@@ -58,10 +63,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     for landing in REQUIRED_LANDINGS:
         if landing not in text:
             errors.append(f"migrate table missing landing {landing}")
-    if "本轮 stub" not in text:
-        errors.append("migrate table should mark this-round stubs")
+    if "本轮 stub" not in text and "本轮骨架" not in text:
+        errors.append("migrate table should mark this-round stubs or 骨架")
     if not errors:
-        notes.append(f"{rel}: columns, §7 rows, and four landings present")
+        notes.append(f"{rel}: columns, §7 rows, and landings present")
     return {"ok": not errors, "errors": errors, "notes": notes}
 
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Static K1 walk/kick/standup contract gate + K1_Reactive skeleton + reserved GPU probe.
-# Also: migrate table, estimator stubs, obs schema, BT skill-select, sim2sim gate skeleton.
+# Also: migrate table, estimator stubs, obs schema, BT skill-select, sim2sim gate,
+# switcher SM, P1 draft-only config comments.
 # Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
 # k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.

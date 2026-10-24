@@ -59,6 +59,8 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 | ASAP delta action | P5 | 真机回灌方法 | 现在做真机 |
 | Atlas/Figure/Optimus | 纪律 | 留出、对照、一天内部署 | 搬权重/换 VLA |
 | Unitree rl_lab | 观察 | 导出/过桥流程 | 换主线 |
+| HSL TeamComm / 非 CTDE | P4/P5 | 显式通信 + 单机切换 | MAPPO 进 344 |
+| SimRobot ↔ Isaac 域差 | P4/P5 | 三道门 | 用 Isaac 指标冒充比赛 |
 
 ---
 
@@ -78,6 +80,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] sim2sim 门禁骨架：`sim2sim/check_sim2sim_gate.py`（无 mujoco/权 → SKIP）。
 - [x] 观测合同 JSON：`docs/schemas/obs-contract-v1.json`。
 - [x] 行为树↔技能选择接口注释：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。
+- [x] 切换器状态机骨架（走↔踢↔起身）：`k1-training/k1-switcher/`；reactive 仍不可达。
+- [x] P1 配置 diff 草稿（draft-only，不改默认奖励）：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)。
+- [x] 调研补强：通信/CTDE、SimRobot vs Isaac 域差（survey §6.7–6.8 → P4/P5）。
 - [ ] 完整切换器时间序列（P4，仍无真机）。
 - [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
 
@@ -93,11 +98,11 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 
 映射：research/06 路线 A + Digit 的「少步、可急停」。
 
-1. 命令日程（驻立、急停、反转）。
-2. settle-time / 抖动惩罚。
+1. 命令日程（驻立、急停、反转）。草稿：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)（**不改**官方 `still_proportion: 0.1`）。
+2. settle-time / 抖动惩罚（只允许 draft 新键，不改 `action_rate: -1.`）。
 3. 扰动课程（对照 531 事件 55 跌倒）。
 4. 估计器 A/B：RMA 或 DreamWaQ **单因素**（[接口 stub 已落地](../k1-training/k1-estimators/README.md)；真训要 GPU，仍不改 344）。
-5. 参考惩罚退火。
+5. 参考惩罚退火（官方 `reference_mean_penalty: 1.0` 不动；退火只写在 draft-only）。
 
 命令见 NEXT-P1-P2。留出种子 2027/2028/2029。`warm-start`/`actor`；公开 critic 359≠360。
 
@@ -131,15 +136,18 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 
 ### P4 · 切换 + sim2sim + 起身交接
 
-- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；本阶段要有时间序列（仍无真机）。
+- 走↔踢↔反应：历史/相位/力矩，清单 [SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。P0 已有静态槽位映射；**状态机骨架**已落地（走↔踢↔起身，reactive 仍 `implemented=false`）：[SWITCHER-SM.md](SWITCHER-SM.md)。时间序列仍 TODO。
 - 每次 P1/P2 候选：`sim2sim/run-mujoco.sh` + 三方数值门。无 GPU 骨架：`sim2sim/run-sim2sim-gate.sh`（缺依赖 SKIP）。
-- standup→walk 5 s 窗口（接入方案旧项）；HiFAR/FRASA 只对照，不改 73/72。
+- standup→walk 5 s 窗口：状态机只计时；HiFAR/FRASA 只对照，不改 73/72。
+- **通信 / 非 CTDE**（survey §6.7）：SimRobot 六机是 TeamComm + GC 的验收场，不是 MAPPO 训练器。切换器按单机边工作，不把队友状态写入 344。
+- **域差**（survey §6.8）：Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 比赛回放。PD 组不得统一；fast standup 72→22 不得用 SimRobot PASS 冒充。
 
 ### P5 · 真机前置（未授权，只列）
 
 - SDK/固件版本冲突（文档 1.7.1 vs deploy ≥1.7.2）必须实测。
 - ASAP：真机轨迹 → delta action → 再训。
-- 机载：策略 50 Hz + 视觉 25 Hz，给 B-Human 比赛栈留算力。
+- 机载：策略 50 Hz + 视觉 25 Hz，给 B-Human 比赛栈留算力；TeamComm 512 B / 端口 10000+队号的预算在真机上才能量。
+- 域差闭环：踝刚度 p25、Isaac 摩擦 workaround、WLAN 丢包，都只能在授权真机上收口。
 - **本轮与当前授权：不连接机器人，不跑安装/固件脚本。**
 
 ---
@@ -159,6 +167,8 @@ python3 bhuman/k1-training/k1-reactive/test_obs_schema.py
 python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py
 python3 bhuman/sim2sim/test_sim2sim_gate.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
+python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
+python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

@@ -253,6 +253,55 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 
 起身对照放 P4/P5；落足点可服务 P1 窄通道，但不改 344。
 
+### 6.7 足球人形通信 / 多机 CTDE
+
+本仓比赛层已经是 **B-Human 行为树 + 压缩队友通信 + GameController**，不是一张 CTDE 网控 11 人。全球材料里「多机 RL」多数来自 2D / SSL / 仿真人形，**不能直接换掉 50 Hz 官方 walk 344→13**。
+
+公开通信约束（HSL GameController）：
+
+- 控制：UDP 广播端口 **3838**，约 2 Hz（`RoboCupGameControlData`）。
+- 机器人回报：UDP 单播 **3939**，0.5–2 Hz。
+- 队内消息：UDP 广播端口 **10000+队号**，载荷最多 **512 字节**，格式自定。【仓库】[HSL GameController](https://github.com/RoboCup-HumanoidSoccerLeague/GameController)
+
+本仓对应实现是 `BHumanCodeRelease/Src/Tools/Communication/CompressedTeamCommunicationStreams.*`（结构化压缩，不是梯度共享）。火神公开技能也写明：完整比赛系统的行为树 / GC / 队友通信 **不在** Zenodo 包里。
+
+多机学习对照（只作方法地图）：
+
+| 来源 | 设定 | 对本仓 |
+|---|---|---|
+| DeepMind 仿真团队足球 [arXiv:2205.12107](https://arxiv.org/abs/2205.12107) | 仿真人形，从动作技能到团队踢法 | **可迁：** 分层（低层技能 / 上层角色）。**不迁：** 用一张队策略网替换 B-Human TeamComm |
+| DeepMind OP3 1v1 [arXiv:2304.13653](https://arxiv.org/abs/2304.13653) | 单机敏捷，不是 11v11 | 已见 §6.5；不证明 CTDE |
+| MAPPO [arXiv:2103.01955](https://arxiv.org/abs/2103.01955) | 中心化训练、分散执行 | SSL 队 TRAPS 2026 TDP 在用；**不是 HSL / K1 配方** |
+| SPL 限通信协调 [arXiv:2401.15026](https://arxiv.org/abs/2401.15026) | 市场法任务分配 + SimRobot，NAO | **可迁：** 丢包时本地预测、事件触发发送。**不迁：** NAO/SPL 规则当 HSL 带宽 |
+
+**可迁到本仓：** 保持显式队通信与角色（主攻手才切反应技能）；P4 切换器按**单机**技能边工作，不在 344 向量里塞队友状态；P5 才量机载带宽 / 算力（50 Hz 运控 + 25 Hz 视觉 + TeamComm）。  
+**不迁：** 把 MAPPO/QMIX 接到官方 actor；为 CTDE 改 344；用 SSL 的 Isaac Lab 多机环境当本仓主线。
+
+映射：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) **P4**（单机切换 + SimRobot 六机是通信/规则的验收场，不是 CTDE 训练器）、**P5**（真机 WLAN / 消息预算，未授权）。
+
+### 6.8 SimRobot vs Isaac 域差
+
+本仓有三层仿真，职责不同，不能互相冒充验收：
+
+| 层 | 引擎 | 典型规模 | 看见什么 | 用来做什么 |
+|---|---|---|---|---|
+| Isaac Gym Preview 4 | PhysX GPU | 最多 4096 env | 特权观测、随机执行延迟、YAML PD | **训练**官方 `--task K1` 344→13 |
+| MuJoCo sim2sim | CPU actor + 官方 XML | 1 机，120 s 已过 | 与训练同 344 布局，无相机 | **P4 过桥**：每次候选必过 |
+| SimRobot / SimulatedRobot | B-Human 比赛栈 | 1–6 机 | 正常视觉、行为树、GC、TeamComm、ONNX | **比赛回放**；不是 PPO 训练器 |
+
+域差（本仓已核 + 公开页）：
+
+- **PD / 踝刚度：** 训练 YAML 踝滚 p60 量级 vs 真机 `motorParameters` regular 踝滚 **p25**。B-Human 写明悬空对标后改 25，是有意的 sim2real，不是笔误。【本仓已核】`IsaacGymRL/envs/readme.md`、[policy-contract-v1.md](policy-contract-v1.md) §G。
+- **接触 / 摩擦：** B-Human 2026 TDP 记录 Isaac Gym 地板摩擦与「球–脚掌碰撞」需要 workaround。【公开页】[B-Human TDP 2026](https://hsl.robocup.org/wp-content/uploads/2026/03/B_Human-tdp-697c9beb6dc45.pdf)
+- **快速起身：** `K1_fast.onnx` 在真机和独立 MuJoCo 脚本可用，**在 B-Human 仿真里不可用**（作者自述原因不明）。【本仓已核】同上 readme。因此 72→22 不能用 SimRobot PASS 代替。
+- **观测：** Isaac walk 球槽恒 0；SimRobot 有完整视觉。把 4096 env 的跟踪误差当成六机定位/通信成绩是类别错误。
+- **历史：** SimRobot 2008 论文只说明它是 B-Human 家族的比赛仿真器，不是今天的 GPU RL 栈。【论文】[Laue & Röfer, SIMPAR 2008](https://www.informatik.uni-bremen.de/kogrob/papers/SIMPAR-Laue-Roefer-08.pdf)
+
+**可迁：** 保持「Isaac 训 → MuJoCo 过桥 → SimRobot 比赛回放」三道门；P4 把域差写成验收项（PD 组不得偷偷统一、fast standup 不进 SimRobot 冒充）。  
+**不迁：** 用 Isaac 指标替换 SimRobot 六机成绩；为了对齐 SimRobot 去改 344；把 Playground T1 摇杆任务混进 WalkingEngine。
+
+映射：**P4** = MuJoCo 门禁 + SimRobot 对照 + 切换/起身交接；**P5** = 真机才闭合剩余域差（ASAP / 固件），本授权不做。
+
 ---
 
 ## 7. 可迁移矩阵（压缩）
@@ -273,6 +322,8 @@ research/06 已写：Isaac Gym 停更，**新栈迁移放在 P3 之后**。本�
 | HumanoidBench 分层 | 「低层走稳再上层」= 本架构 | 不引进 27 任务 |
 | MuJoCo Playground | 对照本仓 sim2sim | 不训 T1 摇杆任务 |
 | HiFAR 课程起身 | 平行恢复实验 | 不改 73/72 |
+| 显式 TeamComm / 非 CTDE | **P4 单机切换 + SimRobot 六机；P5 带宽** | 不把 MAPPO 塞进 344 |
+| SimRobot ↔ Isaac 域差 | **P4 三道门；P5 真机** | 不统一 PD、不用 SimRobot 冒充 fast standup |
 
 ---
 

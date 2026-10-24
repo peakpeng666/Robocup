@@ -426,6 +426,18 @@ def check_gpu_free_shells(
             "k1_sim2sim_gate",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+            "switcher_sm",
+            "k1_switcher_sm",
+            True,
+        ),
+        (
+            "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+            "p1_draft",
+            "k1_p1_draft",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -839,7 +851,7 @@ def main() -> int:
             "rule": "new skills are parallel extensions; do not rewrite frozen dims",
             "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
             "unregistered_in_train_py": reactive.get("unregistered_in_train_py"),
-            "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
+            "skill_switch": "docs + empty shells + static slot map + walk/kick/standup SM; reactive blocked",
             "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
             "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
             "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
@@ -847,6 +859,8 @@ def main() -> int:
             "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
             "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
             "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
+            "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
+            "p1_draft": "draft-only factor comments; official rewards untouched",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -894,6 +908,8 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
             "python3 bhuman/sim2sim/test_sim2sim_gate.py",
             "bash bhuman/sim2sim/run-sim2sim-gate.sh",
+            "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+            "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
@@ -918,7 +934,7 @@ def main() -> int:
     )
     print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
     print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5 + MIGRATE-TO-K1")
-    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select")
+    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / p1-draft")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

@@ -233,6 +233,8 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/MIGRATE-TO-K1.md", "migrate-to-K1 table"),
         ("bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md", "BT skill-select interface"),
         ("bhuman/docs/schemas/obs-contract-v1.json", "obs contract JSON"),
+        ("bhuman/docs/SWITCHER-SM.md", "switcher state-machine note"),
+        ("bhuman/docs/P1-CONFIG-DIFF-DRAFT.md", "P1 config diff draft"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

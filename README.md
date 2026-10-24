@@ -33,7 +33,9 @@
 | `bhuman/k1-training/` | 当前训练源码、配置、脚本、补丁、评估器、版本锁、实验报告与小型日志 |
 | `bhuman/k1-training/k1-reactive/` | 火神→K1 反应技能**平行骨架**（建议 64→15 stub；不改官方 walk 344→13，未注册训练） |
 | `bhuman/k1-training/k1-estimators/` | P1 估计器接口 stub（RMA / DreamWaQ 旁路；actor 仍 344→13） |
-| `bhuman/docs/` | 策略契约、[本仓合同调研](bhuman/docs/SURVEY-20261024-motion-policy-rl.md)、[全球人形调研](bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[可迁对照表](bhuman/docs/MIGRATE-TO-K1.md)、[P0–P5 路线](bhuman/docs/ROADMAP-P0-P5.md)、[P1/P2 手册](bhuman/docs/NEXT-P1-P2.md)、[技能切换清单](bhuman/docs/SKILL-SWITCH-CONTINUITY.md)、[行为树技能口](bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md)、[观测 schema](bhuman/docs/schemas/obs-contract-v1.json)、[HiFAR 与起身边界](bhuman/docs/HIFAR-VS-STANDUP.md)、[research 分支入口](bhuman/docs/RESEARCH-BRANCH.md) |
+| `bhuman/k1-training/k1-switcher/` | 走↔踢↔起身状态机骨架（reactive 不可达；非 Gym） |
+| `bhuman/k1-training/configs/draft-only/` | P1 配置 diff 草稿（不改默认奖励、不进 train.py） |
+| `bhuman/docs/` | 策略契约、[本仓合同调研](bhuman/docs/SURVEY-20261024-motion-policy-rl.md)、[全球人形调研](bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[可迁对照表](bhuman/docs/MIGRATE-TO-K1.md)、[P0–P5 路线](bhuman/docs/ROADMAP-P0-P5.md)、[P1/P2 手册](bhuman/docs/NEXT-P1-P2.md)、[技能切换清单](bhuman/docs/SKILL-SWITCH-CONTINUITY.md)、[切换器骨架](bhuman/docs/SWITCHER-SM.md)、[P1 配置草稿](bhuman/docs/P1-CONFIG-DIFF-DRAFT.md)、[行为树技能口](bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md)、[观测 schema](bhuman/docs/schemas/obs-contract-v1.json)、[HiFAR 与起身边界](bhuman/docs/HIFAR-VS-STANDUP.md)、[research 分支入口](bhuman/docs/RESEARCH-BRANCH.md) |
 | `bhuman/local-k1-validation-20261019/` | B-Human 本机比赛工作副本、正常视觉/速度适配、普通起身审计及报告 |
 | `bhuman/BHumanCodeRelease/`、`bhuman/MachineLearning/` | 固定公开版本的可浏览源码；上游身份见归档清单 |
 | `booster/` | 对应的 Booster SDK 与 demo 参考源码 |
