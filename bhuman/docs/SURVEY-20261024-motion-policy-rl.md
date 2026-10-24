@@ -15,6 +15,7 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
 技能切换清单：[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。HiFAR 与起身边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)。
+全球人形调研：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)。P0–P5 路线：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
 
 产物：`bhuman/k1-training/manifests/contract-gate-20261024.json`（初版）、`contract-gate-20261024-skill-switch.json`（本轮：未注册 PASS + 空壳）、`reserved-gpu-latest.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
@@ -382,9 +383,10 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stabilit
 ## 8. 下一步（与用户 P1 / P2 对齐）
 
 完整命令、Zenodo 本地步骤与架构图已移到 [NEXT-P1-P2.md](NEXT-P1-P2.md)。
+**阶段定义以 [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) 为准**（全球调研映射后的 P0–P5）。
 `origin/research:research/06` 另有一套 P0–P5 实验矩阵（其 P0 是 4096 env 急停/抖动训练）。**不要和本 PR 的 P0（合同门禁）混名。** 入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
 
-**基线不可改写：** 官方 IsaacGymRL walk/kick/standup。新技能只允许平行目录（现为 `k1-training/k1-reactive/`，建议 64→15）。GPU/`bh-gym` 用 `probe_reserved_gpu.sh` 预留，缺失则 WARN 并跳过。
+**基线不可改写：** 官方 IsaacGymRL walk/kick/standup。新技能只允许平行目录（现为 `k1-training/k1-reactive/`，建议 64→15）。GPU/`bh-gym` 用 `probe_reserved_gpu.sh` 预留，缺失则 WARN 并跳过。全球最佳实践如何接到各阶段见调研 §7 与路线图 §2。
 
 ### P1 · 本体感（现有 B-Human 栈，不改 344→13）
 
@@ -443,6 +445,8 @@ bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 bhuman/docs/SKILL-SWITCH-CONTINUITY.md
 bhuman/docs/HIFAR-VS-STANDUP.md
+bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md
+bhuman/docs/ROADMAP-P0-P5.md
 bhuman/docs/NEXT-P1-P2.md
 bhuman/docs/RESEARCH-BRANCH.md
 bhuman/k1-training/scripts/run_replay.sh

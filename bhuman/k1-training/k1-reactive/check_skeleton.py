@@ -32,6 +32,7 @@ from env_stub import (  # noqa: E402
     create_training_env,
     refuse_foreign_checkpoint,
 )
+from skill_switch_map import assert_static_slots  # noqa: E402
 from virtual_perception import DelayBuffer, ball_in_fov_placeholder, maybe_drop_detection  # noqa: E402
 
 try:
@@ -196,6 +197,8 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             errors.append("YAML skill_switch.checklist must point at SKILL-SWITCH-CONTINUITY.md")
         if switch.get("implemented") is not False:
             errors.append("YAML skill_switch.implemented must stay false (empty shells only)")
+        if switch.get("static_mapper") != "bhuman/k1-training/k1-reactive/skill_switch_map.py":
+            errors.append("YAML skill_switch.static_mapper must point at skill_switch_map.py")
 
     registry = inspect_official_registry(repo)
     errors.extend(registry.get("leaks") or [])
@@ -223,6 +226,21 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         errors.append("missing bhuman/docs/HIFAR-VS-STANDUP.md")
     else:
         notes.append("HiFAR vs standup 73→22 / fast 72→22 boundary note present")
+
+    for rel, label in (
+        ("bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md", "global humanoid survey"),
+        ("bhuman/docs/ROADMAP-P0-P5.md", "P0–P5 roadmap"),
+    ):
+        if not (repo / rel).is_file():
+            errors.append(f"missing {rel}")
+        else:
+            notes.append(f"{label} present")
+
+    try:
+        assert_static_slots()
+        notes.append("skill_switch_map static T1/T2 slots PASS (no Gym)")
+    except AssertionError as exc:
+        errors.append(f"skill_switch_map: {exc}")
 
     buf = DelayBuffer(delay_steps=6)
     for i in range(6):

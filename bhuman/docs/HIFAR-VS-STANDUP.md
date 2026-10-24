@@ -1,6 +1,6 @@
 # HiFAR 与本仓起身合同的边界
 
-2026-10-24。短文，**不实现训练代码**。配套：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) §6.2、[policy-contract-v1.md](policy-contract-v1.md) §C/D、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
+2026-10-24。短文，**不实现训练代码**。配套：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md) §6.2、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) §6.2、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P4、[policy-contract-v1.md](policy-contract-v1.md) §C/D、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 
 走 ↔ 踢 ↔ 反应的连续性清单见上一篇。本文只划清：**跌倒恢复 ≠ 足球反应技能，HiFAR ≠ B-Human standup。**
 

@@ -1,0 +1,66 @@
+{
+  "note": "Public citations only. Cross-checked by test_global_docs.py against the Chinese survey. Not a weight index.",
+  "baseline": "B-Human official walk 344→13 / kick 59→13 / standup 73→22",
+  "methods": [
+    {
+      "id": "huoshen",
+      "url": "https://humanoid-kick.github.io/",
+      "phase": "P2"
+    },
+    {
+      "id": "hifar",
+      "url": "https://arxiv.org/abs/2502.20061",
+      "phase": "P4-parallel"
+    },
+    {
+      "id": "noisy-striker",
+      "url": "https://github.com/Daffan/humanoid-soccer",
+      "phase": "P3"
+    },
+    {
+      "id": "telehuman",
+      "url": "https://github.com/TeleHuman/HumanoidSoccer",
+      "phase": "P3"
+    },
+    {
+      "id": "asap",
+      "url": "https://github.com/LeCAR-Lab/ASAP",
+      "phase": "P5"
+    },
+    {
+      "id": "beyondmimic",
+      "url": "https://beyondmimic.github.io/",
+      "phase": "P2-parallel"
+    },
+    {
+      "id": "mujoco-playground",
+      "url": "https://arxiv.org/abs/2502.08844",
+      "phase": "observe"
+    },
+    {
+      "id": "humanoidbench",
+      "url": "https://humanoid-bench.github.io/",
+      "phase": "observe"
+    },
+    {
+      "id": "booster-train",
+      "url": "https://github.com/BoosterRobotics/booster_train",
+      "phase": "P2-parallel"
+    },
+    {
+      "id": "isaac-lab",
+      "url": "https://isaac-sim.github.io/IsaacLab/",
+      "phase": "after-P3"
+    },
+    {
+      "id": "rma",
+      "url": "https://arxiv.org/abs/2107.04034",
+      "phase": "P1"
+    },
+    {
+      "id": "amp",
+      "url": "https://arxiv.org/abs/2104.02180",
+      "phase": "P2"
+    }
+  ]
+}

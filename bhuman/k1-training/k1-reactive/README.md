@@ -31,8 +31,9 @@
 - 禁止 NUSim 79→22，禁止把 `K1_walk.pth` 喂进本骨架。
 
 字段表、延迟 116 ms ≈ 6 个 50 Hz 步见 `K1_Reactive.yaml` 与 `contract.py`。
-走↔踢↔反应的历史/相位/力矩清单：[SKILL-SWITCH-CONTINUITY.md](../../docs/SKILL-SWITCH-CONTINUITY.md)（空测试壳，切换器未实现）。
+走↔踢↔反应的历史/相位/力矩清单：[SKILL-SWITCH-CONTINUITY.md](../../docs/SKILL-SWITCH-CONTINUITY.md)。静态槽位映射 `skill_switch_map.py` 已可测（T1/T2/T3/T5）；完整切换器未实现。
 HiFAR 起身对照：[HIFAR-VS-STANDUP.md](../../docs/HIFAR-VS-STANDUP.md)（不是本技能）。
+全球调研 / 路线：[GLOBAL-HUMANOID-SURVEY-20261024.md](../../docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[ROADMAP-P0-P5.md](../../docs/ROADMAP-P0-P5.md)。
 
 ## 已实现 vs TODO
 
@@ -43,12 +44,15 @@ HiFAR 起身对照：[HIFAR-VS-STANDUP.md](../../docs/HIFAR-VS-STANDUP.md)（不
 | 拒绝官方 walk / 火神 T1 权重 | encoder-decoder、AMP、多 critic、PPO |
 | 静态 `check_skeleton.py`；**未注册进 train.py = PASS** | 任何可导出 ONNX |
 | 负向说明：泄漏进 `envs/__init__.py` 必须 FAIL | 可训练 env / `train.py --task=K1_Reactive` |
-| 技能切换空测试壳（全部 SKIP） | 历史/相位/力矩切换器 |
+| 技能切换空测试壳（历史仍 SKIP） | 完整时间序列切换器 |
+| `skill_switch_map.py` 静态槽位/相位 | Isaac Gym `step` |
 
 ```bash
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
 python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
+python3 bhuman/k1-training/k1-reactive/test_global_docs.py
 # 随总门禁一起跑：
 bash bhuman/k1-training/scripts/run_contract_gate.sh
 ```

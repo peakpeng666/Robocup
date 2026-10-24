@@ -364,31 +364,51 @@ def check_k1_reactive_skeleton(repo: Path, errors: list[str], notes: list[str]) 
 
 
 def check_gpu_free_shells(repo: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
-    """Skill-switch empty shells + negative unregistered-in-train.py fixture."""
+    """Skill-switch shells, static maps, global docs, unregistered fixture."""
     out: dict[str, Any] = {}
-    unreg_rel = "bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py"
-    switch_rel = "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
-    if not (repo / unreg_rel).is_file():
-        errors.append(f"missing {unreg_rel}")
-        out["unregistered_fixture"] = {"ok": False, "missing": True}
-    else:
-        module = _load_sibling(repo, unreg_rel, "k1_reactive_unregistered_fixture")
-        report = module.run(repo)
-        out["unregistered_fixture"] = report
-        errors.extend(report.get("errors") or [])
-        notes.extend(report.get("notes") or [])
-    if not (repo / switch_rel).is_file():
-        errors.append(f"missing {switch_rel}")
-        out["skill_switch_shells"] = {"ok": False, "missing": True}
-    else:
-        module = _load_sibling(repo, switch_rel, "k1_reactive_skill_switch_shells")
-        report = module.run()
-        out["skill_switch_shells"] = report
-        errors.extend((report.get("anchors") or {}).get("errors") or [])
-        if report.get("ok"):
-            notes.append(
-                f"skill-switch continuity: {len(report.get('shells') or [])} empty shells, implemented=false"
-            )
+    specs = (
+        (
+            "bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
+            "unregistered_fixture",
+            "k1_reactive_unregistered_fixture",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+            "skill_switch_shells",
+            "k1_reactive_skill_switch_shells",
+            False,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+            "skill_switch_map",
+            "k1_reactive_skill_switch_map",
+            False,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_global_docs.py",
+            "global_docs",
+            "k1_reactive_global_docs",
+            True,
+        ),
+    )
+    for rel, key, mod_name, pass_repo in specs:
+        if not (repo / rel).is_file():
+            errors.append(f"missing {rel}")
+            out[key] = {"ok": False, "missing": True}
+            continue
+        module = _load_sibling(repo, rel, mod_name)
+        report = module.run(repo) if pass_repo else module.run()
+        out[key] = report
+        if key == "skill_switch_shells":
+            errors.extend((report.get("anchors") or {}).get("errors") or [])
+            if report.get("ok"):
+                notes.append(
+                    f"skill-switch continuity: {len(report.get('shells') or [])} empty shells, implemented=false"
+                )
+        else:
+            errors.extend(report.get("errors") or [])
+            notes.extend(report.get("notes") or [])
     return out
 
 
@@ -780,7 +800,9 @@ def main() -> int:
             "rule": "new skills are parallel extensions; do not rewrite frozen dims",
             "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
             "unregistered_in_train_py": reactive.get("unregistered_in_train_py"),
-            "skill_switch": "docs + empty shells (history/phase/torque); not implemented",
+            "skill_switch": "docs + empty shells + static slot map; full switcher not implemented",
+            "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
+            "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -820,6 +842,8 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
             "python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
             "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+            "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
@@ -842,7 +866,8 @@ def main() -> int:
         "[k1] skeleton YAML present; unregistered in train.py = "
         f"{reactive.get('unregistered_in_train_py') or 'MISSING'}"
     )
-    print("[k1] skill-switch continuity: docs + empty shells (history/phase/torque)")
+    print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
+    print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5")
     print(
         f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
     )

@@ -99,6 +99,7 @@ skill_switch:
   fallback: "official K1 walk 344→13"
   checklist: "bhuman/docs/SKILL-SWITCH-CONTINUITY.md"
   empty_shells: "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
+  static_mapper: "bhuman/k1-training/k1-reactive/skill_switch_map.py"
   implemented: false
   todo:
     - align gait phase

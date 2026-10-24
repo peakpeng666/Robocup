@@ -1,6 +1,6 @@
 # 技能切换连续性验收清单（走 ↔ 踢 ↔ 反应）
 
-2026-10-24。配套：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md)、[NEXT-P1-P2.md](NEXT-P1-P2.md)、[k1-reactive/README.md](../k1-training/k1-reactive/README.md)。
+2026-10-24。配套：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)、[NEXT-P1-P2.md](NEXT-P1-P2.md)、[k1-reactive/README.md](../k1-training/k1-reactive/README.md)。
 
 **本文件只列验收项。** 空测试壳：`bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py`。
 没有切换器实现，没有 Gym `step`，没有可训练 env。官方合同冻结。
@@ -74,14 +74,16 @@ walk 历史语义（契约 v1）：形状 `(num_envs,10,32)`，先左移再写�
 
 | 壳 | 对应 ID | 现状 |
 |---|---|---|
-| `test_history_walk_kick` | H1 H2 | SKIP |
+| `test_history_walk_kick` | H1 H2 | SKIP（禁止 memcpy，尚无时间序列） |
 | `test_history_walk_reactive` | H3 H4 | SKIP |
-| `test_history_kick_reactive` | H5 H6 | SKIP |
-| `test_phase_walk_kick` | P1 | SKIP |
-| `test_phase_walk_reactive` | P2 P3 P4 | SKIP |
-| `test_torque_leg_slots` | T1 T2 | SKIP |
-| `test_torque_first_step` | T3 T4 | SKIP |
-| `test_no_onnx_hot_swap` | T5 T6 | SKIP（静态：维数巧合 ≠ 可加载） |
+| `test_history_kick_reactive` | H5 H6 | SKIP（球坐标系未换） |
+| `test_phase_walk_kick` | P1 | SKIP（缺 walk/kick 联立时钟） |
+| `test_phase_walk_reactive` | P2 部分 | **静态 PASS**：`advance_gait`；P3/P4 头零点映射 PASS，完整切入仍 SKIP |
+| `test_torque_leg_slots` | T1 T2 | **静态 PASS**：`skill_switch_map.py` |
+| `test_torque_first_step` | T3 部分 | **静态 PASS**：`first_step_last_action`；T4 力矩差分仍 SKIP |
+| `test_no_onnx_hot_swap` | T5 | **静态 PASS**：`refuse_hot_swap`；T6 PD 组仍 SKIP |
+
+活测试：`python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py`。
 
 能跑、且现在就必须过的只有：本清单文件存在且含「历史 / 相位 / 力矩」三节；骨架 YAML 的 `skill_switch` 仍指向本文件。
 

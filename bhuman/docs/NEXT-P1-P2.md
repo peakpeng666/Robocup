@@ -1,7 +1,8 @@
 # P1 / P2 操作手册（基线 = B-Human 官方步态运控）
 
-2026-10-24。配套调研：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md)。
+2026-10-24。配套：[SURVEY-20261024-motion-policy-rl.md](SURVEY-20261024-motion-policy-rl.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)。
 **不改 walk 344→13、kick 59→13、standup 73→22。** 无 GPU 时只跑静态门禁与预留探测。
+阶段定义以 ROADMAP 为准：P0 门禁、P1 官方本体感、P2 平行反应、P3 对照、P4 切换/sim2sim、P5 真机前置（未授权）。
 
 ## 架构：步态运控是底座，技能平行往上接
 
@@ -146,12 +147,15 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 python3 bhuman/k1-training/k1-reactive/check_skeleton.py
 python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
+python3 bhuman/k1-training/k1-reactive/test_global_docs.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
-技能切换连续性（走↔踢↔反应，历史/相位/力矩）只验收文档+空壳：
+技能切换：历史缓冲仍是空壳；槽位/相位静态映射已可测：
 
 ```bash
+python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py
 python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py
 python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 ```
@@ -160,4 +164,5 @@ python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py
 合同门禁对已存在的骨架 YAML 明确：**未注册进 `train.py` = PASS**；负向说明见 `test_unregistered_in_train_py.py`（泄漏进官方 `envs/` 必须 FAIL）。
 HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STANDUP.md](HIFAR-VS-STANDUP.md)（不实现训练代码）。
 
+全球调研与 P0–P5 取舍：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。
