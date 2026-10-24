@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T06:58:52+00:00",
+  "generated_utc": "2026-10-24T07:01:39+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -15,6 +15,9 @@
     "p2_acceptance": "bhuman/docs/P2-ACCEPTANCE.md",
     "reactive_hardening": "k1-reactive 64→15 bypass; not a new gait baseline",
     "bt_deploy_crosscheck": "BT × deploy table; default stays walk 344→13",
+    "standup_kick_hardening": "official kick/standup edges; SimRobot ≠ fast 72→22",
+    "hifar_boundary": "HiFAR ≠ standup; Huoshen 58 ≠ walk 344",
+    "blockers": "ROADMAP §5 checklist; tell user before any GPU train",
     "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
     "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
     "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
@@ -86,6 +89,7 @@
       "PR #4 file-tree index present",
       "history/torque timeseries draft present",
       "P2 acceptance (walk default; P2 does not change 344) present",
+      "HiFAR ≠ standup 73→22 / fast 72→22 present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -467,6 +471,51 @@
         "deploy never reaches SM for nusim"
       ]
     },
+    "standup_kick_hardening": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "contracts: walk 344→13 / kick 59→13 / standup 73→22 / fast 72→22",
+        "assert_standup_kick_bypass: empty=walk; fallen-only; getup_done; no standup→kick",
+        "empty context: BT + deploy stay official walk 344→13",
+        "standup only after fallen",
+        "standup→kick refused; must walk first",
+        "getup_done returns to walk 344→13",
+        "want_kick selects official kick 59→13",
+        "refused SimRobot as fast standup",
+        "refused SimRobot as 72→22",
+        "refused SimRobot claiming 72→22",
+        "non-impersonating SimRobot claim accepted (not a fast-standup gate)"
+      ]
+    },
+    "hifar_boundary": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_hifar_boundary: no T1 weights, no 58-as-344, docs present",
+        "refused model.pth as a K1 actor weight",
+        "refused K1_walk.pth as a K1 actor weight",
+        "Huoshen T1 58→15 refused as official walk 344→13",
+        "walk 344 + Huoshen 15-D action refused",
+        "official walk stays 344→13; Huoshen 58 is a different family",
+        "research-input present: bhuman/research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md",
+        "research-input present: bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+        "GLOBAL cites 火神 2511.03996 and HiFAR separately",
+        "research-input present: bhuman/docs/HIFAR-VS-STANDUP.md",
+        "HIFAR pointer 2502.20061 ≠ standup 73→22 / 72→22",
+        "research-input present: bhuman/docs/RESEARCH-BRANCH.md"
+      ]
+    },
+    "blockers": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "ROADMAP §5: 缺什么 / 谁提供 / SKIP→PASS + 先告知用户",
+        "blocker ids present: B1, B2, B3, B4, B5, B6, B7, B8",
+        "checklist forbids auto-train when a GPU worker appears",
+        "NEXT-P1-P2.md still starts GPU work on official walk 344→13"
+      ]
+    },
     "p1_draft": {
       "ok": true,
       "errors": [],
@@ -480,7 +529,7 @@
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T06:58:52+00:00",
+    "generated_utc": "2026-10-24T07:01:39+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -516,7 +565,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "411e5fa1fceed49b44be56abc47b9103b92ae6c3",
+    "workspace_head": "642a61906afb8ba1040bc95810bc81c2d9015bec",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -922,6 +971,7 @@
     "PR #4 file-tree index present",
     "history/torque timeseries draft present",
     "P2 acceptance (walk default; P2 does not change 344) present",
+    "HiFAR ≠ standup 73→22 / fast 72→22 present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1107,6 +1157,33 @@
     "deploy never reaches SM for huoshen_t1",
     "BT refuses nusim before deploy",
     "deploy never reaches SM for nusim",
+    "contracts: walk 344→13 / kick 59→13 / standup 73→22 / fast 72→22",
+    "assert_standup_kick_bypass: empty=walk; fallen-only; getup_done; no standup→kick",
+    "empty context: BT + deploy stay official walk 344→13",
+    "standup only after fallen",
+    "standup→kick refused; must walk first",
+    "getup_done returns to walk 344→13",
+    "want_kick selects official kick 59→13",
+    "refused SimRobot as fast standup",
+    "refused SimRobot as 72→22",
+    "refused SimRobot claiming 72→22",
+    "non-impersonating SimRobot claim accepted (not a fast-standup gate)",
+    "assert_hifar_boundary: no T1 weights, no 58-as-344, docs present",
+    "refused model.pth as a K1 actor weight",
+    "refused K1_walk.pth as a K1 actor weight",
+    "Huoshen T1 58→15 refused as official walk 344→13",
+    "walk 344 + Huoshen 15-D action refused",
+    "official walk stays 344→13; Huoshen 58 is a different family",
+    "research-input present: bhuman/research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md",
+    "research-input present: bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+    "GLOBAL cites 火神 2511.03996 and HiFAR separately",
+    "research-input present: bhuman/docs/HIFAR-VS-STANDUP.md",
+    "HIFAR pointer 2502.20061 ≠ standup 73→22 / 72→22",
+    "research-input present: bhuman/docs/RESEARCH-BRANCH.md",
+    "ROADMAP §5: 缺什么 / 谁提供 / SKIP→PASS + 先告知用户",
+    "blocker ids present: B1, B2, B3, B4, B5, B6, B7, B8",
+    "checklist forbids auto-train when a GPU worker appears",
+    "NEXT-P1-P2.md still starts GPU work on official walk 344→13",
     "draft baseline stays 344→13",
     "five P1 factors are draft-only and do not rewrite 344",
     "official K1.yaml rewards and stability v1 jsons unchanged",
@@ -1139,6 +1216,9 @@
     "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
     "python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
     "python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
+    "python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py",
+    "python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
+    "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
     "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]

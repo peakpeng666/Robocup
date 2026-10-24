@@ -167,7 +167,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-switcher.json
 ├── contract-gate-20261024-deploy.json
 ├── contract-gate-20261024-timeseries.json 上轮（时间序列草案 + 估计器旁路 + §6.10）
-├── contract-gate-20261024-p2.json     本轮（P2 验收 + reactive 硬化 + §6.11）
+├── contract-gate-20261024-p2.json     上轮（P2 验收 + reactive 硬化 + §6.11）
+├── contract-gate-20261024-standup.json 本轮（standup/kick 硬化 + HiFAR 边界 + 阻塞项清单）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
