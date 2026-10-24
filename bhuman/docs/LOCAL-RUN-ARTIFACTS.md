@@ -10,6 +10,12 @@
 
 walk 评估指标门禁只读：`run_walk_eval.sh` 默认 seed 2027 / 100 step / 8 env，上限 1000 / 64，超时 900 s。RMSE 允许 `tracking_rmse_settled_vx_vy_wz` / `tracking_rmse_full_vx_vy_wz`。**单次回放 PASS ≠ 比赛合格**。机读合同：`scripts/walk_eval_metrics.py`。本机 seed2027 摘要在 `artifacts/20261024_200640_281778_walk_eval_s2027/`（过程 PASS；质量未认证）。
 
+有界 kick 回放（操作者本机才跑）：`run_replay.sh K1_Ball` 建议 4 env / 300 step，脚本默认 4/500，上限 256 / 1000，超时 600 s，显存 12 GiB。**59→13**，不是 walk **344→13**。history reset 仅 draft（`engine.resetHistoryData()`；`apply_to_live=false`）。缺 GPU 权重仍 PASS 清单。产物只进 `runs/<id>/`，随即归档 `artifacts/<run-id>/`。机读合同：`scripts/bounded_kick_replay.py`。**TRAINABLE=false**。walk↔kick **gap_closed=false**。
+
+standup 评估指标门禁只读：`run_standup_eval.sh` 默认 published / seed 2026 / 3000 step / 28 env，上限 10000 / 14–112 且 %14==0，超时 1200 s。质量允许 `reference_completion_rate` / `stable_finish_rate` / `worst_stratum_reference_rate` / `post_getup_upright_fraction`。覆盖 `quality_verdict=REPORT_ONLY`。**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格**。机读合同：`scripts/standup_eval_metrics.py`。本仓不 import isaacgym。**TRAINABLE=false**。**gap_closed=false**。
+
+跌倒→起身→walk 干跑链（无 GPU）：`python3 bhuman/k1-training/scripts/fall_getup_walk_dry_run.py`。顺序：fallen → GetUp createPhase → standup 73→22 / fast 72→22 → Force walk afterwards → walk **344→13** + 13-zero。glue 已有 `getup_walk_handoff_chain` 等分段；缺 sibling 诚实 SKIP，不伪造。**gap_closed=false**。不跑 Isaac。
+
 ---
 
 ## 1. 本机角色

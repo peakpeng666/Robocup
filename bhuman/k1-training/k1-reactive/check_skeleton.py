@@ -579,6 +579,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "walk-eval RMSE allowlist; replay PASS ≠ 比赛合格; runs/ only",
         ),
         (
+            "bhuman/k1-training/scripts/bounded_kick_replay.py",
+            "bounded run_replay.sh K1_Ball 59→13; 4/300 · 256/1000; GAP draft; not walk 344",
+        ),
+        (
+            "bhuman/k1-training/scripts/standup_eval_metrics.py",
+            "standup-eval REPORT_ONLY overlay; PASS_FOR_DECLARED_PROFILE ≠ 比赛合格",
+        ),
+        (
+            "bhuman/k1-training/scripts/fall_getup_walk_dry_run.py",
+            "fall→getup→force-walk→walk344 dry-run glue; no Isaac; GAP open",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

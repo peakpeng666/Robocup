@@ -116,6 +116,9 @@
 | 有界 walk 回放 | `scripts/bounded_walk_replay.py` | `run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；`runs/<id>/` → `artifacts/<run-id>/` |
 | 有界 standup 回放 | `scripts/bounded_standup_replay.py` | `run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**；`runs/<id>/` → `artifacts/<run-id>/` |
 | walk 评估指标门禁 | `scripts/walk_eval_metrics.py` | `run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格 |
+| 有界 kick 回放 | `scripts/bounded_kick_replay.py` | `run_replay.sh K1_Ball` 建议 4/300；**59→13** ≠ walk **344→13**；history reset 仅 draft；缺权仍 PASS 清单 |
+| standup 评估指标门禁 | `scripts/standup_eval_metrics.py` | `run_standup_eval` REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格** |
+| 跌倒→起身→walk 干跑链 | `scripts/fall_getup_walk_dry_run.py` | fallen→GetUp→Force walk afterwards→walk **344→13**；glue 已有分段；**gap_closed=false** |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

@@ -55,7 +55,10 @@ WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（�
 本机 bh-gym 开训干跑路径：`scripts/local_bh_gym_dry_run.py`（指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**）。  
 有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
 有界 standup 回放入口：`scripts/bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
-walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false**）。
+walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false**）。  
+有界 kick 回放入口：`scripts/bounded_kick_replay.py`（`run_replay.sh K1_Ball` 建议 4/300；**59→13** ≠ walk **344→13**；history reset 仅 draft；缺权仍 PASS 清单）。  
+standup 评估指标门禁只读：`scripts/standup_eval_metrics.py`（`run_standup_eval` REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格**）。  
+跌倒→起身→walk 干跑链：`scripts/fall_getup_walk_dry_run.py`（fallen→GetUp→Force walk afterwards→walk **344→13**；glue `getup_walk_handoff_chain`；**gap_closed=false**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

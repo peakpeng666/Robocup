@@ -1,0 +1,63 @@
+{
+  "generated_utc": "2026-10-24T11:19:30+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "bash bhuman/k1-training/scripts/run_standup_eval.sh <operator-local K1_stand_up.pt> published 2026 3000 28",
+  "limits": {
+    "task": "K1_Stand_Up",
+    "profile_default": "published",
+    "seed_default": 2026,
+    "steps_default": 3000,
+    "steps_max": 10000,
+    "envs_default": 28,
+    "envs_min": 14,
+    "envs_max": 112,
+    "envs_multiple_of": 14,
+    "timeout_s": 1200,
+    "vram_mib_max": 12288,
+    "runs_root": "bhuman/k1-training/runs/<stamp>_standup_eval_<profile>_s<seed>/",
+    "artifacts_root": "bhuman/k1-training/artifacts/<run-id>/"
+  },
+  "quality_allow": [
+    "reference_completion_rate",
+    "stable_finish_rate",
+    "worst_stratum_reference_rate",
+    "post_getup_upright_fraction"
+  ],
+  "quality_verdict": "REPORT_ONLY_QUALITY_NOT_CERTIFIED",
+  "competition_ready": false,
+  "writes": {
+    "runs": "bhuman/k1-training/runs/<stamp>_standup_eval_<profile>_s<seed>/",
+    "upload": "bhuman/k1-training/artifacts/<run-id>/",
+    "outside_runs": false,
+    "home_scan": false
+  },
+  "will_exec_eval_here": false,
+  "will_import_evaluate_standup": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "siblings_referenced_not_reaudited": [
+    "run_standup_eval.sh",
+    "standup_eval_entry.py",
+    "evaluate_standup.py",
+    "upload_run_artifacts.py",
+    "bounded_standup_replay.py",
+    "walk_eval_metrics.py"
+  ],
+  "standup_eval_pass_as_competition_ready": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "standup eval report-only overlay: published / 2026 / 3000 / 28, cap 10000 / 14–112 %14, 1200s / 12 GiB; PASS_FOR_DECLARED_PROFILE ≠ 比赛合格; GAP open; no isaacgym import",
+  "trainable": false,
+  "auto_eval": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "standup": "73→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "standup_yaml_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b"
+}

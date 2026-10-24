@@ -1,0 +1,75 @@
+{
+  "generated_utc": "2026-10-24T11:19:30+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/fall_getup_walk_dry_run.py",
+  "sequence": [
+    "fallen",
+    "getup_createPhase",
+    "standup_73_22_or_fast_72_22",
+    "force_walk_afterwards",
+    "walk_344_13_plus_13_zero"
+  ],
+  "steps": [
+    {
+      "id": "falldown_motion_chain",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "standup_policy_apply_dims",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "fast_standup_isolation",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "force_walk_afterwards",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "getup_walk_handoff_chain",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "last_action_reset",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "docs_pointer": {
+    "handoff": "bhuman/k1-training/scripts/getup_walk_handoff_chain.py",
+    "deploy": "bhuman/docs/DEPLOY-CALL-SEQUENCE.md",
+    "artifacts": "bhuman/docs/LOCAL-RUN-ARTIFACTS.md"
+  },
+  "will_run_isaac": false,
+  "will_run_train_py": false,
+  "will_exec_eval_here": false,
+  "e2e_dry_run_skips_force_walk": false,
+  "e2e_dry_run_claims_gap_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "glue checklist: fallen→GetUp createPhase→standup 73→22 or fast 72→22→Force walk afterwards→walk 344→13 + 13-zero; missing sibling SKIP that step; GAP stays open; no Isaac",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "standup": "73→22",
+  "fast": "72→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

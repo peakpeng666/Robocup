@@ -237,6 +237,9 @@ scripts/
 ├── bounded_walk_replay.py       run_replay.sh K1 4/500 · 256/1000 · 600s / 12GiB；runs/ → artifacts/
 ├── bounded_standup_replay.py    run_replay.sh K1_Stand_Up 73→22 · 4/300 · 256/1000；≠ walk 344
 ├── walk_eval_metrics.py         run_walk_eval RMSE 允许集；单次回放 PASS ≠ 比赛合格
+├── bounded_kick_replay.py       run_replay.sh K1_Ball 59→13 · 4/300 · 256/1000；GAP draft；≠ walk 344
+├── standup_eval_metrics.py      run_standup_eval REPORT_ONLY；PASS_FOR_DECLARED_PROFILE ≠ 比赛合格
+├── fall_getup_walk_dry_run.py   fallen→getup→force-walk→walk344 干跑 glue；无 Isaac；GAP 开
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -332,6 +335,9 @@ k1-switcher/
 ├── test_bounded_walk_replay.py
 ├── test_bounded_standup_replay.py
 ├── test_walk_eval_metrics.py
+├── test_bounded_kick_replay.py
+├── test_standup_eval_metrics.py
+├── test_fall_getup_walk_dry_run.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -435,7 +441,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-pbk.json    上轮（PlayBall ≠ kickPolicy 两条链 + reactive stub 硬化）
 ├── contract-gate-20261024-dseq.json   上轮（部署双链时序 + WalkToBallAndKickEngine 无 ONNX）
 ├── contract-gate-20261024-ldry.json   上轮（本机 bh-gym 干跑路径 + 有界 walk 回放）
-├── contract-gate-20261024-srev.json   本轮（有界 standup 回放 + walk 评估指标门禁）
+├── contract-gate-20261024-srev.json   上轮（有界 standup 回放 + walk 评估指标门禁）
+├── contract-gate-20261024-ke2e.json   本轮（有界 kick 回放 + standup 评估 REPORT_ONLY + e2e 干跑）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -496,6 +503,9 @@ k1-training/manifests/
 ├── bounded-walk-replay-latest.json      run_replay.sh K1 有界；runs/ → artifacts/<run-id>/
 ├── bounded-standup-replay-latest.json   run_replay.sh K1_Stand_Up 73→22；≠ walk 344
 ├── walk-eval-metrics-latest.json        run_walk_eval RMSE 允许集；PASS ≠ 比赛合格
+├── bounded-kick-replay-latest.json      run_replay.sh K1_Ball 59→13；GAP draft；≠ walk 344
+├── standup-eval-metrics-latest.json     run_standup_eval REPORT_ONLY；PASS_FOR_DECLARED_PROFILE ≠ 比赛合格
+├── fall-getup-walk-dry-run-latest.json  fallen→getup→force-walk→walk344 glue；GAP 开
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -505,6 +515,9 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| 有界 kick 回放入口 | `scripts/bounded_kick_replay.py` | `run_replay.sh K1_Ball` 建议 4/300；**59→13** ≠ walk **344→13**；history reset 仅 draft；缺权仍 PASS 清单 |
+| standup 评估指标门禁 | `scripts/standup_eval_metrics.py` | `run_standup_eval` REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格** |
+| 跌倒→起身→walk 干跑链 | `scripts/fall_getup_walk_dry_run.py` | fallen→GetUp→Force walk afterwards→walk **344→13**；glue 已有分段；**gap_closed=false** |
 | 有界 standup 回放入口 | `scripts/bounded_standup_replay.py` | `run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/` |
 | walk 评估指标门禁 | `scripts/walk_eval_metrics.py` | `run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格 |
 | 本机 bh-gym 开训干跑路径 | `scripts/local_bh_gym_dry_run.py` + [LOCAL-BH-GYM-COMPAT.md](LOCAL-BH-GYM-COMPAT.md) | 指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；不自动开训 |
@@ -617,6 +630,9 @@ k1-training/manifests/
 | 有界 walk 回放入口 | `bounded_walk_replay.py` | `run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；`runs/<id>/` → `artifacts/<run-id>/` |
 | 有界 standup 回放入口 | `bounded_standup_replay.py` | `run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13** |
 | walk 评估指标门禁 | `walk_eval_metrics.py` | `run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格 |
+| 有界 kick 回放入口 | `bounded_kick_replay.py` | `run_replay.sh K1_Ball` 建议 4/300；**59→13** ≠ walk **344→13**；history reset 仅 draft |
+| standup 评估指标门禁 | `standup_eval_metrics.py` | `run_standup_eval` REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格** |
+| 跌倒→起身→walk 干跑链 | `fall_getup_walk_dry_run.py` | fallen→GetUp→Force walk afterwards→walk **344→13**；glue 已有分段 |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

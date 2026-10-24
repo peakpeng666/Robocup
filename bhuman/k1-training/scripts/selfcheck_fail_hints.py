@@ -280,6 +280,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/walk_eval_metrics.py",
         "hint": "先看 run_walk_eval RMSE 允许集是否仍是 settled/full vx vy wz，或单次回放 PASS 是否被写成比赛合格",
     },
+    "test_bounded_kick_replay.py": {
+        "look": "bhuman/k1-training/scripts/bounded_kick_replay.py",
+        "hint": "先看 run_replay.sh K1_Ball 是否仍是 59→13、建议 4/300、上限 256/1000，以及 history reset 是否仍只是 draft / 是否被写成 walk 344→13",
+    },
+    "test_standup_eval_metrics.py": {
+        "look": "bhuman/k1-training/scripts/standup_eval_metrics.py",
+        "hint": "先看 run_standup_eval 是否仍是 published/2026/3000/28 与 REPORT_ONLY，或 PASS_FOR_DECLARED_PROFILE 是否被写成比赛合格",
+    },
+    "test_fall_getup_walk_dry_run.py": {
+        "look": "bhuman/k1-training/scripts/fall_getup_walk_dry_run.py",
+        "hint": "先看跌倒→起身→Force walk→walk 344 干跑链是否跳过 Force walk，或是否把 walk↔kick GAP 写成已闭合",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

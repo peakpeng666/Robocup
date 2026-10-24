@@ -430,6 +430,9 @@ WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（�
 有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 默认 4/500、上限 256/1000、600 s / 12 GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
 有界 standup 回放入口：`scripts/bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4/300、上限 256/1000；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
 walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval.sh` 默认 2027/100/8；RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false**）。  
+有界 kick 回放入口：`scripts/bounded_kick_replay.py`（`run_replay.sh K1_Ball` 建议 4/300、上限 256/1000；**59→13** ≠ walk **344→13**；history reset 仅 draft；缺权仍 PASS 清单）。  
+standup 评估指标门禁只读：`scripts/standup_eval_metrics.py`（`run_standup_eval.sh` 默认 published/2026/3000/28；REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格**）。  
+跌倒→起身→walk 干跑链：`scripts/fall_getup_walk_dry_run.py`（fallen→GetUp→Force walk afterwards→walk **344→13**；glue 已有分段；**gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

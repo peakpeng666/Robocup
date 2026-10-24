@@ -88,6 +88,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_bounded_walk_replay.py",
         "test_bounded_standup_replay.py",
         "test_walk_eval_metrics.py",
+        "test_bounded_kick_replay.py",
+        "test_standup_eval_metrics.py",
+        "test_fall_getup_walk_dry_run.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

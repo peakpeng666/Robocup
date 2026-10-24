@@ -37,7 +37,9 @@ chain A equals chain B, deploy doc claims GAP closed,
 dry-run auto-starts train, ready_gpu true without checklist,
 replay writes outside runs, local compat doc claims GAP closed,
 standup replay as walk 344, walk-eval PASS as competition-ready,
-eval writes outside runs, dry-run doc claims GAP closed.
+eval writes outside runs, dry-run doc claims GAP closed,
+kick replay as walk 344, standup-eval PASS as competition-ready,
+e2e dry-run skips Force walk, e2e dry-run claims GAP closed.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -143,6 +145,14 @@ from walk_eval_metrics import (  # noqa: E402
     refuse_dry_run_doc_claims_gap_closed,
     refuse_eval_writes_outside_runs,
     refuse_walk_eval_pass_as_competition_ready,
+)
+from bounded_kick_replay import refuse_kick_replay_as_walk_344  # noqa: E402
+from standup_eval_metrics import (  # noqa: E402
+    refuse_standup_eval_pass_as_competition_ready,
+)
+from fall_getup_walk_dry_run import (  # noqa: E402
+    refuse_e2e_dry_run_claims_gap_closed,
+    refuse_e2e_dry_run_skips_force_walk,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -841,6 +851,47 @@ def _case_dry_run_doc_claims_gap_closed() -> None:
     )
 
 
+def _case_kick_replay_as_walk_344() -> None:
+    refuse_kick_replay_as_walk_344(
+        {
+            "kick_replay_as_walk_344": True,
+            "task": "K1_Ball",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_standup_eval_pass_as_competition_ready() -> None:
+    refuse_standup_eval_pass_as_competition_ready(
+        {
+            "standup_eval_pass_as_competition_ready": True,
+            "status": "PASS_FOR_DECLARED_PROFILE",
+            "quality_verdict": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_e2e_dry_run_skips_force_walk() -> None:
+    refuse_e2e_dry_run_skips_force_walk(
+        {
+            "e2e_dry_run_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_e2e_dry_run_claims_gap_closed() -> None:
+    refuse_e2e_dry_run_claims_gap_closed(
+        {
+            "e2e_dry_run_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -933,6 +984,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("walk_eval_pass_as_competition_ready", _case_walk_eval_pass_as_competition_ready),
     ("eval_writes_outside_runs", _case_eval_writes_outside_runs),
     ("dry_run_doc_claims_gap_closed", _case_dry_run_doc_claims_gap_closed),
+    ("kick_replay_as_walk_344", _case_kick_replay_as_walk_344),
+    ("standup_eval_pass_as_competition_ready", _case_standup_eval_pass_as_competition_ready),
+    ("e2e_dry_run_skips_force_walk", _case_e2e_dry_run_skips_force_walk),
+    ("e2e_dry_run_claims_gap_closed", _case_e2e_dry_run_claims_gap_closed),
 )
 
 
