@@ -695,6 +695,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "ball-task isolation; K1 / K1_Ball / Stand_Up slots; no cross-slot wiring",
         ),
         (
+            "bhuman/k1-training/scripts/getup_force_walk_handoff.py",
+            "GetUp force-walk handoff; 73→22 / 72→22 isolated; PASS ≠ field-ready standup",
+        ),
+        (
+            "bhuman/k1-training/scripts/standup_eval_artifact_crosscheck.py",
+            "standup-eval artifact REPORT_ONLY; checklist cannot upgrade quality_verdict",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

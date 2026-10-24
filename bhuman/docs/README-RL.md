@@ -145,6 +145,8 @@
 | PR 体积健康复扫 | `scripts/pr_volume_health_rescan.py` | 记增长；只建议日后可压缩 stamp；**不改历史**；**不删产物** |
 | KickEngine 请求/中止边 | `scripts/kick_engine_boundary_edges.py` | request/abort vs **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署 |
 | 球任务隔离矩阵 | `scripts/ball_task_isolation_matrix.py` | `K1` / `K1_Ball` / `K1_Stand_Up` 三槽；禁跨槽接线 |
+| GetUp → Force-walk 交接 | `scripts/getup_force_walk_handoff.py` | Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；PASS ≠ field-ready standup |
+| standup-eval 产物交叉核对 | `scripts/standup_eval_artifact_crosscheck.py` | 现有产物保持 REPORT_ONLY；清单不得升级 quality_verdict |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

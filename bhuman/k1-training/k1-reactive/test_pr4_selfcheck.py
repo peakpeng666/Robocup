@@ -104,6 +104,8 @@ NEEDLES = (
     "test_pr_volume_health_rescan.py",
     "test_kick_engine_boundary_edges.py",
     "test_ball_task_isolation_matrix.py",
+    "test_getup_force_walk_handoff.py",
+    "test_standup_eval_artifact_crosscheck.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

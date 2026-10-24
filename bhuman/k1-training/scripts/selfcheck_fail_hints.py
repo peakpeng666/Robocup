@@ -396,6 +396,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/ball_task_isolation_matrix.py",
         "hint": "先看 K1 / K1_Ball / K1_Stand_Up 三槽是否串线，或 ONNX 名是否占错槽",
     },
+    "test_getup_force_walk_handoff.py": {
+        "look": "bhuman/k1-training/scripts/getup_force_walk_handoff.py",
+        "hint": "先看 Force walk afterwards 是否被跳过，或 73→22 / 72→22 是否串槽，或 overlay PASS 是否被写成 field-ready standup",
+    },
+    "test_standup_eval_artifact_crosscheck.py": {
+        "look": "bhuman/k1-training/scripts/standup_eval_artifact_crosscheck.py",
+        "hint": "先看 standup-eval 产物是否仍 REPORT_ONLY，或清单/指针 PASS 是否被当成 quality 升级",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

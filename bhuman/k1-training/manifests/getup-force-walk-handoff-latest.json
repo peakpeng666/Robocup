@@ -1,0 +1,49 @@
+{
+  "generated_utc": "2026-10-24T12:48:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/getup_force_walk_handoff.py",
+  "checklist": [
+    "force_walk_not_skipped",
+    "standup_73_22_isolated",
+    "fast_72_22_isolated",
+    "return_walk_344",
+    "pass_not_field_ready_standup"
+  ],
+  "edges": [
+    {
+      "id": "force_walk_comment",
+      "needle": "Force walk afterwards",
+      "selects": "theWalkGenerator",
+      "contract": "344→13",
+      "path": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp"
+    },
+    {
+      "id": "force_walk_create",
+      "needle": "theWalkGenerator.createPhase",
+      "selects": "walk",
+      "contract": "344→13",
+      "path": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp"
+    }
+  ],
+  "standup": "73→22",
+  "fast": "72→22",
+  "walk": "344→13",
+  "force_walk_skipped": false,
+  "handoff_pass_as_field_ready_standup": false,
+  "field_ready": false,
+  "apply_to_live": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "GetUp must pass Force walk afterwards; 73→22 / 72→22 isolated; return walk 344→13; overlay PASS ≠ field-ready standup",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

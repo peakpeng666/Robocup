@@ -266,6 +266,8 @@ scripts/
 ├── pr_volume_health_rescan.py   记增长；no_history_rewrite；do_not_delete_artifacts
 ├── kick_engine_boundary_edges.py request/abort vs 59→13；PlayBall≠kick；≠ live RL kick
 ├── ball_task_isolation_matrix.py K1 / K1_Ball / Stand_Up 三槽；禁跨槽接线
+├── getup_force_walk_handoff.py  Force walk 不可跳；73/72 隔离；≠ field-ready standup
+├── standup_eval_artifact_crosscheck.py REPORT_ONLY；清单不得升 quality
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -390,6 +392,8 @@ k1-switcher/
 ├── test_pr_volume_health_rescan.py
 ├── test_kick_engine_boundary_edges.py
 ├── test_ball_task_isolation_matrix.py
+├── test_getup_force_walk_handoff.py
+├── test_standup_eval_artifact_crosscheck.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -504,7 +508,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-dpsg.json   上轮（域随机草案 + PD 增益负例 + 六机缺口）
 ├── contract-gate-20261024-ebts.json   上轮（估计器旁路草案 + 力矩/effort 序列）
 ├── contract-gate-20261024-ritv.json   上轮（拦截硬化 + 队通信负例 + 体积复扫）
-├── contract-gate-20261024-kebi.json   本轮（KickEngine 请求/中止边 + 球任务隔离矩阵）
+├── contract-gate-20261024-kebi.json   上轮（KickEngine 请求/中止边 + 球任务隔离矩阵）
+├── contract-gate-20261024-ghse.json   本轮（GetUp Force-walk 交接 + standup-eval 产物 REPORT_ONLY）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -589,6 +594,8 @@ k1-training/manifests/
 ├── pr-volume-health-rescan-latest.json 记增长；no_history_rewrite；do_not_delete_artifacts
 ├── kick-engine-boundary-edges-latest.json request/abort vs 59→13；PASS ≠ live RL kick
 ├── ball-task-isolation-matrix-latest.json K1 / K1_Ball / Stand_Up 三槽；禁跨槽
+├── getup-force-walk-handoff-latest.json Force walk 不可跳；73/72 隔离；≠ field-ready
+├── standup-eval-artifact-crosscheck-latest.json REPORT_ONLY；清单不得升 quality
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -598,6 +605,8 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| GetUp → Force-walk 交接 | `scripts/getup_force_walk_handoff.py` | Force walk afterwards 不可跳过；standup **73→22** / fast **72→22** 隔离；返回 walk **344→13**；PASS ≠ field-ready standup；stamp `20261024-ghse` |
+| standup-eval 产物交叉核对 | `scripts/standup_eval_artifact_crosscheck.py` | 现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实 |
 | KickEngine 请求/中止边 | `scripts/kick_engine_boundary_edges.py` | request → kickPolicy **59→13**；abort/finish → walkPolicy **344→13**；PlayBall ≠ kickPolicy；standalone KickEngine 不伪造；PASS ≠ live RL kick 部署；stamp `20261024-kebi` |
 | 球任务隔离矩阵 | `scripts/ball_task_isolation_matrix.py` | walk **344→13** / `K1_Ball` **59→13** / `K1_Stand_Up` **73→22**；ONNX 名隔离；禁跨槽接线 |
 | reactive 拦截旁路硬化 | `scripts/reactive_intercept_bypass_hardening.py` | **TRAINABLE=false**；PlayBall ≠ kickPolicy；`shouldInterceptBall` 仍 walkPolicy；PASS ≠ live kick 部署；stamp `20261024-ritv` |
@@ -768,6 +777,8 @@ k1-training/manifests/
 | PR 体积健康复扫 | `pr_volume_health_rescan.py` | 记增长；**no_history_rewrite**；**do_not_delete_artifacts** |
 | KickEngine 请求/中止边 | `kick_engine_boundary_edges.py` | request/abort vs **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署 |
 | 球任务隔离矩阵 | `ball_task_isolation_matrix.py` | `K1` / `K1_Ball` / `K1_Stand_Up` 三槽；禁跨槽接线 |
+| GetUp → Force-walk 交接 | `getup_force_walk_handoff.py` | Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；PASS ≠ field-ready standup |
+| standup-eval 产物交叉核对 | `standup_eval_artifact_crosscheck.py` | 现有产物保持 REPORT_ONLY；清单不得升级 quality_verdict |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

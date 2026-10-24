@@ -264,6 +264,12 @@ from kick_engine_boundary_edges import (  # noqa: E402
 from ball_task_isolation_matrix import (  # noqa: E402
     refuse_ball_task_cross_slot_wiring,
 )
+from getup_force_walk_handoff import (  # noqa: E402
+    refuse_handoff_pass_as_field_ready_standup,
+)
+from standup_eval_artifact_crosscheck import (  # noqa: E402
+    refuse_standup_eval_artifact_upgrades_quality,
+)
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
@@ -1403,6 +1409,26 @@ def _case_ball_task_cross_slot_wiring() -> None:
     )
 
 
+def _case_handoff_pass_as_field_ready_standup() -> None:
+    refuse_handoff_pass_as_field_ready_standup(
+        {
+            "handoff_pass_as_field_ready_standup": True,
+            "as_field_ready_standup": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_standup_eval_artifact_upgrades_quality() -> None:
+    refuse_standup_eval_artifact_upgrades_quality(
+        {
+            "standup_eval_artifact_upgrades_quality": True,
+            "checklist_upgrades_quality": True,
+            "quality_verdict": "PASS",
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1538,6 +1564,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("volume_rescan_deletes_artifacts", _case_volume_rescan_deletes_artifacts),
     ("kick_engine_pass_as_live_rl_kick_deploy", _case_kick_engine_pass_as_live_rl_kick_deploy),
     ("ball_task_cross_slot_wiring", _case_ball_task_cross_slot_wiring),
+    ("handoff_pass_as_field_ready_standup", _case_handoff_pass_as_field_ready_standup),
+    ("standup_eval_artifact_upgrades_quality", _case_standup_eval_artifact_upgrades_quality),
 )
 
 

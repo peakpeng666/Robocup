@@ -166,6 +166,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "volume_rescan_deletes_artifacts",
         "kick_engine_pass_as_live_rl_kick_deploy",
         "ball_task_cross_slot_wiring",
+        "handoff_pass_as_field_ready_standup",
+        "standup_eval_artifact_upgrades_quality",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -229,7 +231,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "series-pass-as-competition-ready / "
             "reactive-pass-as-live-kick-deploy / silent-teamcomm-size-upgrade / "
             "volume-rescan-deletes-artifacts / "
-            "kick-engine-pass-as-live-rl-kick-deploy / ball-task-cross-slot-wiring"
+            "kick-engine-pass-as-live-rl-kick-deploy / ball-task-cross-slot-wiring / "
+            "handoff-pass-as-field-ready-standup / standup-eval-artifact-upgrades-quality"
         )
 
     try:
