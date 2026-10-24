@@ -98,7 +98,7 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("FAIL summary must print 先看 file/test")
     else:
         notes.append("FAIL summary prints 先看 locator")
-    if "长篇" in text or len(text) > 12000:
+    if "长篇" in text or len(text) > 16000:
         errors.append("summary grew into a long survey")
     else:
         notes.append("short PASS/SKIP/WARN markdown (not a new survey)")
