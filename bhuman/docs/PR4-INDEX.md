@@ -243,6 +243,9 @@ scripts/
 ├── kick_eval_metrics.py         K1_Ball 59→13 REPORT_ONLY；kick eval PASS ≠ 比赛合格 ≠ walk 344 ≠ live
 ├── bounded_fast_standup_replay.py deploy-only 72→22 / K1_fast_standup；≠ walk 344；≠ 常规 73
 ├── dual_chain_switch_dry_run.py PlayBall≠kick；官方无 want_kick；拒绝陈旧 last_action；GAP 开
+├── kick_onnx_deploy_path.py     K1_kick_inner ≠ K1_walk 槽；缺权 missing-weight SKIP；TRAINABLE=false
+├── standup_fast_isolation_matrix.py 344→13 / 73→22 / 72→22 隔离表；无 live 串槽
+├── policy_switch_phase_draft.py last_action → history reset → Force walk；apply_to_live=false
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -344,6 +347,9 @@ k1-switcher/
 ├── test_kick_eval_metrics.py
 ├── test_bounded_fast_standup_replay.py
 ├── test_dual_chain_switch_dry_run.py
+├── test_kick_onnx_deploy_path.py
+├── test_standup_fast_isolation_matrix.py
+├── test_policy_switch_phase_draft.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -449,7 +455,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-ldry.json   上轮（本机 bh-gym 干跑路径 + 有界 walk 回放）
 ├── contract-gate-20261024-srev.json   上轮（有界 standup 回放 + walk 评估指标门禁）
 ├── contract-gate-20261024-ke2e.json   上轮（有界 kick 回放 + standup 评估 REPORT_ONLY + e2e 干跑）
-├── contract-gate-20261024-kfsd.json   本轮（kick 评估 REPORT_ONLY + fast-standup 回放 + 双链干跑）
+├── contract-gate-20261024-kfsd.json   上轮（kick 评估 REPORT_ONLY + fast-standup 回放 + 双链干跑）
+├── contract-gate-20261024-kspm.json   本轮（kick ONNX 部署路径 + standup/fast 隔离矩阵 + 相位草稿）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -516,6 +523,9 @@ k1-training/manifests/
 ├── kick-eval-metrics-latest.json        K1_Ball 59→13 REPORT_ONLY；kick eval PASS ≠ 比赛合格
 ├── bounded-fast-standup-replay-latest.json deploy-only 72→22；≠ walk 344；≠ 常规 73
 ├── dual-chain-switch-dry-run-latest.json PlayBall≠kick；官方无 want_kick；GAP 开
+├── kick-onnx-deploy-path-latest.json    K1_kick_inner ≠ K1_walk 槽；缺权 missing-weight SKIP
+├── standup-fast-isolation-matrix-latest.json 344→13 / 73→22 / 72→22；无 live 串槽
+├── policy-switch-phase-draft-latest.json last_action → history reset → Force walk；apply_to_live=false
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -525,6 +535,9 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| kick ONNX 部署路径 | `scripts/kick_onnx_deploy_path.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false**；**gap_closed=false** |
+| standup / fast 隔离矩阵 | `scripts/standup_fast_isolation_matrix.py` | **344→13** / **73→22** / **72→22**；live cfg 无串槽；fast 不是 Isaac |
+| 策略切换相位草稿 | `scripts/policy_switch_phase_draft.py` | last_action → resetHistoryData → Force walk；**apply_to_live=false**；**gap_closed=false** |
 | kick 评估指标门禁 | `scripts/kick_eval_metrics.py` | K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署 |
 | 有界 fast-standup 回放 | `scripts/bounded_fast_standup_replay.py` | deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22** |
 | 双链切换干跑负例 | `scripts/dual_chain_switch_dry_run.py` | PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前；**gap_closed=false** |
@@ -649,6 +662,9 @@ k1-training/manifests/
 | kick 评估指标门禁 | `kick_eval_metrics.py` | K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署 |
 | 有界 fast-standup 回放 | `bounded_fast_standup_replay.py` | deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22** |
 | 双链切换干跑负例 | `dual_chain_switch_dry_run.py` | PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前 |
+| kick ONNX 部署路径 | `kick_onnx_deploy_path.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false** |
+| standup / fast 隔离矩阵 | `standup_fast_isolation_matrix.py` | **344→13** / **73→22** / **72→22**；无 live 串槽 |
+| 策略切换相位草稿 | `policy_switch_phase_draft.py` | last_action → resetHistoryData → Force walk；**apply_to_live=false** |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

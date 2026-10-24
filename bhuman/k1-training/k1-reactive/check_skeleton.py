@@ -603,6 +603,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "dual-chain switch dry-run negatives; PlayBall≠kick; GAP open",
         ),
         (
+            "bhuman/k1-training/scripts/kick_onnx_deploy_path.py",
+            "kick ONNX deploy-path; K1_kick_inner ≠ walk 344 slot; missing-weight SKIP",
+        ),
+        (
+            "bhuman/k1-training/scripts/standup_fast_isolation_matrix.py",
+            "standup/fast/walk isolation matrix 73→22 vs 72→22 vs 344→13",
+        ),
+        (
+            "bhuman/k1-training/scripts/policy_switch_phase_draft.py",
+            "policy-switch phase draft; last_action → history reset → Force walk",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

@@ -304,6 +304,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/dual_chain_switch_dry_run.py",
         "hint": "先看双链干跑负例是否仍拒绝 PlayBall=kickPolicy / 官方 want_kick / 陈旧 last_action / 跳过 Force walk，或是否把 GAP 写成已闭合",
     },
+    "test_kick_onnx_deploy_path.py": {
+        "look": "bhuman/k1-training/scripts/kick_onnx_deploy_path.py",
+        "hint": "先看 kick ONNX 部署路径是否仍是 K1_kick_inner.onnx 59→13 且 ≠ walk 344 槽，或缺权是否被写成 fabricated PASS / live 部署",
+    },
+    "test_standup_fast_isolation_matrix.py": {
+        "look": "bhuman/k1-training/scripts/standup_fast_isolation_matrix.py",
+        "hint": "先看隔离矩阵是否仍是 walk 344→13 / standup 73→22 / fast 72→22，或 live cfg 是否出现 73↔72 / fast↔walk 串槽",
+    },
+    "test_policy_switch_phase_draft.py": {
+        "look": "bhuman/k1-training/scripts/policy_switch_phase_draft.py",
+        "hint": "先看切换相位草稿是否仍是 last_action → history reset → Force walk，或 apply_to_live / gap_closed 是否被写成 true",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

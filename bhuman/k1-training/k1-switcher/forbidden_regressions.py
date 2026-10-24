@@ -42,7 +42,10 @@ kick replay as walk 344, standup-eval PASS as competition-ready,
 e2e dry-run skips Force walk, e2e dry-run claims GAP closed,
 kick-eval PASS as competition-ready, kick-eval as walk 344,
 kick-eval as live deploy, fast standup replay as walk 344,
-fast standup replay as regular 73, dual-chain dry-run claims GAP closed.
+fast standup replay as regular 73, dual-chain dry-run claims GAP closed,
+kick ONNX path as walk 344, kick ONNX live without TRAINABLE,
+isolation matrix cross-wires slots, policy-switch draft as live,
+policy-switch draft skips Force walk, policy-switch draft claims GAP closed.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -168,6 +171,18 @@ from bounded_fast_standup_replay import (  # noqa: E402
 )
 from dual_chain_switch_dry_run import (  # noqa: E402
     refuse_dual_chain_dry_run_claims_gap_closed,
+)
+from kick_onnx_deploy_path import (  # noqa: E402
+    refuse_kick_onnx_live_without_trainable,
+    refuse_kick_onnx_path_as_walk_344,
+)
+from standup_fast_isolation_matrix import (  # noqa: E402
+    refuse_isolation_matrix_cross_wires_slots,
+)
+from policy_switch_phase_draft import (  # noqa: E402
+    refuse_policy_switch_draft_as_live,
+    refuse_policy_switch_draft_claims_gap_closed,
+    refuse_policy_switch_draft_skips_force_walk,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -972,6 +987,65 @@ def _case_dual_chain_dry_run_claims_gap_closed() -> None:
     )
 
 
+def _case_kick_onnx_path_as_walk_344() -> None:
+    refuse_kick_onnx_path_as_walk_344(
+        {
+            "kick_onnx_path_as_walk_344": True,
+            "name": "K1_kick_inner.onnx",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_kick_onnx_live_without_trainable() -> None:
+    refuse_kick_onnx_live_without_trainable(
+        {
+            "kick_onnx_live_without_trainable": True,
+            "apply_to_live": True,
+            "missing_weight": True,
+            "status": "PASS",
+            "as_have_weights": True,
+        }
+    )
+
+
+def _case_isolation_matrix_cross_wires_slots() -> None:
+    refuse_isolation_matrix_cross_wires_slots(
+        {
+            "isolation_matrix_cross_wires_slots": True,
+            "from": "fast",
+            "to": "walk",
+            "fast_is_walk_344": True,
+        }
+    )
+
+
+def _case_policy_switch_draft_as_live() -> None:
+    refuse_policy_switch_draft_as_live(
+        {"policy_switch_draft_as_live": True, "apply_to_live": True}
+    )
+
+
+def _case_policy_switch_draft_skips_force_walk() -> None:
+    refuse_policy_switch_draft_skips_force_walk(
+        {
+            "policy_switch_draft_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_policy_switch_draft_claims_gap_closed() -> None:
+    refuse_policy_switch_draft_claims_gap_closed(
+        {
+            "policy_switch_draft_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1074,6 +1148,12 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("fast_standup_replay_as_walk_344", _case_fast_standup_replay_as_walk_344),
     ("fast_standup_replay_as_regular_73", _case_fast_standup_replay_as_regular_73),
     ("dual_chain_dry_run_claims_gap_closed", _case_dual_chain_dry_run_claims_gap_closed),
+    ("kick_onnx_path_as_walk_344", _case_kick_onnx_path_as_walk_344),
+    ("kick_onnx_live_without_trainable", _case_kick_onnx_live_without_trainable),
+    ("isolation_matrix_cross_wires_slots", _case_isolation_matrix_cross_wires_slots),
+    ("policy_switch_draft_as_live", _case_policy_switch_draft_as_live),
+    ("policy_switch_draft_skips_force_walk", _case_policy_switch_draft_skips_force_walk),
+    ("policy_switch_draft_claims_gap_closed", _case_policy_switch_draft_claims_gap_closed),
 )
 
 

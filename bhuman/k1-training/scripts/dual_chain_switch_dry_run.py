@@ -51,6 +51,9 @@ from policy_switch_last_action import (  # noqa: E402
     assert_policy_switch_last_action_frozen,
     refuse_switch_keeps_stale_last_action,
 )
+from policy_switch_phase_draft import (  # noqa: E402
+    refuse_policy_switch_draft_as_live,
+)
 from skill_behavior_write_chain import (  # noqa: E402
     assert_write_chain_frozen,
     refuse_want_kick_default_true,
@@ -83,6 +86,7 @@ CHECKLIST_NEGATIVES = (
     "want_kick_on_official_skill_request",
     "walk_kick_stale_last_action",
     "getup_skips_force_walk",
+    "policy_switch_draft_as_live",
 )
 
 DOC_NEEDLES = (
@@ -262,6 +266,7 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         "want_kick_on_official_skill_request": False,
         "walk_kick_stale_last_action": False,
         "getup_skips_force_walk": False,
+        "policy_switch_draft_as_live": False,
         "dual_chain_dry_run_claims_gap_closed": False,
         "walk_kick_gap_closed": False,
         "gap_closed": False,
@@ -321,11 +326,12 @@ def assert_dual_chain_dry_run_frozen(repo: Path | None = None) -> dict[str, Any]
         snap.get("official_skill_request_want_kick")
         or snap.get("walk_kick_last_action_live_zero")
         or snap.get("dual_chain_dry_run_claims_gap_closed")
+        or snap.get("policy_switch_draft_as_live")
         or snap.get("walk_kick_gap_closed")
         or snap.get("fabricated")
     ):
         raise AssertionError(
-            "dual-chain dry-run leaked want_kick / live last_action zero / GAP-closed"
+            "dual-chain dry-run leaked want_kick / live last_action zero / draft-as-live / GAP-closed"
         )
     try:
         refuse_playball_as_kick_policy(
@@ -356,6 +362,13 @@ def assert_dual_chain_dry_run_frozen(repo: Path | None = None) -> dict[str, Any]
             {"getup_skips_force_walk": True, "next": "walk_without_force"}
         )
         raise AssertionError("refuse_getup_skips_force_walk must raise")
+    except ValueError:
+        pass
+    try:
+        refuse_policy_switch_draft_as_live(
+            {"policy_switch_draft_as_live": True, "apply_to_live": True}
+        )
+        raise AssertionError("refuse_policy_switch_draft_as_live must raise")
     except ValueError:
         pass
     try:
@@ -429,6 +442,13 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("getup_skips_force_walk must raise")
     except ValueError:
         notes.append("negative: GetUp skips Force walk refused")
+    try:
+        refuse_policy_switch_draft_as_live(
+            {"policy_switch_draft_as_live": True, "apply_to_live": True}
+        )
+        errors.append("policy_switch_draft_as_live must raise")
+    except ValueError:
+        notes.append("negative: policy-switch draft as live refused")
     try:
         refuse_dual_chain_dry_run_claims_gap_closed(
             {

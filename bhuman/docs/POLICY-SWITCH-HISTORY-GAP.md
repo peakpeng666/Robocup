@@ -54,3 +54,5 @@
 `configs/draft-only/walk-kick-reset-history-v0.json`：提案在旁路翻转时调用 `resetHistoryData()`。  
 `draft_only:true` / `apply_to_live:false` / `gap_closed:false` / `TRAINABLE=false`。  
 把 draft 标成已合并 / 已闭合 → 门禁 FAIL。
+
+相位草稿 stub：`scripts/policy_switch_phase_draft.py`（last_action 清零点 → history reset 草稿点 → Force walk afterwards；**apply_to_live=false**；walk↔kick GAP 仍开）。

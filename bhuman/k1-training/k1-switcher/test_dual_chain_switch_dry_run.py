@@ -70,7 +70,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     if negatives != list(mod.CHECKLIST_NEGATIVES):
         errors.append(f"dual-chain negatives drifted: {negatives}")
     else:
-        notes.append("negatives frozen: PlayBall / want_kick / stale last_action / skip Force walk")
+        notes.append(
+            "negatives frozen: PlayBall / want_kick / stale last_action / skip Force walk / draft-as-live"
+        )
     if snap.get("will_run_isaac") or snap.get("will_run_train_py"):
         errors.append("dual-chain dry-run must not run Isaac / train")
     else:
@@ -117,6 +119,13 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("getup_skips_force_walk must raise")
     except ValueError:
         notes.append("negative: GetUp skips Force walk refused")
+    try:
+        mod.refuse_policy_switch_draft_as_live(
+            {"policy_switch_draft_as_live": True, "apply_to_live": True}
+        )
+        errors.append("policy_switch_draft_as_live must raise")
+    except ValueError:
+        notes.append("negative: policy-switch draft as live refused")
     try:
         mod.refuse_dual_chain_dry_run_claims_gap_closed(
             {"dual_chain_dry_run_claims_gap_closed": True, "gap_closed": True}

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T11:29:02+00:00",
+  "generated_utc": "2026-10-24T11:37:18+00:00",
   "status": "PASS",
   "skipped": false,
   "reason": null,
@@ -15,7 +15,8 @@
     "playball_as_kick_policy",
     "want_kick_on_official_skill_request",
     "walk_kick_stale_last_action",
-    "getup_skips_force_walk"
+    "getup_skips_force_walk",
+    "policy_switch_draft_as_live"
   ],
   "steps": [
     {
@@ -63,6 +64,7 @@
   "want_kick_on_official_skill_request": false,
   "walk_kick_stale_last_action": false,
   "getup_skips_force_walk": false,
+  "policy_switch_draft_as_live": false,
   "dual_chain_dry_run_claims_gap_closed": false,
   "walk_kick_gap_closed": false,
   "gap_closed": false,

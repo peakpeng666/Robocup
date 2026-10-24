@@ -128,6 +128,9 @@ REQUIRED_NAMES = (
     "test_kick_eval_metrics.py",
     "test_bounded_fast_standup_replay.py",
     "test_dual_chain_switch_dry_run.py",
+    "test_kick_onnx_deploy_path.py",
+    "test_standup_fast_isolation_matrix.py",
+    "test_policy_switch_phase_draft.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}

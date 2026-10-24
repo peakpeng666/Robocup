@@ -436,6 +436,9 @@ standup 评估指标门禁只读：`scripts/standup_eval_metrics.py`（`run_stan
 kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`（K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署）。  
 有界 fast-standup 回放合同：`scripts/bounded_fast_standup_replay.py`（deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22**）。  
 双链切换干跑负例：`scripts/dual_chain_switch_dry_run.py`（PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前；**gap_closed=false**）。  
+kick ONNX 部署路径：`scripts/kick_onnx_deploy_path.py`（`K1_kick_inner.onnx` ≠ `K1_walk.onnx` 槽；缺权 **missing-weight SKIP**；**TRAINABLE=false**）。  
+standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`（**344→13** / **73→22** / **72→22**；无 live 串槽）。  
+策略切换相位草稿：`scripts/policy_switch_phase_draft.py`（last_action → resetHistoryData → Force walk；**apply_to_live=false**；**gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

@@ -1,0 +1,58 @@
+{
+  "generated_utc": "2026-10-24T11:37:17+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/policy_switch_phase_draft.py",
+  "phases": [
+    "last_action_zero_point",
+    "history_reset_draft_point",
+    "force_walk_afterwards"
+  ],
+  "apply_to_live": false,
+  "draft_only": true,
+  "walk_kick_last_action_live_zero": false,
+  "history_reset_live": false,
+  "steps": [
+    {
+      "id": "policy_switch_last_action",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "policy_switch_history_gap",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "force_walk_afterwards",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "docs_pointer": {
+    "draft": "bhuman/k1-training/configs/draft-only/walk-kick-reset-history-v0.json",
+    "gap": "bhuman/docs/POLICY-SWITCH-HISTORY-GAP.md",
+    "deploy": "bhuman/docs/DEPLOY-CALL-SEQUENCE.md"
+  },
+  "will_run_isaac": false,
+  "will_run_train_py": false,
+  "policy_switch_draft_as_live": false,
+  "policy_switch_draft_skips_force_walk": false,
+  "policy_switch_draft_claims_gap_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "draft phase order: last_action zero (walk↔kick still GAP) → history reset draft → Force walk before walk 344; apply_to_live=false; standup→walk 13-zero is a different closed contract",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -198,6 +198,9 @@ REQUIRED_LANDINGS = (
     "kick_eval_metrics.py",
     "bounded_fast_standup_replay.py",
     "dual_chain_switch_dry_run.py",
+    "kick_onnx_deploy_path.py",
+    "standup_fast_isolation_matrix.py",
+    "policy_switch_phase_draft.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

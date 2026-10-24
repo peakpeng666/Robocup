@@ -22,6 +22,12 @@ kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`。覆盖 `quality
 
 双链切换干跑负例（无 GPU）：`scripts/dual_chain_switch_dry_run.py`。PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；walk↔kick 陈旧 `last_action` 必须拒绝（live 清零仍是 GAP）；Force walk afterwards 必须在 walk 344 之前。**gap_closed=false**。不跑 Isaac。
 
+kick ONNX 部署路径合同（只读）：`scripts/kick_onnx_deploy_path.py`。`K1_kick_inner.onnx` 与 `K1_walk.onnx` 同目录、不是 Walk/ 默认槽；59→13 不得当 walk 344→13；缺权诚实 **missing-weight SKIP**，不得假绿 / live 部署。**TRAINABLE=false**。**gap_closed=false**。
+
+standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`。一张表钉 **344→13** / **73→22** / **72→22**；live cfg 不得 73↔72 / fast↔walk 串槽；fast 不是 Isaac。**TRAINABLE=false**。**gap_closed=false**。
+
+策略切换相位草稿：`scripts/policy_switch_phase_draft.py`。顺序：`last_action` 清零点 → `resetHistoryData` 草稿点 → Force walk afterwards；**apply_to_live=false**。walk↔kick **gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

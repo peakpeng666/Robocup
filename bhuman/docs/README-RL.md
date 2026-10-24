@@ -122,6 +122,9 @@
 | kick 评估指标门禁 | `scripts/kick_eval_metrics.py` | K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署 |
 | 有界 fast-standup 回放 | `scripts/bounded_fast_standup_replay.py` | deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22** |
 | 双链切换干跑负例 | `scripts/dual_chain_switch_dry_run.py` | PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前 |
+| kick ONNX 部署路径 | `scripts/kick_onnx_deploy_path.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false** |
+| standup / fast 隔离矩阵 | `scripts/standup_fast_isolation_matrix.py` | **344→13** / **73→22** / **72→22**；无 live 串槽 |
+| 策略切换相位草稿 | `scripts/policy_switch_phase_draft.py` | last_action → resetHistoryData → Force walk；**apply_to_live=false** |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

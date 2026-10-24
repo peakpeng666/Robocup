@@ -133,6 +133,12 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "fast_standup_replay_as_walk_344",
         "fast_standup_replay_as_regular_73",
         "dual_chain_dry_run_claims_gap_closed",
+        "kick_onnx_path_as_walk_344",
+        "kick_onnx_live_without_trainable",
+        "isolation_matrix_cross_wires_slots",
+        "policy_switch_draft_as_live",
+        "policy_switch_draft_skips_force_walk",
+        "policy_switch_draft_claims_gap_closed",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -178,7 +184,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "e2e-dry-run-skips-force-walk / e2e-dry-run-claims-gap-closed / "
             "kick-eval-pass-as-competition-ready / kick-eval-as-walk-344 / "
             "kick-eval-as-live-deploy / fast-standup-replay-as-walk-344 / "
-            "fast-standup-replay-as-regular-73 / dual-chain-dry-run-claims-gap-closed"
+            "fast-standup-replay-as-regular-73 / dual-chain-dry-run-claims-gap-closed / "
+            "kick-onnx-path-as-walk-344 / kick-onnx-live-without-trainable / "
+            "isolation-matrix-cross-wires-slots / policy-switch-draft-as-live / "
+            "policy-switch-draft-skips-force-walk / policy-switch-draft-claims-gap-closed"
         )
 
     try:
