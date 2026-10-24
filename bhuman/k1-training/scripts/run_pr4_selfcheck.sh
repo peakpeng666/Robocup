@@ -6,7 +6,8 @@
 # → PD domain-gap / TeamComm 512 B / checkpoint layout
 # → kick/standup joint map → reference-motion inventory
 # → GetUpEngine snapshot → walk stability presets → forbidden regressions
-# → selfcheck summary.
+# → official sibling tasks → ONNX deploy path → selfcheck summary.
+# Each step records elapsed_s into pr4-selfcheck-latest.json.
 # Never trains, never writes K1.yaml, never merges, never connects a robot.
 # Summary line: 基底 344→13 / TRAINABLE=false / ready_gpu=...
 set -euo pipefail
@@ -32,59 +33,86 @@ cd "$REPO_ROOT"
 STAMP="${CONTRACT_GATE_STAMP:-$(date -u +%Y%m%d)-selfcheck}"
 GATE_JSON="$K1_TRAINING_ROOT/manifests/contract-gate-${STAMP}.json"
 SUMMARY="$K1_TRAINING_ROOT/manifests/pr4-selfcheck-latest.json"
+TIMING_FILE="$K1_TRAINING_ROOT/manifests/.pr4-selfcheck-timings.jsonl"
+: > "$TIMING_FILE"
+
+run_step() {
+  local idx="$1" id="$2" label="$3"
+  shift 3
+  echo "[pr4-selfcheck] ${idx} ${label}"
+  local start_ns end_ns
+  start_ns="$(date +%s%N)"
+  "$@"
+  end_ns="$(date +%s%N)"
+  "$PY" -B -c 'import json,sys
+start=int(sys.argv[1]); end=int(sys.argv[2])
+print(json.dumps({
+    "id": sys.argv[3],
+    "label": sys.argv[4],
+    "elapsed_s": round((end-start)/1e9, 3),
+}, ensure_ascii=False))' \
+    "$start_ns" "$end_ns" "$id" "$label" >> "$TIMING_FILE"
+}
 
 echo "[pr4-selfcheck] repo=$REPO_ROOT"
 echo "[pr4-selfcheck] python=$PY"
-echo "[pr4-selfcheck] 1/18 contract gate"
-CONTRACT_GATE_STAMP="$STAMP" bash "$SCRIPT_DIR/run_contract_gate.sh" "$GATE_JSON"
 
-echo "[pr4-selfcheck] 2/18 no-Gym unit tests"
-bash "$SCRIPT_DIR/run_unit_tests_no_gym.sh"
+run_step "1/21" "run_contract_gate.sh" "contract gate" \
+  env CONTRACT_GATE_STAMP="$STAMP" bash "$SCRIPT_DIR/run_contract_gate.sh" "$GATE_JSON"
 
-echo "[pr4-selfcheck] 3/18 K1 reward audit (read-only)"
-"$PY" -B "$SCRIPT_DIR/k1_reward_audit.py"
+run_step "2/21" "run_unit_tests_no_gym.sh" "no-Gym unit tests" \
+  bash "$SCRIPT_DIR/run_unit_tests_no_gym.sh"
 
-echo "[pr4-selfcheck] 4/18 official vs draft-only diff (read-only)"
-"$PY" -B "$SCRIPT_DIR/p1_draft_diff.py"
+run_step "3/21" "k1_reward_audit.py" "K1 reward audit (read-only)" \
+  "$PY" -B "$SCRIPT_DIR/k1_reward_audit.py"
 
-echo "[pr4-selfcheck] 5/18 GPU worker checklist (probe only)"
-bash "$SCRIPT_DIR/probe_reserved_gpu.sh"
+run_step "4/21" "p1_draft_diff.py" "official vs draft-only diff (read-only)" \
+  "$PY" -B "$SCRIPT_DIR/p1_draft_diff.py"
 
-echo "[pr4-selfcheck] 6/18 first-train dry-run (print only; never spawn trainer)"
-"$PY" -B "$SCRIPT_DIR/print_train_dry_run.py"
+run_step "5/21" "probe_reserved_gpu.sh" "GPU worker checklist (probe only)" \
+  bash "$SCRIPT_DIR/probe_reserved_gpu.sh"
 
-echo "[pr4-selfcheck] 7/18 env registry audit (read-only)"
-"$PY" -B "$SCRIPT_DIR/env_registry_audit.py"
+run_step "6/21" "print_train_dry_run.py" "first-train dry-run (print only; never spawn trainer)" \
+  "$PY" -B "$SCRIPT_DIR/print_train_dry_run.py"
 
-echo "[pr4-selfcheck] 8/18 SimRobot six-robot acceptance (no sim; honest SKIP)"
-"$PY" -B "$K1_TRAINING_ROOT/simrobot_acceptance/test_simrobot_acceptance.py"
+run_step "7/21" "env_registry_audit.py" "env registry audit (read-only)" \
+  "$PY" -B "$SCRIPT_DIR/env_registry_audit.py"
 
-echo "[pr4-selfcheck] 9/18 SkillRequest map (empty/unknown → walk)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-reactive/test_skill_request_map.py"
+run_step "8/21" "test_simrobot_acceptance.py" "SimRobot six-robot acceptance (no sim; honest SKIP)" \
+  "$PY" -B "$K1_TRAINING_ROOT/simrobot_acceptance/test_simrobot_acceptance.py"
 
-echo "[pr4-selfcheck] 10/18 PD domain-gap (p60 vs p25; read-only)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_pd_domain_gap.py"
+run_step "9/21" "test_skill_request_map.py" "SkillRequest map (empty/unknown → walk)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-reactive/test_skill_request_map.py"
 
-echo "[pr4-selfcheck] 11/18 TeamComm 512 B (teammate not into 344; WLAN SKIP)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_teamcomm_budget.py"
+run_step "10/21" "test_pd_domain_gap.py" "PD domain-gap (p60 vs p25; read-only)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_pd_domain_gap.py"
 
-echo "[pr4-selfcheck] 12/18 checkpoint layout (missing weights honest SKIP)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_checkpoint_layout.py"
+run_step "11/21" "test_teamcomm_budget.py" "TeamComm 512 B (teammate not into 344; WLAN SKIP)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_teamcomm_budget.py"
 
-echo "[pr4-selfcheck] 13/18 kick/standup joint map (standup[12] motor ≠ walk freq)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_standup_joint_map.py"
+run_step "12/21" "test_checkpoint_layout.py" "checkpoint layout (missing weights honest SKIP)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_checkpoint_layout.py"
 
-echo "[pr4-selfcheck] 14/18 reference-motion inventory (T1 ≠ official walk default)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_reference_motion_inventory.py"
+run_step "13/21" "test_kick_standup_joint_map.py" "kick/standup joint map (standup[12] motor ≠ walk freq)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_standup_joint_map.py"
 
-echo "[pr4-selfcheck] 15/18 GetUpEngine 22-D snapshot (match kick_standup or SKIP)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_getup_engine_snapshot.py"
+run_step "14/21" "test_reference_motion_inventory.py" "reference-motion inventory (T1 ≠ official walk default)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_reference_motion_inventory.py"
 
-echo "[pr4-selfcheck] 16/18 walk stability presets audit (draft-only excluded)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walk_stability_presets_audit.py"
+run_step "15/21" "test_getup_engine_snapshot.py" "GetUpEngine 22-D snapshot (match kick_standup or SKIP)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_getup_engine_snapshot.py"
 
-echo "[pr4-selfcheck] 17/18 forbidden regressions (silent refuse = red)"
-"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_forbidden_regressions.py"
+run_step "16/21" "test_walk_stability_presets_audit.py" "walk stability presets audit (draft-only excluded)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walk_stability_presets_audit.py"
+
+run_step "17/21" "test_forbidden_regressions.py" "forbidden regressions (silent refuse = red)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_forbidden_regressions.py"
+
+run_step "18/21" "test_official_sibling_tasks_audit.py" "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_official_sibling_tasks_audit.py"
+
+run_step "19/21" "test_onnx_deploy_path_crosscheck.py" "ONNX deploy path (layout × WalkingEngine; missing SKIP)" \
+  "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_onnx_deploy_path_crosscheck.py"
 
 READY="$("$PY" -B - <<PY
 import json
@@ -108,10 +136,19 @@ if ! grep -q "num_observations: 344" "$YAML" || ! grep -q "num_actions: 13" "$YA
   exit 1
 fi
 
-"$PY" -B - <<PY
+write_summary_json() {
+  "$PY" -B - <<PY
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+timings = []
+timing_path = Path("$TIMING_FILE")
+if timing_path.is_file():
+    for line in timing_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            timings.append(json.loads(line))
+total = round(sum(float(row.get("elapsed_s") or 0) for row in timings), 3)
 summary = {
     "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
     "verdict": "PASS",
@@ -119,33 +156,27 @@ summary = {
     "trainable": False,
     "ready_gpu": $READY_PY,
     "write_yaml": False,
-    "steps": [
-        "run_contract_gate.sh",
-        "run_unit_tests_no_gym.sh",
-        "k1_reward_audit.py",
-        "p1_draft_diff.py",
-        "probe_reserved_gpu.sh",
-        "print_train_dry_run.py",
-        "env_registry_audit.py",
-        "test_simrobot_acceptance.py",
-        "test_skill_request_map.py",
-        "test_pd_domain_gap.py",
-        "test_teamcomm_budget.py",
-        "test_checkpoint_layout.py",
-        "test_kick_standup_joint_map.py",
-        "test_reference_motion_inventory.py",
-        "test_getup_engine_snapshot.py",
-        "test_walk_stability_presets_audit.py",
-        "test_forbidden_regressions.py",
-        "render_selfcheck_summary.py",
-    ],
-    "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker",
+    "steps": [row["id"] for row in timings],
+    "step_timings": timings,
+    "elapsed_s": total,
+    "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker; elapsed_s is wall time of timed steps",
 }
 Path("$SUMMARY").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+print(f"[pr4-selfcheck] timings total={total}s steps={len(timings)}")
 PY
+}
 
-echo "[pr4-selfcheck] 18/18 selfcheck markdown summary (PASS/SKIP/WARN)"
+write_summary_json
+
+run_step "20/21" "render_selfcheck_summary.py" "selfcheck markdown summary (PASS/SKIP/WARN + timings)" \
+  "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
+
+write_summary_json
+
+echo "[pr4-selfcheck] 21/21 rewrite summary JSON with render elapsed_s"
 "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
+
+rm -f "$TIMING_FILE"
 
 echo "[pr4-selfcheck] PASS 基底 344→13 / TRAINABLE=false / ready_gpu=${READY}"
 echo "[pr4-selfcheck] wrote $SUMMARY"

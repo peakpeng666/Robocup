@@ -126,6 +126,8 @@ scripts/
 ├── render_selfcheck_summary.py  读 pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md
 ├── getup_engine_snapshot.py     GetUpEngine 22 维只读快照；缺源 SKIP
 ├── walk_stability_presets_audit.py 官方 walk-*-stability-v1 键审计
+├── official_sibling_tasks_audit.py K1_Ball / Stand_Up ≠ walk 344
+├── onnx_deploy_path_crosscheck.py  CHECKPOINT-LAYOUT × WalkingEngine
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
@@ -174,6 +176,7 @@ k1-switcher/
 ├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
 ├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
 ├── forbidden_regressions.py     最高优先级负例包；沉默拒绝 = 门禁红
+├── official_sibling_tasks_audit.py 旁系任务边界（见 scripts/）
 ├── test_pd_domain_gap.py
 ├── test_teamcomm_budget.py
 ├── test_checkpoint_layout.py
@@ -183,6 +186,8 @@ k1-switcher/
 ├── test_getup_engine_snapshot.py
 ├── test_walk_stability_presets_audit.py
 ├── test_forbidden_regressions.py
+├── test_official_sibling_tasks_audit.py
+├── test_onnx_deploy_path_crosscheck.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -259,7 +264,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-six.json    上轮（六机脚手架 + SkillRequest 对照）
 ├── contract-gate-20261024-gap.json    上轮（PD 域差 + TeamComm 512 + checkpoint 布局）
 ├── contract-gate-20261024-map.json    上轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
-├── contract-gate-20261024-reg.json    本轮（GetUpEngine 快照 + stability 审计 + 禁令回归）
+├── contract-gate-20261024-reg.json    上轮（GetUpEngine 快照 + stability 审计 + 禁令回归）
+├── contract-gate-20261024-sib.json    本轮（旁系任务 + ONNX 路径 + 自检耗时）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -271,7 +277,9 @@ k1-training/manifests/
 ├── reference-motion-inventory-latest.json 参考/clip 声明；缺文件 SKIP；T1 ≠ walk 默认
 ├── getup-engine-standup22-latest.json GetUpEngine 22 维；缺源 SKIP
 ├── walk-stability-presets-audit-latest.json 官方 walk-*-stability-v1；draft-only 未污染
-└── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu
+├── official-sibling-tasks-audit-latest.json K1_Ball/Stand_Up ≠ walk 344；不进 344
+├── onnx-deploy-path-crosscheck-latest.json CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP
+└── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
 ---
@@ -331,6 +339,9 @@ k1-training/manifests/
 | GetUpEngine 只读快照 | `getup_engine_snapshot.py` | 22 维与 kick_standup 交叉；缺源 SKIP，不伪造 |
 | walk 稳定性预设审计 | `walk_stability_presets_audit.py` | 官方 walk-*-stability-v1 键；`reference_mean_penalty=1.0`；draft-only 未污染 |
 | 禁令回归包 | `test_forbidden_regressions.py` | T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即红 |
+| 官方旁系任务边界 | `official_sibling_tasks_audit.py` | K1_Ball 59→13 / K1_Stand_Up 73→22 已注册但不是 walk 基线，也不是合并进 344 的许可 |
+| ONNX 部署路径对照 | `onnx_deploy_path_crosscheck.py` | CHECKPOINT-LAYOUT × WalkingEngine；缺 onnx/pth → SKIP；路径声明不一致 → FAIL |
+| 自检耗时 | `pr4-selfcheck-latest.json` | 各步 `elapsed_s` 写入 JSON / 摘要 md |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

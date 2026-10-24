@@ -1,6 +1,6 @@
 # PR #4 自检摘要（最新）
 
-由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T08:43:34+00:00；渲染 2026-10-24T08:43:34+00:00）。
+由 `scripts/render_selfcheck_summary.py` 从 `pr4-selfcheck-latest.json` 生成（2026-10-24T08:43:34+00:00；渲染 2026-10-24T08:47:20+00:00）。
 人读一览，不是新调研。**PASS ≠ 已训通 ≠ 已上真机。**
 
 **PASS** 基底 **344→13** / TRAINABLE=false / ready_gpu=false

@@ -64,6 +64,9 @@
 | GetUpEngine 快照 | `scripts/getup_engine_snapshot.py` | 22 维；与 kick_standup 交叉；缺源 SKIP |
 | walk 稳定性预设 | `scripts/walk_stability_presets_audit.py` | 官方 walk-*-stability-v1；draft-only 未污染 |
 | 禁令回归包 | `k1-switcher/test_forbidden_regressions.py` | 最高优先级负例；沉默拒绝 = 门禁红 |
+| 官方旁系任务 | `scripts/official_sibling_tasks_audit.py` | K1_Ball / Stand_Up 已注册 ≠ walk 基线；不进 344 |
+| ONNX 部署路径 | `scripts/onnx_deploy_path_crosscheck.py` | CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP |
+| 自检耗时 | `pr4-selfcheck-latest.json` | 各步 `elapsed_s`；回归看膨胀 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---

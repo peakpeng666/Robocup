@@ -79,7 +79,10 @@
 | 自检人读摘要 | 门禁 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) + `render_selfcheck_summary.py` | **P0** | 否 | 读 `pr4-selfcheck-latest.json` → PASS/SKIP/WARN；不新增长文 | 上轮摘要 |
 | GetUpEngine 只读快照 | 契约 | `scripts/getup_engine_snapshot.py` | **P0** | 否 | 22 维与 kick_standup 交叉；缺源 SKIP，不伪造 | **本轮快照** |
 | walk 稳定性预设审计 | 契约 / P1 | `scripts/walk_stability_presets_audit.py` | **P0 / P1** | 否 | 官方 walk-*-stability-v1 键；`reference_mean_penalty=1.0`；draft-only 未污染 | **本轮审计** |
-| 禁令回归包 | 门禁 | `k1-switcher/test_forbidden_regressions.py` | **P0** | 否 | T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即红 | **本轮回归** |
+| 禁令回归包 | 门禁 | `k1-switcher/test_forbidden_regressions.py` | **P0** | 否 | T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即红 | 上轮回归 |
+| 官方旁系任务边界 | 契约 | `scripts/official_sibling_tasks_audit.py` | **P0** | 否 | K1_Ball / K1_Stand_Up 已注册 ≠ walk 基线；不合并进 344 | **本轮边界** |
+| ONNX 部署路径对照 | 契约 | `scripts/onnx_deploy_path_crosscheck.py` | **P0** | 否 | CHECKPOINT-LAYOUT × WalkingEngine；缺权 SKIP；路径不一致 FAIL | **本轮对照** |
+| 自检耗时报告 | 门禁 | `run_pr4_selfcheck.sh` `elapsed_s` | **P0** | 否 | 各步写入 `pr4-selfcheck-latest.json` / 摘要 md | **本轮耗时** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -166,6 +169,9 @@
 | 54 | GetUpEngine 只读快照 | `getup_engine_snapshot.py` | `python3 bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py` |
 | 55 | walk 稳定性预设审计 | `walk_stability_presets_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py` |
 | 56 | 禁令回归包 | `test_forbidden_regressions.py` | `python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py` |
+| 57 | 官方旁系任务边界 | `official_sibling_tasks_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py` |
+| 58 | ONNX 部署路径对照 | `onnx_deploy_path_crosscheck.py` | `python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py` |
+| 59 | 自检耗时报告 | `elapsed_s` / `step_timings` | `bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

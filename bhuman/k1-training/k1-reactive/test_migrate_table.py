@@ -60,6 +60,9 @@ REQUIRED_ROWS = (
     "GetUpEngine 只读快照",
     "walk 稳定性预设审计",
     "禁令回归包",
+    "官方旁系任务边界",
+    "ONNX 部署路径对照",
+    "自检耗时报告",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -122,6 +125,8 @@ REQUIRED_LANDINGS = (
     "getup_engine_snapshot.py",
     "walk_stability_presets_audit.py",
     "test_forbidden_regressions.py",
+    "official_sibling_tasks_audit.py",
+    "onnx_deploy_path_crosscheck.py",
 )
 
 

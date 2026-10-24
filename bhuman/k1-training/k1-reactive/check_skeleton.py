@@ -374,6 +374,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-switcher/forbidden_regressions.py",
             "forbidden regressions pack (silent refuse = gate red)",
         ),
+        (
+            "bhuman/k1-training/scripts/official_sibling_tasks_audit.py",
+            "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344)",
+        ),
+        (
+            "bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
+            "ONNX deploy path (CHECKPOINT-LAYOUT × WalkingEngine)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

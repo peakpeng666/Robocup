@@ -71,6 +71,8 @@ REQUIRED_NAMES = (
     "test_getup_engine_snapshot.py",
     "test_walk_stability_presets_audit.py",
     "test_forbidden_regressions.py",
+    "test_official_sibling_tasks_audit.py",
+    "test_onnx_deploy_path_crosscheck.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

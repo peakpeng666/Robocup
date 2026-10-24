@@ -76,6 +76,10 @@ def _rows_from_selfcheck(selfcheck: dict[str, Any] | None) -> list[tuple[str, st
         rows.append(("ready_gpu", "WARN", "false (expected without CUDA worker)"))
     if selfcheck.get("trainable") is not False:
         rows.append(("trainable", "WARN", "must stay false"))
+    elapsed = selfcheck.get("elapsed_s")
+    if elapsed is not None:
+        n = len(selfcheck.get("step_timings") or [])
+        rows.append(("selfcheck elapsed_s", "PASS", f"{elapsed}s over {n} timed steps"))
     return rows
 
 
@@ -169,6 +173,26 @@ def render_markdown(bundle: dict[str, Any]) -> str:
     for name, status, detail in rows:
         safe = detail.replace("|", "/")
         lines.append(f"| `{name}` | **{status}** | {safe} |")
+
+    timings = (selfcheck or {}).get("step_timings") or []
+    if timings:
+        lines.extend(
+            [
+                "",
+                "## 各步耗时",
+                "",
+                "| 步 | 秒 |",
+                "|---|---|",
+            ]
+        )
+        for row in timings:
+            ident = str(row.get("id") or "")
+            seconds = row.get("elapsed_s")
+            lines.append(f"| `{ident}` | {seconds} |")
+        total = (selfcheck or {}).get("elapsed_s")
+        if total is not None:
+            lines.append(f"| **合计 elapsed_s** | **{total}** |")
+
     lines.extend(
         [
             "",

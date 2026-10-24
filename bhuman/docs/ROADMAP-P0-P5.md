@@ -137,6 +137,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] GetUpEngine 只读快照：`scripts/getup_engine_snapshot.py`（22 维与 `kick_standup_joint_map` 交叉；缺源诚实 SKIP，不伪造）。
 - [x] walk 稳定性预设只读审计：`scripts/walk_stability_presets_audit.py` → `walk-stability-presets-audit-latest.json`（官方 walk-*-stability-v1；`reference_mean_penalty=1.0`；draft-only 未污染）。
 - [x] 禁令回归包：`k1-switcher/test_forbidden_regressions.py`（T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即门禁红）。
+- [x] 官方旁系任务边界：`scripts/official_sibling_tasks_audit.py`（K1_Ball 59→13 / K1_Stand_Up 73→22 已注册但不是 walk 基线，也不是合并进 344 的许可；T1* 同树 ≠ K1）。
+- [x] ONNX 部署路径对照：`scripts/onnx_deploy_path_crosscheck.py`（CHECKPOINT-LAYOUT × WalkingEngine；缺 onnx/pth 诚实 SKIP；路径声明不一致 FAIL）。
+- [x] 自检耗时报告：`run_pr4_selfcheck.sh` 各步 `elapsed_s` 写入 `pr4-selfcheck-latest.json` / 摘要 md。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -280,6 +283,8 @@ python3 bhuman/k1-training/scripts/render_selfcheck_summary.py
 python3 bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py
 python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py
 python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py
+python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py
+python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

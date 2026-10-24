@@ -62,6 +62,11 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     for needle in ("344→13", "PASS", "SKIP", "WARN", "TRAINABLE", "ready_gpu"):
         if needle not in text:
             errors.append(f"rendered markdown missing {needle}")
+    if (bundle.get("selfcheck") or {}).get("step_timings"):
+        if "各步耗时" not in text or "elapsed_s" not in text:
+            errors.append("rendered markdown missing step timings")
+        else:
+            notes.append("step timings rendered")
     if "长篇" in text or len(text) > 12000:
         errors.append("summary grew into a long survey")
     else:

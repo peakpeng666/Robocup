@@ -122,6 +122,8 @@ REQUIRED_DOCS = {
         "getup_engine_snapshot",
         "walk_stability_presets_audit",
         "forbidden_regressions",
+        "official_sibling_tasks_audit",
+        "onnx_deploy_path_crosscheck",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -172,6 +174,8 @@ REQUIRED_DOCS = {
         "getup_engine_snapshot.py",
         "walk_stability_presets_audit.py",
         "test_forbidden_regressions.py",
+        "official_sibling_tasks_audit.py",
+        "onnx_deploy_path_crosscheck.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -266,6 +270,8 @@ REQUIRED_DOCS = {
         "getup-engine-standup22",
         "walk-stability-presets-audit",
         "forbidden_regressions",
+        "official-sibling-tasks-audit",
+        "onnx-deploy-path-crosscheck",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -387,6 +393,9 @@ REQUIRED_DOCS = {
         "getup_engine_snapshot",
         "walk_stability_presets_audit",
         "forbidden_regressions",
+        "official_sibling_tasks_audit",
+        "onnx_deploy_path_crosscheck",
+        "elapsed_s",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
