@@ -67,7 +67,27 @@ B-Human 行为树 / 角色 / GameController / 正常视觉     ← 保持，本�
 
 ---
 
-## 4. 明确不做
+## 4. 与部署一拍交叉核对（默认永远是官方 walk 344→13）
+
+同一张表两边各存一份。部署侧：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) §4。  
+**空上下文 / 反应条件未满足 / 外族被拒 → 停在官方 walk。**
+
+| 上下文 | BT `select_skill` | 部署一拍 `DeployCall.tick` | 合同 | 离开 walk？ |
+|---|---|---|---|---|
+| 空 / 默认 | walk | walk | **344→13** | **不离开** |
+| 主攻手+近球+空间（`implemented=false`） | walk（回落） | walk | **344→13** | **不离开** |
+| `want_kick` 且未跌倒 | kick | kick | 59→13 | 是；踢完回 walk |
+| `fallen` | `handoff_getup` | standup | 73→22 | 是；**必须 `getup_done`** 才回 walk |
+| 起身成功 `getup_done` | walk | walk | **344→13** | 回 walk（5 s 计时） |
+| 起身中立刻 `want_kick` | kick（BT 名） | **拒绝** standup→kick | 须先走 **344→13** | 禁止 |
+| `requested=reactive` / `K1_Reactive` | 抛错或回落 walk | 停在 walk | **344→13** | **不离开** |
+| `requested=huoshen_t1` / `nusim` | **抛错** | 到不了 SM | 官方 actor 不被替换 | **不离开** |
+
+活交叉测试：`python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py`。
+
+---
+
+## 5. 明确不做
 
 - 不改 B-Human 行为树源码、不改 GameController。
 - 不在本口里 `eval` Isaac Gym 任务名。

@@ -129,7 +129,8 @@ k1-switcher/
 ├── timeseries_contract.py       历史/力矩形状 stub（连续性 SKIP，本轮）
 ├── test_switcher_sm.py
 ├── test_deploy_call.py          纯 Python 集成；无 Gym
-└── test_timeseries_contract.py  形状 PASS / 连续性 SKIP
+├── test_timeseries_contract.py  形状 PASS / 连续性 SKIP
+└── test_bt_deploy_crosscheck.py BT × 部署交叉核对（默认 walk）
 ```
 
 ### 3.5 估计器 / P1 草稿（并行 stub + draft-only）
@@ -179,6 +180,9 @@ k1-training/manifests/
 | P2 验收清单 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | 默认 walk；依赖已标；P2 不改 344→13 |
 | reactive 旁路硬化 | `k1-reactive/hardening.py` | 64→15；未注册；禁换 walk actor |
 | reactive 边界收口 | GLOBAL §6.11 / MIGRATE §2.1 | 旁路技能，≠ 新步态基线 |
+| sim2sim 负例 | `check_sim2sim_gate.py` | 错误维 + 错误 PD（统一增益 / 训侧 p25）必拒 |
+| BT × 部署交叉核对 | BT §4 + DEPLOY §4 | 一张表：默认 walk **不离开** 344→13 |
+| ROADMAP 阻塞项 | [ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) §5 | P1/P2 真训 / 六机 / 真机仍阻塞 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

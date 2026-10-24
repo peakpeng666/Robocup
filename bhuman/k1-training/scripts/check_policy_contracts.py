@@ -457,6 +457,12 @@ def check_gpu_free_shells(
             True,
         ),
         (
+            "bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
+            "bt_deploy_crosscheck",
+            "k1_bt_deploy_crosscheck",
+            True,
+        ),
+        (
             "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "p1_draft",
             "k1_p1_draft",
@@ -882,6 +888,7 @@ def main() -> int:
             "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
             "p2_acceptance": "bhuman/docs/P2-ACCEPTANCE.md",
             "reactive_hardening": "k1-reactive 64→15 bypass; not a new gait baseline",
+            "bt_deploy_crosscheck": "BT × deploy table; default stays walk 344→13",
             "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
             "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
             "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
@@ -939,6 +946,7 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
             "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
             "python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

@@ -162,6 +162,7 @@ python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
+python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```

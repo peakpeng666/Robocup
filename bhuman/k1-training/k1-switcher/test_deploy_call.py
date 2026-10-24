@@ -185,6 +185,7 @@ def run(repo: Path | None = None) -> dict[str, Any]:
                 "无 Gym",
                 "getup_done",
                 "官方 B-Human walk",
+                "交叉核对",
             )
             if n not in text
         ]

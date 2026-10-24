@@ -30,6 +30,8 @@ REQUIRED_ROWS = (
     "SkillRequest",
     "P2 验收清单",
     "reactive 旁路硬化",
+    "sim2sim 负例",
+    "BT × 部署交叉核对",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -46,6 +48,8 @@ REQUIRED_LANDINGS = (
     "P2-ACCEPTANCE",
     "hardening.py",
     "旁路技能，≠ 新步态基线",
+    "test_bt_deploy_crosscheck",
+    "refuse_pd_claim",
 )
 
 

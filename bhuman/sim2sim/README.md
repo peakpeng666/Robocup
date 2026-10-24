@@ -48,7 +48,7 @@ python3 bhuman/sim2sim/test_sim2sim_gate.py
 bash bhuman/sim2sim/run-sim2sim-gate.sh
 ```
 
-骨架核对：观测必须是 `(N, 344)`、动作 13、actor-only、`robot_connected=false`；拒绝踢球 59 维检查点冒充行走。真正的 120 秒回放仍用上面的 `run-mujoco.sh`，只在操作者本机、显式执行。
+骨架核对：观测必须是 `(N, 344)`、动作 13、actor-only、`robot_connected=false`；拒绝踢球 59 / 反应 64 / 火神 58 / 起身 73/72 / NUSim 79 / T1 365 以及错配动作维冒充行走。PD 声明拒绝「统一三套增益」和「把训侧踝滚 p60 改成真机 p25」。真正的 120 秒回放仍用上面的 `run-mujoco.sh`，只在操作者本机、显式执行。
 
 本目录及另两套可运行工作区必须保留在本机。GitHub 是备份；常规清理仅限
 缓存和核验后的重复产物，规则见仓库根目录 `AGENTS.md`。

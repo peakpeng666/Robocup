@@ -76,11 +76,11 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("missing BEHAVIOR-TREE-SKILL-SELECT.md")
     else:
         text = doc.read_text(encoding="utf-8")
-        missing = [n for n in ("344→13", "implemented", "handoff_getup", "主攻手") if n not in text]
+        missing = [n for n in ("344→13", "implemented", "handoff_getup", "主攻手", "交叉核对") if n not in text]
         if missing:
             errors.append(f"BT doc missing {missing}")
         else:
-            notes.append("BT interface doc anchors present")
+            notes.append("BT interface doc anchors present (including deploy cross-check)")
 
     return {"ok": not errors, "errors": errors, "notes": notes}
 

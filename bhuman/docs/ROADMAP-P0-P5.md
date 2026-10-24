@@ -92,8 +92,10 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] P2 验收清单：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（官方 walk 为默认入口；切换 / SimRobot 六机 / 不冒充实机；**P2 不改 344→13**）。
 - [x] reactive 64→15 旁路硬化：`k1-reactive/hardening.py` + `test_reactive_hardening.py`（`TRAINABLE=false`；未注册 `train.py`；禁换 walk actor）。
 - [x] 调研收口：reactive = 旁路技能，≠ 新步态基线（survey §6.11 + MIGRATE §2.1）。
-- [ ] 完整切换器时间序列（P4，仍无真机；无录包不得把 SKIP 改 PASS）。
-- [ ] 可训练平行 env（另开实验目录；本 stub 永不冒充）。
+- [x] sim2sim 负例加深：错误维（59/64/58/73/72/79/365/错配）+ 错误 PD 声明（统一增益 / 训侧改 p25）。
+- [x] BT × 部署一拍交叉核对表（两边同一张；默认 walk 344→13）。
+- [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
+- [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
 ```bash
 bash bhuman/k1-training/scripts/run_contract_gate.sh
@@ -107,11 +109,12 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 
 映射：research/06 路线 A + Digit 的「少步、可急停」。
 
-1. 命令日程（驻立、急停、反转）。草稿：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)（**不改**官方 `still_proportion: 0.1`）。
-2. settle-time / 抖动惩罚（只允许 draft 新键，不改 `action_rate: -1.`）。
-3. 扰动课程（对照 531 事件 55 跌倒）。
-4. 估计器 A/B：RMA 或 DreamWaQ **单因素**（[接口 stub 已落地](../k1-training/k1-estimators/README.md)；真训要 GPU，仍不改 344）。
-5. 参考惩罚退火（官方 `reference_mean_penalty: 1.0` 不动；退火只写在 draft-only）。
+- [x] 草稿配方：[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md)（**不改**官方 `still_proportion: 0.1` / `action_rate: -1.`）。
+- [x] 估计器接口 stub（passthrough / rma / dreamwaq；latent **不进** 344）。
+- [ ] 急停 / vx vy wz 统计对照公开 actor — **阻塞：GPU worker**。
+- [ ] 扰动课程（对照 531 事件 55 跌倒）— **阻塞：GPU worker**。
+- [ ] 估计器 A/B 真训 — **阻塞：GPU worker**；仍 `--task K1` 344→13。
+- [ ] 参考惩罚退火真跑 — **阻塞：GPU worker**；官方 `reference_mean_penalty: 1.0` 不动。
 
 命令见 NEXT-P1-P2。留出种子 2027/2028/2029。`warm-start`/`actor`；公开 critic 359≠360。
 
@@ -122,11 +125,14 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 **目标：** 建议合同 64→15 的可训练 env **另开实验目录**，默认比赛仍走官方 walk。  
 **reactive = 旁路技能，≠ 新步态基线。P2 不改 344→13。** 出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（切换验收 / SimRobot 六机 / 不冒充实机；每条标 合同门禁 / GPU worker / 真机）。
 
-1. 仓外解压 Zenodo 21620490，只读核 58/15/stack50。
-2. 参考动作 **GMR → K1**（禁止对 T1 CSV 删腰）。BeyondMimic-on-K1（`booster_train`）可当跟踪工具。
-3. 虚拟感知：球/门中心/门法向 + FOV/遮挡/漏检；延迟先 116±18 ms。
-4. encoder-decoder + 多 critic + AMP；输出 `runs/` 与官方隔离。
-5. 上层行为树仅主攻手近球切入（火神附录 G）。接口注释已落地：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)；`implemented=false` 时回落 walk 344→13。
+- [x] 合同 64→15 骨架 + 旁路硬化（`TRAINABLE=false`；未注册 `train.py`；禁换 walk actor）。
+- [x] P2 出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（**P2 不改 344→13**）。
+- [x] 行为树口 + 与部署一拍交叉核对（`implemented=false` 回落 walk）。
+- [ ] Zenodo 21620490 仓外只读核 58/15/stack50 — **阻塞：本机磁盘**（ZIP 不入库）。
+- [ ] 参考动作 GMR→K1 — **阻塞：仓外跟踪工具 / GPU**。
+- [ ] 可训练 env（另开实验目录）— **阻塞：GPU worker**。
+- [ ] 虚拟感知 + encoder + AMP 真训 — **阻塞：GPU worker**。
+- [ ] 主攻手近球真切入 — **阻塞：实现 + GPU**；未实现则永远 walk 344→13。
 
 禁止：`train.py --task=K1_Reactive` 在官方树里；加载 `model.pth` / `K1_walk.pth`；像素先于结构化观测。
 
@@ -185,6 +191,7 @@ python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py
 python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py
+python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
@@ -193,7 +200,26 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 
 ---
 
-## 5. 风险（调研后仍成立）
+## 5. 阻塞项（P0–P2 现在过不去的）
+
+本 PR 只清无 GPU 合同/文档/骨架。下面这些**不是本云环境能勾的**；缺依赖时保持 SKIP / 未实现，不得假绿。
+
+| 项 | 卡在哪 | 本 PR 已有 | 需要 |
+|---|---|---|---|
+| 完整切换时间序列 H1–H6 / T4 | 无录包 | 形状草案 + SKIP | GPU worker 或本机 MuJoCo 录包 |
+| P1 急停 / vx vy wz 统计 | 无 `bh-gym` / GPU | draft-only 配方 | **GPU worker** |
+| P1 估计器 A/B 真训 | 同上 | `k1-estimators` stub；latent 不进 344 | **GPU worker** |
+| P2 可训练 64→15 env | stub `TRAINABLE=false` | 硬化 + P2-ACCEPTANCE | **GPU worker** + 另开实验目录 |
+| Zenodo 58/15 只读核 | ZIP 不入库 | 仓外步骤（NEXT） | 本机磁盘 |
+| SimRobot 六机回放 | 无本机比赛栈 | 纪律条目（P2-ACCEPTANCE R1） | 本机比赛栈（**非真机**） |
+| 走↔踢 5 s 不二次跌倒 | 无 SimRobot / 录包 | SM 边 + 部署一拍 | 本机比赛栈 |
+| 真机 / ASAP / 厂家校准 | 未授权 | 禁止清单 | **真机**（本轮禁止） |
+
+默认 / 主路径在上述全部阻塞解除之前，仍是官方 B-Human walk **344→13**。
+
+---
+
+## 6. 风险（调研后仍成立）
 
 - K1 无腰：火神 15 维有腰，本仓 15 维是头+腿+步频。维数巧合 ≠ 可加载。
 - Isaac Gym 停更：主线先不动，避免和算法实验缠在一起。

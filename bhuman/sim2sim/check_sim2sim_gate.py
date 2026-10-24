@@ -22,6 +22,23 @@ WALK_OBS = 344
 WALK_ACT = 13
 KICK_OBS = 59
 RECORDED_RUN = "runs/20261020_220814_312153_mujoco_walk"
+# Official Isaac / MuJoCo train PD (K1.yaml live block). Robot ankle-roll p25
+# is a documented domain gap — must not overwrite this declaration.
+TRAIN_ANKLE_PITCH_P = 50.0
+TRAIN_ANKLE_ROLL_P = 60.0
+ROBOT_ANKLE_ROLL_P = 25.0
+FOREIGN_OVERPASS = (
+    (59, 13, "kick 59→13"),
+    (64, 15, "reactive 64→15"),
+    (58, 15, "Huoshen T1 58→15"),
+    (73, 22, "standup 73→22"),
+    (72, 22, "fast standup 72→22"),
+    (79, 22, "NUSim 79→22"),
+    (365, 14, "B-Human T1 walk 365→14"),
+    (344, 15, "walk obs + reactive act"),
+    (344, 22, "walk obs + standup act"),
+    (64, 13, "reactive obs + walk act"),
+)
 REQUIRED_RESULT_KEYS = (
     "status",
     "observations_shape",
@@ -48,16 +65,56 @@ def _repo_from(explicit: Path | None = None) -> Path:
 
 
 def refuse_foreign_policy(obs_dim: int, act_dim: int | None = None) -> None:
-    """Walk overpass only. Kick 59 / reactive 64 / NUSim 79 are not walk."""
+    """Walk overpass only. Wrong dims / foreign families are not walk."""
     if obs_dim == WALK_OBS and (act_dim in (None, WALK_ACT)):
         return
-    if obs_dim == KICK_OBS:
-        raise ValueError("kick 59->13 checkpoint is not a walk sim2sim policy")
-    if obs_dim == 64:
-        raise ValueError("reactive 64 is a parallel stub; not the walk overpass")
-    if obs_dim == 79:
-        raise ValueError("NUSim 79 is forbidden in sim2sim")
-    raise ValueError(f"sim2sim walk gate expects 344->13, got {obs_dim}->{act_dim}")
+    labels = {
+        (59, 13): "kick 59->13 checkpoint is not a walk sim2sim policy",
+        (64, 15): "reactive 64 is a parallel stub; not the walk overpass",
+        (64, 13): "reactive 64 + walk 13 is not a legal overpass pair",
+        (58, 15): "Huoshen T1 58->15 is not K1 walk",
+        (73, 22): "standup 73->22 is GetUpEngine, not the walk overpass",
+        (72, 22): "fast standup 72->22 is deploy-only; SimRobot/MuJoCo must not impersonate it",
+        (79, 22): "NUSim 79 is forbidden in sim2sim",
+        (365, 14): "B-Human T1 walk 365->14 is not K1",
+        (344, 15): "walk 344 obs cannot pair with a 15-D reactive action",
+        (344, 22): "walk 344 obs cannot pair with a 22-D standup action",
+    }
+    raise ValueError(
+        labels.get((obs_dim, act_dim), f"sim2sim walk gate expects 344->13, got {obs_dim}->{act_dim}")
+    )
+
+
+def refuse_pd_claim(claim: dict) -> None:
+    """Refuse unified / robot-p25-as-train / foreign-family PD declarations."""
+    if not isinstance(claim, dict):
+        raise ValueError("PD claim must be a mapping")
+    if claim.get("unified") is True:
+        raise ValueError("must not unify Isaac / MuJoCo / SimRobot / robot PD groups")
+    source = str(claim.get("source") or "")
+    family = str(claim.get("family") or "")
+    ankle_roll = claim.get("Ankle_Roll")
+    if family in {"huoshen_t1", "nusim", "t1_reactive", "K1_Reactive"}:
+        raise ValueError(f"foreign PD family {family} is forbidden on the walk overpass")
+    if source in {"train_yaml", "isaac", "k1.yaml", "official_walk"} and ankle_roll is not None:
+        value = float(ankle_roll)
+        if value == ROBOT_ANKLE_ROLL_P:
+            raise ValueError("must not rewrite official train Ankle_Roll p60 to robot p25")
+        if value != TRAIN_ANKLE_ROLL_P:
+            raise ValueError(f"official train Ankle_Roll must stay p{TRAIN_ANKLE_ROLL_P:g}, got {ankle_roll}")
+
+
+def official_train_pd_untouched(repo: Path) -> None:
+    """Read-only: live K1.yaml PD stays ankle-roll p60, not robot p25."""
+    for rel in (
+        "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml",
+        "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    ):
+        text = (repo / rel).read_text(encoding="utf-8")
+        if '"Ankle_Roll": 60.' not in text:
+            raise AssertionError(f"{rel} live Ankle_Roll is no longer official train p60")
+        if "num_observations: 344" not in text or "num_actions: 13" not in text:
+            raise AssertionError(f"{rel} is no longer official walk 344→13")
 
 
 def probe_stack() -> dict[str, Any]:
@@ -118,7 +175,33 @@ def check_recorded_result(path: Path) -> dict[str, Any]:
     physics_steps = data.get("physics_steps")
     if policy_calls and physics_steps and physics_steps != policy_calls * 10:
         errors.append("physics_steps != policy_calls * 10 (dt 0.002, decimation 10)")
+    launch = path.with_name("launch.json")
+    if launch.is_file():
+        errors.extend(_check_recorded_pd(launch))
     return {"path": str(path), "ok": not errors, "errors": errors, "status": data.get("status")}
+
+
+def _check_recorded_pd(launch: Path) -> list[str]:
+    data = json.loads(launch.read_text(encoding="utf-8"))
+    stiffness = data.get("pd_stiffness") or []
+    errors: list[str] = []
+    # mujoco_walk.py: first 10 DoF are upper body (Default 10), then 12 legs.
+    # Leg order: HipPitch, HipRoll, HipYaw, Knee, AnklePitch, AnkleRoll ×2.
+    if len(stiffness) < 22:
+        return [f"{launch.name} pd_stiffness too short to score ankle roll"]
+    left_roll, right_roll = float(stiffness[15]), float(stiffness[21])
+    left_pitch, right_pitch = float(stiffness[14]), float(stiffness[20])
+    if left_roll != TRAIN_ANKLE_ROLL_P or right_roll != TRAIN_ANKLE_ROLL_P:
+        errors.append(
+            f"{launch.name} Ankle_Roll PD {left_roll}/{right_roll} is not official train p60"
+        )
+    if left_roll == ROBOT_ANKLE_ROLL_P or right_roll == ROBOT_ANKLE_ROLL_P:
+        errors.append(f"{launch.name} Ankle_Roll was rewritten to robot p25")
+    if left_pitch != TRAIN_ANKLE_PITCH_P or right_pitch != TRAIN_ANKLE_PITCH_P:
+        errors.append(
+            f"{launch.name} Ankle_Pitch PD {left_pitch}/{right_pitch} is not official train p50"
+        )
+    return errors
 
 
 def check_scripts_present(repo: Path) -> list[str]:
@@ -162,10 +245,35 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         warnings.append(f"recorded result missing: {RECORDED_RUN}/result.json")
 
     try:
-        refuse_foreign_policy(KICK_OBS, 13)
-        errors.append("refuse_foreign_policy must reject kick 59")
-    except ValueError:
-        notes.append("kick 59 refused as a walk overpass policy")
+        official_train_pd_untouched(repo)
+        notes.append("official K1.yaml live PD still Ankle_Roll p60 (not robot p25)")
+    except AssertionError as exc:
+        errors.append(str(exc))
+
+    for obs_dim, act_dim, label in FOREIGN_OVERPASS:
+        try:
+            refuse_foreign_policy(obs_dim, act_dim)
+            errors.append(f"refuse_foreign_policy must reject {label}")
+        except ValueError:
+            notes.append(f"negative dim: {label} refused as a walk overpass")
+
+    for claim, label in (
+        ({"unified": True, "source": "train_yaml", "Ankle_Roll": 60.0}, "unified PD groups"),
+        ({"source": "train_yaml", "Ankle_Roll": ROBOT_ANKLE_ROLL_P}, "train YAML rewritten to p25"),
+        ({"source": "official_walk", "Ankle_Roll": 80.0}, "train Ankle_Roll drifted off p60"),
+        ({"family": "huoshen_t1", "Ankle_Roll": 60.0}, "Huoshen T1 PD family"),
+        ({"family": "nusim"}, "NUSim PD family"),
+    ):
+        try:
+            refuse_pd_claim(claim)
+            errors.append(f"refuse_pd_claim must reject {label}")
+        except ValueError:
+            notes.append(f"negative PD: {label} refused")
+    try:
+        refuse_pd_claim({"source": "official_walk", "Ankle_Roll": TRAIN_ANKLE_ROLL_P, "unified": False})
+        notes.append("official train PD declaration Ankle_Roll p60 accepted")
+    except ValueError as exc:
+        errors.append(f"official train PD p60 must be accepted: {exc}")
 
     probe = probe_stack()
     skipped = not probe["ready"]
