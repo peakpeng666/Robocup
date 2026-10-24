@@ -1,0 +1,8 @@
+# Local Huoshen / Zenodo extracts. Never commit these.
+/scratch/
+/zenodo/
+*.zip
+*.pth
+*.pt
+*.onnx
+__pycache__/

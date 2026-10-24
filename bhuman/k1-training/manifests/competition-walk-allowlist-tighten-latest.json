@@ -1,0 +1,107 @@
+{
+  "generated_utc": "2026-10-24T13:20:40+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/competition_walk_allowlist_tighten.py",
+  "checklist": [
+    "allowlist_documented_14",
+    "competition_equals_11v11",
+    "net_slot_stays_344",
+    "hashes_frozen",
+    "silent_edit_refused"
+  ],
+  "allowlist": [
+    {
+      "key": "ballDistancePolicySwitch",
+      "default": "1500",
+      "competition": "1100"
+    },
+    {
+      "key": "ballHysteresisPolicySwitch",
+      "default": "300",
+      "competition": "200"
+    },
+    {
+      "key": "commonSpeedParameters.maxAcceleration.x",
+      "default": "20",
+      "competition": "200"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "competition": "2000"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "competition": "1500"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeedBackwards",
+      "default": "500",
+      "competition": "1000"
+    },
+    {
+      "key": "configuredParameters.maxPossibleSpeed.maxSpeed.translation.y",
+      "default": "1000",
+      "competition": "1500"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.rotation",
+      "default": "120deg",
+      "competition": "90deg"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "competition": "1250"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "competition": "750"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.rotation",
+      "default": "54deg",
+      "competition": "90deg"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "competition": "750"
+    },
+    {
+      "key": "shiftBallPosition",
+      "default": "false",
+      "competition": "true"
+    },
+    {
+      "key": "shiftBallPositionValue",
+      "default": "80",
+      "competition": "40"
+    }
+  ],
+  "allowed_count": 14,
+  "competition_equals_11v11": true,
+  "net_slot_diff": false,
+  "silent_competition_cfg_edit": false,
+  "walk": "344→13",
+  "apply_to_live": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "field_ready": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "CompetitionWalk / 11v11 vs Default stay the documented 14-key allowlist; hashes pinned; silent Competition cfg edits forbidden; net slot 344→13; overlay PASS ≠ apply_to_live",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "competition_11v11_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -1,0 +1,7 @@
+*.pth
+*.pt
+*.onnx
+*.zip
+__pycache__/
+/runs/
+/scratch/

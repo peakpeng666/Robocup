@@ -1,0 +1,25 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "live_absent_keys": [
+    "draft_settle_jitter_scale",
+    "draft_zero_cmd_root_acc_scale"
+  ],
+  "live_action_rate": -1.0,
+  "draft": {
+    "factor": "B_settle_jitter",
+    "draft_only": true,
+    "apply_to_live": false,
+    "applied": false,
+    "proposed_only": {
+      "draft_settle_jitter_scale": 0.0,
+      "draft_zero_cmd_root_acc_scale": 0.0
+    }
+  },
+  "live_overwritten": false,
+  "trainable": false,
+  "write_yaml": false,
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "note": "official live has no draft_settle_* keys; action_rate=-1. intact; B_settle_jitter proposed_only, not applied"
+}

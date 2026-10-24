@@ -1,0 +1,44 @@
+{
+  "generated_utc": "2026-10-24T13:20:34+00:00",
+  "ready": false,
+  "skipped": true,
+  "checklist": {
+    "cuda": {
+      "ok": false,
+      "detail": "nvidia-smi not found (no CUDA worker)",
+      "gpu": null
+    },
+    "isaacgym_or_alt": {
+      "ok": false,
+      "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+      "bh_gym_python": null,
+      "bh_gym_version": null,
+      "isaacgym": false,
+      "alternative": null
+    },
+    "disk": {
+      "ok": true,
+      "detail": "IsaacGymRL present; free≈245.6GiB"
+    },
+    "official_k1_task": {
+      "ok": true,
+      "detail": "official registry imports K1; K1.yaml 344→13",
+      "task": "K1"
+    },
+    "checkpoint": {
+      "ok": false,
+      "detail": "K1_walk.pth absent (gitignored / local-only)"
+    }
+  },
+  "missing": [
+    "cuda",
+    "isaacgym_or_alt",
+    "checkpoint"
+  ],
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "must_tell_user_before_train": true,
+  "tell_user": null,
+  "walk": "344→13",
+  "task": "K1"
+}

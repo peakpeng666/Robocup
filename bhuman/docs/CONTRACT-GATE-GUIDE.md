@@ -1,0 +1,105 @@
+# 合同门禁一键汇总
+
+2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)、[PR4-INDEX.md](PR4-INDEX.md)、[README-RL.md](README-RL.md)、`bhuman/k1-training/scripts/run_contract_gate.sh`。
+
+**PASS ≠ 已训通。** 本门禁锁官方 B-Human walk **344→13** 与旁路纪律，不跑 `train.py`，不启 Isaac Gym，不连真机。  
+**文档 / 门禁就绪 ≠ 已上真机**（[P5-PREVIEW.md](P5-PREVIEW.md)）。
+
+---
+
+## 0. 怎么跑
+
+新人先跑这两句（无 GPU）：
+
+```bash
+bash bhuman/k1-training/scripts/run_contract_gate.sh
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
+```
+
+门禁锁合同；无 Gym 入口发现并跑齐 switcher / reactive / estimators / sim2sim / draft 纯 Python 测试。缺 mujoco / 权时测试内 **SKIP**，不得假绿。默认断言仍是 walk **344→13**。观测拼装只读对照：[OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md)。开训干跑：`scripts/print_train_dry_run.py`（**干跑成功 ≠ 可训**）。GPU 到位后步骤：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)。合并前另见 [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md)（**不要自动合并**；HEAD 可审、先读 README-RL；阻塞 GPU worker / 权重 / 真机）。一键自检：`bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh`。人读摘要：[PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md)（`render_selfcheck_summary.py`）。六机脚手架（不跑仿真）：`simrobot_acceptance/`。SkillRequest 对照：`skill_request_map.py`。PD 域差 / TeamComm 512 / checkpoint 布局见 `pd_domain_gap_contract.py`、`teamcomm_budget.py`、[CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md)。kick/standup 关节图交叉：`kick_standup_joint_map.py`。参考运动清单：`reference_motion_inventory.py`。GetUpEngine 快照：`getup_engine_snapshot.py`。walk 稳定性预设：`walk_stability_presets_audit.py`。禁令回归：`test_forbidden_regressions.py`。旁系任务：`official_sibling_tasks_audit.py`。ONNX 路径：`onnx_deploy_path_crosscheck.py`。自检各步 `elapsed_s`。T1/K1 隔离：`t1_k1_isolation.py`。过桥负例：`overpass_contract.py`。命令日程只读：`command_schedule_audit.py`（draft 不得当已应用）。扰动草案：`disturbance_curriculum_audit.py`（缺 `draft_only` / `apply_to_live` → FAIL）。settle / 抖动：`settle_jitter_audit.py`。估计器 A/B：`estimator_ab_audit.py`（旁路；不写 344；不注册 train.py）。参考惩罚退火：`reference_penalty_anneal_audit.py`（live 1.0 不改）。BehaviorControl 交接：`behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。CompressedTeamCommunication 形状：`compressed_teamcomm_shape.py`（HSL 512 / 官方容器；不进 344；WLAN SKIP）。跌倒链：`falldown_motion_chain.py`（fallen→73→22→walk；跌倒不是 SkillRequest；缺源 SKIP）。128 vs 512：`teamcomm_128_vs_512.py`（不得混用；不得用 512 覆盖官方 128；带宽 SKIP）。Force walk afterwards：`force_walk_afterwards.py`（getup_done→walk 344→13；last_action 13 个 0）。KickEngine 边界：`kick_engine_boundary.py`（kick 59→13 旁路 ≠ 换 walk；缺 KickEngine SKIP）。walkingEngine.cfg 审计：`walking_engine_cfg_audit.py`（walk 344→13 / `K1_walk.onnx`；kickModel ≠ walk 默认槽）。kick ONNX 命名：`kick_onnx_naming.py`（`K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺文件 SKIP）。getUpEngine.cfg 审计：`getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署；T1 getUp 不得当 K1）。cfg 副本交叉：`cfg_copy_crosscheck.py`（Default / Simulated / Competition 关键字段；意外漂移 FAIL）。motorParameters 深化：`motor_parameters_audit.py`（regular p25 vs 训侧 p60；Simulated 速度 ≠ PD 闭合）。Simulated 速度差分：`simulated_speed_diff.py`（有意允许集；网槽漂移 FAIL）。standAnkleStiffness 对照：`stand_ankle_stiffness.py`（plant 60/80→100/100；≠ 训侧 p60→p25；≠ PD 闭合）。CompetitionWalk / 11v11 差分：`competition_walk_diff.py`（14 个有意差分键；网槽仍 344→13；意外漂移 FAIL）。policySwitch 球距阈值：`policy_switch_threshold.py`（1500/300 vs 1100/200；≠ 换网 / 改 344）。shiftBallPosition 边界：`shift_ball_position.py`（false/80 vs true/40 踢球接近偏移；≠ 改维 / 旁系）。walkPolicy / kickPolicy 切换只读：`walk_kick_policy_switch.py`（walk 344→13 / kick 59→13 旁路；空上下文仍 walk）。maxAcceleration 差分：`max_acceleration_diff.py`（20/20 vs 60/20 vs 200/20 plant；≠ 换网 / 改维）。getNextTargetRequest 只读钉死：`get_next_target_request.py`（10 条 walk-stay 条件；空上下文仍 walk；≠ 热换训练图）。speed 档位允许集：`speed_gear_diff.py`（fast/normal/slow 7 Sim / 8 Comp；≠ 换网）。ballNetwork 开关只读：`ball_network_active.py`（官方 active=true；未开强制 walkPolicy；≠ 改 344 / 换训练图）。拦截 / 避障 / walkOut 旁路：`intercept_avoid_bypass.py`（三旁路仍 walkPolicy 344→13；≠ kick / reactive / T1）。剩余 walk-stay 只读：`walk_stay_remaining.py`（shouldStop / stand / 未见>1000 / 非 kick motion 仍 walk；空=walk；仅 want_kick → kick）。球距滞回允许集：`ball_distance_hysteresis.py`（Default/Simulated 1500±300 vs Competition/11v11 1100±200；未越过仍 walk；≠ 改维 / 热换训练图）。kick 调用点维数：`kick_policy_apply_dims.py`（仅 want_kick + dribble/walkToBallAndKick → kick 59→13；WalkToBallAndKick 只出位姿；≠ walk 344）。walk 调用点维数：`walk_policy_apply_dims.py`（默认 walkPolicy.apply() 344→13 / K1_walk.onnx；非 kick 仍此槽；≠ reactive / T1）。walk↔kick last_action 缓冲：`policy_switch_last_action.py`（无显式清零 → 诚实 GAP；禁止 344↔59 复用 / 假绿）。walk↔kick history GAP 清单：`policy_switch_history_gap.py`（仅旁路切换不调 `resetHistoryData`；draft 未进 live；standup 13-zero 勿混称）。WalkPhase 延续 vs 新建 reset：`walk_phase_reset_allowlist.py`（仅构造 + 非延续新 WalkPhase 才清零；延续 = walk/stand + `WalkPhase*`）。standup 调用点维数：`standup_policy_apply_dims.py`（常规 GetUp apply 73→22 / K1.onnx；≠ walk 344 / kick 59）。fast standup 隔离：`fast_standup_isolation.py`（fast 72→22 / K1_fast_standup.onnx；≠ 常规 73 / Isaac）。GetUp→walk 交接链：`getup_walk_handoff_chain.py`（fallen→createPhase→apply→force-walk→walk 344→13；跳步 / 进错网 FAIL）。本地产物即推：`upload_run_artifacts.py`（`TRAINABLE=false`；dry-run；不自动开训；见 LOCAL-RUN-ARTIFACTS）。SkillBehaviorControl 写入链：`skill_behavior_write_chain.py`（官方无 `want_kick`；部署口默认 false；拦截默认 false 仍 walk；空=walk **344→13**）。PR 分组导航 / 体积：`pr4_index_nav.py`（walk/kick/standup/handoff/artifacts/GAP；~+191k/335 files；**status=GAP** / **gap_closed=false**）。PlayBall ≠ kickPolicy 两条链：`playball_not_kick_policy.py`（运动请求 walkToBallAndKick ≠ CompiledNN kick 槽；官方踢球技能 ≠ kick 网；空=walk **344→13**）。reactive / 旁路 stub 硬化：`reactive_stub_hardening.py`（stub 全 `TRAINABLE=false`；不得当默认 walk；stub 不得把 `ready_gpu` 翻 true）。部署双链时序：`deploy_two_chain_sequence.py`（链 A 位姿 → walkPolicy **344→13**；链 B 仅 want_kick → kickPolicy **59→13**；禁止把链 A 画成 kick 网；**gap_closed=false**）。WalkToBallAndKickEngine 无 ONNX：`walk_to_ball_engine_no_onnx.py`（只出 kickPose / 轨迹；不 apply 任何 ONNX / CompiledNN；意外 T1 → FAIL）。本机 bh-gym 开训干跑路径：`local_bh_gym_dry_run.py`（指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**）。有界 walk 回放入口：`bounded_walk_replay.py`（`run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。有界 standup 回放入口：`bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**）。walk 评估指标门禁：`walk_eval_metrics.py`（`run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格）。有界 kick 回放入口：`bounded_kick_replay.py`（`run_replay.sh K1_Ball` 建议 4/300；**59→13** ≠ walk **344→13**；history reset 仅 draft）。standup 评估指标门禁：`standup_eval_metrics.py`（`run_standup_eval` REPORT_ONLY；**PASS_FOR_DECLARED_PROFILE ≠ 比赛合格**）。跌倒→起身→walk 干跑链：`fall_getup_walk_dry_run.py`（fallen→GetUp→Force walk afterwards→walk **344→13**；**gap_closed=false**）。kick 评估指标门禁：`kick_eval_metrics.py`（K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署）。有界 fast-standup 回放：`bounded_fast_standup_replay.py`（deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；≠ walk **344→13**；≠ 常规 **73→22**）。双链切换干跑负例：`dual_chain_switch_dry_run.py`（PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前；**gap_closed=false**）。kick ONNX 部署路径：`kick_onnx_deploy_path.py`（`K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false**）。standup / fast / walk 隔离矩阵：`standup_fast_isolation_matrix.py`（**344→13** / **73→22** / **72→22**；无 live 串槽）。策略切换相位草稿：`policy_switch_phase_draft.py`（last_action → resetHistoryData → Force walk；**apply_to_live=false**）。walk ONNX 导出干跑：`walk_onnx_export_dry_run.py`（344 stub；PASS ≠ competition deploy）。缺权 SKIP 诚实：`missing_weight_skip_honesty.py`（walk/kick/standup/fast；不得假绿 / fail-closed）。合并就绪阻塞：`merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。本机 RTX 5090 开训前清单：`local_rtx5090_pretrain_checklist.py`（只盘点；**ready_gpu=false**；不启动 train.py）。walk 评估产物交叉核对：`walk_eval_artifact_crosscheck.py`（s2027 仍 **REPORT_ONLY**；清单不得升成比赛合格）。kick / standup 开训干跑：`kick_standup_train_dry_run.py`（`K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；**would_train=false**）。本地产物上传+清理清单：`local_artifact_upload_cleanup.py`（先推 GitHub 再清缓存；不得 rm Desktop）。奖励课程草案校验：`reward_curriculum_draft_validator.py`（**apply_to_live=false**；PASS ≠ live curriculum）。观测历史窗合同：`obs_history_window_contract.py`（walk **344→13** / kick **59→13** / standup **73→22**；跨技能复用仍是 GAP）。CI 门禁接线：`ci_gate_wiring.py`（自检 + forbidden 无 Gym/GPU；**merge_ready=false**）。域随机 / 扰动草案校验：`domain_rand_disturbance_draft_validator.py`（**apply_to_live=false**；PASS ≠ live DR）。PD 增益域差负例：`pd_gain_domain_gap_negatives.py`（p60≠p25≠p65；禁静默跨域拷增益）。SimRobot 六机验收缺口：`simrobot_six_robot_acceptance_gap.py`（脚手架 ≠ 上场就绪；**field_ready=false**）。估计器旁路草案合同：`estimator_bypass_draft_contract.py`（**apply_to_live=false**；PASS ≠ live estimator swap）。力矩 / effort 时间序列合同：`torque_effort_timeseries_contract.py`（**T4** SKIP；序列 PASS ≠ live torque / 比赛合格）。reactive 拦截旁路硬化：`reactive_intercept_bypass_hardening.py`（**TRAINABLE=false**；PlayBall ≠ kickPolicy；PASS ≠ live kick 部署）。队通信形状负例：`teamcomm_shape_negatives.py`（官方 **128** ≠ HSL **512**；禁静默扩容）。PR 体积健康复扫：`pr_volume_health_rescan.py`（记增长；**不改历史**；**不删产物**）。KickEngine 请求/中止边：`kick_engine_boundary_edges.py`（request/abort vs kickPolicy **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署）。球任务隔离矩阵：`ball_task_isolation_matrix.py`（`K1` / `K1_Ball` / `K1_Stand_Up` 三槽；禁跨槽接线）。GetUp → Force-walk 交接：`getup_force_walk_handoff.py`（Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；PASS ≠ field-ready standup）。standup-eval 产物交叉核对：`standup_eval_artifact_crosscheck.py`（现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级）。walk-stability still/speed/stand 盘点：`walk_stability_preset_inventory.py`（对照 WalkingEngine；**PASS ≠ competition-ready gait**）。Competition 允许集收紧：`competition_walk_allowlist_tighten.py`（**14-key** 允许集；禁 silent Competition cfg 改写）。policySwitch 滞回 enter/exit 盘点：`policy_switch_hysteresis_enter_exit.py`（Default 1200/1800 vs Competition 900/1300；PlayBall ≠ kickPolicy；**PASS ≠ live switch authorize**）。walk vs kick 路径 maxAcc 注记：`maxacc_walk_kick_path_notes.py`（walk 步进棘轮读 maxAcc；kickPolicy 不读；禁 **silent maxAcc** 拷进 live cfg）。自检失败定位：`selfcheck_fail_hints.py`（FAIL 打印「先看」文件/测试；PASS 安静）。
+
+仓库根只跑门禁：
+
+```bash
+bash bhuman/k1-training/scripts/run_contract_gate.sh
+```
+
+可选：指定产物文件名（默认 `contract-gate-YYYYMMDD.json`）：
+
+```bash
+CONTRACT_GATE_STAMP=20261024-p3 bash bhuman/k1-training/scripts/run_contract_gate.sh
+```
+
+脚本**不** `source env.sh`（那个解释器要操作者本机 `bh-gym`）。缺 GPU / 缺权时仍应 **exit 0**，只记 WARN + SKIP。
+
+单独复现某一块：
+
+```bash
+python3 bhuman/k1-training/scripts/check_policy_contracts.py
+bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
+python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
+bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
+```
+
+---
+
+## 1. 产物（manifest）含义
+
+都在 `bhuman/k1-training/manifests/`。可重跑覆盖；Git 里是证据，不是训练结果。
+
+| 文件 | 含义 |
+|---|---|
+| `contract-gate-${STAMP}.json` | 该次门禁全文（维、旁路测试、warnings/notes） |
+| `contract-gate-latest.json` | 最近一次的拷贝，方便读 |
+| `reserved-gpu-latest.json` | GPU / `bh-gym` 探测；本环境通常 `ready=false` |
+| `contract-gate-20261024.json` 及带后缀的副本 | 历史增量（skill-switch / global / migrate / switcher / deploy / timeseries / p2 / standup / draft / isol / p3…） |
+
+读 JSON 时先看：
+
+- `verdict`：`PASS` / `FAIL`
+- `architecture.unregistered_in_train_py`：骨架 YAML 在 `k1-reactive/` ⇒ **未注册 = PASS**
+- `k1_contracts.walk`：必须是 `344→13`
+- `reserved_gpu.skipped`：缺 worker 时为 `true`
+
+---
+
+## 2. PASS / SKIP / WARN
+
+| 标记 | 含义 | 本云环境预期 |
+|---|---|---|
+| **PASS** | 官方维未改、旁路未泄漏进 `train.py`、负例拒外族 | 合同门禁应 PASS |
+| **SKIP** | 缺可选运行时（mujoco / 权 / 录包 / GPU） | sim2sim 真回放、H1–H6/T4 连续性、Isaac 回放 |
+| **WARN** | 缺公开 ONNX/pth、缺 `nvidia-smi` / `bh-gym` | 预期出现；**不是 FAIL** |
+| **FAIL** | 改了 344/59/73、live 奖励被 draft 覆盖、`K1_Reactive` 进了官方 `envs/` | 必须修 |
+
+`unregistered_in_train_py=PASS` 只说明平行 stub 没进官方注册表，**不**说明已经有可训练 env。
+
+---
+
+## 3. GPU worker 缺席时
+
+`probe_reserved_gpu.py` 预期：
+
+- `ready=false`，`skipped=true`
+- `will_run_isaac_gym=false`（本钩子永不自动训练）
+- 门禁记 WARN：`nvidia-smi not found` / `bh-gym interpreter missing`
+- 第一训命令只当模板留在探测 JSON 里，仍是官方 `--task K1` **344→13**
+
+探测现在写出 checklist JSON（`reserved-gpu-latest.json` 与 `gpu-worker-checklist-latest.json`）：CUDA / IsaacGym 或替代 / 磁盘 / 官方 `--task K1` / `K1_walk.pth`。`ready=false` 看 `missing`；`ready=true` 必须先告知用户，等明确开训。脚本不调用 `train.py`。
+
+官方奖励只读快照：`python3 bhuman/k1-training/scripts/k1_reward_audit.py` → `k1-reward-audit-latest.json`。禁止写回 `K1.yaml`。
+
+worker 以后出现：先跑探测 → **告知用户** → 等明确说开训。见 ROADMAP §5。
+
+---
+
+## 4. PASS ≠ 已训通
+
+门禁 PASS 只保证：
+
+1. 官方 walk 仍是 **344→13**，kick 59→13，standup 73→22 / fast 72→22。
+2. `K1.yaml` 默认奖励未被本 PR 改写。
+3. 平行模块 `TRAINABLE=false`，latent / 队友状态不进 344。
+4. 火神 T1 / NUSim 被拒。
+
+它**不**保证：P1 急停统计已跑、P2 64→15 已训、sim2sim 120 s 已过、切换时间序列已连续、真机可上。那些缺依赖时保持 SKIP / `[ ]`，不得把 SKIP 改成 PASS。

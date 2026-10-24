@@ -1,0 +1,71 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/kick_standup_train_dry_run.py",
+  "checklist": [
+    "kick_59_13_print_only",
+    "standup_73_22_print_only",
+    "fast_72_22_note_not_isaac",
+    "would_train_false",
+    "never_exec_train",
+    "generated_cmd_not_launch_auth"
+  ],
+  "dry_run": {
+    "ok": true,
+    "verdict": "DRY-RUN",
+    "walk": "344→13",
+    "kick": {
+      "task": "K1_Ball",
+      "dims": "59→13",
+      "train_py_draft": "$BH_PY bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1_Ball --num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 --headless true --checkpoint <operator-local K1_kick_inner.pth> --load_mode warm-start",
+      "local_train_py_draft": "cd $HOME/Desktop/Robocup-pr4 && $HOME/.venvs/bh-gym/bin/python bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1_Ball --num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 --headless true --checkpoint <operator-local K1_kick_inner.pth> --load_mode warm-start",
+      "would_train": false
+    },
+    "standup": {
+      "task": "K1_Stand_Up",
+      "dims": "73→22",
+      "train_py_draft": "$BH_PY bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1_Stand_Up --num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 --headless true --checkpoint <operator-local K1_standup.pth> --load_mode warm-start",
+      "local_train_py_draft": "cd $HOME/Desktop/Robocup-pr4 && $HOME/.venvs/bh-gym/bin/python bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1_Stand_Up --num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 --headless true --checkpoint <operator-local K1_standup.pth> --load_mode warm-start",
+      "would_train": false
+    },
+    "fast": {
+      "task": null,
+      "dims": "72→22",
+      "isaac_registered": false,
+      "train_py_draft": null,
+      "would_train": false,
+      "note": "K1_fast_standup is deploy-only 72→22; not an Isaac registered task; no train.py command; run_replay.sh does not accept K1_fast_standup"
+    },
+    "banner": "必须先告知用户并等待明确开训",
+    "local_venv": "~/.venvs/bh-gym",
+    "local_bh_py": "$HOME/.venvs/bh-gym/bin/python",
+    "local_worktree": "$HOME/Desktop/Robocup-pr4",
+    "trainable": false,
+    "would_train": false,
+    "will_run_train_py": false,
+    "will_run_isaac_gym": false,
+    "generated_cmd_as_launch_auth": false,
+    "ready_gpu": false,
+    "note": "printed sibling drafts ≠ launch authorization; walk first-train stays --task K1"
+  },
+  "would_train": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "will_exec_train_here": false,
+  "generated_cmd_as_launch_auth": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "kick 59→13 / standup 73→22 print-only; fast 72→22 note only; would_train=false; printed cmds ≠ launch authorization",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "ball_yaml_sha256": "986f60387c717d5bbe68fbcc8f59b07c1b2854041682fd310e95c7523544c065",
+  "standup_yaml_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b"
+}

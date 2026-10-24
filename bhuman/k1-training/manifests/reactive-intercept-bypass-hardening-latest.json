@@ -1,0 +1,53 @@
+{
+  "generated_utc": "2026-10-24T13:20:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/reactive_intercept_bypass_hardening.py",
+  "checklist": [
+    "trainable_false_reaffirm",
+    "playball_not_kick_policy",
+    "intercept_write_path_inventory",
+    "apply_to_live_false",
+    "reactive_pass_not_live_kick_deploy"
+  ],
+  "trainable_reaffirm": {
+    "overlay": false,
+    "intercept_avoid_bypass": false,
+    "playball_not_kick_policy": false,
+    "reactive_stub_hardening": false,
+    "skill_behavior_write_chain": false
+  },
+  "playball_is_kick_policy": false,
+  "intercept_write_path": {
+    "id": "intercept_info_to_motion_request",
+    "from": "InterceptBallInformation.intercept",
+    "to": "MotionRequest.shouldInterceptBall",
+    "default": false,
+    "selects": "walkPolicy",
+    "contract": "344→13",
+    "bypass_id": "shouldInterceptBall",
+    "not": [
+      "T1",
+      "kick",
+      "reactive"
+    ]
+  },
+  "sbc_needle": "theMotionRequest.shouldInterceptBall = theInterceptBallInformation.intercept",
+  "sbc_needle_present": true,
+  "apply_to_live": false,
+  "reactive_pass_as_live_kick_deploy": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "read-only intercept write-path inventory; TRAINABLE=false; PlayBall ≠ kickPolicy; overlay PASS ≠ live kick deploy",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

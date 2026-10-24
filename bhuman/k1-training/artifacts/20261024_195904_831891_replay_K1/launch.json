@@ -1,0 +1,23 @@
+{
+  "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256": "943c6bc768fe8c5114c69f31425400402be2198d65cae212457b4f956ff6ed1c",
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/play.py",
+    "--task",
+    "K1",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--load_mode",
+    "actor",
+    "--num_envs",
+    "4",
+    "--max_policy_steps",
+    "500",
+    "--headless",
+    "true",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/runs/20261024_195904_831891_replay_K1"
+  ],
+  "utc": "2026-10-24T10:59:04.843644+00:00"
+}

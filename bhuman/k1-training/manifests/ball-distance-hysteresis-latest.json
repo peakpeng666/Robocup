@@ -1,0 +1,83 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "competition": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp"
+  },
+  "bands": {
+    "default": {
+      "switch": 1500,
+      "hysteresis": 300,
+      "enter_kick_below_when_far": 1200,
+      "stay_walk_above_when_near": 1800
+    },
+    "competition": {
+      "switch": 1100,
+      "hysteresis": 200,
+      "enter_kick_below_when_far": 900,
+      "stay_walk_above_when_near": 1300
+    },
+    "kind": "deploy_walk_stay_hysteresis",
+    "not_crossing_stays_walk": true,
+    "crossing_only_considers_kick": true,
+    "not_344_rewrite": true,
+    "not_train_graph_swap": true,
+    "edges_pinned": true
+  },
+  "align": [
+    {
+      "role": "SimulatedK1",
+      "aligns": "Default",
+      "ballDistancePolicySwitch": "1500",
+      "ballHysteresisPolicySwitch": "300",
+      "matches": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "aligns": "Competition",
+      "ballDistancePolicySwitch": "1100",
+      "ballHysteresisPolicySwitch": "200",
+      "matches": true
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "empty_context": {
+    "skill": "walk",
+    "contract": "344→13"
+  },
+  "want_kick": {
+    "skill": "kick",
+    "contract": "59→13"
+  },
+  "cpp_needles": [
+    "void WalkPhase::getNextTargetRequest",
+    "engine.walkPolicy.apply()",
+    "ballDistancePolicySwitch",
+    "ballHysteresisPolicySwitch",
+    "lastBallNetBallDistance",
+    "ballDistancePolicySwitch +"
+  ],
+  "hysteresis_as_dim_change": false,
+  "policy_switch_as_hot_swap_train": false,
+  "competition_hysteresis_drift": false,
+  "band_crossing_as_dim_rewrite": false,
+  "inverted_hysteresis_band": false,
+  "fabricated": false,
+  "note": "Default/Simulated 1500±300 (enter<1200 / stay>1800) vs Competition/11v11 1100±200 (enter<900 / stay>1300); not crossing the band stays walkPolicy 344→13; crossing only allows considering kick 59→13; ≠ dim rewrite / train hot-swap / inverted edges",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

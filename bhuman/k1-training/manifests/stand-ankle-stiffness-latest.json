@@ -1,0 +1,71 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "simulated": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+    "train_yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    "motor": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/motorParameters.cfg"
+  },
+  "stand_ankle": {
+    "default": {
+      "min": "60",
+      "max": "80"
+    },
+    "simulated": {
+      "min": "100",
+      "max": "100"
+    },
+    "kind": "walkingEngine_plant",
+    "not_motor_pd": true
+  },
+  "table": [
+    {
+      "key": "standAnkleStiffness.min",
+      "default": "60",
+      "simulated": "100",
+      "kind": "plant"
+    },
+    {
+      "key": "standAnkleStiffness.max",
+      "default": "80",
+      "simulated": "100",
+      "kind": "plant"
+    }
+  ],
+  "competition_keeps_default": [
+    {
+      "role": "CompetitionWalk/K1",
+      "min": "60",
+      "max": "80",
+      "matches_default": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "min": "60",
+      "max": "80",
+      "matches_default": true
+    }
+  ],
+  "pd_gap": {
+    "intentional": true,
+    "closed": false,
+    "train_ankle_roll_p": 60.0,
+    "robot_ankle_roll_p": 25.0,
+    "rewrites_p60_to_p25": false
+  },
+  "stand_ankle_closes_pd": false,
+  "rewrites_p60_to_p25": false,
+  "same_numeral_60_is_coincidence": true,
+  "fabricated": false,
+  "note": "standAnkleStiffness Default 60/80 vs Simulated 100/100 is walkingEngine plant; it is not a rewrite of train ankle-roll p60 to robot p25 and does not close the PD domain gap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "simulated_sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "motor_sha256": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967"
+}

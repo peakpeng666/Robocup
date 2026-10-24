@@ -1,0 +1,52 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "inventory only; deploy-only 72→22 / K1_fast_standup.onnx. run_replay.sh does not accept K1_fast_standup (correct).",
+  "limits": {
+    "task": "K1_fast_standup",
+    "obs": 72,
+    "act": 22,
+    "isaac_registered": false,
+    "run_replay_accepts": false,
+    "yaml_present": false,
+    "deploy_only": true,
+    "onnx": "K1_fast_standup.onnx",
+    "existence_required_onnx": false,
+    "existence_required_replay_script": false
+  },
+  "isaac_registered": false,
+  "writes": {
+    "runs": null,
+    "upload": null,
+    "outside_runs": false,
+    "home_scan": false
+  },
+  "will_exec_replay_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "siblings_referenced_not_reaudited": [
+    "bounded_standup_replay.py",
+    "fast_standup_isolation.py",
+    "run_replay.sh",
+    "getup_engine_cfg_audit.py"
+  ],
+  "fast_standup_replay_as_walk_344": false,
+  "fast_standup_replay_as_regular_73": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "fast standup replay is deploy-only 72→22 / K1_fast_standup.onnx; not Isaac; not run_replay.sh; not walk 344; not regular 73→22; missing ONNX OK; walk↔kick GAP stays open (different contract); standup→walk 13-zero is already closed elsewhere",
+  "trainable": false,
+  "auto_replay": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "standup": "73→22",
+  "fast": "72→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "standup_yaml_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b"
+}

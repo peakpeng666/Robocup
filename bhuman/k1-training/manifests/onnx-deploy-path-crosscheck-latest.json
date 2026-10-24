@@ -1,0 +1,69 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "SKIP",
+  "skipped": true,
+  "path_consistent": true,
+  "reason": "official walk onnx/pth absent (gitignored / local-only); declarations still cross-checked",
+  "engine_dir": "Config/NeuralNets/Walk/",
+  "cfg_model_name": "K1_walk.onnx",
+  "composed_walk_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "doc_walk_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "doc_walk_pth": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+  "layout_walk_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "k1_cfgs": [
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "modelName": "K1_walk.onnx",
+      "numInput": 344,
+      "numOutput": 13,
+      "kickModel": "K1_kick_inner.onnx",
+      "composed_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+      "modelName": "K1_walk.onnx",
+      "numInput": 344,
+      "numOutput": 13,
+      "kickModel": "K1_kick_inner.onnx",
+      "composed_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+      "modelName": "K1_walk.onnx",
+      "numInput": 344,
+      "numOutput": 13,
+      "kickModel": "K1_kick_inner.onnx",
+      "composed_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+    },
+    {
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk11v11/K1/walkingEngine.cfg",
+      "modelName": "K1_walk.onnx",
+      "numInput": 344,
+      "numOutput": 13,
+      "kickModel": "K1_kick_inner.onnx",
+      "composed_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+    }
+  ],
+  "t1_model_name": "T1_walk.onnx",
+  "t1_is_k1_walk": false,
+  "getup": {
+    "dir": "Config/NeuralNets/GetUpEngine/",
+    "policyName": "K1.onnx",
+    "policyNameFast": "K1_fast_standup.onnx",
+    "is_walk_default": false,
+    "note": "GetUpEngine ONNX is sibling deploy, not walk 344→13"
+  },
+  "present": [],
+  "missing": [
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+  ],
+  "files_missing": true,
+  "fabricated": false,
+  "trainable": false,
+  "write_yaml": false,
+  "write_weights": false,
+  "walk": "344→13",
+  "note": "WalkingEngine + CHECKPOINT-LAYOUT + WALK_SLOTS agree on NeuralNets/Walk/K1_walk.onnx; missing weights stay SKIP"
+}

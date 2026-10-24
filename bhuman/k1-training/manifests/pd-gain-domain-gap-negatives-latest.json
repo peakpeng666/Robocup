@@ -1,0 +1,40 @@
+{
+  "generated_utc": "2026-10-24T13:20:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/pd_gain_domain_gap_negatives.py",
+  "checklist": [
+    "train_p60_vs_robot_p25_open",
+    "simulated_p65_not_robot",
+    "competition_uses_default_motor",
+    "walk_kick_stiffness_note",
+    "silent_copy_forbidden"
+  ],
+  "notes": {
+    "train_walk_ankle_roll": 60.0,
+    "train_kick_ankle_roll": 60.0,
+    "train_standup_ankle": 35.0,
+    "robot_default_regular_ankle_roll": 25.0,
+    "simulated_regular_ankle_roll": 65.0,
+    "competition_motor_file": null,
+    "competition_uses_default_motor": true,
+    "walk_kick_same_isaac_train_p": true,
+    "same_train_p_is_not_copy_license": true,
+    "simulated_p65_is_hang_test": true
+  },
+  "silent_cross_domain_gain_copy": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "p60≠p25≠p65; Competition uses Default motor; walk/kick stiffness note ≠ live cfg copy",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

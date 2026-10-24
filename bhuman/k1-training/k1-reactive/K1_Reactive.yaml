@@ -1,0 +1,140 @@
+# K1_Reactive — design skeleton only. STUB_NOT_TRAINABLE.
+# Parallel to official B-Human walk 344→13. Do not register in IsaacGymRL.
+# Do not: python train.py --task=K1_Reactive
+# Do not: load K1_walk.pth / Huoshen T1 logs/model.pth / NUSim 79→22 policies
+# Do not: flatten num_stack into a 3200-D or 344-D vector
+#
+# Suggested actor I/O after a future encoder: 64-D frame (+ stack 50 → 64-D
+# embedding, TODO) → 15 actions (head 2 + 12 legs + gait frequency).
+# Huoshen T1 public skill is 58 + stack 50 → 15 (head/waist/legs). Same 15
+# count, different slots — T1 weights are not a K1 actor.
+
+meta:
+  status: STUB_NOT_TRAINABLE
+  task: K1_Reactive
+  trainable: false
+  registered_in_isaacgymrl: false
+  parallel_to: "K1 walk 344→13"
+  huoshen_t1_public: "58 + stack50 → 15 (head 2, waist 1, legs 12)"
+  k1_mapping: "64 + stack50(TODO) → 15 (head 2, legs 12, freq 1; no waist)"
+  nusim: "79→22 forbidden here"
+
+env:
+  num_envs: 0
+  num_observations: 64
+  num_actions: 15
+  num_stack: 50
+  history_embedding_dim: 64
+  num_privileged_obs: 18
+  # Privileged extras are critic-only when an env exists. 18 is intentionally
+  # not walk 16 and not Huoshen 14, so a walk/T1 critic cannot be loaded by dim.
+  history_size: 0
+  trainable: false
+
+action:
+  dim: 15
+  slots:
+    head_yaw_offset: 1
+    head_pitch_offset: 1
+    leg_offsets: 12   # same URDF order as policy-contract-v1 walk
+    gait_frequency_offset: 1
+  not_included:
+    - waist          # K1 official walk has use_waist: false
+    - arms           # reserved for a later 22-D whole-body experiment
+  notes:
+    - "13-D walk/kick action is 12 legs + frequency; this adds head 2."
+    - "Do not treat the 15-D vector as 15 motor currents."
+
+observation:
+  dim: 64
+  kind: compact_structured_frame
+  stack_not_flattened: true
+  layout:
+    projected_gravity: 3
+    base_ang_vel: 3
+    head_pos: 2
+    head_vel: 2
+    leg_pos: 12
+    leg_vel: 12
+    last_action: 15
+    gait_cos_sin: 2
+    ball_xy: 2
+    ball_speed: 1
+    ball_valid: 1
+    ball_delay_norm: 1
+    goal_center_xy: 2
+    goal_normal_xy: 2
+    goal_valid: 1
+    ball_in_fov: 1
+    last_visible_ball_xy: 2
+  proprio_dim: 51
+  virtual_dim: 13
+  units: "rad, rad/s, m; ball/goal positions scaled ×0.1 like B-Human kick"
+
+virtual_perception:
+  implemented: delay_buffer_and_fov_placeholder
+  trainable_wrapper: false
+  delay_ms_mean: 116
+  delay_ms_std: 18
+  policy_dt_s: 0.020
+  delay_steps_default: 6
+  delay_steps_randomize: [4, 8]   # TODO: sample per env from 116±18 ms
+  fov_placeholder:
+    half_angle_rad: 1.0
+    max_range_m: 8.0
+    note: "2D forward cone only; TODO K1 camera + head joints"
+  dropout_prob: 0.0               # TODO: distance-dependent miss
+  occlusion: false                # TODO
+  noise:
+    ball_xy_std: 0.0              # TODO
+    goal_xy_std: 0.0              # TODO
+  actor_must_not_see:
+    - simulator_true_ball_pose
+    - opponent_ground_truth
+    - privileged_mass_com_push
+
+skill_switch:
+  upper_layer: "B-Human behavior tree (unchanged)"
+  activate_when: "striker and ball in range and space ahead"
+  fallback: "official K1 walk 344→13"
+  checklist: "bhuman/docs/SKILL-SWITCH-CONTINUITY.md"
+  empty_shells: "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py"
+  static_mapper: "bhuman/k1-training/k1-reactive/skill_switch_map.py"
+  bt_port: "bhuman/k1-training/k1-reactive/bt_skill_select.py"
+  bt_doc: "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md"
+  implemented: false
+  todo:
+    - align gait phase
+    - align last 12 leg requests with walk action[:-1]
+    - reset or map the 10×32 walk history vs 50-stack reactive encoder
+    - do not hot-swap ONNX by output-dim coincidence
+    - history / phase / torque acceptance items stay SKIP until a switcher exists
+
+forbidden_checkpoints:
+  - K1_walk.pth
+  - K1_walk.onnx
+  - K1_kick_inner.pth
+  - model.pth          # Huoshen T1 public name
+  - any NUSim policy
+
+sim:
+  dt: 0.002
+  decimation: 10
+  note: "Nominal 50 Hz, same as B-Human walk. No env is created from this YAML."
+
+algorithm:
+  planned:
+    - encoder-decoder history compression
+    - privileged reconstruction
+    - multi-critic
+    - AMP
+    - symmetry loss
+    - single-stage PPO
+  not_in_this_stub: true
+  output_dir_rule: "separate from k1-training/runs official walk; explicit selection"
+
+todo:
+  - retarget Huoshen/ACCAD/CMU references onto K1 (no waist-delete shortcut)
+  - implement Isaac Gym env in a future explicit experiment, not this package
+  - measure K1 camera delay and replace 116±18
+  - keep official walk YAML untouched

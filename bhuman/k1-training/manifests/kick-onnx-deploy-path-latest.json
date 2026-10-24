@@ -1,0 +1,55 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/kick_onnx_deploy_path.py",
+  "kick_names": [
+    "K1_kick_inner.onnx",
+    "K1_kick_inner_soft.onnx"
+  ],
+  "kick_deploy_rels": [
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx"
+  ],
+  "walk_default_slot": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "walk_default_name": "K1_walk.onnx",
+  "missing_weights": [
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx"
+  ],
+  "missing_weight_skip": true,
+  "missing_weight_honesty": "SKIP",
+  "steps": [
+    {
+      "id": "kick_onnx_naming",
+      "status": "SKIP",
+      "reason": "official kick onnx/pth absent (gitignored / local-only); naming convention still recorded",
+      "fabricated": false
+    },
+    {
+      "id": "onnx_deploy_path_crosscheck",
+      "status": "SKIP",
+      "reason": "official walk onnx/pth absent (gitignored / local-only); declarations still cross-checked",
+      "fabricated": false
+    }
+  ],
+  "will_exec_export_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "kick_onnx_path_as_walk_344": false,
+  "kick_onnx_live_without_trainable": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "kick ONNX deploy path: K1_kick_inner.onnx 59→13 beside walk K1_walk.onnx 344→13 (same dir, not default slot); missing weights honest SKIP; TRAINABLE=false; GAP open",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "write_weights": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "kick_yaml_sha256": "986f60387c717d5bbe68fbcc8f59b07c1b2854041682fd310e95c7523544c065"
+}

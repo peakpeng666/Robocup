@@ -1,0 +1,190 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "simulated": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+    "competition": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "gears": {
+    "default": {
+      "configuredParameters.fastWalkSpeed.maxSpeed.rotation": "120deg",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.x": "1000",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.y": "500",
+      "configuredParameters.fastWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.normalWalkSpeed.maxSpeed.rotation": "120deg",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.x": "1000",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.y": "500",
+      "configuredParameters.normalWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeed.rotation": "54deg",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.x": "1000",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.y": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeedBackwards": "500"
+    },
+    "simulated": {
+      "configuredParameters.fastWalkSpeed.maxSpeed.rotation": "120deg",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.x": "2000",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.y": "1500",
+      "configuredParameters.fastWalkSpeed.maxSpeedBackwards": "1000",
+      "configuredParameters.normalWalkSpeed.maxSpeed.rotation": "90deg",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.y": "750",
+      "configuredParameters.normalWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeed.rotation": "54deg",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.x": "750",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.y": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeedBackwards": "500"
+    },
+    "competition": {
+      "configuredParameters.fastWalkSpeed.maxSpeed.rotation": "120deg",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.x": "2000",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.y": "1500",
+      "configuredParameters.fastWalkSpeed.maxSpeedBackwards": "1000",
+      "configuredParameters.normalWalkSpeed.maxSpeed.rotation": "90deg",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.y": "750",
+      "configuredParameters.normalWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeed.rotation": "90deg",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.x": "750",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.y": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeedBackwards": "500"
+    },
+    "kind": "plant_step_size_cap",
+    "not_net_slot": true,
+    "not_walk_dim": true
+  },
+  "allowed_simulated": [
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "2000",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "value": "1500",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeedBackwards",
+      "default": "500",
+      "value": "1000",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.rotation",
+      "default": "120deg",
+      "value": "90deg",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "1250",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "value": "750",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "750",
+      "kind": "intentional_plant"
+    }
+  ],
+  "allowed_competition": [
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "2000",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "value": "1500",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.fastWalkSpeed.maxSpeedBackwards",
+      "default": "500",
+      "value": "1000",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.rotation",
+      "default": "120deg",
+      "value": "90deg",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "1250",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.normalWalkSpeed.maxSpeed.translation.y",
+      "default": "500",
+      "value": "750",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.rotation",
+      "default": "54deg",
+      "value": "90deg",
+      "kind": "intentional_plant"
+    },
+    {
+      "key": "configuredParameters.slowWalkSpeed.maxSpeed.translation.x",
+      "default": "1000",
+      "value": "750",
+      "kind": "intentional_plant"
+    }
+  ],
+  "allowed_sim_count": 7,
+  "allowed_comp_count": 8,
+  "copies": [
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "matches_competition": true
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "cpp_needles": [
+    "fastWalkSpeed",
+    "normalWalkSpeed",
+    "slowWalkSpeed"
+  ],
+  "header_needles": [
+    "fastWalkSpeed",
+    "normalWalkSpeed",
+    "slowWalkSpeed"
+  ],
+  "speed_gear_as_net_swap": false,
+  "gear_changes_344_contract": false,
+  "fabricated": false,
+  "note": "fast/normal/slow WalkSpeed Default vs Simulated (7 keys) vs Competition (8 keys, extra slow rotation 54deg→90deg) are plant step-size caps; they do not swap the walk net or change 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "simulated_sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

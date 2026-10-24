@@ -1,0 +1,115 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "walk_slot": {
+    "compiled_nn": "walkPolicy",
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "contract": "344→13"
+  },
+  "kick_slot": {
+    "compiled_nn": "kickPolicy",
+    "modelName": "K1_kick_inner.onnx",
+    "numInput": 59,
+    "numOutput": 13,
+    "contract": "59→13",
+    "shares_walk_output": true
+  },
+  "switch": {
+    "kind": "bypass_policy_selection",
+    "not_default_walk_rewrite": true,
+    "not_net_slot_swap": true,
+    "empty_context_is_walk": true
+  },
+  "copies": [
+    {
+      "role": "SimulatedK1",
+      "walk_model": "K1_walk.onnx",
+      "walk_numInput": "344",
+      "walk_numOutput": "13",
+      "kick_model": "K1_kick_inner.onnx",
+      "kick_numInput": "59",
+      "matches_default_slots": true
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "walk_model": "K1_walk.onnx",
+      "walk_numInput": "344",
+      "walk_numOutput": "13",
+      "kick_model": "K1_kick_inner.onnx",
+      "kick_numInput": "59",
+      "matches_default_slots": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "walk_model": "K1_walk.onnx",
+      "walk_numInput": "344",
+      "walk_numOutput": "13",
+      "kick_model": "K1_kick_inner.onnx",
+      "kick_numInput": "59",
+      "matches_default_slots": true
+    }
+  ],
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "unknown": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_without_want_kick": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_with_want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    },
+    "bt_empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "bt_none": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "bt_want_kick": "kick",
+    "empty_context_is_walk": true,
+    "kick_policy_as_default_walk": false,
+    "switch_only_changes_bypass": true
+  },
+  "cpp_needles": [
+    "walkPolicy.compile",
+    "kickPolicy.compile",
+    "walkPolicy.input(0).dims(0) == walkNeuronalNetworkParameters.numInput",
+    "walkPolicy.output(0).dims(0) == walkNeuronalNetworkParameters.numOutput",
+    "kickPolicy.input(0).dims(0) == ballNetworkParameters.numInput",
+    "kickPolicy.output(0).dims(0) == walkNeuronalNetworkParameters.numOutput",
+    "engine.walkPolicy.apply()",
+    "CompiledNN& policy = !isOldKick ? engine.kickPolicy : engine.oldKickPolicy"
+  ],
+  "header_needles": [
+    "CompiledNN walkPolicy",
+    "CompiledNN kickPolicy"
+  ],
+  "kick_policy_as_default_walk": false,
+  "empty_context_is_walk": true,
+  "fabricated": false,
+  "note": "walkPolicy compile() asserts 344→13 / K1_walk.onnx; kickPolicy compile() asserts 59→13 / K1_kick_inner.onnx sharing walk numOutput; getNextTargetRequest only selects the bypass; empty SkillRequest / SkillSelectContext stay walk 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

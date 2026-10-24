@@ -1,0 +1,57 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/local_artifact_upload_cleanup.py",
+  "checklist": [
+    "post_run_push_github",
+    "then_clear_local_caches",
+    "inventory_docs_only",
+    "no_destructive_desktop_rm",
+    "leftover_cache_needs_upload_note",
+    "giant_binaries_lfs_or_release"
+  ],
+  "upload_plan": {
+    "dest_rel": "bhuman/k1-training/artifacts/dry-run-example/",
+    "large_via": "git-lfs-or-github-release",
+    "silent_pr": false,
+    "invokes_train_py": false,
+    "connects_user_home": false
+  },
+  "cleanup": {
+    "order": [
+      "push_github",
+      "then_clear_uploaded_local_copies"
+    ],
+    "inventory_docs_only": true,
+    "destructive_desktop_rm": false,
+    "existence_required_here": false,
+    "note": "operator clears already-uploaded caches; cloud must not rm Desktop"
+  },
+  "large_suffixes": [
+    ".pth",
+    ".pt",
+    ".onnx",
+    ".mp4",
+    ".tar",
+    ".tar.gz",
+    ".tar.zst",
+    ".zip"
+  ],
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "will_rm_desktop": false,
+  "leftover_cache_without_upload_note": false,
+  "destructive_desktop_rm": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "post-run artifacts must push to GitHub then clear local caches; inventory/docs only; no Desktop rm",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -1,0 +1,68 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "active": {
+    "cfg": "true",
+    "inactive_selects": "walkPolicy",
+    "kind": "deploy_bypass_gate",
+    "not_344_rewrite": true,
+    "not_train_graph_swap": true
+  },
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "copies": [
+    {
+      "role": "SimulatedK1",
+      "active": "true",
+      "kick_numInput": "59",
+      "matches_default": true
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "active": "true",
+      "kick_numInput": "59",
+      "matches_default": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "active": "true",
+      "kick_numInput": "59",
+      "matches_default": true
+    }
+  ],
+  "cpp_needles": [
+    "!engine.ballNetworkParameters.active",
+    "engine.walkPolicy.apply()",
+    "void WalkPhase::getNextTargetRequest"
+  ],
+  "header_needles": [
+    "ballNetworkParameters",
+    "CompiledNN walkPolicy",
+    "CompiledNN kickPolicy"
+  ],
+  "empty_context": {
+    "skill": "walk",
+    "contract": "344→13"
+  },
+  "ball_net_off_as_dim_change": false,
+  "inactive_forces_walk": true,
+  "fabricated": false,
+  "note": "official K1 ballNetworkParameters.active=true on every copy; !active forces walkPolicy 344→13 at deploy; that is not a 344 rewrite and not a train-graph swap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

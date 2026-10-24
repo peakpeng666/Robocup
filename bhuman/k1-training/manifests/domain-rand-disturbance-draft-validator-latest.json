@@ -1,0 +1,60 @@
+{
+  "generated_utc": "2026-10-24T13:20:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/domain_rand_disturbance_draft_validator.py",
+  "checklist": [
+    "walk_live_push_friction_mass_frozen",
+    "draft_only_disturbance_keys",
+    "mass_friction_push_inventory",
+    "apply_to_live_false",
+    "validator_pass_not_live_dr"
+  ],
+  "live_push": {
+    "push_interval_s": 5.0,
+    "push_duration_s": 2.0
+  },
+  "live_dr_ranges": {
+    "friction": "range: [0.3, 1.5]",
+    "base_mass": "range: [0.8, 1.2]",
+    "other_mass": "range: [0.98, 1.02]"
+  },
+  "draft_rel": "bhuman/k1-training/configs/draft-only/walk-p1-factors-v0.json",
+  "draft_only": true,
+  "apply_to_live": false,
+  "disturbance_proposed_only": {
+    "reference_fall_events": 55,
+    "reference_end_events": 531
+  },
+  "draft_mass_friction_push_keys": [],
+  "kick_note": {
+    "task": "K1_Ball",
+    "dims": "59→13",
+    "has_ball_mass": true,
+    "has_ball_friction": true,
+    "is_walk_dr": false,
+    "note": "kick randomization is a sibling; not the K1 walk DR curriculum"
+  },
+  "standup_note": {
+    "task": "K1_Stand_Up",
+    "dims": "73→22",
+    "has_base_mass": true,
+    "is_walk_dr": false,
+    "note": "standup randomization is a sibling; not the K1 walk DR curriculum"
+  },
+  "validator_pass_as_live_dr": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "read-only draft mass/friction/push inventory; apply_to_live=false; validator PASS ≠ live DR",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

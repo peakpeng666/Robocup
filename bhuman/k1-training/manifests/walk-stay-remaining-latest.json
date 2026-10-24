@@ -1,0 +1,128 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h",
+    "motion_h": "bhuman/BHumanCodeRelease/Src/Representations/MotionControl/MotionRequest.h"
+  },
+  "remaining": [
+    {
+      "id": "shouldStop",
+      "needle": "shouldStop",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true
+    },
+    {
+      "id": "phase_stand",
+      "needle": "type == MotionPhase::stand",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true
+    },
+    {
+      "id": "ball_unseen_1000ms",
+      "needle": "ballTimeWhenLastSeen",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true,
+      "threshold_ms": 1000
+    },
+    {
+      "id": "motion_not_kick_skill",
+      "needle": "MotionRequest::dribble",
+      "selects": "walkPolicy",
+      "contract": "344→13",
+      "not_kick": true,
+      "not_reactive": true,
+      "not_t1": true,
+      "kick_motion_allow": [
+        "dribble",
+        "walkToBallAndKick"
+      ]
+    }
+  ],
+  "sibling_contracts": [
+    "ballNetworkParameters.active",
+    "shouldInterceptBall",
+    "shouldWalkOutOfBallLine",
+    "obstacleAvoidance.path.empty()"
+  ],
+  "kick_motion_allow": [
+    "dribble",
+    "walkToBallAndKick"
+  ],
+  "ball_unseen_ms": 1000,
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "unknown": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_without_want_kick": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_with_want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    },
+    "bt_empty": "walk",
+    "bt_want_kick": "kick",
+    "empty_context_is_walk": true,
+    "only_want_kick_selects_kick": true
+  },
+  "cpp_needles": [
+    "void WalkPhase::getNextTargetRequest",
+    "engine.walkPolicy.apply()",
+    "shouldStop",
+    "type == MotionPhase::stand",
+    "ballTimeWhenLastSeen",
+    "> 1000",
+    "MotionRequest::dribble",
+    "MotionRequest::walkToBallAndKick"
+  ],
+  "header_needles": [
+    "bool shouldStop = false",
+    "void getNextTargetRequest(JointAngles& target)",
+    "CompiledNN walkPolicy",
+    "CompiledNN kickPolicy"
+  ],
+  "motion_needles": [
+    "walkToBallAndKick",
+    "dribble"
+  ],
+  "should_stop_as_kick_default": false,
+  "stand_as_dim_change": false,
+  "ball_unseen_as_hot_swap_train": false,
+  "empty_skill_as_kick": false,
+  "not_reactive": true,
+  "not_t1": true,
+  "fabricated": false,
+  "note": "shouldStop, stand phase, ball unseen > 1000 ms, and motion outside dribble/walkToBallAndKick keep getNextTargetRequest on walkPolicy 344→13; empty SkillRequest stays walk; only want_kick selects kick 59→13; not a 344 rewrite or train-graph hot-swap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

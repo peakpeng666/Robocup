@@ -1,0 +1,478 @@
+{
+  "generated_utc": "2026-10-24T06:22:57+00:00",
+  "verdict": "PASS",
+  "repo": "/workspace",
+  "architecture": {
+    "baseline": "B-Human IsaacGymRL official walk/kick/standup",
+    "rule": "new skills are parallel extensions; do not rewrite frozen dims",
+    "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task"
+  },
+  "k1_contracts": {
+    "walk": "344→13",
+    "kick": "59→13",
+    "standup": "73→22",
+    "fast_standup_deploy_only": "72→22"
+  },
+  "k1_reactive": {
+    "ok": true,
+    "task": "K1_Reactive",
+    "contract": "64→15",
+    "baseline": "344→13",
+    "trainable": false,
+    "registered": false,
+    "errors": [],
+    "notes": [
+      "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+      "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+      "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+      "refuse_foreign_checkpoint blocks official walk weights",
+      "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+      "create_training_env() raises (stub is not a Gym task)"
+    ]
+  },
+  "reserved_gpu": {
+    "generated_utc": "2026-10-24T06:22:57+00:00",
+    "reserved": true,
+    "ready": false,
+    "skipped": true,
+    "skip_reasons": [
+      "nvidia-smi not found (no CUDA worker)",
+      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])"
+    ],
+    "nvidia_smi": null,
+    "gpu": null,
+    "bh_gym_python": null,
+    "bh_gym_version": null,
+    "isaacgym_in_bh_gym": false,
+    "auto_smoke_env": "0",
+    "will_run_isaac_gym": false,
+    "templates": {
+      "note": "All commands keep official K1 walk 344→13. Do not pass --task=K1_Reactive.",
+      "env_check": "bash bhuman/k1-training/scripts/run_env_check.sh",
+      "replay_walk": "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+      "replay_kick": "bash bhuman/k1-training/scripts/run_replay.sh K1_Ball 4 300",
+      "replay_standup": "bash bhuman/k1-training/scripts/run_replay.sh K1_Stand_Up 4 300",
+      "eval_s2027": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2027 100 8",
+      "eval_s2028": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2028 100 8",
+      "eval_s2029": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2029 100 8",
+      "stability_warm": "bash bhuman/k1-training/scripts/run_walk_stability.sh 4096 25 7 warm-start",
+      "sim2sim": "bash bhuman/sim2sim/run-mujoco.sh --seconds 120"
+    },
+    "baseline": "B-Human IsaacGymRL official walk 344→13 / kick 59→13 / standup 73→22"
+  },
+  "t1_bhuman_contracts": {
+    "walk": "365→14",
+    "kick": "62→14",
+    "standup": "76→23",
+    "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
+  },
+  "commits": {
+    "workspace_head": "467e7b62f66a15030643f31b3a10e4bdf774be86",
+    "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
+    "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "pinned_upstream_MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+    "pinned_upstream_BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
+    "git_origins": {
+      "bhuman/BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "bhuman/MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2"
+    },
+    "k1_training_source_fingerprint": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "nvidia_smi": null,
+    "gpu": null,
+    "modules": {
+      "torch": false,
+      "isaacgym": false,
+      "onnx": false,
+      "onnxruntime": false,
+      "mujoco": false
+    },
+    "bh_gym_python_exists": false,
+    "bh_gym_python": "/home/ubuntu/.venvs/bh-gym/bin/python",
+    "isaacsim_gui_python_exists": false,
+    "can_run_isaac_gym_train": false,
+    "can_run_mujoco_sim2sim": false
+  },
+  "trees": {
+    "bhuman/MachineLearning/IsaacGymRL": {
+      "exists": true,
+      "k1": {
+        "walk": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml",
+          "num_observations": 344,
+          "num_actions": 13,
+          "num_privileged_obs": 16,
+          "num_base_observations": 32,
+          "num_last_observations": 24,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Ball.yaml",
+          "num_observations": 59,
+          "num_actions": 13,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "num_observations": 73,
+          "num_actions": 22,
+          "num_privileged_obs": 38
+        }
+      },
+      "t1": {
+        "walk": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1.yaml",
+          "num_observations": 365,
+          "num_actions": 14,
+          "num_privileged_obs": 16,
+          "num_base_observations": 34,
+          "num_last_observations": 25,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Ball.yaml",
+          "num_observations": 62,
+          "num_actions": 14,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "num_observations": 76,
+          "num_actions": 23,
+          "num_privileged_obs": 39
+        }
+      },
+      "model": {
+        "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
+        "actor_in_num_obs": true,
+        "actor_out_num_act": true,
+        "critic_in_obs_plus_priv": true,
+        "ctor_order_act_obs_priv": true,
+        "ok": true
+      },
+      "walk_history_formula": true,
+      "huoshen_markers_in_training_src": []
+    },
+    "bhuman/k1-training/src/IsaacGymRL": {
+      "exists": true,
+      "k1": {
+        "walk": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+          "num_observations": 344,
+          "num_actions": 13,
+          "num_privileged_obs": 16,
+          "num_base_observations": 32,
+          "num_last_observations": 24,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Ball.yaml",
+          "num_observations": 59,
+          "num_actions": 13,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "num_observations": 73,
+          "num_actions": 22,
+          "num_privileged_obs": 38
+        }
+      },
+      "t1": {
+        "walk": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1.yaml",
+          "num_observations": 365,
+          "num_actions": 14,
+          "num_privileged_obs": 16,
+          "num_base_observations": 34,
+          "num_last_observations": 25,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Ball.yaml",
+          "num_observations": 62,
+          "num_actions": 14,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "num_observations": 76,
+          "num_actions": 23,
+          "num_privileged_obs": 39
+        }
+      },
+      "model": {
+        "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
+        "actor_in_num_obs": true,
+        "actor_out_num_act": true,
+        "critic_in_obs_plus_priv": true,
+        "ctor_order_act_obs_priv": true,
+        "ok": true
+      },
+      "walk_history_formula": true,
+      "huoshen_markers_in_training_src": []
+    }
+  },
+  "walk_cfgs": [
+    {
+      "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        },
+        "ballStealNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        },
+        "ballStealNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    }
+  ],
+  "getup_cfgs": [
+    {
+      "path": "bhuman/MachineLearning/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/k1-training/src/Config/Robots/Default/K1/getUpEngine.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    }
+  ],
+  "policy_contract_v1": {
+    "walk": true,
+    "kick": true,
+    "standup": true,
+    "fast_standup": true
+  },
+  "models_v2_io": [
+    {
+      "name": "K1_walk.onnx",
+      "in": 344,
+      "out": 13,
+      "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+      "ok": true
+    },
+    {
+      "name": "K1_kick_inner.onnx",
+      "in": 59,
+      "out": 13,
+      "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+      "ok": true
+    },
+    {
+      "name": "K1_kick_inner_soft.onnx",
+      "in": 59,
+      "out": 13,
+      "sha256": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+      "ok": true
+    },
+    {
+      "name": "K1.onnx",
+      "in": 73,
+      "out": 22,
+      "sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+      "ok": true
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "in": 72,
+      "out": 22,
+      "sha256": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+      "ok": true
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "in": 72,
+      "out": 22,
+      "sha256": "7be4ba074a4d7ee55f6f1fa1b6457a0125f33e25f52acb00026baed56ec7d082",
+      "ok": true
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "K1_walk.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner_soft.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_walk.pth",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner.pth",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+      "exists": false
+    },
+    {
+      "name": "K1_stand_up.pt",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+      "exists": false
+    }
+  ],
+  "research": {
+    "huoshen_findings_on_main": true,
+    "research_branch_catalog_on_main": false,
+    "huoshen_code_vendored": false,
+    "doc_contract": {
+      "platform": "Booster T1 (not K1)",
+      "obs": 58,
+      "stack": 50,
+      "history_embedding_dim": 64,
+      "act": 15,
+      "policy_hz": 50,
+      "vision_hz": 25,
+      "delay_ms": "116±18"
+    },
+    "note": "Huoshen public skill is T1 58-D + 50-frame stack → 15 actions. B-Human T1.yaml in this repo is the walk/kick/standup family (365→14 / 62→14 / 76→23), not the Huoshen reactive task. Do not load T1 Huoshen weights onto K1."
+  },
+  "errors": [],
+  "warnings": [
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+    "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
+    "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+    "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay"
+  ],
+  "notes": [
+    "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "bhuman/MachineLearning/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
+    "ActorCritic /workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "bhuman/k1-training/src/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
+    "both IsaacGymRL trees agree on K1 walk env dims",
+    "both IsaacGymRL trees agree on K1 kick env dims",
+    "both IsaacGymRL trees agree on K1 standup env dims",
+    "bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "Isaac Gym / official walk GPU replay cannot run here: need bh-gym (Python 3.8.20), Isaac Gym Preview 4, CUDA GPU, and K1_walk.pth",
+    "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+    "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+    "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+    "refuse_foreign_checkpoint blocks official walk weights",
+    "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+    "create_training_env() raises (stub is not a Gym task)",
+    "K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL",
+    "research/01–06 live only on origin/research; not merged into main"
+  ],
+  "reproduce_walk_operator_machine": [
+    "bash bhuman/k1-training/scripts/run_env_check.sh",
+    "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+    "bash bhuman/sim2sim/run-mujoco.sh --seconds 120"
+  ],
+  "reproduce_this_gate": [
+    "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
+    "bash bhuman/k1-training/scripts/run_contract_gate.sh",
+    "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+    "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
+  ]
+}

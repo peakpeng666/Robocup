@@ -1,0 +1,1718 @@
+"""Highest-priority forbidden-claim pack (no Gym).
+
+Each case MUST raise. If a refuse is silent, the gate goes red.
+Cases: T1 as walk, standup→kick, SimRobot as fast standup, latent into 344,
+draft overwrite live, unified PD as closed gap, sibling merge into 344,
+T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344,
+mix 128/512, fallen as SkillRequest Type, GetUp incomplete kick,
+stay on standup after getup, kick replacing walk, cfg dim rewrite,
+kickModel pointing at T1, kick ONNX occupying the walk slot,
+getUp overwriting walk, T1 getUp as K1, fast standup as Isaac,
+Simulated speed as closed PD, fabricated Competition getUp,
+standAnkleStiffness as closed PD, Competition diffs changing net slot,
+policySwitch as net swap, shiftBall as dim change,
+kickPolicy as default walk, maxAcc as net swap,
+getNextTargetRequest as hot-swap train graph, speed gear as net swap,
+ball-net off as dim change, intercept as kick default,
+avoidance as hot-swap train, shouldStop as kick default,
+stand as dim change, ball unseen as hot-swap train,
+empty SkillRequest as kick, hysteresis as dim change,
+kick path as walk 344, policySwitch as train hot-swap,
+Competition hysteresis drift, walk apply as 59,
+switch keeps stale last_action, walk ONNX as kick slot,
+buffer cross-dim reuse, claim walk↔kick GAP closed,
+draft mitigation as live, standup-zero as walk↔kick fix,
+continue-phase skips required reset, standup as walk 344,
+fast as regular standup, GetUp as hot-swap train,
+standup ONNX as kick slot,
+GetUp skips Force walk, Force walk lands on kick,
+standup handoff as walk 344 obs,
+local artifacts kept without upload policy,
+want_kick default true, intercept info writes kickPolicy,
+behavior empty as kick, PR index claims GAP closed,
+PlayBall as kickPolicy, motion walkToBallAndKick as 59,
+reactive as default walk, stub sets ready_gpu true,
+deploy seq draws PlayBall as kick net, WalkToBallEngine applies ONNX,
+chain A equals chain B, deploy doc claims GAP closed,
+dry-run auto-starts train, ready_gpu true without checklist,
+replay writes outside runs, local compat doc claims GAP closed,
+standup replay as walk 344, walk-eval PASS as competition-ready,
+eval writes outside runs, dry-run doc claims GAP closed,
+kick replay as walk 344, standup-eval PASS as competition-ready,
+e2e dry-run skips Force walk, e2e dry-run claims GAP closed,
+kick-eval PASS as competition-ready, kick-eval as walk 344,
+kick-eval as live deploy, fast standup replay as walk 344,
+fast standup replay as regular 73, dual-chain dry-run claims GAP closed,
+kick ONNX path as walk 344, kick ONNX live without TRAINABLE,
+isolation matrix cross-wires slots, policy-switch draft as live,
+policy-switch draft skips Force walk, policy-switch draft claims GAP closed,
+export PASS as competition deploy, export live without TRAINABLE,
+missing-weight as fabricated PASS, missing-weight fails closed,
+merge-readiness claims ready, merge flips ready_gpu,
+silent train launch, flip ready_gpu without user,
+merge-readiness PASS as merge OK, walk-eval artifact as competition-ready,
+generated cmd as launch auth, leftover cache without upload note,
+destructive Desktop rm, validator PASS as live curriculum,
+cross-skill history reuse as closed, CI gate flips merge_ready,
+validator PASS as live DR, silent cross-domain gain copy,
+SimRobot scaffold as field-ready, estimator PASS as live swap,
+series PASS as live torque, series PASS as competition-ready,
+reactive PASS as live kick deploy, silent teamcomm size upgrade,
+volume rescan deletes artifacts,
+kickEngine PASS as live RL kick deploy, ball-task cross-slot wiring,
+handoff PASS as field-ready standup, standup-eval artifact upgrades quality,
+walk-stability PASS as competition-ready gait, silent Competition cfg edit,
+maxAcc allowlist drift (Sim↔Comp / y), band crossing as dim rewrite,
+inverted hysteresis band edges,
+hysteresis overlay PASS as live switch authorize,
+silent maxAcc copy into live cfg.
+
+Never writes K1.yaml. TRAINABLE=false.
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+from typing import Any, Callable
+
+ROOT = Path(__file__).resolve().parent
+REACTIVE = ROOT.parent / "k1-reactive"
+ESTIMATORS = ROOT.parent / "k1-estimators"
+DRAFT = ROOT.parent / "configs" / "draft-only"
+SCRIPTS = ROOT.parent / "scripts"
+for extra in (ROOT, REACTIVE, ESTIMATORS, DRAFT, SCRIPTS):
+    if str(extra) not in sys.path:
+        sys.path.insert(0, str(extra))
+
+from behavior_control_handoff import refuse_behavior_replaces_walk  # noqa: E402
+from checkpoint_layout import refuse_foreign_on_walk_path  # noqa: E402
+from compressed_teamcomm_shape import refuse_teamcomm_into_344  # noqa: E402
+from draft_validator import refuse_overwrite_live_rewards  # noqa: E402
+from falldown_motion_chain import (  # noqa: E402
+    refuse_fallen_as_skill_request,
+    refuse_kick_before_getup_done,
+)
+from force_walk_afterwards import (  # noqa: E402
+    refuse_getup_done_direct_kick,
+    refuse_stay_on_standup_after_getup,
+)
+from kick_engine_boundary import refuse_kick_replaces_walk  # noqa: E402
+from kick_onnx_naming import refuse_kick_onnx_on_walk_slot  # noqa: E402
+from cfg_copy_crosscheck import refuse_fabricate_competition_getup  # noqa: E402
+from getup_engine_cfg_audit import (  # noqa: E402
+    refuse_fast_standup_as_isaac,
+    refuse_getup_overwrites_walk,
+    refuse_t1_getup_as_k1,
+)
+from competition_walk_diff import refuse_competition_diff_net_slot  # noqa: E402
+from motor_parameters_audit import refuse_simulated_speed_as_pd_closed  # noqa: E402
+from ball_network_active import refuse_ball_net_off_as_dim_change  # noqa: E402
+from get_next_target_request import refuse_getnext_as_hot_swap_train  # noqa: E402
+from intercept_avoid_bypass import (  # noqa: E402
+    refuse_avoid_as_hot_swap_train,
+    refuse_intercept_as_kick_default,
+)
+from ball_distance_hysteresis import (  # noqa: E402
+    refuse_band_crossing_as_dim_rewrite,
+    refuse_competition_hysteresis_drift,
+    refuse_hysteresis_as_dim_change,
+    refuse_inverted_hysteresis_band,
+    refuse_policy_switch_as_hot_swap_train,
+)
+from kick_policy_apply_dims import refuse_kick_path_as_walk_344  # noqa: E402
+from policy_switch_history_gap import (  # noqa: E402
+    refuse_claim_walk_kick_gap_closed,
+    refuse_draft_mitigation_as_live,
+    refuse_standup_zero_as_walk_kick_fix,
+)
+from policy_switch_last_action import (  # noqa: E402
+    refuse_buffer_cross_dim_reuse,
+    refuse_switch_keeps_stale_last_action,
+)
+from standup_policy_apply_dims import (  # noqa: E402
+    refuse_getup_as_hot_swap_train,
+    refuse_standup_as_walk_344,
+    refuse_standup_onnx_as_kick_slot,
+)
+from fast_standup_isolation import refuse_fast_as_regular_standup  # noqa: E402
+from getup_walk_handoff_chain import (  # noqa: E402
+    refuse_force_walk_lands_on_kick,
+    refuse_getup_skips_force_walk,
+    refuse_standup_handoff_as_walk_344_obs,
+)
+from upload_run_artifacts import (  # noqa: E402
+    refuse_local_artifacts_kept_without_upload_policy,
+)
+from skill_behavior_write_chain import (  # noqa: E402
+    refuse_behavior_empty_as_kick,
+    refuse_intercept_info_writes_kick_policy,
+    refuse_want_kick_default_true,
+)
+from playball_not_kick_policy import (  # noqa: E402
+    refuse_motion_walkToBallAndKick_as_59,
+    refuse_playball_as_kick_policy,
+)
+from reactive_stub_hardening import (  # noqa: E402
+    refuse_reactive_as_default_walk,
+    refuse_stub_sets_ready_gpu_true,
+)
+from deploy_two_chain_sequence import (  # noqa: E402
+    refuse_chain_a_equals_chain_b,
+    refuse_deploy_doc_claims_gap_closed,
+    refuse_deploy_seq_draws_playball_as_kick_net,
+)
+from walk_to_ball_engine_no_onnx import refuse_walk_to_ball_engine_applies_onnx  # noqa: E402
+from local_bh_gym_dry_run import (  # noqa: E402
+    refuse_dry_run_auto_starts_train,
+    refuse_local_compat_doc_claims_gap_closed,
+    refuse_ready_gpu_true_without_checklist,
+)
+from bounded_walk_replay import refuse_replay_writes_outside_runs  # noqa: E402
+from bounded_standup_replay import refuse_standup_replay_as_walk_344  # noqa: E402
+from walk_eval_metrics import (  # noqa: E402
+    refuse_dry_run_doc_claims_gap_closed,
+    refuse_eval_writes_outside_runs,
+    refuse_walk_eval_pass_as_competition_ready,
+)
+from bounded_kick_replay import refuse_kick_replay_as_walk_344  # noqa: E402
+from standup_eval_metrics import (  # noqa: E402
+    refuse_standup_eval_pass_as_competition_ready,
+)
+from fall_getup_walk_dry_run import (  # noqa: E402
+    refuse_e2e_dry_run_claims_gap_closed,
+    refuse_e2e_dry_run_skips_force_walk,
+)
+from kick_eval_metrics import (  # noqa: E402
+    refuse_kick_eval_as_live_deploy,
+    refuse_kick_eval_as_walk_344,
+    refuse_kick_eval_pass_as_competition_ready,
+)
+from bounded_fast_standup_replay import (  # noqa: E402
+    refuse_fast_standup_replay_as_regular_73,
+    refuse_fast_standup_replay_as_walk_344,
+)
+from dual_chain_switch_dry_run import (  # noqa: E402
+    refuse_dual_chain_dry_run_claims_gap_closed,
+)
+from kick_onnx_deploy_path import (  # noqa: E402
+    refuse_kick_onnx_live_without_trainable,
+    refuse_kick_onnx_path_as_walk_344,
+)
+from standup_fast_isolation_matrix import (  # noqa: E402
+    refuse_isolation_matrix_cross_wires_slots,
+)
+from policy_switch_phase_draft import (  # noqa: E402
+    refuse_policy_switch_draft_as_live,
+    refuse_policy_switch_draft_claims_gap_closed,
+    refuse_policy_switch_draft_skips_force_walk,
+)
+from walk_onnx_export_dry_run import (  # noqa: E402
+    refuse_export_as_live_without_trainable,
+    refuse_export_pass_as_competition_deploy,
+)
+from missing_weight_skip_honesty import (  # noqa: E402
+    refuse_missing_weight_as_fabricated_pass,
+    refuse_missing_weight_fails_closed,
+)
+from merge_readiness_blockers import (  # noqa: E402
+    refuse_merge_flips_ready_flag,
+    refuse_merge_readiness_claims_ready,
+    refuse_merge_readiness_pass_as_merge_ok,
+)
+from local_rtx5090_pretrain_checklist import (  # noqa: E402
+    refuse_flip_ready_gpu_without_user,
+    refuse_silent_train_launch,
+)
+from walk_eval_artifact_crosscheck import (  # noqa: E402
+    refuse_walk_eval_artifact_as_competition_ready,
+)
+from kick_standup_train_dry_run import (  # noqa: E402
+    refuse_generated_cmd_as_launch_auth,
+)
+from local_artifact_upload_cleanup import (  # noqa: E402
+    refuse_destructive_desktop_rm,
+    refuse_leftover_cache_without_upload_note,
+)
+from reward_curriculum_draft_validator import (  # noqa: E402
+    refuse_validator_pass_as_live_curriculum,
+)
+from obs_history_window_contract import (  # noqa: E402
+    refuse_cross_skill_history_reuse_as_closed,
+)
+from ci_gate_wiring import (  # noqa: E402
+    refuse_ci_gate_flips_merge_ready,
+)
+from domain_rand_disturbance_draft_validator import (  # noqa: E402
+    refuse_validator_pass_as_live_dr,
+)
+from pd_gain_domain_gap_negatives import (  # noqa: E402
+    refuse_silent_cross_domain_gain_copy,
+)
+from simrobot_six_robot_acceptance_gap import (  # noqa: E402
+    refuse_simrobot_scaffold_as_field_ready,
+)
+from estimator_bypass_draft_contract import (  # noqa: E402
+    refuse_estimator_pass_as_live_swap,
+)
+from torque_effort_timeseries_contract import (  # noqa: E402
+    refuse_series_pass_as_live_torque,
+    refuse_series_pass_as_competition_ready,
+)
+from reactive_intercept_bypass_hardening import (  # noqa: E402
+    refuse_reactive_pass_as_live_kick_deploy,
+)
+from teamcomm_shape_negatives import (  # noqa: E402
+    refuse_silent_teamcomm_size_upgrade,
+)
+from pr_volume_health_rescan import (  # noqa: E402
+    refuse_volume_rescan_deletes_artifacts,
+)
+from kick_engine_boundary_edges import (  # noqa: E402
+    refuse_kick_engine_pass_as_live_rl_kick_deploy,
+)
+from ball_task_isolation_matrix import (  # noqa: E402
+    refuse_ball_task_cross_slot_wiring,
+)
+from getup_force_walk_handoff import (  # noqa: E402
+    refuse_handoff_pass_as_field_ready_standup,
+)
+from standup_eval_artifact_crosscheck import (  # noqa: E402
+    refuse_standup_eval_artifact_upgrades_quality,
+)
+from walk_stability_preset_inventory import (  # noqa: E402
+    refuse_walk_stability_pass_as_competition_ready_gait,
+)
+from competition_walk_allowlist_tighten import (  # noqa: E402
+    refuse_silent_competition_cfg_edit,
+)
+from policy_switch_hysteresis_enter_exit import (  # noqa: E402
+    refuse_hysteresis_pass_as_live_switch_authorize,
+)
+from maxacc_walk_kick_path_notes import (  # noqa: E402
+    refuse_silent_maxacc_copy_into_live_cfg,
+)
+from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
+from walk_phase_reset_allowlist import (  # noqa: E402
+    refuse_continue_phase_skips_required_reset,
+)
+from walk_policy_apply_dims import (  # noqa: E402
+    refuse_walk_apply_as_59,
+    refuse_walk_onnx_as_kick_slot,
+)
+from walk_stay_remaining import (  # noqa: E402
+    refuse_ball_unseen_as_hot_swap_train,
+    refuse_empty_skill_as_kick,
+    refuse_should_stop_as_kick_default,
+    refuse_stand_as_dim_change,
+)
+from max_acceleration_diff import (  # noqa: E402
+    refuse_max_acc_allowlist_drift,
+    refuse_max_acc_as_net_swap,
+)
+from policy_switch_threshold import refuse_policy_switch_as_net_swap  # noqa: E402
+from speed_gear_diff import refuse_speed_gear_as_net_swap  # noqa: E402
+from shift_ball_position import refuse_shift_ball_as_dim_change  # noqa: E402
+from stand_ankle_stiffness import refuse_stand_ankle_as_pd_closed  # noqa: E402
+from walk_kick_policy_switch import refuse_kick_policy_as_default_walk  # noqa: E402
+from walking_engine_cfg_audit import (  # noqa: E402
+    refuse_cfg_dim_rewrite,
+    refuse_kickmodel_points_t1,
+)
+from hifar_boundary import refuse_huoshen_obs_as_walk, refuse_t1_weight_on_k1_actor  # noqa: E402
+from hooks import refuse_concat_latent_onto_walk  # noqa: E402
+from official_sibling_tasks_audit import refuse_merge_sibling_into_344  # noqa: E402
+from onnx_deploy_path_crosscheck import refuse_t1_onnx_as_k1_walk  # noqa: E402
+from pd_domain_gap_contract import refuse_unified_pd_as_closed_gap  # noqa: E402
+from sm import LEGAL_EDGES, SwitcherSM  # noqa: E402
+from standup_kick_contract import refuse_simrobot_as_fast_standup  # noqa: E402
+from teamcomm_128_vs_512 import refuse_mix_128_512  # noqa: E402
+
+TRAINABLE = False
+WRITE_YAML = False
+WALK_OBS = 344
+WALK_ACT = 13
+
+CaseFn = Callable[[], None]
+
+
+def _case_t1_as_walk() -> None:
+    refuse_t1_weight_on_k1_actor("model.pth")
+
+
+def _case_huoshen_obs_as_walk() -> None:
+    refuse_huoshen_obs_as_walk(58, 15)
+
+
+def _case_t1_on_walk_slot() -> None:
+    refuse_foreign_on_walk_path(
+        {
+            "dest": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+            "name": "model.pth",
+            "family": "T1",
+        }
+    )
+
+
+def _case_standup_to_kick() -> None:
+    if ("standup", "kick") in LEGAL_EDGES or ("fast_standup", "kick") in LEGAL_EDGES:
+        return
+    sm = SwitcherSM()
+    fallen = sm.request("standup", fallen=True)
+    if not fallen.accepted:
+        raise ValueError("fixture: fallen must enter standup before kick refuse")
+    kicked = sm.request("kick")
+    if kicked.accepted:
+        return
+    raise ValueError("standup→kick refused")
+
+
+def _case_simrobot_as_fast() -> None:
+    refuse_simrobot_as_fast_standup(
+        {"simrobot_pass": True, "impersonates": "fast_standup"}
+    )
+
+
+def _case_latent_into_344() -> None:
+    refuse_concat_latent_onto_walk([0.0] * WALK_OBS, [0.0] * 8)
+
+
+def _case_draft_write_live() -> None:
+    refuse_overwrite_live_rewards(
+        {"target": "k1.yaml", "key": "reference_mean_penalty"}
+    )
+
+
+def _case_unified_pd_closed() -> None:
+    refuse_unified_pd_as_closed_gap({"unified": True, "gap_closed": True})
+
+
+def _case_sibling_merge_into_344() -> None:
+    refuse_merge_sibling_into_344({"task": "K1_Ball", "concat_into": WALK_OBS})
+
+
+def _case_t1_onnx_as_k1_walk() -> None:
+    refuse_t1_onnx_as_k1_walk("T1_walk.onnx")
+
+
+def _case_behavior_replaces_walk() -> None:
+    refuse_behavior_replaces_walk({"replaces_walk": True, "default_skill": "kick"})
+
+
+def _case_teamcomm_into_344() -> None:
+    refuse_teamcomm_into_344({"compressed_into_344": True, "obs": WALK_OBS})
+
+
+def _case_mix_128_512() -> None:
+    refuse_mix_128_512({"overwrite_128_with_512": True, "mix": True})
+
+
+def _case_fallen_as_skill_request() -> None:
+    refuse_fallen_as_skill_request({"fallen_is_skill_request_type": True})
+
+
+def _case_getup_incomplete_kick() -> None:
+    refuse_kick_before_getup_done()
+
+
+def _case_stay_on_standup_after_getup() -> None:
+    refuse_stay_on_standup_after_getup({"stay_on_standup_after_getup": True})
+
+
+def _case_getup_done_direct_kick() -> None:
+    refuse_getup_done_direct_kick()
+
+
+def _case_kick_replaces_walk() -> None:
+    refuse_kick_replaces_walk({"replaces_walk": True, "kick_as_walk_baseline": True})
+
+
+def _case_cfg_dim_rewrite() -> None:
+    refuse_cfg_dim_rewrite({"cfg_dim_changed": True, "numInput": 365, "slot": "walk"})
+
+
+def _case_kickmodel_t1() -> None:
+    refuse_kickmodel_points_t1({"kickModel": "T1_kick_inner.onnx"})
+
+
+def _case_kick_onnx_on_walk_slot() -> None:
+    refuse_kick_onnx_on_walk_slot(
+        {
+            "dest": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+            "name": "K1_kick_inner.onnx",
+            "family": "kick",
+        }
+    )
+
+
+def _case_getup_overwrites_walk() -> None:
+    refuse_getup_overwrites_walk(
+        {"getup_overwrites_walk": True, "policyName": "K1_walk.onnx"}
+    )
+
+
+def _case_t1_getup_as_k1() -> None:
+    refuse_t1_getup_as_k1({"policyName": "T1.onnx", "slot": "k1_getup"})
+
+
+def _case_fast_standup_as_isaac() -> None:
+    refuse_fast_standup_as_isaac({"task": "K1_fast_standup", "registered": True})
+
+
+def _case_simulated_speed_as_pd_closed() -> None:
+    refuse_simulated_speed_as_pd_closed(
+        {"simulated_speed_closes_pd": True, "source": "simulated_speed"}
+    )
+
+
+def _case_fabricate_competition_getup() -> None:
+    refuse_fabricate_competition_getup(
+        {"fabricate_competition_getup": True, "role": "CompetitionWalk/K1"}
+    )
+
+
+def _case_stand_ankle_as_pd_closed() -> None:
+    refuse_stand_ankle_as_pd_closed(
+        {"stand_ankle_closes_pd": True, "source": "standAnkleStiffness"}
+    )
+
+
+def _case_competition_diff_net_slot() -> None:
+    refuse_competition_diff_net_slot(
+        {"competition_changes_net_slot": True, "numInput": 365, "modelName": "T1_walk.onnx"}
+    )
+
+
+def _case_policy_switch_as_net_swap() -> None:
+    refuse_policy_switch_as_net_swap(
+        {
+            "policy_switch_as_net_swap": True,
+            "source": "ballDistancePolicySwitch",
+            "walk_obs": 365,
+        }
+    )
+
+
+def _case_shift_ball_as_dim_change() -> None:
+    refuse_shift_ball_as_dim_change(
+        {
+            "shift_ball_as_dim_change": True,
+            "source": "shiftBallPosition",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_kick_policy_as_default_walk() -> None:
+    refuse_kick_policy_as_default_walk(
+        {
+            "kick_policy_as_default_walk": True,
+            "empty_context": True,
+            "skill": "kick",
+        }
+    )
+
+
+def _case_max_acc_as_net_swap() -> None:
+    refuse_max_acc_as_net_swap(
+        {
+            "max_acc_as_net_swap": True,
+            "source": "maxAcceleration",
+            "walk_obs": 365,
+        }
+    )
+
+
+def _case_getnext_as_hot_swap_train() -> None:
+    refuse_getnext_as_hot_swap_train(
+        {
+            "getnext_as_hot_swap_train": True,
+            "source": "getNextTargetRequest",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_speed_gear_as_net_swap() -> None:
+    refuse_speed_gear_as_net_swap(
+        {
+            "speed_gear_as_net_swap": True,
+            "source": "fastWalkSpeed",
+            "walk_obs": 365,
+        }
+    )
+
+
+def _case_ball_net_off_as_dim_change() -> None:
+    refuse_ball_net_off_as_dim_change(
+        {
+            "ball_net_off_as_dim_change": True,
+            "source": "ballNetworkParameters.active",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_intercept_as_kick_default() -> None:
+    refuse_intercept_as_kick_default(
+        {
+            "intercept_as_kick_default": True,
+            "source": "shouldInterceptBall",
+        }
+    )
+
+
+def _case_avoid_as_hot_swap_train() -> None:
+    refuse_avoid_as_hot_swap_train(
+        {
+            "avoid_as_hot_swap_train": True,
+            "source": "obstacleAvoidance",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_should_stop_as_kick_default() -> None:
+    refuse_should_stop_as_kick_default(
+        {
+            "should_stop_as_kick_default": True,
+            "source": "shouldStop",
+        }
+    )
+
+
+def _case_stand_as_dim_change() -> None:
+    refuse_stand_as_dim_change(
+        {
+            "stand_as_dim_change": True,
+            "source": "MotionPhase::stand",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_ball_unseen_as_hot_swap_train() -> None:
+    refuse_ball_unseen_as_hot_swap_train(
+        {
+            "ball_unseen_as_hot_swap_train": True,
+            "source": "ballTimeWhenLastSeen",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_empty_skill_as_kick() -> None:
+    refuse_empty_skill_as_kick(
+        {
+            "empty_skill_as_kick": True,
+            "empty_context": True,
+            "skill": "kick",
+        }
+    )
+
+
+def _case_hysteresis_as_dim_change() -> None:
+    refuse_hysteresis_as_dim_change(
+        {
+            "hysteresis_as_dim_change": True,
+            "source": "ballHysteresisPolicySwitch",
+        }
+    )
+
+
+def _case_kick_path_as_walk_344() -> None:
+    refuse_kick_path_as_walk_344(
+        {
+            "kick_path_as_walk_344": True,
+            "source": "kickPolicy",
+            "numInput": 344,
+        }
+    )
+
+
+def _case_policy_switch_as_hot_swap_train() -> None:
+    refuse_policy_switch_as_hot_swap_train(
+        {
+            "policy_switch_as_hot_swap_train": True,
+            "source": "ballDistancePolicySwitch",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_competition_hysteresis_drift() -> None:
+    refuse_competition_hysteresis_drift(
+        {
+            "competition_hysteresis_drift": True,
+            "source": "CompetitionWalk/K1",
+        }
+    )
+
+
+def _case_walk_apply_as_59() -> None:
+    refuse_walk_apply_as_59(
+        {
+            "walk_apply_as_59": True,
+            "source": "walkPolicy",
+            "numInput": 59,
+        }
+    )
+
+
+def _case_switch_keeps_stale_last_action() -> None:
+    refuse_switch_keeps_stale_last_action(
+        {
+            "switch_keeps_stale_last_action": True,
+            "source": "getNextTargetRequest",
+            "closed": True,
+        }
+    )
+
+
+def _case_walk_onnx_as_kick_slot() -> None:
+    refuse_walk_onnx_as_kick_slot(
+        {
+            "walk_onnx_as_kick_slot": True,
+            "source": "K1_walk.onnx",
+            "kick_slot": True,
+        }
+    )
+
+
+def _case_buffer_cross_dim_reuse() -> None:
+    refuse_buffer_cross_dim_reuse(
+        {
+            "buffer_cross_dim_reuse": True,
+            "source": "historyBuffer",
+            "walk_344_into_kick_59": True,
+        }
+    )
+
+
+def _case_claim_walk_kick_gap_closed() -> None:
+    refuse_claim_walk_kick_gap_closed(
+        {
+            "claim_walk_kick_gap_closed": True,
+            "closed": True,
+        }
+    )
+
+
+def _case_draft_mitigation_as_live() -> None:
+    refuse_draft_mitigation_as_live(
+        {
+            "draft_mitigation_as_live": True,
+            "apply_to_live": True,
+        }
+    )
+
+
+def _case_standup_zero_as_walk_kick_fix() -> None:
+    refuse_standup_zero_as_walk_kick_fix(
+        {
+            "standup_zero_as_walk_kick_fix": True,
+            "source": "last_action_reset",
+            "closes_walk_kick_gap": True,
+        }
+    )
+
+
+def _case_continue_phase_skips_required_reset() -> None:
+    refuse_continue_phase_skips_required_reset(
+        {
+            "continue_phase_skips_required_reset": True,
+            "source": "DummyPhase",
+            "skip_reset": True,
+        }
+    )
+
+
+def _case_standup_as_walk_344() -> None:
+    refuse_standup_as_walk_344(
+        {
+            "standup_as_walk_344": True,
+            "source": "policy",
+            "numInput": 344,
+        }
+    )
+
+
+def _case_fast_as_regular_standup() -> None:
+    refuse_fast_as_regular_standup(
+        {
+            "fast_as_regular_standup": True,
+            "source": "K1_fast_standup.onnx",
+            "numInput": 73,
+        }
+    )
+
+
+def _case_getup_as_hot_swap_train() -> None:
+    refuse_getup_as_hot_swap_train(
+        {
+            "getup_as_hot_swap_train": True,
+            "source": "GetUpEngine",
+            "train_graph": True,
+        }
+    )
+
+
+def _case_standup_onnx_as_kick_slot() -> None:
+    refuse_standup_onnx_as_kick_slot(
+        {
+            "standup_onnx_as_kick_slot": True,
+            "source": "K1.onnx",
+            "kick_slot": True,
+        }
+    )
+
+
+def _case_getup_skips_force_walk() -> None:
+    refuse_getup_skips_force_walk(
+        {
+            "getup_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_force_walk_lands_on_kick() -> None:
+    refuse_force_walk_lands_on_kick(
+        {
+            "force_walk_lands_on_kick": True,
+            "source": "force_walk",
+            "contract": "59→13",
+        }
+    )
+
+
+def _case_standup_handoff_as_walk_344_obs() -> None:
+    refuse_standup_handoff_as_walk_344_obs(
+        {
+            "standup_handoff_as_walk_344_obs": True,
+            "source": "standup",
+            "obs": 344,
+        }
+    )
+
+
+def _case_local_artifacts_kept_without_upload_policy() -> None:
+    refuse_local_artifacts_kept_without_upload_policy(
+        {
+            "local_artifacts_kept_without_upload_policy": True,
+            "keep_local_only": True,
+        }
+    )
+
+
+def _case_want_kick_default_true() -> None:
+    refuse_want_kick_default_true(
+        {
+            "want_kick_default_true": True,
+            "default_want_kick": True,
+        }
+    )
+
+
+def _case_intercept_info_writes_kick_policy() -> None:
+    refuse_intercept_info_writes_kick_policy(
+        {
+            "intercept_info_writes_kick_policy": True,
+            "source": "InterceptBallInformation",
+            "selects": "kickPolicy",
+        }
+    )
+
+
+def _case_behavior_empty_as_kick() -> None:
+    refuse_behavior_empty_as_kick(
+        {
+            "behavior_empty_as_kick": True,
+            "source": "SkillRequest::none",
+            "skill": "kick",
+        }
+    )
+
+
+def _case_pr_index_claims_gap_closed() -> None:
+    refuse_pr_index_claims_gap_closed(
+        {
+            "pr_index_claims_gap_closed": True,
+            "gap_closed": True,
+        }
+    )
+
+
+def _case_playball_as_kick_policy() -> None:
+    refuse_playball_as_kick_policy(
+        {
+            "playball_as_kick_policy": True,
+            "source": "PlayBall",
+            "applies": "kickPolicy",
+        }
+    )
+
+
+def _case_motion_walkToBallAndKick_as_59() -> None:
+    refuse_motion_walkToBallAndKick_as_59(
+        {
+            "motion_walkToBallAndKick_as_59": True,
+            "source": "walkToBallAndKick",
+            "contract": "59→13",
+        }
+    )
+
+
+def _case_reactive_as_default_walk() -> None:
+    refuse_reactive_as_default_walk(
+        {
+            "reactive_as_default_walk": True,
+            "source": "K1_Reactive",
+            "default_baseline": "K1_Reactive",
+        }
+    )
+
+
+def _case_stub_sets_ready_gpu_true() -> None:
+    refuse_stub_sets_ready_gpu_true(
+        {
+            "stub_sets_ready_gpu_true": True,
+            "source": "stub",
+            "ready_gpu": True,
+        }
+    )
+
+
+def _case_deploy_seq_draws_playball_as_kick_net() -> None:
+    refuse_deploy_seq_draws_playball_as_kick_net(
+        {
+            "deploy_seq_draws_playball_as_kick_net": True,
+            "source": "PlayBall",
+            "selects": "kickPolicy",
+        }
+    )
+
+
+def _case_walk_to_ball_engine_applies_onnx() -> None:
+    refuse_walk_to_ball_engine_applies_onnx(
+        {
+            "walk_to_ball_engine_applies_onnx": True,
+            "source": "WalkToBallAndKickEngine",
+            "applies": "onnx",
+        }
+    )
+
+
+def _case_chain_a_equals_chain_b() -> None:
+    refuse_chain_a_equals_chain_b(
+        {
+            "chain_a_equals_chain_b": True,
+            "same_chain": True,
+        }
+    )
+
+
+def _case_deploy_doc_claims_gap_closed() -> None:
+    refuse_deploy_doc_claims_gap_closed(
+        {
+            "deploy_doc_claims_gap_closed": True,
+            "source": "DEPLOY-CALL-SEQUENCE.md",
+            "gap_closed": True,
+        }
+    )
+
+
+def _case_dry_run_auto_starts_train() -> None:
+    refuse_dry_run_auto_starts_train(
+        {
+            "dry_run_auto_starts_train": True,
+            "will_run_train_py": True,
+            "source": "print_train_dry_run",
+        }
+    )
+
+
+def _case_ready_gpu_true_without_checklist() -> None:
+    refuse_ready_gpu_true_without_checklist(
+        {
+            "ready_gpu_true_without_checklist": True,
+            "ready_gpu": True,
+            "missing": ["cuda"],
+            "source": "stub",
+        }
+    )
+
+
+def _case_replay_writes_outside_runs() -> None:
+    refuse_replay_writes_outside_runs(
+        {
+            "replay_writes_outside_runs": True,
+            "dest": "/tmp/replay",
+        }
+    )
+
+
+def _case_standup_replay_as_walk_344() -> None:
+    refuse_standup_replay_as_walk_344(
+        {
+            "standup_replay_as_walk_344": True,
+            "task": "K1_Stand_Up",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_walk_eval_pass_as_competition_ready() -> None:
+    refuse_walk_eval_pass_as_competition_ready(
+        {
+            "walk_eval_pass_as_competition_ready": True,
+            "quality_verdict": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_eval_writes_outside_runs() -> None:
+    refuse_eval_writes_outside_runs(
+        {
+            "eval_writes_outside_runs": True,
+            "dest": "/tmp/walk_eval",
+        }
+    )
+
+
+def _case_dry_run_doc_claims_gap_closed() -> None:
+    refuse_dry_run_doc_claims_gap_closed(
+        {
+            "dry_run_doc_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+        }
+    )
+
+
+def _case_kick_replay_as_walk_344() -> None:
+    refuse_kick_replay_as_walk_344(
+        {
+            "kick_replay_as_walk_344": True,
+            "task": "K1_Ball",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_standup_eval_pass_as_competition_ready() -> None:
+    refuse_standup_eval_pass_as_competition_ready(
+        {
+            "standup_eval_pass_as_competition_ready": True,
+            "status": "PASS_FOR_DECLARED_PROFILE",
+            "quality_verdict": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_e2e_dry_run_skips_force_walk() -> None:
+    refuse_e2e_dry_run_skips_force_walk(
+        {
+            "e2e_dry_run_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_e2e_dry_run_claims_gap_closed() -> None:
+    refuse_e2e_dry_run_claims_gap_closed(
+        {
+            "e2e_dry_run_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+        }
+    )
+
+
+def _case_kick_eval_pass_as_competition_ready() -> None:
+    refuse_kick_eval_pass_as_competition_ready(
+        {
+            "kick_eval_pass_as_competition_ready": True,
+            "status": "PASS_FOR_DECLARED_PROFILE",
+            "quality_verdict": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_kick_eval_as_walk_344() -> None:
+    refuse_kick_eval_as_walk_344(
+        {
+            "kick_eval_as_walk_344": True,
+            "task": "K1_Ball",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_kick_eval_as_live_deploy() -> None:
+    refuse_kick_eval_as_live_deploy(
+        {
+            "kick_eval_as_live_deploy": True,
+            "apply_to_live": True,
+            "live_kick_deploy": True,
+        }
+    )
+
+
+def _case_fast_standup_replay_as_walk_344() -> None:
+    refuse_fast_standup_replay_as_walk_344(
+        {
+            "fast_standup_replay_as_walk_344": True,
+            "task": "K1_fast_standup",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_fast_standup_replay_as_regular_73() -> None:
+    refuse_fast_standup_replay_as_regular_73(
+        {
+            "fast_standup_replay_as_regular_73": True,
+            "task": "K1_fast_standup",
+            "obs": 73,
+            "as_regular_73": True,
+        }
+    )
+
+
+def _case_dual_chain_dry_run_claims_gap_closed() -> None:
+    refuse_dual_chain_dry_run_claims_gap_closed(
+        {
+            "dual_chain_dry_run_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+            "walk_kick_last_action_live_zero": True,
+        }
+    )
+
+
+def _case_kick_onnx_path_as_walk_344() -> None:
+    refuse_kick_onnx_path_as_walk_344(
+        {
+            "kick_onnx_path_as_walk_344": True,
+            "name": "K1_kick_inner.onnx",
+            "obs": 344,
+            "as_walk_baseline": True,
+        }
+    )
+
+
+def _case_kick_onnx_live_without_trainable() -> None:
+    refuse_kick_onnx_live_without_trainable(
+        {
+            "kick_onnx_live_without_trainable": True,
+            "apply_to_live": True,
+            "missing_weight": True,
+            "status": "PASS",
+            "as_have_weights": True,
+        }
+    )
+
+
+def _case_isolation_matrix_cross_wires_slots() -> None:
+    refuse_isolation_matrix_cross_wires_slots(
+        {
+            "isolation_matrix_cross_wires_slots": True,
+            "from": "fast",
+            "to": "walk",
+            "fast_is_walk_344": True,
+        }
+    )
+
+
+def _case_policy_switch_draft_as_live() -> None:
+    refuse_policy_switch_draft_as_live(
+        {"policy_switch_draft_as_live": True, "apply_to_live": True}
+    )
+
+
+def _case_policy_switch_draft_skips_force_walk() -> None:
+    refuse_policy_switch_draft_skips_force_walk(
+        {
+            "policy_switch_draft_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_policy_switch_draft_claims_gap_closed() -> None:
+    refuse_policy_switch_draft_claims_gap_closed(
+        {
+            "policy_switch_draft_claims_gap_closed": True,
+            "gap_closed": True,
+            "text": "GAP 已闭合",
+        }
+    )
+
+
+def _case_export_pass_as_competition_deploy() -> None:
+    refuse_export_pass_as_competition_deploy(
+        {
+            "export_pass_as_competition_deploy": True,
+            "status": "PASS",
+            "as_competition_deploy": True,
+        }
+    )
+
+
+def _case_export_as_live_without_trainable() -> None:
+    refuse_export_as_live_without_trainable(
+        {
+            "export_as_live_without_trainable": True,
+            "would_export": True,
+            "apply_to_live": True,
+        }
+    )
+
+
+def _case_missing_weight_as_fabricated_pass() -> None:
+    refuse_missing_weight_as_fabricated_pass(
+        {
+            "missing_weight_as_fabricated_pass": True,
+            "missing_weight": True,
+            "as_have_weights": True,
+            "status": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_missing_weight_fails_closed() -> None:
+    refuse_missing_weight_fails_closed(
+        {
+            "missing_weight_fails_closed": True,
+            "fail_closed": True,
+            "missing_weight": True,
+            "because_missing": True,
+            "status": "FAIL",
+        }
+    )
+
+
+def _case_merge_readiness_claims_ready() -> None:
+    refuse_merge_readiness_claims_ready(
+        {
+            "merge_readiness_claims_ready": True,
+            "merge_ready": True,
+            "已可合并": True,
+        }
+    )
+
+
+def _case_merge_flips_ready_flag() -> None:
+    refuse_merge_flips_ready_flag(
+        {
+            "merge_flips_ready_flag": True,
+            "ready_gpu": True,
+            "write_reserved_gpu": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_train_launch() -> None:
+    refuse_silent_train_launch(
+        {
+            "silent_train_launch": True,
+            "will_run_train_py": True,
+            "this_pin": True,
+            "spawn_train": True,
+        }
+    )
+
+
+def _case_flip_ready_gpu_without_user() -> None:
+    refuse_flip_ready_gpu_without_user(
+        {
+            "flip_ready_gpu_without_user": True,
+            "ready_gpu": True,
+        }
+    )
+
+
+def _case_merge_readiness_pass_as_merge_ok() -> None:
+    refuse_merge_readiness_pass_as_merge_ok(
+        {
+            "merge_readiness_pass_as_merge_ok": True,
+            "status": "PASS",
+            "as_merge_ok": True,
+        }
+    )
+
+
+def _case_walk_eval_artifact_as_competition_ready() -> None:
+    refuse_walk_eval_artifact_as_competition_ready(
+        {
+            "walk_eval_artifact_as_competition_ready": True,
+            "execution_status": "PASS",
+            "as_competition_ready": True,
+            "quality_verdict": "PASS",
+        }
+    )
+
+
+def _case_generated_cmd_as_launch_auth() -> None:
+    refuse_generated_cmd_as_launch_auth(
+        {
+            "generated_cmd_as_launch_auth": True,
+            "would_train": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_leftover_cache_without_upload_note() -> None:
+    refuse_leftover_cache_without_upload_note(
+        {
+            "leftover_cache_without_upload_note": True,
+            "leave_large_cache": True,
+        }
+    )
+
+
+def _case_destructive_desktop_rm() -> None:
+    refuse_destructive_desktop_rm(
+        {
+            "destructive_desktop_rm": True,
+            "path": "~/Desktop",
+            "rm": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_validator_pass_as_live_curriculum() -> None:
+    refuse_validator_pass_as_live_curriculum(
+        {
+            "validator_pass_as_live_curriculum": True,
+            "as_live_curriculum": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_cross_skill_history_reuse_as_closed() -> None:
+    refuse_cross_skill_history_reuse_as_closed(
+        {
+            "cross_skill_history_reuse_as_closed": True,
+            "gap_closed": True,
+        }
+    )
+
+
+def _case_ci_gate_flips_merge_ready() -> None:
+    refuse_ci_gate_flips_merge_ready(
+        {
+            "ci_gate_flips_merge_ready": True,
+            "merge_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_validator_pass_as_live_dr() -> None:
+    refuse_validator_pass_as_live_dr(
+        {
+            "validator_pass_as_live_dr": True,
+            "as_live_dr": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_cross_domain_gain_copy() -> None:
+    refuse_silent_cross_domain_gain_copy(
+        {
+            "silent_cross_domain_gain_copy": True,
+            "copy_sim_p65_to_default": True,
+            "write_live": True,
+        }
+    )
+
+
+def _case_simrobot_scaffold_as_field_ready() -> None:
+    refuse_simrobot_scaffold_as_field_ready(
+        {
+            "simrobot_scaffold_as_field_ready": True,
+            "field_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_estimator_pass_as_live_swap() -> None:
+    refuse_estimator_pass_as_live_swap(
+        {
+            "estimator_pass_as_live_swap": True,
+            "as_live_estimator_swap": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_series_pass_as_live_torque() -> None:
+    refuse_series_pass_as_live_torque(
+        {
+            "series_pass_as_live_torque": True,
+            "as_live_torque_control": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_series_pass_as_competition_ready() -> None:
+    refuse_series_pass_as_competition_ready(
+        {
+            "series_pass_as_competition_ready": True,
+            "competition_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_reactive_pass_as_live_kick_deploy() -> None:
+    refuse_reactive_pass_as_live_kick_deploy(
+        {
+            "reactive_pass_as_live_kick_deploy": True,
+            "as_live_kick_deploy": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_teamcomm_size_upgrade() -> None:
+    refuse_silent_teamcomm_size_upgrade(
+        {
+            "silent_teamcomm_size_upgrade": True,
+            "overwrite_128_with_512": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_volume_rescan_deletes_artifacts() -> None:
+    refuse_volume_rescan_deletes_artifacts(
+        {
+            "volume_rescan_deletes_artifacts": True,
+            "delete_artifacts": True,
+            "rewrite_history": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_kick_engine_pass_as_live_rl_kick_deploy() -> None:
+    refuse_kick_engine_pass_as_live_rl_kick_deploy(
+        {
+            "kick_engine_pass_as_live_rl_kick_deploy": True,
+            "as_live_rl_kick_deploy": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_ball_task_cross_slot_wiring() -> None:
+    refuse_ball_task_cross_slot_wiring(
+        {
+            "ball_task_cross_slot_wiring": True,
+            "from": "K1_Ball",
+            "to": "K1",
+            "this_pin": True,
+        }
+    )
+
+
+def _case_handoff_pass_as_field_ready_standup() -> None:
+    refuse_handoff_pass_as_field_ready_standup(
+        {
+            "handoff_pass_as_field_ready_standup": True,
+            "as_field_ready_standup": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_standup_eval_artifact_upgrades_quality() -> None:
+    refuse_standup_eval_artifact_upgrades_quality(
+        {
+            "standup_eval_artifact_upgrades_quality": True,
+            "checklist_upgrades_quality": True,
+            "quality_verdict": "PASS",
+        }
+    )
+
+
+def _case_walk_stability_pass_as_competition_ready_gait() -> None:
+    refuse_walk_stability_pass_as_competition_ready_gait(
+        {
+            "walk_stability_pass_as_competition_ready_gait": True,
+            "as_competition_ready_gait": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_competition_cfg_edit() -> None:
+    refuse_silent_competition_cfg_edit(
+        {
+            "silent_competition_cfg_edit": True,
+            "edit_competition_cfg": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_hysteresis_pass_as_live_switch_authorize() -> None:
+    refuse_hysteresis_pass_as_live_switch_authorize(
+        {
+            "hysteresis_pass_as_live_switch_authorize": True,
+            "live_switch_authorize": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_maxacc_copy_into_live_cfg() -> None:
+    refuse_silent_maxacc_copy_into_live_cfg(
+        {
+            "silent_maxacc_copy_into_live_cfg": True,
+            "copy_maxacc_to_default": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_local_compat_doc_claims_gap_closed() -> None:
+    refuse_local_compat_doc_claims_gap_closed(
+        {
+            "local_compat_doc_claims_gap_closed": True,
+            "source": "LOCAL-BH-GYM-COMPAT.md",
+            "gap_closed": True,
+        }
+    )
+
+
+def _case_max_acc_allowlist_drift() -> None:
+    refuse_max_acc_allowlist_drift(
+        {
+            "simulated_matches_competition_max_acc": True,
+            "source": "SimulatedK1",
+            "pair": {"x": "200", "y": "20"},
+        }
+    )
+
+
+def _case_band_crossing_as_dim_rewrite() -> None:
+    refuse_band_crossing_as_dim_rewrite(
+        {
+            "band_crossing_as_dim_rewrite": True,
+            "source": "enter_kick_below_when_far",
+            "walk_obs": 59,
+        }
+    )
+
+
+def _case_inverted_hysteresis_band() -> None:
+    refuse_inverted_hysteresis_band(
+        {
+            "inverted_hysteresis_band": True,
+            "band": {
+                "switch": 1500,
+                "hysteresis": 300,
+                "enter_kick_below_when_far": 1800,
+                "stay_walk_above_when_near": 1200,
+            },
+        }
+    )
+
+
+CASES: tuple[tuple[str, CaseFn], ...] = (
+    ("t1_as_walk", _case_t1_as_walk),
+    ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
+    ("t1_on_walk_slot", _case_t1_on_walk_slot),
+    ("standup_to_kick", _case_standup_to_kick),
+    ("simrobot_as_fast_standup", _case_simrobot_as_fast),
+    ("latent_into_344", _case_latent_into_344),
+    ("draft_write_live", _case_draft_write_live),
+    ("unified_pd_closed_fake_green", _case_unified_pd_closed),
+    ("sibling_merge_into_344", _case_sibling_merge_into_344),
+    ("t1_onnx_as_k1_walk", _case_t1_onnx_as_k1_walk),
+    ("behavior_replaces_walk", _case_behavior_replaces_walk),
+    ("teamcomm_into_344", _case_teamcomm_into_344),
+    ("mix_128_512", _case_mix_128_512),
+    ("fallen_as_skill_request", _case_fallen_as_skill_request),
+    ("getup_incomplete_kick", _case_getup_incomplete_kick),
+    ("stay_on_standup_after_getup", _case_stay_on_standup_after_getup),
+    ("getup_done_direct_kick", _case_getup_done_direct_kick),
+    ("kick_replaces_walk", _case_kick_replaces_walk),
+    ("cfg_dim_rewrite", _case_cfg_dim_rewrite),
+    ("kickmodel_t1", _case_kickmodel_t1),
+    ("kick_onnx_on_walk_slot", _case_kick_onnx_on_walk_slot),
+    ("getup_overwrites_walk", _case_getup_overwrites_walk),
+    ("t1_getup_as_k1", _case_t1_getup_as_k1),
+    ("fast_standup_as_isaac", _case_fast_standup_as_isaac),
+    ("simulated_speed_as_pd_closed", _case_simulated_speed_as_pd_closed),
+    ("fabricate_competition_getup", _case_fabricate_competition_getup),
+    ("stand_ankle_as_pd_closed", _case_stand_ankle_as_pd_closed),
+    ("competition_diff_net_slot", _case_competition_diff_net_slot),
+    ("policy_switch_as_net_swap", _case_policy_switch_as_net_swap),
+    ("shift_ball_as_dim_change", _case_shift_ball_as_dim_change),
+    ("kick_policy_as_default_walk", _case_kick_policy_as_default_walk),
+    ("max_acc_as_net_swap", _case_max_acc_as_net_swap),
+    ("getnext_as_hot_swap_train", _case_getnext_as_hot_swap_train),
+    ("speed_gear_as_net_swap", _case_speed_gear_as_net_swap),
+    ("ball_net_off_as_dim_change", _case_ball_net_off_as_dim_change),
+    ("intercept_as_kick_default", _case_intercept_as_kick_default),
+    ("avoid_as_hot_swap_train", _case_avoid_as_hot_swap_train),
+    ("should_stop_as_kick_default", _case_should_stop_as_kick_default),
+    ("stand_as_dim_change", _case_stand_as_dim_change),
+    ("ball_unseen_as_hot_swap_train", _case_ball_unseen_as_hot_swap_train),
+    ("empty_skill_as_kick", _case_empty_skill_as_kick),
+    ("hysteresis_as_dim_change", _case_hysteresis_as_dim_change),
+    ("kick_path_as_walk_344", _case_kick_path_as_walk_344),
+    ("policy_switch_as_hot_swap_train", _case_policy_switch_as_hot_swap_train),
+    ("competition_hysteresis_drift", _case_competition_hysteresis_drift),
+    ("walk_apply_as_59", _case_walk_apply_as_59),
+    ("switch_keeps_stale_last_action", _case_switch_keeps_stale_last_action),
+    ("walk_onnx_as_kick_slot", _case_walk_onnx_as_kick_slot),
+    ("buffer_cross_dim_reuse", _case_buffer_cross_dim_reuse),
+    ("claim_walk_kick_gap_closed", _case_claim_walk_kick_gap_closed),
+    ("draft_mitigation_as_live", _case_draft_mitigation_as_live),
+    ("standup_zero_as_walk_kick_fix", _case_standup_zero_as_walk_kick_fix),
+    ("continue_phase_skips_required_reset", _case_continue_phase_skips_required_reset),
+    ("standup_as_walk_344", _case_standup_as_walk_344),
+    ("fast_as_regular_standup", _case_fast_as_regular_standup),
+    ("getup_as_hot_swap_train", _case_getup_as_hot_swap_train),
+    ("standup_onnx_as_kick_slot", _case_standup_onnx_as_kick_slot),
+    ("getup_skips_force_walk", _case_getup_skips_force_walk),
+    ("force_walk_lands_on_kick", _case_force_walk_lands_on_kick),
+    ("standup_handoff_as_walk_344_obs", _case_standup_handoff_as_walk_344_obs),
+    ("local_artifacts_kept_without_upload_policy", _case_local_artifacts_kept_without_upload_policy),
+    ("want_kick_default_true", _case_want_kick_default_true),
+    ("intercept_info_writes_kick_policy", _case_intercept_info_writes_kick_policy),
+    ("behavior_empty_as_kick", _case_behavior_empty_as_kick),
+    ("pr_index_claims_gap_closed", _case_pr_index_claims_gap_closed),
+    ("playball_as_kick_policy", _case_playball_as_kick_policy),
+    ("motion_walkToBallAndKick_as_59", _case_motion_walkToBallAndKick_as_59),
+    ("reactive_as_default_walk", _case_reactive_as_default_walk),
+    ("stub_sets_ready_gpu_true", _case_stub_sets_ready_gpu_true),
+    ("deploy_seq_draws_playball_as_kick_net", _case_deploy_seq_draws_playball_as_kick_net),
+    ("walk_to_ball_engine_applies_onnx", _case_walk_to_ball_engine_applies_onnx),
+    ("chain_a_equals_chain_b", _case_chain_a_equals_chain_b),
+    ("deploy_doc_claims_gap_closed", _case_deploy_doc_claims_gap_closed),
+    ("dry_run_auto_starts_train", _case_dry_run_auto_starts_train),
+    ("ready_gpu_true_without_checklist", _case_ready_gpu_true_without_checklist),
+    ("replay_writes_outside_runs", _case_replay_writes_outside_runs),
+    ("local_compat_doc_claims_gap_closed", _case_local_compat_doc_claims_gap_closed),
+    ("standup_replay_as_walk_344", _case_standup_replay_as_walk_344),
+    ("walk_eval_pass_as_competition_ready", _case_walk_eval_pass_as_competition_ready),
+    ("eval_writes_outside_runs", _case_eval_writes_outside_runs),
+    ("dry_run_doc_claims_gap_closed", _case_dry_run_doc_claims_gap_closed),
+    ("kick_replay_as_walk_344", _case_kick_replay_as_walk_344),
+    ("standup_eval_pass_as_competition_ready", _case_standup_eval_pass_as_competition_ready),
+    ("e2e_dry_run_skips_force_walk", _case_e2e_dry_run_skips_force_walk),
+    ("e2e_dry_run_claims_gap_closed", _case_e2e_dry_run_claims_gap_closed),
+    ("kick_eval_pass_as_competition_ready", _case_kick_eval_pass_as_competition_ready),
+    ("kick_eval_as_walk_344", _case_kick_eval_as_walk_344),
+    ("kick_eval_as_live_deploy", _case_kick_eval_as_live_deploy),
+    ("fast_standup_replay_as_walk_344", _case_fast_standup_replay_as_walk_344),
+    ("fast_standup_replay_as_regular_73", _case_fast_standup_replay_as_regular_73),
+    ("dual_chain_dry_run_claims_gap_closed", _case_dual_chain_dry_run_claims_gap_closed),
+    ("kick_onnx_path_as_walk_344", _case_kick_onnx_path_as_walk_344),
+    ("kick_onnx_live_without_trainable", _case_kick_onnx_live_without_trainable),
+    ("isolation_matrix_cross_wires_slots", _case_isolation_matrix_cross_wires_slots),
+    ("policy_switch_draft_as_live", _case_policy_switch_draft_as_live),
+    ("policy_switch_draft_skips_force_walk", _case_policy_switch_draft_skips_force_walk),
+    ("policy_switch_draft_claims_gap_closed", _case_policy_switch_draft_claims_gap_closed),
+    ("export_pass_as_competition_deploy", _case_export_pass_as_competition_deploy),
+    ("export_as_live_without_trainable", _case_export_as_live_without_trainable),
+    ("missing_weight_as_fabricated_pass", _case_missing_weight_as_fabricated_pass),
+    ("missing_weight_fails_closed", _case_missing_weight_fails_closed),
+    ("merge_readiness_claims_ready", _case_merge_readiness_claims_ready),
+    ("merge_flips_ready_flag", _case_merge_flips_ready_flag),
+    ("silent_train_launch", _case_silent_train_launch),
+    ("flip_ready_gpu_without_user", _case_flip_ready_gpu_without_user),
+    ("merge_readiness_pass_as_merge_ok", _case_merge_readiness_pass_as_merge_ok),
+    ("walk_eval_artifact_as_competition_ready", _case_walk_eval_artifact_as_competition_ready),
+    ("generated_cmd_as_launch_auth", _case_generated_cmd_as_launch_auth),
+    ("leftover_cache_without_upload_note", _case_leftover_cache_without_upload_note),
+    ("destructive_desktop_rm", _case_destructive_desktop_rm),
+    ("validator_pass_as_live_curriculum", _case_validator_pass_as_live_curriculum),
+    ("cross_skill_history_reuse_as_closed", _case_cross_skill_history_reuse_as_closed),
+    ("ci_gate_flips_merge_ready", _case_ci_gate_flips_merge_ready),
+    ("validator_pass_as_live_dr", _case_validator_pass_as_live_dr),
+    ("silent_cross_domain_gain_copy", _case_silent_cross_domain_gain_copy),
+    ("simrobot_scaffold_as_field_ready", _case_simrobot_scaffold_as_field_ready),
+    ("estimator_pass_as_live_swap", _case_estimator_pass_as_live_swap),
+    ("series_pass_as_live_torque", _case_series_pass_as_live_torque),
+    ("series_pass_as_competition_ready", _case_series_pass_as_competition_ready),
+    ("reactive_pass_as_live_kick_deploy", _case_reactive_pass_as_live_kick_deploy),
+    ("silent_teamcomm_size_upgrade", _case_silent_teamcomm_size_upgrade),
+    ("volume_rescan_deletes_artifacts", _case_volume_rescan_deletes_artifacts),
+    ("kick_engine_pass_as_live_rl_kick_deploy", _case_kick_engine_pass_as_live_rl_kick_deploy),
+    ("ball_task_cross_slot_wiring", _case_ball_task_cross_slot_wiring),
+    ("handoff_pass_as_field_ready_standup", _case_handoff_pass_as_field_ready_standup),
+    ("standup_eval_artifact_upgrades_quality", _case_standup_eval_artifact_upgrades_quality),
+    ("walk_stability_pass_as_competition_ready_gait", _case_walk_stability_pass_as_competition_ready_gait),
+    ("silent_competition_cfg_edit", _case_silent_competition_cfg_edit),
+    ("max_acc_allowlist_drift", _case_max_acc_allowlist_drift),
+    ("band_crossing_as_dim_rewrite", _case_band_crossing_as_dim_rewrite),
+    ("inverted_hysteresis_band", _case_inverted_hysteresis_band),
+    ("hysteresis_pass_as_live_switch_authorize", _case_hysteresis_pass_as_live_switch_authorize),
+    ("silent_maxacc_copy_into_live_cfg", _case_silent_maxacc_copy_into_live_cfg),
+)
+
+
+def refuse_write_yaml(path: str | Path | None = None) -> None:
+    raise RuntimeError(
+        f"forbidden-regressions pack is read-only; must not write {path or 'K1.yaml'}"
+    )
+
+
+def run_case(name: str, fn: CaseFn) -> dict[str, Any]:
+    try:
+        fn()
+    except (ValueError, RuntimeError, AssertionError):
+        return {"id": name, "refused": True, "status": "PASS"}
+    return {
+        "id": name,
+        "refused": False,
+        "status": "FAIL",
+        "error": f"{name} did not raise (gate must go red)",
+    }
+
+
+def run_pack() -> dict[str, Any]:
+    if TRAINABLE or WRITE_YAML:
+        raise AssertionError("forbidden-regressions leaked TRAINABLE/WRITE_YAML")
+    results = [run_case(name, fn) for name, fn in CASES]
+    failed = [row["id"] for row in results if not row.get("refused")]
+    return {
+        "ok": not failed,
+        "failed": failed,
+        "results": results,
+        "walk": "344→13",
+        "trainable": False,
+        "write_yaml": False,
+        "note": "any silent refuse is a gate-red failure",
+    }
+
+
+def assert_pack_frozen() -> dict[str, Any]:
+    report = run_pack()
+    if not report["ok"]:
+        raise AssertionError(
+            "forbidden regressions leaked: " + ", ".join(report["failed"])
+        )
+    return report

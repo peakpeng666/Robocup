@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "competition": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "shift_ball": {
+    "default": {
+      "shiftBallPosition": "false",
+      "shiftBallPositionValue": "80"
+    },
+    "competition": {
+      "shiftBallPosition": "true",
+      "shiftBallPositionValue": "40"
+    },
+    "kind": "kick_approach_ball_offset",
+    "not_walk_dim_rewrite": true,
+    "not_sibling_merge": true
+  },
+  "table": [
+    {
+      "key": "shiftBallPosition",
+      "default": "false",
+      "competition": "true",
+      "kind": "kick_approach_offset"
+    },
+    {
+      "key": "shiftBallPositionValue",
+      "default": "80",
+      "competition": "40",
+      "kind": "kick_approach_offset"
+    }
+  ],
+  "copies": [
+    {
+      "role": "SimulatedK1",
+      "shiftBallPosition": "false",
+      "shiftBallPositionValue": "80",
+      "matches": true
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "shiftBallPosition": "true",
+      "shiftBallPositionValue": "40",
+      "matches": true
+    }
+  ],
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "cpp_needles": [
+    "shiftBallPosition",
+    "Shift ball position further outwards",
+    "shiftBallPositionValue"
+  ],
+  "header_needles": [
+    "shiftBallPosition",
+    "further away to the side"
+  ],
+  "shift_ball_as_dim_change": false,
+  "merges_sibling_into_344": false,
+  "fabricated": false,
+  "note": "shiftBallPosition Default false/80 vs Competition true/40 offsets the ball pose used for kick approach (further outwards in kick direction); it does not rewrite walk 344→13 or merge K1_Ball / siblings into 344",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "competition_sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

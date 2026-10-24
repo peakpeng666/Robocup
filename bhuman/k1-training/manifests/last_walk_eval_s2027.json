@@ -1,7 +1,7 @@
 {
   "command": [
     "/home/peakpeng/.venvs/bh-gym/bin/python",
-    "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/walk_eval_entry.py",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/scripts/walk_eval_entry.py",
     "--policy",
     "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
     "--seed",
@@ -11,12 +11,12 @@
     "--num-envs",
     "8"
   ],
-  "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+  "cwd": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL",
   "exit_code": 0,
-  "wall_s": 33.735072784000295,
+  "wall_s": 34.74270120900019,
   "sampled_gpu_peak_mib": 2946,
   "stop_reason": null,
-  "run_dir": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_141350_477395_walk_eval_s2027",
+  "run_dir": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/runs/20261024_200640_281778_walk_eval_s2027",
   "python_jit": "1",
   "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
   "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",

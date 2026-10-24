@@ -1,0 +1,113 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "stubs": [
+    {
+      "id": "k1_reactive_contract",
+      "rel": "bhuman/k1-training/k1-reactive/contract.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "k1_reactive_env_stub",
+      "rel": "bhuman/k1-training/k1-reactive/env_stub.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "k1_reactive_hardening",
+      "rel": "bhuman/k1-training/k1-reactive/hardening.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "bt_skill_select",
+      "rel": "bhuman/k1-training/k1-reactive/bt_skill_select.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "k1_estimators_interface",
+      "rel": "bhuman/k1-training/k1-estimators/interface.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "k1_estimators_hooks",
+      "rel": "bhuman/k1-training/k1-estimators/hooks.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "estimator_ab_audit",
+      "rel": "bhuman/k1-training/scripts/estimator_ab_audit.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "draft_validator",
+      "rel": "bhuman/k1-training/configs/draft-only/draft_validator.py",
+      "trainable": false,
+      "default_walk": false
+    },
+    {
+      "id": "probe_reserved_gpu",
+      "rel": "bhuman/k1-training/scripts/probe_reserved_gpu.py",
+      "trainable": false,
+      "default_walk": false
+    }
+  ],
+  "reactive": {
+    "task": "K1_Reactive",
+    "contract": "64→15",
+    "trainable": false,
+    "implemented": false,
+    "registered": false,
+    "default_skill": "walk",
+    "is_default_walk_baseline": false
+  },
+  "estimators": {
+    "trainable": false,
+    "latent_into_344": false
+  },
+  "ready_gpu": {
+    "ready": false,
+    "from_stub": false,
+    "checklist_keys": [
+      "cuda",
+      "isaacgym_or_alt",
+      "disk",
+      "official_k1_task",
+      "checkpoint"
+    ],
+    "will_run_train_py": false,
+    "will_run_isaac_gym": false
+  },
+  "siblings_referenced_not_reaudited": [
+    "hardening.py",
+    "estimator_ab_audit.py",
+    "probe_reserved_gpu.py",
+    "bt_skill_select.py",
+    "env_registry_audit.py",
+    "env_stub.py"
+  ],
+  "reactive_as_default_walk": false,
+  "stub_sets_ready_gpu_true": false,
+  "walk_kick_gap_closed": false,
+  "cross": {
+    "empty_bt": "walk",
+    "reactive_conditions": "walk",
+    "probe_ready": false
+  },
+  "fabricated": false,
+  "note": "all reactive / estimator / draft stubs stay TRAINABLE=false; default walk remains 344→13; stub presence must not flip ready_gpu",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "reactive_contract": "64→15",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

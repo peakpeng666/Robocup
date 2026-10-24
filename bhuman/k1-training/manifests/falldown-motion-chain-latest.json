@@ -1,0 +1,93 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "sources": {
+    "falldown_state": "bhuman/BHumanCodeRelease/Src/Representations/Sensing/FallDownState.h",
+    "motion_engine": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/MotionEngine/MotionEngine.cpp",
+    "getup_generator": "bhuman/BHumanCodeRelease/Src/Representations/MotionControl/GetUpGenerator.h",
+    "getup_engine_h": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.h",
+    "getup_engine_cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp",
+    "skill_request": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.h"
+  },
+  "falldown_states": [
+    "pickedUp",
+    "upright",
+    "staggering",
+    "falling",
+    "fallen",
+    "squatting"
+  ],
+  "motion": {
+    "fallen_state": true,
+    "getup_flag": true,
+    "fall_phase": true,
+    "create_getup": true,
+    "getup_phase": true,
+    "routes_fallen_to_getup": true,
+    "not_skill_request": true
+  },
+  "getup_completion": {
+    "status": "PASS",
+    "binds_create_phase": true,
+    "getup_phase": true,
+    "is_done": true,
+    "force_walk_comment": true,
+    "next_is_walk": true,
+    "completes_then_walk": true
+  },
+  "chain": [
+    {
+      "step": "fallen",
+      "owner": "FallDownState",
+      "evidence": "ENUM State includes fallen (not a SkillRequest Type)",
+      "source": "bhuman/BHumanCodeRelease/Src/Representations/Sensing/FallDownState.h"
+    },
+    {
+      "step": "route_getup",
+      "owner": "MotionEngine",
+      "evidence": "FallDownState::fallen → theGetUpGenerator.createPhase",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/MotionEngine/MotionEngine.cpp"
+    },
+    {
+      "step": "getup_73_22",
+      "owner": "GetUpEngine",
+      "evidence": "GetUpPhase (MotionPhase::getUp); official standup 73→22",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp",
+      "contract": "73→22"
+    },
+    {
+      "step": "getup_done",
+      "owner": "GetUpPhase::isDone + switcher getup_done",
+      "evidence": "state == State::done; port requires getup_done",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp"
+    },
+    {
+      "step": "return_walk",
+      "owner": "GetUpPhase::createNextPhase + SwitcherSM",
+      "evidence": "Force walk afterwards / theWalkGenerator.createPhase → walk 344→13",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp",
+      "contract": "344→13"
+    }
+  ],
+  "default_after_getup": "walk",
+  "default_contract": "344→13",
+  "standup_contract": "73→22",
+  "fallen_is_skill_request_type": false,
+  "replaces_walk": false,
+  "cross": {
+    "bt_fallen": "handoff_getup",
+    "skill_request_fallen": "handoff_getup",
+    "sm_fallen_contract": "73→22",
+    "sm_getup_done": "walk",
+    "agrees": true
+  },
+  "fabricated": false,
+  "note": "fallen is sensing/motion, not SkillRequest; GetUpEngine 73→22 must finish (getup_done) before walk 344→13; kick while GetUp incomplete is illegal",
+  "trainable": false,
+  "write_yaml": false,
+  "walk": "344→13",
+  "standup": "73→22",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

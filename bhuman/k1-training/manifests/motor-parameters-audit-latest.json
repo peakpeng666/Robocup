@@ -1,0 +1,156 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "motor_parameters": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/motorParameters.cfg",
+    "train_yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+    "simulated_motor": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/motorParameters.cfg"
+  },
+  "table": [
+    {
+      "joint": "lHipPitch",
+      "family": "Hip_Pitch",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 50.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "lHipRoll",
+      "family": "Hip_Roll",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 50.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "lHipYaw",
+      "family": "Hip_Yaw",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "lKneePitch",
+      "family": "Knee",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 60.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "lAnklePitch",
+      "family": "Ankle_Pitch",
+      "robot_regular_p": 50.0,
+      "robot_regular_d": 2.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 50.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "lAnkleRoll",
+      "family": "Ankle_Roll",
+      "robot_regular_p": 25.0,
+      "robot_regular_d": 2.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 60.0,
+      "match": false,
+      "gap_intentional": true
+    },
+    {
+      "joint": "rHipPitch",
+      "family": "Hip_Pitch",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 50.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "rHipRoll",
+      "family": "Hip_Roll",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 50.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "rHipYaw",
+      "family": "Hip_Yaw",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "rKneePitch",
+      "family": "Knee",
+      "robot_regular_p": 80.0,
+      "robot_regular_d": 4.0,
+      "robot_regular_maxTorque": 60.0,
+      "train_yaml_p": 80.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "rAnklePitch",
+      "family": "Ankle_Pitch",
+      "robot_regular_p": 50.0,
+      "robot_regular_d": 2.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 50.0,
+      "match": true,
+      "gap_intentional": false
+    },
+    {
+      "joint": "rAnkleRoll",
+      "family": "Ankle_Roll",
+      "robot_regular_p": 25.0,
+      "robot_regular_d": 2.0,
+      "robot_regular_maxTorque": 30.0,
+      "train_yaml_p": 60.0,
+      "match": false,
+      "gap_intentional": true
+    }
+  ],
+  "ankle_roll": {
+    "robot_regular_p": 25.0,
+    "train_yaml_p": 60.0,
+    "simulated_regular_p": 65.0,
+    "closed": false,
+    "intentional": true
+  },
+  "pd_gap": {
+    "intentional": true,
+    "closed": false,
+    "train_ankle_roll_p": 60.0,
+    "robot_ankle_roll_p": 25.0,
+    "write_yaml": false,
+    "walk": "344→13"
+  },
+  "simulated_speed_diff_closes_pd": false,
+  "fabricated": false,
+  "note": "K1 regular ankle-roll p25 vs train p60 is an open intentional gap; Simulated walkingEngine speed diffs do not close PD; Simulated motor ankle-roll p65 is historical hang-test, not p25/p60",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "cfg_sha256": "330c9e7659717e249f4adff51379ae4fdf650bbe58ee69e4bff6e166a8cea967",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

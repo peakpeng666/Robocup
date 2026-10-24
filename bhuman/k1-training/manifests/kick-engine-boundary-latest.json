@@ -1,0 +1,89 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "skipped": true,
+  "reason": "KickEngine.cpp/.h not in checkout; historical comment only",
+  "sources": {
+    "standalone_kick_engine": null,
+    "walk_to_ball_and_kick_engine": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkGenerators/WalkToBallAndKickEngine.cpp",
+    "walk_to_ball_and_kick_skill": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/WalkToBallAndKick.cpp",
+    "playball": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp",
+    "motion_request": "bhuman/BHumanCodeRelease/Src/Representations/MotionControl/MotionRequest.h",
+    "kick_info": "bhuman/BHumanCodeRelease/Src/Representations/Configuration/KickInfo.h",
+    "walking_engine_cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "walking_engine_cfg": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg"
+  },
+  "standalone_kick_engine": {
+    "status": "SKIP",
+    "path": null,
+    "reason": "KickEngine.cpp/.h not in checkout; historical comment only",
+    "fabricated": false
+  },
+  "live": {
+    "module_name": true,
+    "create_phase": true,
+    "walk_to_ball": true,
+    "routes_to_walk_then_kick": true
+  },
+  "motion_request_walk_to_ball_and_kick": true,
+  "kickinfo_mentions_kickengine": true,
+  "policy": {
+    "kickPolicy": true,
+    "num_input_assert": true
+  },
+  "cfg": {
+    "kick_models": [
+      "K1_kick_inner.onnx",
+      "K1_kick_inner_soft.onnx"
+    ],
+    "has_kick_59": true,
+    "kick_num_input": 59,
+    "walk_num_input_present": true
+  },
+  "chain": [
+    {
+      "step": "playball",
+      "owner": "PlayBall / SkillRequest shoot|pass|dribble|clear",
+      "evidence": "want_kick selects kick 59→13; does not skip walk discipline",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp"
+    },
+    {
+      "step": "walk_to_ball_and_kick_skill",
+      "owner": "WalkToBallAndKick skill",
+      "evidence": "theMotionRequest.motion = MotionRequest::walkToBallAndKick",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/WalkToBallAndKick.cpp"
+    },
+    {
+      "step": "walk_kick_engine",
+      "owner": "WalkToBallAndKickEngine",
+      "evidence": "createPhase → theWalkToBallGenerator.createPhase (approach, then kick)",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkGenerators/WalkToBallAndKickEngine.cpp"
+    },
+    {
+      "step": "kick_policy",
+      "owner": "WalkingEngine kickPolicy",
+      "evidence": "ballNetworkParameters.numInput 59 / kick 59→13; not walk 344→13",
+      "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+      "contract": "59→13"
+    }
+  ],
+  "default_skill": "walk",
+  "default_contract": "344→13",
+  "kick_contract": "59→13",
+  "replaces_walk": false,
+  "cross": {
+    "bt_want_kick": "kick",
+    "skill_request_shoot": "kick",
+    "sm_kick_contract": "59→13",
+    "sm_back": "walk",
+    "replaces_walk": false,
+    "agrees": true
+  },
+  "fabricated": false,
+  "note": "no standalone KickEngine in checkout; live kick is WalkToBallAndKickEngine + WalkingEngine kickPolicy 59→13; bypass ≠ new walk baseline",
+  "trainable": false,
+  "write_yaml": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

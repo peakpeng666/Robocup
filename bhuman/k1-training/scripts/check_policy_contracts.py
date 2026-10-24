@@ -1,0 +1,2052 @@
+#!/usr/bin/env python3
+"""Static B-Human K1 policy-contract gate (no GPU / Isaac Gym / weights required).
+
+Cross-checks walk/kick/standup observation and action dimensions across:
+  * IsaacGymRL YAML (frozen MachineLearning tree and k1-training working copy)
+  * Deploy C++ .cfg (ML pre-trained, k1-training copy, BHumanCodeRelease)
+  * ActorCritic constructor / Linear I/O in model.py
+  * Documented layout sums (policy-contract-v1)
+  * Recorded official ONNX I/O in manifests/models-v2.json
+  * Optional on-disk .pth/.onnx/.pt hashes when the files exist
+
+Missing weight binaries are recorded as warnings, not failures: GitHub
+snapshots gitignore *.onnx/*.pth/*.pt. Contract-number mismatches fail.
+
+Exit 0 = contracts consistent. Exit 1 = mismatch or missing required source.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import platform
+import re
+import shutil
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+from importlib.util import module_from_spec, spec_from_file_location
+
+try:
+    import yaml
+except ImportError:  # pragma: no cover - stdlib fallback is enough for env keys
+    yaml = None
+
+
+UPSTREAM_ML = "c3fed817e6e8fd06418bea824b1f1ab0157379d2"
+UPSTREAM_BHUMAN = "2e3374ba896da8288607f9a1881b876642fe18b8"
+
+# Frozen K1 contracts. Kick output is the walk numOutput (not restated in ball blocks).
+K1_CONTRACTS = {
+    "walk": {
+        "task": "K1",
+        "obs": 344,
+        "act": 13,
+        "priv": 16,
+        "history_size": 10,
+        "base_obs": 32,
+        "last_obs": 24,
+        "layout_frame": [3, 3, 12, 12, 2],  # gravity, gyro, legs, prev 12 acts, ball xy=0
+        "layout_tail": [3, 2, 12, 1, 3, 2, 1],  # cmd, gait, vel, freq, ball flags, dir, range
+        "yaml_name": "K1.yaml",
+        "onnx_names": ("K1_walk.onnx",),
+        "pth_relpaths": (
+            "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        ),
+        "known_pth_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+        "known_onnx_sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    },
+    "kick": {
+        "task": "K1_Ball",
+        "obs": 59,
+        "act": 13,
+        "priv": 16,
+        "yaml_name": "K1_Ball.yaml",
+        "layout": [3, 3, 2, 1, 2, 12, 12, 13, 1, 1, 1, 2, 1, 2, 1, 2],
+        "onnx_names": ("K1_kick_inner.onnx", "K1_kick_inner_soft.onnx", "K1_kick_90degree.onnx"),
+        "pth_relpaths": (
+            "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+        ),
+        "known_onnx_sha256": {
+            "K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+            "K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+        },
+    },
+    "standup": {
+        "task": "K1_Stand_Up",
+        "obs": 73,
+        "act": 22,
+        "priv": 38,
+        "yaml_name": "K1_Stand_Up.yaml",
+        "layout": [3, 3, 1, 22, 22, 22],
+        "onnx_names": ("K1.onnx",),
+        "pth_relpaths": (
+            "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+        ),
+        "known_onnx_sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+    },
+    "fast_standup": {
+        "task": "K1_fast_standup",
+        "obs": 72,
+        "act": 22,
+        "note": "Deploy-only; not the IsaacGymRL ActorCritic standup task.",
+        "onnx_names": ("K1_fast_standup.onnx", "K1_fast.onnx"),
+        "known_onnx_sha256": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+    },
+}
+
+# B-Human T1 (same IsaacGymRL family). Must stay distinct from K1 and from Huoshen T1.
+T1_CONTRACTS = {
+    "walk": {"obs": 365, "act": 14, "base_obs": 34, "last_obs": 25, "history_size": 10},
+    "kick": {"obs": 62, "act": 14},
+    "standup": {"obs": 76, "act": 23, "priv": 39},
+}
+
+# Huoshen / Science Robotics 2026 public T1 reactive skill (docs only; not in this tree).
+HUOSHEN_DOC_CONTRACT = {
+    "platform": "Booster T1 (not K1)",
+    "obs": 58,
+    "stack": 50,
+    "history_embedding_dim": 64,
+    "act": 15,
+    "policy_hz": 50,
+    "vision_hz": 25,
+    "delay_ms": "116±18",
+}
+
+ISAAC_TREES = (
+    "bhuman/MachineLearning/IsaacGymRL",
+    "bhuman/k1-training/src/IsaacGymRL",
+)
+
+WALK_CFG_RELPATHS = (
+    "bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+    "bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+    "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+)
+
+GETUP_CFG_RELPATHS = (
+    "bhuman/MachineLearning/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+    "bhuman/k1-training/src/Config/Robots/Default/K1/getUpEngine.cfg",
+    "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+)
+
+HUOSHEN_MARKERS = (
+    "history_embedding_dim",
+    "num_stack",
+    "huoshen",
+    "HiFAR",
+    "hifar",
+)
+
+# Official ONNX locations (gitignored binaries; hashes live in models-v2.json).
+OFFICIAL_ONNX_RELPATHS = {
+    "K1_walk.onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+    "K1_kick_inner.onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "K1_kick_inner_soft.onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+    "K1.onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+    "K1_fast_standup.onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+}
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def run_git(repo: Path, *args: str) -> str:
+    try:
+        out = subprocess.check_output(
+            ["git", "-C", str(repo), *args],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+    return out.strip()
+
+
+def load_yaml(path: Path) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8")
+    if yaml is not None:
+        data = yaml.safe_load(text)
+        if not isinstance(data, dict):
+            raise ValueError(f"{path}: YAML root is not a mapping")
+        return data
+    env: dict[str, Any] = {}
+    in_env = False
+    for raw in text.splitlines():
+        if raw.startswith("env:"):
+            in_env = True
+            continue
+        if in_env and raw and not raw.startswith(" ") and not raw.startswith("\t"):
+            break
+        if in_env:
+            match = re.match(r"\s+([A-Za-z0-9_]+):\s*(\S+)", raw)
+            if match:
+                key, value = match.group(1), match.group(2)
+                if re.fullmatch(r"-?\d+", value):
+                    env[key] = int(value)
+                elif re.fullmatch(r"-?\d+\.\d+", value):
+                    env[key] = float(value)
+                else:
+                    env[key] = value
+    return {"env": env}
+
+
+def extract_brace_block(text: str, name: str) -> str | None:
+    token = name + " ="
+    idx = text.find(token)
+    if idx < 0:
+        token = name + "="
+        idx = text.find(token)
+    if idx < 0:
+        return None
+    brace = text.find("{", idx)
+    if brace < 0:
+        return None
+    depth = 0
+    for pos, char in enumerate(text[brace:], start=brace):
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return text[brace + 1 : pos]
+    return None
+
+
+def parse_assign_ints(block: str) -> dict[str, int]:
+    found: dict[str, int] = {}
+    for match in re.finditer(r"\b(numInput|numOutput|numInputFast|numOutputFast)\s*=\s*(-?\d+)\s*;", block):
+        found[match.group(1)] = int(match.group(2))
+    return found
+
+
+def parse_getup_cfg(path: Path) -> dict[str, int]:
+    return parse_assign_ints(path.read_text(encoding="utf-8", errors="replace"))
+
+
+def parse_walk_cfg(path: Path) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    walk = parse_assign_ints(extract_brace_block(text, "walkNeuronalNetworkParameters") or "")
+    kick_blocks = {}
+    for name in ("ballNetworkParameters", "oldBallNetworkParameters", "ballStealNetworkParameters"):
+        block = extract_brace_block(text, name)
+        if block is not None:
+            kick_blocks[name] = parse_assign_ints(block)
+    return {"walk": walk, "kick_blocks": kick_blocks, "path": str(path)}
+
+
+def env_contract(cfg: dict[str, Any]) -> dict[str, Any]:
+    env = cfg.get("env") or {}
+    keys = (
+        "num_observations",
+        "num_actions",
+        "num_privileged_obs",
+        "num_base_observations",
+        "num_last_observations",
+        "history_size",
+    )
+    return {key: env.get(key) for key in keys if key in env}
+
+
+def probe_environment() -> dict[str, Any]:
+    nvidia = shutil.which("nvidia-smi")
+    gpu_name = None
+    if nvidia:
+        try:
+            gpu_name = subprocess.check_output(
+                [nvidia, "--query-gpu=name,memory.total", "--format=csv,noheader"],
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except (OSError, subprocess.CalledProcessError):
+            gpu_name = "nvidia-smi present but query failed"
+    modules = {}
+    for name in ("torch", "isaacgym", "onnx", "onnxruntime", "mujoco"):
+        try:
+            __import__(name)
+            modules[name] = True
+        except Exception:
+            modules[name] = False
+    bh_py = Path(os.environ.get("BH_PY") or Path.home() / ".venvs/bh-gym/bin/python")
+    isaacsim_py = Path.home() / ".venvs/isaacsim-gui/bin/python"
+    return {
+        "python": sys.version.split()[0],
+        "executable": sys.executable,
+        "platform": platform.platform(),
+        "nvidia_smi": nvidia,
+        "gpu": gpu_name,
+        "modules": modules,
+        "bh_gym_python_exists": bh_py.exists(),
+        "bh_gym_python": str(bh_py),
+        "isaacsim_gui_python_exists": isaacsim_py.exists(),
+        "can_run_isaac_gym_train": bool(nvidia and modules.get("isaacgym") and bh_py.exists()),
+        "can_run_mujoco_sim2sim": bool(isaacsim_py.exists()),
+    }
+
+
+def check_model_py(path: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8")
+    actor_in = "torch.nn.Linear(num_obs, 256)" in text
+    actor_out = "torch.nn.Linear(128, num_act)" in text
+    critic_in = "torch.nn.Linear(num_obs + num_privileged_obs, 256)" in text
+    ctor = "def __init__(self, num_act, num_obs, num_privileged_obs)" in text
+    ok = actor_in and actor_out and critic_in and ctor
+    record = {
+        "path": str(path),
+        "actor_in_num_obs": actor_in,
+        "actor_out_num_act": actor_out,
+        "critic_in_obs_plus_priv": critic_in,
+        "ctor_order_act_obs_priv": ctor,
+        "ok": ok,
+    }
+    if not ok:
+        errors.append(f"ActorCritic I/O wiring unexpected in {path}")
+    else:
+        notes.append(f"ActorCritic {path}: Linear(num_obs,256) … Linear(128,num_act)")
+    return record
+
+
+def check_history_formula(path: Path, errors: list[str]) -> bool:
+    text = path.read_text(encoding="utf-8")
+    needle = "self.num_obs = self.num_base_obs * self.num_history + self.num_last_obs"
+    if needle not in text:
+        errors.append(f"walk history formula missing in {path}")
+        return False
+    return True
+
+
+def _load_sibling(repo: Path, relpath: str, name: str):
+    path = repo / relpath
+    spec = spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise FileNotFoundError(relpath)
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def check_k1_reactive_skeleton(repo: Path, errors: list[str], notes: list[str]) -> dict[str, Any]:
+    rel = "bhuman/k1-training/k1-reactive/check_skeleton.py"
+    path = repo / rel
+    if not path.is_file():
+        errors.append(f"missing {rel}")
+        return {"ok": False, "missing": True}
+    module = _load_sibling(repo, rel, "k1_reactive_check_skeleton")
+    report = module.check(repo)
+    errors.extend(report.get("errors") or [])
+    notes.extend(report.get("notes") or [])
+    # Explicit gate rule: YAML may exist; train.py must not see it.
+    if report.get("skeleton_yaml_exists") and report.get("unregistered_in_train_py") == "PASS":
+        notes.append(
+            "unregistered in train.py = PASS "
+            "(skeleton YAML exists in k1-reactive/; not a train.py task)"
+        )
+    elif report.get("skeleton_yaml_exists"):
+        errors.append("skeleton YAML exists but unregistered_in_train_py is not PASS")
+    if report.get("ok"):
+        notes.append("K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL")
+    return report
+
+
+def check_gpu_free_shells(
+    repo: Path,
+    errors: list[str],
+    notes: list[str],
+    warnings: list[str] | None = None,
+) -> dict[str, Any]:
+    """Skill-switch shells, static maps, global docs, unregistered fixture, P0 stubs."""
+    out: dict[str, Any] = {}
+    specs = (
+        (
+            "bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
+            "unregistered_fixture",
+            "k1_reactive_unregistered_fixture",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+            "skill_switch_shells",
+            "k1_reactive_skill_switch_shells",
+            False,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+            "skill_switch_map",
+            "k1_reactive_skill_switch_map",
+            False,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_global_docs.py",
+            "global_docs",
+            "k1_reactive_global_docs",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_migrate_table.py",
+            "migrate_table",
+            "k1_reactive_migrate_table",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-estimators/test_estimators.py",
+            "estimators",
+            "k1_estimators",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_obs_schema.py",
+            "obs_schema",
+            "k1_reactive_obs_schema",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+            "bt_skill_select",
+            "k1_reactive_bt_skill_select",
+            True,
+        ),
+        (
+            "bhuman/sim2sim/test_sim2sim_gate.py",
+            "sim2sim_gate",
+            "k1_sim2sim_gate",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+            "switcher_sm",
+            "k1_switcher_sm",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_deploy_call.py",
+            "deploy_call",
+            "k1_deploy_call",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+            "timeseries_contract",
+            "k1_timeseries_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+            "estimator_bypass",
+            "k1_estimator_bypass",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
+            "reactive_hardening",
+            "k1_reactive_hardening",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
+            "bt_deploy_crosscheck",
+            "k1_bt_deploy_crosscheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py",
+            "standup_kick_hardening",
+            "k1_standup_kick_hardening",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
+            "hifar_boundary",
+            "k1_hifar_boundary",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_blockers.py",
+            "blockers",
+            "k1_blockers",
+            True,
+        ),
+        (
+            "bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+            "p1_draft",
+            "k1_p1_draft",
+            True,
+        ),
+        (
+            "bhuman/k1-training/configs/draft-only/test_draft_validator.py",
+            "draft_validator",
+            "k1_draft_validator",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
+            "switcher_integration_suite",
+            "k1_switcher_integration_suite",
+            True,
+        ),
+        (
+            "bhuman/sim2sim/test_overpass_contract.py",
+            "overpass_contract",
+            "k1_overpass_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
+            "unit_tests_no_gym",
+            "k1_unit_tests_no_gym",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+            "onnx_export_contract",
+            "k1_onnx_export_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+            "gpu_worker_checklist",
+            "k1_gpu_worker_checklist",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_k1_reward_audit.py",
+            "k1_reward_audit",
+            "k1_reward_audit_gate",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+            "history_buffer_shape",
+            "k1_history_buffer_shape",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+            "research_migrate_table",
+            "k1_research_migrate_table",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+            "joint_map_contract",
+            "k1_joint_map_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_p1_draft_diff.py",
+            "p1_draft_diff",
+            "k1_p1_draft_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
+            "pr4_merge_checklist",
+            "k1_pr4_merge_checklist",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
+            "gait_frequency_contract",
+            "k1_gait_frequency_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_booster_joints_snapshot.py",
+            "booster_joints_snapshot",
+            "k1_booster_joints_snapshot",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+            "pr4_selfcheck",
+            "k1_pr4_selfcheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+            "obs_assembly",
+            "k1_obs_assembly",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+            "last_action_reset",
+            "k1_last_action_reset",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+            "print_train_dry_run",
+            "k1_print_train_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+            "env_registry_audit",
+            "k1_env_registry_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
+            "simrobot_acceptance",
+            "k1_simrobot_acceptance",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-reactive/test_skill_request_map.py",
+            "skill_request_map",
+            "k1_skill_request_map",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
+            "pd_domain_gap",
+            "k1_pd_domain_gap",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
+            "teamcomm_budget",
+            "k1_teamcomm_budget",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
+            "checkpoint_layout",
+            "k1_checkpoint_layout",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py",
+            "kick_standup_joint_map",
+            "k1_kick_standup_joint_map",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
+            "reference_motion_inventory",
+            "k1_reference_motion_inventory",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
+            "render_selfcheck_summary",
+            "k1_render_selfcheck_summary",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py",
+            "getup_engine_snapshot",
+            "k1_getup_engine_snapshot",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
+            "walk_stability_presets_audit",
+            "k1_walk_stability_presets_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
+            "forbidden_regressions",
+            "k1_forbidden_regressions",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py",
+            "official_sibling_tasks_audit",
+            "k1_official_sibling_tasks_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py",
+            "onnx_deploy_path_crosscheck",
+            "k1_onnx_deploy_path_crosscheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py",
+            "t1_k1_isolation",
+            "k1_t1_k1_isolation",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_command_schedule_audit.py",
+            "command_schedule_audit",
+            "k1_command_schedule_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py",
+            "disturbance_curriculum_audit",
+            "k1_disturbance_curriculum_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py",
+            "settle_jitter_audit",
+            "k1_settle_jitter_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py",
+            "estimator_ab_audit",
+            "k1_estimator_ab_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py",
+            "reference_penalty_anneal_audit",
+            "k1_reference_penalty_anneal_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_behavior_control_handoff.py",
+            "behavior_control_handoff",
+            "k1_behavior_control_handoff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_compressed_teamcomm_shape.py",
+            "compressed_teamcomm_shape",
+            "k1_compressed_teamcomm_shape",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_falldown_motion_chain.py",
+            "falldown_motion_chain",
+            "k1_falldown_motion_chain",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_teamcomm_128_vs_512.py",
+            "teamcomm_128_vs_512",
+            "k1_teamcomm_128_vs_512",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_force_walk_afterwards.py",
+            "force_walk_afterwards",
+            "k1_force_walk_afterwards",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_engine_boundary.py",
+            "kick_engine_boundary",
+            "k1_kick_engine_boundary",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walking_engine_cfg_audit.py",
+            "walking_engine_cfg_audit",
+            "k1_walking_engine_cfg_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_onnx_naming.py",
+            "kick_onnx_naming",
+            "k1_kick_onnx_naming",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_getup_engine_cfg_audit.py",
+            "getup_engine_cfg_audit",
+            "k1_getup_engine_cfg_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_cfg_copy_crosscheck.py",
+            "cfg_copy_crosscheck",
+            "k1_cfg_copy_crosscheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_motor_parameters_audit.py",
+            "motor_parameters_audit",
+            "k1_motor_parameters_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_simulated_speed_diff.py",
+            "simulated_speed_diff",
+            "k1_simulated_speed_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_stand_ankle_stiffness.py",
+            "stand_ankle_stiffness",
+            "k1_stand_ankle_stiffness",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_competition_walk_diff.py",
+            "competition_walk_diff",
+            "k1_competition_walk_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_policy_switch_threshold.py",
+            "policy_switch_threshold",
+            "k1_policy_switch_threshold",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_shift_ball_position.py",
+            "shift_ball_position",
+            "k1_shift_ball_position",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_kick_policy_switch.py",
+            "walk_kick_policy_switch",
+            "k1_walk_kick_policy_switch",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_max_acceleration_diff.py",
+            "max_acceleration_diff",
+            "k1_max_acceleration_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_get_next_target_request.py",
+            "get_next_target_request",
+            "k1_get_next_target_request",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_speed_gear_diff.py",
+            "speed_gear_diff",
+            "k1_speed_gear_diff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_ball_network_active.py",
+            "ball_network_active",
+            "k1_ball_network_active",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_intercept_avoid_bypass.py",
+            "intercept_avoid_bypass",
+            "k1_intercept_avoid_bypass",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_stay_remaining.py",
+            "walk_stay_remaining",
+            "k1_walk_stay_remaining",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_ball_distance_hysteresis.py",
+            "ball_distance_hysteresis",
+            "k1_ball_distance_hysteresis",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_policy_apply_dims.py",
+            "kick_policy_apply_dims",
+            "k1_kick_policy_apply_dims",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_policy_apply_dims.py",
+            "walk_policy_apply_dims",
+            "k1_walk_policy_apply_dims",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_policy_switch_last_action.py",
+            "policy_switch_last_action",
+            "k1_policy_switch_last_action",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_policy_switch_history_gap.py",
+            "policy_switch_history_gap",
+            "k1_policy_switch_history_gap",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_phase_reset_allowlist.py",
+            "walk_phase_reset_allowlist",
+            "k1_walk_phase_reset_allowlist",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_standup_policy_apply_dims.py",
+            "standup_policy_apply_dims",
+            "k1_standup_policy_apply_dims",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_fast_standup_isolation.py",
+            "fast_standup_isolation",
+            "k1_fast_standup_isolation",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_getup_walk_handoff_chain.py",
+            "getup_walk_handoff_chain",
+            "k1_getup_walk_handoff_chain",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_upload_run_artifacts.py",
+            "upload_run_artifacts",
+            "k1_upload_run_artifacts",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_skill_behavior_write_chain.py",
+            "skill_behavior_write_chain",
+            "k1_skill_behavior_write_chain",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_pr4_index_nav.py",
+            "pr4_index_nav",
+            "k1_pr4_index_nav",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_playball_not_kick_policy.py",
+            "playball_not_kick_policy",
+            "k1_playball_not_kick_policy",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reactive_stub_hardening.py",
+            "reactive_stub_hardening",
+            "k1_reactive_stub_hardening",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_deploy_two_chain_sequence.py",
+            "deploy_two_chain_sequence",
+            "k1_deploy_two_chain_sequence",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_to_ball_engine_no_onnx.py",
+            "walk_to_ball_engine_no_onnx",
+            "k1_walk_to_ball_engine_no_onnx",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_local_bh_gym_dry_run.py",
+            "local_bh_gym_dry_run",
+            "k1_local_bh_gym_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_bounded_walk_replay.py",
+            "bounded_walk_replay",
+            "k1_bounded_walk_replay",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_bounded_standup_replay.py",
+            "bounded_standup_replay",
+            "k1_bounded_standup_replay",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_eval_metrics.py",
+            "walk_eval_metrics",
+            "k1_walk_eval_metrics",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_bounded_kick_replay.py",
+            "bounded_kick_replay",
+            "k1_bounded_kick_replay",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_standup_eval_metrics.py",
+            "standup_eval_metrics",
+            "k1_standup_eval_metrics",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_fall_getup_walk_dry_run.py",
+            "fall_getup_walk_dry_run",
+            "k1_fall_getup_walk_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_eval_metrics.py",
+            "kick_eval_metrics",
+            "k1_kick_eval_metrics",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_bounded_fast_standup_replay.py",
+            "bounded_fast_standup_replay",
+            "k1_bounded_fast_standup_replay",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_dual_chain_switch_dry_run.py",
+            "dual_chain_switch_dry_run",
+            "k1_dual_chain_switch_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_onnx_deploy_path.py",
+            "kick_onnx_deploy_path",
+            "k1_kick_onnx_deploy_path",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_standup_fast_isolation_matrix.py",
+            "standup_fast_isolation_matrix",
+            "k1_standup_fast_isolation_matrix",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_policy_switch_phase_draft.py",
+            "policy_switch_phase_draft",
+            "k1_policy_switch_phase_draft",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_onnx_export_dry_run.py",
+            "walk_onnx_export_dry_run",
+            "k1_walk_onnx_export_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_missing_weight_skip_honesty.py",
+            "missing_weight_skip_honesty",
+            "k1_missing_weight_skip_honesty",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_merge_readiness_blockers.py",
+            "merge_readiness_blockers",
+            "k1_merge_readiness_blockers",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_local_rtx5090_pretrain_checklist.py",
+            "local_rtx5090_pretrain_checklist",
+            "k1_local_rtx5090_pretrain_checklist",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_eval_artifact_crosscheck.py",
+            "walk_eval_artifact_crosscheck",
+            "k1_walk_eval_artifact_crosscheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_standup_train_dry_run.py",
+            "kick_standup_train_dry_run",
+            "k1_kick_standup_train_dry_run",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_local_artifact_upload_cleanup.py",
+            "local_artifact_upload_cleanup",
+            "k1_local_artifact_upload_cleanup",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reward_curriculum_draft_validator.py",
+            "reward_curriculum_draft_validator",
+            "k1_reward_curriculum_draft_validator",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_obs_history_window_contract.py",
+            "obs_history_window_contract",
+            "k1_obs_history_window_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_ci_gate_wiring.py",
+            "ci_gate_wiring",
+            "k1_ci_gate_wiring",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_domain_rand_disturbance_draft_validator.py",
+            "domain_rand_disturbance_draft_validator",
+            "k1_domain_rand_disturbance_draft_validator",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_pd_gain_domain_gap_negatives.py",
+            "pd_gain_domain_gap_negatives",
+            "k1_pd_gain_domain_gap_negatives",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_simrobot_six_robot_acceptance_gap.py",
+            "simrobot_six_robot_acceptance_gap",
+            "k1_simrobot_six_robot_acceptance_gap",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_estimator_bypass_draft_contract.py",
+            "estimator_bypass_draft_contract",
+            "k1_estimator_bypass_draft_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_torque_effort_timeseries_contract.py",
+            "torque_effort_timeseries_contract",
+            "k1_torque_effort_timeseries_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_reactive_intercept_bypass_hardening.py",
+            "reactive_intercept_bypass_hardening",
+            "k1_reactive_intercept_bypass_hardening",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_teamcomm_shape_negatives.py",
+            "teamcomm_shape_negatives",
+            "k1_teamcomm_shape_negatives",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_pr_volume_health_rescan.py",
+            "pr_volume_health_rescan",
+            "k1_pr_volume_health_rescan",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_kick_engine_boundary_edges.py",
+            "kick_engine_boundary_edges",
+            "k1_kick_engine_boundary_edges",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_ball_task_isolation_matrix.py",
+            "ball_task_isolation_matrix",
+            "k1_ball_task_isolation_matrix",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_getup_force_walk_handoff.py",
+            "getup_force_walk_handoff",
+            "k1_getup_force_walk_handoff",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_standup_eval_artifact_crosscheck.py",
+            "standup_eval_artifact_crosscheck",
+            "k1_standup_eval_artifact_crosscheck",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_stability_preset_inventory.py",
+            "walk_stability_preset_inventory",
+            "k1_walk_stability_preset_inventory",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_competition_walk_allowlist_tighten.py",
+            "competition_walk_allowlist_tighten",
+            "k1_competition_walk_allowlist_tighten",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_policy_switch_hysteresis_enter_exit.py",
+            "policy_switch_hysteresis_enter_exit",
+            "k1_policy_switch_hysteresis_enter_exit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_maxacc_walk_kick_path_notes.py",
+            "maxacc_walk_kick_path_notes",
+            "k1_maxacc_walk_kick_path_notes",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
+            "selfcheck_fail_hints",
+            "k1_selfcheck_fail_hints",
+            True,
+        ),
+    )
+    for rel, key, mod_name, pass_repo in specs:
+        if not (repo / rel).is_file():
+            errors.append(f"missing {rel}")
+            out[key] = {"ok": False, "missing": True}
+            continue
+        module = _load_sibling(repo, rel, mod_name)
+        report = module.run(repo) if pass_repo else module.run()
+        out[key] = report
+        if key == "skill_switch_shells":
+            errors.extend((report.get("anchors") or {}).get("errors") or [])
+            if report.get("ok"):
+                notes.append(
+                    f"skill-switch continuity: {len(report.get('shells') or [])} empty shells, implemented=false"
+                )
+        else:
+            errors.extend(report.get("errors") or [])
+            notes.extend(report.get("notes") or [])
+        if warnings is not None:
+            warnings.extend(report.get("warnings") or [])
+        if report.get("skipped"):
+            notes.append(f"{key}: skipped (missing optional runtime)")
+    return out
+
+
+def check_reserved_gpu(repo: Path, warnings: list[str], notes: list[str]) -> dict[str, Any]:
+    rel = "bhuman/k1-training/scripts/probe_reserved_gpu.py"
+    path = repo / rel
+    if not path.is_file():
+        warnings.append(f"missing reserved GPU probe {rel}")
+        return {"ready": False, "skipped": True, "missing": True}
+    module = _load_sibling(repo, rel, "k1_reserved_gpu_probe")
+    report = module.probe()
+    if report.get("skipped"):
+        for reason in report.get("skip_reasons") or []:
+            warnings.append(f"reserved GPU/bh-gym: {reason}")
+        missing = report.get("missing") or []
+        if missing:
+            warnings.append(f"GPU checklist missing: {', '.join(missing)}")
+        warnings.append("reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay")
+    else:
+        notes.append("reserved GPU/bh-gym worker looks present; 必须先告知用户，等明确开训")
+        notes.append("templates only (no auto-train / no train.py)")
+    return report
+
+
+def find_repo_root(explicit: str | None) -> Path:
+    if explicit:
+        root = Path(explicit).resolve()
+        if not (root / "AGENTS.md").exists() or not (root / "bhuman").is_dir():
+            raise SystemExit(f"--repo {root} does not look like the Robocup workspace")
+        return root
+    here = Path(__file__).resolve()
+    for candidate in (here.parents[3], Path.cwd(), *here.parents):
+        if (candidate / "AGENTS.md").exists() and (candidate / "bhuman").is_dir():
+            return candidate
+    raise SystemExit("cannot locate repo root (expected AGENTS.md + bhuman/)")
+
+
+def append_issue(bucket: list[str], ok: bool, message: str) -> None:
+    if not ok:
+        bucket.append(message)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--repo", default=None, help="Robocup workspace root")
+    parser.add_argument("--json-out", default=None, help="Write the full report JSON here")
+    parser.add_argument(
+        "--strict-weights",
+        action="store_true",
+        help="Fail if documented official .pth/.onnx files are absent (default: warn)",
+    )
+    args = parser.parse_args()
+
+    repo = find_repo_root(args.repo)
+    errors: list[str] = []
+    warnings: list[str] = []
+    notes: list[str] = []
+    trees: dict[str, Any] = {}
+
+    for rel in ISAAC_TREES:
+        tree = repo / rel
+        trees[rel] = {"exists": tree.is_dir()}
+        if not tree.is_dir():
+            errors.append(f"missing IsaacGymRL tree: {rel}")
+            continue
+        yaml_env: dict[str, Any] = {}
+        for skill, spec in K1_CONTRACTS.items():
+            yaml_name = spec.get("yaml_name")
+            if not yaml_name:
+                continue
+            path = tree / "envs" / yaml_name
+            if not path.is_file():
+                errors.append(f"missing {path}")
+                continue
+            contract = env_contract(load_yaml(path))
+            yaml_env[skill] = {"path": str(path.relative_to(repo)), **contract}
+            append_issue(
+                errors,
+                contract.get("num_observations") == spec["obs"]
+                and contract.get("num_actions") == spec["act"],
+                f"{path.name} in {rel}: got {contract.get('num_observations')}→"
+                f"{contract.get('num_actions')}, expected {spec['obs']}→{spec['act']}",
+            )
+            if spec.get("priv") is not None:
+                append_issue(
+                    errors,
+                    contract.get("num_privileged_obs") == spec["priv"],
+                    f"{path.name} privileged_obs={contract.get('num_privileged_obs')} "
+                    f"expected {spec['priv']}",
+                )
+            if skill == "walk":
+                append_issue(
+                    errors,
+                    contract.get("num_base_observations") == spec["base_obs"]
+                    and contract.get("num_last_observations") == spec["last_obs"]
+                    and contract.get("history_size") == spec["history_size"],
+                    f"{path.name} history fields {contract} vs "
+                    f"{spec['base_obs']}x{spec['history_size']}+{spec['last_obs']}",
+                )
+                computed = (
+                    int(contract.get("num_base_observations") or 0)
+                    * int(contract.get("history_size") or 0)
+                    + int(contract.get("num_last_observations") or 0)
+                )
+                append_issue(
+                    errors,
+                    computed == spec["obs"],
+                    f"{path.name} history formula {computed} != {spec['obs']}",
+                )
+        t1_yaml = {}
+        t1_files = {
+            "walk": "T1.yaml",
+            "kick": "T1_Ball.yaml",
+            "standup": "T1_Stand_Up.yaml",
+        }
+        for skill, name in t1_files.items():
+            path = tree / "envs" / name
+            if not path.is_file():
+                warnings.append(f"optional T1 yaml missing: {path}")
+                continue
+            contract = env_contract(load_yaml(path))
+            t1_yaml[skill] = {"path": str(path.relative_to(repo)), **contract}
+            expect = T1_CONTRACTS[skill]
+            append_issue(
+                errors,
+                contract.get("num_observations") == expect["obs"]
+                and contract.get("num_actions") == expect["act"],
+                f"{name} in {rel}: T1 {contract.get('num_observations')}→"
+                f"{contract.get('num_actions')} vs {expect['obs']}→{expect['act']}",
+            )
+            if contract.get("num_observations") == K1_CONTRACTS[skill if skill != "kick" else "kick"]["obs"]:
+                errors.append(f"{name} unexpectedly shares the K1 observation size")
+        model_info = check_model_py(tree / "utils/model.py", errors, notes)
+        walk_src = tree / "envs/t1.py"
+        history_ok = check_history_formula(walk_src, errors) if walk_src.is_file() else False
+        huoshen_hits = []
+        for marker in HUOSHEN_MARKERS:
+            for hit in tree.rglob("*"):
+                if not hit.is_file():
+                    continue
+                if hit.suffix.lower() not in {".py", ".yaml", ".yml", ".md", ".cfg", ".json"}:
+                    continue
+                try:
+                    blob = hit.read_text(encoding="utf-8", errors="ignore")
+                except OSError:
+                    continue
+                if marker in blob:
+                    huoshen_hits.append({"marker": marker, "path": str(hit.relative_to(repo))})
+        trees[rel].update(
+            {
+                "k1": yaml_env,
+                "t1": t1_yaml,
+                "model": model_info,
+                "walk_history_formula": history_ok,
+                "huoshen_markers_in_training_src": huoshen_hits,
+            }
+        )
+        if huoshen_hits:
+            errors.append(
+                f"{rel} contains Huoshen/HiFAR markers; training src must stay B-Human-contracted: {huoshen_hits}"
+            )
+        else:
+            notes.append(f"{rel}: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)")
+
+    if len(ISAAC_TREES) == 2 and all(trees[rel].get("k1") for rel in ISAAC_TREES):
+        left = trees[ISAAC_TREES[0]]["k1"]
+        right = trees[ISAAC_TREES[1]]["k1"]
+        for skill in left:
+            if {k: left[skill].get(k) for k in left[skill] if k != "path"} != {
+                k: right[skill].get(k) for k in right[skill] if k != "path"
+            }:
+                errors.append(f"IsaacGymRL copies disagree on {skill} env contract")
+            else:
+                notes.append(f"both IsaacGymRL trees agree on K1 {skill} env dims")
+
+    for skill, spec in K1_CONTRACTS.items():
+        if "layout_frame" in spec:
+            append_issue(errors, sum(spec["layout_frame"]) == spec["base_obs"], "walk frame layout sum")
+            append_issue(errors, sum(spec["layout_tail"]) == spec["last_obs"], "walk tail layout sum")
+            append_issue(
+                errors,
+                spec["base_obs"] * spec["history_size"] + spec["last_obs"] == spec["obs"],
+                "walk 32×10+24 layout",
+            )
+        if "layout" in spec:
+            append_issue(errors, sum(spec["layout"]) == spec["obs"], f"{skill} layout sum")
+
+    walk_cfgs = []
+    for rel in WALK_CFG_RELPATHS:
+        path = repo / rel
+        if not path.is_file():
+            errors.append(f"missing walk cfg {rel}")
+            continue
+        parsed = parse_walk_cfg(path)
+        walk_cfgs.append({"path": rel, **parsed})
+        walk = parsed["walk"]
+        append_issue(
+            errors,
+            walk.get("numInput") == 344 and walk.get("numOutput") == 13,
+            f"{rel} walk numInput/numOutput={walk} expected 344/13",
+        )
+        for block_name, block in parsed["kick_blocks"].items():
+            append_issue(
+                errors,
+                block.get("numInput") == 59,
+                f"{rel} {block_name} numInput={block.get('numInput')} expected 59",
+            )
+            if "numOutput" in block and block["numOutput"] != 13:
+                errors.append(f"{rel} {block_name} numOutput={block['numOutput']} expected 13")
+        notes.append(f"{rel}: kick networks inherit walk numOutput=13 (not restated in ball blocks)")
+
+    getup_cfgs = []
+    for rel in GETUP_CFG_RELPATHS:
+        path = repo / rel
+        if not path.is_file():
+            errors.append(f"missing getup cfg {rel}")
+            continue
+        parsed = parse_getup_cfg(path)
+        getup_cfgs.append({"path": rel, **parsed})
+        append_issue(
+            errors,
+            parsed.get("numInput") == 73 and parsed.get("numOutput") == 22,
+            f"{rel} standup {parsed.get('numInput')}→{parsed.get('numOutput')} expected 73→22",
+        )
+        append_issue(
+            errors,
+            parsed.get("numInputFast") == 72 and parsed.get("numOutputFast") == 22,
+            f"{rel} fast standup {parsed.get('numInputFast')}→{parsed.get('numOutputFast')} expected 72→22",
+        )
+
+    contract_doc = repo / "bhuman/docs/policy-contract-v1.md"
+    doc_hits = {}
+    if contract_doc.is_file():
+        text = contract_doc.read_text(encoding="utf-8")
+        for label, needle in (
+            ("walk", "344 → 13"),
+            ("kick", "59 → 13"),
+            ("standup", "73 → 22"),
+            ("fast_standup", "72 → 22"),
+        ):
+            doc_hits[label] = needle in text
+            append_issue(errors, needle in text, f"policy-contract-v1.md missing {needle}")
+    else:
+        errors.append("missing bhuman/docs/policy-contract-v1.md")
+
+    models_v2 = repo / "bhuman/k1-training/manifests/models-v2.json"
+    models_v2_io = []
+    if models_v2.is_file():
+        recorded = json.loads(models_v2.read_text(encoding="utf-8"))
+        expect_io = {
+            "K1_walk.onnx": (344, 13),
+            "K1_kick_inner.onnx": (59, 13),
+            "K1_kick_inner_soft.onnx": (59, 13),
+            "K1.onnx": (73, 22),
+            "K1_fast_standup.onnx": (72, 22),
+        }
+        for item in recorded:
+            name = Path(item.get("path", "")).name
+            if name not in expect_io:
+                continue
+            ins = item.get("inputs") or [{}]
+            outs = item.get("outputs") or [{}]
+            in_dim = (ins[0].get("shape") or [None, None])[-1]
+            out_dim = (outs[0].get("shape") or [None, None])[-1]
+            models_v2_io.append(
+                {
+                    "name": name,
+                    "in": in_dim,
+                    "out": out_dim,
+                    "sha256": item.get("sha256"),
+                    "ok": (in_dim, out_dim) == expect_io[name],
+                }
+            )
+            append_issue(
+                errors,
+                (in_dim, out_dim) == expect_io[name],
+                f"models-v2.json {name} I/O {in_dim}→{out_dim} vs {expect_io[name]}",
+            )
+    else:
+        warnings.append("models-v2.json missing; cannot cross-check recorded ONNX I/O")
+
+    artifacts = []
+    for name, rel in OFFICIAL_ONNX_RELPATHS.items():
+        path = repo / rel
+        record = {"name": name, "path": rel, "exists": path.is_file()}
+        if path.is_file():
+            record["sha256"] = sha256_file(path)
+            expected = None
+            if name == "K1_walk.onnx":
+                expected = K1_CONTRACTS["walk"]["known_onnx_sha256"]
+            elif name == "K1.onnx":
+                expected = K1_CONTRACTS["standup"]["known_onnx_sha256"]
+            elif name == "K1_fast_standup.onnx":
+                expected = K1_CONTRACTS["fast_standup"]["known_onnx_sha256"]
+            elif name in K1_CONTRACTS["kick"]["known_onnx_sha256"]:
+                expected = K1_CONTRACTS["kick"]["known_onnx_sha256"][name]
+            record["sha256_ok"] = expected is None or record["sha256"] == expected
+            if expected and record["sha256"] != expected:
+                errors.append(f"{rel} sha256 mismatch")
+        else:
+            msg = f"weight/ONNX absent (expected on operator machine / Release): {rel}"
+            (errors if args.strict_weights else warnings).append(msg)
+        artifacts.append(record)
+    for spec in K1_CONTRACTS.values():
+        for rel in spec.get("pth_relpaths") or ():
+            path = repo / rel
+            record = {"name": Path(rel).name, "path": rel, "exists": path.is_file()}
+            if path.is_file():
+                record["sha256"] = sha256_file(path)
+                expected = spec.get("known_pth_sha256")
+                if expected:
+                    record["sha256_ok"] = record["sha256"] == expected
+                    if record["sha256"] != expected:
+                        errors.append(f"{rel} sha256 mismatch vs recorded public actor")
+            else:
+                msg = f"checkpoint absent (gitignored / local-only): {rel}"
+                (errors if args.strict_weights else warnings).append(msg)
+            artifacts.append(record)
+
+    origins_path = repo / "archive/git-origins.json"
+    origins = {}
+    if origins_path.is_file():
+        raw = json.loads(origins_path.read_text(encoding="utf-8"))
+        if isinstance(raw, list):
+            for item in raw:
+                if item.get("path") in {"bhuman/MachineLearning", "bhuman/BHumanCodeRelease"}:
+                    origins[item["path"]] = item.get("head")
+        append_issue(
+            errors,
+            origins.get("bhuman/MachineLearning") == UPSTREAM_ML,
+            f"git-origins MachineLearning {origins.get('bhuman/MachineLearning')} != {UPSTREAM_ML}",
+        )
+        append_issue(
+            errors,
+            origins.get("bhuman/BHumanCodeRelease") == UPSTREAM_BHUMAN,
+            f"git-origins BHumanCodeRelease {origins.get('bhuman/BHumanCodeRelease')} != {UPSTREAM_BHUMAN}",
+        )
+
+    env = probe_environment()
+    reserved_gpu = check_reserved_gpu(repo, warnings, notes)
+    if not env["can_run_isaac_gym_train"]:
+        notes.append(
+            "Isaac Gym / official walk GPU replay cannot run here: need bh-gym "
+            "(Python 3.8.20), Isaac Gym Preview 4, CUDA GPU, and K1_walk.pth"
+        )
+
+    reactive = check_k1_reactive_skeleton(repo, errors, notes)
+    shells = check_gpu_free_shells(repo, errors, notes, warnings)
+
+    research = {
+        "huoshen_findings_on_main": (
+            repo / "bhuman/research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md"
+        ).is_file(),
+        "research_branch_catalog_on_main": (repo / "research/06-落地路线建议.md").is_file(),
+        "huoshen_code_vendored": False,
+        "doc_contract": HUOSHEN_DOC_CONTRACT,
+        "note": (
+            "Huoshen public skill is T1 58-D + 50-frame stack → 15 actions. "
+            "B-Human T1.yaml in this repo is the walk/kick/standup family "
+            "(365→14 / 62→14 / 76→23), not the Huoshen reactive task. "
+            "Do not load T1 Huoshen weights onto K1."
+        ),
+    }
+    if not research["huoshen_findings_on_main"]:
+        warnings.append("huoshen_findings.md missing on this checkout")
+    if not research["research_branch_catalog_on_main"]:
+        notes.append("research/01–06 live only on origin/research; not merged into main")
+
+    commits = {
+        "workspace_head": run_git(repo, "rev-parse", "HEAD"),
+        "workspace_branch": run_git(repo, "branch", "--show-current"),
+        "last_touch_MachineLearning": run_git(repo, "log", "-1", "--format=%H %s", "--", "bhuman/MachineLearning"),
+        "last_touch_k1_training_isaac": run_git(
+            repo, "log", "-1", "--format=%H %s", "--", "bhuman/k1-training/src/IsaacGymRL"
+        ),
+        "pinned_upstream_MachineLearning": UPSTREAM_ML,
+        "pinned_upstream_BHumanCodeRelease": UPSTREAM_BHUMAN,
+        "git_origins": origins,
+        "k1_training_source_fingerprint": None,
+    }
+    source_history = repo / "bhuman/k1-training/manifests/source-history.json"
+    if source_history.is_file():
+        hist = json.loads(source_history.read_text(encoding="utf-8"))
+        commits["k1_training_source_fingerprint"] = hist.get("current")
+
+    verdict = "PASS" if not errors else "FAIL"
+    report = {
+        "generated_utc": utc_now(),
+        "verdict": verdict,
+        "repo": str(repo),
+        "architecture": {
+            "baseline": "B-Human IsaacGymRL official walk/kick/standup",
+            "rule": "new skills are parallel extensions; do not rewrite frozen dims",
+            "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
+            "unregistered_in_train_py": reactive.get("unregistered_in_train_py"),
+            "skill_switch": "docs + empty shells + static slot map + walk/kick/standup SM; reactive blocked",
+            "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
+            "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+            "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
+            "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
+            "p2_acceptance": "bhuman/docs/P2-ACCEPTANCE.md",
+            "reactive_hardening": "k1-reactive 64→15 bypass; not a new gait baseline",
+            "bt_deploy_crosscheck": "BT × deploy table; default stays walk 344→13",
+            "standup_kick_hardening": "official kick/standup edges; SimRobot ≠ fast 72→22",
+            "hifar_boundary": "HiFAR ≠ standup; Huoshen 58 ≠ walk 344",
+            "blockers": "ROADMAP §5 checklist; tell user before any GPU train",
+            "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
+            "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
+            "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
+            "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
+            "p1_draft": "draft-only factor comments; official rewards untouched",
+            "draft_validator": "draft_only:true; stability/config_patch isolated; live rewards not overwritten",
+            "obs_schema_negatives": "refuse 343/345, foreign skills as walk, missing history; no live-obs rewrite",
+            "contract_gate_guide": "bhuman/docs/CONTRACT-GATE-GUIDE.md (PASS ≠ trained)",
+            "p3_preview": "bhuman/docs/P3-PREVIEW.md; contrast only; default walk 344→13",
+            "switcher_integration_suite": "SM+deploy+standup/kick+BT; empty context → walk 344→13",
+            "p4_preview": "bhuman/docs/P4-PREVIEW.md; single-robot + six-robot goals; three gates",
+            "overpass_contract": "Isaac≠MuJoCo≠SimRobot; overpass 344→13; no live sim rewrite",
+            "ci_contract_gate": "bhuman/docs/CI-CONTRACT-GATE.md; draft-only workflow; PASS+WARN",
+            "p5_preview": "bhuman/docs/P5-PREVIEW.md; domain-gap/CTDE location; docs≠on-robot",
+            "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
+            "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
+            "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
+            "gpu_worker_checklist": "probe JSON; missing items; never train.py",
+            "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
+            "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
+            "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
+            "joint_map_contract": "walk 13-D legs+freq; refuse 12/15/22; standup ≠ walk",
+            "p1_draft_diff": "official stability vs draft-only; draft_only:true; live untouched",
+            "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained",
+            "gait_frequency_contract": "walk action[12]=gait_frequency; not a 13th motor",
+            "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
+            "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
+            "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
+            "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
+            "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
+            "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
+            "simrobot_acceptance": "six-robot table; live SKIP without SimRobot; no fake-green",
+            "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused",
+            "pd_domain_gap": "train ankle-roll p60 vs robot p25; no K1.yaml write-back",
+            "teamcomm_budget": "512 B / 10000+team; teammate not into 344; WLAN SKIP",
+            "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused",
+            "kick_standup_joint_map": "kick 59→13 shares walk exit; standup[12]=lHipYaw motor",
+            "reference_motion_inventory": "declared ref/motion paths; missing SKIP; T1 ≠ walk default",
+            "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN",
+            "getup_engine_snapshot": "GetUpEngine 22-D; match kick_standup; SKIP if missing",
+            "walk_stability_presets_audit": "official walk-*-stability-v1 keys; draft-only excluded",
+            "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD/sibling/T1-onnx/128-512/fallen-Type; silent=red",
+            "behavior_control_handoff": "SkillRequest/PlayBall/GetUpEngine owners; default walk 344→13; missing SKIP",
+            "compressed_teamcomm_shape": "HSL 512 / official container; teammate not into 344; WLAN SKIP",
+            "falldown_motion_chain": "fallen→GetUpEngine 73→22→getup_done→walk 344→13; not SkillRequest; missing SKIP",
+            "teamcomm_128_vs_512": "official data[128] ≠ HSL 512 budget; do not mix; WLAN SKIP",
+            "force_walk_afterwards": "getup_done → walk 344→13; 13-zero last_action; no standup/kick next",
+            "kick_engine_boundary": "kick 59→13 bypass ≠ walk 344→13; standalone KickEngine SKIP",
+            "walking_engine_cfg_audit": "walkingEngine.cfg walk 344→13 / K1_walk.onnx; kick ≠ walk slot",
+            "kick_onnx_naming": "K1_kick_inner.onnx ≠ Walk/ default slot; missing SKIP",
+            "getup_engine_cfg_audit": "getUpEngine.cfg 73→22 / K1.onnx; fast 72→22 deploy-only; T1 ≠ K1",
+            "cfg_copy_crosscheck": "Default/Simulated/Competition walk keys 344→13; getUp Default-only; unexpected drift FAIL",
+            "motor_parameters_audit": "regular ankle-roll p25 vs train p60; Simulated speed ≠ PD closed",
+            "simulated_speed_diff": "Simulated vs Default speed allowlist; net slot 344→13; unexpected extras FAIL",
+            "stand_ankle_stiffness": "standAnkleStiffness plant 60/80→100/100; ≠ p60→p25; PD stays open",
+            "competition_walk_diff": "CompetitionWalk / 11v11 vs Default allowlist; net slot 344→13; unexpected extras FAIL",
+            "policy_switch_threshold": "ballDistance/HysteresisPolicySwitch 1500/300 vs 1100/200; ≠ net swap / 344 rewrite",
+            "shift_ball_position": "shiftBallPosition kick-approach offset; ≠ dim rewrite / sibling merge",
+            "walk_kick_policy_switch": "walkPolicy 344→13 / kickPolicy 59→13 bypass; empty context still walk",
+            "max_acceleration_diff": "maxAcceleration 20/20 vs 60/20 vs 200/20 plant; Sim/Comp allowlists pinned; ≠ net swap / dim change",
+            "get_next_target_request": "getNextTargetRequest walk-stay predicates; empty=walk; ≠ hot-swap train graph",
+            "speed_gear_diff": "fast/normal/slow WalkSpeed allowlist; 7 Sim / 8 Comp; ≠ net swap",
+            "ball_network_active": "ballNetworkParameters.active=true; !active → walkPolicy; ≠ 344 rewrite / train-graph swap",
+            "intercept_avoid_bypass": "intercept/avoid/walkOut stay walkPolicy 344→13; ≠ kick default / reactive / T1 / train hot-swap",
+            "walk_stay_remaining": "shouldStop / stand / ball unseen>1000 / non-kick motion stay walk; empty=walk; only want_kick → kick 59→13",
+            "ball_distance_hysteresis": "Default 1500±300→1200/1800 / Competition 1100±200→900/1300; Simulated=Default; 11v11=Competition; not crossing stays walk 344→13",
+            "kick_policy_apply_dims": "kickPolicy apply-site 59→13; want_kick + dribble/walkToBallAndKick; WalkToBallAndKick pose-only; ≠ walk 344",
+            "walk_policy_apply_dims": "walkPolicy apply-site 344→13 / K1_walk.onnx; non-kick stays walk; ≠ kick 59 / reactive / T1 / standup",
+            "policy_switch_last_action": "walk↔kick last_action zero is honest GAP; walk 344 from historyBuffer; kick 59 from lastTarget; no 344↔59 reuse",
+            "policy_switch_history_gap": "walk↔kick resetHistoryData GAP still open; draft not live; standup 13-zero is a different closed contract",
+            "walk_phase_reset_allowlist": "resetHistoryData only on WalkingEngine ctor + non-continue WalkPhase; continue = walk/stand + WalkPhase*",
+            "standup_policy_apply_dims": "GetUp apply-site 73→22 / K1.onnx; entry = fallen+(fall|playDead); ≠ walk 344 / kick 59 / train hot-swap",
+            "fast_standup_isolation": "fast standup 72→22 / K1_fast_standup.onnx isolated from regular 73 / walk / kick / Isaac",
+            "getup_walk_handoff_chain": "e2e fallen→GetUp→force-walk→walk 344→13; skip/wrong net FAIL; slots isolated",
+            "upload_run_artifacts": "local artifact upload scaffold; TRAINABLE=false; dry-run help; no train.py",
+            "skill_behavior_write_chain": "SkillBehaviorControl write chain: want_kick deploy-only default false; intercept default false stays walk; empty=walk 344→13",
+            "pr4_index_nav": "PR4-INDEX grouped nav + volume health; status=GAP / gap_closed=false; no large binaries",
+            "playball_not_kick_policy": "PlayBall ≠ kickPolicy two-chain: MotionRequest.motion pose ≠ CompiledNN kick 59→13; empty=walk 344→13",
+            "reactive_stub_hardening": "reactive / estimator / draft stubs TRAINABLE=false; not default walk; stub must not flip ready_gpu",
+            "deploy_two_chain_sequence": "deploy two-chain: 链 A PlayBall pose → walkPolicy 344→13; 链 B want_kick → kickPolicy 59→13; GAP open",
+            "walk_to_ball_engine_no_onnx": "WalkToBallAndKickEngine pose/trajectory only; no apply() ONNX / CompiledNN / T1",
+            "local_bh_gym_dry_run": "local RTX 5090 / bh-gym dry-run paths; print-only; ready_gpu false unless checklist all true",
+            "bounded_walk_replay": "run_replay.sh K1 4/500 · 256/1000 · 600s / 12GiB; writes runs/ then artifacts/<run-id>/",
+            "bounded_standup_replay": "run_replay.sh K1_Stand_Up 73→22 · 4/300 · 256/1000; not walk 344; runs/ then artifacts/",
+            "walk_eval_metrics": "run_walk_eval RMSE allowlist; report-only; replay PASS ≠ 比赛合格",
+            "bounded_kick_replay": "run_replay.sh K1_Ball 59→13 · 4/300 · 256/1000; history reset draft-only; not walk 344",
+            "standup_eval_metrics": "run_standup_eval REPORT_ONLY overlay; PASS_FOR_DECLARED_PROFILE ≠ 比赛合格",
+            "fall_getup_walk_dry_run": "fallen→getup→force-walk→walk 344→13 glue; no Isaac; GAP open",
+            "kick_eval_metrics": "kick-eval REPORT_ONLY overlay; PASS ≠ 比赛合格 ≠ walk 344 ≠ live deploy",
+            "bounded_fast_standup_replay": "fast standup replay 72→22 deploy-only; ≠ walk 344; ≠ regular 73; not Isaac",
+            "dual_chain_switch_dry_run": "dual-chain switch dry-run negatives; PlayBall≠kick; no official want_kick; GAP open",
+            "kick_onnx_deploy_path": "kick ONNX deploy-path; K1_kick_inner ≠ walk 344 slot; missing-weight SKIP; TRAINABLE=false",
+            "standup_fast_isolation_matrix": "standup/fast/walk isolation matrix 73→22 vs 72→22 vs 344→13; no live cross-wire",
+            "policy_switch_phase_draft": "policy-switch phase draft; last_action → history reset → Force walk; apply_to_live=false",
+            "walk_onnx_export_dry_run": "walk ONNX export dry-run; 344 stub; kick/fast not default; PASS ≠ competition deploy",
+            "missing_weight_skip_honesty": "missing-weight SKIP honesty across walk/kick/standup/fast; not fabricated / not fail-closed",
+            "merge_readiness_blockers": "merge-readiness blockers; merge_ready=false; ready_gpu stays false; GAP open",
+            "local_rtx5090_pretrain_checklist": "RTX 5090 pre-train checklist; inventory-only; ready_gpu=false; never launch train",
+            "walk_eval_artifact_crosscheck": "walk-eval s2027 artifact REPORT_ONLY; checklist cannot upgrade quality_verdict",
+            "kick_standup_train_dry_run": "kick+standup train dry-run; 59→13 / 73→22 print-only; fast 72→22 note; would_train=false",
+            "local_artifact_upload_cleanup": "upload+cleanup checklist; push GitHub then clear caches; inventory only; no Desktop rm",
+            "reward_curriculum_draft_validator": "reward-curriculum draft validator; apply_to_live=false; PASS ≠ live curriculum",
+            "obs_history_window_contract": "obs history-window; walk 10×32+24 vs kick 59 vs standup 73; GAP open",
+            "ci_gate_wiring": "CI gate wiring; selfcheck+forbidden without Gym/GPU; merge_ready=false",
+            "domain_rand_disturbance_draft_validator": "domain-rand draft validator; apply_to_live=false; PASS ≠ live DR",
+            "pd_gain_domain_gap_negatives": "PD gain domain-gap negatives; p60≠p25≠p65; no silent live cfg copy",
+            "simrobot_six_robot_acceptance_gap": "SimRobot six-robot gap pin; scaffold ≠ field-ready; live SKIP",
+            "estimator_bypass_draft_contract": "estimator-bypass draft contract; apply_to_live=false; PASS ≠ live swap",
+            "torque_effort_timeseries_contract": "torque/effort series; (T,13)/(T,12); PASS ≠ live torque / competition-ready",
+            "reactive_intercept_bypass_hardening": "reactive intercept hardening; TRAINABLE=false; PlayBall≠kick; PASS ≠ live kick deploy",
+            "teamcomm_shape_negatives": "teamcomm shape negatives; 128≠512; silent size upgrade refused",
+            "pr_volume_health_rescan": "PR volume re-scan; growth noted; no history rewrite; do not delete artifacts",
+            "kick_engine_boundary_edges": "KickEngine request/abort edges; PlayBall≠kickPolicy; PASS ≠ live RL kick deploy",
+            "ball_task_isolation_matrix": "ball-task isolation; K1 / K1_Ball / Stand_Up slots; no cross-slot wiring",
+            "getup_force_walk_handoff": "GetUp force-walk handoff; 73→22 / 72→22 isolated; PASS ≠ field-ready standup",
+            "standup_eval_artifact_crosscheck": "standup-eval artifact REPORT_ONLY; checklist cannot upgrade quality_verdict",
+            "walk_stability_preset_inventory": "walk-stability still/speed/stand vs WalkingEngine; PASS ≠ competition-ready gait",
+            "competition_walk_allowlist_tighten": "Competition 14-key allowlist pin; silent Competition cfg edits refused",
+            "policy_switch_hysteresis_enter_exit": "hysteresis enter/exit vs pins; PlayBall≠kick; PASS ≠ live switch authorize",
+            "maxacc_walk_kick_path_notes": "walk vs kick maxAcc path notes; silent maxAcc copy into live cfg refused",
+            "official_sibling_tasks_audit": "K1_Ball/Stand_Up registered ≠ walk 344; no merge into 344",
+            "onnx_deploy_path_crosscheck": "CHECKPOINT-LAYOUT × WalkingEngine; missing SKIP; mismatch FAIL",
+            "t1_k1_isolation": "T1 365/62/76 must not replace K1 walk 344→13",
+            "command_schedule_audit": "official commands snapshot; draft A_command_schedule not applied",
+            "disturbance_curriculum_audit": "live push_* intact; missing draft_only / apply_to_live FAIL",
+            "settle_jitter_audit": "draft settle_* new keys; live action_rate=-1. not overwritten",
+            "estimator_ab_audit": "estimator A/B bypass only; no 344 write; not registered in train.py",
+            "reference_penalty_anneal_audit": "live reference_mean_penalty stays 1.0; anneal proposed_only",
+            "selfcheck_fail_hints": "FAIL prints 先看 file/test; PASS stays quiet",
+        },
+        "k1_contracts": {
+            "walk": "344→13",
+            "kick": "59→13",
+            "standup": "73→22",
+            "fast_standup_deploy_only": "72→22",
+        },
+        "k1_reactive": reactive,
+        "gpu_free_shells": shells,
+        "reserved_gpu": reserved_gpu,
+        "t1_bhuman_contracts": {
+            "walk": "365→14",
+            "kick": "62→14",
+            "standup": "76→23",
+            "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15",
+        },
+        "commits": commits,
+        "environment": env,
+        "trees": trees,
+        "walk_cfgs": walk_cfgs,
+        "getup_cfgs": getup_cfgs,
+        "policy_contract_v1": doc_hits,
+        "models_v2_io": models_v2_io,
+        "artifacts": artifacts,
+        "research": research,
+        "errors": errors,
+        "warnings": warnings,
+        "notes": notes,
+        "reproduce_walk_operator_machine": [
+            "bash bhuman/k1-training/scripts/run_env_check.sh",
+            "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+            "bash bhuman/sim2sim/run-mujoco.sh --seconds 120",
+        ],
+        "reproduce_this_gate": [
+            "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
+            "bash bhuman/k1-training/scripts/run_contract_gate.sh",
+            "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+            "python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+            "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
+            "python3 bhuman/k1-training/k1-reactive/test_migrate_table.py",
+            "python3 bhuman/k1-training/k1-estimators/test_estimators.py",
+            "python3 bhuman/k1-training/k1-reactive/test_obs_schema.py",
+            "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+            "python3 bhuman/sim2sim/test_sim2sim_gate.py",
+            "bash bhuman/sim2sim/run-sim2sim-gate.sh",
+            "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+            "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
+            "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+            "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+            "python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py",
+            "python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
+            "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
+            "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+            "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
+            "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
+            "python3 bhuman/sim2sim/test_overpass_contract.py",
+            "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
+            "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+            "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+            "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+            "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+            "python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+            "python3 bhuman/k1-training/scripts/p1_draft_diff.py",
+            "python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
+            "python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
+            "python3 bhuman/k1-training/scripts/booster_joints_snapshot.py",
+            "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+            "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+            "python3 bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+            "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+            "python3 bhuman/k1-training/scripts/env_registry_audit.py",
+            "python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
+            "python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py",
+            "python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
+            "python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
+            "python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_standup_joint_map.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
+            "python3 bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
+            "python3 bhuman/k1-training/scripts/render_selfcheck_summary.py",
+            "python3 bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py",
+            "python3 bhuman/k1-training/scripts/getup_engine_snapshot.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
+            "python3 bhuman/k1-training/scripts/walk_stability_presets_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
+            "python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py",
+            "python3 bhuman/k1-training/scripts/official_sibling_tasks_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py",
+            "python3 bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py",
+            "python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py",
+            "python3 bhuman/k1-training/scripts/command_schedule_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py",
+            "python3 bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py",
+            "python3 bhuman/k1-training/scripts/settle_jitter_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py",
+            "python3 bhuman/k1-training/scripts/estimator_ab_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py",
+            "python3 bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_behavior_control_handoff.py",
+            "python3 bhuman/k1-training/scripts/behavior_control_handoff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_compressed_teamcomm_shape.py",
+            "python3 bhuman/k1-training/k1-switcher/test_falldown_motion_chain.py",
+            "python3 bhuman/k1-training/scripts/falldown_motion_chain.py",
+            "python3 bhuman/k1-training/k1-switcher/test_teamcomm_128_vs_512.py",
+            "python3 bhuman/k1-training/k1-switcher/teamcomm_128_vs_512.py",
+            "python3 bhuman/k1-training/k1-switcher/test_force_walk_afterwards.py",
+            "python3 bhuman/k1-training/scripts/force_walk_afterwards.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_engine_boundary.py",
+            "python3 bhuman/k1-training/scripts/kick_engine_boundary.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walking_engine_cfg_audit.py",
+            "python3 bhuman/k1-training/scripts/walking_engine_cfg_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_onnx_naming.py",
+            "python3 bhuman/k1-training/scripts/kick_onnx_naming.py",
+            "python3 bhuman/k1-training/k1-switcher/test_getup_engine_cfg_audit.py",
+            "python3 bhuman/k1-training/scripts/getup_engine_cfg_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_cfg_copy_crosscheck.py",
+            "python3 bhuman/k1-training/scripts/cfg_copy_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_motor_parameters_audit.py",
+            "python3 bhuman/k1-training/scripts/motor_parameters_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_simulated_speed_diff.py",
+            "python3 bhuman/k1-training/scripts/simulated_speed_diff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_stand_ankle_stiffness.py",
+            "python3 bhuman/k1-training/scripts/stand_ankle_stiffness.py",
+            "python3 bhuman/k1-training/k1-switcher/test_competition_walk_diff.py",
+            "python3 bhuman/k1-training/scripts/competition_walk_diff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_policy_switch_threshold.py",
+            "python3 bhuman/k1-training/scripts/policy_switch_threshold.py",
+            "python3 bhuman/k1-training/k1-switcher/test_shift_ball_position.py",
+            "python3 bhuman/k1-training/scripts/shift_ball_position.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_kick_policy_switch.py",
+            "python3 bhuman/k1-training/scripts/walk_kick_policy_switch.py",
+            "python3 bhuman/k1-training/k1-switcher/test_max_acceleration_diff.py",
+            "python3 bhuman/k1-training/scripts/max_acceleration_diff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_get_next_target_request.py",
+            "python3 bhuman/k1-training/scripts/get_next_target_request.py",
+            "python3 bhuman/k1-training/k1-switcher/test_speed_gear_diff.py",
+            "python3 bhuman/k1-training/scripts/speed_gear_diff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_ball_network_active.py",
+            "python3 bhuman/k1-training/scripts/ball_network_active.py",
+            "python3 bhuman/k1-training/k1-switcher/test_intercept_avoid_bypass.py",
+            "python3 bhuman/k1-training/scripts/intercept_avoid_bypass.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_stay_remaining.py",
+            "python3 bhuman/k1-training/scripts/walk_stay_remaining.py",
+            "python3 bhuman/k1-training/k1-switcher/test_ball_distance_hysteresis.py",
+            "python3 bhuman/k1-training/scripts/ball_distance_hysteresis.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_policy_apply_dims.py",
+            "python3 bhuman/k1-training/scripts/kick_policy_apply_dims.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_policy_apply_dims.py",
+            "python3 bhuman/k1-training/scripts/walk_policy_apply_dims.py",
+            "python3 bhuman/k1-training/k1-switcher/test_policy_switch_last_action.py",
+            "python3 bhuman/k1-training/scripts/policy_switch_last_action.py",
+            "python3 bhuman/k1-training/k1-switcher/test_policy_switch_history_gap.py",
+            "python3 bhuman/k1-training/scripts/policy_switch_history_gap.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_phase_reset_allowlist.py",
+            "python3 bhuman/k1-training/scripts/walk_phase_reset_allowlist.py",
+            "python3 bhuman/k1-training/k1-switcher/test_standup_policy_apply_dims.py",
+            "python3 bhuman/k1-training/scripts/standup_policy_apply_dims.py",
+            "python3 bhuman/k1-training/k1-switcher/test_fast_standup_isolation.py",
+            "python3 bhuman/k1-training/scripts/fast_standup_isolation.py",
+            "python3 bhuman/k1-training/k1-switcher/test_getup_walk_handoff_chain.py",
+            "python3 bhuman/k1-training/scripts/getup_walk_handoff_chain.py",
+            "python3 bhuman/k1-training/k1-switcher/test_upload_run_artifacts.py",
+            "python3 bhuman/k1-training/scripts/upload_run_artifacts.py --help",
+            "python3 bhuman/k1-training/k1-switcher/test_skill_behavior_write_chain.py",
+            "python3 bhuman/k1-training/scripts/skill_behavior_write_chain.py",
+            "python3 bhuman/k1-training/k1-switcher/test_pr4_index_nav.py",
+            "python3 bhuman/k1-training/scripts/pr4_index_nav.py",
+            "python3 bhuman/k1-training/k1-switcher/test_playball_not_kick_policy.py",
+            "python3 bhuman/k1-training/scripts/playball_not_kick_policy.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reactive_stub_hardening.py",
+            "python3 bhuman/k1-training/scripts/reactive_stub_hardening.py",
+            "python3 bhuman/k1-training/k1-switcher/test_deploy_two_chain_sequence.py",
+            "python3 bhuman/k1-training/scripts/deploy_two_chain_sequence.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_to_ball_engine_no_onnx.py",
+            "python3 bhuman/k1-training/scripts/walk_to_ball_engine_no_onnx.py",
+            "python3 bhuman/k1-training/k1-switcher/test_local_bh_gym_dry_run.py",
+            "python3 bhuman/k1-training/scripts/local_bh_gym_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bounded_walk_replay.py",
+            "python3 bhuman/k1-training/scripts/bounded_walk_replay.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bounded_standup_replay.py",
+            "python3 bhuman/k1-training/scripts/bounded_standup_replay.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_eval_metrics.py",
+            "python3 bhuman/k1-training/scripts/walk_eval_metrics.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bounded_kick_replay.py",
+            "python3 bhuman/k1-training/scripts/bounded_kick_replay.py",
+            "python3 bhuman/k1-training/k1-switcher/test_standup_eval_metrics.py",
+            "python3 bhuman/k1-training/scripts/standup_eval_metrics.py",
+            "python3 bhuman/k1-training/k1-switcher/test_fall_getup_walk_dry_run.py",
+            "python3 bhuman/k1-training/scripts/fall_getup_walk_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_eval_metrics.py",
+            "python3 bhuman/k1-training/scripts/kick_eval_metrics.py",
+            "python3 bhuman/k1-training/k1-switcher/test_bounded_fast_standup_replay.py",
+            "python3 bhuman/k1-training/scripts/bounded_fast_standup_replay.py",
+            "python3 bhuman/k1-training/k1-switcher/test_dual_chain_switch_dry_run.py",
+            "python3 bhuman/k1-training/scripts/dual_chain_switch_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_onnx_deploy_path.py",
+            "python3 bhuman/k1-training/scripts/kick_onnx_deploy_path.py",
+            "python3 bhuman/k1-training/k1-switcher/test_standup_fast_isolation_matrix.py",
+            "python3 bhuman/k1-training/scripts/standup_fast_isolation_matrix.py",
+            "python3 bhuman/k1-training/k1-switcher/test_policy_switch_phase_draft.py",
+            "python3 bhuman/k1-training/scripts/policy_switch_phase_draft.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_onnx_export_dry_run.py",
+            "python3 bhuman/k1-training/scripts/walk_onnx_export_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_missing_weight_skip_honesty.py",
+            "python3 bhuman/k1-training/scripts/missing_weight_skip_honesty.py",
+            "python3 bhuman/k1-training/k1-switcher/test_merge_readiness_blockers.py",
+            "python3 bhuman/k1-training/scripts/merge_readiness_blockers.py",
+            "python3 bhuman/k1-training/k1-switcher/test_local_rtx5090_pretrain_checklist.py",
+            "python3 bhuman/k1-training/scripts/local_rtx5090_pretrain_checklist.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_eval_artifact_crosscheck.py",
+            "python3 bhuman/k1-training/scripts/walk_eval_artifact_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_standup_train_dry_run.py",
+            "python3 bhuman/k1-training/scripts/kick_standup_train_dry_run.py",
+            "python3 bhuman/k1-training/k1-switcher/test_local_artifact_upload_cleanup.py",
+            "python3 bhuman/k1-training/scripts/local_artifact_upload_cleanup.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reward_curriculum_draft_validator.py",
+            "python3 bhuman/k1-training/scripts/reward_curriculum_draft_validator.py",
+            "python3 bhuman/k1-training/k1-switcher/test_obs_history_window_contract.py",
+            "python3 bhuman/k1-training/scripts/obs_history_window_contract.py",
+            "python3 bhuman/k1-training/k1-switcher/test_ci_gate_wiring.py",
+            "python3 bhuman/k1-training/scripts/ci_gate_wiring.py",
+            "python3 bhuman/k1-training/k1-switcher/test_domain_rand_disturbance_draft_validator.py",
+            "python3 bhuman/k1-training/scripts/domain_rand_disturbance_draft_validator.py",
+            "python3 bhuman/k1-training/k1-switcher/test_pd_gain_domain_gap_negatives.py",
+            "python3 bhuman/k1-training/scripts/pd_gain_domain_gap_negatives.py",
+            "python3 bhuman/k1-training/k1-switcher/test_simrobot_six_robot_acceptance_gap.py",
+            "python3 bhuman/k1-training/scripts/simrobot_six_robot_acceptance_gap.py",
+            "python3 bhuman/k1-training/k1-switcher/test_estimator_bypass_draft_contract.py",
+            "python3 bhuman/k1-training/scripts/estimator_bypass_draft_contract.py",
+            "python3 bhuman/k1-training/k1-switcher/test_torque_effort_timeseries_contract.py",
+            "python3 bhuman/k1-training/scripts/torque_effort_timeseries_contract.py",
+            "python3 bhuman/k1-training/k1-switcher/test_reactive_intercept_bypass_hardening.py",
+            "python3 bhuman/k1-training/scripts/reactive_intercept_bypass_hardening.py",
+            "python3 bhuman/k1-training/k1-switcher/test_teamcomm_shape_negatives.py",
+            "python3 bhuman/k1-training/scripts/teamcomm_shape_negatives.py",
+            "python3 bhuman/k1-training/k1-switcher/test_pr_volume_health_rescan.py",
+            "python3 bhuman/k1-training/scripts/pr_volume_health_rescan.py",
+            "python3 bhuman/k1-training/k1-switcher/test_kick_engine_boundary_edges.py",
+            "python3 bhuman/k1-training/scripts/kick_engine_boundary_edges.py",
+            "python3 bhuman/k1-training/k1-switcher/test_ball_task_isolation_matrix.py",
+            "python3 bhuman/k1-training/scripts/ball_task_isolation_matrix.py",
+            "python3 bhuman/k1-training/k1-switcher/test_getup_force_walk_handoff.py",
+            "python3 bhuman/k1-training/scripts/getup_force_walk_handoff.py",
+            "python3 bhuman/k1-training/k1-switcher/test_standup_eval_artifact_crosscheck.py",
+            "python3 bhuman/k1-training/scripts/standup_eval_artifact_crosscheck.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_stability_preset_inventory.py",
+            "python3 bhuman/k1-training/scripts/walk_stability_preset_inventory.py",
+            "python3 bhuman/k1-training/k1-switcher/test_competition_walk_allowlist_tighten.py",
+            "python3 bhuman/k1-training/scripts/competition_walk_allowlist_tighten.py",
+            "python3 bhuman/k1-training/k1-switcher/test_policy_switch_hysteresis_enter_exit.py",
+            "python3 bhuman/k1-training/scripts/policy_switch_hysteresis_enter_exit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_maxacc_walk_kick_path_notes.py",
+            "python3 bhuman/k1-training/scripts/maxacc_walk_kick_path_notes.py",
+            "python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py",
+            "python3 bhuman/k1-training/scripts/selfcheck_fail_hints.py --step k1.yaml",
+            "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
+            "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
+        ],
+    }
+
+    text_out = json.dumps(report, indent=2, ensure_ascii=False)
+    if args.json_out:
+        out_path = Path(args.json_out)
+        if not out_path.is_absolute():
+            out_path = repo / out_path
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(text_out + "\n", encoding="utf-8")
+        print(f"[write] {out_path}")
+
+    print(f"[verdict] {verdict}")
+    print(
+        "[k1] baseline walk 344→13 | kick 59→13 | standup 73→22 | fast_standup 72→22 (deploy)"
+    )
+    print("[k1] parallel stub K1_Reactive 64→15 (not registered, not trainable)")
+    print(
+        "[k1] skeleton YAML present; unregistered in train.py = "
+        f"{reactive.get('unregistered_in_train_py') or 'MISSING'}"
+    )
+    print("[k1] skill-switch: static T1/T2/T3/T5 map PASS; history shells SKIP")
+    print("[k1] docs: GLOBAL-HUMANOID-SURVEY + ROADMAP-P0-P5 + MIGRATE-TO-K1")
+    print("[k1] gpu-free: estimators / sim2sim-gate / obs-schema / bt-skill-select / switcher-sm / deploy-call / timeseries / reactive-hardening / p1-draft")
+    print(
+        f"[pin] MachineLearning {UPSTREAM_ML} | BHumanCodeRelease {UPSTREAM_BHUMAN}"
+    )
+    print(f"[env] python={env['python']} gpu={env['gpu']!r} isaacgym={env['modules']['isaacgym']}")
+    for item in errors:
+        print(f"[error] {item}")
+    for item in warnings:
+        print(f"[warn] {item}")
+    for item in notes:
+        print(f"[note] {item}")
+    return 0 if verdict == "PASS" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

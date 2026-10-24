@@ -84,6 +84,15 @@ v2 只保存 tensors 和 Python 基本类型，始终使用 `weights_only=True`�
 
 环境在恢复进程中重新创建并 reset；没有保存 PhysX 内部状态、全部课程/环境状态，不承诺逐步轨迹完全一致。
 
+## 基线与平行技能
+
+运控基线是本目录 `src/IsaacGymRL` 的官方 walk/kick/standup（**344→13 / 59→13 / 73→22**）。不要改这些维。火神式反应技能的设计骨架在旁路 [k1-reactive/](k1-reactive/README.md)，骨架 YAML 已存在时门禁明确 **未注册进 `train.py` = PASS**。P1 估计器旁路在 [k1-estimators/](k1-estimators/README.md)（不改 344）。走↔踢↔起身状态机在 [k1-switcher/](k1-switcher/README.md)（reactive 不可达；部署一拍默认仍是官方 walk 344→13）。历史/力矩形状草案在同目录 `timeseries_contract.py`（连续性 SKIP）。P1 配置草稿在 [configs/draft-only/](configs/draft-only/README.md)，不改默认奖励。全球调研、可迁对照与 P0–P5：[GLOBAL-HUMANOID-SURVEY-20261024.md](../docs/GLOBAL-HUMANOID-SURVEY-20261024.md)、[MIGRATE-TO-K1.md](../docs/MIGRATE-TO-K1.md)、[ROADMAP-P0-P5.md](../docs/ROADMAP-P0-P5.md)、[PR4-INDEX.md](../docs/PR4-INDEX.md)、[DEPLOY-CALL-SEQUENCE.md](../docs/DEPLOY-CALL-SEQUENCE.md)、[HISTORY-TORQUE-TIMESERIES.md](../docs/HISTORY-TORQUE-TIMESERIES.md)。走↔踢↔反应连续性见 [SKILL-SWITCH-CONTINUITY.md](../docs/SKILL-SWITCH-CONTINUITY.md)；行为树口见 [BEHAVIOR-TREE-SKILL-SELECT.md](../docs/BEHAVIOR-TREE-SKILL-SELECT.md)；HiFAR ≠ 起身 73→22 / 72→22，见 [HIFAR-VS-STANDUP.md](../docs/HIFAR-VS-STANDUP.md)。有 GPU 后的 P1 命令与 Zenodo 本地步骤见 [NEXT-P1-P2.md](../docs/NEXT-P1-P2.md)。无 worker 时：
+
+```bash
+bash scripts/run_contract_gate.sh
+bash scripts/probe_reserved_gpu.sh
+```
+
 ## 下一阶段
 
 结合新调研资料，先补齐生产观测对照、普通起身到行走切换和 reset 时序验证，再在 64 env 上做有界试训，并用固定留出种子独立评估。保留公开 actor 作为同条件对照；检查参考动作完成、结束前严格站稳、跌倒姿态、超调持续时间及扰动强度，不用训练奖励代替这些指标。弱项包括后起身关键帧 5、持续站定和持续外力。完整顺序、工具复用和验收标准见 [研究成果接入方案](/home/peakpeng/Desktop/Robocup/bhuman/k1-training/experiments/RESEARCH-INTEGRATION-20261019.md)；原研究资料已保存至 [资料目录](/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019/README.md)。

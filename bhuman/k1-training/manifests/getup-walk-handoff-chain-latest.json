@@ -1,0 +1,133 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sequence": [
+    {
+      "id": "walk_default",
+      "phase": "walk",
+      "contract": "344→13",
+      "onnx": "K1_walk.onnx",
+      "slot": "walkPolicy"
+    },
+    {
+      "id": "fallen",
+      "phase": "FallDownState::fallen",
+      "not_skill_request": true,
+      "see": "falldown_motion_chain.py"
+    },
+    {
+      "id": "getup_create",
+      "phase": "getUp",
+      "call": "GetUpGenerator.createPhase",
+      "entry": "fallen + (fall|playDead) + motion≠playDead",
+      "see": "standup_policy_apply_dims.py"
+    },
+    {
+      "id": "standup_or_fast_apply",
+      "regular": {
+        "when": "tryCounter > 0",
+        "call": "engine.policy.apply()",
+        "contract": "73→22",
+        "onnx": "K1.onnx"
+      },
+      "fast": {
+        "when": "tryCounter == 0",
+        "call": "engine.policyFast.apply()",
+        "contract": "72→22",
+        "onnx": "K1_fast_standup.onnx"
+      },
+      "see": "standup_policy_apply_dims.py / fast_standup_isolation.py"
+    },
+    {
+      "id": "force_walk_afterwards",
+      "call": "theWalkGenerator.createPhase",
+      "comment": "Force walk afterwards",
+      "not_kick": true,
+      "not_stay_standup": true,
+      "see": "force_walk_afterwards.py"
+    },
+    {
+      "id": "return_walk",
+      "phase": "walk",
+      "contract": "344→13",
+      "onnx": "K1_walk.onnx",
+      "slot": "walkPolicy",
+      "last_action": "13-zero",
+      "see": "last_action_reset.py"
+    }
+  ],
+  "illegal_skips": [
+    "fallen→return_walk",
+    "getup_create→return_walk",
+    "standup_or_fast_apply→return_walk",
+    "standup_or_fast_apply→kick",
+    "force_walk_afterwards→kick"
+  ],
+  "slots": {
+    "walk": {
+      "obs": 344,
+      "act": 13,
+      "onnx": "K1_walk.onnx"
+    },
+    "kick": {
+      "obs": 59,
+      "act": 13,
+      "onnx": "K1_kick_inner.onnx"
+    },
+    "standup": {
+      "obs": 73,
+      "act": 22,
+      "onnx": "K1.onnx"
+    },
+    "fast": {
+      "obs": 72,
+      "act": 22,
+      "onnx": "K1_fast_standup.onnx"
+    }
+  },
+  "segments_referenced": {
+    "falldown_motion_chain": "PASS",
+    "standup_policy_apply_dims": "PASS",
+    "fast_standup_isolation": "PASS",
+    "force_walk_afterwards": "PASS",
+    "last_action_reset": true
+  },
+  "sm": {
+    "fallen_enters": "standup 73→22",
+    "getup_done_returns": "walk 344→13",
+    "last_action": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "standup_to_kick_illegal": true
+  },
+  "getup_skips_force_walk": false,
+  "force_walk_lands_on_kick": false,
+  "standup_handoff_as_walk_344_obs": false,
+  "walk_kick_gap_closed": false,
+  "not_hot_swap_train": true,
+  "fabricated": false,
+  "note": "e2e chain is fallen→createPhase→standup/fast apply→force-walk→walkPolicy 344→13; slots isolated; 13-zero already closed elsewhere; walk↔kick GAP stays open",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "standup_contract": "73→22",
+  "fast_contract": "72→22",
+  "kick_contract": "59→13",
+  "cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

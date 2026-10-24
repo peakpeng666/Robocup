@@ -1,0 +1,142 @@
+{
+  "generated_utc": "2026-10-24T13:20:34+00:00",
+  "read_only": true,
+  "write_yaml": false,
+  "trainable": false,
+  "walk": "344→13",
+  "sources": {
+    "k1_yaml": [
+      "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+      "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml"
+    ],
+    "stability": [
+      "bhuman/k1-training/configs/walk-reference-stability-v1.json",
+      "bhuman/k1-training/configs/walk-critic-stability-v1.json"
+    ],
+    "excluded": [
+      "bhuman/k1-training/configs/draft-only"
+    ]
+  },
+  "dims": {
+    "num_observations": 344,
+    "num_actions": 13
+  },
+  "commands": {
+    "still_proportion": 0.1
+  },
+  "reward_scales": {
+    "terminate": -100,
+    "tracking_lin_vel_x": 0.75,
+    "tracking_lin_vel_y": 0.75,
+    "tracking_ang_vel": 0.375,
+    "base_height": -40.0,
+    "orientation": -5.0,
+    "torques": -0.0002,
+    "torque_tiredness": -0.01,
+    "power": -0.002,
+    "lin_vel_z": -2.0,
+    "ang_vel_xy": -0.2,
+    "dof_vel": -0.0001,
+    "dof_acc": -1e-07,
+    "root_acc": -0.0001,
+    "action_rate": -1.0,
+    "dof_pos_limits": -1,
+    "actions_in_range": -1,
+    "action_pos_limits": -1,
+    "dof_vel_limits": -0.0,
+    "torque_limits": -0.01,
+    "collision": -2.0,
+    "feet_slip": -0.1,
+    "feet_yaw_diff": -1,
+    "feet_yaw_mean": -1,
+    "feet_roll": -0.1,
+    "feet_distance": -1,
+    "feet_swing": 3.0,
+    "ground_pressure": -0.1,
+    "gait_phase_factor": -0.1,
+    "hip_roll": -1.0,
+    "feet_height": -0.25
+  },
+  "reward_scale_names": [
+    "action_pos_limits",
+    "action_rate",
+    "actions_in_range",
+    "ang_vel_xy",
+    "base_height",
+    "collision",
+    "dof_acc",
+    "dof_pos_limits",
+    "dof_vel",
+    "dof_vel_limits",
+    "feet_distance",
+    "feet_height",
+    "feet_roll",
+    "feet_slip",
+    "feet_swing",
+    "feet_yaw_diff",
+    "feet_yaw_mean",
+    "gait_phase_factor",
+    "ground_pressure",
+    "hip_roll",
+    "lin_vel_z",
+    "orientation",
+    "power",
+    "root_acc",
+    "terminate",
+    "torque_limits",
+    "torque_tiredness",
+    "torques",
+    "tracking_ang_vel",
+    "tracking_lin_vel_x",
+    "tracking_lin_vel_y"
+  ],
+  "stability": {
+    "walk-reference-stability-v1.json": {
+      "name": "walk-reference-stability-v1.json",
+      "reference_mean_penalty": 1.0,
+      "keys": [
+        "critic_learning_rate",
+        "critic_warmup_iterations",
+        "critic_warmup_lr",
+        "guard_min_lr",
+        "max_update_kl",
+        "reference_action_std",
+        "reference_checkpoint",
+        "reference_mean_penalty",
+        "reference_sha256"
+      ]
+    },
+    "walk-critic-stability-v1.json": {
+      "name": "walk-critic-stability-v1.json",
+      "reference_mean_penalty": null,
+      "keys": [
+        "critic_learning_rate",
+        "critic_warmup_iterations",
+        "critic_warmup_lr",
+        "guard_min_lr",
+        "max_update_kl"
+      ]
+    }
+  },
+  "baseline": {
+    "still_proportion": 0.1,
+    "tracking_lin_vel_x": 0.75,
+    "tracking_lin_vel_y": 0.75,
+    "tracking_ang_vel": 0.375,
+    "action_rate": -1.0,
+    "reference_mean_penalty": 1.0
+  },
+  "baseline_values": {
+    "still_proportion": 0.1,
+    "tracking_lin_vel_x": 0.75,
+    "tracking_lin_vel_y": 0.75,
+    "tracking_ang_vel": 0.375,
+    "action_rate": -1.0,
+    "reference_mean_penalty": 1.0
+  },
+  "trees_agree": true,
+  "yaml_sha256": [
+    "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+    "b94b79cb1bcb3872467bf8ff8199c9f55b398f3e8585d591d075fc0304f10593"
+  ]
+}

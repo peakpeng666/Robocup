@@ -1,0 +1,105 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "official": [
+    {
+      "rel": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+      "commands": {
+        "num_commands": 3,
+        "still_proportion": 0.1,
+        "slow_proportion": 0.1,
+        "proportion_correction": 0.2,
+        "lin_vel_x": [
+          -1.0,
+          2.0
+        ],
+        "lin_vel_y": [
+          -1.0,
+          1.0
+        ],
+        "ang_vel_yaw": [
+          -1.5,
+          1.5
+        ],
+        "slow_walk_range": 0.2,
+        "resampling_time_s": [
+          8.0,
+          12.0
+        ],
+        "gait_frequency": [
+          1.0,
+          2.0
+        ]
+      },
+      "absent": [
+        "curriculum",
+        "schedule",
+        "command_curriculum",
+        "heading_command"
+      ],
+      "sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+    },
+    {
+      "rel": "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml",
+      "commands": {
+        "num_commands": 3,
+        "still_proportion": 0.1,
+        "slow_proportion": 0.1,
+        "proportion_correction": 0.2,
+        "lin_vel_x": [
+          -1.0,
+          2.0
+        ],
+        "lin_vel_y": [
+          -1.0,
+          1.0
+        ],
+        "ang_vel_yaw": [
+          -1.5,
+          1.5
+        ],
+        "slow_walk_range": 0.2,
+        "resampling_time_s": [
+          8.0,
+          12.0
+        ],
+        "gait_frequency": [
+          1.0,
+          2.0
+        ]
+      },
+      "absent": [
+        "curriculum",
+        "schedule",
+        "command_curriculum",
+        "heading_command"
+      ],
+      "sha256": "b94b79cb1bcb3872467bf8ff8199c9f55b398f3e8585d591d075fc0304f10593"
+    }
+  ],
+  "missing_on_official": [
+    "curriculum",
+    "schedule",
+    "command_curriculum",
+    "heading_command"
+  ],
+  "draft": {
+    "draft_only": true,
+    "applied": false,
+    "proposed_only": {
+      "commands.still_proportion": 0.25,
+      "schedule": [
+        "stand",
+        "forward",
+        "stop",
+        "reverse"
+      ]
+    },
+    "factor": "A_command_schedule"
+  },
+  "draft_applied": false,
+  "trainable": false,
+  "write_yaml": false,
+  "note": "official commands: still_proportion 0.1 + vel ranges; curriculum/schedule absent; draft A_command_schedule not applied"
+}

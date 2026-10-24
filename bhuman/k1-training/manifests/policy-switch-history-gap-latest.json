@@ -1,0 +1,55 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "draft": "bhuman/k1-training/configs/draft-only/walk-kick-reset-history-v0.json",
+    "doc": "bhuman/docs/POLICY-SWITCH-HISTORY-GAP.md"
+  },
+  "gap": {
+    "id": "walk_kick_resetHistoryData",
+    "scope": "getNextTargetRequest compiled bypass walk↔kick only",
+    "not_scope": "standup→walk last_action 13-zero (already closed)",
+    "explicit_zero": false,
+    "closed": false,
+    "status": "GAP",
+    "fabricated": false
+  },
+  "isolation": {
+    "kick_consumes_walk_history": false,
+    "walk_fills_from_historyBuffer": true,
+    "kick_fills_from_lastTarget": true,
+    "history_still_updates_during_kick": true,
+    "residual_risk": "kick→walk may see kick-period lastActions in the 10-frame window"
+  },
+  "draft": {
+    "rel": "bhuman/k1-training/configs/draft-only/walk-kick-reset-history-v0.json",
+    "draft_only": true,
+    "apply_to_live": false,
+    "apply_to_walking_engine": false,
+    "gap_closed": false,
+    "proposed_call": "engine.resetHistoryData()"
+  },
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kick_numInput": 59
+  },
+  "claim_walk_kick_gap_closed": false,
+  "draft_mitigation_as_live": false,
+  "standup_zero_as_walk_kick_fix": false,
+  "not_hot_swap_train": true,
+  "fabricated": false,
+  "note": "walk↔kick resetHistoryData is still a GAP; kick 59 does not eat the walk window but no explicit zero; draft exists and is not live; standup 13-zero is a different closed contract",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "draft_sha256": "17310a9265160a704e5aafd1e8945be9c2d4670bd6d2619c1027b95b3fbb3c31"
+}

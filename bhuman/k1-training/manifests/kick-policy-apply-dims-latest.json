@@ -1,0 +1,93 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h",
+    "walk_to_ball_and_kick": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkGenerators/WalkToBallAndKickEngine.cpp"
+  },
+  "apply_sites": {
+    "walk": {
+      "call": "engine.walkPolicy.apply()",
+      "contract": "344→13",
+      "onnx": "K1_walk.onnx"
+    },
+    "kick": {
+      "call": "policy.apply()",
+      "selects": "kickPolicy | oldKickPolicy",
+      "contract": "59→13",
+      "onnx_allow": [
+        "K1_kick_inner.onnx",
+        "K1_kick_inner_soft.onnx"
+      ]
+    },
+    "walk_to_ball_and_kick": {
+      "kind": "pose_generator",
+      "applies_net": false,
+      "note": "pose generator only; no CompiledNN apply"
+    }
+  },
+  "kick_gate": {
+    "want_kick": true,
+    "motion_allow": [
+      "dribble",
+      "walkToBallAndKick"
+    ],
+    "other_walk_stay_must_be_false": true,
+    "empty_context_is_walk": true
+  },
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59,
+    "kick_numOutput": 13
+  },
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_without_want_kick": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "shoot_with_want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    },
+    "bt_want_kick": "kick"
+  },
+  "cpp_needles": [
+    "void WalkingEngine::compile()",
+    "kickPolicy.compile",
+    "kickPolicy.input(0).dims(0) == ballNetworkParameters.numInput",
+    "kickPolicy.output(0).dims(0) == walkNeuronalNetworkParameters.numOutput",
+    "void WalkPhase::getNextTargetRequest",
+    "engine.walkPolicy.apply()",
+    "CompiledNN& policy = !isOldKick ? engine.kickPolicy : engine.oldKickPolicy",
+    "policy.apply()",
+    "MotionRequest::dribble",
+    "MotionRequest::walkToBallAndKick"
+  ],
+  "header_needles": [
+    "CompiledNN walkPolicy",
+    "CompiledNN kickPolicy",
+    "CompiledNN oldKickPolicy"
+  ],
+  "kick_path_as_walk_344": false,
+  "not_hot_swap_train": true,
+  "not_t1": true,
+  "fabricated": false,
+  "note": "kickPolicy apply-site is 59→13 (K1_kick_inner / _soft); legal only after want_kick + dribble/walkToBallAndKick and all other walk-stay false; WalkToBallAndKickEngine does not apply a net; switch ≠ hot-swap into K1.yaml / train.py / Isaac",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

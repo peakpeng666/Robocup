@@ -1,0 +1,83 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "cfg": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.h",
+    "motion": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/MotionEngine/MotionEngine.cpp"
+  },
+  "apply_sites": {
+    "regular": {
+      "slot": "policy",
+      "call": "engine.policy.apply()",
+      "when": "tryCounter > 0",
+      "contract": "73→22",
+      "onnx_allow": [
+        "K1.onnx"
+      ],
+      "fill": "gravity3 + gyro3 + phase1 + 22*(measured+vel+lastRequest)",
+      "not_walk": true,
+      "not_kick": true,
+      "not_fast": true
+    },
+    "fast": {
+      "slot": "policyFast",
+      "call": "engine.policyFast.apply()",
+      "when": "tryCounter == 0",
+      "contract": "72→22",
+      "isolated_here": true,
+      "see": "fast_standup_isolation.py"
+    }
+  },
+  "entry_allow": [
+    "FallDownState::fallen",
+    "MotionPhase::fall | MotionPhase::playDead",
+    "motionRequest.motion != playDead",
+    "GetUpGenerator.createPhase"
+  ],
+  "role_diff": {
+    "Default": {
+      "cfg": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+      "present": true,
+      "contract": "73→22",
+      "onnx": "K1.onnx"
+    },
+    "Simulated": {
+      "cfg": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/getUpEngine.cfg",
+      "present": false,
+      "note": "no Simulated getUpEngine.cfg; cpp forces fastActive=false"
+    },
+    "Competition": {
+      "cfg": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/getUpEngine.cfg",
+      "present": false,
+      "note": "no Competition getUpEngine.cfg; not fabricating"
+    }
+  },
+  "handoff_13_zero": {
+    "closed_elsewhere": true,
+    "source": "last_action_reset.py / force_walk_afterwards.py",
+    "ok": true
+  },
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13
+  },
+  "standup_as_walk_344": false,
+  "getup_as_hot_swap_train": false,
+  "standup_onnx_as_kick_slot": false,
+  "walk_kick_gap_closed": false,
+  "not_hot_swap_train": true,
+  "fabricated": false,
+  "note": "regular GetUp apply is 73→22 / K1.onnx; ≠ walk 344 / kick 59 / fast 72; entry = fallen+(fall|playDead); 13-zero handoff already closed",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "standup_contract": "73→22",
+  "fast_contract": "72→22",
+  "cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

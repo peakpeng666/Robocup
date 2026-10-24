@@ -1,0 +1,202 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "default_task": "K1",
+  "default_is_walk_baseline": true,
+  "siblings_are_walk_baseline": false,
+  "may_merge_into_344": false,
+  "k1_siblings": [
+    {
+      "task": "K1_Ball",
+      "yaml": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Ball.yaml",
+          "present": true,
+          "obs": 59,
+          "act": 13,
+          "matches_contract": true
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Ball.yaml",
+          "present": true,
+          "obs": 59,
+          "act": 13,
+          "matches_contract": true
+        }
+      ],
+      "obs": 59,
+      "act": 13,
+      "purpose": "official kick (shared 13-D walk exit)",
+      "skill": "kick",
+      "contract": "59→13",
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registered": true,
+      "registration_ok": true,
+      "dims_ok": true
+    },
+    {
+      "task": "K1_Stand_Up",
+      "yaml": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "present": true,
+          "obs": 73,
+          "act": 22,
+          "matches_contract": true
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "present": true,
+          "obs": 73,
+          "act": 22,
+          "matches_contract": true
+        }
+      ],
+      "obs": 73,
+      "act": 22,
+      "purpose": "official standup (GetUpEngine 22 motors)",
+      "skill": "standup",
+      "contract": "73→22",
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registered": true,
+      "registration_ok": true,
+      "dims_ok": true
+    }
+  ],
+  "t1_registered_not_k1": [
+    {
+      "task": "T1",
+      "yaml": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs/T1.yaml",
+          "present": true,
+          "obs": 365,
+          "act": 14,
+          "matches_contract": true
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs/T1.yaml",
+          "present": true,
+          "obs": 365,
+          "act": 14,
+          "matches_contract": true
+        }
+      ],
+      "obs": 365,
+      "act": 14,
+      "purpose": "B-Human T1 walk (same family, not K1)",
+      "skill": "t1_walk",
+      "contract": "365→14",
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registered": true,
+      "registration_ok": true,
+      "dims_ok": true
+    },
+    {
+      "task": "T1_Ball",
+      "yaml": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Ball.yaml",
+          "present": true,
+          "obs": 62,
+          "act": 14,
+          "matches_contract": true
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Ball.yaml",
+          "present": true,
+          "obs": 62,
+          "act": 14,
+          "matches_contract": true
+        }
+      ],
+      "obs": 62,
+      "act": 14,
+      "purpose": "B-Human T1 kick (not K1_Ball)",
+      "skill": "t1_kick",
+      "contract": "62→14",
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registered": true,
+      "registration_ok": true,
+      "dims_ok": true
+    },
+    {
+      "task": "T1_Stand_Up",
+      "yaml": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "present": true,
+          "obs": 76,
+          "act": 23,
+          "matches_contract": true
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "present": true,
+          "obs": 76,
+          "act": 23,
+          "matches_contract": true
+        }
+      ],
+      "obs": 76,
+      "act": 23,
+      "purpose": "B-Human T1 standup (not K1_Stand_Up)",
+      "skill": "t1_standup",
+      "contract": "76→23",
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registered": true,
+      "registration_ok": true,
+      "dims_ok": true
+    }
+  ],
+  "deploy_only": [
+    {
+      "task": "K1_fast_standup",
+      "yaml": [],
+      "obs": 72,
+      "act": 22,
+      "purpose": "deploy-only GetUpEngine fast net; not an Isaac task",
+      "skill": "fast_standup",
+      "contract": "72→22",
+      "registered": false,
+      "is_walk_baseline": false,
+      "may_merge_into_344": false,
+      "registration_ok": true,
+      "dims_ok": true
+    }
+  ],
+  "trees": [
+    {
+      "rel": "bhuman/MachineLearning/IsaacGymRL/envs",
+      "tasks": [
+        "T1",
+        "T1_Ball",
+        "T1_Stand_Up",
+        "K1",
+        "K1_Ball",
+        "K1_Stand_Up"
+      ]
+    },
+    {
+      "rel": "bhuman/k1-training/src/IsaacGymRL/envs",
+      "tasks": [
+        "T1",
+        "T1_Ball",
+        "T1_Stand_Up",
+        "K1",
+        "K1_Ball",
+        "K1_Stand_Up"
+      ]
+    }
+  ],
+  "trainable": false,
+  "write_yaml": false,
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "note": "K1_Ball 59→13 / K1_Stand_Up 73→22 are official siblings, not the walk baseline and not a concat-into-344 permit; T1* is B-Human T1"
+}

@@ -1,0 +1,2292 @@
+{
+  "generated_utc": "2026-10-24T07:45:49+00:00",
+  "verdict": "PASS",
+  "repo": "/workspace",
+  "architecture": {
+    "baseline": "B-Human IsaacGymRL official walk/kick/standup",
+    "rule": "new skills are parallel extensions; do not rewrite frozen dims",
+    "k1_reactive": "64→15 stub beside IsaacGymRL, not a train.py task",
+    "unregistered_in_train_py": "PASS",
+    "skill_switch": "docs + empty shells + static slot map + walk/kick/standup SM; reactive blocked",
+    "roadmap": "bhuman/docs/ROADMAP-P0-P5.md",
+    "global_survey": "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+    "migrate_table": "bhuman/docs/MIGRATE-TO-K1.md",
+    "estimators": "k1-estimators RMA/DreamWaQ bypass; actor stays 344",
+    "p2_acceptance": "bhuman/docs/P2-ACCEPTANCE.md",
+    "reactive_hardening": "k1-reactive 64→15 bypass; not a new gait baseline",
+    "bt_deploy_crosscheck": "BT × deploy table; default stays walk 344→13",
+    "standup_kick_hardening": "official kick/standup edges; SimRobot ≠ fast 72→22",
+    "hifar_boundary": "HiFAR ≠ standup; Huoshen 58 ≠ walk 344",
+    "blockers": "ROADMAP §5 checklist; tell user before any GPU train",
+    "sim2sim_gate": "skeleton skip without mujoco/weights; no auto-run",
+    "obs_schema": "bhuman/docs/schemas/obs-contract-v1.json",
+    "bt_skill_select": "docs + commented port; implemented=false; default walk 344→13",
+    "switcher_sm": "walk/kick/standup skeleton; reactive blocked; no Gym",
+    "p1_draft": "draft-only factor comments; official rewards untouched",
+    "draft_validator": "draft_only:true; stability/config_patch isolated; live rewards not overwritten",
+    "obs_schema_negatives": "refuse 343/345, foreign skills as walk, missing history; no live-obs rewrite",
+    "contract_gate_guide": "bhuman/docs/CONTRACT-GATE-GUIDE.md (PASS ≠ trained)",
+    "p3_preview": "bhuman/docs/P3-PREVIEW.md; contrast only; default walk 344→13",
+    "switcher_integration_suite": "SM+deploy+standup/kick+BT; empty context → walk 344→13",
+    "p4_preview": "bhuman/docs/P4-PREVIEW.md; single-robot + six-robot goals; three gates",
+    "overpass_contract": "Isaac≠MuJoCo≠SimRobot; overpass 344→13; no live sim rewrite",
+    "ci_contract_gate": "bhuman/docs/CI-CONTRACT-GATE.md; draft-only workflow; PASS+WARN",
+    "p5_preview": "bhuman/docs/P5-PREVIEW.md; domain-gap/CTDE location; docs≠on-robot",
+    "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
+    "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
+    "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
+    "gpu_worker_checklist": "probe JSON; missing items; never train.py",
+    "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
+    "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
+    "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
+    "joint_map_contract": "walk 13-D legs+freq; refuse 12/15/22; standup ≠ walk",
+    "p1_draft_diff": "official stability vs draft-only; draft_only:true; live untouched",
+    "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained",
+    "gait_frequency_contract": "walk action[12]=gait_frequency; not a 13th motor",
+    "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
+    "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu",
+    "obs_assembly": "deploy walk 10×32+24=344; not reactive concat; no fabricate",
+    "last_action_reset": "standup→walk last_action=13 zeros; refuse standup[:13]",
+    "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
+    "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered"
+  },
+  "k1_contracts": {
+    "walk": "344→13",
+    "kick": "59→13",
+    "standup": "73→22",
+    "fast_standup_deploy_only": "72→22"
+  },
+  "k1_reactive": {
+    "ok": true,
+    "task": "K1_Reactive",
+    "contract": "64→15",
+    "baseline": "344→13",
+    "trainable": false,
+    "registered": false,
+    "skeleton_yaml_exists": true,
+    "unregistered_in_train_py": "PASS",
+    "train_py_rule": "skeleton YAML present beside IsaacGymRL AND not imported by envs/__init__.py AND not copied into envs/ = PASS",
+    "registry": {
+      "skeleton_yaml_exists": true,
+      "unregistered_in_train_py": "PASS",
+      "rule": "skeleton YAML present beside IsaacGymRL AND not imported by envs/__init__.py AND not copied into envs/ = PASS",
+      "negative_fixture": "If K1_Reactive appears in official envs/__init__.py OR envs/K1_Reactive.yaml|k1_reactive.py exists, this MUST be FAIL. See test_unregistered_in_train_py.py.",
+      "trees": [
+        {
+          "rel": "bhuman/MachineLearning/IsaacGymRL/envs",
+          "init_exists": true,
+          "mentions_task": false,
+          "leaked_yaml": false,
+          "leaked_py": false,
+          "leak": false
+        },
+        {
+          "rel": "bhuman/k1-training/src/IsaacGymRL/envs",
+          "init_exists": true,
+          "mentions_task": false,
+          "leaked_yaml": false,
+          "leaked_py": false,
+          "leak": false
+        }
+      ],
+      "leaks": [],
+      "notes": [
+        "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+        "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only"
+      ]
+    },
+    "errors": [],
+    "notes": [
+      "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+      "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+      "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+      "unregistered in train.py = PASS (YAML lives in k1-reactive/; Runner cannot eval the stub)",
+      "skill-switch continuity checklist present (docs + empty shells)",
+      "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
+      "global humanoid survey present",
+      "P0–P5 roadmap present",
+      "migrate-to-K1 table present",
+      "BT skill-select interface present",
+      "obs contract JSON present",
+      "switcher state-machine note present",
+      "P1 config diff draft present",
+      "deploy call sequence present",
+      "PR #4 file-tree index present",
+      "history/torque timeseries draft present",
+      "P2 acceptance (walk default; P2 does not change 344) present",
+      "HiFAR ≠ standup 73→22 / fast 72→22 present",
+      "contract-gate guide (PASS ≠ trained) present",
+      "P3 preview (no training; walk stays default) present",
+      "P4 preview (no six-robot/real-robot; three gates) present",
+      "CI contract-gate draft (PASS+WARN, no forced CI) present",
+      "P5 preview (no robot; docs/gate ready ≠ on robot) present",
+      "RL 5-min map (baseline / two commands / when to train) present",
+      "no-Gym one-shot unit tests (walk 344→13; honest SKIP) present",
+      "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
+      "ONNX export contract (walk 344→13 only; no real weights) present",
+      "GPU worker checklist (probe only; never train.py) present",
+      "K1 reward read-only audit (no yaml write-back) present",
+      "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
+      "research-inputs / GLOBAL short migrate table present",
+      "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
+      "official vs draft-only key diff (draft_only:true; live untouched) present",
+      "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
+      "walk action[12]=gait_frequency (not a 13th motor) present",
+      "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
+      "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
+      "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
+      "walk obs assembly shape check (no fabricate) present",
+      "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
+      "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
+      "official train.py registry (K1 in; bypass not registered) present",
+      "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
+      "skill_switch_map static T1/T2 slots PASS (no Gym)",
+      "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+      "refuse_foreign_checkpoint blocks official walk weights",
+      "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+      "create_training_env() raises (stub is not a Gym task)"
+    ]
+  },
+  "gpu_free_shells": {
+    "unregistered_fixture": {
+      "ok": true,
+      "unregistered_in_train_py": "PASS",
+      "skeleton_yaml_exists": true,
+      "registry": {
+        "skeleton_yaml_exists": true,
+        "unregistered_in_train_py": "PASS",
+        "rule": "skeleton YAML present beside IsaacGymRL AND not imported by envs/__init__.py AND not copied into envs/ = PASS",
+        "negative_fixture": "If K1_Reactive appears in official envs/__init__.py OR envs/K1_Reactive.yaml|k1_reactive.py exists, this MUST be FAIL. See test_unregistered_in_train_py.py.",
+        "trees": [
+          {
+            "rel": "bhuman/MachineLearning/IsaacGymRL/envs",
+            "init_exists": true,
+            "mentions_task": false,
+            "leaked_yaml": false,
+            "leaked_py": false,
+            "leak": false
+          },
+          {
+            "rel": "bhuman/k1-training/src/IsaacGymRL/envs",
+            "init_exists": true,
+            "mentions_task": false,
+            "leaked_yaml": false,
+            "leaked_py": false,
+            "leak": false
+          }
+        ],
+        "leaks": [],
+        "notes": [
+          "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+          "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only"
+        ]
+      },
+      "errors": [],
+      "notes": [
+        "positive fixture: official init without K1_Reactive → not a leak",
+        "negative fixture: leaked import in envs/__init__.py → FAIL (as required)",
+        "negative fixture: leaked envs/K1_Reactive.yaml → FAIL (as required)",
+        "negative fixture: leaked envs/k1_reactive.py → FAIL (as required)",
+        "current tree: skeleton YAML exists beside IsaacGymRL; unregistered in train.py = PASS",
+        "checked official tree bhuman/MachineLearning/IsaacGymRL/envs",
+        "checked official tree bhuman/k1-training/src/IsaacGymRL/envs"
+      ]
+    },
+    "skill_switch_shells": {
+      "ok": true,
+      "implemented": false,
+      "anchors": {
+        "ok": true,
+        "doc": "/workspace/bhuman/docs/SKILL-SWITCH-CONTINUITY.md",
+        "shells": 8,
+        "errors": []
+      },
+      "shells": [
+        {
+          "name": "test_history_walk_kick",
+          "ids": "H1 H2",
+          "status": "SKIP",
+          "detail": "walk 10x32+24 vs kick 59-D / no history",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_history_walk_reactive",
+          "ids": "H3 H4",
+          "status": "SKIP",
+          "detail": "walk history vs reactive 50-stack encoder",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_history_kick_reactive",
+          "ids": "H5 H6",
+          "status": "SKIP",
+          "detail": "kick last_action 13 vs reactive 15; ball frame",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_phase_walk_kick",
+          "ids": "P1",
+          "status": "SKIP",
+          "detail": "gait_process continuous across walk/kick",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_phase_walk_reactive",
+          "ids": "P2 P3 P4",
+          "status": "SKIP",
+          "detail": "copy gait + head zero-point into reactive",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_torque_leg_slots",
+          "ids": "T1 T2",
+          "status": "SKIP",
+          "detail": "12-leg URDF order + frequency slot mapping",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_torque_first_step",
+          "ids": "T3 T4",
+          "status": "SKIP",
+          "detail": "first-step last_action / PD jump window",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        },
+        {
+          "name": "test_no_onnx_hot_swap",
+          "ids": "T5 T6",
+          "status": "SKIP",
+          "detail": "13==13 or 15==15 is not a load permit",
+          "reason": "empty shell: no switcher / no Gym / no torque trace"
+        }
+      ]
+    },
+    "skill_switch_map": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "T1 PASS: walk action[:12] == reactive[2:14]",
+        "T2 PASS: walk action[12] == reactive[14]; head from caller",
+        "T1 inverse PASS: reactive -> walk drops head",
+        "kick shares the 13-D family map",
+        "T3 PASS: first-step last_action keeps previous legs",
+        "P2 PASS: gait += dt*freq (mod 1)",
+        "T5 PASS: walk/kick 13==13 is not a swap permit",
+        "T5 PASS: reactive/T1 15==15 is not a load permit",
+        "H-doc PASS: walk history 10×32+24 documented, not memcpy'd",
+        "dim guard: short walk action rejected"
+      ]
+    },
+    "global_docs": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md: required anchors present",
+        "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
+        "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
+        "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
+        "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
+        "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
+        "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
+        "bhuman/docs/SWITCHER-SM.md: required anchors present",
+        "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
+        "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: required anchors present",
+        "bhuman/docs/PR4-INDEX.md: required anchors present",
+        "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md: required anchors present",
+        "bhuman/docs/P2-ACCEPTANCE.md: required anchors present",
+        "bhuman/docs/CONTRACT-GATE-GUIDE.md: required anchors present",
+        "bhuman/docs/P3-PREVIEW.md: required anchors present",
+        "bhuman/docs/P4-PREVIEW.md: required anchors present",
+        "bhuman/docs/CI-CONTRACT-GATE.md: required anchors present",
+        "bhuman/docs/P5-PREVIEW.md: required anchors present",
+        "bhuman/docs/README-RL.md: required anchors present",
+        "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
+        "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
+        "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
+        "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
+        "method_catalog.json: 21 entries cross-checked against survey",
+        "CI workflow draft stays in draft-only (not .github)",
+        "no live .github/workflows; cloud PASS+WARN documented only"
+      ]
+    },
+    "migrate_table": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and landings present"
+      ]
+    },
+    "estimators": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "official K1.yaml still 344->13 (read-only check)",
+        "passthrough: actor observation is a 344-D copy",
+        "passthrough: rewrite_walk_obs refused",
+        "passthrough: attach_to_k1_yaml refused",
+        "passthrough: create_training_env refused",
+        "rma: actor observation is a 344-D copy",
+        "rma: rewrite_walk_obs refused",
+        "rma: attach_to_k1_yaml refused",
+        "rma: create_training_env refused",
+        "dreamwaq: actor observation is a 344-D copy",
+        "dreamwaq: rewrite_walk_obs refused",
+        "dreamwaq: attach_to_k1_yaml refused",
+        "dreamwaq: create_training_env refused",
+        "kick 59 rejected as walk estimator input",
+        "reactive 64 rejected as walk estimator input",
+        "NUSim 79 rejected",
+        "no huoshen_t1 estimator family",
+        "10x32+24 split matches walk 344",
+        "RMA vs DreamWaQ are distinct single-factor names"
+      ]
+    },
+    "obs_schema": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "walk 10×32+24=344 layout sums",
+        "reactive 64→15 matches contract.py and stays parallel to 344",
+        "forbidden: Huoshen 58 and NUSim 79 listed",
+        "schema forbidden_as_walk dims (343, 345, 59, 73, 72, 64, 58, 79, 365)",
+        "schema lists walk/kick/standup/fast_standup/reactive",
+        "official walk 344→13 accepted",
+        "schema contract lists 343/345 as not-walk",
+        "negative: 64 refused as walk obs",
+        "negative: 72 refused as walk obs",
+        "negative: 73 refused as walk obs",
+        "negative: 365 refused as walk obs",
+        "negative: 79 refused as walk obs",
+        "negative: 343 refused as walk obs",
+        "negative: 345 refused as walk obs",
+        "negative: 58 refused as walk obs",
+        "negative: 59 refused as walk obs",
+        "negative: kick is not walk 344",
+        "negative: standup is not walk 344",
+        "negative: fast_standup is not walk 344",
+        "negative: reactive is not walk 344",
+        "negative: huoshen_t1 is not walk 344",
+        "negative: nusim is not walk 344",
+        "negative: missing walk history window refused",
+        "negative: history without tail_dim refused",
+        "negative: broken history formula refused",
+        "schema walk history 10×32+24 present",
+        "live walk obs layout untouched",
+        "live walk obs rewrite refused"
+      ]
+    },
+    "bt_skill_select": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "port frozen: implemented=false, default walk 344→13",
+        "B1 PASS: default is walk 344→13",
+        "B2 PASS: reactive conditions still fall back to walk",
+        "B3 PASS: kick 59→13",
+        "B4 PASS: fallen -> handoff_getup",
+        "B5 PASS: refused huoshen_t1",
+        "B5 PASS: refused nusim",
+        "B5 PASS: refused t1_reactive",
+        "B5 PASS: refused K1_Reactive",
+        "BT interface doc anchors present (including deploy cross-check)"
+      ]
+    },
+    "sim2sim_gate": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "sim2sim README still names walk 344→13",
+        "recorded runs/20261020_220814_312153_mujoco_walk stays (*,344) actor-only, robot_connected=false",
+        "official K1.yaml live PD still Ankle_Roll p60 (not robot p25)",
+        "negative dim: kick 59→13 refused as a walk overpass",
+        "negative dim: reactive 64→15 refused as a walk overpass",
+        "negative dim: Huoshen T1 58→15 refused as a walk overpass",
+        "negative dim: standup 73→22 refused as a walk overpass",
+        "negative dim: fast standup 72→22 refused as a walk overpass",
+        "negative dim: NUSim 79→22 refused as a walk overpass",
+        "negative dim: B-Human T1 walk 365→14 refused as a walk overpass",
+        "negative dim: walk obs + reactive act refused as a walk overpass",
+        "negative dim: walk obs + standup act refused as a walk overpass",
+        "negative dim: reactive obs + walk act refused as a walk overpass",
+        "negative PD: unified PD groups refused",
+        "negative PD: train YAML rewritten to p25 refused",
+        "negative PD: train Ankle_Roll drifted off p60 refused",
+        "negative PD: Huoshen T1 PD family refused",
+        "negative PD: NUSim PD family refused",
+        "official train PD declaration Ankle_Roll p60 accepted",
+        "live run-mujoco.sh not invoked",
+        "official walk 344->13 accepted",
+        "negative dim: kick 59→13 rejected",
+        "negative dim: reactive 64→15 rejected",
+        "negative dim: Huoshen T1 58→15 rejected",
+        "negative dim: standup 73→22 rejected",
+        "negative dim: fast standup 72→22 rejected",
+        "negative dim: NUSim 79→22 rejected",
+        "negative dim: B-Human T1 walk 365→14 rejected",
+        "negative dim: walk obs + reactive act rejected",
+        "negative dim: walk obs + standup act rejected",
+        "negative dim: reactive obs + walk act rejected",
+        "official train PD p60 accepted",
+        "negative PD: unified groups rejected",
+        "negative PD: train p60→robot p25 rejected",
+        "recorded 120 s walk result still (*,344)"
+      ],
+      "skipped": true,
+      "warnings": [
+        "sim2sim stack: python module mujoco missing",
+        "sim2sim stack: isaacsim-gui python missing",
+        "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
+        "sim2sim live replay skipped (no mujoco/weights); skeleton only"
+      ]
+    },
+    "switcher_sm": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "skeleton frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+        "walk→kick PASS (59→13, no memcpy claimed)",
+        "kick→walk PASS: history_reset_pending, contract 344→13",
+        "walk→standup PASS only when fallen",
+        "standup→walk PASS: 5 s hold + history reset",
+        "5 s hold tick is a timer only (no physics)",
+        "standup→kick rejected (must walk first)",
+        "reactive implemented=false: stay walk 344→13",
+        "refused huoshen_t1",
+        "refused nusim",
+        "T5 PASS: 13==13 is not an ONNX swap",
+        "SWITCHER-SM.md anchors present"
+      ]
+    },
+    "deploy_call": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "deploy frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+        "chain: BehaviorControl → BT → map → SM → slot map → engines(not invoked)",
+        "tick0 PASS: walk 344→13",
+        "walk→kick PASS: BT kick + SM 59→13 + last_action 13-D",
+        "kick→walk PASS: history_reset_pending, contract 344→13",
+        "fallen PASS: handoff_getup maps to GetUpEngine 73→22",
+        "BT/SM disagreement PASS: walk request rejected until getup_done",
+        "standup→kick rejected (must walk first)",
+        "standup→walk PASS: 5 s hold + 13 zeros + 344→13",
+        "5 s hold tick is a timer only (no physics)",
+        "reactive implemented=false: deploy stays walk 344→13",
+        "refused huoshen_t1 before SM / engines",
+        "refused nusim before SM / engines",
+        "refused t1_reactive before SM / engines",
+        "refused K1_Reactive before SM / engines",
+        "T5 PASS: 13==13 is not an ONNX swap",
+        "DEPLOY-CALL-SEQUENCE.md anchors present"
+      ]
+    },
+    "timeseries_contract": {
+      "ok": true,
+      "implemented": false,
+      "continuity": "SKIP",
+      "errors": [],
+      "notes": [
+        "timeseries frozen: TRAINABLE=false, IMPLEMENTED=false, walk 344",
+        "shape contract PASS: official walk 10×32+24=344",
+        "torque contract: (T,12) targets, not 13 currents",
+        "kick 59 rejected as walk history",
+        "reactive 64 rejected as walk history",
+        "NUSim 79 rejected as walk history",
+        "standup 22 rejected as walk torque",
+        "synthetic 344 buffer: shape_ok, continuity SKIP",
+        "synthetic 10×32 frames: shape_ok, continuity SKIP",
+        "live obs rewrite refused (344 stays official)",
+        "HISTORY-TORQUE-TIMESERIES.md anchors present",
+        "SKIP: H1/H2: no history trace → SKIP",
+        "SKIP: T4: no torque trace → SKIP",
+        "SKIP: H1–H6 / T4 all SKIP (no recorded switch traces)"
+      ],
+      "skips": [
+        "H1/H2: no history trace → SKIP",
+        "T4: no torque trace → SKIP",
+        "H1–H6 / T4 all SKIP (no recorded switch traces)"
+      ]
+    },
+    "estimator_bypass": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "hooks unwired: switcher / deploy_call do not eat latent",
+        "interface comment: latent is side-channel, not official 344",
+        "RMA: actor 344 copy; latent zeros stay off the vector",
+        "concat 344+latent refused",
+        "teammate/CTDE state refused from 344",
+        "switcher attach point documented, not wired",
+        "deploy_call attach point documented, not wired",
+        "official K1.yaml still 344→13 (estimators did not edit it)",
+        "DeployCall still defaults to official walk 344→13",
+        "estimator README: extras 不进 official 344"
+      ]
+    },
+    "reactive_hardening": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "TRAINABLE=false; not registered; reactive select unimplemented",
+        "obs/act stay 64→15, parallel to walk 344→13",
+        "action slots are head+legs+freq (no waist)",
+        "assert_reactive_bypass: stay-on-walk + refuse walk actor",
+        "official IsaacGymRL trees have no K1_Reactive; K1.yaml still 344→13",
+        "no legal *→reactive edge; relation is documentation-only",
+        "switcher relation (docs only): walk remains the default deploy skill; reactive conditions fall back to walk 344→13; SwitcherSM has no legal *→reactive edge",
+        "striker+ball+space still selects walk 344→13",
+        "SwitcherSM refuses reactive and remains on walk",
+        "K1_walk.pth cannot replace the reactive actor",
+        "DeployCall default entry is still official walk 344→13",
+        "P2-ACCEPTANCE.md: walk default, deps marked, P2 does not change 344→13"
+      ]
+    },
+    "bt_deploy_crosscheck": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: cross-check table present (default walk 344→13)",
+        "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: cross-check table present (default walk 344→13)",
+        "empty: BT walk + DeployCall walk 344→13",
+        "striker+ball+space: both layers stay on walk 344→13",
+        "want_kick: BT kick + deploy kick 59→13 (then back to walk)",
+        "fallen: BT handoff_getup → deploy standup 73→22",
+        "standup+want_kick: deploy refuses; must walk 344→13 first",
+        "BT refuses huoshen_t1 before deploy",
+        "deploy never reaches SM for huoshen_t1",
+        "BT refuses nusim before deploy",
+        "deploy never reaches SM for nusim"
+      ]
+    },
+    "standup_kick_hardening": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "contracts: walk 344→13 / kick 59→13 / standup 73→22 / fast 72→22",
+        "assert_standup_kick_bypass: empty=walk; fallen-only; getup_done; no standup→kick",
+        "empty context: BT + deploy stay official walk 344→13",
+        "standup only after fallen",
+        "standup→kick refused; must walk first",
+        "getup_done returns to walk 344→13",
+        "getup_done last_action constructed 13 zeros (gait_frequency included)",
+        "want_kick selects official kick 59→13",
+        "refused SimRobot as fast standup",
+        "refused SimRobot as 72→22",
+        "refused SimRobot claiming 72→22",
+        "non-impersonating SimRobot claim accepted (not a fast-standup gate)"
+      ]
+    },
+    "hifar_boundary": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_hifar_boundary: no T1 weights, no 58-as-344, docs present",
+        "refused model.pth as a K1 actor weight",
+        "refused K1_walk.pth as a K1 actor weight",
+        "Huoshen T1 58→15 refused as official walk 344→13",
+        "walk 344 + Huoshen 15-D action refused",
+        "official walk stays 344→13; Huoshen 58 is a different family",
+        "research-input present: bhuman/research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md",
+        "research-input present: bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+        "GLOBAL cites 火神 2511.03996 and HiFAR separately",
+        "research-input present: bhuman/docs/HIFAR-VS-STANDUP.md",
+        "HIFAR pointer 2502.20061 ≠ standup 73→22 / 72→22",
+        "research-input present: bhuman/docs/RESEARCH-BRANCH.md"
+      ]
+    },
+    "blockers": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "ROADMAP §5: 缺什么 / 谁提供 / SKIP→PASS + 先告知用户",
+        "blocker ids present: B1, B2, B3, B4, B5, B6, B7, B8",
+        "checklist forbids auto-train when a GPU worker appears",
+        "NEXT-P1-P2.md still starts GPU work on official walk 344→13"
+      ]
+    },
+    "p1_draft": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "draft baseline stays 344→13",
+        "five P1 factors are draft-only and do not rewrite 344",
+        "official K1.yaml rewards and stability v1 jsons unchanged",
+        "run_walk_stability.sh still uses official v1 presets only",
+        "P1 config draft doc present"
+      ]
+    },
+    "draft_validator": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "current draft: draft_only=true; stability script does not read it",
+        "draft-only dir scan: ['walk-p1-factors-v0.json']",
+        "official walk-*-stability-v1.json do not import draft-only",
+        "negative: draft without draft_only:true refused",
+        "negative: draft apply_to_live / live config_patch refused",
+        "negative: draft marked config_patch=true refused",
+        "negative: draft_only=false refused as official patch",
+        "negative: draft must not overwrite live still_proportion",
+        "negative: draft must not overwrite live tracking_lin_vel_x",
+        "negative: draft must not overwrite live tracking_lin_vel_y",
+        "negative: draft must not overwrite live tracking_ang_vel",
+        "negative: draft must not overwrite live action_rate",
+        "negative: draft must not overwrite live reference_mean_penalty",
+        "negative: official config_patch cannot eat draft still_proportion",
+        "negative: run_walk_stability cannot eat draft action_rate",
+        "negative: official reference_mean_penalty cannot eat draft anneal",
+        "negative: run_walk_stability.sh loading draft-only refused",
+        "current run_walk_stability.sh stays on official v1 presets",
+        "negative: stability script missing official v1 preset refused",
+        "negative: official config_patch importing draft-only refused",
+        "non-live target may discuss proposed still_proportion"
+      ]
+    },
+    "switcher_integration_suite": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "suite default: empty context → walk 344→13",
+        "suite member PASS: test_switcher_sm.py",
+        "suite member PASS: test_deploy_call.py",
+        "suite member PASS: test_standup_kick_hardening.py",
+        "suite member PASS: test_bt_deploy_crosscheck.py"
+      ],
+      "parts": {
+        "test_switcher_sm.py": {
+          "ok": true,
+          "errors": []
+        },
+        "test_deploy_call.py": {
+          "ok": true,
+          "errors": []
+        },
+        "test_standup_kick_hardening.py": {
+          "ok": true,
+          "errors": []
+        },
+        "test_bt_deploy_crosscheck.py": {
+          "ok": true,
+          "errors": []
+        }
+      },
+      "default": "walk 344→13",
+      "trainable": false
+    },
+    "overpass_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "overpass frozen: TRAINABLE=false; default 344→13; no live sim",
+        "default overpass declares walk 344→13",
+        "negative: overpass missing 344→13 declaration refused",
+        "negative: kick 59→13 refused as walk overpass",
+        "negative: standup 73→22 refused as walk overpass",
+        "negative: fast_standup 72→22 refused as walk overpass",
+        "negative: reactive 64→15 refused as walk overpass",
+        "negative: huoshen_t1 58→15 refused as walk overpass",
+        "negative: nusim 79→22 refused as walk overpass",
+        "same-gate identity accepted",
+        "negative: isaac_train ≠ mujoco_overpass",
+        "negative: mujoco_overpass ≠ simrobot_replay",
+        "negative: simrobot_replay ≠ isaac_train",
+        "negative: isaac_train ≠ simrobot_replay",
+        "Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 回放",
+        "live mujoco / run-mujoco.sh rewrite refused",
+        "live run-mujoco.sh present and unread by this stub",
+        "live sim README still names walk 344→13"
+      ],
+      "trainable": false
+    },
+    "unit_tests_no_gym": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "default assert: official walk 344→13 + live rewards untouched",
+        "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "PASS test_blockers.py",
+        "PASS test_booster_joints_snapshot.py",
+        "PASS test_bt_deploy_crosscheck.py",
+        "PASS test_deploy_call.py",
+        "PASS test_env_registry_audit.py",
+        "PASS test_gait_frequency_contract.py",
+        "PASS test_gpu_worker_checklist.py",
+        "PASS test_history_buffer_shape.py",
+        "PASS test_joint_map_contract.py",
+        "PASS test_k1_reward_audit.py",
+        "PASS test_last_action_reset.py",
+        "PASS test_obs_assembly.py",
+        "PASS test_onnx_export_contract.py",
+        "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
+        "PASS test_p1_draft_diff.py",
+        "PASS test_print_train_dry_run.py",
+        "PASS test_standup_kick_hardening.py",
+        "PASS test_switcher_integration_suite.py",
+        "PASS test_switcher_sm.py",
+        "PASS test_timeseries_contract.py",
+        "PASS test_bt_skill_select.py",
+        "PASS test_global_docs.py",
+        "PASS test_hifar_boundary.py",
+        "PASS test_migrate_table.py",
+        "PASS test_obs_schema.py",
+        "PASS test_pr4_merge_checklist.py",
+        "PASS test_pr4_selfcheck.py",
+        "PASS test_reactive_hardening.py",
+        "PASS test_research_migrate_table.py",
+        "PASS test_skill_switch_continuity.py",
+        "PASS test_skill_switch_map.py",
+        "PASS test_unregistered_in_train_py.py",
+        "PASS test_estimator_bypass.py",
+        "PASS test_estimators.py",
+        "PASS test_draft_validator.py",
+        "PASS test_p1_draft.py",
+        "PASS test_overpass_contract.py",
+        "PASS test_sim2sim_gate.py",
+        "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)"
+      ],
+      "results": [
+        {
+          "name": "test_blockers.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_booster_joints_snapshot.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_bt_deploy_crosscheck.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_deploy_call.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_env_registry_audit.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_gait_frequency_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_gpu_worker_checklist.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_history_buffer_shape.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_joint_map_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_k1_reward_audit.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_last_action_reset.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_obs_assembly.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_onnx_export_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_p1_draft_diff.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_print_train_dry_run.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_standup_kick_hardening.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_switcher_integration_suite.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_switcher_sm.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_timeseries_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_bt_skill_select.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_global_docs.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_hifar_boundary.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_migrate_table.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_obs_schema.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_pr4_merge_checklist.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_pr4_selfcheck.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_reactive_hardening.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_research_migrate_table.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_skill_switch_continuity.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_skill_switch_map.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_unregistered_in_train_py.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_estimator_bypass.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_estimators.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_draft_validator.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_p1_draft.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_overpass_contract.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_sim2sim_gate.py",
+          "status": "PASS"
+        }
+      ],
+      "discovered": [
+        "test_blockers.py",
+        "test_booster_joints_snapshot.py",
+        "test_bt_deploy_crosscheck.py",
+        "test_deploy_call.py",
+        "test_env_registry_audit.py",
+        "test_gait_frequency_contract.py",
+        "test_gpu_worker_checklist.py",
+        "test_history_buffer_shape.py",
+        "test_joint_map_contract.py",
+        "test_k1_reward_audit.py",
+        "test_last_action_reset.py",
+        "test_obs_assembly.py",
+        "test_onnx_export_contract.py",
+        "test_p1_draft_diff.py",
+        "test_print_train_dry_run.py",
+        "test_standup_kick_hardening.py",
+        "test_switcher_integration_suite.py",
+        "test_switcher_sm.py",
+        "test_timeseries_contract.py",
+        "test_bt_skill_select.py",
+        "test_global_docs.py",
+        "test_hifar_boundary.py",
+        "test_migrate_table.py",
+        "test_obs_schema.py",
+        "test_pr4_merge_checklist.py",
+        "test_pr4_selfcheck.py",
+        "test_reactive_hardening.py",
+        "test_research_migrate_table.py",
+        "test_skill_switch_continuity.py",
+        "test_skill_switch_map.py",
+        "test_unregistered_in_train_py.py",
+        "test_estimator_bypass.py",
+        "test_estimators.py",
+        "test_draft_validator.py",
+        "test_p1_draft.py",
+        "test_overpass_contract.py",
+        "test_sim2sim_gate.py"
+      ],
+      "walk": "344→13",
+      "trainable": false
+    },
+    "onnx_export_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "export frozen: TRAINABLE=false; default walk 344→13; no write",
+        "default exportable path is official walk 344→13",
+        "negative: default export missing 344→13 declaration refused",
+        "negative: kick 59→13 refused as default walk export",
+        "negative: standup 73→22 refused as default walk export",
+        "negative: fast_standup 72→22 refused as default walk export",
+        "negative: reactive 64→15 refused as default walk export",
+        "negative: huoshen_t1 58→15 refused as default walk export",
+        "negative: nusim 79→22 refused as default walk export",
+        "negative: hot-swap ONNX into official actor refused",
+        "negative: replace official ONNX refused",
+        "negative: walk/kick ONNX swap refused",
+        "official K1_walk.onnx write refused",
+        "skipped (missing optional runtime): no K1_walk.pth",
+        "user approval still does not export (IMPLEMENTED=false)",
+        "skipped (missing optional runtime): no K1_walk.pth",
+        "official K1.yaml still 344→13 (export stub did not edit it)"
+      ],
+      "trainable": false,
+      "skipped": true,
+      "walk": "344→13"
+    },
+    "gpu_worker_checklist": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "probe source does not invoke train.py",
+        "will_run_train_py=false will_run_isaac_gym=false",
+        "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
+        "official K1 task visible (registry + K1.yaml 344→13)",
+        "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+        "probe JSON includes checklist",
+        "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
+        "probe_reserved_gpu.sh does not call train.py",
+        "official walk stays 344→13"
+      ],
+      "trainable": false,
+      "ready": false,
+      "missing": [
+        "cuda",
+        "isaacgym_or_alt",
+        "checkpoint"
+      ],
+      "walk": "344→13"
+    },
+    "k1_reward_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "live snapshot matches still_proportion 0.1 / tracking_* / action_rate -1. / ref 1.0",
+        "draft-only not used as an official source",
+        "reward item list: 31 scales",
+        "tampered snapshot still_proportion=0.25 refused",
+        "tampered snapshot tracking_lin_vel_x=1.0 refused",
+        "tampered snapshot action_rate=0.0 refused",
+        "tampered snapshot reference_mean_penalty=0.25 refused",
+        "write-back API refused",
+        "official K1.yaml untouched",
+        "reward scales (31): action_pos_limits, action_rate, actions_in_range, ang_vel_xy, base_height, collision, dof_acc, dof_pos_limits…",
+        "baseline still_proportion=0.1 tracking_* action_rate=-1. reference_mean_penalty=1.0",
+        "official K1.yaml trees agree; draft-only excluded",
+        "write-back of K1.yaml refused",
+        "K1.yaml sha256 unchanged (read-only)",
+        "wrote bhuman/k1-training/manifests/k1-reward-audit-latest.json"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "history_buffer_shape": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "frozen construct/validate API: 10×32+24=344",
+        "synthetic all-zeros: shape PASS, continuity SKIP",
+        "refuse_continuity_pass_on_synthetic caught fake-green zeros",
+        "split/flatten round-trip stays 10×32+24=344",
+        "negative: 10×31 refused",
+        "negative: 343 refused as walk history",
+        "negative: kick 59 refused as walk history",
+        "claimed-recorded zeros still continuity SKIP",
+        "official K1.yaml still 344 (buffer stub did not edit it)"
+      ],
+      "trainable": false,
+      "continuity": "SKIP",
+      "walk": "344→13"
+    },
+    "research_migrate_table": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "RESEARCH-MIGRATE-TABLE.md anchors present",
+        "research-inputs files: ['environment-audit-pasted.txt', 'research-pasted.txt']",
+        "every research-inputs file is cited",
+        "official walk still 344→13 (table is docs-only)"
+      ],
+      "walk": "344→13"
+    },
+    "joint_map_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "official extract: 13-D walk map",
+        "WalkingEngine boosterJoints + gait_frequency; K1.yaml unread-write",
+        "walk action map length 13 (12 legs + gait_frequency)",
+        "negative: length 12 refused",
+        "negative: length 15 refused",
+        "negative: length 22 refused",
+        "negative: 12-leg list refused (missing gait_frequency)",
+        "negative: standup 22-D must not impersonate walk action map",
+        "negative: standup prefix 13 refused",
+        "negative: standup skill 22 refused as walk map",
+        "negative: reactive 15 refused",
+        "kick 59→13 shared exit: only act=13 checked",
+        "negative: kick exit ≠13 refused",
+        "official K1.yaml untouched (read-only extract)"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "p1_draft_diff": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "live snapshot: draft_only:true and live paths untouched",
+        "official stability / K1.yaml listed separately from draft-only",
+        "proposed still_proportion / penalty anneal not applied live",
+        "negative: draft without draft_only:true refused",
+        "write-back API refused",
+        "drafts draft_only=true: ['walk-p1-factors-v0.json']",
+        "live paths untouched (K1.yaml + official stability-v1)",
+        "K1.yaml live rewards / dims untouched",
+        "walk-reference-stability-v1.json has no draft-only import",
+        "walk-critic-stability-v1.json has no draft-only import",
+        "official reference_mean_penalty stays 1.0",
+        "write-back of K1.yaml refused",
+        "K1.yaml sha256 unchanged (read-only)",
+        "wrote bhuman/k1-training/manifests/p1-draft-diff-latest.json",
+        "wrote manifests/p1-draft-diff-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "pr4_merge_checklist": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "PR4-MERGE-CHECKLIST.md anchors present",
+        "official walk still 344→13 (checklist is docs-only)"
+      ],
+      "walk": "344→13"
+    },
+    "gait_frequency_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "K1.yaml: num_actions 13 + action_frequence_limit ±0.5",
+        "t1.py last action slot is frequency (not a 13th PD target)",
+        "WalkingEngine: rawFrequency after boosterJoints loop",
+        "decode sample 1.5+0.25 → 1.75",
+        "walk action[12] semantics = gait_frequency, is_motor=false",
+        "negative: slot 12 as motor refused",
+        "negative: 13th motor interpretation refused",
+        "negative: slot 12 named as a leg motor refused",
+        "negative: standup[12]=lHipYaw is a motor, not gait_frequency",
+        "negative: reactive action[12] is a leg, not walk freq",
+        "negative: reactive freq[14] ≠ walk action[12]",
+        "clip(+2.0) → 1.5+0.5=2.0",
+        "negative: standup 22-D refused as walk frequency decode",
+        "negative: reactive 15-D refused as walk frequency decode",
+        "cross-assert: joint_map[12] == gait_frequency",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "booster_joints_snapshot": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "PASS: boosterJoints 12 matches joint_map; +gait_frequency",
+        "SKIP helper leaves booster_joints empty",
+        "write-back API refused",
+        "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp: 12 legs",
+        "matches joint_map; walk13 appends gait_frequency (not a motor)",
+        "write-back of K1.yaml refused",
+        "wrote bhuman/k1-training/manifests/booster-joints-walk13-latest.json",
+        "official K1.yaml untouched",
+        "wrote manifests/booster-joints-walk13-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "pr4_selfcheck": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "run_pr4_selfcheck.sh steps + 344→13 / TRAINABLE=false / ready_gpu",
+        "selfcheck does not invoke train.py",
+        "official walk still 344→13"
+      ],
+      "walk": "344→13"
+    },
+    "obs_assembly": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assembly 10×32+24=344 sources present",
+        "deploy default official walk; not reactive concat",
+        "WalkingEngine.h RingBuffer<HistoryData, 10>",
+        "OBS-ASSEMBLY-344.md: deploy stays official walk",
+        "negative: refused {'via_reactive': True, 'obs': 344}",
+        "negative: refused {'obs': 64}",
+        "negative: refused {'obs': 3200}",
+        "negative: refused {'latent_into_344': True}",
+        "negative: refused {'obs': 59}",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "last_action_reset": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "cross SM/deploy/standup_kick: reset 13 zeros, slot 12=0",
+        "constructed last_action = 13 zeros (freq slot included)",
+        "negative: freq slot nonzero refused",
+        "negative: 22-D vector refused as walk reset",
+        "negative: standup_slice source refused (not a constructed 13-zero)",
+        "negative: standup[:13] (even zeros) refused as walk reset",
+        "SM incoming_last_action standup→walk is constructed 13 zeros",
+        "SM getup_done last_action 13 zeros (not standup memcpy)",
+        "deploy_call getup_done last_action 13 zeros",
+        "standup_kick bypass still: getup_done → walk 344→13",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "print_train_dry_run": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "source does not spawn train.py",
+        "no subprocess import in dry-run generator",
+        "negative: --exec refused",
+        "negative: --task K1_Reactive refused",
+        "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+        "injected ready=true still print-only / will_run_train_py=false",
+        "printed banner + official --task K1 draft; exit 0",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "env_registry_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "audit is read-only (no train.py spawn)",
+        "live: official K1 in; k1-reactive / estimators / switcher out",
+        "negative: dropped official K1 refused",
+        "negative: K1_Reactive listed as registered refused",
+        "negative: leaked envs/__init__ K1_Reactive refused",
+        "negative: missing K1 import refused",
+        "write-back of K1.yaml refused",
+        "wrote env-registry-audit-latest.json (K1 in; bypass out)",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    }
+  },
+  "reserved_gpu": {
+    "generated_utc": "2026-10-24T07:45:48+00:00",
+    "reserved": true,
+    "ready": false,
+    "skipped": true,
+    "skip_reasons": [
+      "nvidia-smi not found (no CUDA worker)",
+      "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+      "K1_walk.pth absent (gitignored / local-only)"
+    ],
+    "nvidia_smi": null,
+    "gpu": null,
+    "bh_gym_python": null,
+    "bh_gym_version": null,
+    "isaacgym_in_bh_gym": false,
+    "auto_smoke_env": "0",
+    "will_run_isaac_gym": false,
+    "will_run_train_py": false,
+    "must_tell_user_before_train": true,
+    "tell_user": null,
+    "checklist": {
+      "cuda": {
+        "ok": false,
+        "detail": "nvidia-smi not found (no CUDA worker)",
+        "gpu": null
+      },
+      "isaacgym_or_alt": {
+        "ok": false,
+        "detail": "bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+        "bh_gym_python": null,
+        "bh_gym_version": null,
+        "isaacgym": false,
+        "alternative": null
+      },
+      "disk": {
+        "ok": true,
+        "detail": "IsaacGymRL present; free≈246.2GiB"
+      },
+      "official_k1_task": {
+        "ok": true,
+        "detail": "official registry imports K1; K1.yaml 344→13",
+        "task": "K1"
+      },
+      "checkpoint": {
+        "ok": false,
+        "detail": "K1_walk.pth absent (gitignored / local-only)"
+      }
+    },
+    "missing": [
+      "cuda",
+      "isaacgym_or_alt",
+      "checkpoint"
+    ],
+    "official_k1_task": {
+      "ok": true,
+      "detail": "official registry imports K1; K1.yaml 344→13",
+      "task": "K1"
+    },
+    "templates": {
+      "note": "All commands keep official K1 walk 344→13. Do not pass --task=K1_Reactive.",
+      "env_check": "bash bhuman/k1-training/scripts/run_env_check.sh",
+      "replay_walk": "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+      "replay_kick": "bash bhuman/k1-training/scripts/run_replay.sh K1_Ball 4 300",
+      "replay_standup": "bash bhuman/k1-training/scripts/run_replay.sh K1_Stand_Up 4 300",
+      "eval_s2027": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2027 100 8",
+      "eval_s2028": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2028 100 8",
+      "eval_s2029": "bash bhuman/k1-training/scripts/run_walk_eval.sh $K1_TRAINING_ROOT/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2029 100 8",
+      "stability_warm": "bash bhuman/k1-training/scripts/run_walk_stability.sh 4096 25 7 warm-start",
+      "sim2sim": "bash bhuman/sim2sim/run-mujoco.sh --seconds 120"
+    },
+    "baseline": "B-Human IsaacGymRL official walk 344→13 / kick 59→13 / standup 73→22"
+  },
+  "t1_bhuman_contracts": {
+    "walk": "365→14",
+    "kick": "62→14",
+    "standup": "76→23",
+    "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
+  },
+  "commits": {
+    "workspace_head": "628a131e65ee4fadad8c86f5b7f8ee85f4a94054",
+    "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
+    "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
+    "pinned_upstream_MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+    "pinned_upstream_BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
+    "git_origins": {
+      "bhuman/BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "bhuman/MachineLearning": "c3fed817e6e8fd06418bea824b1f1ab0157379d2"
+    },
+    "k1_training_source_fingerprint": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "nvidia_smi": null,
+    "gpu": null,
+    "modules": {
+      "torch": false,
+      "isaacgym": false,
+      "onnx": false,
+      "onnxruntime": false,
+      "mujoco": false
+    },
+    "bh_gym_python_exists": false,
+    "bh_gym_python": "/home/ubuntu/.venvs/bh-gym/bin/python",
+    "isaacsim_gui_python_exists": false,
+    "can_run_isaac_gym_train": false,
+    "can_run_mujoco_sim2sim": false
+  },
+  "trees": {
+    "bhuman/MachineLearning/IsaacGymRL": {
+      "exists": true,
+      "k1": {
+        "walk": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1.yaml",
+          "num_observations": 344,
+          "num_actions": 13,
+          "num_privileged_obs": 16,
+          "num_base_observations": 32,
+          "num_last_observations": 24,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Ball.yaml",
+          "num_observations": 59,
+          "num_actions": 13,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "num_observations": 73,
+          "num_actions": 22,
+          "num_privileged_obs": 38
+        }
+      },
+      "t1": {
+        "walk": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1.yaml",
+          "num_observations": 365,
+          "num_actions": 14,
+          "num_privileged_obs": 16,
+          "num_base_observations": 34,
+          "num_last_observations": 25,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Ball.yaml",
+          "num_observations": 62,
+          "num_actions": 14,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/MachineLearning/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "num_observations": 76,
+          "num_actions": 23,
+          "num_privileged_obs": 39
+        }
+      },
+      "model": {
+        "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py",
+        "actor_in_num_obs": true,
+        "actor_out_num_act": true,
+        "critic_in_obs_plus_priv": true,
+        "ctor_order_act_obs_priv": true,
+        "ok": true
+      },
+      "walk_history_formula": true,
+      "huoshen_markers_in_training_src": []
+    },
+    "bhuman/k1-training/src/IsaacGymRL": {
+      "exists": true,
+      "k1": {
+        "walk": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+          "num_observations": 344,
+          "num_actions": 13,
+          "num_privileged_obs": 16,
+          "num_base_observations": 32,
+          "num_last_observations": 24,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Ball.yaml",
+          "num_observations": 59,
+          "num_actions": 13,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Stand_Up.yaml",
+          "num_observations": 73,
+          "num_actions": 22,
+          "num_privileged_obs": 38
+        }
+      },
+      "t1": {
+        "walk": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1.yaml",
+          "num_observations": 365,
+          "num_actions": 14,
+          "num_privileged_obs": 16,
+          "num_base_observations": 34,
+          "num_last_observations": 25,
+          "history_size": 10
+        },
+        "kick": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Ball.yaml",
+          "num_observations": 62,
+          "num_actions": 14,
+          "num_privileged_obs": 16
+        },
+        "standup": {
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/T1_Stand_Up.yaml",
+          "num_observations": 76,
+          "num_actions": 23,
+          "num_privileged_obs": 39
+        }
+      },
+      "model": {
+        "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py",
+        "actor_in_num_obs": true,
+        "actor_out_num_act": true,
+        "critic_in_obs_plus_priv": true,
+        "ctor_order_act_obs_priv": true,
+        "ok": true
+      },
+      "walk_history_formula": true,
+      "huoshen_markers_in_training_src": []
+    }
+  },
+  "walk_cfgs": [
+    {
+      "path": "/workspace/bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        },
+        "ballStealNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        },
+        "ballStealNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    },
+    {
+      "path": "/workspace/bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "walk": {
+        "numInput": 344,
+        "numOutput": 13
+      },
+      "kick_blocks": {
+        "ballNetworkParameters": {
+          "numInput": 59
+        },
+        "oldBallNetworkParameters": {
+          "numInput": 59
+        }
+      }
+    }
+  ],
+  "getup_cfgs": [
+    {
+      "path": "bhuman/MachineLearning/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/getUpEngine_k1.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/k1-training/src/Config/Robots/Default/K1/getUpEngine.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    },
+    {
+      "path": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+      "numInput": 73,
+      "numOutput": 22,
+      "numInputFast": 72,
+      "numOutputFast": 22
+    }
+  ],
+  "policy_contract_v1": {
+    "walk": true,
+    "kick": true,
+    "standup": true,
+    "fast_standup": true
+  },
+  "models_v2_io": [
+    {
+      "name": "K1_walk.onnx",
+      "in": 344,
+      "out": 13,
+      "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+      "ok": true
+    },
+    {
+      "name": "K1_kick_inner.onnx",
+      "in": 59,
+      "out": 13,
+      "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+      "ok": true
+    },
+    {
+      "name": "K1_kick_inner_soft.onnx",
+      "in": 59,
+      "out": 13,
+      "sha256": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+      "ok": true
+    },
+    {
+      "name": "K1.onnx",
+      "in": 73,
+      "out": 22,
+      "sha256": "44ee5ddb2b64c79b511ed0914ec40fee81b03987061b130ed17bf546e47cc486",
+      "ok": true
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "in": 72,
+      "out": 22,
+      "sha256": "adae2f0021e3a6c9adabe7df6095e01c86b5226c72834f475ff164cd9ee8aba5",
+      "ok": true
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "in": 72,
+      "out": 22,
+      "sha256": "7be4ba074a4d7ee55f6f1fa1b6457a0125f33e25f52acb00026baed56ec7d082",
+      "ok": true
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "K1_walk.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner_soft.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_fast_standup.onnx",
+      "path": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+      "exists": false
+    },
+    {
+      "name": "K1_walk.pth",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+      "exists": false
+    },
+    {
+      "name": "K1_kick_inner.pth",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+      "exists": false
+    },
+    {
+      "name": "K1_stand_up.pt",
+      "path": "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+      "exists": false
+    }
+  ],
+  "research": {
+    "huoshen_findings_on_main": true,
+    "research_branch_catalog_on_main": false,
+    "huoshen_code_vendored": false,
+    "doc_contract": {
+      "platform": "Booster T1 (not K1)",
+      "obs": 58,
+      "stack": 50,
+      "history_embedding_dim": 64,
+      "act": 15,
+      "policy_hz": 50,
+      "vision_hz": 25,
+      "delay_ms": "116±18"
+    },
+    "note": "Huoshen public skill is T1 58-D + 50-frame stack → 15 actions. B-Human T1.yaml in this repo is the walk/kick/standup family (365→14 / 62→14 / 76→23), not the Huoshen reactive task. Do not load T1 Huoshen weights onto K1."
+  },
+  "errors": [],
+  "warnings": [
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+    "weight/ONNX absent (expected on operator machine / Release): bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+    "checkpoint absent (gitignored / local-only): bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+    "reserved GPU/bh-gym: nvidia-smi not found (no CUDA worker)",
+    "reserved GPU/bh-gym: bh-gym interpreter missing (tried ['/home/ubuntu/.venvs/bh-gym/bin/python', '/home/peakpeng/.venvs/bh-gym/bin/python'])",
+    "reserved GPU/bh-gym: K1_walk.pth absent (gitignored / local-only)",
+    "GPU checklist missing: cuda, isaacgym_or_alt, checkpoint",
+    "reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay",
+    "sim2sim stack: python module mujoco missing",
+    "sim2sim stack: isaacsim-gui python missing",
+    "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
+    "sim2sim live replay skipped (no mujoco/weights); skeleton only"
+  ],
+  "notes": [
+    "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "bhuman/MachineLearning/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
+    "ActorCritic /workspace/bhuman/k1-training/src/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
+    "bhuman/k1-training/src/IsaacGymRL: no Huoshen/HiFAR/num_stack markers (B-Human contracts only)",
+    "both IsaacGymRL trees agree on K1 walk env dims",
+    "both IsaacGymRL trees agree on K1 kick env dims",
+    "both IsaacGymRL trees agree on K1 standup env dims",
+    "bhuman/MachineLearning/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/walkingEngine_k1.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg: kick networks inherit walk numOutput=13 (not restated in ball blocks)",
+    "Isaac Gym / official walk GPU replay cannot run here: need bh-gym (Python 3.8.20), Isaac Gym Preview 4, CUDA GPU, and K1_walk.pth",
+    "baseline walk stays 344→13; K1_Reactive is parallel 64→15",
+    "action count 15 equals Huoshen T1 count but slots are head+legs+freq, not waist",
+    "bhuman/MachineLearning/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "bhuman/k1-training/src/IsaacGymRL/envs: official registry stays walk/kick/standup only",
+    "unregistered in train.py = PASS (YAML lives in k1-reactive/; Runner cannot eval the stub)",
+    "skill-switch continuity checklist present (docs + empty shells)",
+    "HiFAR vs standup 73→22 / fast 72→22 boundary note present",
+    "global humanoid survey present",
+    "P0–P5 roadmap present",
+    "migrate-to-K1 table present",
+    "BT skill-select interface present",
+    "obs contract JSON present",
+    "switcher state-machine note present",
+    "P1 config diff draft present",
+    "deploy call sequence present",
+    "PR #4 file-tree index present",
+    "history/torque timeseries draft present",
+    "P2 acceptance (walk default; P2 does not change 344) present",
+    "HiFAR ≠ standup 73→22 / fast 72→22 present",
+    "contract-gate guide (PASS ≠ trained) present",
+    "P3 preview (no training; walk stays default) present",
+    "P4 preview (no six-robot/real-robot; three gates) present",
+    "CI contract-gate draft (PASS+WARN, no forced CI) present",
+    "P5 preview (no robot; docs/gate ready ≠ on robot) present",
+    "RL 5-min map (baseline / two commands / when to train) present",
+    "no-Gym one-shot unit tests (walk 344→13; honest SKIP) present",
+    "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
+    "ONNX export contract (walk 344→13 only; no real weights) present",
+    "GPU worker checklist (probe only; never train.py) present",
+    "K1 reward read-only audit (no yaml write-back) present",
+    "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
+    "research-inputs / GLOBAL short migrate table present",
+    "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
+    "official vs draft-only key diff (draft_only:true; live untouched) present",
+    "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
+    "walk action[12]=gait_frequency (not a 13th motor) present",
+    "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
+    "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
+    "deploy-side walk obs assembly 10×32+24=344 (not reactive concat) present",
+    "walk obs assembly shape check (no fabricate) present",
+    "return-to-walk last_action 13 zeros (refuse standup[:13]) present",
+    "print-only first-train draft --task K1 (干跑成功 ≠ 可训) present",
+    "official train.py registry (K1 in; bypass not registered) present",
+    "GPU worker online steps (probe → tell user → wait 开训 → dry-run) present",
+    "skill_switch_map static T1/T2 slots PASS (no Gym)",
+    "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
+    "refuse_foreign_checkpoint blocks official walk weights",
+    "refuse_foreign_checkpoint blocks Huoshen T1 model.pth",
+    "create_training_env() raises (stub is not a Gym task)",
+    "unregistered in train.py = PASS (skeleton YAML exists in k1-reactive/; not a train.py task)",
+    "K1_Reactive skeleton is parallel 64→15 and not registered in IsaacGymRL",
+    "positive fixture: official init without K1_Reactive → not a leak",
+    "negative fixture: leaked import in envs/__init__.py → FAIL (as required)",
+    "negative fixture: leaked envs/K1_Reactive.yaml → FAIL (as required)",
+    "negative fixture: leaked envs/k1_reactive.py → FAIL (as required)",
+    "current tree: skeleton YAML exists beside IsaacGymRL; unregistered in train.py = PASS",
+    "checked official tree bhuman/MachineLearning/IsaacGymRL/envs",
+    "checked official tree bhuman/k1-training/src/IsaacGymRL/envs",
+    "skill-switch continuity: 8 empty shells, implemented=false",
+    "T1 PASS: walk action[:12] == reactive[2:14]",
+    "T2 PASS: walk action[12] == reactive[14]; head from caller",
+    "T1 inverse PASS: reactive -> walk drops head",
+    "kick shares the 13-D family map",
+    "T3 PASS: first-step last_action keeps previous legs",
+    "P2 PASS: gait += dt*freq (mod 1)",
+    "T5 PASS: walk/kick 13==13 is not a swap permit",
+    "T5 PASS: reactive/T1 15==15 is not a load permit",
+    "H-doc PASS: walk history 10×32+24 documented, not memcpy'd",
+    "dim guard: short walk action rejected",
+    "bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md: required anchors present",
+    "bhuman/docs/ROADMAP-P0-P5.md: required anchors present",
+    "bhuman/docs/HIFAR-VS-STANDUP.md: required anchors present",
+    "bhuman/docs/SKILL-SWITCH-CONTINUITY.md: required anchors present",
+    "bhuman/docs/MIGRATE-TO-K1.md: required anchors present",
+    "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: required anchors present",
+    "bhuman/docs/schemas/obs-contract-v1.json: required anchors present",
+    "bhuman/docs/SWITCHER-SM.md: required anchors present",
+    "bhuman/docs/P1-CONFIG-DIFF-DRAFT.md: required anchors present",
+    "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: required anchors present",
+    "bhuman/docs/PR4-INDEX.md: required anchors present",
+    "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md: required anchors present",
+    "bhuman/docs/P2-ACCEPTANCE.md: required anchors present",
+    "bhuman/docs/CONTRACT-GATE-GUIDE.md: required anchors present",
+    "bhuman/docs/P3-PREVIEW.md: required anchors present",
+    "bhuman/docs/P4-PREVIEW.md: required anchors present",
+    "bhuman/docs/CI-CONTRACT-GATE.md: required anchors present",
+    "bhuman/docs/P5-PREVIEW.md: required anchors present",
+    "bhuman/docs/README-RL.md: required anchors present",
+    "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
+    "bhuman/docs/PR4-MERGE-CHECKLIST.md: required anchors present",
+    "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
+    "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
+    "method_catalog.json: 21 entries cross-checked against survey",
+    "CI workflow draft stays in draft-only (not .github)",
+    "no live .github/workflows; cloud PASS+WARN documented only",
+    "bhuman/docs/MIGRATE-TO-K1.md: columns, §7 rows, and landings present",
+    "official K1.yaml still 344->13 (read-only check)",
+    "passthrough: actor observation is a 344-D copy",
+    "passthrough: rewrite_walk_obs refused",
+    "passthrough: attach_to_k1_yaml refused",
+    "passthrough: create_training_env refused",
+    "rma: actor observation is a 344-D copy",
+    "rma: rewrite_walk_obs refused",
+    "rma: attach_to_k1_yaml refused",
+    "rma: create_training_env refused",
+    "dreamwaq: actor observation is a 344-D copy",
+    "dreamwaq: rewrite_walk_obs refused",
+    "dreamwaq: attach_to_k1_yaml refused",
+    "dreamwaq: create_training_env refused",
+    "kick 59 rejected as walk estimator input",
+    "reactive 64 rejected as walk estimator input",
+    "NUSim 79 rejected",
+    "no huoshen_t1 estimator family",
+    "10x32+24 split matches walk 344",
+    "RMA vs DreamWaQ are distinct single-factor names",
+    "walk 10×32+24=344 layout sums",
+    "reactive 64→15 matches contract.py and stays parallel to 344",
+    "forbidden: Huoshen 58 and NUSim 79 listed",
+    "schema forbidden_as_walk dims (343, 345, 59, 73, 72, 64, 58, 79, 365)",
+    "schema lists walk/kick/standup/fast_standup/reactive",
+    "official walk 344→13 accepted",
+    "schema contract lists 343/345 as not-walk",
+    "negative: 64 refused as walk obs",
+    "negative: 72 refused as walk obs",
+    "negative: 73 refused as walk obs",
+    "negative: 365 refused as walk obs",
+    "negative: 79 refused as walk obs",
+    "negative: 343 refused as walk obs",
+    "negative: 345 refused as walk obs",
+    "negative: 58 refused as walk obs",
+    "negative: 59 refused as walk obs",
+    "negative: kick is not walk 344",
+    "negative: standup is not walk 344",
+    "negative: fast_standup is not walk 344",
+    "negative: reactive is not walk 344",
+    "negative: huoshen_t1 is not walk 344",
+    "negative: nusim is not walk 344",
+    "negative: missing walk history window refused",
+    "negative: history without tail_dim refused",
+    "negative: broken history formula refused",
+    "schema walk history 10×32+24 present",
+    "live walk obs layout untouched",
+    "live walk obs rewrite refused",
+    "port frozen: implemented=false, default walk 344→13",
+    "B1 PASS: default is walk 344→13",
+    "B2 PASS: reactive conditions still fall back to walk",
+    "B3 PASS: kick 59→13",
+    "B4 PASS: fallen -> handoff_getup",
+    "B5 PASS: refused huoshen_t1",
+    "B5 PASS: refused nusim",
+    "B5 PASS: refused t1_reactive",
+    "B5 PASS: refused K1_Reactive",
+    "BT interface doc anchors present (including deploy cross-check)",
+    "sim2sim README still names walk 344→13",
+    "recorded runs/20261020_220814_312153_mujoco_walk stays (*,344) actor-only, robot_connected=false",
+    "official K1.yaml live PD still Ankle_Roll p60 (not robot p25)",
+    "negative dim: kick 59→13 refused as a walk overpass",
+    "negative dim: reactive 64→15 refused as a walk overpass",
+    "negative dim: Huoshen T1 58→15 refused as a walk overpass",
+    "negative dim: standup 73→22 refused as a walk overpass",
+    "negative dim: fast standup 72→22 refused as a walk overpass",
+    "negative dim: NUSim 79→22 refused as a walk overpass",
+    "negative dim: B-Human T1 walk 365→14 refused as a walk overpass",
+    "negative dim: walk obs + reactive act refused as a walk overpass",
+    "negative dim: walk obs + standup act refused as a walk overpass",
+    "negative dim: reactive obs + walk act refused as a walk overpass",
+    "negative PD: unified PD groups refused",
+    "negative PD: train YAML rewritten to p25 refused",
+    "negative PD: train Ankle_Roll drifted off p60 refused",
+    "negative PD: Huoshen T1 PD family refused",
+    "negative PD: NUSim PD family refused",
+    "official train PD declaration Ankle_Roll p60 accepted",
+    "live run-mujoco.sh not invoked",
+    "official walk 344->13 accepted",
+    "negative dim: kick 59→13 rejected",
+    "negative dim: reactive 64→15 rejected",
+    "negative dim: Huoshen T1 58→15 rejected",
+    "negative dim: standup 73→22 rejected",
+    "negative dim: fast standup 72→22 rejected",
+    "negative dim: NUSim 79→22 rejected",
+    "negative dim: B-Human T1 walk 365→14 rejected",
+    "negative dim: walk obs + reactive act rejected",
+    "negative dim: walk obs + standup act rejected",
+    "negative dim: reactive obs + walk act rejected",
+    "official train PD p60 accepted",
+    "negative PD: unified groups rejected",
+    "negative PD: train p60→robot p25 rejected",
+    "recorded 120 s walk result still (*,344)",
+    "sim2sim_gate: skipped (missing optional runtime)",
+    "skeleton frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+    "walk→kick PASS (59→13, no memcpy claimed)",
+    "kick→walk PASS: history_reset_pending, contract 344→13",
+    "walk→standup PASS only when fallen",
+    "standup→walk PASS: 5 s hold + history reset",
+    "5 s hold tick is a timer only (no physics)",
+    "standup→kick rejected (must walk first)",
+    "reactive implemented=false: stay walk 344→13",
+    "refused huoshen_t1",
+    "refused nusim",
+    "T5 PASS: 13==13 is not an ONNX swap",
+    "SWITCHER-SM.md anchors present",
+    "deploy frozen: TRAINABLE=false, reactive=false, default walk 344→13",
+    "chain: BehaviorControl → BT → map → SM → slot map → engines(not invoked)",
+    "tick0 PASS: walk 344→13",
+    "walk→kick PASS: BT kick + SM 59→13 + last_action 13-D",
+    "kick→walk PASS: history_reset_pending, contract 344→13",
+    "fallen PASS: handoff_getup maps to GetUpEngine 73→22",
+    "BT/SM disagreement PASS: walk request rejected until getup_done",
+    "standup→kick rejected (must walk first)",
+    "standup→walk PASS: 5 s hold + 13 zeros + 344→13",
+    "5 s hold tick is a timer only (no physics)",
+    "reactive implemented=false: deploy stays walk 344→13",
+    "refused huoshen_t1 before SM / engines",
+    "refused nusim before SM / engines",
+    "refused t1_reactive before SM / engines",
+    "refused K1_Reactive before SM / engines",
+    "T5 PASS: 13==13 is not an ONNX swap",
+    "DEPLOY-CALL-SEQUENCE.md anchors present",
+    "timeseries frozen: TRAINABLE=false, IMPLEMENTED=false, walk 344",
+    "shape contract PASS: official walk 10×32+24=344",
+    "torque contract: (T,12) targets, not 13 currents",
+    "kick 59 rejected as walk history",
+    "reactive 64 rejected as walk history",
+    "NUSim 79 rejected as walk history",
+    "standup 22 rejected as walk torque",
+    "synthetic 344 buffer: shape_ok, continuity SKIP",
+    "synthetic 10×32 frames: shape_ok, continuity SKIP",
+    "live obs rewrite refused (344 stays official)",
+    "HISTORY-TORQUE-TIMESERIES.md anchors present",
+    "SKIP: H1/H2: no history trace → SKIP",
+    "SKIP: T4: no torque trace → SKIP",
+    "SKIP: H1–H6 / T4 all SKIP (no recorded switch traces)",
+    "hooks unwired: switcher / deploy_call do not eat latent",
+    "interface comment: latent is side-channel, not official 344",
+    "RMA: actor 344 copy; latent zeros stay off the vector",
+    "concat 344+latent refused",
+    "teammate/CTDE state refused from 344",
+    "switcher attach point documented, not wired",
+    "deploy_call attach point documented, not wired",
+    "official K1.yaml still 344→13 (estimators did not edit it)",
+    "DeployCall still defaults to official walk 344→13",
+    "estimator README: extras 不进 official 344",
+    "TRAINABLE=false; not registered; reactive select unimplemented",
+    "obs/act stay 64→15, parallel to walk 344→13",
+    "action slots are head+legs+freq (no waist)",
+    "assert_reactive_bypass: stay-on-walk + refuse walk actor",
+    "official IsaacGymRL trees have no K1_Reactive; K1.yaml still 344→13",
+    "no legal *→reactive edge; relation is documentation-only",
+    "switcher relation (docs only): walk remains the default deploy skill; reactive conditions fall back to walk 344→13; SwitcherSM has no legal *→reactive edge",
+    "striker+ball+space still selects walk 344→13",
+    "SwitcherSM refuses reactive and remains on walk",
+    "K1_walk.pth cannot replace the reactive actor",
+    "DeployCall default entry is still official walk 344→13",
+    "P2-ACCEPTANCE.md: walk default, deps marked, P2 does not change 344→13",
+    "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md: cross-check table present (default walk 344→13)",
+    "bhuman/docs/DEPLOY-CALL-SEQUENCE.md: cross-check table present (default walk 344→13)",
+    "empty: BT walk + DeployCall walk 344→13",
+    "striker+ball+space: both layers stay on walk 344→13",
+    "want_kick: BT kick + deploy kick 59→13 (then back to walk)",
+    "fallen: BT handoff_getup → deploy standup 73→22",
+    "standup+want_kick: deploy refuses; must walk 344→13 first",
+    "BT refuses huoshen_t1 before deploy",
+    "deploy never reaches SM for huoshen_t1",
+    "BT refuses nusim before deploy",
+    "deploy never reaches SM for nusim",
+    "contracts: walk 344→13 / kick 59→13 / standup 73→22 / fast 72→22",
+    "assert_standup_kick_bypass: empty=walk; fallen-only; getup_done; no standup→kick",
+    "empty context: BT + deploy stay official walk 344→13",
+    "standup only after fallen",
+    "standup→kick refused; must walk first",
+    "getup_done returns to walk 344→13",
+    "getup_done last_action constructed 13 zeros (gait_frequency included)",
+    "want_kick selects official kick 59→13",
+    "refused SimRobot as fast standup",
+    "refused SimRobot as 72→22",
+    "refused SimRobot claiming 72→22",
+    "non-impersonating SimRobot claim accepted (not a fast-standup gate)",
+    "assert_hifar_boundary: no T1 weights, no 58-as-344, docs present",
+    "refused model.pth as a K1 actor weight",
+    "refused K1_walk.pth as a K1 actor weight",
+    "Huoshen T1 58→15 refused as official walk 344→13",
+    "walk 344 + Huoshen 15-D action refused",
+    "official walk stays 344→13; Huoshen 58 is a different family",
+    "research-input present: bhuman/research-materials-20261019/k1-soccer-lab/docs/evidence/huoshen_findings.md",
+    "research-input present: bhuman/docs/GLOBAL-HUMANOID-SURVEY-20261024.md",
+    "GLOBAL cites 火神 2511.03996 and HiFAR separately",
+    "research-input present: bhuman/docs/HIFAR-VS-STANDUP.md",
+    "HIFAR pointer 2502.20061 ≠ standup 73→22 / 72→22",
+    "research-input present: bhuman/docs/RESEARCH-BRANCH.md",
+    "ROADMAP §5: 缺什么 / 谁提供 / SKIP→PASS + 先告知用户",
+    "blocker ids present: B1, B2, B3, B4, B5, B6, B7, B8",
+    "checklist forbids auto-train when a GPU worker appears",
+    "NEXT-P1-P2.md still starts GPU work on official walk 344→13",
+    "draft baseline stays 344→13",
+    "five P1 factors are draft-only and do not rewrite 344",
+    "official K1.yaml rewards and stability v1 jsons unchanged",
+    "run_walk_stability.sh still uses official v1 presets only",
+    "P1 config draft doc present",
+    "current draft: draft_only=true; stability script does not read it",
+    "draft-only dir scan: ['walk-p1-factors-v0.json']",
+    "official walk-*-stability-v1.json do not import draft-only",
+    "negative: draft without draft_only:true refused",
+    "negative: draft apply_to_live / live config_patch refused",
+    "negative: draft marked config_patch=true refused",
+    "negative: draft_only=false refused as official patch",
+    "negative: draft must not overwrite live still_proportion",
+    "negative: draft must not overwrite live tracking_lin_vel_x",
+    "negative: draft must not overwrite live tracking_lin_vel_y",
+    "negative: draft must not overwrite live tracking_ang_vel",
+    "negative: draft must not overwrite live action_rate",
+    "negative: draft must not overwrite live reference_mean_penalty",
+    "negative: official config_patch cannot eat draft still_proportion",
+    "negative: run_walk_stability cannot eat draft action_rate",
+    "negative: official reference_mean_penalty cannot eat draft anneal",
+    "negative: run_walk_stability.sh loading draft-only refused",
+    "current run_walk_stability.sh stays on official v1 presets",
+    "negative: stability script missing official v1 preset refused",
+    "negative: official config_patch importing draft-only refused",
+    "non-live target may discuss proposed still_proportion",
+    "suite default: empty context → walk 344→13",
+    "suite member PASS: test_switcher_sm.py",
+    "suite member PASS: test_deploy_call.py",
+    "suite member PASS: test_standup_kick_hardening.py",
+    "suite member PASS: test_bt_deploy_crosscheck.py",
+    "overpass frozen: TRAINABLE=false; default 344→13; no live sim",
+    "default overpass declares walk 344→13",
+    "negative: overpass missing 344→13 declaration refused",
+    "negative: kick 59→13 refused as walk overpass",
+    "negative: standup 73→22 refused as walk overpass",
+    "negative: fast_standup 72→22 refused as walk overpass",
+    "negative: reactive 64→15 refused as walk overpass",
+    "negative: huoshen_t1 58→15 refused as walk overpass",
+    "negative: nusim 79→22 refused as walk overpass",
+    "same-gate identity accepted",
+    "negative: isaac_train ≠ mujoco_overpass",
+    "negative: mujoco_overpass ≠ simrobot_replay",
+    "negative: simrobot_replay ≠ isaac_train",
+    "negative: isaac_train ≠ simrobot_replay",
+    "Isaac 训 ≠ MuJoCo 过桥 ≠ SimRobot 回放",
+    "live mujoco / run-mujoco.sh rewrite refused",
+    "live run-mujoco.sh present and unread by this stub",
+    "live sim README still names walk 344→13",
+    "default assert: official walk 344→13 + live rewards untouched",
+    "discovered 37 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "PASS test_blockers.py",
+    "PASS test_booster_joints_snapshot.py",
+    "PASS test_bt_deploy_crosscheck.py",
+    "PASS test_deploy_call.py",
+    "PASS test_env_registry_audit.py",
+    "PASS test_gait_frequency_contract.py",
+    "PASS test_gpu_worker_checklist.py",
+    "PASS test_history_buffer_shape.py",
+    "PASS test_joint_map_contract.py",
+    "PASS test_k1_reward_audit.py",
+    "PASS test_last_action_reset.py",
+    "PASS test_obs_assembly.py",
+    "PASS test_onnx_export_contract.py",
+    "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
+    "PASS test_p1_draft_diff.py",
+    "PASS test_print_train_dry_run.py",
+    "PASS test_standup_kick_hardening.py",
+    "PASS test_switcher_integration_suite.py",
+    "PASS test_switcher_sm.py",
+    "PASS test_timeseries_contract.py",
+    "PASS test_bt_skill_select.py",
+    "PASS test_global_docs.py",
+    "PASS test_hifar_boundary.py",
+    "PASS test_migrate_table.py",
+    "PASS test_obs_schema.py",
+    "PASS test_pr4_merge_checklist.py",
+    "PASS test_pr4_selfcheck.py",
+    "PASS test_reactive_hardening.py",
+    "PASS test_research_migrate_table.py",
+    "PASS test_skill_switch_continuity.py",
+    "PASS test_skill_switch_map.py",
+    "PASS test_unregistered_in_train_py.py",
+    "PASS test_estimator_bypass.py",
+    "PASS test_estimators.py",
+    "PASS test_draft_validator.py",
+    "PASS test_p1_draft.py",
+    "PASS test_overpass_contract.py",
+    "PASS test_sim2sim_gate.py",
+    "SKIP inside test_sim2sim_gate.py: optional runtime missing (honest SKIP, not fake-green)",
+    "export frozen: TRAINABLE=false; default walk 344→13; no write",
+    "default exportable path is official walk 344→13",
+    "negative: default export missing 344→13 declaration refused",
+    "negative: kick 59→13 refused as default walk export",
+    "negative: standup 73→22 refused as default walk export",
+    "negative: fast_standup 72→22 refused as default walk export",
+    "negative: reactive 64→15 refused as default walk export",
+    "negative: huoshen_t1 58→15 refused as default walk export",
+    "negative: nusim 79→22 refused as default walk export",
+    "negative: hot-swap ONNX into official actor refused",
+    "negative: replace official ONNX refused",
+    "negative: walk/kick ONNX swap refused",
+    "official K1_walk.onnx write refused",
+    "skipped (missing optional runtime): no K1_walk.pth",
+    "user approval still does not export (IMPLEMENTED=false)",
+    "skipped (missing optional runtime): no K1_walk.pth",
+    "official K1.yaml still 344→13 (export stub did not edit it)",
+    "onnx_export_contract: skipped (missing optional runtime)",
+    "probe source does not invoke train.py",
+    "will_run_train_py=false will_run_isaac_gym=false",
+    "checklist keys: CUDA / IsaacGym-or-alt / disk / official K1 / checkpoint",
+    "official K1 task visible (registry + K1.yaml 344→13)",
+    "ready=false missing: cuda, isaacgym_or_alt, checkpoint",
+    "probe JSON includes checklist",
+    "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
+    "probe_reserved_gpu.sh does not call train.py",
+    "official walk stays 344→13",
+    "live snapshot matches still_proportion 0.1 / tracking_* / action_rate -1. / ref 1.0",
+    "draft-only not used as an official source",
+    "reward item list: 31 scales",
+    "tampered snapshot still_proportion=0.25 refused",
+    "tampered snapshot tracking_lin_vel_x=1.0 refused",
+    "tampered snapshot action_rate=0.0 refused",
+    "tampered snapshot reference_mean_penalty=0.25 refused",
+    "write-back API refused",
+    "official K1.yaml untouched",
+    "reward scales (31): action_pos_limits, action_rate, actions_in_range, ang_vel_xy, base_height, collision, dof_acc, dof_pos_limits…",
+    "baseline still_proportion=0.1 tracking_* action_rate=-1. reference_mean_penalty=1.0",
+    "official K1.yaml trees agree; draft-only excluded",
+    "write-back of K1.yaml refused",
+    "K1.yaml sha256 unchanged (read-only)",
+    "wrote bhuman/k1-training/manifests/k1-reward-audit-latest.json",
+    "frozen construct/validate API: 10×32+24=344",
+    "synthetic all-zeros: shape PASS, continuity SKIP",
+    "refuse_continuity_pass_on_synthetic caught fake-green zeros",
+    "split/flatten round-trip stays 10×32+24=344",
+    "negative: 10×31 refused",
+    "negative: 343 refused as walk history",
+    "negative: kick 59 refused as walk history",
+    "claimed-recorded zeros still continuity SKIP",
+    "official K1.yaml still 344 (buffer stub did not edit it)",
+    "RESEARCH-MIGRATE-TABLE.md anchors present",
+    "research-inputs files: ['environment-audit-pasted.txt', 'research-pasted.txt']",
+    "every research-inputs file is cited",
+    "official walk still 344→13 (table is docs-only)",
+    "official extract: 13-D walk map",
+    "WalkingEngine boosterJoints + gait_frequency; K1.yaml unread-write",
+    "walk action map length 13 (12 legs + gait_frequency)",
+    "negative: length 12 refused",
+    "negative: length 15 refused",
+    "negative: length 22 refused",
+    "negative: 12-leg list refused (missing gait_frequency)",
+    "negative: standup 22-D must not impersonate walk action map",
+    "negative: standup prefix 13 refused",
+    "negative: standup skill 22 refused as walk map",
+    "negative: reactive 15 refused",
+    "kick 59→13 shared exit: only act=13 checked",
+    "negative: kick exit ≠13 refused",
+    "official K1.yaml untouched (read-only extract)",
+    "live snapshot: draft_only:true and live paths untouched",
+    "official stability / K1.yaml listed separately from draft-only",
+    "proposed still_proportion / penalty anneal not applied live",
+    "negative: draft without draft_only:true refused",
+    "write-back API refused",
+    "drafts draft_only=true: ['walk-p1-factors-v0.json']",
+    "live paths untouched (K1.yaml + official stability-v1)",
+    "K1.yaml live rewards / dims untouched",
+    "walk-reference-stability-v1.json has no draft-only import",
+    "walk-critic-stability-v1.json has no draft-only import",
+    "official reference_mean_penalty stays 1.0",
+    "write-back of K1.yaml refused",
+    "K1.yaml sha256 unchanged (read-only)",
+    "wrote bhuman/k1-training/manifests/p1-draft-diff-latest.json",
+    "wrote manifests/p1-draft-diff-latest.json",
+    "official K1.yaml untouched",
+    "PR4-MERGE-CHECKLIST.md anchors present",
+    "official walk still 344→13 (checklist is docs-only)",
+    "K1.yaml: num_actions 13 + action_frequence_limit ±0.5",
+    "t1.py last action slot is frequency (not a 13th PD target)",
+    "WalkingEngine: rawFrequency after boosterJoints loop",
+    "decode sample 1.5+0.25 → 1.75",
+    "walk action[12] semantics = gait_frequency, is_motor=false",
+    "negative: slot 12 as motor refused",
+    "negative: 13th motor interpretation refused",
+    "negative: slot 12 named as a leg motor refused",
+    "negative: standup[12]=lHipYaw is a motor, not gait_frequency",
+    "negative: reactive action[12] is a leg, not walk freq",
+    "negative: reactive freq[14] ≠ walk action[12]",
+    "clip(+2.0) → 1.5+0.5=2.0",
+    "negative: standup 22-D refused as walk frequency decode",
+    "negative: reactive 15-D refused as walk frequency decode",
+    "cross-assert: joint_map[12] == gait_frequency",
+    "official K1.yaml untouched",
+    "PASS: boosterJoints 12 matches joint_map; +gait_frequency",
+    "SKIP helper leaves booster_joints empty",
+    "write-back API refused",
+    "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp: 12 legs",
+    "matches joint_map; walk13 appends gait_frequency (not a motor)",
+    "write-back of K1.yaml refused",
+    "wrote bhuman/k1-training/manifests/booster-joints-walk13-latest.json",
+    "official K1.yaml untouched",
+    "wrote manifests/booster-joints-walk13-latest.json",
+    "official K1.yaml untouched",
+    "run_pr4_selfcheck.sh steps + 344→13 / TRAINABLE=false / ready_gpu",
+    "selfcheck does not invoke train.py",
+    "official walk still 344→13",
+    "assembly 10×32+24=344 sources present",
+    "deploy default official walk; not reactive concat",
+    "WalkingEngine.h RingBuffer<HistoryData, 10>",
+    "OBS-ASSEMBLY-344.md: deploy stays official walk",
+    "negative: refused {'via_reactive': True, 'obs': 344}",
+    "negative: refused {'obs': 64}",
+    "negative: refused {'obs': 3200}",
+    "negative: refused {'latent_into_344': True}",
+    "negative: refused {'obs': 59}",
+    "official K1.yaml untouched",
+    "cross SM/deploy/standup_kick: reset 13 zeros, slot 12=0",
+    "constructed last_action = 13 zeros (freq slot included)",
+    "negative: freq slot nonzero refused",
+    "negative: 22-D vector refused as walk reset",
+    "negative: standup_slice source refused (not a constructed 13-zero)",
+    "negative: standup[:13] (even zeros) refused as walk reset",
+    "SM incoming_last_action standup→walk is constructed 13 zeros",
+    "SM getup_done last_action 13 zeros (not standup memcpy)",
+    "deploy_call getup_done last_action 13 zeros",
+    "standup_kick bypass still: getup_done → walk 344→13",
+    "official K1.yaml untouched",
+    "source does not spawn train.py",
+    "no subprocess import in dry-run generator",
+    "negative: --exec refused",
+    "negative: --task K1_Reactive refused",
+    "live dry-run ready_gpu=False missing=['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "ready=false listed missing ['cuda', 'isaacgym_or_alt', 'checkpoint']",
+    "injected ready=true still print-only / will_run_train_py=false",
+    "printed banner + official --task K1 draft; exit 0",
+    "official K1.yaml untouched",
+    "audit is read-only (no train.py spawn)",
+    "live: official K1 in; k1-reactive / estimators / switcher out",
+    "negative: dropped official K1 refused",
+    "negative: K1_Reactive listed as registered refused",
+    "negative: leaked envs/__init__ K1_Reactive refused",
+    "negative: missing K1 import refused",
+    "write-back of K1.yaml refused",
+    "wrote env-registry-audit-latest.json (K1 in; bypass out)",
+    "official K1.yaml untouched",
+    "research/01–06 live only on origin/research; not merged into main"
+  ],
+  "reproduce_walk_operator_machine": [
+    "bash bhuman/k1-training/scripts/run_env_check.sh",
+    "bash bhuman/k1-training/scripts/run_replay.sh K1 4 500",
+    "bash bhuman/sim2sim/run-mujoco.sh --seconds 120"
+  ],
+  "reproduce_this_gate": [
+    "python3 bhuman/k1-training/scripts/check_policy_contracts.py",
+    "bash bhuman/k1-training/scripts/run_contract_gate.sh",
+    "python3 bhuman/k1-training/k1-reactive/check_skeleton.py",
+    "python3 bhuman/k1-training/k1-reactive/test_unregistered_in_train_py.py",
+    "python3 bhuman/k1-training/k1-reactive/test_skill_switch_continuity.py",
+    "python3 bhuman/k1-training/k1-reactive/test_skill_switch_map.py",
+    "python3 bhuman/k1-training/k1-reactive/test_global_docs.py",
+    "python3 bhuman/k1-training/k1-reactive/test_migrate_table.py",
+    "python3 bhuman/k1-training/k1-estimators/test_estimators.py",
+    "python3 bhuman/k1-training/k1-reactive/test_obs_schema.py",
+    "python3 bhuman/k1-training/k1-reactive/test_bt_skill_select.py",
+    "python3 bhuman/sim2sim/test_sim2sim_gate.py",
+    "bash bhuman/sim2sim/run-sim2sim-gate.sh",
+    "python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py",
+    "python3 bhuman/k1-training/k1-switcher/test_deploy_call.py",
+    "python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py",
+    "python3 bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+    "python3 bhuman/k1-training/k1-reactive/test_reactive_hardening.py",
+    "python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py",
+    "python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py",
+    "python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py",
+    "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
+    "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
+    "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
+    "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
+    "python3 bhuman/sim2sim/test_overpass_contract.py",
+    "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
+    "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+    "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+    "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+    "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
+    "python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
+    "python3 bhuman/k1-training/scripts/p1_draft_diff.py",
+    "python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
+    "python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
+    "python3 bhuman/k1-training/scripts/booster_joints_snapshot.py",
+    "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+    "python3 bhuman/k1-training/k1-switcher/test_obs_assembly.py",
+    "python3 bhuman/k1-training/k1-switcher/test_last_action_reset.py",
+    "python3 bhuman/k1-training/k1-switcher/test_print_train_dry_run.py",
+    "python3 bhuman/k1-training/scripts/print_train_dry_run.py",
+    "python3 bhuman/k1-training/k1-switcher/test_env_registry_audit.py",
+    "python3 bhuman/k1-training/scripts/env_registry_audit.py",
+    "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
+    "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
+  ]
+}

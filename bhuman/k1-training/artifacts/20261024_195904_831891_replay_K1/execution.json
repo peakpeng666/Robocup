@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/play.py",
+    "--task",
+    "K1",
+    "--checkpoint",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "--load_mode",
+    "actor",
+    "--num_envs",
+    "4",
+    "--max_policy_steps",
+    "500",
+    "--headless",
+    "true",
+    "--output_dir",
+    "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/runs/20261024_195904_831891_replay_K1"
+  ],
+  "cwd": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/src/IsaacGymRL",
+  "exit_code": 0,
+  "wall_s": 17.366264711999975,
+  "sampled_gpu_peak_mib": 2948,
+  "stop_reason": null,
+  "run_dir": "/home/peakpeng/Desktop/Robocup-pr4/bhuman/k1-training/runs/20261024_195904_831891_replay_K1",
+  "python_jit": "1",
+  "source_sha256_at_launch": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "source_sha256_at_end": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+  "entrypoint_sha256_at_launch": "943c6bc768fe8c5114c69f31425400402be2198d65cae212457b4f956ff6ed1c",
+  "status": "PASS"
+}

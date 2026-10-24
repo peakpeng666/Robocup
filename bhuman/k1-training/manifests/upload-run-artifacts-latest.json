@@ -1,0 +1,64 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "trainable": false,
+  "auto_train": false,
+  "write_yaml": false,
+  "invokes_train_py": false,
+  "connects_user_home": false,
+  "allow_push_default": false,
+  "local_artifacts_kept_without_upload_policy": false,
+  "silent_binary_in_pr": false,
+  "walk_contract": "344→13",
+  "doc": "bhuman/docs/LOCAL-RUN-ARTIFACTS.md",
+  "plan": {
+    "mode": "dry-run",
+    "run_id": "dry-run-example",
+    "dest_rel": "bhuman/k1-training/artifacts/dry-run-example/",
+    "sources_hint": [
+      "runs/",
+      "logs/",
+      "checkpoints/",
+      "curves/",
+      "plots/"
+    ],
+    "copy_into": [
+      "manifest.json",
+      "metrics.jsonl",
+      "config.yaml",
+      "plots/*.png",
+      "README.md"
+    ],
+    "large_files": {
+      "suffixes": [
+        ".pth",
+        ".pt",
+        ".onnx",
+        ".mp4",
+        ".tar",
+        ".tar.gz",
+        ".tar.zst",
+        ".zip"
+      ],
+      "via": "git-lfs-or-github-release",
+      "silent_pr": false
+    },
+    "git_commands_operator": [
+      "mkdir -p bhuman/k1-training/artifacts/dry-run-example",
+      "# copy small text/json/png from current run into bhuman/k1-training/artifacts/dry-run-example/",
+      "# git lfs track '*.pth' '*.onnx'  or  gh release upload <tag> <file>",
+      "git add bhuman/k1-training/artifacts/dry-run-example",
+      "git commit -m 'Archive local run <run-id> products.'",
+      "git push",
+      "# then delete local cache copies of uploaded products; keep current workspace only"
+    ],
+    "connects_user_home": false,
+    "invokes_train_py": false,
+    "auto_train": false,
+    "trainable": false,
+    "cloud_contract_pr": "PR #4",
+    "default_walk": "344→13"
+  },
+  "note": "scaffold only; this increment does not run experiments or push operator artifacts. Default walk stays 344→13."
+}

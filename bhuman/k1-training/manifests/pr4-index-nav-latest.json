@@ -1,0 +1,96 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "index": "bhuman/docs/PR4-INDEX.md",
+  "groups": [
+    {
+      "id": "walk",
+      "heading": "### walk",
+      "manifests": [
+        "walk-policy-apply-dims-latest.json",
+        "walk-stay-remaining-latest.json",
+        "walking-engine-cfg-audit-latest.json",
+        "ball-network-active-latest.json",
+        "intercept-avoid-bypass-latest.json"
+      ],
+      "linked": true
+    },
+    {
+      "id": "kick",
+      "heading": "### kick",
+      "manifests": [
+        "kick-policy-apply-dims-latest.json",
+        "kick-engine-boundary-latest.json",
+        "kick-onnx-naming-latest.json",
+        "walk-kick-policy-switch-latest.json"
+      ],
+      "linked": true
+    },
+    {
+      "id": "standup",
+      "heading": "### standup",
+      "manifests": [
+        "standup-policy-apply-dims-latest.json",
+        "fast-standup-isolation-latest.json",
+        "getup-engine-cfg-audit-latest.json"
+      ],
+      "linked": true
+    },
+    {
+      "id": "handoff",
+      "heading": "### handoff",
+      "manifests": [
+        "getup-walk-handoff-chain-latest.json",
+        "force-walk-afterwards-latest.json",
+        "falldown-motion-chain-latest.json"
+      ],
+      "linked": true
+    },
+    {
+      "id": "artifacts",
+      "heading": "### artifacts",
+      "manifests": [
+        "upload-run-artifacts-latest.json"
+      ],
+      "linked": true
+    },
+    {
+      "id": "GAP",
+      "heading": "### GAP",
+      "manifests": [
+        "policy-switch-history-gap-latest.json",
+        "policy-switch-last-action-latest.json",
+        "walk-phase-reset-allowlist-latest.json"
+      ],
+      "linked": true
+    }
+  ],
+  "volume": {
+    "files": 335,
+    "insertions": 191077,
+    "hint": "~+191k / 335 files vs main",
+    "lfs_candidates": [
+      ".onnx",
+      ".pth",
+      ".zip"
+    ],
+    "no_more_large_binaries": true,
+    "no_force_push": true,
+    "no_history_rewrite": true,
+    "do_not_delete_contract_scripts": true
+  },
+  "gap": {
+    "status": "GAP",
+    "gap_closed": false,
+    "note": "walk↔kick resetHistoryData still open; draft only"
+  },
+  "pr_index_claims_gap_closed": false,
+  "fabricated": false,
+  "note": "PR4-INDEX grouped nav + volume health; default walk 344→13; GAP stays open; do not stuff large binaries",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

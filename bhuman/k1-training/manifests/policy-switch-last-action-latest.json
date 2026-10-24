@@ -1,0 +1,81 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "sources": {
+    "default": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+    "cpp": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.h"
+  },
+  "reset_history_when": [
+    "WalkingEngine constructor",
+    "WalkPhase ctor when lastPhase is not a continuing WalkPhase"
+  ],
+  "update_history_when": "every WalkPhase::getNextTargetRequest via lastTarget",
+  "history_frames": 10,
+  "walk_obs_fill": {
+    "source": "historyBuffer lastActions + measured + gravity/gyro",
+    "contract": "344→13",
+    "call": "engine.walkPolicy.apply()"
+  },
+  "kick_obs_fill": {
+    "source": "current sensors + lastTarget (not historyBuffer)",
+    "contract": "59→13",
+    "call": "policy.apply()"
+  },
+  "last_action_zero_on_walk_kick_switch": {
+    "status": "GAP",
+    "explicit": false,
+    "fabricated": false,
+    "note": "getNextTargetRequest walk↔kick does not call resetHistoryData; lastTarget continues; do not mark this closed"
+  },
+  "cross_dim_obs_reuse": false,
+  "walk_slot": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "skill_request": {
+    "empty": {
+      "skill": "walk",
+      "contract": "344→13"
+    },
+    "want_kick": {
+      "skill": "kick",
+      "contract": "59→13"
+    }
+  },
+  "cpp_needles": [
+    "void WalkingEngine::resetHistoryData()",
+    "void WalkingEngine::updateHistoryData",
+    "historyBuffer.clear()",
+    "nextDataPoint.lastActions = JointAngles()",
+    "engine.updateHistoryData(lastTarget)",
+    "engine.resetHistoryData()",
+    "engine.walkPolicy.apply()",
+    "policy.apply()",
+    "*input++ = data.lastActions.angles[j]",
+    "*input++ = lastTarget.angles[j]",
+    "*input++ = 0.f; // Dummy Ball x"
+  ],
+  "header_needles": [
+    "void resetHistoryData()",
+    "void updateHistoryData(const JointAngles& lastAction, const bool init = false)",
+    "JointAngles lastActions",
+    "RingBuffer<HistoryData, 10> historyBuffer"
+  ],
+  "switch_keeps_stale_last_action": false,
+  "buffer_cross_dim_reuse": false,
+  "not_hot_swap_train": true,
+  "fabricated": false,
+  "note": "walk 344 from historyBuffer; kick 59 from current lastTarget; no explicit last_action zero on walk↔kick (honest GAP); switch ≠ hot-swap into K1.yaml / train.py",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "kick_contract": "59→13",
+  "default_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

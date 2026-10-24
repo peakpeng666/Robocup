@@ -1,0 +1,44 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "SKIP",
+  "skipped": true,
+  "reason": "official kick onnx/pth absent (gitignored / local-only); naming convention still recorded",
+  "names": [
+    "K1_kick_inner.onnx",
+    "K1_kick_inner_soft.onnx"
+  ],
+  "deploy_rels": [
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx"
+  ],
+  "train_pth": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth",
+  "walk_default_slot": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "walk_default_name": "K1_walk.onnx",
+  "layout_walk_onnx": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+  "cfg_kick_models": [
+    "K1_kick_inner.onnx",
+    "K1_kick_inner_soft.onnx"
+  ],
+  "occupies_walk_default": false,
+  "same_dir_as_walk": true,
+  "present": [],
+  "missing": [
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+    "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth"
+  ],
+  "walk_slot_present": [],
+  "walk_slot_missing": [
+    "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+  ],
+  "files_missing": true,
+  "fabricated": false,
+  "note": "kick ONNX lives under NeuralNets/Walk/ as K1_kick_inner*.onnx; must not be renamed onto K1_walk.onnx",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "write_weights": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

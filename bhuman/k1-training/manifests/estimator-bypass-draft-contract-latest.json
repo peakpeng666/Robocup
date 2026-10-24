@@ -1,0 +1,66 @@
+{
+  "generated_utc": "2026-10-24T13:20:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/estimator_bypass_draft_contract.py",
+  "checklist": [
+    "draft_only_estimator_keys",
+    "stub_paths_inventory",
+    "hooks_unwired",
+    "apply_to_live_false",
+    "pass_not_live_estimator_swap"
+  ],
+  "draft_rel": "bhuman/k1-training/configs/draft-only/walk-p1-factors-v0.json",
+  "draft_only": true,
+  "apply_to_live": false,
+  "factor": "D_estimator_ab",
+  "draft_estimator_keys": [
+    "actor_obs",
+    "allowed",
+    "estimator"
+  ],
+  "proposed_only": {
+    "estimator": "passthrough",
+    "allowed": [
+      "passthrough",
+      "rma",
+      "dreamwaq"
+    ],
+    "actor_obs": 344
+  },
+  "allowed": [
+    "passthrough",
+    "rma",
+    "dreamwaq"
+  ],
+  "stub_paths": [
+    "bhuman/k1-training/k1-estimators/interface.py",
+    "bhuman/k1-training/k1-estimators/hooks.py",
+    "bhuman/k1-training/k1-estimators/passthrough.py",
+    "bhuman/k1-training/k1-estimators/rma_stub.py",
+    "bhuman/k1-training/k1-estimators/dreamwaq_stub.py",
+    "bhuman/k1-training/k1-estimators/check_estimators.py",
+    "bhuman/k1-training/k1-estimators/test_estimators.py",
+    "bhuman/k1-training/k1-estimators/test_estimator_bypass.py",
+    "bhuman/k1-training/k1-estimators/README.md",
+    "bhuman/k1-training/scripts/estimator_ab_audit.py"
+  ],
+  "hooks_unwired": true,
+  "write_344": false,
+  "register_train_py": false,
+  "estimator_pass_as_live_swap": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "read-only estimator draft/stub inventory; apply_to_live=false; overlay PASS ≠ live estimator swap",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

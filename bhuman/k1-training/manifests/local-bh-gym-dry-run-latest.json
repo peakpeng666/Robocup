@@ -1,0 +1,62 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "local": {
+    "venv": "~/.venvs/bh-gym",
+    "bh_py": "$HOME/.venvs/bh-gym/bin/python",
+    "worktree": "$HOME/Desktop/Robocup-pr4",
+    "links": [
+      "third_party",
+      "downloads",
+      "cache"
+    ],
+    "existence_required_here": false,
+    "note": "paths are operator-machine declarations; cloud must not scan $HOME"
+  },
+  "dry_run": {
+    "banner": "必须先告知用户并等待明确开训",
+    "task": "K1",
+    "walk": "344→13",
+    "trainable": false,
+    "will_run_train_py": false,
+    "will_run_isaac_gym": false,
+    "ready_gpu": false,
+    "missing": [
+      "cuda",
+      "isaacgym_or_alt",
+      "checkpoint"
+    ],
+    "checklist_keys": [
+      "cuda",
+      "isaacgym_or_alt",
+      "disk",
+      "official_k1_task",
+      "checkpoint"
+    ],
+    "local_wrapper_draft": "cd $HOME/Desktop/Robocup-pr4 && BH_PY=$HOME/.venvs/bh-gym/bin/python bash bhuman/k1-training/scripts/run_walk_stability.sh 4096 25 7 warm-start",
+    "local_train_py_draft": "cd $HOME/Desktop/Robocup-pr4 && $HOME/.venvs/bh-gym/bin/python bhuman/k1-training/src/IsaacGymRL/train.py --history --task K1 --num_envs 4096 --max_iterations 25 --save_interval 5 --seed 7 --headless true --checkpoint <operator-local K1_walk.pth> --load_mode warm-start"
+  },
+  "siblings_referenced_not_reaudited": [
+    "print_train_dry_run.py",
+    "probe_reserved_gpu.py",
+    "reactive_stub_hardening.py",
+    "upload_run_artifacts.py",
+    "bounded_walk_replay.py"
+  ],
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "dry_run_auto_starts_train": false,
+  "ready_gpu_true_without_checklist": false,
+  "local_compat_doc_claims_gap_closed": false,
+  "fabricated": false,
+  "note": "operator dry-run commands point at ~/.venvs/bh-gym and ~/Desktop/Robocup-pr4; ready_gpu stays false unless checklist is all true; TRAINABLE=false; walk↔kick GAP still open",
+  "trainable": false,
+  "auto_train": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

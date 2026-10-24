@@ -1,0 +1,68 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/walk_onnx_export_dry_run.py",
+  "checklist": [
+    "onnx_export_contract_stub",
+    "default_export_walk_344",
+    "kick_not_default_export",
+    "fast_not_default_export",
+    "would_export_false",
+    "trainable_false"
+  ],
+  "default_export": {
+    "skill": "walk",
+    "obs": 344,
+    "act": 13,
+    "task": "K1",
+    "hot_swap_into_official_actor": false,
+    "replace_official_onnx": false
+  },
+  "not_default": {
+    "kick": "59→13",
+    "fast": "72→22"
+  },
+  "export_readiness": {
+    "status": "SKIP",
+    "would_export": false,
+    "approved_still_skip": true,
+    "reason": "skipped (missing optional runtime): no K1_walk.pth"
+  },
+  "steps": [
+    {
+      "id": "onnx_export_contract",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "kick_onnx_deploy_path",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "will_exec_export_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "export_pass_as_competition_deploy": false,
+  "export_as_live_without_trainable": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "walk ONNX export dry-run: default 344→13 stub; kick/fast not default export; would_export=false; TRAINABLE=false; PASS ≠ competition deploy",
+  "trainable": false,
+  "implemented": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "write_onnx": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "fast": "72→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "walk_pth_rel": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+  "walk_onnx_rel": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+}

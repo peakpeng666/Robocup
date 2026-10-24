@@ -1,0 +1,338 @@
+{
+  "generated_utc": "2026-10-24T13:20:36+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "walk_copies": [
+    {
+      "role": "Default/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/walkingEngine.cfg",
+      "sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+      "sha16": "c6fc603b80ee4347",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "walk byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "SimulatedK1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/walkingEngine.cfg",
+      "sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+      "sha16": "c9f597405c0b94dd",
+      "bytes": 2952,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+      "sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+      "sha16": "a0a8af819ada0444",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk11v11/K1/walkingEngine.cfg",
+      "sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+      "sha16": "a0a8af819ada0444",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "src/Default/K1",
+      "rel": "bhuman/k1-training/src/Config/Robots/Default/K1/walkingEngine.cfg",
+      "sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+      "sha16": "c6fc603b80ee4347",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "walk byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "local/Default/K1",
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots/Default/K1/walkingEngine.cfg",
+      "sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+      "sha16": "c6fc603b80ee4347",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "walk byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "local/SimulatedK1",
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots/SimulatedK1/walkingEngine.cfg",
+      "sha256": "c9f597405c0b94dd6963b547d9e380848a36c4171b710dcd262c8ce6ae303aff",
+      "sha16": "c9f597405c0b94dd",
+      "bytes": 2952,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "local/CompetitionWalk/K1",
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios/CompetitionWalk/K1/walkingEngine.cfg",
+      "sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+      "sha16": "a0a8af819ada0444",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "local/CompetitionWalk11v11/K1",
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios/CompetitionWalk11v11/K1/walkingEngine.cfg",
+      "sha256": "a0a8af819ada04442de3dfb73dba5895bdd7c7ff577a13624f55ccddbf19f10e",
+      "sha16": "a0a8af819ada0444",
+      "bytes": 2949,
+      "keys": {
+        "modelName": "K1_walk.onnx",
+        "numInput": 344,
+        "numOutput": 13,
+        "kickModel": "K1_kick_inner.onnx",
+        "kick_numInput": 59
+      },
+      "keys_match_default": true,
+      "sha_match_default": false,
+      "classification": "intentional_diff",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)",
+      "present": true,
+      "fabricated": false
+    }
+  ],
+  "getup_copies": [
+    {
+      "role": "Default/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/getUpEngine.cfg",
+      "sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+      "sha16": "1a1dd49306abfa68",
+      "bytes": 5615,
+      "keys": {
+        "policyName": "K1.onnx",
+        "numInput": 73,
+        "numOutput": 22,
+        "policyNameFast": "K1_fast_standup.onnx",
+        "numInputFast": 72,
+        "numOutputFast": 22
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "getup byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "src/Default/K1",
+      "rel": "bhuman/k1-training/src/Config/Robots/Default/K1/getUpEngine.cfg",
+      "sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+      "sha16": "1a1dd49306abfa68",
+      "bytes": 5615,
+      "keys": {
+        "policyName": "K1.onnx",
+        "numInput": 73,
+        "numOutput": 22,
+        "policyNameFast": "K1_fast_standup.onnx",
+        "numInputFast": 72,
+        "numOutputFast": 22
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "getup byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "local/Default/K1",
+      "rel": "bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots/Default/K1/getUpEngine.cfg",
+      "sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+      "sha16": "1a1dd49306abfa68",
+      "bytes": 5615,
+      "keys": {
+        "policyName": "K1.onnx",
+        "numInput": 73,
+        "numOutput": 22,
+        "policyNameFast": "K1_fast_standup.onnx",
+        "numInputFast": 72,
+        "numOutputFast": 22
+      },
+      "keys_match_default": true,
+      "sha_match_default": true,
+      "classification": "identical",
+      "reason": "getup byte-identical to Default/K1",
+      "present": true,
+      "fabricated": false
+    },
+    {
+      "role": "SimulatedK1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/getUpEngine.cfg",
+      "present": false,
+      "expected_absent": true,
+      "classification": "absent_expected",
+      "reason": "no Simulated/Competition getUpEngine.cfg; not fabricating",
+      "fabricated": false
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk/K1/getUpEngine.cfg",
+      "present": false,
+      "expected_absent": true,
+      "classification": "absent_expected",
+      "reason": "no Simulated/Competition getUpEngine.cfg; not fabricating",
+      "fabricated": false
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "rel": "bhuman/BHumanCodeRelease/Config/Scenarios/CompetitionWalk11v11/K1/getUpEngine.cfg",
+      "present": false,
+      "expected_absent": true,
+      "classification": "absent_expected",
+      "reason": "no Simulated/Competition getUpEngine.cfg; not fabricating",
+      "fabricated": false
+    }
+  ],
+  "default_walk_keys": {
+    "modelName": "K1_walk.onnx",
+    "numInput": 344,
+    "numOutput": 13,
+    "kickModel": "K1_kick_inner.onnx",
+    "kick_numInput": 59
+  },
+  "default_getup_keys": {
+    "policyName": "K1.onnx",
+    "numInput": 73,
+    "numOutput": 22,
+    "policyNameFast": "K1_fast_standup.onnx",
+    "numInputFast": 72,
+    "numOutputFast": 22
+  },
+  "default_walk_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "default_getup_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "intentional_walk_diffs": [
+    {
+      "role": "SimulatedK1",
+      "sha16": "c9f597405c0b94dd",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    },
+    {
+      "role": "CompetitionWalk/K1",
+      "sha16": "a0a8af819ada0444",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    },
+    {
+      "role": "CompetitionWalk11v11/K1",
+      "sha16": "a0a8af819ada0444",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    },
+    {
+      "role": "local/SimulatedK1",
+      "sha16": "c9f597405c0b94dd",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    },
+    {
+      "role": "local/CompetitionWalk/K1",
+      "sha16": "a0a8af819ada0444",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    },
+    {
+      "role": "local/CompetitionWalk11v11/K1",
+      "sha16": "a0a8af819ada0444",
+      "reason": "walk sha differs; key fields still match Default/K1 (configuredParameters / speed, not net slot)"
+    }
+  ],
+  "unexpected_drift": false,
+  "fabricated": false,
+  "note": "Default/Simulated/Competition K1 walkingEngine key fields agree (344→13 / K1_walk.onnx; kick 59 / K1_kick_inner.onnx); sha-only speed-parameter diffs are intentional; getUp only on Default (Simulated/Competition absent)",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk_contract": "344→13",
+  "standup_contract": "73→22",
+  "fast_contract": "72→22",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

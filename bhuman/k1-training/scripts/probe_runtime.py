@@ -40,5 +40,8 @@ report = {"torch": torch.__version__, "torch_compiled_cuda": torch.version.cuda,
           "packages": {d.metadata["Name"]: d.version for d in metadata.distributions()
                        if d.metadata["Name"].startswith("nvidia-")},
           "note": "Tests exercised MLP/Adam and quaternion JIT; not every CUDA library or kernel."}
-(Path(os.environ["BH_RUN_DIR"]) / "runtime.json").write_text(json.dumps(report, indent=2))
+out_dir = Path(os.environ["BH_RUN_DIR"]) if os.environ.get("BH_RUN_DIR") else Path(__file__).resolve().parents[1] / "artifacts" / "runtime-probe"
+out_dir.mkdir(parents=True, exist_ok=True)
+(out_dir / "runtime.json").write_text(json.dumps(report, indent=2))
 print(json.dumps(report, indent=2))
+print("wrote", out_dir / "runtime.json")

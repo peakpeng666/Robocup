@@ -1,0 +1,67 @@
+{
+  "generated_utc": "2026-10-24T13:20:39+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/ball_task_isolation_matrix.py",
+  "checklist": [
+    "walk_k1_slot",
+    "k1_ball_slot",
+    "k1_stand_up_slot",
+    "onnx_names_isolated",
+    "cross_slot_wiring_forbidden"
+  ],
+  "matrix": [
+    {
+      "id": "walk",
+      "task": "K1",
+      "obs": 344,
+      "act": 13,
+      "onnx": "K1_walk.onnx",
+      "isaac": "K1",
+      "replay": "K1",
+      "yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+      "yaml_obs": 344,
+      "yaml_act": 13
+    },
+    {
+      "id": "kick",
+      "task": "K1_Ball",
+      "obs": 59,
+      "act": 13,
+      "onnx": "K1_kick_inner.onnx",
+      "isaac": "K1_Ball",
+      "replay": "K1_Ball",
+      "yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Ball.yaml",
+      "yaml_obs": 59,
+      "yaml_act": 13
+    },
+    {
+      "id": "standup",
+      "task": "K1_Stand_Up",
+      "obs": 73,
+      "act": 22,
+      "onnx": "K1.onnx",
+      "isaac": "K1_Stand_Up",
+      "replay": "K1_Stand_Up",
+      "yaml": "bhuman/k1-training/src/IsaacGymRL/envs/K1_Stand_Up.yaml",
+      "yaml_obs": 73,
+      "yaml_act": 22
+    }
+  ],
+  "ball_task_cross_slot_wiring": false,
+  "apply_to_live": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "walk 344→13 / K1_Ball 59→13 / K1_Stand_Up 73→22 stay three slots; ONNX names isolated; cross-slot wiring forbidden",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -1,0 +1,82 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "sources": {
+    "skill_request": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.h",
+    "skill_behavior": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/SkillBehaviorControl.cpp",
+    "playball_skill": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp",
+    "playball_strategy": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/StrategyBehaviorControl/ActiveRoles/PlayBall.cpp",
+    "motion_engine": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/MotionEngine/MotionEngine.cpp",
+    "getup_engine": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.h"
+  },
+  "official_types": [
+    "none",
+    "stand",
+    "walk",
+    "shoot",
+    "pass",
+    "dribble",
+    "block",
+    "mark",
+    "observe",
+    "clear",
+    "waitShoot"
+  ],
+  "dispatch": {
+    "none": "empty",
+    "shoot": "PlayBall",
+    "clear": "PlayBall",
+    "dribble": "PlayBall",
+    "pass": "PlayBall",
+    "waitShoot": "GoToBallWaitAndKick",
+    "walk": "WalkToPointObstacle",
+    "stand": "Stand",
+    "block": "Block",
+    "mark": "Mark",
+    "observe": "ObservePoint"
+  },
+  "kick_decider": {
+    "strategy": "SkillRequest shoot/pass/dribble/clear/waitShoot (not a walk-actor swap)",
+    "skill_layer": "SkillBehaviorControl → PlayBall / GoToBallWaitAndKick",
+    "motion": "KickAtGoal / walkToBallAndKick still approaches on WalkingEngine",
+    "port": "want_kick → kick 59→13; otherwise stay walk 344→13",
+    "replaces_walk": false,
+    "source": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp",
+    "strategy_source": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/StrategyBehaviorControl/ActiveRoles/PlayBall.cpp",
+    "skill_playball_has_kick_at_goal": true,
+    "skill_playball_has_pass": true
+  },
+  "standup_decider": {
+    "status": "PASS",
+    "not_skill_request": true,
+    "owner": "GetUpEngine",
+    "source": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/MotionEngine/MotionEngine.cpp",
+    "getup_header": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.h",
+    "getup_header_present": true,
+    "port": "handoff_getup → standup 73→22",
+    "replaces_walk": false
+  },
+  "default_skill": "walk",
+  "default_contract": "344→13",
+  "replaces_walk": false,
+  "handoff_getup_is_skill_request_type": false,
+  "cross": {
+    "bt_default": "walk",
+    "bt_fallen": "handoff_getup",
+    "bt_want_kick": "kick",
+    "deploy_default": "walk",
+    "deploy_chain0": "BehaviorControl / Skill",
+    "skill_request_empty": "walk",
+    "agrees": true
+  },
+  "fabricated": false,
+  "note": "Strategy emits SkillRequest; SkillBehaviorControl routes PlayBall / walk; fallen is MotionEngine → GetUpEngine, not a SkillRequest Type; default actor stays official walk 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "standup": "73→22",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

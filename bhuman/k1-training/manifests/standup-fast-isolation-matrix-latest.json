@@ -1,0 +1,71 @@
+{
+  "generated_utc": "2026-10-24T13:20:38+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/standup_fast_isolation_matrix.py",
+  "matrix": [
+    {
+      "id": "walk",
+      "obs": 344,
+      "act": 13,
+      "onnx": "K1_walk.onnx",
+      "isaac": "K1",
+      "replay": "K1"
+    },
+    {
+      "id": "standup",
+      "obs": 73,
+      "act": 22,
+      "onnx": "K1.onnx",
+      "isaac": "K1_Stand_Up",
+      "replay": "K1_Stand_Up"
+    },
+    {
+      "id": "fast",
+      "obs": 72,
+      "act": 22,
+      "onnx": "K1_fast_standup.onnx",
+      "isaac": null,
+      "replay": null
+    }
+  ],
+  "live_cross_wiring": [],
+  "steps": [
+    {
+      "id": "standup_policy_apply_dims",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "fast_standup_isolation",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "bounded_fast_standup_replay",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "will_run_isaac": false,
+  "will_run_train_py": false,
+  "isolation_matrix_cross_wires_slots": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "matrix: walk 344→13 / standup 73→22 / fast 72→22 deploy-only; no live cross-wiring; fast not Isaac; GAP open",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "standup": "73→22",
+  "fast": "72→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "getup_cfg_sha256": "1a1dd49306abfa68d5d49b20ee36c5907a7f109d20bd07b3087fb54fb2e297a0",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "standup_yaml_sha256": "026c6d3349fdff60ce6447ef3505b05ba5d059655f494ccdf58864e0c9f00f9b"
+}

@@ -1,0 +1,165 @@
+{
+  "generated_utc": "2026-10-24T13:20:35+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "k1": [
+    {
+      "task": "K1",
+      "obs": 344,
+      "act": 13,
+      "onnx": "K1_walk.onnx",
+      "pth": "K1_walk.pth",
+      "is_walk_baseline": true
+    },
+    {
+      "task": "K1_Ball",
+      "obs": 59,
+      "act": 13,
+      "onnx": "K1_kick_inner.onnx",
+      "pth": "K1_kick_inner.pth",
+      "is_walk_baseline": false
+    },
+    {
+      "task": "K1_Stand_Up",
+      "obs": 73,
+      "act": 22,
+      "onnx": "K1.onnx",
+      "pth": "K1_stand_up.pt",
+      "is_walk_baseline": false
+    }
+  ],
+  "t1": [
+    {
+      "task": "T1",
+      "obs": 365,
+      "act": 14,
+      "onnx": "T1_walk.onnx",
+      "pth": "T1_walk.pth"
+    },
+    {
+      "task": "T1_Ball",
+      "obs": 62,
+      "act": 14,
+      "onnx": "T1_kick_inner.onnx",
+      "pth": "T1_kick_inner.pth"
+    },
+    {
+      "task": "T1_Stand_Up",
+      "obs": 76,
+      "act": 23,
+      "onnx": "T1.onnx",
+      "pth": "T1_stand_up.pt"
+    }
+  ],
+  "huoshen": {
+    "task": "huoshen_t1",
+    "obs": 58,
+    "act": 15,
+    "onnx": null,
+    "pth": "model.pth",
+    "note": "Science Robotics T1 reactive; not B-Human T1 and not K1 walk"
+  },
+  "cells": [
+    {
+      "from": "T1",
+      "from_dims": "365→14",
+      "to": "K1",
+      "to_dims": "344→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1",
+      "from_dims": "365→14",
+      "to": "K1_Ball",
+      "to_dims": "59→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1",
+      "from_dims": "365→14",
+      "to": "K1_Stand_Up",
+      "to_dims": "73→22",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Ball",
+      "from_dims": "62→14",
+      "to": "K1",
+      "to_dims": "344→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Ball",
+      "from_dims": "62→14",
+      "to": "K1_Ball",
+      "to_dims": "59→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Ball",
+      "from_dims": "62→14",
+      "to": "K1_Stand_Up",
+      "to_dims": "73→22",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Stand_Up",
+      "from_dims": "76→23",
+      "to": "K1",
+      "to_dims": "344→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Stand_Up",
+      "from_dims": "76→23",
+      "to": "K1_Ball",
+      "to_dims": "59→13",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "T1_Stand_Up",
+      "from_dims": "76→23",
+      "to": "K1_Stand_Up",
+      "to_dims": "73→22",
+      "may_replace": false,
+      "reason": "T1 must not impersonate K1 (dims / weights / ONNX)"
+    },
+    {
+      "from": "huoshen_t1",
+      "from_dims": "58→15",
+      "to": "K1",
+      "to_dims": "344→13",
+      "may_replace": false,
+      "reason": "Huoshen T1 is not B-Human T1 and not K1 walk"
+    },
+    {
+      "from": "huoshen_t1",
+      "from_dims": "58→15",
+      "to": "K1_Ball",
+      "to_dims": "59→13",
+      "may_replace": false,
+      "reason": "Huoshen T1 is not B-Human T1 and not K1 walk"
+    },
+    {
+      "from": "huoshen_t1",
+      "from_dims": "58→15",
+      "to": "K1_Stand_Up",
+      "to_dims": "73→22",
+      "may_replace": false,
+      "reason": "Huoshen T1 is not B-Human T1 and not K1 walk"
+    }
+  ],
+  "replace_k1_walk_allowed": false,
+  "trainable": false,
+  "write_yaml": false,
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "note": "every T1*/Huoshen → K1* cell is may_replace=false"
+}

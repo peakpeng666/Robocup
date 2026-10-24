@@ -1,0 +1,98 @@
+{
+  "generated_utc": "2026-10-24T13:20:37+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "chains": [
+    {
+      "id": "behavior_motion_request",
+      "name": "运动请求 walkToBallAndKick",
+      "owner": "PlayBall → KickAtGoal / GoToBallAndDribble → WalkToBallAndKick / Dribble",
+      "writes": "MotionRequest.motion",
+      "values": [
+        "walkToBallAndKick",
+        "dribble"
+      ],
+      "applies_kick_policy": false,
+      "contract": "pose/skill only",
+      "not": "kickPolicy.apply 59→13"
+    },
+    {
+      "id": "compilednn_kick_slot",
+      "name": "CompiledNN kick 槽",
+      "owner": "WalkingEngine::WalkPhase::getNextTargetRequest",
+      "writes": "kickPolicy.apply() / oldKickPolicy.apply()",
+      "contract": "59→13",
+      "legal_when": "deploy SkillSelectContext.want_kick=true AND motion∈{dribble, walkToBallAndKick} AND all other walk-stay false",
+      "default": "walkPolicy.apply() 344→13",
+      "official_want_kick_field": false
+    }
+  ],
+  "hop": [
+    "PlayBall",
+    "KickAtGoal / GoToBallAndDribble / PassToTeammate / ClearBall",
+    "GoToBallAndKick / Dribble",
+    "WalkToBallAndKick / Dribble writes MotionRequest.motion"
+  ],
+  "sources": {
+    "skill_request_h": "bhuman/BHumanCodeRelease/Src/Representations/BehaviorControl/SkillRequest.h",
+    "playball": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/PlayBall.cpp",
+    "kick_at_goal": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/KickAtGoal.cpp",
+    "go_to_ball_and_kick": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/GoToBallAndKick.cpp",
+    "go_to_ball_and_dribble": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Ball/GoToBallAndDribble.cpp",
+    "walk_to_ball_and_kick": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/WalkToBallAndKick.cpp",
+    "dribble": "bhuman/BHumanCodeRelease/Src/Modules/BehaviorControl/SkillBehaviorControl/Skills/Output/MotionRequest/Dribble.cpp",
+    "walking_engine": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp",
+    "bt_skill_select": "bhuman/k1-training/k1-reactive/bt_skill_select.py"
+  },
+  "want_kick": {
+    "official_skill_request_field": false,
+    "official_walking_engine_field": false,
+    "official_default_skill": "none",
+    "deploy_port": "SkillSelectContext.want_kick",
+    "deploy_default": false,
+    "kick_59_13_requires": "deploy want_kick=true AND motion∈{dribble, walkToBallAndKick} AND all other walk-stay false"
+  },
+  "chain_a": {
+    "name": "运动请求 walkToBallAndKick",
+    "writes": "MotionRequest.motion",
+    "values": [
+      "walkToBallAndKick",
+      "dribble"
+    ],
+    "applies_kick_policy": false
+  },
+  "chain_b": {
+    "name": "CompiledNN kick 槽",
+    "writes": "policy.apply() on kickPolicy / oldKickPolicy",
+    "contract": "59→13",
+    "default": "walkPolicy.apply() 344→13"
+  },
+  "siblings_referenced_not_reaudited": [
+    "skill_behavior_write_chain.py",
+    "kick_policy_apply_dims.py",
+    "walk_stay_remaining.py",
+    "walk_kick_policy_switch.py",
+    "skill_request_map.py",
+    "bt_skill_select.py"
+  ],
+  "playball_as_kick_policy": false,
+  "motion_walkToBallAndKick_as_59": false,
+  "walk_kick_gap_closed": false,
+  "cross": {
+    "empty_skill_request": "walk",
+    "empty_bt": "walk",
+    "none": "walk",
+    "shoot_without_want_kick": "walk",
+    "deploy_want_kick": "kick"
+  },
+  "fabricated": false,
+  "note": "two chains: PlayBall writes MotionRequest.motion pose/skill only; CompiledNN kick slot is WalkingEngine policy.apply 59→13 gated by deploy want_kick + walk-stay; default empty/none stays walk 344→13",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

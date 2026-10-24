@@ -1,0 +1,89 @@
+{
+  "generated_utc": "2026-10-24T13:20:34+00:00",
+  "walk": "344→13",
+  "task": "K1",
+  "trainable": false,
+  "write_yaml": false,
+  "official_k1_registered": true,
+  "official_tasks": [
+    "K1",
+    "K1_Ball",
+    "K1_Stand_Up"
+  ],
+  "bypass_checked": [
+    "k1-reactive",
+    "k1-estimators",
+    "k1-switcher"
+  ],
+  "bypass_registered": [],
+  "trees": [
+    {
+      "rel": "bhuman/MachineLearning/IsaacGymRL/envs",
+      "tasks": [
+        "T1",
+        "T1_Ball",
+        "T1_Stand_Up",
+        "K1",
+        "K1_Ball",
+        "K1_Stand_Up"
+      ],
+      "official_imports_ok": true,
+      "bypass_needles": [],
+      "leaked_files": []
+    },
+    {
+      "rel": "bhuman/k1-training/src/IsaacGymRL/envs",
+      "tasks": [
+        "T1",
+        "T1_Ball",
+        "T1_Stand_Up",
+        "K1",
+        "K1_Ball",
+        "K1_Stand_Up"
+      ],
+      "official_imports_ok": true,
+      "bypass_needles": [],
+      "leaked_files": []
+    }
+  ],
+  "train_py": [
+    {
+      "rel": "bhuman/MachineLearning/IsaacGymRL/train.py",
+      "present": true,
+      "mentions_runner": true,
+      "bypass_needles": []
+    },
+    {
+      "rel": "bhuman/k1-training/src/IsaacGymRL/train.py",
+      "present": true,
+      "mentions_runner": true,
+      "bypass_needles": []
+    }
+  ],
+  "runner": [
+    {
+      "rel": "bhuman/MachineLearning/IsaacGymRL/utils/runner.py",
+      "eval_task": true,
+      "from_envs_star": true,
+      "missing_needles": [],
+      "bypass_needles": []
+    },
+    {
+      "rel": "bhuman/k1-training/src/IsaacGymRL/utils/runner.py",
+      "eval_task": true,
+      "from_envs_star": true,
+      "missing_needles": [],
+      "bypass_needles": []
+    }
+  ],
+  "k1_yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "notes": [
+    "bhuman/MachineLearning/IsaacGymRL/envs: official K1 / K1_Ball / K1_Stand_Up in registry",
+    "bhuman/k1-training/src/IsaacGymRL/envs: official K1 / K1_Ball / K1_Stand_Up in registry",
+    "bhuman/MachineLearning/IsaacGymRL/train.py: no bypass task name",
+    "bhuman/k1-training/src/IsaacGymRL/train.py: no bypass task name",
+    "bhuman/MachineLearning/IsaacGymRL/utils/runner.py: eval(task) from envs import *",
+    "bhuman/k1-training/src/IsaacGymRL/utils/runner.py: eval(task) from envs import *"
+  ],
+  "verdict": "PASS"
+}
