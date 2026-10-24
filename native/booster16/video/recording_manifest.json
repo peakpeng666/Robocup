@@ -1,0 +1,37 @@
+{
+  "bhuman_revision": "2e3374ba896da8288607f9a1881b876642fe18b8",
+  "simrobot_revision": "9deb6ae6b2a553211612affb757490736f96bfb3",
+  "model_sha256": {
+    "Config/NeuralNets/Walk/K1_kick_inner.onnx": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+    "Config/NeuralNets/Walk/K1_walk.onnx": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+    "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+    "Config/NeuralNets/RobotBallPerceptor/ball_robot_544.onnx": "4115d487c6e56502142038bbfe1d8f50cae2dc38d8e81f7326ca0ebef78ef620"
+  },
+  "scene": "SingleK1Soccer.ros3",
+  "controller": "Original B-Human SimulatedRobot, loaded by read-only SoccerVideoObserver",
+  "rendering": "actual original SimRobot Camera sensor via software EGL, RGB888 flipped vertically once",
+  "camera_perception": "Original Normal.con, not Fast/PerceptOracle configuration",
+  "audio": "Cloud playback discarded to process-local ALSA null sink",
+  "world_trace": "/workspace/shared/video-build/bhuman-single-k1-20261024T021245/frames/world.jsonl",
+  "deliverable": "/workspace/shared/video-build/bhuman-k1-single-robot-kick-12s.mp4",
+  "physics_step_s": 0.002,
+  "capture_fps": 25,
+  "contact_evidence": "Original collision callback identifies left-foot geometry at 4.030000191414729 simulation seconds",
+  "limits": [
+    "Shot excludes attacking left goal, so no goal claim is made.",
+    "Physical contact proves foot-ball impact, not independent internal skill telemetry."
+  ],
+  "full_capture": {
+    "simulation_seconds": 60,
+    "frames": 1500,
+    "physics_steps": 30000,
+    "capture_complete": true,
+    "video": "/workspace/shared/video-build/bhuman-k1-single-robot-full-60s.mp4"
+  },
+  "lifecycle_audit": {
+    "full_capture_wrapper_exit": "not cleanly established: launch script edited while active; subsequent duplicate launch rejected existing output directory and was interrupted",
+    "raw_evidence_integrity": "existing frames and world trace preserved by NewOnly/new-directory safeguards",
+    "reproduction": "new immutable-script 2-second original-controller capture produced 50 frames and exited 0",
+    "reproduction_path": "/workspace/shared/video-build/bhuman-clean-lifecycle-20261024T021845"
+  }
+}

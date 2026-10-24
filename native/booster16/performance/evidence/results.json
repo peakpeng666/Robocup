@@ -1,0 +1,597 @@
+{
+  "qualification": "NOT full-pipeline parity: official walking-only lacks camera/vision/brain/demo/SDK functional workload",
+  "cpu_budget": "same affinity CPUs0-8, Mesa LP_NUM_THREADS4, OMP/BLAS1; actual process thread counts differ and are recorded, not forced equal",
+  "baseline": {
+    "bhuman-normal": {
+      "runs": [
+        {
+          "run": 1,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 60,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Original BHuman Normal vision/behavior/motion",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/SimRobot": "6bfb7076c3df07e8a3398cfc41405aa195d5923d1971a995017d693ab6996246",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimulatedRobot.so": "d8df8a740d51e8c274a2dd465b2c136ba924455eb537220db01d371d5f726428",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "cd9f87d9bae9bb9bcfcc6bfdd736e5fa5a5c033df05bcc47e3a4e34065d606ed",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-1/scene/BHumanNormal.ros3": "73febae395ee7dcf10364653fc444cdd2f06c0d779b561374c3945982ee771c0",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-1/scene/BHumanNormal.con": "9148675ba58e30e44816c55c0a1ad24d96090b3be7d9172d14902726dd7feba5"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 76.07670291199975,
+          "process_cpu_seconds": 598.9143650000001,
+          "peak_parent_threads": 39,
+          "process_start_monotonic_s": 10258.422263391,
+          "controller": "SimulatedRobot",
+          "loop_begin_monotonic_s": 10259.294063537,
+          "loop_cpu_seconds": 597.1757140000001,
+          "loop_end_monotonic_s": 10334.268177396,
+          "loop_wall_seconds": 74.97411385899977,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 0.2667587507277788,
+          "scene_file": "/workspace/shared/benchmark-build/runs/bhuman-normal-1/scene/BHumanNormal.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 0.26289258320097864,
+          "startup_to_loop_seconds": 0.8718001460001688
+        },
+        {
+          "run": 2,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 60,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Original BHuman Normal vision/behavior/motion",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/SimRobot": "6bfb7076c3df07e8a3398cfc41405aa195d5923d1971a995017d693ab6996246",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimulatedRobot.so": "d8df8a740d51e8c274a2dd465b2c136ba924455eb537220db01d371d5f726428",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "cd9f87d9bae9bb9bcfcc6bfdd736e5fa5a5c033df05bcc47e3a4e34065d606ed",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-2/scene/BHumanNormal.ros3": "73febae395ee7dcf10364653fc444cdd2f06c0d779b561374c3945982ee771c0",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-2/scene/BHumanNormal.con": "9148675ba58e30e44816c55c0a1ad24d96090b3be7d9172d14902726dd7feba5"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 78.17487334199905,
+          "process_cpu_seconds": 616.04027,
+          "peak_parent_threads": 38,
+          "process_start_monotonic_s": 10334.524243547,
+          "controller": "SimulatedRobot",
+          "loop_begin_monotonic_s": 10335.325147893,
+          "loop_cpu_seconds": 614.3669070000001,
+          "loop_end_monotonic_s": 10412.404182598,
+          "loop_wall_seconds": 77.0790347050006,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 0.2594739416041429,
+          "scene_file": "/workspace/shared/benchmark-build/runs/bhuman-normal-2/scene/BHumanNormal.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 0.25583669144500076,
+          "startup_to_loop_seconds": 0.8009043459987879
+        },
+        {
+          "run": 3,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 60,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Original BHuman Normal vision/behavior/motion",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/SimRobot": "6bfb7076c3df07e8a3398cfc41405aa195d5923d1971a995017d693ab6996246",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimulatedRobot.so": "d8df8a740d51e8c274a2dd465b2c136ba924455eb537220db01d371d5f726428",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "cd9f87d9bae9bb9bcfcc6bfdd736e5fa5a5c033df05bcc47e3a4e34065d606ed",
+            "/workspace/shared/bhuman-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-3/scene/BHumanNormal.ros3": "73febae395ee7dcf10364653fc444cdd2f06c0d779b561374c3945982ee771c0",
+            "/workspace/shared/benchmark-build/runs/bhuman-normal-3/scene/BHumanNormal.con": "9148675ba58e30e44816c55c0a1ad24d96090b3be7d9172d14902726dd7feba5"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 72.34036514699983,
+          "process_cpu_seconds": 569.0007570000001,
+          "peak_parent_threads": 38,
+          "process_start_monotonic_s": 10412.716649798,
+          "controller": "SimulatedRobot",
+          "loop_begin_monotonic_s": 10413.509380339,
+          "loop_cpu_seconds": 567.0310149999999,
+          "loop_end_monotonic_s": 10484.680138268,
+          "loop_wall_seconds": 71.17075792900141,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 0.28101430323252485,
+          "scene_file": "/workspace/shared/benchmark-build/runs/bhuman-normal-3/scene/BHumanNormal.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 0.27647083214617263,
+          "startup_to_loop_seconds": 0.7927305409994005
+        }
+      ],
+      "median_rtf_loop": 0.2667587507277788,
+      "median_rtf_startup_inclusive": 0.26289258320097864,
+      "min_rtf_loop": 0.2594739416041429,
+      "max_rtf_loop": 0.28101430323252485
+    },
+    "official-control": {
+      "runs": [
+        {
+          "run": 1,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 0,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Official K1 walking control only; camera/vision/brain absent, NOT full-pipeline comparable",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/SimRobot": "8ab19a98dd01cb5cbf8935537cf8961d79e6f4b0300d2046ed4f59c5022279f3",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "32e9f804af30cf90ffaf284ec5981fb6a0c96cb7b6dd79911c7f727d3f781b61",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "26579d570fcd774159fc7f50bf9fec1ebdaa39ca3d05b4f514d0921def3bdbf6",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/official-control-1/scene/OfficialControl.ros3": "c57e4dd0de28ebcf965a102a5b19b2502c91e7720d90c8f68bd1cca650a7aa22"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 4.012629159000426,
+          "process_cpu_seconds": 3.927091,
+          "peak_parent_threads": 14,
+          "process_start_monotonic_s": 10681.904204527,
+          "controller": "BoosterK1Policy",
+          "loop_begin_monotonic_s": 10684.284374632,
+          "loop_cpu_seconds": 0.5566720000000001,
+          "loop_end_monotonic_s": 10685.526619456,
+          "loop_wall_seconds": 1.2422448240013182,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 16.09988672404225,
+          "scene_file": "/workspace/shared/benchmark-build/runs/official-control-1/scene/OfficialControl.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 4.984263473510512,
+          "startup_to_loop_seconds": 2.3801701049997064
+        },
+        {
+          "run": 2,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 0,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Official K1 walking control only; camera/vision/brain absent, NOT full-pipeline comparable",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/SimRobot": "8ab19a98dd01cb5cbf8935537cf8961d79e6f4b0300d2046ed4f59c5022279f3",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "32e9f804af30cf90ffaf284ec5981fb6a0c96cb7b6dd79911c7f727d3f781b61",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "26579d570fcd774159fc7f50bf9fec1ebdaa39ca3d05b4f514d0921def3bdbf6",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/official-control-2/scene/OfficialControl.ros3": "c57e4dd0de28ebcf965a102a5b19b2502c91e7720d90c8f68bd1cca650a7aa22"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 3.410614230999272,
+          "process_cpu_seconds": 3.2869599999999997,
+          "peak_parent_threads": 14,
+          "process_start_monotonic_s": 10685.918909526,
+          "controller": "BoosterK1Policy",
+          "loop_begin_monotonic_s": 10687.711516726,
+          "loop_cpu_seconds": 0.5377610000000002,
+          "loop_end_monotonic_s": 10688.886182557,
+          "loop_wall_seconds": 1.1746658310003113,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 17.02611961813651,
+          "scene_file": "/workspace/shared/benchmark-build/runs/official-control-2/scene/OfficialControl.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 5.8640466483039475,
+          "startup_to_loop_seconds": 1.792607199999111
+        },
+        {
+          "run": 3,
+          "nominal_camera_width": 544,
+          "nominal_camera_height": 448,
+          "nominal_camera_fps": 0,
+          "actual_camera_count_not_instrumented": true,
+          "cpu_affinity": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "environment": {
+            "LP_NUM_THREADS": "4",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "LIBGL_ALWAYS_SOFTWARE": "1"
+          },
+          "realtime_throttle": "dt off",
+          "policy_stack": "Official K1 walking control only; camera/vision/brain absent, NOT full-pipeline comparable",
+          "disk_frame_capture": false,
+          "third_person_camera": false,
+          "input_sha256": {
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/SimRobot": "8ab19a98dd01cb5cbf8935537cf8961d79e6f4b0300d2046ed4f59c5022279f3",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBoosterK1Policy.so": "32e9f804af30cf90ffaf284ec5981fb6a0c96cb7b6dd79911c7f727d3f781b61",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libSimRobotCore3.so": "26579d570fcd774159fc7f50bf9fec1ebdaa39ca3d05b4f514d0921def3bdbf6",
+            "/workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+            "/workspace/shared/benchmark-build/runs/official-control-3/scene/OfficialControl.ros3": "c57e4dd0de28ebcf965a102a5b19b2502c91e7720d90c8f68bd1cca650a7aa22"
+          },
+          "exit_code": 0,
+          "process_wall_seconds": 3.3111477059992467,
+          "process_cpu_seconds": 3.235847000000001,
+          "peak_parent_threads": 14,
+          "process_start_monotonic_s": 10689.331625802,
+          "controller": "BoosterK1Policy",
+          "loop_begin_monotonic_s": 10691.049836482,
+          "loop_cpu_seconds": 0.5492569999999999,
+          "loop_end_monotonic_s": 10692.24646038,
+          "loop_wall_seconds": 1.1966238980003254,
+          "observer_render_requests": 0,
+          "per_frame_disk_writes": 0,
+          "physics_steps": 10000,
+          "rtf_loop": 16.713690060319678,
+          "scene_file": "/workspace/shared/benchmark-build/runs/official-control-3/scene/OfficialControl.ros3",
+          "schema": 1,
+          "simulated_seconds": 20.000000949949026,
+          "step_length_s": 0.0020000000949949026,
+          "rtf_including_startup_and_teardown": 6.040201986070378,
+          "startup_to_loop_seconds": 1.7182106799991743
+        }
+      ],
+      "median_rtf_loop": 16.713690060319678,
+      "median_rtf_startup_inclusive": 5.8640466483039475,
+      "min_rtf_loop": 16.09988672404225,
+      "max_rtf_loop": 17.02611961813651
+    }
+  },
+  "profiles": {
+    "bhuman-profiled-1": {
+      "run": {
+        "run": 1,
+        "nominal_camera_width": 544,
+        "nominal_camera_height": 448,
+        "nominal_camera_fps": 60,
+        "actual_camera_count_not_instrumented": true,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "environment": {
+          "LP_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "MKL_NUM_THREADS": "1",
+          "LIBGL_ALWAYS_SOFTWARE": "1"
+        },
+        "realtime_throttle": "dt off",
+        "policy_stack": "Original BHuman Normal vision/behavior/motion",
+        "disk_frame_capture": false,
+        "third_person_camera": false,
+        "input_sha256": {
+          "/workspace/shared/benchmark-build/profile/bin/SimRobot": "6bfb7076c3df07e8a3398cfc41405aa195d5923d1971a995017d693ab6996246",
+          "/workspace/shared/benchmark-build/profile/bin/libSimulatedRobot.so": "f76a4233f163dae43045e2fce3d01a7250a2a721bb15d7c61a9ce8e4187c0833",
+          "/workspace/shared/benchmark-build/profile/bin/libSimRobotCore3.so": "a0d318677460b32656196c354d73916978ef447bd63f5c70a2267d860086bb14",
+          "/workspace/shared/benchmark-build/profile/bin/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+          "/workspace/shared/benchmark-build/runs/bhuman-profiled-1/scene/BHumanNormal.ros3": "73febae395ee7dcf10364653fc444cdd2f06c0d779b561374c3945982ee771c0",
+          "/workspace/shared/benchmark-build/runs/bhuman-profiled-1/scene/BHumanNormal.con": "9148675ba58e30e44816c55c0a1ad24d96090b3be7d9172d14902726dd7feba5"
+        },
+        "exit_code": 0,
+        "process_wall_seconds": 109.96392021899919,
+        "process_cpu_seconds": 869.473633,
+        "peak_parent_threads": 38,
+        "process_start_monotonic_s": 10535.922901688,
+        "controller": "SimulatedRobot",
+        "loop_begin_monotonic_s": 10536.730287692,
+        "loop_cpu_seconds": 867.372014,
+        "loop_end_monotonic_s": 10645.556828054,
+        "loop_wall_seconds": 108.82654036199892,
+        "observer_render_requests": 0,
+        "per_frame_disk_writes": 0,
+        "physics_steps": 10000,
+        "rtf_loop": 0.1837787076885963,
+        "scene_file": "/workspace/shared/benchmark-build/runs/bhuman-profiled-1/scene/BHumanNormal.ros3",
+        "schema": 1,
+        "simulated_seconds": 20.000000949949026,
+        "step_length_s": 0.0020000000949949026,
+        "rtf_including_startup_and_teardown": 0.1818778460254775,
+        "startup_to_loop_seconds": 0.8073860040003638
+      },
+      "stages": [
+        {
+          "name": "camera_batch_render_readback_actual",
+          "calls": 1176,
+          "wall_seconds": 21.303698069,
+          "mean_us": 18115.389514455783
+        },
+        {
+          "name": "physics_step_including_actuator_collision",
+          "calls": 10000,
+          "wall_seconds": 0.656897228,
+          "mean_us": 65.6897228
+        },
+        {
+          "name": "motion_kick_nn_apply",
+          "calls": 267,
+          "wall_seconds": 0.022029759,
+          "mean_us": 82.5084606741573
+        },
+        {
+          "name": "vision_robot_ball_nn_apply",
+          "calls": 1168,
+          "wall_seconds": 97.204966702,
+          "mean_us": 83223.43039554794
+        },
+        {
+          "name": "motion_walk_nn_apply",
+          "calls": 730,
+          "wall_seconds": 0.074192569,
+          "mean_us": 101.63365616438355
+        },
+        {
+          "name": "camera_getImage_including_rgb_conversion",
+          "calls": 1176,
+          "wall_seconds": 21.487788481,
+          "mean_us": 18271.92898044218
+        }
+      ],
+      "python_snapshots": []
+    },
+    "official-profiled-1": {
+      "run": {
+        "run": 1,
+        "nominal_camera_width": 544,
+        "nominal_camera_height": 448,
+        "nominal_camera_fps": 0,
+        "actual_camera_count_not_instrumented": true,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "environment": {
+          "LP_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "MKL_NUM_THREADS": "1",
+          "LIBGL_ALWAYS_SOFTWARE": "1"
+        },
+        "realtime_throttle": "dt off",
+        "policy_stack": "Official K1 walking control only; camera/vision/brain absent, NOT full-pipeline comparable",
+        "disk_frame_capture": false,
+        "third_person_camera": false,
+        "input_sha256": {
+          "/workspace/shared/benchmark-build/official-profile/bin/SimRobot": "8ab19a98dd01cb5cbf8935537cf8961d79e6f4b0300d2046ed4f59c5022279f3",
+          "/workspace/shared/benchmark-build/official-profile/bin/libBoosterK1Policy.so": "4faa0da2f3e8cfa829cc3d3d85fd55ee62756ae6eafccb4948a306b4d318dd7e",
+          "/workspace/shared/benchmark-build/official-profile/bin/libSimRobotCore3.so": "9a60da3e374d64bb2c3d8cf95351e8266043f0c0c3e73391e9efef540941af61",
+          "/workspace/shared/benchmark-build/official-profile/bin/libBenchmarkObserver.so": "a18c457d13f37bc15076adc3589352642ae0155ecf65f46789972517a9abc64f",
+          "/workspace/shared/benchmark-build/runs/official-profiled-1/scene/OfficialControl.ros3": "c57e4dd0de28ebcf965a102a5b19b2502c91e7720d90c8f68bd1cca650a7aa22"
+        },
+        "exit_code": 0,
+        "process_wall_seconds": 3.3155486859996017,
+        "process_cpu_seconds": 3.224338,
+        "peak_parent_threads": 14,
+        "process_start_monotonic_s": 10859.820631418,
+        "controller": "BoosterK1Policy",
+        "loop_begin_monotonic_s": 10861.580173205,
+        "loop_cpu_seconds": 0.501963,
+        "loop_end_monotonic_s": 10862.713991289,
+        "loop_wall_seconds": 1.1338180839993584,
+        "observer_render_requests": 0,
+        "per_frame_disk_writes": 0,
+        "physics_steps": 10000,
+        "rtf_loop": 17.63951486767814,
+        "scene_file": "/workspace/shared/benchmark-build/runs/official-profiled-1/scene/OfficialControl.ros3",
+        "schema": 1,
+        "simulated_seconds": 20.000000949949026,
+        "step_length_s": 0.0020000000949949026,
+        "rtf_including_startup_and_teardown": 6.032184366467611,
+        "startup_to_loop_seconds": 1.7595417869997618
+      },
+      "stages": [
+        {
+          "name": "official_physics_including_actuator_collision",
+          "calls": 10000,
+          "wall_seconds": 0.320967777,
+          "mean_us": 32.0967777
+        },
+        {
+          "name": "official_actuator_submit22",
+          "calls": 10001,
+          "wall_seconds": 0.004583351,
+          "mean_us": 0.4582892710728927
+        },
+        {
+          "name": "official_adapter_infer_total",
+          "calls": 1001,
+          "wall_seconds": 0.802091726,
+          "mean_us": 801.2904355644356
+        },
+        {
+          "name": "official_pipe_reset_startup",
+          "calls": 1,
+          "wall_seconds": 0.974635066,
+          "mean_us": 974635.066
+        },
+        {
+          "name": "official_pipe_step_roundtrip_json",
+          "calls": 1001,
+          "wall_seconds": 0.741435447,
+          "mean_us": 740.6947522477523
+        }
+      ],
+      "python_snapshots": [
+        {
+          "stages": {
+            "official_torchscript_forward": [
+              1000,
+              107916242
+            ],
+            "official_policy_inference_obs_forward_postprocess": [
+              1000,
+              275638957
+            ],
+            "official_backend_step_validation_mapping_policy": [
+              1000,
+              519405219
+            ]
+          },
+          "torch_num_threads": 1,
+          "torch_interop_threads": 9
+        },
+        {
+          "stages": {
+            "official_torchscript_forward": [
+              1001,
+              108034650
+            ],
+            "official_policy_inference_obs_forward_postprocess": [
+              1001,
+              275899419
+            ],
+            "official_backend_step_validation_mapping_policy": [
+              1001,
+              519916689
+            ]
+          },
+          "torch_num_threads": 1,
+          "torch_interop_threads": 9
+        }
+      ]
+    }
+  },
+  "limits": [
+    "profile timings are inclusive wall intervals across asynchronous threads and cannot be added as percentages",
+    "native profile RTF differs materially from pristine baseline, so use original3runs for throughput and profile only for attribution/count evidence",
+    "no per-frame file writes or third-person captures; original native camera/vision remains active",
+    "official baseline has no executed vision, not an optimization that disables an existing pipeline",
+    "process CPU includes reaped subprocesses; loop CPU field is parent only",
+    "OS thread sampling at100ms may miss short-lived peaks"
+  ]
+}

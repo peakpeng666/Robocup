@@ -1,0 +1,94 @@
+--- /workspace/shared/bhuman-build/source/Util/SimRobot/Src/SimRobotCore3/Simulation/Simulation.cpp
++++ /workspace/shared/benchmark-build/profile/source/Simulation.cpp
+@@ -1,3 +1,4 @@
++#include "/workspace/shared/benchmark-build/profile/source/BenchStage.h"
+ /**
+  * @file Simulation/Simulation.cpp
+  * Implementation of class Simulation
+@@ -156,6 +157,7 @@
+ 
+ void Simulation::doSimulationStep()
+ {
++  BENCH_SCOPE("physics_step_including_actuator_collision");
+   ++simulationStep;
+   simulatedTime += scene->stepLength;
+ 
+--- /workspace/shared/bhuman-build/source/Util/SimRobot/Src/SimRobotCore3/Simulation/Sensors/Camera.cpp
++++ /workspace/shared/benchmark-build/profile/source/Camera.cpp
+@@ -1,3 +1,4 @@
++#include "/workspace/shared/benchmark-build/profile/source/BenchStage.h"
+ /**
+  * @file Simulation/Sensors/Camera.cpp
+  * Implementation of class Camera
+@@ -68,6 +69,7 @@
+ 
+ void Camera::CameraSensor::updateValue()
+ {
++  BENCH_SCOPE("camera_direct_render_readback");
+   // allocate buffer
+   const unsigned int imageWidth = camera->imageWidth;
+   const unsigned int imageHeight = camera->imageHeight;
+@@ -111,6 +113,7 @@
+ {
+   if(lastSimulationStep == Simulation::simulation->simulationStep)
+     return true;
++  BENCH_SCOPE("camera_batch_render_readback_actual");
+ 
+   // allocate buffer
+   const unsigned int imageWidth = camera->imageWidth;
+--- /workspace/shared/bhuman-build/source/Src/Libs/SimulatedRobot/SimulatedRobot3D.cpp
++++ /workspace/shared/benchmark-build/profile/source/SimulatedRobot3D.cpp
+@@ -1,3 +1,4 @@
++#include "/workspace/shared/benchmark-build/profile/source/BenchStage.h"
+ /**
+  * @file SimulatedRobot3D.cpp
+  *
+@@ -230,6 +231,7 @@
+ 
+ void SimulatedRobot3D::getImage(CameraImage& cameraImage, CameraInfo& cameraInfo)
+ {
++  BENCH_SCOPE("camera_getImage_including_rgb_conversion");
+   ASSERT(robot);
+ 
+   if(colorCameraSensor)
+--- /workspace/shared/bhuman-build/source/Src/Modules/Perception/MultiPerceptors/RobotBallPerceptor.cpp
++++ /workspace/shared/benchmark-build/profile/source/RobotBallPerceptor.cpp
+@@ -1,3 +1,4 @@
++#include "/workspace/shared/benchmark-build/profile/source/BenchStage.h"
+ /**
+  * @author Krishnen Ganeshakumar
+  * @author Steffen Gebhard
+@@ -298,7 +299,7 @@
+   usefulPredicts.clear();
+ 
+   STOPWATCH("module:RobotBallPerceptor:preProcess") preProcess();
+-  STOPWATCH("module:RobotBallPerceptor:apply") compiled.apply();
++  STOPWATCH("module:RobotBallPerceptor:apply") { BENCH_SCOPE("vision_robot_ball_nn_apply"); compiled.apply(); }
+   STOPWATCH("module:RobotBallPerceptor:extractPredictions") extractPredictions(boxConfidenceThreshold, iouThreshold);
+ 
+   COMPLEX_DRAWING("module:RobotBallPerceptor:box")
+--- /workspace/shared/bhuman-build/source/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp
++++ /workspace/shared/benchmark-build/profile/source/WalkingEngine.cpp
+@@ -1,3 +1,4 @@
++#include "/workspace/shared/benchmark-build/profile/source/BenchStage.h"
+ /**
+  * @file WalkingEngine.h
+  *
+@@ -819,7 +820,7 @@
+ 
+     // Run network.
+     STOPWATCH("module:WalkingEngine:apply")
+-      engine.walkPolicy.apply();
++      { BENCH_SCOPE("motion_walk_nn_apply"); engine.walkPolicy.apply(); }
+ 
+     // Get next request
+     const float* output = engine.walkPolicy.output(0).data();
+@@ -931,7 +932,7 @@
+ 
+     // Run network.
+     STOPWATCH("module:WalkingEngine:apply")
+-      policy.apply();
++      { BENCH_SCOPE("motion_kick_nn_apply"); policy.apply(); }
+ 
+     // Get next request
+     const float* output = policy.output(0).data();

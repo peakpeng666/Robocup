@@ -1,0 +1,11 @@
+{
+    "channels": 3,
+    "fed_to_policy": false,
+    "height": 448,
+    "physics_step": 10,
+    "pixel_format": "RGB888 raw sensor row order",
+    "policy_tick": 1,
+    "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+    "source": "actual SimRobot CameraColor.image render/readback",
+    "width": 544
+}

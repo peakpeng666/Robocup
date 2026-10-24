@@ -1,0 +1,52 @@
+{
+  "profile": "official-k1-walk7bb",
+  "scope": "actual official policy in headless MuJoCo; not SimRobot or firmware 1.6 equivalence",
+  "runs": [
+    "runs/20261024T012433.822117Z/result.json",
+    "runs/20261024T012441.878682Z/result.json"
+  ],
+  "statuses": [
+    "completed",
+    "completed"
+  ],
+  "deterministic_trace_sha256_equal": true,
+  "trace_sha256": "f076132b479f18ca0a4a19ad91fc9a6701cbb563396c25433dc7b20b4c108169",
+  "segment_metrics": [
+    {
+      "from_s": 0.0,
+      "to_s": 5.0,
+      "vx": 0.0,
+      "actual_x_displacement_m": -0.007291544667100626,
+      "actual_mean_vx_m_s": -0.0014583089334201252,
+      "samples": 250
+    },
+    {
+      "from_s": 5.0,
+      "to_s": 15.0,
+      "vx": 0.2,
+      "actual_x_displacement_m": 0.24703038008865888,
+      "actual_mean_vx_m_s": 0.024703038008865887,
+      "samples": 500
+    },
+    {
+      "from_s": 15.0,
+      "to_s": 20.0,
+      "vx": 0.0,
+      "actual_x_displacement_m": -0.014883992052743822,
+      "actual_mean_vx_m_s": -0.0029767984105487644,
+      "samples": 250
+    }
+  ],
+  "speed_tracking_qualified": false,
+  "caveats": [
+    "Conservative command 0.2 m/s produces much lower observed forward velocity. This is a bounded smoke/reference result, not a tracking qualification.",
+    "Maximum observed policy call exceeds the 20 ms policy period; loop throughput is not a hard realtime guarantee.",
+    "Earlier retained runs used floating-point segment boundaries; corrected runs use exact policy-step indexes. Raw trajectories are identical."
+  ],
+  "all_retained_runs": [
+    "runs/20261024T012404.192323Z/result.json",
+    "runs/20261024T012420.827810Z/result.json",
+    "runs/20261024T012433.822117Z/result.json",
+    "runs/20261024T012441.878682Z/result.json"
+  ]
+}

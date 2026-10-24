@@ -1,0 +1,21 @@
+{
+  "status": "FAILED_STRICT_REFERENCE_SEMANTICS",
+  "frames": 5249,
+  "last_tick": 5248,
+  "sim_seconds": 104.96,
+  "joint": "right_ankle_roll_joint",
+  "scene_joint": "RAnkleRoll",
+  "physical_range_both_models": [
+    -0.345,
+    0.345
+  ],
+  "q_target_rad": 0.34692391753196716,
+  "q_rad": 0.36413270235061646,
+  "dq_rad_s": 0.16227051615715027,
+  "official_pd_torque_nm": -1.2808415293693542,
+  "torque_limit_nm": 15,
+  "cause": "Introduced desired-position range guard rejected legitimate finite PD reference; desired torque was restoring and within torque bounds. Physical joint limits differ from desired target limits.",
+  "raw_trace_sha256": "4066730c85ee86068826e8bf0f512431bcf722a413466b03b8d24bf4dcda7338",
+  "official_source": "booster_deploy/controllers/mujoco_controller.py:221-246 @7bb1462e2ac742eba5c01659b815e2e99fbe617f",
+  "replacement_policy": "explicit finiteReference opt-in for official-k1-walk-7bb1462; default strict and physical/torque limits unchanged"
+}

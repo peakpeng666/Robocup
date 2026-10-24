@@ -1,0 +1,42 @@
+{
+  "source": {
+    "actuator_writes": false,
+    "controller": "SimulatedRobot",
+    "event": "configuration",
+    "height": 540,
+    "scene_file": "/workspace/shared/video-build/scenes/SingleK1Soccer.ros3",
+    "source": "actual SimRobot Camera.image RGB render and physics body state",
+    "step_length": 0.0020000000949949026,
+    "vertical_flip": true,
+    "video_fps": 25,
+    "width": 960
+  },
+  "frame_count": 1500,
+  "fps": 25,
+  "longer_capture_complete_at_encoding": true,
+  "first_simulation_time_s": 0.04000000189989805,
+  "last_simulation_time_s": 60.00000284984708,
+  "duration_s": 60.0,
+  "robot_ball_contact_count": 96,
+  "first_contact": {
+    "ball_geometry": "RoboCup.balls.ball.SphereGeometry",
+    "ball_position_m": [
+      -8.671377012893724e-20,
+      -2.439472724174343e-19,
+      0.09497270733118057
+    ],
+    "ball_velocity_m_s": [
+      -0.29632890224456787,
+      0.07579658925533295,
+      0.15376149117946625
+    ],
+    "event": "robot_ball_contact",
+    "other_geometry": "RoboCup.robots.robot5.LHipPitch.Body.LHipRoll.Body.LHipYaw.Body.LKneePitch.Body.LAnklePitch.Body.LAnkleRoll.LFoot.BoxGeometry",
+    "simulation_time_s": 4.030000191414729,
+    "step": 2015
+  },
+  "ball_net_horizontal_displacement_m": 6.921080253248537e-20,
+  "maximum_ball_horizontal_speed_m_s": 6.145232231045181,
+  "interpretation": "Contact and movement are physical evidence, not by themselves proof of a deliberate successful kick.",
+  "sha256": "51c8c2db1091487f80b1d0369f385c39b9ee87025859d86556b11261534ad79c"
+}

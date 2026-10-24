@@ -1,0 +1,28 @@
+surfaceless: real EGL 1.5 pbuffer integration initialized
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+BoosterK1Policy inference tick 0 accepted; body-pose orientation oracle
+BENCH_BEGIN wall=10687.711516726 step=0 sim=0.000000000
+BoosterK1Policy inference tick 50 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 950 accepted; body-pose orientation oracle
+BENCH_COMPLETE sim=20.000000950 wall=1.174665831 rtf=17.026120
+BoosterK1Policy inference tick 1000 accepted; body-pose orientation oracle

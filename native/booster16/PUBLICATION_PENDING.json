@@ -1,0 +1,492 @@
+{
+  "status": "partial_source_first_publication",
+  "scope": "Reviewed project source and small text evidence; no runtime packages or caches. Not a complete runnable checkout until missing model and meshes are restored.",
+  "pending": [
+    {
+      "path": "native/booster16/diagnostics/official_reference/crosscheck_original/20261024T023224.562917Z/diagnostics.jsonl",
+      "bytes": 401235,
+      "sha256": "b16950a58ddd1549ed4dff04b20142e537ddf4b22743f8bb304cdd9949098082",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/crosscheck_original/20261024T023224.562917Z/trace.csv",
+      "bytes": 129395,
+      "sha256": "506504bb1f6278981ae15b6919abe9c1568531e6232edf5ca0a908426ce57120",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/summary.json",
+      "bytes": 113667,
+      "sha256": "44fd17551a10b68b8eb9e233998c832bbd034c21e7b09ac7f8cb765a06013634",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vx020/physics_trace.npz",
+      "bytes": 6740027,
+      "sha256": "1c0995f76637fe7b47c684565b3111440589fb4ad1ebbe1eb63a93fa6be75ca2",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vx020/policy_trace.jsonl",
+      "bytes": 2520086,
+      "sha256": "eacbc4c984437c9314d2617f429673824dccabd4b7cf199042af746b2c960a97",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vx020/trace.csv",
+      "bytes": 3521697,
+      "sha256": "ae7b726b7d698e5bc06725b6e8a952c5da2b3ff050b851e4af304536c9d1c91f",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vy010/physics_trace.npz",
+      "bytes": 6453513,
+      "sha256": "c29833b774d6360edf47d97141101946f695ef65c40e4894d50766d700e51896",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vy010/policy_trace.jsonl",
+      "bytes": 2544279,
+      "sha256": "7b9f9d49433de89a425440d0eb4f8a8514010539f796da70c8c3370e98c1781c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/initial_state_only/runs/20261024T023451.365729Z_mj3.3.5/vy010/trace.csv",
+      "bytes": 3768359,
+      "sha256": "eedc2c07ed6450b1116c5e691ce3ba53ac96544b63740e30c42508bea144e625",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/summary.json",
+      "bytes": 154234,
+      "sha256": "3a5c5b044aebab6012e1e389a4b04d4fd6467adc6cf6d05fd60a9f7d9168473c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx020/physics_trace.npz",
+      "bytes": 6717091,
+      "sha256": "9d5a106148235541b70a4ea6de0299ca3f94401bdd4f66d5af84087d821e27bd",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx020/policy_trace.jsonl",
+      "bytes": 2520616,
+      "sha256": "1c683cf17c73d5e67ffad2899c944d00a2052b304ded2d1146fb69bff6b78334",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx020/trace.csv",
+      "bytes": 3539252,
+      "sha256": "bda63f9d8d71509caf60844e9e2657bbd6b495129918c63ad3edbfe32c41b800",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx050/physics_trace.npz",
+      "bytes": 6754996,
+      "sha256": "9dc1e011a629e78110e0a1974966f509d424930007022145717178434fcbeef3",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx050/policy_trace.jsonl",
+      "bytes": 2500919,
+      "sha256": "ce815e5440b74b849c2576a61c43586015127b37e2666e1838ca635c88629a16",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vx050/trace.csv",
+      "bytes": 3531722,
+      "sha256": "c893f294a24437f38a82053319b1295293b35b4c09f1c3771734fd57f52e7d24",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vy010/physics_trace.npz",
+      "bytes": 6452789,
+      "sha256": "8f4ca21663dbb3b1ab6e471486f4a6263c3d97a2a9341b56c94735568e9db8ea",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vy010/policy_trace.jsonl",
+      "bytes": 2546340,
+      "sha256": "6ed781f3afa124e68f940daa131b4460dd8df0147d5503f262fa27aa81abd04a",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952122Z_mj3.3.5/vy010/trace.csv",
+      "bytes": 3785252,
+      "sha256": "6cfea0d0136ffba67fb6b218f3ab10c82431274306feee6faf86faa21fc408d6",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/summary.json",
+      "bytes": 154104,
+      "sha256": "3d4f55d08b131223aadfe4a7f1d08a57b72287fdf7ca7751bf8e4863c0191a27",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx020/physics_trace.npz",
+      "bytes": 6712069,
+      "sha256": "840f66cd9765a6263786aa7a272599244a7342dd52fd82d207c58e98af669a23",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx020/policy_trace.jsonl",
+      "bytes": 2520892,
+      "sha256": "e4c35d90551fd9e8d23dc737b9e5c611bd0e69c97d93eec33a545da2b1e2cc31",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx020/trace.csv",
+      "bytes": 3541017,
+      "sha256": "566f366d91a9fb18cd51d9591525c8e48d3ee96a733bc27ae4ba3df30cd118c7",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx050/physics_trace.npz",
+      "bytes": 6758992,
+      "sha256": "d9ec3c8d8b9ee3785666046b5be24ceaf1cc84596ad0cc46e438d0fd6bca2a75",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx050/policy_trace.jsonl",
+      "bytes": 2498630,
+      "sha256": "932e5165929e5bf99e9acd5a92db6398b8e32dfba84e4ae6398e0e5d837ffd74",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vx050/trace.csv",
+      "bytes": 3525950,
+      "sha256": "3be69fb895b6d91b2ce684361f562887fa75e2188875eb275a3684755f646c67",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vy010/physics_trace.npz",
+      "bytes": 6452019,
+      "sha256": "fefe1cdd65749692f4c2ce87c2d880f7063ea896a9c4189b8c5a4c24c2c89ca8",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vy010/policy_trace.jsonl",
+      "bytes": 2546079,
+      "sha256": "ea884af6c654fe16e8065b08ff4dc50fac0d23811fe6b7b3354a3bc273796949",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/diagnostics/official_reference/runs/20261024T023140.952463Z_mj3.17.0/vy010/trace.csv",
+      "bytes": 3785606,
+      "sha256": "eb7b853fcce59f1f32d3619be519ff8edb6f926531cc6e0c3c4d6f9660050a79",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0149-strict-reference-failure/policy.jsonl.gz",
+      "bytes": 3909533,
+      "sha256": "e93a3bd99e2bb973e08a9055a8684e58f6a9e9bc892c650b2af64a10b6162e33",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0154-completed-physics-teardown-failure/k1-camera-0154.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0154-completed-physics-teardown-failure/policy.jsonl.gz",
+      "bytes": 5940322,
+      "sha256": "61012a5bf007b53d14b03e121ca6827820433e20a621fdc7e93eb2566c7f6e88",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0156-standing-120s-pass/k1-camera-0156.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0156-standing-120s-pass/policy.jsonl.gz",
+      "bytes": 5940322,
+      "sha256": "61012a5bf007b53d14b03e121ca6827820433e20a621fdc7e93eb2566c7f6e88",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward02/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward02/trace.jsonl.gz",
+      "bytes": 1031384,
+      "sha256": "fc1b230b77beed9e68595d868f47e02b18478e2ecc5df188587f41289cd08fda",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward05/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward05/trace.jsonl.gz",
+      "bytes": 1032618,
+      "sha256": "e55035ac83e9cac8341eb975b045a36f27e2676fa9d62e281900d4817aec56ce",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/lateral01/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/lateral01/trace.jsonl.gz",
+      "bytes": 1003930,
+      "sha256": "a1f0df2dadc974903c2b97b3ae329eb56b1f73e5533a5b43687ce7e8bf97fa7e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/yaw03/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/yaw03/trace.jsonl.gz",
+      "bytes": 1033056,
+      "sha256": "d2dcec7308975ab3d2441c3927f686c7f3e7d982ed83f9fe13ff4900eccf8b77",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Head_1_2.rsi3",
+      "bytes": 547254,
+      "sha256": "6d2e7f3756b42e4be97ebdcf7f71dec8dedca6be4a2df15736b902afe574efdb",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Head_2_4.rsi3",
+      "bytes": 1638686,
+      "sha256": "71bedb9215a234bdc615b616c82b6fd965f5db7aff4b9c013d4e3ff75d58d52f",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Ankle_Cross_16.rsi3",
+      "bytes": 108751,
+      "sha256": "2768d678d94edaceed4b96acbf9d4ab7f3c76f449b721a8bfafd88854cf1b0ca",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Arm_1_4.rsi3",
+      "bytes": 145971,
+      "sha256": "c0a6de4c360e806a26cbbcc92b1832700ee562cc7508dca8abc88a8f821a333e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Arm_2_5.rsi3",
+      "bytes": 1197728,
+      "sha256": "2fabf0809943e019f921750217738e81922e0d45e3275f798d7e7cc0483d1dfd",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Arm_3_6.rsi3",
+      "bytes": 160679,
+      "sha256": "a209ffdf595ef8b507dde6e9b593a47845e40f2778bfaf17d19451277b97756d",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Arm_4_7.rsi3",
+      "bytes": 124117,
+      "sha256": "f46f46e33fe2daa6e7b3a28805f52673ca8ebc4ac0a0fe108a05879ad8565a24",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Foot_17.rsi3",
+      "bytes": 2301119,
+      "sha256": "77ae94e6704c58f75b81f3e6125a5aacc72c9153541257782b1b86acb966f0fd",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Hip_Pitch_12.rsi3",
+      "bytes": 145029,
+      "sha256": "7ddcb73a8aa6555c0e8c6c23eb5fbfe98b0acc2f068761440ba619f56ed10ede",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Hip_Yaw_14.rsi3",
+      "bytes": 237712,
+      "sha256": "ec7e3937650cdad449d44a6a3f66011aa9606f0e6426b9a36d1e15a5c680474b",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Left_Shank_15.rsi3",
+      "bytes": 300681,
+      "sha256": "08ff2c70b32c743f7f1bab6cb65a68fe63fe668e11b8dd3211c1c9d96d4f8bc3",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Ankle_Cross_22.rsi3",
+      "bytes": 108752,
+      "sha256": "7272135104c17dc7c7ee0545d0a720546cc061c41be97df8703e33b03b210522",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Arm_1_8.rsi3",
+      "bytes": 147944,
+      "sha256": "518b6e033c37da21d54e39cc19f4eeae87b2d4707b5a3c178887c33aad627456",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Arm_2_9.rsi3",
+      "bytes": 1160423,
+      "sha256": "f9bb96de5938644f88f4c4ff9e17425b233947de1e51340319e4f5a69cfbba5f",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Arm_3_10.rsi3",
+      "bytes": 248200,
+      "sha256": "d15179d91c94b2598fb7cc734380dadd44754946ded20e41e649e300f1f5ed22",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Arm_4_11.rsi3",
+      "bytes": 128035,
+      "sha256": "039feca085b378d4c2c248e1d7de8722414f7360b23e8e6e7310b86d6068a31a",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Foot_23.rsi3",
+      "bytes": 2304847,
+      "sha256": "f89040e526c04b7078e9dfa33e32c3e1cc6668a407ab0daaa4980104e0c59bf6",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Hip_Pitch_18.rsi3",
+      "bytes": 144789,
+      "sha256": "2cc5477d868594024d1d2c629f882d7368517064719ee380746959f87c6ad7de",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Hip_Yaw_20.rsi3",
+      "bytes": 237195,
+      "sha256": "25ccf4da0f96041635a17d23a2e62fc8f41142274c99c85de19af440beea2b51",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Right_Shank_21.rsi3",
+      "bytes": 300382,
+      "sha256": "83aa324d6bba947f116a21f593fe6a73b4d073ce4a425b187a36e5dfc2fd1a21",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/plugin/scenes/vendor/bhuman/Trunk_1.rsi3",
+      "bytes": 415125,
+      "sha256": "0874c713e974705b0b3d640c72c2234a4c1dfcb60cac16a276a05c75a107ea96",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012404.192323Z/trace.csv",
+      "bytes": 129364,
+      "sha256": "f076132b479f18ca0a4a19ad91fc9a6701cbb563396c25433dc7b20b4c108169",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012420.827810Z/trace.csv",
+      "bytes": 129364,
+      "sha256": "f076132b479f18ca0a4a19ad91fc9a6701cbb563396c25433dc7b20b4c108169",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012433.822117Z/trace.csv",
+      "bytes": 129364,
+      "sha256": "f076132b479f18ca0a4a19ad91fc9a6701cbb563396c25433dc7b20b4c108169",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012441.878682Z/trace.csv",
+      "bytes": 129364,
+      "sha256": "f076132b479f18ca0a4a19ad91fc9a6701cbb563396c25433dc7b20b4c108169",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012632.444076Z/diagnostics.jsonl",
+      "bytes": 278321,
+      "sha256": "48af3ce625d649ef7a92f25436155767baf33d9b76198438cd24a6224aca825a",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012632.444076Z/trace.csv",
+      "bytes": 128234,
+      "sha256": "8e1f5f7b735b29c9999193c859d3eb182b49f768dbe51b4324a324a6a26baf9c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012711.457605Z/diagnostics.jsonl",
+      "bytes": 391301,
+      "sha256": "611adffc0f7ccf9420a577b22bf4232eeee7bd912c5b448d070137994345f313",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012711.457605Z/trace.csv",
+      "bytes": 128234,
+      "sha256": "8e1f5f7b735b29c9999193c859d3eb182b49f768dbe51b4324a324a6a26baf9c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012727.632979Z/diagnostics.jsonl",
+      "bytes": 392510,
+      "sha256": "8b33742d58576212e4c19d0106439423a0142bc389101ed8019641985f411bfe",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012727.632979Z/trace.csv",
+      "bytes": 128234,
+      "sha256": "8e1f5f7b735b29c9999193c859d3eb182b49f768dbe51b4324a324a6a26baf9c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012744.553269Z/diagnostics.jsonl",
+      "bytes": 393151,
+      "sha256": "54fe4db85a5507831ec6b215cf06cf3614ad2d1343948ecf5ca46155d8af8ea4",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/reference/runs/20261024T012744.553269Z/trace.csv",
+      "bytes": 128234,
+      "sha256": "8e1f5f7b735b29c9999193c859d3eb182b49f768dbe51b4324a324a6a26baf9c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/vendor/booster_deploy/tasks/locomotion/robots/k1/models/k1_walk.pt",
+      "bytes": 2104639,
+      "sha256": "2d860167ed827e8d44cd65abd4c27f474904352bcb98c0cfa97c078f63e2fea5",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-official-k1-walk/official-k1-walk-35s.ass",
+      "bytes": 214888,
+      "sha256": "96500c04ffee87026bee1edba496acbcb8f9f0aa4c531be07d0e0fb7bbd0403e",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-official-k1-walk/official-k1-walk-35s.overlay.json",
+      "bytes": 150579,
+      "sha256": "d82cdefd2840bf3699f19bbfa10c0c7ee3e95c6611be34d662be965588f72b8c",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-official-k1-walk/policy.jsonl.gz",
+      "bytes": 1808108,
+      "sha256": "e3e2ae084a24b387738a04823def99aa27878bb0e872dc30fade9d36714de0db",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-official-k1-walk/world.jsonl.gz",
+      "bytes": 1179079,
+      "sha256": "ba98e8f16a705310b881639b5309c872d3f2651acdabc7375dac0d1a8ecf3711",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-single-k1-kick/world.jsonl.gz",
+      "bytes": 2342404,
+      "sha256": "384e783666a8c2d9af363989fd1e677ba5ee4ccc3c03dfdc906b2a3aa787bc02",
+      "reason": "binary or large evidence/mesh deferred in source-first publication"
+    }
+  ]
+}

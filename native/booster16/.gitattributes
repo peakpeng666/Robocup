@@ -1,0 +1,5 @@
+# Preserve upstream and experiment bytes: their manifests hash the original files.
+vendor/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+reference/runs/** -text whitespace=cr-at-eol
+# Unified-diff context lines may consist of one mandatory leading space.
+patches/*.patch -text whitespace=-blank-at-eol

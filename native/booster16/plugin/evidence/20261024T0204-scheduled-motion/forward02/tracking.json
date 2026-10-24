@@ -1,0 +1,93 @@
+{
+  "status": "NOT_QUALIFIED",
+  "checks": {
+    "clean_exit": true,
+    "full_correct_schedule": true,
+    "minimum_height": true,
+    "maximum_lean": true,
+    "torque_limit": true,
+    "stop_planar_speed": true,
+    "stop_yaw_rate": true,
+    "trace_invariants": true,
+    "track_vx": false,
+    "track_vy": false,
+    "track_yaw_rate": true
+  },
+  "command": [
+    0.2,
+    0,
+    0
+  ],
+  "steady_metrics": {
+    "vx": {
+      "command": 0.2,
+      "steady_mean": 0.09161187318706256,
+      "steady_mean_abs": 0.09161187318706256,
+      "steady_mean_abs_error": 0.10838812681293745
+    },
+    "vy": {
+      "command": 0,
+      "steady_mean": -4.006309125324287e-05,
+      "steady_mean_abs": 0.08567274460455596,
+      "steady_mean_abs_error": 0.08567274460455596
+    },
+    "yaw_rate": {
+      "command": 0,
+      "steady_mean": 0.0015473947647029346,
+      "steady_mean_abs": 0.05585304520342998,
+      "steady_mean_abs_error": 0.05585304520342998
+    }
+  },
+  "steady_mean_full_body_velocity_m_s": [
+    0.09161201338928814,
+    -3.2939980838747676e-05,
+    -0.0009333645986631589
+  ],
+  "stop_mean_planar_speed_m_s": 0.000851087755035479,
+  "stop_mean_abs_yaw_rate_rad_s": 0.0012260109275792058,
+  "total_heading_change_rad": 0.03145539411050854,
+  "command_phase_world_displacement_m": [
+    0.6627172889420763,
+    0.0038138628005981445,
+    -0.0032706856727600098
+  ],
+  "criteria_sha256": "bd083106cfb21f02ad7aaf6f365590f9b4404ea59bea05783bbed0353a6041b6",
+  "trace_summary": {
+    "status": "PASS_TRACE_INVARIANTS",
+    "frames": 1001,
+    "policy_seconds": 20.0,
+    "physics_steps": 10000,
+    "min_body_height_m": 0.5370000004768372,
+    "max_body_height_m": 0.5500010251998901,
+    "max_lean_deg": 6.222857836057785,
+    "max_abs_actual_torque_nm": 14.65877914428711,
+    "max_actual_torque_to_command_limit_ratio": 1.0,
+    "max_abs_gyro_rad_s": 1.760146141052246,
+    "max_quaternion_norm_squared_error": 9.137129797220922e-08,
+    "right_ankle_roll_reference_outside_mechanical_range_frames": 0,
+    "initial_body_world_m": [
+      0,
+      0,
+      0.5370000004768372
+    ],
+    "final_body_world_m": [
+      0.641469419002533,
+      0.006604594178497791,
+      0.5499173402786255
+    ],
+    "xy_displacement_m": 0.6415034186812334,
+    "velocity_command": [
+      0,
+      0,
+      0
+    ],
+    "trace_sha256": "b2106090cef51a819eca59d47263b892ea479cac8b20b57561690f9d5bc8a3b1",
+    "limitations": [
+      "body orientation/position use simulation truth",
+      "camera smoke is separate, not vision control",
+      "static zero command is standing not commanded walking",
+      "trace checks do not by themselves certify clean process exit"
+    ]
+  },
+  "limitations": "This particular official model + BHuman body + test floor + oracle orientation; not general gait or firmware1.6 qualification"
+}

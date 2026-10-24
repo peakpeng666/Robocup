@@ -1,0 +1,106 @@
+{
+  "profile": "official-k1-walk7bb",
+  "authoritative_run": "runs/20261024T012744.553269Z/result.json",
+  "status": "completed",
+  "input_diagnostics": {
+    "gravity_max_error": 2.9815920066234014e-08,
+    "gyro_max_error": 2.9754169572626665e-08,
+    "action_clip_fraction_max": 0.0,
+    "commands_delivered_unchanged_every_tick": true,
+    "segments": [
+      {
+        "from_s": 0.0,
+        "to_s": 5.0,
+        "vx": 0.0,
+        "action_rms": 0.7062119642496109,
+        "target_rms": 0.1627660232782364,
+        "joint_speed_rms": 0.2087877992456779,
+        "yaw_first_rad": 0.0,
+        "yaw_last_rad": 0.00822554590553802
+      },
+      {
+        "from_s": 5.0,
+        "to_s": 10.0,
+        "vx": 0.2,
+        "action_rms": 0.9306872639656066,
+        "target_rms": 0.21399596863985063,
+        "joint_speed_rms": 2.1200680915319827,
+        "yaw_first_rad": 0.008244417525485102,
+        "yaw_last_rad": 0.055773789538920586
+      },
+      {
+        "from_s": 10.0,
+        "to_s": 15.0,
+        "vx": 0.5,
+        "action_rms": 1.1461723177433014,
+        "target_rms": 0.2661382505297661,
+        "joint_speed_rms": 2.737500756263733,
+        "yaw_first_rad": 0.060369164372160944,
+        "yaw_last_rad": 0.09062921051001403
+      },
+      {
+        "from_s": 15.0,
+        "to_s": 20.0,
+        "vx": 0.0,
+        "action_rms": 0.8056352534294129,
+        "target_rms": 0.18561499762535094,
+        "joint_speed_rms": 0.6362916148807853,
+        "yaw_first_rad": 0.09098747539761434,
+        "yaw_last_rad": 0.1720693526682888
+      }
+    ]
+  },
+  "segment_metrics": [
+    {
+      "from_s": 0.0,
+      "to_s": 5.0,
+      "vx": 0.0,
+      "actual_x_displacement_m": -0.007291544667100626,
+      "actual_mean_vx_m_s": -0.0014583089334201252,
+      "samples": 250
+    },
+    {
+      "from_s": 5.0,
+      "to_s": 10.0,
+      "vx": 0.2,
+      "actual_x_displacement_m": 0.2351763033871721,
+      "actual_mean_vx_m_s": 0.04703526067743442,
+      "samples": 250
+    },
+    {
+      "from_s": 10.0,
+      "to_s": 15.0,
+      "vx": 0.5,
+      "actual_x_displacement_m": 1.9921789775849115,
+      "actual_mean_vx_m_s": 0.39843579551698227,
+      "samples": 250
+    },
+    {
+      "from_s": 15.0,
+      "to_s": 20.0,
+      "vx": 0.0,
+      "actual_x_displacement_m": 0.06407012947076174,
+      "actual_mean_vx_m_s": 0.012814025894152347,
+      "samples": 250
+    }
+  ],
+  "joint_and_actuator_order_correct": true,
+  "baseline_low_speed_second_half_vx": 0.0023708153402973555,
+  "interpretation": "No command loss, joint/actuator misordering, gravity or body gyro frame bug found. Official policy/official MuJoCo closed-loop has marked low-speed tracking degradation, while 0.5 m/s command moves at mean 0.3984 m/s. This bounds failure to official policy/model/dynamics operating envelope in this environment, not new SimRobot adapter. Exact cause (training distribution, contact/dynamics, or policy attractor) is not established.",
+  "algorithm_changed": false,
+  "diagnostic_corrections": [
+    "A provisional diagnostic compared stale MuJoCo derived fields after mj_step; corrected by forwarding a separate MjData copy, without changing live physics.",
+    "A provisional gyro check used BODY inertial frame; authoritative check uses XBODY link frame. Provisional evidence retained, not used to claim an upstream defect."
+  ],
+  "trace_sha256": "8e1f5f7b735b29c9999193c859d3eb182b49f768dbe51b4324a324a6a26baf9c",
+  "all_runs": [
+    "runs/20261024T012404.192323Z/result.json",
+    "runs/20261024T012420.827810Z/result.json",
+    "runs/20261024T012433.822117Z/result.json",
+    "runs/20261024T012441.878682Z/result.json",
+    "runs/20261024T012632.444076Z/result.json",
+    "runs/20261024T012711.457605Z/result.json",
+    "runs/20261024T012727.632979Z/result.json",
+    "runs/20261024T012744.553269Z/result.json"
+  ]
+}

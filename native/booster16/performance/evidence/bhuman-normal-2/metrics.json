@@ -1,0 +1,15 @@
+{
+    "controller": "SimulatedRobot",
+    "loop_begin_monotonic_s": 10335.325147893,
+    "loop_cpu_seconds": 614.3669070000001,
+    "loop_end_monotonic_s": 10412.404182598,
+    "loop_wall_seconds": 77.0790347050006,
+    "observer_render_requests": 0,
+    "per_frame_disk_writes": 0,
+    "physics_steps": 10000,
+    "rtf_loop": 0.2594739416041429,
+    "scene_file": "/workspace/shared/benchmark-build/runs/bhuman-normal-2/scene/BHumanNormal.ros3",
+    "schema": 1,
+    "simulated_seconds": 20.000000949949026,
+    "step_length_s": 0.0020000000949949026
+}

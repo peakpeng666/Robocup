@@ -1,0 +1,7 @@
+PASS 97 lifecycle checks
+PASS 97 lifecycle checks
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+PASS 8 process tests (real model startup plus fault fixtures)

@@ -1,0 +1,31 @@
+{
+  "repository": "https://github.com/bhuman/BHumanCodeRelease",
+  "commit": "2e3374ba896da8288607f9a1881b876642fe18b8",
+  "files_sha256": {
+    "Config/Scenes/Includes/K1/Head_1_2.rsi3": "6d2e7f3756b42e4be97ebdcf7f71dec8dedca6be4a2df15736b902afe574efdb",
+    "Config/Scenes/Includes/K1/Head_2_4.rsi3": "71bedb9215a234bdc615b616c82b6fd965f5db7aff4b9c013d4e3ff75d58d52f",
+    "Config/Scenes/Includes/K1/K1.rsi3": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa",
+    "Config/Scenes/Includes/K1/Left_Ankle_Cross_16.rsi3": "2768d678d94edaceed4b96acbf9d4ab7f3c76f449b721a8bfafd88854cf1b0ca",
+    "Config/Scenes/Includes/K1/Left_Arm_1_4.rsi3": "c0a6de4c360e806a26cbbcc92b1832700ee562cc7508dca8abc88a8f821a333e",
+    "Config/Scenes/Includes/K1/Left_Arm_2_5.rsi3": "2fabf0809943e019f921750217738e81922e0d45e3275f798d7e7cc0483d1dfd",
+    "Config/Scenes/Includes/K1/Left_Arm_3_6.rsi3": "a209ffdf595ef8b507dde6e9b593a47845e40f2778bfaf17d19451277b97756d",
+    "Config/Scenes/Includes/K1/Left_Arm_4_7.rsi3": "f46f46e33fe2daa6e7b3a28805f52673ca8ebc4ac0a0fe108a05879ad8565a24",
+    "Config/Scenes/Includes/K1/Left_Foot_17.rsi3": "77ae94e6704c58f75b81f3e6125a5aacc72c9153541257782b1b86acb966f0fd",
+    "Config/Scenes/Includes/K1/Left_Hip_Pitch_12.rsi3": "7ddcb73a8aa6555c0e8c6c23eb5fbfe98b0acc2f068761440ba619f56ed10ede",
+    "Config/Scenes/Includes/K1/Left_Hip_Roll_13.rsi3": "6b76bffc772ec255907d7a109a758261bb7753d98cd267d5a7ab688b19e85aa8",
+    "Config/Scenes/Includes/K1/Left_Hip_Yaw_14.rsi3": "ec7e3937650cdad449d44a6a3f66011aa9606f0e6426b9a36d1e15a5c680474b",
+    "Config/Scenes/Includes/K1/Left_Shank_15.rsi3": "08ff2c70b32c743f7f1bab6cb65a68fe63fe668e11b8dd3211c1c9d96d4f8bc3",
+    "Config/Scenes/Includes/K1/Right_Ankle_Cross_22.rsi3": "7272135104c17dc7c7ee0545d0a720546cc061c41be97df8703e33b03b210522",
+    "Config/Scenes/Includes/K1/Right_Arm_1_8.rsi3": "518b6e033c37da21d54e39cc19f4eeae87b2d4707b5a3c178887c33aad627456",
+    "Config/Scenes/Includes/K1/Right_Arm_2_9.rsi3": "f9bb96de5938644f88f4c4ff9e17425b233947de1e51340319e4f5a69cfbba5f",
+    "Config/Scenes/Includes/K1/Right_Arm_3_10.rsi3": "d15179d91c94b2598fb7cc734380dadd44754946ded20e41e649e300f1f5ed22",
+    "Config/Scenes/Includes/K1/Right_Arm_4_11.rsi3": "039feca085b378d4c2c248e1d7de8722414f7360b23e8e6e7310b86d6068a31a",
+    "Config/Scenes/Includes/K1/Right_Foot_23.rsi3": "f89040e526c04b7078e9dfa33e32c3e1cc6668a407ab0daaa4980104e0c59bf6",
+    "Config/Scenes/Includes/K1/Right_Hip_Pitch_18.rsi3": "2cc5477d868594024d1d2c629f882d7368517064719ee380746959f87c6ad7de",
+    "Config/Scenes/Includes/K1/Right_Hip_Roll_19.rsi3": "1e64d4122618c7468badc15d3edf24ce2856280c5d196cb62dc0cbbcb0011cd5",
+    "Config/Scenes/Includes/K1/Right_Hip_Yaw_20.rsi3": "25ccf4da0f96041635a17d23a2e62fc8f41142274c99c85de19af440beea2b51",
+    "Config/Scenes/Includes/K1/Right_Shank_21.rsi3": "83aa324d6bba947f116a21f593fe6a73b4d073ce4a425b187a36e5dfc2fd1a21",
+    "Config/Scenes/Includes/K1/Trunk_1.rsi3": "0874c713e974705b0b3d640c72c2234a4c1dfcb60cac16a276a05c75a107ea96",
+    "License.md": "e67449eaaed833d3c0cb260a9069be3167a34619c5989a8d2c06df9f48d25aa3"
+  }
+}

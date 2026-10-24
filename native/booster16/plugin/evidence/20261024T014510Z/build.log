@@ -1,0 +1,7 @@
+[ 16%] Building CXX object CMakeFiles/booster_policy_lifecycle_test.dir/lifecycle_test.cpp.o
+[ 50%] Built target booster_policy_process_test
+[ 66%] Building CXX object CMakeFiles/BoosterK1Policy.dir/BoosterK1Policy.cpp.o
+[ 83%] Linking CXX executable booster_policy_lifecycle_test
+[ 83%] Built target booster_policy_lifecycle_test
+[100%] Linking CXX shared module libBoosterK1Policy.so
+[100%] Built target BoosterK1Policy

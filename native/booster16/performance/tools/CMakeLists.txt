@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(BenchmarkObserver LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+add_library(BenchmarkObserver MODULE BenchmarkObserver.cpp)
+target_include_directories(BenchmarkObserver PRIVATE /workspace/shared/bhuman-upstream/Util/SimRobot/Src/SimRobot /workspace/shared/bhuman-upstream/Util/SimRobot/Src/SimRobotCore3)
+target_link_libraries(BenchmarkObserver PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
+target_compile_options(BenchmarkObserver PRIVATE -Wall -Wextra -Werror)

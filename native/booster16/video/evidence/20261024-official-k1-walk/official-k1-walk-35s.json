@@ -1,0 +1,33 @@
+{
+  "source": {
+    "actuator_writes": false,
+    "ball_in_scene": false,
+    "controller": "BoosterK1Policy",
+    "event": "configuration",
+    "football_kick_policy": false,
+    "height": 540,
+    "scene_file": "/workspace/shared/robocup-native-adapt/native/booster16/video/OfficialK1WalkVideo.ros3",
+    "source": "actual SimRobot Camera.image RGB render and physics body state",
+    "step_length": 0.0020000000949949026,
+    "vertical_flip": true,
+    "video_fps": 25,
+    "width": 960
+  },
+  "profile": "official-k1-walk-7bb1462",
+  "video_seconds": 35,
+  "frame_count": 875,
+  "fps": 25,
+  "policy_frames": 1751,
+  "physics_steps": 17500,
+  "exit_code": 0,
+  "observer_actuator_writes": false,
+  "football_kick": false,
+  "video_sha256": "40e4660856c6f60b46fbf32a957d21a4d1cc445a3fc05c443656f8b50d26ce7e",
+  "trace_sha256": "a9a635ab56255618b1da7b1aa5dc909a4653e1d6200a3f92cb40439a0b7066a7",
+  "measurement": "World XY finite difference projected into midpoint yaw heading; yaw unwrapped from body pose oracle; rolling 0.5s mean, shorter at startup. Diagnostic truth is not vision control.",
+  "limitations": [
+    "This combined 35-second demonstration is not the predeclared independent 20-second qualification protocol.",
+    "Prior low-speed forward0.2 and lateral0.1 trials undertracked; representative0.5 and yaw0.3 demonstration does not remove those failures.",
+    "No official soccer kick or B-Human football policy is used."
+  ]
+}

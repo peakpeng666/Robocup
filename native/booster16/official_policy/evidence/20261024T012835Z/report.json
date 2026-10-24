@@ -1,0 +1,14 @@
+{
+  "profile": "official-k1-walk-7bb1462",
+  "checks": 173,
+  "status": "PASS",
+  "torch": "2.14.1+cpu",
+  "numpy": "2.5.4",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "model_sha256": "2d860167ed827e8d44cd65abd4c27f474904352bcb98c0cfa97c078f63e2fea5",
+  "policy_period_ns": 20000000,
+  "frames": 24,
+  "reference_max_abs_error": 0.0,
+  "output_sha256": "089769c6bfc20c723b580c2a20dc82b8d979f4edcaf7b268b2264aa71f73ce90",
+  "scope": "synthetic sensor replay, real official TorchScript inference; not physics or firmware 1.6 equivalence"
+}

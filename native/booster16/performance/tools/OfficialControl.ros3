@@ -1,0 +1,36 @@
+<Simulation>
+  <Include href="/workspace/shared/bhuman-upstream/Config/Scenes/Includes/BallFifa3.rsi3" />
+  <Include href="/workspace/shared/bhuman-upstream/Config/Scenes/Includes/Field2026HSLM.rsi3" />
+  <Include href="/workspace/shared/bhuman-upstream/Config/Scenes/Includes/K1/K1.rsi3" />
+  <Scene name="OfficialK1" controller="BenchmarkObserver" stepLength="0.002" color="rgb(65%, 65%, 70%)">
+    <Body ref="K1" name="K1">
+      <Set name="TeamColor" value="skin" />
+      <Translation x="1m" z="0.537m" />
+      <Rotation z="180degree" />
+    </Body>
+    <PointLight z="9m" intensity="8" />
+    <Compound name="teams">
+      <Compound name="B-Human">
+        <Compound name="5" />
+        <Compound name="white" />
+        <Compound name="purple" />
+      </Compound>
+      <Compound name="B-Team">
+        <Compound name="70" />
+        <Compound name="red" />
+        <Compound name="blue" />
+      </Compound>
+    </Compound>
+    <Compound name="extras" />
+    <Compound name="balls">
+      <Body ref="ball">
+        <Translation x="0m" z="0.10m" />
+      </Body>
+    </Compound>
+    <Compound ref="field" />
+    <Compound name="location">
+      <Compound name="MField" />
+    </Compound>
+    <Compound ref="robot type" />
+  </Scene>
+</Simulation>

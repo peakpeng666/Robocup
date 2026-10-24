@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "compile_link": "PASS",
+  "lifecycle_checks_debug": 97,
+  "lifecycle_checks_NDEBUG": 97,
+  "process_checks": 8,
+  "physics_scene_runtime": "NOT RERUN; previous cloud OpenGL context blocker remains",
+  "initial_lifecycle": "Official inference tick0 and all hybrid leases submitted in compile before first physics step; afterPhysics step10 triggers policy tick1",
+  "cleanup": "simStop first, noexcept per-port best effort, process cleanup and status independently attempted",
+  "artifact_sha256": "5922c377d52092c6638000949d6238fce98b061a48d81a131f334b4033ff6bd8",
+  "source_sha256": {
+    "SafetyLifecycle.hpp": "30906ca460504612d164b68c20bb8fd9840add9e2c7d615034385dd1135cd327",
+    "BoosterK1Policy.cpp": "f329b07866afea92b9ce700afd670af29aaa5044ba602dd04f20a5a71c8e85d9",
+    "process_test.cpp": "13d2b5efce3c7e7828b282ab5b1d2187a82812b3811ad9eb731d9104b125ce61",
+    "lifecycle_test.cpp": "2dae98a9647b9ff30434dfa50979fa0420ad3083a449a10e696ecd502d2b69ef",
+    "PolicyProcess.hpp": "d27ae0f4a0ae99bddcad263518e89e7fddf96631a08d3d7b3c3b42b2496581b3"
+  }
+}

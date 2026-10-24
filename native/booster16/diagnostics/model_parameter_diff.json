@@ -1,0 +1,1742 @@
+{
+  "model_sources": {
+    "official_xml": "/workspace/shared/booster-assets-upstream/robots/K1/K1_22dof.xml",
+    "official_sha256": "1f1a1cdd451f777600c66fc30ad8d7537198ee7bc51f8ed20d67a51b5001a651",
+    "bhuman_xml": "/workspace/shared/robocup-native-adapt/native/booster16/plugin/scenes/vendor/bhuman/K1.rsi3",
+    "bhuman_sha256": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa"
+  },
+  "trunk": {
+    "official": {
+      "mass_kg": 6.5,
+      "com_m": [
+        -0.0043392,
+        -0.00065534,
+        0.065686
+      ],
+      "inertia_body_kg_m2": [
+        [
+          0.0961590107705801,
+          -3.8999946991863206e-05,
+          -0.0020909978983802958
+        ],
+        [
+          -3.899994699186326e-05,
+          0.08951203440940537,
+          -0.0005670001559900886
+        ],
+        [
+          -0.0020909978983802958,
+          -0.0005670001559900886,
+          0.020186954820014508
+        ]
+      ]
+    },
+    "bhuman": {
+      "mass_kg": 6.5,
+      "com_m": [
+        -0.00434,
+        -0.00066,
+        0.06569
+      ],
+      "inertia_body_kg_m2": [
+        [
+          0.12374142329000001,
+          -5.7176900000000005e-05,
+          -0.00026909367
+        ],
+        [
+          -5.7176900000000005e-05,
+          0.11721203273000001,
+          -0.00029184142
+        ],
+        [
+          -0.00026909367,
+          -0.00029184142,
+          0.02031009987
+        ]
+      ]
+    }
+  },
+  "linked_body_mass_kg": {
+    "official": 19.666,
+    "bhuman": 19.666
+  },
+  "joints": [
+    {
+      "official_joint": "aahead_yaw_joint",
+      "bhuman_joint": "HeadYaw",
+      "official_body": {
+        "mass_kg": 0.3,
+        "com_m": [
+          -0.00069503,
+          -0.00038527,
+          0.031688
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0004290003118352144,
+            -2.000086655015089e-06,
+            -6.000003016294188e-06
+          ],
+          [
+            -2.0000866550151027e-06,
+            0.0004209999197938623,
+            -5.000000283889059e-06
+          ],
+          [
+            -6.000003016294188e-06,
+            -5.0000002838890575e-06,
+            0.00012599976837092332
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.3,
+        "com_m": [
+          -0.0007,
+          -0.00039000000000000005,
+          -0.0013100000000000002
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00042955587,
+            -2.0796100000000002e-06,
+            -6.27109e-06
+          ],
+          [
+            -2.0796100000000002e-06,
+            0.00042165535,
+            -5.150270000000001e-06
+          ],
+          [
+            -6.27109e-06,
+            -5.150270000000001e-06,
+            0.00012618774000000001
+          ]
+        ]
+      },
+      "official_armature": 0.002,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -1.012,
+        1.012
+      ],
+      "bhuman_range_rad": [
+        -1.04,
+        1.04
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 6.0,
+      "official_model_force_range_nm": [
+        -6.0,
+        6.0
+      ],
+      "bhuman_model_max_force_nm": 7.0,
+      "effective_symmetric_policy_limit_official_nm": 6.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 6.0
+    },
+    {
+      "official_joint": "aahead_pitch_joint",
+      "bhuman_joint": "HeadPitch",
+      "official_body": {
+        "mass_kg": 0.7,
+        "com_m": [
+          0.011042,
+          -0.00092871,
+          0.080698
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.005926995536046422,
+            -1.1999521405783656e-05,
+            0.0006639994919199334
+          ],
+          [
+            -1.1999521405783656e-05,
+            0.005776002900653993,
+            -3.3000016572009934e-05
+          ],
+          [
+            0.0006639994919199334,
+            -3.300001657200992e-05,
+            0.0018070015632995848
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.7000000000000001,
+        "com_m": [
+          0.01104,
+          -0.00093,
+          0.08070000000000001
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.01048612079,
+            -4.82163e-06,
+            4.025288e-05
+          ],
+          [
+            -4.82163e-06,
+            0.01041986508,
+            1.946153e-05
+          ],
+          [
+            4.025288e-05,
+            1.946153e-05,
+            0.0018929517900000002
+          ]
+        ]
+      },
+      "official_armature": 0.002,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -0.314,
+        0.794
+      ],
+      "bhuman_range_rad": [
+        -0.31,
+        0.89
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 6.0,
+      "official_model_force_range_nm": [
+        -6.0,
+        6.0
+      ],
+      "bhuman_model_max_force_nm": 7.0,
+      "effective_symmetric_policy_limit_official_nm": 6.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 6.0
+    },
+    {
+      "official_joint": "aaleft_shoulder_pitch_joint",
+      "bhuman_joint": "LShoulderPitch",
+      "official_body": {
+        "mass_kg": 0.5,
+        "com_m": [
+          -0.002701,
+          0.062383,
+          -0.011965
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.002194002808117481,
+            -8.40000011139326e-05,
+            1.699878396785952e-05
+          ],
+          [
+            -8.400000111393263e-05,
+            0.00033100058187398137,
+            -0.0003720015101384159
+          ],
+          [
+            1.699878396785952e-05,
+            -0.00037200151013841594,
+            0.002139001610008539
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.5,
+        "com_m": [
+          -0.0027,
+          -0.00562,
+          -0.011960000000000002
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00227371755,
+            -9.092246000000001e-05,
+            2.25419e-06
+          ],
+          [
+            -9.092246000000001e-05,
+            0.00039965035,
+            -0.00040266539000000004
+          ],
+          [
+            2.25419e-06,
+            -0.00040266539000000004,
+            0.00215672469
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -2.932,
+        1.196
+      ],
+      "bhuman_range_rad": [
+        -2.95,
+        1.2
+      ],
+      "official_initial_q_rad": 0.2,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "left_shoulder_roll_joint",
+      "bhuman_joint": "LShoulderRoll",
+      "official_body": {
+        "mass_kg": 0.09,
+        "com_m": [
+          0.01729,
+          0.018221,
+          -4.329e-05
+        ],
+        "inertia_body_kg_m2": [
+          [
+            9.200001176283889e-05,
+            8.999984316193454e-06,
+            0.0
+          ],
+          [
+            8.999984316193457e-06,
+            6.799998823716109e-05,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.000113
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.09,
+        "com_m": [
+          0.01729,
+          0.01822,
+          -4e-05
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00011998916000000002,
+            -1.755891e-05,
+            6.31e-08
+          ],
+          [
+            -1.755891e-05,
+            9.320204e-05,
+            6.65e-08
+          ],
+          [
+            6.31e-08,
+            6.65e-08,
+            0.00016619089000000003
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -1.642,
+        1.629
+      ],
+      "bhuman_range_rad": [
+        -1.65,
+        1.65
+      ],
+      "official_initial_q_rad": -1.25,
+      "bhuman_initial_q_rad": -1.4486232791552935,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "left_elbow_pitch_joint",
+      "bhuman_joint": "LElbowPitch",
+      "official_body": {
+        "mass_kg": 0.8,
+        "com_m": [
+          -0.0003979,
+          0.072617,
+          -0.00066218
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.006068995306261402,
+            -1.7005964944048595e-05,
+            -1.0002059945011976e-06
+          ],
+          [
+            -1.7005964944048592e-05,
+            0.000387000447116448,
+            -7.89974729423652e-05
+          ],
+          [
+            -1.0002059945011976e-06,
+            -7.89974729423652e-05,
+            0.006066995246622148
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.8,
+        "com_m": [
+          -0.0004,
+          0.11705,
+          -0.00066
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.01650947352,
+            1.849175e-05,
+            -1.20079e-06
+          ],
+          [
+            1.849175e-05,
+            0.00038745481000000004,
+            -1.9935099999999998e-05
+          ],
+          [
+            -1.20079e-06,
+            -1.9935099999999998e-05,
+            0.01650726002
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -1.885,
+        1.885
+      ],
+      "bhuman_range_rad": [
+        -1.9,
+        1.9
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 1.5707963267948966,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "left_elbow_yaw_joint",
+      "bhuman_joint": "LElbowYaw",
+      "official_body": {
+        "mass_kg": 0.19,
+        "com_m": [
+          -0.0015751,
+          0.084637,
+          0.0087033
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.002055998504047434,
+            -7.000519763564253e-06,
+            -1.999596575015203e-06
+          ],
+          [
+            -7.000519763564252e-06,
+            8.200007190971004e-05,
+            3.100092563970127e-05
+          ],
+          [
+            -1.99959657501523e-06,
+            3.100092563970126e-05,
+            0.0020290034240428557
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.19,
+        "com_m": [
+          -0.00158,
+          0.08464,
+          0.0087
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00327189086,
+            1.539104e-05,
+            3.0249e-07
+          ],
+          [
+            1.539104e-05,
+            9.513924000000002e-05,
+            -9.27229e-05
+          ],
+          [
+            3.0249e-07,
+            -9.27229e-05,
+            0.0032325850200000004
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -2.242,
+        0.816
+      ],
+      "bhuman_range_rad": [
+        -2.25,
+        0.78
+      ],
+      "official_initial_q_rad": -0.5,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "aaright_shoulder_pitch_joint",
+      "bhuman_joint": "RShoulderPitch",
+      "official_body": {
+        "mass_kg": 0.5,
+        "com_m": [
+          -0.0026302,
+          -0.06251,
+          -0.01199
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.002200004190783079,
+            8.200270101032389e-05,
+            1.699878596476975e-05
+          ],
+          [
+            8.200270101032392e-05,
+            0.00033200078628799955,
+            0.00037300055949438855
+          ],
+          [
+            1.699878596476975e-05,
+            0.00037300055949438855,
+            0.002145004022928921
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.5,
+        "com_m": [
+          -0.00263,
+          0.00549,
+          -0.01199
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0022794184800000003,
+            8.859451e-05,
+            2.5977800000000002e-06
+          ],
+          [
+            8.859451e-05,
+            0.00040081316,
+            0.00040306166
+          ],
+          [
+            2.5977800000000002e-06,
+            0.00040306166,
+            0.0021619240400000002
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -2.932,
+        1.196
+      ],
+      "bhuman_range_rad": [
+        -2.95,
+        1.2
+      ],
+      "official_initial_q_rad": 0.2,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "right_shoulder_roll_joint",
+      "bhuman_joint": "RShoulderRoll",
+      "official_body": {
+        "mass_kg": 0.09,
+        "com_m": [
+          0.017229,
+          -0.018428,
+          4.3784e-05
+        ],
+        "inertia_body_kg_m2": [
+          [
+            9.200001176283889e-05,
+            -8.999984316193464e-06,
+            0.0
+          ],
+          [
+            -8.999984316193467e-06,
+            6.79999882371611e-05,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.000113
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.09,
+        "com_m": [
+          0.017230000000000002,
+          -0.01843,
+          4e-05
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00012030610000000002,
+            1.746425e-05,
+            -6.288e-08
+          ],
+          [
+            1.746425e-05,
+            9.274253000000001e-05,
+            6.725000000000001e-08
+          ],
+          [
+            -6.288e-08,
+            6.725000000000001e-08,
+            0.00016604832000000002
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -1.642,
+        1.629
+      ],
+      "bhuman_range_rad": [
+        -1.65,
+        1.65
+      ],
+      "official_initial_q_rad": 1.25,
+      "bhuman_initial_q_rad": 1.4486232791552935,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "right_elbow_pitch_joint",
+      "bhuman_joint": "RElbowPitch",
+      "official_body": {
+        "mass_kg": 0.8,
+        "com_m": [
+          -0.00039919,
+          -0.072601,
+          -0.00065629
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0060699953062614016,
+            1.7005964944049253e-05,
+            -1.0002059945007893e-06
+          ],
+          [
+            1.7005964944049253e-05,
+            0.00038800044711644803,
+            7.899747294236634e-05
+          ],
+          [
+            -1.0002059945007893e-06,
+            7.899747294236634e-05,
+            0.006067995246622149
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.8,
+        "com_m": [
+          -0.0004,
+          -0.11703000000000001,
+          -0.00066
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.016511174490000002,
+            -1.861409e-05,
+            -1.19972e-06
+          ],
+          [
+            -1.861409e-05,
+            0.00038844983000000007,
+            2.0448500000000003e-05
+          ],
+          [
+            -1.19972e-06,
+            2.0448500000000003e-05,
+            0.01650896762
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -1.885,
+        1.885
+      ],
+      "bhuman_range_rad": [
+        -1.9,
+        1.9
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 1.5707963267948966,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "right_elbow_yaw_joint",
+      "bhuman_joint": "RElbowYaw",
+      "official_body": {
+        "mass_kg": 0.19,
+        "com_m": [
+          -0.0015177,
+          -0.084536,
+          0.0086733
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.002055999166346842,
+            5.000440557354979e-06,
+            -2.0003234045019715e-06
+          ],
+          [
+            5.00044055735498e-06,
+            8.200000796050002e-05,
+            -3.100016671832659e-05
+          ],
+          [
+            -2.0003234045019444e-06,
+            -3.100016671832659e-05,
+            0.002029995125692658
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.19,
+        "com_m": [
+          -0.00152,
+          -0.08454,
+          0.00867
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0032712443600000003,
+            -1.659037e-05,
+            2.1515000000000002e-07
+          ],
+          [
+            -1.659037e-05,
+            9.504667e-05,
+            9.238392000000001e-05
+          ],
+          [
+            2.1515000000000002e-07,
+            9.238392000000001e-05,
+            0.00323297292
+          ]
+        ]
+      },
+      "official_armature": 0.001,
+      "bhuman_armature": 0.01,
+      "official_range_rad": [
+        -0.816,
+        2.242
+      ],
+      "bhuman_range_rad": [
+        -0.78,
+        2.25
+      ],
+      "official_initial_q_rad": 0.5,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 14.0,
+      "official_model_force_range_nm": [
+        -14.0,
+        14.0
+      ],
+      "bhuman_model_max_force_nm": 14.0,
+      "effective_symmetric_policy_limit_official_nm": 14.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 14.0
+    },
+    {
+      "official_joint": "left_hip_pitch_joint",
+      "bhuman_joint": "LHipPitch",
+      "official_body": {
+        "mass_kg": 0.69,
+        "com_m": [
+          -0.010093,
+          -0.0019934,
+          -0.024713
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0007810000480555376,
+            3.999941735343206e-06,
+            0.00016699986790093388
+          ],
+          [
+            3.999941735343199e-06,
+            0.0009869998991526973,
+            8.000165927260851e-06
+          ],
+          [
+            0.00016699986790093388,
+            8.000165927260844e-06,
+            0.0006040000527917653
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.6900000000000001,
+        "com_m": [
+          -0.01009,
+          -0.00199,
+          -0.024710000000000003
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0011748298500000001,
+            -8.89009e-06,
+            7.1962700000000005e-06
+          ],
+          [
+            -8.89009e-06,
+            0.0014435492200000001,
+            -2.3561750000000002e-05
+          ],
+          [
+            7.1962700000000005e-06,
+            -2.3561750000000002e-05,
+            0.0006718110400000001
+          ]
+        ]
+      },
+      "official_armature": 0.0478125,
+      "bhuman_armature": 0.0478125,
+      "official_range_rad": [
+        -2.958,
+        2.226
+      ],
+      "bhuman_range_rad": [
+        -2.98,
+        2.21
+      ],
+      "official_initial_q_rad": -0.15,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 30.0,
+      "official_model_force_range_nm": [
+        -68.0,
+        68.0
+      ],
+      "bhuman_model_max_force_nm": 50.0,
+      "effective_symmetric_policy_limit_official_nm": 30.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 30.0
+    },
+    {
+      "official_joint": "left_hip_roll_joint",
+      "bhuman_joint": "LHipRoll",
+      "official_body": {
+        "mass_kg": 0.13,
+        "com_m": [
+          0.023585,
+          4.9e-05,
+          -0.024996
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00019099981881233786,
+            -1.691160378983129e-20,
+            -4.799969858927582e-05
+          ],
+          [
+            -1.691160378983129e-20,
+            0.00026200000000000013,
+            -2.72466567934945e-20
+          ],
+          [
+            -4.799969858927583e-05,
+            -2.72466567934945e-20,
+            0.00015000018118766225
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.13,
+        "com_m": [
+          0.02358,
+          -0.011949999999999999,
+          -0.025
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00028912185,
+            3.602931e-05,
+            2.735676e-05
+          ],
+          [
+            3.602931e-05,
+            0.00041296800000000005,
+            -3.818480000000001e-05
+          ],
+          [
+            2.735676e-05,
+            -3.818480000000001e-05,
+            0.00023935973000000003
+          ]
+        ]
+      },
+      "official_armature": 0.0339552,
+      "bhuman_armature": 0.0339552,
+      "official_range_rad": [
+        -0.375,
+        1.536
+      ],
+      "bhuman_range_rad": [
+        -0.38,
+        1.57
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 20.0,
+      "official_model_force_range_nm": [
+        -43.0,
+        43.0
+      ],
+      "bhuman_model_max_force_nm": 50.0,
+      "effective_symmetric_policy_limit_official_nm": 20.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 20.0
+    },
+    {
+      "official_joint": "left_hip_yaw_joint",
+      "bhuman_joint": "LHipYaw",
+      "official_body": {
+        "mass_kg": 1.65,
+        "com_m": [
+          -0.0084744,
+          -0.0040494,
+          -0.087906
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.015785973370709944,
+            9.60024646243453e-05,
+            0.0015459962865760604
+          ],
+          [
+            9.60024646243453e-05,
+            0.016139975447660944,
+            0.0007449980746894559
+          ],
+          [
+            0.0015459962865760604,
+            0.0007449980746894559,
+            0.0015510011816291219
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 1.6500000000000001,
+        "com_m": [
+          -0.00847,
+          -0.00405,
+          -0.13641
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.04482111069,
+            4.249756e-05,
+            -0.00025625569
+          ],
+          [
+            4.249756e-05,
+            0.045261512600000005,
+            -0.00011618831
+          ],
+          [
+            -0.00025625569,
+            -0.00011618831,
+            0.0016885330400000001
+          ]
+        ]
+      },
+      "official_armature": 0.0282528,
+      "bhuman_armature": 0.0282528,
+      "official_range_rad": [
+        -1.012,
+        1.012
+      ],
+      "bhuman_range_rad": [
+        -1.0,
+        1.0
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 15.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 15.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 15.0
+    },
+    {
+      "official_joint": "left_knee_pitch_joint",
+      "bhuman_joint": "LKneePitch",
+      "official_body": {
+        "mass_kg": 1.5,
+        "com_m": [
+          -0.00081083,
+          0.0031459,
+          -0.10922
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.023681005058222643,
+            3.500192067188318e-05,
+            0.00022200001114174828
+          ],
+          [
+            3.5001920671884913e-05,
+            0.023670004327111024,
+            -0.00010500016645423522
+          ],
+          [
+            0.00022200001114174828,
+            -0.00010500016645423523,
+            0.0012400006146663337
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 1.5,
+        "com_m": [
+          -0.0008100000000000001,
+          0.00315,
+          -0.10922
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.04139038384,
+            3.8783670000000004e-05,
+            9.063764000000001e-05
+          ],
+          [
+            3.8783670000000004e-05,
+            0.041365678960000006,
+            0.00040466644
+          ],
+          [
+            9.063764000000001e-05,
+            0.00040466644,
+            0.0012556553000000002
+          ]
+        ]
+      },
+      "official_armature": 0.095625,
+      "bhuman_armature": 0.095625,
+      "official_range_rad": [
+        0.0,
+        2.321
+      ],
+      "bhuman_range_rad": [
+        0.0,
+        2.35
+      ],
+      "official_initial_q_rad": 0.3,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 35.0,
+      "official_model_force_range_nm": [
+        -112.0,
+        112.0
+      ],
+      "bhuman_model_max_force_nm": 60.0,
+      "effective_symmetric_policy_limit_official_nm": 35.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 35.0
+    },
+    {
+      "official_joint": "left_ankle_pitch_joint",
+      "bhuman_joint": "LAnklePitch",
+      "official_body": {
+        "mass_kg": 0.039,
+        "com_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "inertia_body_kg_m2": [
+          [
+            2e-06,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            4e-06,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            4e-06
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.039,
+        "com_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "inertia_body_kg_m2": [
+          [
+            2.0000000000000003e-06,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            4.000000000000001e-06,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            4.000000000000001e-06
+          ]
+        ]
+      },
+      "official_armature": 0.0565,
+      "bhuman_armature": 0.0565056,
+      "official_range_rad": [
+        -0.87,
+        0.345
+      ],
+      "bhuman_range_rad": [
+        -0.87,
+        0.345
+      ],
+      "official_initial_q_rad": -0.15,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 24.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 24.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 24.0
+    },
+    {
+      "official_joint": "left_ankle_roll_joint",
+      "bhuman_joint": "LAnkleRoll",
+      "official_body": {
+        "mass_kg": 0.494,
+        "com_m": [
+          0.011662,
+          0.000244,
+          -0.014364
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00026099979848672014,
+            2.9999890652930257e-07,
+            -0.00011499990308244195
+          ],
+          [
+            2.999989065293025e-07,
+            0.0011700008849205076,
+            -2.0001349000620127e-07
+          ],
+          [
+            -0.00011499990308244195,
+            -2.0001349000620042e-07,
+            0.001213004316592771
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.494,
+        "com_m": [
+          0.01166,
+          0.00024,
+          -0.01436
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00036301088000000004,
+            1.59352e-06,
+            -3.220219e-05
+          ],
+          [
+            1.59352e-06,
+            0.00133920423,
+            -2.6765e-07
+          ],
+          [
+            -3.220219e-05,
+            -2.6765e-07,
+            0.00128025221
+          ]
+        ]
+      },
+      "official_armature": 0.0565,
+      "bhuman_armature": 0.0565056,
+      "official_range_rad": [
+        -0.345,
+        0.345
+      ],
+      "bhuman_range_rad": [
+        -0.345,
+        0.345
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 15.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 15.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 15.0
+    },
+    {
+      "official_joint": "right_hip_pitch_joint",
+      "bhuman_joint": "RHipPitch",
+      "official_body": {
+        "mass_kg": 0.69,
+        "com_m": [
+          -0.010065,
+          0.0020086,
+          -0.024739
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0007820002009305318,
+            -3.999911273189883e-06,
+            0.00016599991572955927
+          ],
+          [
+            -3.999911273189876e-06,
+            0.000988000129499009,
+            -9.000278620611705e-06
+          ],
+          [
+            0.00016599991572955927,
+            -9.000278620611712e-06,
+            0.0006039996695704595
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.6900000000000001,
+        "com_m": [
+          -0.010060000000000001,
+          0.0020099999999999996,
+          -0.024739999999999998
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00117707453,
+            8.96488e-06,
+            6.317560000000001e-06
+          ],
+          [
+            8.96488e-06,
+            0.00144545362,
+            2.286668e-05
+          ],
+          [
+            6.317560000000001e-06,
+            2.286668e-05,
+            0.00067155371
+          ]
+        ]
+      },
+      "official_armature": 0.0478125,
+      "bhuman_armature": 0.0478125,
+      "official_range_rad": [
+        -2.958,
+        2.226
+      ],
+      "bhuman_range_rad": [
+        -2.98,
+        2.21
+      ],
+      "official_initial_q_rad": -0.15,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 30.0,
+      "official_model_force_range_nm": [
+        -68.0,
+        68.0
+      ],
+      "bhuman_model_max_force_nm": 50.0,
+      "effective_symmetric_policy_limit_official_nm": 30.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 30.0
+    },
+    {
+      "official_joint": "right_hip_roll_joint",
+      "bhuman_joint": "RHipRoll",
+      "official_body": {
+        "mass_kg": 0.13,
+        "com_m": [
+          0.023585,
+          4.9e-05,
+          -0.024996
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00019099981881233786,
+            -1.691160378983129e-20,
+            -4.799969858927582e-05
+          ],
+          [
+            -1.691160378983129e-20,
+            0.00026200000000000013,
+            -2.72466567934945e-20
+          ],
+          [
+            -4.799969858927583e-05,
+            -2.72466567934945e-20,
+            0.00015000018118766225
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.13,
+        "com_m": [
+          0.01158,
+          5e-05,
+          -0.025
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00027086537,
+            -7.256000000000001e-08,
+            -1.098461e-05
+          ],
+          [
+            -7.256000000000001e-08,
+            0.00035902074,
+            1.5656000000000002e-07
+          ],
+          [
+            -1.098461e-05,
+            1.5656000000000002e-07,
+            0.00016715598
+          ]
+        ]
+      },
+      "official_armature": 0.0339552,
+      "bhuman_armature": 0.0339552,
+      "official_range_rad": [
+        -1.536,
+        0.375
+      ],
+      "bhuman_range_rad": [
+        -1.57,
+        0.38
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 20.0,
+      "official_model_force_range_nm": [
+        -43.0,
+        43.0
+      ],
+      "bhuman_model_max_force_nm": 50.0,
+      "effective_symmetric_policy_limit_official_nm": 20.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 20.0
+    },
+    {
+      "official_joint": "right_hip_yaw_joint",
+      "bhuman_joint": "RHipYaw",
+      "official_body": {
+        "mass_kg": 1.65,
+        "com_m": [
+          -0.008475,
+          0.0040392,
+          -0.087906
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.015785973370709954,
+            -9.60024646243453e-05,
+            0.0015459962865760613
+          ],
+          [
+            -9.60024646243453e-05,
+            0.01613997544766095,
+            -0.0007449980746894552
+          ],
+          [
+            0.0015459962865760613,
+            -0.0007449980746894553,
+            0.0015510011816291219
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 1.6500000000000001,
+        "com_m": [
+          -0.00847,
+          0.00404,
+          -0.13641
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.04482284435,
+            -4.262512000000001e-05,
+            -0.00025649889000000004
+          ],
+          [
+            -4.262512000000001e-05,
+            0.0452633963,
+            0.00011407416000000002
+          ],
+          [
+            -0.00025649889000000004,
+            0.00011407416000000002,
+            0.00168842908
+          ]
+        ]
+      },
+      "official_armature": 0.0282528,
+      "bhuman_armature": 0.0282528,
+      "official_range_rad": [
+        -1.012,
+        1.012
+      ],
+      "bhuman_range_rad": [
+        -1.0,
+        1.0
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 15.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 15.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 15.0
+    },
+    {
+      "official_joint": "right_knee_pitch_joint",
+      "bhuman_joint": "RKneePitch",
+      "official_body": {
+        "mass_kg": 1.5,
+        "com_m": [
+          -0.000805,
+          -0.003146,
+          -0.109215
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.0236810143980238,
+            -3.499917085001441e-05,
+            0.00022100029186754273
+          ],
+          [
+            -3.4999170850012673e-05,
+            0.02367001473382945,
+            0.00010500015440522235
+          ],
+          [
+            0.00022100029186754273,
+            0.00010500015440522235,
+            0.0012400008681467535
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 1.5,
+        "com_m": [
+          -0.0008100000000000001,
+          -0.00315,
+          -0.10922
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.04138881246,
+            -3.87566e-05,
+            9.058778e-05
+          ],
+          [
+            -3.87566e-05,
+            0.04136409264,
+            -0.00040466068000000004
+          ],
+          [
+            9.058778e-05,
+            -0.00040466068000000004,
+            0.0012556423100000002
+          ]
+        ]
+      },
+      "official_armature": 0.095625,
+      "bhuman_armature": 0.095625,
+      "official_range_rad": [
+        0.0,
+        2.321
+      ],
+      "bhuman_range_rad": [
+        0.0,
+        2.35
+      ],
+      "official_initial_q_rad": 0.3,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 35.0,
+      "official_model_force_range_nm": [
+        -112.0,
+        112.0
+      ],
+      "bhuman_model_max_force_nm": 60.0,
+      "effective_symmetric_policy_limit_official_nm": 35.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 35.0
+    },
+    {
+      "official_joint": "right_ankle_pitch_joint",
+      "bhuman_joint": "RAnklePitch",
+      "official_body": {
+        "mass_kg": 0.039,
+        "com_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "inertia_body_kg_m2": [
+          [
+            2e-06,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            4e-06,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            4e-06
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.039,
+        "com_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "inertia_body_kg_m2": [
+          [
+            2.0000000000000003e-06,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            4.000000000000001e-06,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            4.000000000000001e-06
+          ]
+        ]
+      },
+      "official_armature": 0.0565,
+      "bhuman_armature": 0.0565056,
+      "official_range_rad": [
+        -0.87,
+        0.345
+      ],
+      "bhuman_range_rad": [
+        -0.87,
+        0.345
+      ],
+      "official_initial_q_rad": -0.15,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 24.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 24.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 24.0
+    },
+    {
+      "official_joint": "right_ankle_roll_joint",
+      "bhuman_joint": "RAnkleRoll",
+      "official_body": {
+        "mass_kg": 0.494,
+        "com_m": [
+          0.011662,
+          -0.000244,
+          -0.014364
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00026099979848672014,
+            -2.9999890652930257e-07,
+            -0.00011499990308244195
+          ],
+          [
+            -2.999989065293025e-07,
+            0.0011700008849205076,
+            2.0001349000620127e-07
+          ],
+          [
+            -0.00011499990308244195,
+            2.0001349000620042e-07,
+            0.001213004316592771
+          ]
+        ]
+      },
+      "bhuman_body": {
+        "mass_kg": 0.494,
+        "com_m": [
+          0.01166,
+          -0.00024,
+          -0.01436
+        ],
+        "inertia_body_kg_m2": [
+          [
+            0.00036301088000000004,
+            -1.59352e-06,
+            -3.220219e-05
+          ],
+          [
+            -1.59352e-06,
+            0.00133920423,
+            2.6765e-07
+          ],
+          [
+            -3.220219e-05,
+            2.6765e-07,
+            0.00128025221
+          ]
+        ]
+      },
+      "official_armature": 0.0565,
+      "bhuman_armature": 0.0565056,
+      "official_range_rad": [
+        -0.345,
+        0.345
+      ],
+      "bhuman_range_rad": [
+        -0.345,
+        0.345
+      ],
+      "official_initial_q_rad": 0,
+      "bhuman_initial_q_rad": 0.0,
+      "official_task_effort_limit_nm": 15.0,
+      "official_model_force_range_nm": [
+        -38.3,
+        38.3
+      ],
+      "bhuman_model_max_force_nm": 30.0,
+      "effective_symmetric_policy_limit_official_nm": 15.0,
+      "effective_symmetric_policy_limit_bhuman_nm": 15.0
+    }
+  ],
+  "all_effective_policy_torque_limits_equal": true,
+  "all_inertia_values_are_body_frame_about_COM": true,
+  "initial_root_height_m": {
+    "official_cfg": 0.6,
+    "bhuman_test_scene": 0.537
+  },
+  "contact_source_notes": {
+    "official_geom_default": {
+      "solimp": "0.90 0.95 0.001",
+      "solref": "0.001 1"
+    },
+    "official_ground": {
+      "name": "ground",
+      "type": "plane",
+      "pos": "0 0 0",
+      "size": "0 0 1",
+      "material": "matplane",
+      "condim": "1",
+      "friction": "0.4 0.005 0.0001"
+    },
+    "official_option_xml": {
+      "timestep": "0.001",
+      "tolerance": "1e-6",
+      "impratio": "10",
+      "solver": "Newton"
+    },
+    "official_runtime_timestep_s": 0.002,
+    "bhuman": "Core3 Geometry.cpp sets condim3, sliding friction1, torsional/rolling0 unless Material overrides; model defaults supply solref/solimp. Actual mixed contact friction must be measured, not inferred from ground alone.",
+    "solver_bhuman": "Simulation.cpp sets Euler,50 iterations,tolerance1e-6,Newton,jacobian auto; source does not override default impratio."
+  },
+  "limitations": [
+    "parameter differences are not causal attribution",
+    "physical joint references and body inertias must not be silently changed to improve tracking",
+    "initial poses and MuJoCo library versions are separate confounds",
+    "no model/PD/policy files were edited"
+  ],
+  "high_signal_differences": {
+    "trunk_Ixx_ratio_bhuman_to_official": 1.2868416833574452,
+    "trunk_Iyy_ratio_bhuman_to_official": 1.3094555777148562,
+    "head_armature_ratio": 5.0,
+    "arm_armature_ratio": 10.0,
+    "head_yaw_mount_height_m": {
+      "official": 0.2149,
+      "bhuman": 0.2479
+    },
+    "effective_control_torque_cap_change": false,
+    "mass_change": false
+  }
+}

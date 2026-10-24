@@ -1,0 +1,112 @@
+{
+  "status": "source_and_text_evidence_only",
+  "note": "Binary upload operation did not complete. These files remain retained; no successful binary publication is claimed. Obtain the official model at the pinned upstream source and verify its SHA-256 before running.",
+  "assets": [
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0149-strict-reference-failure/policy.jsonl.gz",
+      "bytes": 3909533,
+      "sha256": "e93a3bd99e2bb973e08a9055a8684e58f6a9e9bc892c650b2af64a10b6162e33",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0154-completed-physics-teardown-failure/k1-camera-0154.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0154-completed-physics-teardown-failure/policy.jsonl.gz",
+      "bytes": 5940322,
+      "sha256": "61012a5bf007b53d14b03e121ca6827820433e20a621fdc7e93eb2566c7f6e88",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0156-standing-120s-pass/k1-camera-0156.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0156-standing-120s-pass/policy.jsonl.gz",
+      "bytes": 5940322,
+      "sha256": "61012a5bf007b53d14b03e121ca6827820433e20a621fdc7e93eb2566c7f6e88",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward02/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward02/trace.jsonl.gz",
+      "bytes": 1031384,
+      "sha256": "fc1b230b77beed9e68595d868f47e02b18478e2ecc5df188587f41289cd08fda",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward05/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/forward05/trace.jsonl.gz",
+      "bytes": 1032618,
+      "sha256": "e55035ac83e9cac8341eb975b045a36f27e2676fa9d62e281900d4817aec56ce",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/lateral01/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/lateral01/trace.jsonl.gz",
+      "bytes": 1003930,
+      "sha256": "a1f0df2dadc974903c2b97b3ae329eb56b1f73e5533a5b43687ce7e8bf97fa7e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/yaw03/camera.png",
+      "bytes": 6614,
+      "sha256": "040d55edef7ae9bca0734835937094d4baa75a3f643750c851dabdc6cf7f863e",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/plugin/evidence/20261024T0204-scheduled-motion/yaw03/trace.jsonl.gz",
+      "bytes": 1033056,
+      "sha256": "d2dcec7308975ab3d2441c3927f686c7f3e7d982ed83f9fe13ff4900eccf8b77",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    },
+    {
+      "path": "native/booster16/vendor/booster_deploy/tasks/locomotion/robots/k1/models/k1_walk.pt",
+      "bytes": 2104639,
+      "sha256": "2d860167ed827e8d44cd65abd4c27f474904352bcb98c0cfa97c078f63e2fea5",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy",
+      "official_source": "https://github.com/BoosterRobotics/booster_deploy/blob/7bb1462e2ac742eba5c01659b815e2e99fbe617f/tasks/locomotion/robots/k1/models/k1_walk.pt"
+    },
+    {
+      "path": "native/booster16/video/evidence/20261024-single-k1-kick/world.jsonl.gz",
+      "bytes": 2342404,
+      "sha256": "384e783666a8c2d9af363989fd1e677ba5ee4ccc3c03dfdc906b2a3aa787bc02",
+      "publication": "not_uploaded_in_source_tree",
+      "retained": "cloud working copy"
+    }
+  ]
+}

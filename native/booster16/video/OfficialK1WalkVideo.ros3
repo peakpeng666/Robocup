@@ -1,0 +1,18 @@
+<Simulation>
+  <Include href="../plugin/scenes/vendor/bhuman/K1.rsi3"/>
+  <Include href="/workspace/shared/bhuman-upstream/Config/Scenes/Includes/Field2026HSLM.rsi3"/>
+  <Scene name="OfficialK1" controller="OfficialWalkVideoObserver" stepLength="0.002" color="rgb(65%, 65%, 70%)">
+    <PointLight z="9m" intensity="8"/>
+    <Compound ref="field"/>
+    <Body ref="K1" name="K1">
+      <Set name="TeamColor" value="skin"/>
+      <Translation x="-1m" z="0.537m"/>
+    </Body>
+    <Compound name="Observer">
+      <Camera name="Camera" imageWidth="960" imageHeight="540" angleX="75degree" angleY="46.69degree">
+        <Translation x="1.5m" y="-7m" z="4.5m"/>
+        <Rotation y="30degree" z="90degree"/>
+      </Camera>
+    </Compound>
+  </Scene>
+</Simulation>

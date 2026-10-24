@@ -1,0 +1,329 @@
+{
+  "frame": {
+    "dq_rad_s": [
+      -0.006745979655534029,
+      0.0022362663876265287,
+      -0.5109766721725464,
+      -0.12485659122467041,
+      0.44658562541007996,
+      0.03634276241064072,
+      0.5319335460662842,
+      -0.06918766349554062,
+      -0.448851615190506,
+      0.014729415997862816,
+      0.062405966222286224,
+      0.04508359730243683,
+      0.04329051449894905,
+      0.04039124399423599,
+      0.00391458859667182,
+      0.06444353610277176,
+      0.0056553790345788,
+      -0.02479792758822441,
+      -0.008788472041487694,
+      0.15465089678764343,
+      -0.0705215260386467,
+      0.16227051615715027
+    ],
+    "epoch": 0,
+    "gyro_rad_s": [
+      0.012419494800269604,
+      -0.052773162722587585,
+      0.0017221741145476699
+    ],
+    "joint_names": [
+      "aahead_yaw_joint",
+      "aahead_pitch_joint",
+      "aaleft_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_elbow_pitch_joint",
+      "left_elbow_yaw_joint",
+      "aaright_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_elbow_pitch_joint",
+      "right_elbow_yaw_joint",
+      "left_hip_pitch_joint",
+      "left_hip_roll_joint",
+      "left_hip_yaw_joint",
+      "left_knee_pitch_joint",
+      "left_ankle_pitch_joint",
+      "left_ankle_roll_joint",
+      "right_hip_pitch_joint",
+      "right_hip_roll_joint",
+      "right_hip_yaw_joint",
+      "right_knee_pitch_joint",
+      "right_ankle_pitch_joint",
+      "right_ankle_roll_joint"
+    ],
+    "orientation_wxyz": [
+      0.9997104406356812,
+      0.0181715190410614,
+      0.008671201765537262,
+      -0.013175258412957191
+    ],
+    "q_rad": [
+      -0.00018703704699873924,
+      0.025896403938531876,
+      -0.1956871747970581,
+      -1.0407239198684692,
+      0.6742855310440063,
+      -0.21891246736049652,
+      -0.1216326653957367,
+      1.0249748229980469,
+      0.5151333808898926,
+      0.2225564867258072,
+      -0.4362388253211975,
+      0.6142097115516663,
+      -0.14331746101379395,
+      0.5899668335914612,
+      -0.17432188987731934,
+      -0.29729604721069336,
+      -0.283618301153183,
+      -0.756589949131012,
+      0.12171687185764313,
+      0.28999167680740356,
+      -0.04410213232040405,
+      0.36413270235061646
+    ],
+    "tick": 5248,
+    "time_ns": 104960000000,
+    "velocity_command": [
+      0,
+      0,
+      0
+    ]
+  },
+  "response": {
+    "ok": true,
+    "result": {
+      "epoch": 0,
+      "joint_names": [
+        "aahead_yaw_joint",
+        "aahead_pitch_joint",
+        "aaleft_shoulder_pitch_joint",
+        "left_shoulder_roll_joint",
+        "left_elbow_pitch_joint",
+        "left_elbow_yaw_joint",
+        "aaright_shoulder_pitch_joint",
+        "right_shoulder_roll_joint",
+        "right_elbow_pitch_joint",
+        "right_elbow_yaw_joint",
+        "left_hip_pitch_joint",
+        "left_hip_roll_joint",
+        "left_hip_yaw_joint",
+        "left_knee_pitch_joint",
+        "left_ankle_pitch_joint",
+        "left_ankle_roll_joint",
+        "right_hip_pitch_joint",
+        "right_hip_roll_joint",
+        "right_hip_yaw_joint",
+        "right_knee_pitch_joint",
+        "right_ankle_pitch_joint",
+        "right_ankle_roll_joint"
+      ],
+      "joints": [
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 4,
+          "mode": "Hybrid",
+          "q_target_rad": 0,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 6
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 4,
+          "mode": "Hybrid",
+          "q_target_rad": 0,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 6
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": -0.25435373187065125,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": -1.0293071269989014,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": 0.7214032411575317,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": -0.21378864347934723,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": -0.08140551298856735,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": 0.9701542854309082,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": 0.4658995568752289,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 20,
+          "mode": "Hybrid",
+          "q_target_rad": 0.22622153162956238,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 14
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": -0.43457406759262085,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 30
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": 0.5150879621505737,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 20
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": -0.07990404218435287,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 15
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": 0.5264490246772766,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 35
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 65,
+          "mode": "Hybrid",
+          "q_target_rad": -0.12681931257247925,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 24
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 65,
+          "mode": "Hybrid",
+          "q_target_rad": -0.2513555586338043,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 15
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": -0.2748831510543823,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 30
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": -0.6083765625953674,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 20
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": 0.08604064583778381,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 15
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 2,
+          "kp": 100,
+          "mode": "Hybrid",
+          "q_target_rad": 0.3400174379348755,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 35
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 65,
+          "mode": "Hybrid",
+          "q_target_rad": -0.01616216078400612,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 24
+        },
+        {
+          "dq_target_rad_s": 0,
+          "kd": 1,
+          "kp": 65,
+          "mode": "Hybrid",
+          "q_target_rad": 0.34692391753196716,
+          "tau_ff_nm": 0,
+          "torque_limit_nm": 15
+        }
+      ],
+      "profile": "official-k1-walk-7bb1462",
+      "tick": 5248,
+      "time_ns": 104960000000
+    },
+    "robot_id": "k1"
+  }
+}

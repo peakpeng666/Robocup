@@ -1,0 +1,15 @@
+{
+  "note": "Supplemental full license texts; upstream utility source revision is not independently declared. Source headers and original upstream LICENSE retained verbatim.",
+  "licenses": [
+    {
+      "path": "LICENSES/IsaacLab-BSD-3-Clause.txt",
+      "url": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.2.0/LICENSE",
+      "sha256": "df351ebfa8af317bf5a9ad83df63a8b68e4f5c04b71f30767cdb27aa434eac62"
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+call /workspace/shared/bhuman-upstream/Config/Scenes/Includes/Normal
+ar directGoals on
+gc playing

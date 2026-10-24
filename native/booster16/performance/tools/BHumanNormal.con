@@ -1,0 +1,5 @@
+call /workspace/shared/bhuman-upstream/Config/Scenes/Includes/Normal
+ar directGoals on
+gc playing
+# Benchmark: remove only real-time wall-clock throttling, keep all physics/vision.
+dt off

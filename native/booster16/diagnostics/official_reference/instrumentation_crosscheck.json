@@ -1,0 +1,7 @@
+{
+  "original_run": "native/booster16/diagnostics/official_reference/crosscheck_original/20261024T023224.562917Z",
+  "original_mujoco": "3.3.5",
+  "xyz_max_abs_error": 0.0,
+  "tilt_max_abs_error": 0.0,
+  "samples": 1000
+}

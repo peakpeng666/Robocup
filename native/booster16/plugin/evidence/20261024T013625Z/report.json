@@ -1,0 +1,16 @@
+{
+  "status": "FAILED",
+  "exit_code": 139,
+  "stage": "corrected BHuman K1 scene Qt offscreen before policy trace",
+  "policy_frames": 0,
+  "cause": "Actual scene crash stack unavailable; independently confirmed Qt offscreen cannot create requested OpenGL3.3 context",
+  "scene_sha256": "9ba1a610e0d6945f953c7295e41654e7d62a7bc2c379e181a126c72798962736",
+  "source_assets_sha_verified": 25,
+  "graphics_probe": {
+    "context_created": false,
+    "context_valid": false,
+    "surface_valid": true,
+    "make_current": false
+  },
+  "debugger": "ptrace denied; not bypassed"
+}

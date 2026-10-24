@@ -1,0 +1,7 @@
+{
+  "status": "PASS_EXACT_OFFICIAL_REPLAY",
+  "frames": 1001,
+  "max_target_absolute_error": 0.0,
+  "all_official_command_observations_verified": true,
+  "scope": "replay of measured simulator sensors, not an independent physical-model comparison"
+}

@@ -1,0 +1,9 @@
+surfaceless: real EGL 1.5 pbuffer integration initialized
+BENCH_BEGIN wall=10536.730287692 step=0 sim=0.000000000
+BENCH_COMPLETE sim=20.000000950 wall=108.826540362 rtf=0.183779
+PERF_STAGE name=camera_batch_render_readback_actual calls=1176 wall_ns=21303698069
+PERF_STAGE name=physics_step_including_actuator_collision calls=10000 wall_ns=656897228
+PERF_STAGE name=motion_kick_nn_apply calls=267 wall_ns=22029759
+PERF_STAGE name=vision_robot_ball_nn_apply calls=1168 wall_ns=97204966702
+PERF_STAGE name=motion_walk_nn_apply calls=730 wall_ns=74192569
+PERF_STAGE name=camera_getImage_including_rgb_conversion calls=1176 wall_ns=21487788481

@@ -1,0 +1,15 @@
+{
+    "controller": "BoosterK1Policy",
+    "loop_begin_monotonic_s": 10687.711516726,
+    "loop_cpu_seconds": 0.5377610000000002,
+    "loop_end_monotonic_s": 10688.886182557,
+    "loop_wall_seconds": 1.1746658310003113,
+    "observer_render_requests": 0,
+    "per_frame_disk_writes": 0,
+    "physics_steps": 10000,
+    "rtf_loop": 17.02611961813651,
+    "scene_file": "/workspace/shared/benchmark-build/runs/official-control-2/scene/OfficialControl.ros3",
+    "schema": 1,
+    "simulated_seconds": 20.000000949949026,
+    "step_length_s": 0.0020000000949949026
+}

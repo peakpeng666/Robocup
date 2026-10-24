@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Booster 1.6 read-only artifact inventory",
+  "type": "object",
+  "required": ["schema_version", "native_1_6_availability", "artifacts", "exclusions", "complete", "limits", "notes", "bytes_hashed"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "booster16-artifact-inventory/1"},
+    "native_1_6_availability": {"const": "unknown"},
+    "complete": {"type": "boolean"},
+    "bytes_hashed": {"type": "integer", "minimum": 0},
+    "notes": {"type": "array", "items": {"type": "string"}},
+    "limits": {"type": "object", "required": ["max_entries", "max_depth", "max_file_bytes", "max_total_bytes"], "additionalProperties": {"type": "integer", "minimum": 0}},
+    "exclusions": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "kind", "size_bytes", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+          "kind": {"enum": ["archive_or_installer_unopened", "sdk_not_motion_core", "simulation_interface_candidate", "motion_core_candidate", "policy_candidate", "configuration_candidate", "version_metadata_candidate", "shared_library_candidate"]},
+          "size_bytes": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "elf": {
+            "type": "object", "required": ["status"], "additionalProperties": false,
+            "properties": {
+              "status": {"enum": ["header_only", "invalid_or_truncated_header"]},
+              "bits": {"enum": [32, 64]},
+              "endianness": {"enum": ["little", "big"]},
+              "machine": {"type": "integer", "minimum": 0},
+              "architecture": {"type": "string"}
+            }
+          },
+          "dynamic": {
+            "type": "object", "required": ["status", "needed"], "additionalProperties": false,
+            "properties": {
+              "status": {"enum": ["disabled", "readelf_unavailable", "readelf_ok", "readelf_failed", "readelf_timeout", "readelf_output_limit"]},
+              "needed": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "version_scan_truncated": {"type": "boolean"},
+          "version_claims": {
+            "type": "array", "items": {
+              "type": "object", "required": ["line", "label", "value"], "additionalProperties": false,
+              "properties": {
+                "line": {"type": "integer", "minimum": 1},
+                "label": {"type": "string"},
+                "value": {"type": "string", "pattern": "^v?[0-9]+\\.[0-9]+(?:\\.[0-9]+){0,3}$"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

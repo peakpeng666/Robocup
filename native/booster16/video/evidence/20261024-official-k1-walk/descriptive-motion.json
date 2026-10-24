@@ -1,0 +1,53 @@
+{
+  "metrics": {
+    "forward_steady": {
+      "window_s": [
+        10,
+        15
+      ],
+      "mean_vx": 0.4531467367848138,
+      "mean_vy": 0.010425496393514514,
+      "mean_yaw_rate": 0.006670135213051735,
+      "mean_planar_speed": 0.47669424199423377,
+      "mean_abs_vy": 0.13238439742641178,
+      "mean_abs_yaw_rate": 0.15724500121790325
+    },
+    "first_stop": {
+      "window_s": [
+        18,
+        20
+      ],
+      "mean_vx": 0.00021130804875757524,
+      "mean_vy": 0.0012141045726471024,
+      "mean_yaw_rate": -4.784160905451154e-05,
+      "mean_planar_speed": 0.0012485226042686364,
+      "mean_abs_vy": 0.0012141045726471024,
+      "mean_abs_yaw_rate": 0.0005576113435114931
+    },
+    "yaw_steady": {
+      "window_s": [
+        25,
+        30
+      ],
+      "mean_vx": 0.008909728503639625,
+      "mean_vy": -0.0030135130486461372,
+      "mean_yaw_rate": 0.31245657800851334,
+      "mean_planar_speed": 0.07191538635926539,
+      "mean_abs_vy": 0.0700509468130758,
+      "mean_abs_yaw_rate": 0.31245657800851334
+    },
+    "final_stop": {
+      "window_s": [
+        33,
+        35
+      ],
+      "mean_vx": 0.0007603655489291783,
+      "mean_vy": -0.0019087387930651404,
+      "mean_yaw_rate": -0.0023949204557394133,
+      "mean_planar_speed": 0.002062428933591081,
+      "mean_abs_vy": 0.0019087387930651404,
+      "mean_abs_yaw_rate": 0.0023949204557394133
+    }
+  },
+  "qualification": "descriptive only; combined35s field episode differs from predeclared independent20s flatground protocol"
+}

@@ -1,0 +1,5 @@
+8ab19a98dd01cb5cbf8935537cf8961d79e6f4b0300d2046ed4f59c5022279f3  /workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/SimRobot
+32e9f804af30cf90ffaf284ec5981fb6a0c96cb7b6dd79911c7f727d3f781b61  /workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libBoosterK1Policy.so
+56be61fbc6942399f8a2d643cab0bba13828733c5c7f7db9f1d9caf63e182508  /workspace/shared/simrobot-build/source/Build/Linux/SimRobot/Release/libOfficialWalkVideoObserver.so
+a9523e3902853865c9b1d21fef2889af39e194a8c7b805dff28fa74bc35ddb52  /workspace/shared/robocup-native-adapt/native/booster16/video/OfficialK1WalkVideo.ros3
+6dd65bce22b1912c200bd0d94d519edeb6f76d0d564d04cd247fb3fb70a80715  /workspace/shared/robocup-native-adapt/native/booster16/official_policy/backend.py

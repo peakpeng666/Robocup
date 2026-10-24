@@ -1,0 +1,19 @@
+{
+  "compile_link": "PASS",
+  "process_checks": 8,
+  "process_status": "PASS",
+  "artifact_sha256": "5429a6304455f8e8cfe0afc911907a7bed27c263170d3719c1eb595db617ebd8",
+  "sources_sha256": {
+    "BoosterK1Policy.cpp": "ce6f4d6d28cb4fa1dc20b78ec3991da99e1f9e3d49246914b2abb3240e4ee01d",
+    "process_test.cpp": "13d2b5efce3c7e7828b282ab5b1d2187a82812b3811ad9eb731d9104b125ce61",
+    "PolicyProcess.hpp": "92a418e7429bd69021b4e6877e8b6567c8d6fb48792f1348ccfae389ddc97b6f"
+  },
+  "physics_scene_status": "PENDING",
+  "limitations": [
+    "Body-pose orientation oracle",
+    "Joint mapping candidate",
+    "Zero command only",
+    "No firmware 1.6 equivalence",
+    "Python subprocess not in-process model core"
+  ]
+}

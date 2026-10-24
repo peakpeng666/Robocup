@@ -1,0 +1,52 @@
+{
+  "declared_before_scheduled_runs_utc": "2026-10-24T02:01:30.071168+00:00",
+  "protocol": "independent episode; policy ticks0..249 stand;250..749 command;750..1000 stop; final time20s",
+  "commands": [
+    [
+      0.2,
+      0,
+      0
+    ],
+    [
+      0.5,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0.3
+    ],
+    [
+      0,
+      0.1,
+      0
+    ]
+  ],
+  "steady_command_window_s": [
+    10,
+    15
+  ],
+  "stop_window_s": [
+    18,
+    20
+  ],
+  "linear_mean_error_tolerance": "max(0.05 m/s,25% of commanded component)",
+  "yaw_mean_error_tolerance": "max(0.05 rad/s,25% of commanded yaw)",
+  "zero_component_linear_mean_abs_tolerance_m_s": 0.05,
+  "zero_component_yaw_mean_abs_tolerance_rad_s": 0.1,
+  "stop_mean_planar_speed_m_s_max": 0.05,
+  "stop_mean_abs_yaw_rate_rad_s_max": 0.1,
+  "min_body_height_m": 0.4,
+  "max_lean_deg": 20,
+  "max_actual_torque_to_limit_ratio": 1.000001,
+  "required": [
+    "all finite",
+    "contiguous ticks and physics steps",
+    "1001 frames",
+    "clean exit0",
+    "no safety fallback or transport fault"
+  ],
+  "velocity_measurement": "world position finite difference projected into midpoint yaw heading frame; vertical component also retained; yaw is unwrapped quaternion heading difference",
+  "qualification_scope": "This particular official model + BHuman body + test floor + oracle orientation; not general gait or firmware1.6 qualification"
+}

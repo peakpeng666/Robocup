@@ -1,0 +1,12 @@
+diff --git a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
+--- a/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
++++ b/Src/SimRobotCore3/Simulation/Motors/ServoMotor.cpp
+@@ -86,7 +86,7 @@
+        target[searchIndex].executionTimestamp > lastExecutedSetpoint.executionTimestamp)
+       lastExecutedSetpoint = target[searchIndex];
+     searchIndex++;
+-    if(searchIndex > targetSize)
++    if(searchIndex >= targetSize)
+       searchIndex = 0;
+     if(searchIndex == index)
+       break;

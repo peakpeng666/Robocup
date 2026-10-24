@@ -1,0 +1,45 @@
+{
+  "status": "PASS_TRACE_INVARIANTS",
+  "frames": 6001,
+  "policy_seconds": 120.0,
+  "physics_steps": 60000,
+  "min_body_height_m": 0.43104371428489685,
+  "max_body_height_m": 0.5500010251998901,
+  "max_lean_deg": 6.990662158772705,
+  "max_abs_actual_torque_nm": 30.718692779541016,
+  "max_actual_torque_to_command_limit_ratio": 1.0,
+  "max_abs_gyro_rad_s": 1.760146141052246,
+  "max_quaternion_norm_squared_error": 1.1279199663150052e-07,
+  "right_ankle_roll_reference_outside_mechanical_range_frames": 13,
+  "initial_body_world_m": [
+    0,
+    0,
+    0.5370000004768372
+  ],
+  "final_body_world_m": [
+    -0.023504067212343216,
+    -0.023292630910873413,
+    0.5494387745857239
+  ],
+  "xy_displacement_m": 0.0330906003310989,
+  "velocity_command": [
+    0,
+    0,
+    0
+  ],
+  "trace_sha256": "d1cb67b89f3ffd27be6336335a01def9c29d2ba52982f58231ad095e96030327",
+  "limitations": [
+    "body orientation/position use simulation truth",
+    "camera smoke is separate, not vision control",
+    "static zero command is standing not commanded walking",
+    "trace checks do not by themselves certify clean process exit"
+  ],
+  "process_exit_code": 0,
+  "process_status": "PASS_CLEAN_EXIT",
+  "prefix_comparison": {
+    "old_strict_reference_frames": 5249,
+    "max_sensor_difference": 0,
+    "max_target_difference": 0
+  },
+  "plugin_sha256": "024c5a1e19e0930fdbb230cb7c9f346426e7ad73be886c207529815bcd881cdc"
+}

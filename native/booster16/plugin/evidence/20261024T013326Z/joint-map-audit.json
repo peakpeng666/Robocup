@@ -1,0 +1,251 @@
+{
+  "status": "PASS",
+  "checked_joint_names_and_local_axes": 22,
+  "model_sha256": "1f1a1cdd451f777600c66fc30ad8d7537198ee7bc51f8ed20d67a51b5001a651",
+  "bhuman_sha256": "36db500013c2042b12dc2ce05c7ab484f8798a144d5a4306f90a3c4cdf1d29aa",
+  "mapping": [
+    {
+      "official": "aahead_yaw_joint",
+      "scene": "HeadYaw",
+      "local_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scene_init": "0",
+      "official_range": "-1.012 1.012"
+    },
+    {
+      "official": "aahead_pitch_joint",
+      "scene": "HeadPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.314 0.794"
+    },
+    {
+      "official": "aaleft_shoulder_pitch_joint",
+      "scene": "LShoulderPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-2.932 1.196"
+    },
+    {
+      "official": "left_shoulder_roll_joint",
+      "scene": "LShoulderRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "-83degree",
+      "official_range": "-1.642 1.629"
+    },
+    {
+      "official": "left_elbow_pitch_joint",
+      "scene": "LElbowPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "90degree",
+      "official_range": "-1.885 1.885"
+    },
+    {
+      "official": "left_elbow_yaw_joint",
+      "scene": "LElbowYaw",
+      "local_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scene_init": "0",
+      "official_range": "-2.242 0.816"
+    },
+    {
+      "official": "aaright_shoulder_pitch_joint",
+      "scene": "RShoulderPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-2.932 1.196"
+    },
+    {
+      "official": "right_shoulder_roll_joint",
+      "scene": "RShoulderRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "83degree",
+      "official_range": "-1.642 1.629"
+    },
+    {
+      "official": "right_elbow_pitch_joint",
+      "scene": "RElbowPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "90degree",
+      "official_range": "-1.885 1.885"
+    },
+    {
+      "official": "right_elbow_yaw_joint",
+      "scene": "RElbowYaw",
+      "local_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.816 2.242"
+    },
+    {
+      "official": "left_hip_pitch_joint",
+      "scene": "LHipPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-2.958 2.226"
+    },
+    {
+      "official": "left_hip_roll_joint",
+      "scene": "LHipRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.375 1.536"
+    },
+    {
+      "official": "left_hip_yaw_joint",
+      "scene": "LHipYaw",
+      "local_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scene_init": "0",
+      "official_range": "-1.012 1.012"
+    },
+    {
+      "official": "left_knee_pitch_joint",
+      "scene": "LKneePitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "0 2.321"
+    },
+    {
+      "official": "left_ankle_pitch_joint",
+      "scene": "LAnklePitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.87 0.345"
+    },
+    {
+      "official": "left_ankle_roll_joint",
+      "scene": "LAnkleRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.345 0.345"
+    },
+    {
+      "official": "right_hip_pitch_joint",
+      "scene": "RHipPitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-2.958 2.226"
+    },
+    {
+      "official": "right_hip_roll_joint",
+      "scene": "RHipRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-1.536 0.375"
+    },
+    {
+      "official": "right_hip_yaw_joint",
+      "scene": "RHipYaw",
+      "local_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scene_init": "0",
+      "official_range": "-1.012 1.012"
+    },
+    {
+      "official": "right_knee_pitch_joint",
+      "scene": "RKneePitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "0 2.321"
+    },
+    {
+      "official": "right_ankle_pitch_joint",
+      "scene": "RAnklePitch",
+      "local_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.87 0.345"
+    },
+    {
+      "official": "right_ankle_roll_joint",
+      "scene": "RAnkleRoll",
+      "local_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scene_init": "0",
+      "official_range": "-0.345 0.345"
+    }
+  ],
+  "limitations": "Local axis correspondence only; no world-frame FK, joint zero offset, dynamic or gait qualification"
+}

@@ -1,0 +1,159 @@
+surfaceless: real EGL 1.5 pbuffer integration initialized
+Failed to create /home/agent/.cache/mesa_shader_cache for shader cache (Read-only file system)---disabling.
+Failed to create /home/agent/.cache/mesa_shader_cache_db for shader cache (Read-only file system)---disabling.
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/workspace/shared/booster-native-venv/lib/python3.12/site-packages/torch/jit/_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+BoosterK1Policy inference tick 0 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 50 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1000 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1050 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 1950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2000 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2050 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 2950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3000 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3050 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 3950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4000 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4050 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 4950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5000 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5050 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5100 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5150 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5200 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5250 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5300 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5350 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5400 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5450 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5500 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5550 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5600 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5650 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5700 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5750 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5800 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5850 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5900 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 5950 accepted; body-pose orientation oracle
+BoosterK1Policy inference tick 6000 accepted; body-pose orientation oracle
+BoosterK1Policy completed policy_frames=6001 physics_steps=60000

@@ -1,0 +1,7 @@
+{
+  "status": "TIMEOUT",
+  "exit_code": 124,
+  "stage": "first scene launch before TeamColor override correction",
+  "policy_frames": 0,
+  "note": "hidden UI warning suspected; no diagnostic content available; do not count as success"
+}
