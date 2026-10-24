@@ -395,6 +395,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "disturbance draft validator (live push_* not overwritten)",
         ),
         (
+            "bhuman/k1-training/scripts/settle_jitter_audit.py",
+            "settle/jitter draft (new keys; live action_rate intact)",
+        ),
+        (
+            "bhuman/k1-training/scripts/estimator_ab_audit.py",
+            "estimator A/B draft (bypass; not 344 / not train.py)",
+        ),
+        (
+            "bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
+            "reference-penalty anneal (live 1.0 intact)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

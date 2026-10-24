@@ -128,6 +128,10 @@ REQUIRED_DOCS = {
         "command_schedule_audit",
         "disturbance_curriculum_audit",
         "selfcheck_fail_hints",
+        "settle_jitter_audit",
+        "estimator_ab_audit",
+        "reference_penalty_anneal",
+        "已有机器校验",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -185,6 +189,9 @@ REQUIRED_DOCS = {
         "command_schedule_audit.py",
         "disturbance_curriculum_audit.py",
         "selfcheck_fail_hints.py",
+        "settle_jitter_audit.py",
+        "estimator_ab_audit.py",
+        "reference_penalty_anneal_audit.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -214,6 +221,10 @@ REQUIRED_DOCS = {
         "p1_draft_diff",
         "command_schedule_audit",
         "disturbance_curriculum_audit",
+        "settle_jitter_audit",
+        "estimator_ab_audit",
+        "reference_penalty_anneal",
+        "已有机器校验",
     ),
     "bhuman/docs/DEPLOY-CALL-SEQUENCE.md": (
         "344→13",
@@ -287,6 +298,10 @@ REQUIRED_DOCS = {
         "command-schedule-audit",
         "disturbance-curriculum-audit",
         "selfcheck_fail_hints",
+        "settle-jitter-audit",
+        "estimator-ab-audit",
+        "reference-penalty-anneal",
+        "已有机器校验",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -330,6 +345,9 @@ REQUIRED_DOCS = {
         "command_schedule_audit",
         "disturbance_curriculum_audit",
         "selfcheck_fail_hints",
+        "settle_jitter_audit",
+        "estimator_ab_audit",
+        "reference_penalty_anneal",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -419,6 +437,9 @@ REQUIRED_DOCS = {
         "command_schedule_audit",
         "disturbance_curriculum_audit",
         "selfcheck_fail_hints",
+        "settle_jitter_audit",
+        "estimator_ab_audit",
+        "reference_penalty_anneal",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

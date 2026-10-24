@@ -1,0 +1,34 @@
+{
+  "generated_utc": "2026-10-24T09:01:24+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "live_reference_mean_penalty": 1.0,
+  "diff": {
+    "key": "algorithm.reference_mean_penalty",
+    "official": 1.0,
+    "official_file": "bhuman/k1-training/configs/walk-reference-stability-v1.json",
+    "proposed_only": {
+      "reference_mean_penalty_start": 1.0,
+      "reference_mean_penalty_end": 0.3,
+      "anneal_iters": 50
+    },
+    "live_updated": false
+  },
+  "draft": {
+    "factor": "E_reference_penalty_anneal",
+    "draft_only": true,
+    "apply_to_live": false,
+    "applied": false,
+    "proposed_only": {
+      "reference_mean_penalty_start": 1.0,
+      "reference_mean_penalty_end": 0.3,
+      "anneal_iters": 50
+    }
+  },
+  "live_overwritten": false,
+  "trainable": false,
+  "write_yaml": false,
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "ref_sha256": "57a8a10594054d10dae734952e5c1a211b78fa2a03b4dde913b299d4a22c5834",
+  "note": "live reference_mean_penalty stays 1.0 on walk-reference-stability-v1.json; E_reference_penalty_anneal proposed_only, not applied"
+}

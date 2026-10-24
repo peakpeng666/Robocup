@@ -7,7 +7,11 @@
 门禁校验：`python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py`（`draft_only: true`；禁止被 stability / 官方 config_patch 读取；`still_proportion` / `tracking_*` / `action_rate` / `reference_mean_penalty` 不得覆盖到 live）。  
 官方 vs draft 键差分（只读）：`python3 bhuman/k1-training/scripts/p1_draft_diff.py` → `manifests/p1-draft-diff-latest.json`。  
 命令日程只读解析：`python3 bhuman/k1-training/scripts/command_schedule_audit.py`（官方 `commands:` 快照；缺 `schedule`/`curriculum` 如实记录；draft `A_command_schedule` 不得当已应用）。  
-扰动课程草案校验：`python3 bhuman/k1-training/scripts/disturbance_curriculum_audit.py`（`draft_only:true`；live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL）。
+扰动课程草案校验：`python3 bhuman/k1-training/scripts/disturbance_curriculum_audit.py`（`draft_only:true`；live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL）。  
+settle / 抖动新键：`python3 bhuman/k1-training/scripts/settle_jitter_audit.py`（`draft_settle_*` 仅 proposed；live 无对应键；`action_rate=-1.` 不被覆盖）。  
+估计器 A/B 草案：`python3 bhuman/k1-training/scripts/estimator_ab_audit.py`（只允许旁路声明；不得写入 344 / 不得注册 `train.py`；与 `k1-estimators` `TRAINABLE=false` 交叉）。  
+参考惩罚退火：`python3 bhuman/k1-training/scripts/reference_penalty_anneal_audit.py`（live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest）。  
+五个单因素均已 **已有机器校验**（与 `draft_validator` / `p1_draft_diff` 衔接，不另造轮子）。
 
 底座：`--task K1`，观测/动作仍是 **344→13**。
 
@@ -33,13 +37,13 @@
 
 ## 1. 五个单因素（都仍是 344→13）
 
-| ID | 因素 | 草稿意图 | 依赖 GPU | 会不会改 344 |
-|---|---|---|---|---|
-| A | 命令日程 | 提高驻立/急停/反转采样比例；日程分段 stand→forward→stop | 训练要 | 否 |
-| B | settle-time / 抖动 | **新键**（官方 YAML 没有）。拟在零指令段惩罚根加速度与 action_rate 的额外项 | 训练要 | 否 |
-| C | 扰动课程 | 对照本机 531 事件 / 55 跌倒，先记强度表，不改 `domain_rand` 默认 | 训练要 | 否 |
-| D | 估计器 A/B | 选用 `k1-estimators` 的 `passthrough` / `rma` / `dreamwaq`；actor 仍 344 | 接口否；训要 | 否 |
-| E | 参考惩罚退火 | 提议 `reference_mean_penalty` 从 1.0 按轮次降，**不改**现行 1.0 文件 | 训练要 | 否 |
+| ID | 因素 | 草稿意图 | 依赖 GPU | 会不会改 344 | 机器校验 |
+|---|---|---|---|---|---|
+| A | 命令日程 | 提高驻立/急停/反转采样比例；日程分段 stand→forward→stop | 训练要 | 否 | **已有机器校验** `command_schedule_audit.py` |
+| B | settle-time / 抖动 | **新键**（官方 YAML 没有）。拟在零指令段惩罚根加速度与 action_rate 的额外项 | 训练要 | 否 | **已有机器校验** `settle_jitter_audit.py` |
+| C | 扰动课程 | 对照本机 531 事件 / 55 跌倒，先记强度表，不改 `domain_rand` 默认 | 训练要 | 否 | **已有机器校验** `disturbance_curriculum_audit.py` |
+| D | 估计器 A/B | 选用 `k1-estimators` 的 `passthrough` / `rma` / `dreamwaq`；actor 仍 344 | 接口否；训要 | 否 | **已有机器校验** `estimator_ab_audit.py` |
+| E | 参考惩罚退火 | 提议 `reference_mean_penalty` 从 1.0 按轮次降，**不改**现行 1.0 文件 | 训练要 | 否 | **已有机器校验** `reference_penalty_anneal_audit.py` |
 
 A 的数字示例（**proposed only**）：`still_proportion: 0.25`（官方 0.1）。在正式实验 JSON 出现之前，YAML 必须仍是 0.1。
 

@@ -70,6 +70,9 @@
 | T1/K1 隔离矩阵 | `k1-switcher/t1_k1_isolation.py` | T1 365/62/76 不得替换 K1 walk；见 RESEARCH-MIGRATE / HiFAR |
 | 命令日程只读解析 | `scripts/command_schedule_audit.py` | 官方 `commands:` 快照；draft 日程不得当已应用；缺键如实记 |
 | 扰动课程草案校验 | `scripts/disturbance_curriculum_audit.py` | live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL |
+| settle / 抖动新键 | `scripts/settle_jitter_audit.py` | `draft_settle_*` 仅 proposed；live 无对应键；`action_rate` 不被覆盖 |
+| 估计器 A/B 草案 | `scripts/estimator_ab_audit.py` | 旁路声明；不得写入 344 / 不得注册 train.py；`TRAINABLE=false` |
+| 参考惩罚退火草案 | `scripts/reference_penalty_anneal_audit.py` | live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

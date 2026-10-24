@@ -69,6 +69,9 @@ REQUIRED_ROWS = (
     "命令日程只读解析",
     "扰动课程草案校验",
     "自检失败定位",
+    "settle / 抖动新键",
+    "估计器 A/B 草案",
+    "参考惩罚退火草案",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -137,6 +140,9 @@ REQUIRED_LANDINGS = (
     "command_schedule_audit.py",
     "disturbance_curriculum_audit.py",
     "selfcheck_fail_hints.py",
+    "settle_jitter_audit.py",
+    "estimator_ab_audit.py",
+    "reference_penalty_anneal_audit.py",
 )
 
 

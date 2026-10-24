@@ -145,6 +145,10 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] PR 体积健康：MERGE-CHECKLIST / README-RL 短节（文档+纯 Python 合同、无权重；审纪律不是曲线；不删文件）。
 - [x] 命令日程只读解析：`scripts/command_schedule_audit.py`（官方 `commands:` 快照；缺 schedule/curriculum 如实记录；draft `A_command_schedule` 不得当已应用）。
 - [x] 扰动课程草案校验：`scripts/disturbance_curriculum_audit.py`（`draft_only:true`；live `push_*` 不被覆盖；缺 draft_only / apply_to_live → FAIL）。
+- [x] settle / 抖动新键：`scripts/settle_jitter_audit.py`（`draft_settle_*` 仅 proposed；live 无对应键；`action_rate=-1.` 不被覆盖）。
+- [x] 估计器 A/B 草案：`scripts/estimator_ab_audit.py`（旁路声明；不得写入 344 / 不得注册 `train.py`；与 `k1-estimators` `TRAINABLE=false` 交叉）。
+- [x] 参考惩罚退火草案：`scripts/reference_penalty_anneal_audit.py`（live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest）。
+- [x] P1 五因素 **已有机器校验**（[P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md) 表；与 `draft_validator` / `p1_draft_diff` 衔接）。
 - [x] 自检失败定位：`scripts/selfcheck_fail_hints.py`（FAIL 打印「先看」文件/测试；PASS 安静）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
@@ -294,6 +298,9 @@ python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py
 python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py
 python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py
 python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py
+python3 bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py
+python3 bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py
+python3 bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py
 python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py
 python3 bhuman/sim2sim/test_overpass_contract.py
 bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh

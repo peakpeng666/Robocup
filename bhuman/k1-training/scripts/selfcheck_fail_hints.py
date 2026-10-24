@@ -96,6 +96,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/disturbance_curriculum_audit.py",
         "hint": "先看 live randomization.push_* 是否被 draft 覆盖，或缺 draft_only",
     },
+    "test_settle_jitter_audit.py": {
+        "look": "bhuman/k1-training/scripts/settle_jitter_audit.py",
+        "hint": "先看 draft_settle_* 是否写进 live，或 action_rate 是否被改",
+    },
+    "test_estimator_ab_audit.py": {
+        "look": "bhuman/k1-training/scripts/estimator_ab_audit.py",
+        "hint": "先看估计器草案是否要求写入 344 或注册 train.py",
+    },
+    "test_reference_penalty_anneal_audit.py": {
+        "look": "bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
+        "hint": "先看 live reference_mean_penalty 是否仍是 1.0",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

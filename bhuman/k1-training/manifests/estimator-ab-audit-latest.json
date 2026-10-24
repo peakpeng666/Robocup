@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-10-24T09:01:24+00:00",
+  "status": "PASS",
+  "walk": "344→13",
+  "estimators_trainable": false,
+  "allowed": [
+    "passthrough",
+    "rma",
+    "dreamwaq"
+  ],
+  "draft": {
+    "factor": "D_estimator_ab",
+    "draft_only": true,
+    "apply_to_live": false,
+    "applied": false,
+    "register_train_py": false,
+    "write_344": false,
+    "proposed_only": {
+      "estimator": "passthrough",
+      "allowed": [
+        "passthrough",
+        "rma",
+        "dreamwaq"
+      ],
+      "actor_obs": 344
+    }
+  },
+  "registry": {
+    "official_k1_registered": true,
+    "bypass_registered": []
+  },
+  "trainable": false,
+  "write_yaml": false,
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "note": "D_estimator_ab is a bypass declaration only; k1-estimators TRAINABLE=false; not registered in train.py; actor stays 344"
+}

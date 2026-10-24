@@ -42,6 +42,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "run_unit_tests_no_gym.sh",
         "test_command_schedule_audit.py",
         "test_disturbance_curriculum_audit.py",
+        "test_settle_jitter_audit.py",
+        "test_estimator_ab_audit.py",
+        "test_reference_penalty_anneal_audit.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

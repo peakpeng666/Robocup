@@ -88,6 +88,9 @@
 | PR 体积健康 | 门禁 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | **P0** | 否 | 文档+纯 Python 合同；无权重；审纪律不是曲线 | **本轮体积** |
 | 命令日程只读解析 | 契约 / P1 | `scripts/command_schedule_audit.py` | **P0 / P1** | 否 | 官方 `commands:` 快照；draft 日程不得当已应用；缺键如实记 | **本轮解析** |
 | 扰动课程草案校验 | 契约 / P1 | `scripts/disturbance_curriculum_audit.py` | **P0 / P1** | 否 | live `push_*` 不被覆盖；缺 `draft_only` / `apply_to_live` → FAIL | **本轮校验** |
+| settle / 抖动新键 | 契约 / P1 | `scripts/settle_jitter_audit.py` | **P0 / P1** | 否 | `draft_settle_*` 仅 proposed；live 无对应键；`action_rate` 不被覆盖 | **本轮校验** |
+| 估计器 A/B 草案 | 契约 / P1 | `scripts/estimator_ab_audit.py` | **P0 / P1** | 否 | 旁路声明；不得写入 344 / 不得注册 `train.py` | **本轮校验** |
+| 参考惩罚退火草案 | 契约 / P1 | `scripts/reference_penalty_anneal_audit.py` | **P0 / P1** | 否 | live `reference_mean_penalty: 1.0` 不被改写 | **本轮校验** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -184,6 +187,9 @@
 | 63 | 命令日程只读解析 | `command_schedule_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_command_schedule_audit.py` |
 | 64 | 扰动课程草案校验 | `disturbance_curriculum_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_disturbance_curriculum_audit.py` |
 | 65 | 自检失败定位 | `selfcheck_fail_hints.py` | `python3 bhuman/k1-training/k1-switcher/test_selfcheck_fail_hints.py` |
+| 66 | settle / 抖动新键 | `settle_jitter_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py` |
+| 67 | 估计器 A/B 草案 | `estimator_ab_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py` |
+| 68 | 参考惩罚退火草案 | `reference_penalty_anneal_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 
