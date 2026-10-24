@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T10:05:54+00:00",
+  "generated_utc": "2026-10-24T10:11:49+00:00",
   "ready": false,
   "skipped": true,
   "checklist": {
@@ -18,7 +18,7 @@
     },
     "disk": {
       "ok": true,
-      "detail": "IsaacGymRL present; free≈246.2GiB"
+      "detail": "IsaacGymRL present; free≈245.7GiB"
     },
     "official_k1_task": {
       "ok": true,
