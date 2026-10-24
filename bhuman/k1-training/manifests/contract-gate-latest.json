@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:28:49+00:00",
+  "generated_utc": "2026-10-24T07:32:18+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -41,7 +41,10 @@
     "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk",
     "joint_map_contract": "walk 13-D legs+freq; refuse 12/15/22; standup ≠ walk",
     "p1_draft_diff": "official stability vs draft-only; draft_only:true; live untouched",
-    "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained"
+    "pr4_merge_checklist": "bhuman/docs/PR4-MERGE-CHECKLIST.md; merge ≠ trained",
+    "gait_frequency_contract": "walk action[12]=gait_frequency; not a 13th motor",
+    "booster_joints_snapshot": "WalkingEngine boosterJoints vs joint_map; SKIP if missing",
+    "pr4_selfcheck": "scripts/run_pr4_selfcheck.sh; 344→13 / TRAINABLE=false / ready_gpu"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -125,6 +128,9 @@
       "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
       "official vs draft-only key diff (draft_only:true; live untouched) present",
       "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
+      "walk action[12]=gait_frequency (not a 13th motor) present",
+      "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
+      "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -684,10 +690,12 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 30 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 33 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
+        "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_deploy_call.py",
+        "PASS test_gait_frequency_contract.py",
         "PASS test_gpu_worker_checklist.py",
         "PASS test_history_buffer_shape.py",
         "PASS test_joint_map_contract.py",
@@ -705,6 +713,7 @@
         "PASS test_migrate_table.py",
         "PASS test_obs_schema.py",
         "PASS test_pr4_merge_checklist.py",
+        "PASS test_pr4_selfcheck.py",
         "PASS test_reactive_hardening.py",
         "PASS test_research_migrate_table.py",
         "PASS test_skill_switch_continuity.py",
@@ -724,11 +733,19 @@
           "status": "PASS"
         },
         {
+          "name": "test_booster_joints_snapshot.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_bt_deploy_crosscheck.py",
           "status": "PASS"
         },
         {
           "name": "test_deploy_call.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_gait_frequency_contract.py",
           "status": "PASS"
         },
         {
@@ -796,6 +813,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_pr4_selfcheck.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_reactive_hardening.py",
           "status": "PASS"
         },
@@ -842,8 +863,10 @@
       ],
       "discovered": [
         "test_blockers.py",
+        "test_booster_joints_snapshot.py",
         "test_bt_deploy_crosscheck.py",
         "test_deploy_call.py",
+        "test_gait_frequency_contract.py",
         "test_gpu_worker_checklist.py",
         "test_history_buffer_shape.py",
         "test_joint_map_contract.py",
@@ -860,6 +883,7 @@
         "test_migrate_table.py",
         "test_obs_schema.py",
         "test_pr4_merge_checklist.py",
+        "test_pr4_selfcheck.py",
         "test_reactive_hardening.py",
         "test_research_migrate_table.py",
         "test_skill_switch_continuity.py",
@@ -1033,10 +1057,66 @@
         "official walk still 344→13 (checklist is docs-only)"
       ],
       "walk": "344→13"
+    },
+    "gait_frequency_contract": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "K1.yaml: num_actions 13 + action_frequence_limit ±0.5",
+        "t1.py last action slot is frequency (not a 13th PD target)",
+        "WalkingEngine: rawFrequency after boosterJoints loop",
+        "decode sample 1.5+0.25 → 1.75",
+        "walk action[12] semantics = gait_frequency, is_motor=false",
+        "negative: slot 12 as motor refused",
+        "negative: 13th motor interpretation refused",
+        "negative: slot 12 named as a leg motor refused",
+        "negative: standup[12]=lHipYaw is a motor, not gait_frequency",
+        "negative: reactive action[12] is a leg, not walk freq",
+        "negative: reactive freq[14] ≠ walk action[12]",
+        "clip(+2.0) → 1.5+0.5=2.0",
+        "negative: standup 22-D refused as walk frequency decode",
+        "negative: reactive 15-D refused as walk frequency decode",
+        "cross-assert: joint_map[12] == gait_frequency",
+        "official K1.yaml untouched"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "booster_joints_snapshot": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "PASS: boosterJoints 12 matches joint_map; +gait_frequency",
+        "SKIP helper leaves booster_joints empty",
+        "write-back API refused",
+        "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp: 12 legs",
+        "matches joint_map; walk13 appends gait_frequency (not a motor)",
+        "write-back of K1.yaml refused",
+        "wrote bhuman/k1-training/manifests/booster-joints-walk13-latest.json",
+        "official K1.yaml untouched",
+        "wrote manifests/booster-joints-walk13-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "warnings": [],
+      "skipped": false,
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "pr4_selfcheck": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "run_pr4_selfcheck.sh steps + 344→13 / TRAINABLE=false / ready_gpu",
+        "selfcheck does not invoke train.py",
+        "official walk still 344→13"
+      ],
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:28:48+00:00",
+    "generated_utc": "2026-10-24T07:32:17+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1114,7 +1194,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "31190acb1767cd91e9a3a690b69a333c83cafc43",
+    "workspace_head": "903c5bec8ee0e888e35a8d494f6f4e2b2a9bbb0a",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1539,6 +1619,9 @@
     "walk 13-D joint map (refuse 12/15/22; standup ≠ walk) present",
     "official vs draft-only key diff (draft_only:true; live untouched) present",
     "PR #4 merge checklist (merge ≠ trained; no auto-merge) present",
+    "walk action[12]=gait_frequency (not a 13th motor) present",
+    "WalkingEngine boosterJoints snapshot (SKIP if missing; no fabricate) present",
+    "PR #4 selfcheck (gate + no-gym + audits + GPU probe) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1835,10 +1918,12 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 30 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 33 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
+    "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_deploy_call.py",
+    "PASS test_gait_frequency_contract.py",
     "PASS test_gpu_worker_checklist.py",
     "PASS test_history_buffer_shape.py",
     "PASS test_joint_map_contract.py",
@@ -1856,6 +1941,7 @@
     "PASS test_migrate_table.py",
     "PASS test_obs_schema.py",
     "PASS test_pr4_merge_checklist.py",
+    "PASS test_pr4_selfcheck.py",
     "PASS test_reactive_hardening.py",
     "PASS test_research_migrate_table.py",
     "PASS test_skill_switch_continuity.py",
@@ -1955,6 +2041,35 @@
     "official K1.yaml untouched",
     "PR4-MERGE-CHECKLIST.md anchors present",
     "official walk still 344→13 (checklist is docs-only)",
+    "K1.yaml: num_actions 13 + action_frequence_limit ±0.5",
+    "t1.py last action slot is frequency (not a 13th PD target)",
+    "WalkingEngine: rawFrequency after boosterJoints loop",
+    "decode sample 1.5+0.25 → 1.75",
+    "walk action[12] semantics = gait_frequency, is_motor=false",
+    "negative: slot 12 as motor refused",
+    "negative: 13th motor interpretation refused",
+    "negative: slot 12 named as a leg motor refused",
+    "negative: standup[12]=lHipYaw is a motor, not gait_frequency",
+    "negative: reactive action[12] is a leg, not walk freq",
+    "negative: reactive freq[14] ≠ walk action[12]",
+    "clip(+2.0) → 1.5+0.5=2.0",
+    "negative: standup 22-D refused as walk frequency decode",
+    "negative: reactive 15-D refused as walk frequency decode",
+    "cross-assert: joint_map[12] == gait_frequency",
+    "official K1.yaml untouched",
+    "PASS: boosterJoints 12 matches joint_map; +gait_frequency",
+    "SKIP helper leaves booster_joints empty",
+    "write-back API refused",
+    "source bhuman/BHumanCodeRelease/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp: 12 legs",
+    "matches joint_map; walk13 appends gait_frequency (not a motor)",
+    "write-back of K1.yaml refused",
+    "wrote bhuman/k1-training/manifests/booster-joints-walk13-latest.json",
+    "official K1.yaml untouched",
+    "wrote manifests/booster-joints-walk13-latest.json",
+    "official K1.yaml untouched",
+    "run_pr4_selfcheck.sh steps + 344→13 / TRAINABLE=false / ready_gpu",
+    "selfcheck does not invoke train.py",
+    "official walk still 344→13",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -1998,6 +2113,10 @@
     "python3 bhuman/k1-training/k1-switcher/test_joint_map_contract.py",
     "python3 bhuman/k1-training/scripts/p1_draft_diff.py",
     "python3 bhuman/k1-training/k1-reactive/test_pr4_merge_checklist.py",
+    "python3 bhuman/k1-training/k1-switcher/test_gait_frequency_contract.py",
+    "python3 bhuman/k1-training/scripts/booster_joints_snapshot.py",
+    "python3 bhuman/k1-training/k1-reactive/test_pr4_selfcheck.py",
+    "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }

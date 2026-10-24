@@ -1,0 +1,16 @@
+{
+  "generated_utc": "2026-10-24T07:32:19+00:00",
+  "verdict": "PASS",
+  "walk": "344→13",
+  "trainable": false,
+  "ready_gpu": false,
+  "write_yaml": false,
+  "steps": [
+    "run_contract_gate.sh",
+    "run_unit_tests_no_gym.sh",
+    "k1_reward_audit.py",
+    "p1_draft_diff.py",
+    "probe_reserved_gpu.sh"
+  ],
+  "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker"
+}
