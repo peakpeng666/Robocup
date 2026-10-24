@@ -399,6 +399,8 @@ getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `
 cfg 副本交叉：`scripts/cfg_copy_crosscheck.py`（Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default，缺副本不伪造；意外漂移 FAIL）。  
 motorParameters 只读深化：`scripts/motor_parameters_audit.py`（regular 踝滚 **p25** vs 训侧 **p60** 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回）。  
 Simulated 速度差分：`scripts/simulated_speed_diff.py`（有意允许集；网槽/维数差分 FAIL）。  
+standAnkleStiffness 对照：`scripts/stand_ankle_stiffness.py`（Default 60/80 vs Simulated 100/100 是 walkingEngine plant；≠ 训侧 p60→p25；≠ PD 闭合）。  
+CompetitionWalk / 11v11 差分：`scripts/competition_walk_diff.py`（相对 Default 14 个有意差分键；网槽仍 **344→13** / `K1_walk.onnx`；意外网槽漂移 FAIL）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。
 
 ---

@@ -156,6 +156,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/simulated_speed_diff.py",
         "hint": "先看 Simulated vs Default 速度差分是否仍在有意允许集，或网槽/维数是否漂了",
     },
+    "test_stand_ankle_stiffness.py": {
+        "look": "bhuman/k1-training/scripts/stand_ankle_stiffness.py",
+        "hint": "先看 standAnkleStiffness 是否仍是 plant 60/80→100/100，而不是把训侧 p60 改成 p25 或写成 PD 已闭合",
+    },
+    "test_competition_walk_diff.py": {
+        "look": "bhuman/k1-training/scripts/competition_walk_diff.py",
+        "hint": "先看 CompetitionWalk / 11v11 相对 Default 是否仍在有意允许集，或网槽是否漂离 344→13 / K1_walk.onnx",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

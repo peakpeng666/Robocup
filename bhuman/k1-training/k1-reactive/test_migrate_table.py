@@ -161,6 +161,8 @@ REQUIRED_LANDINGS = (
     "cfg_copy_crosscheck.py",
     "motor_parameters_audit.py",
     "simulated_speed_diff.py",
+    "stand_ankle_stiffness.py",
+    "competition_walk_diff.py",
 )
 
 

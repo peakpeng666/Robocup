@@ -143,6 +143,8 @@ scripts/
 ├── cfg_copy_crosscheck.py       Default/Simulated/Competition 关键字段；意外漂移 FAIL
 ├── motor_parameters_audit.py    regular p25 vs 训侧 p60；Simulated 速度 ≠ PD 闭合
 ├── simulated_speed_diff.py      Simulated vs Default 速度允许集；网槽漂移 FAIL
+├── stand_ankle_stiffness.py     plant 60/80→100/100；≠ 训侧 p60→p25；≠ PD 闭合
+├── competition_walk_diff.py     CompetitionWalk / 11v11 允许集；网槽仍 344→13
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -420,6 +422,8 @@ k1-training/manifests/
 | cfg 副本交叉 | `cfg_copy_crosscheck.py` | Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default；意外漂移 FAIL |
 | motorParameters 只读深化 | `motor_parameters_audit.py` | regular 踝滚 p25 vs 训侧 p60 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回 |
 | Simulated 速度差分 | `simulated_speed_diff.py` | Simulated vs Default 速度键有意允许集；网槽/维数差分 FAIL |
+| standAnkleStiffness 对照 | `stand_ankle_stiffness.py` | Default 60/80 vs Simulated 100/100 是 plant；≠ 训侧 p60→p25；≠ PD 闭合 |
+| CompetitionWalk / 11v11 差分 | `competition_walk_diff.py` | 相对 Default 14 个有意差分键；网槽仍 344→13 / `K1_walk.onnx`；意外漂移 FAIL |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

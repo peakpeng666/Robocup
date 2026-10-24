@@ -76,6 +76,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -156,6 +158,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -229,6 +233,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck.py",
         "motor_parameters_audit.py",
         "simulated_speed_diff.py",
+        "stand_ankle_stiffness.py",
+        "competition_walk_diff.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -292,6 +298,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -366,6 +374,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -424,6 +434,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -530,6 +542,8 @@ REQUIRED_DOCS = {
         "cfg_copy_crosscheck",
         "motor_parameters_audit",
         "simulated_speed_diff",
+        "stand_ankle_stiffness",
+        "competition_walk_diff",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

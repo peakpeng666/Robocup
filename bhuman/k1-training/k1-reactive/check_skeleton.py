@@ -455,6 +455,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "Simulated speed-diff allowlist (net slot 344→13; unexpected extras FAIL)",
         ),
         (
+            "bhuman/k1-training/scripts/stand_ankle_stiffness.py",
+            "standAnkleStiffness contrast (plant 60/80→100/100; ≠ p60→p25; PD open)",
+        ),
+        (
+            "bhuman/k1-training/scripts/competition_walk_diff.py",
+            "CompetitionWalk / 11v11 allowlist (net slot 344→13; unexpected extras FAIL)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

@@ -68,6 +68,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "fast_standup_as_isaac",
         "simulated_speed_as_pd_closed",
         "fabricate_competition_getup",
+        "stand_ankle_as_pd_closed",
+        "competition_diff_net_slot",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -81,7 +83,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "stay-on-standup / getup-direct-kick / kick-replaces-walk / "
             "cfg-dim / kickModel-T1 / kick-on-walk-slot / "
             "getUp-overwrites-walk / T1-getUp-as-K1 / fast-as-Isaac / "
-            "Simulated-speed-as-PD / fabricate-Competition-getUp"
+            "Simulated-speed-as-PD / fabricate-Competition-getUp / "
+            "standAnkle-as-PD / Competition-net-slot"
         )
 
     try:

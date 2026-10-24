@@ -102,7 +102,9 @@
 | getUpEngine.cfg 只读审计 | §6.10 | `scripts/getup_engine_cfg_audit.py` | **P0** | 否 | 73→22 / `K1.onnx`；fast 72→22 仅部署、未注册 Isaac；不得覆盖 walk 344→13；T1 getUp 不得当 K1 | **本轮审计** |
 | cfg 副本交叉 | §6.10 | `scripts/cfg_copy_crosscheck.py` | **P0** | 否 | Default / Simulated / Competition K1 walkingEngine 关键字段一致或有意 sha 差分；getUp 仅 Default；意外漂移 FAIL | **本轮交叉** |
 | motorParameters 只读深化 | §6.8 / P5 | `scripts/motor_parameters_audit.py` | **P0 / P5** | 否 | regular 踝滚 **p25** vs 训侧 **p60** 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回 | **本轮深化** |
-| Simulated 速度差分 | §6.10 | `scripts/simulated_speed_diff.py` | **P0** | 否 | Simulated vs Default 速度键有意允许集；网槽/维数差分 FAIL | **本轮清单** |
+| Simulated 速度差分 | §6.10 | `scripts/simulated_speed_diff.py` | **P0** | 否 | Simulated vs Default 速度键有意允许集；网槽/维数差分 FAIL | **上轮清单** |
+| standAnkleStiffness 对照 | §6.8 / §6.10 | `scripts/stand_ankle_stiffness.py` | **P0 / P5** | 否 | Default 60/80 vs Simulated 100/100 是 walkingEngine plant；≠ 训侧 p60→p25；≠ PD 闭合 | **本轮对照** |
+| CompetitionWalk / 11v11 差分 | §6.10 | `scripts/competition_walk_diff.py` | **P0** | 否 | 相对 Default 14 个有意差分键；网槽仍 **344→13** / `K1_walk.onnx`；意外网槽漂移 FAIL | **本轮允许集** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -214,6 +216,8 @@
 | 78 | cfg 副本交叉 | `cfg_copy_crosscheck.py` | `python3 bhuman/k1-training/k1-switcher/test_cfg_copy_crosscheck.py` |
 | 79 | motorParameters 只读深化 | `motor_parameters_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_motor_parameters_audit.py` |
 | 80 | Simulated 速度差分 | `simulated_speed_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_simulated_speed_diff.py` |
+| 81 | standAnkleStiffness 对照 | `stand_ankle_stiffness.py` | `python3 bhuman/k1-training/k1-switcher/test_stand_ankle_stiffness.py` |
+| 82 | CompetitionWalk / 11v11 差分 | `competition_walk_diff.py` | `python3 bhuman/k1-training/k1-switcher/test_competition_walk_diff.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 
