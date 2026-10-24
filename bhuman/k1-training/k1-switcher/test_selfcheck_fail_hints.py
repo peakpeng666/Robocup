@@ -121,6 +121,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_standup_eval_artifact_crosscheck.py",
         "test_walk_stability_preset_inventory.py",
         "test_competition_walk_allowlist_tighten.py",
+        "test_policy_switch_hysteresis_enter_exit.py",
+        "test_maxacc_walk_kick_path_notes.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

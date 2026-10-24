@@ -63,7 +63,9 @@ kickEngine PASS as live RL kick deploy, ball-task cross-slot wiring,
 handoff PASS as field-ready standup, standup-eval artifact upgrades quality,
 walk-stability PASS as competition-ready gait, silent Competition cfg edit,
 maxAcc allowlist drift (Sim↔Comp / y), band crossing as dim rewrite,
-inverted hysteresis band edges.
+inverted hysteresis band edges,
+hysteresis overlay PASS as live switch authorize,
+silent maxAcc copy into live cfg.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -282,6 +284,12 @@ from walk_stability_preset_inventory import (  # noqa: E402
 )
 from competition_walk_allowlist_tighten import (  # noqa: E402
     refuse_silent_competition_cfg_edit,
+)
+from policy_switch_hysteresis_enter_exit import (  # noqa: E402
+    refuse_hysteresis_pass_as_live_switch_authorize,
+)
+from maxacc_walk_kick_path_notes import (  # noqa: E402
+    refuse_silent_maxacc_copy_into_live_cfg,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1465,6 +1473,26 @@ def _case_silent_competition_cfg_edit() -> None:
     )
 
 
+def _case_hysteresis_pass_as_live_switch_authorize() -> None:
+    refuse_hysteresis_pass_as_live_switch_authorize(
+        {
+            "hysteresis_pass_as_live_switch_authorize": True,
+            "live_switch_authorize": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_maxacc_copy_into_live_cfg() -> None:
+    refuse_silent_maxacc_copy_into_live_cfg(
+        {
+            "silent_maxacc_copy_into_live_cfg": True,
+            "copy_maxacc_to_default": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1641,6 +1669,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("max_acc_allowlist_drift", _case_max_acc_allowlist_drift),
     ("band_crossing_as_dim_rewrite", _case_band_crossing_as_dim_rewrite),
     ("inverted_hysteresis_band", _case_inverted_hysteresis_band),
+    ("hysteresis_pass_as_live_switch_authorize", _case_hysteresis_pass_as_live_switch_authorize),
+    ("silent_maxacc_copy_into_live_cfg", _case_silent_maxacc_copy_into_live_cfg),
 )
 
 

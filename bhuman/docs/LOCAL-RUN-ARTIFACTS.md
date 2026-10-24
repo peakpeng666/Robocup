@@ -76,6 +76,10 @@ walk-stability still/speed/stand 盘点：`scripts/walk_stability_preset_invento
 
 Competition vs Default 允许集收紧：`scripts/competition_walk_allowlist_tighten.py`。文档化 **14-key** 允许集。哈希钉死。禁 **silent Competition** cfg 改写。**TRAINABLE=false**。**gap_closed=false**。
 
+policySwitch 滞回 enter/exit 盘点：`scripts/policy_switch_hysteresis_enter_exit.py`。Default 1200/1800 vs Competition 900/1300 对照 pin。PlayBall ≠ kickPolicy。**PASS ≠ live switch authorize**。**TRAINABLE=false**。**gap_closed=false**。
+
+walk vs kick 路径 maxAcc 注记：`scripts/maxacc_walk_kick_path_notes.py`。walk 步进棘轮读 maxAcc。kickPolicy 不读。禁 **silent maxAcc** 拷进 live cfg。**TRAINABLE=false**。**gap_closed=false**。
+
 ---
 
 ## 1. 本机角色

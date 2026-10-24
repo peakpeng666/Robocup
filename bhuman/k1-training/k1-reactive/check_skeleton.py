@@ -711,6 +711,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "Competition 14-key allowlist pin; silent Competition cfg edits refused",
         ),
         (
+            "bhuman/k1-training/scripts/policy_switch_hysteresis_enter_exit.py",
+            "hysteresis enter/exit vs pins; PlayBall≠kick; PASS ≠ live switch authorize",
+        ),
+        (
+            "bhuman/k1-training/scripts/maxacc_walk_kick_path_notes.py",
+            "walk vs kick maxAcc path notes; silent maxAcc copy into live cfg refused",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

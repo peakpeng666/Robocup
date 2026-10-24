@@ -412,6 +412,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/competition_walk_allowlist_tighten.py",
         "hint": "先看 Competition 14-key 允许集 / 哈希是否漂移，或是否出现静默 Competition cfg 改写",
     },
+    "test_policy_switch_hysteresis_enter_exit.py": {
+        "look": "bhuman/k1-training/scripts/policy_switch_hysteresis_enter_exit.py",
+        "hint": "先看滞回 enter/exit 是否仍对照 pin，或 overlay PASS 是否被写成 live 切换授权",
+    },
+    "test_maxacc_walk_kick_path_notes.py": {
+        "look": "bhuman/k1-training/scripts/maxacc_walk_kick_path_notes.py",
+        "hint": "先看 walk/kick 路径 maxAcc 注记是否漂移，或是否出现 silent maxAcc 拷进 live cfg",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

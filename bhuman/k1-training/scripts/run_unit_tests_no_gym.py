@@ -155,6 +155,8 @@ REQUIRED_NAMES = (
     "test_standup_eval_artifact_crosscheck.py",
     "test_walk_stability_preset_inventory.py",
     "test_competition_walk_allowlist_tighten.py",
+    "test_policy_switch_hysteresis_enter_exit.py",
+    "test_maxacc_walk_kick_path_notes.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}

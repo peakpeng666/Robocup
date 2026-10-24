@@ -108,13 +108,13 @@
 | policySwitch 球距阈值 | §6.10 | `scripts/policy_switch_threshold.py` | **P0** | 否 | Default 1500/300 vs Competition 1100/200 是行为阈值；≠ 换 walk 网 / 改 344；SkillRequest 仍要 `want_kick` | **上轮阈值** |
 | shiftBallPosition 边界 | §6.10 | `scripts/shift_ball_position.py` | **P0** | 否 | Default false/80 vs Competition true/40 是踢球接近球位偏移；≠ 改 walk 维 / 合并旁系进 344 | **上轮边界** |
 | walkPolicy / kickPolicy 切换只读 | §6.10 | `scripts/walk_kick_policy_switch.py` | **P0** | 否 | walkPolicy **344→13** / `K1_walk.onnx`；kickPolicy **59→13** / `K1_kick_inner.onnx` 共享 walk 出口；切换只换旁路；空上下文仍 walk | **上轮槽位** |
-| maxAcceleration 差分 | §6.10 | `scripts/max_acceleration_diff.py` | **P0** | 否 | Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；Sim x20→60 / Comp x20→200 允许集钉死；≠ 换网 / 改维；y 仍 20 | **本轮加深** |
+| maxAcceleration 差分 | §6.10 | `scripts/max_acceleration_diff.py` | **P0** | 否 | Default 20/20 vs Simulated 60/20 vs Competition 200/20 是 plant 步进棘轮；Sim x20→60 / Comp x20→200 允许集钉死；≠ 换网 / 改维；y 仍 20 | 上轮加深 |
 | getNextTargetRequest 只读钉死 | §6.10 | `scripts/get_next_target_request.py` | **P0** | 否 | 抽出 walkPolicy vs kickPolicy 的 10 条 walk-stay 条件；空上下文仍 walk；≠ 热换 ONNX 进官方 actor 训练图 | **上轮钉死** |
 | speed 档位允许集 | §6.10 | `scripts/speed_gear_diff.py` | **P0** | 否 | fast/normal/slow Default vs Simulated 7 键 / Competition 8 键有意差分；网槽仍 **344→13** | **上轮允许集** |
 | ballNetwork 开关只读 | §6.10 | `scripts/ball_network_active.py` | **P0** | 否 | 官方 `ballNetworkParameters.active=true`；未开强制 walkPolicy **344→13**；≠ 改 344 / 换训练图 | **上轮开关** |
 | 拦截 / 避障 / walkOut 旁路 | §6.10 | `scripts/intercept_avoid_bypass.py` | **P0** | 否 | `shouldInterceptBall` / 避障 path 非空 / `shouldWalkOutOfBallLine` 仍走 walkPolicy **344→13**；≠ kick / reactive / T1 | **上轮旁路** |
 | 剩余 walk-stay 只读 | §6.10 | `scripts/walk_stay_remaining.py` | **P0** | 否 | `shouldStop` / stand / 球未见>1000 ms / motion 非 dribble·walkToBallAndKick 仍 walkPolicy **344→13**；空 SkillRequest 仍 walk；仅 `want_kick` → kick 59→13 | 上轮剩余 |
-| 球距滞回允许集 | §6.10 | `scripts/ball_distance_hysteresis.py` | **P0** | 否 | Default/Simulated **1500±300→1200/1800** vs Competition/11v11 **1100±200→900/1300**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图 / 倒置带边 | **本轮加深** |
+| 球距滞回允许集 | §6.10 | `scripts/ball_distance_hysteresis.py` | **P0** | 否 | Default/Simulated **1500±300→1200/1800** vs Competition/11v11 **1100±200→900/1300**；未越过滞回仍 walkPolicy **344→13**；越过才允许考虑 kick；≠ 改维 / 热换训练图 / 倒置带边 | 上轮加深 |
 | kick 调用点维数 | §6.10 | `scripts/kick_policy_apply_dims.py` | **P0** | 否 | 仅 `want_kick` + motion∈{dribble, walkToBallAndKick} 且其它 walk-stay 全假 → kickPolicy **59→13**；WalkToBallAndKick 只出位姿；≠ walk 344 / 热换 `K1.yaml` | 上轮调用点 |
 | walk 调用点维数 | §6.10 | `scripts/walk_policy_apply_dims.py` | **P0** | 否 | 默认 `walkPolicy.apply()` **344→13** / `K1_walk.onnx`；任何非 kick 组合仍落此槽；≠ reactive / T1 / standup | 上轮调用点 |
 | walk↔kick last_action 缓冲 | §6.10 | `scripts/policy_switch_last_action.py` | **P0** | 否 | 源码无 walk↔kick 显式清零 → 诚实 **GAP**；walk 344 来自 historyBuffer，kick 59 来自当前 lastTarget；禁止 344↔59 复用 / 假绿 | 上轮缓冲 |
@@ -165,8 +165,10 @@
 | 球任务隔离矩阵 | 门禁 | `scripts/ball_task_isolation_matrix.py` | **P0** | 否 | walk **344→13** / `K1_Ball` **59→13** / `K1_Stand_Up` **73→22**；禁跨槽接线 | 上轮 ball-isolation |
 | GetUp → Force-walk 交接 | 门禁 | `scripts/getup_force_walk_handoff.py` | **P0** | 否 | Force walk afterwards 不可跳过；**73→22** / **72→22** 隔离；返回 walk **344→13**；PASS ≠ field-ready standup | 上轮 getup-handoff |
 | standup-eval 产物交叉核对 | 门禁 | `scripts/standup_eval_artifact_crosscheck.py` | **P0** | 否 | 现有产物保持 REPORT_ONLY；quality_verdict 不得单靠清单升级；缺树 SKIP 诚实 | 上轮 standup-eval-artifact |
-| walk-stability still/speed/stand 盘点 | 门禁 | `scripts/walk_stability_preset_inventory.py` | **P0** | 否 | still/speed/stand 对照 WalkingEngine；walk-*-stability-v1 不得改 plant；PASS ≠ competition-ready gait | **本轮 walk-stability-inventory** |
-| Competition 允许集收紧 | 门禁 | `scripts/competition_walk_allowlist_tighten.py` | **P0** | 否 | 文档化 **14-key** 允许集；哈希钉死；禁 silent Competition cfg 改写 | **本轮 competition-allowlist** |
+| walk-stability still/speed/stand 盘点 | 门禁 | `scripts/walk_stability_preset_inventory.py` | **P0** | 否 | still/speed/stand 对照 WalkingEngine；walk-*-stability-v1 不得改 plant；PASS ≠ competition-ready gait | 上轮 walk-stability-inventory |
+| Competition 允许集收紧 | 门禁 | `scripts/competition_walk_allowlist_tighten.py` | **P0** | 否 | 文档化 **14-key** 允许集；哈希钉死；禁 silent Competition cfg 改写 | 上轮 competition-allowlist |
+| policySwitch 滞回 enter/exit 盘点 | 门禁 | `scripts/policy_switch_hysteresis_enter_exit.py` | **P0** | 否 | Default 1200/1800 vs Competition 900/1300；PlayBall ≠ kickPolicy；PASS ≠ live switch authorize | **本轮 hysteresis-enter-exit** |
+| walk vs kick 路径 maxAcc 注记 | 门禁 | `scripts/maxacc_walk_kick_path_notes.py` | **P0** | 否 | walk 读 maxAcc；kickPolicy 不读；禁 silent maxAcc 拷进 Default live cfg | **本轮 maxacc-path-notes** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

@@ -149,6 +149,8 @@
 | standup-eval 产物交叉核对 | `scripts/standup_eval_artifact_crosscheck.py` | 现有产物保持 REPORT_ONLY；清单不得升级 quality_verdict |
 | walk-stability still/speed/stand 盘点 | `scripts/walk_stability_preset_inventory.py` | 对照 WalkingEngine；**PASS ≠ competition-ready gait** |
 | Competition 允许集收紧 | `scripts/competition_walk_allowlist_tighten.py` | **14-key** 允许集；哈希钉死；禁 silent Competition cfg 改写 |
+| policySwitch 滞回 enter/exit 盘点 | `scripts/policy_switch_hysteresis_enter_exit.py` | Default 1200/1800 vs Competition 900/1300；PlayBall ≠ kickPolicy；**PASS ≠ live switch authorize** |
+| walk vs kick 路径 maxAcc 注记 | `scripts/maxacc_walk_kick_path_notes.py` | walk 读 maxAcc；kickPolicy 不读；禁 **silent maxAcc** 拷进 live cfg |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

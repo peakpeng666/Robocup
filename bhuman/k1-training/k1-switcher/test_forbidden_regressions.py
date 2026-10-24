@@ -173,6 +173,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "max_acc_allowlist_drift",
         "band_crossing_as_dim_rewrite",
         "inverted_hysteresis_band",
+        "hysteresis_pass_as_live_switch_authorize",
+        "silent_maxacc_copy_into_live_cfg",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -239,7 +241,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "kick-engine-pass-as-live-rl-kick-deploy / ball-task-cross-slot-wiring / "
             "handoff-pass-as-field-ready-standup / standup-eval-artifact-upgrades-quality / "
             "walk-stability-pass-as-competition-ready-gait / silent-competition-cfg-edit / "
-            "maxAcc-allowlist-drift / band-crossing-as-dim / inverted-hysteresis-band"
+            "maxAcc-allowlist-drift / band-crossing-as-dim / inverted-hysteresis-band / "
+            "hysteresis-pass-as-live-switch-authorize / silent-maxacc-copy-into-live-cfg"
         )
 
     try:

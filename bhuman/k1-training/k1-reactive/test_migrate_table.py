@@ -225,6 +225,8 @@ REQUIRED_LANDINGS = (
     "standup_eval_artifact_crosscheck.py",
     "walk_stability_preset_inventory.py",
     "competition_walk_allowlist_tighten.py",
+    "policy_switch_hysteresis_enter_exit.py",
+    "maxacc_walk_kick_path_notes.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

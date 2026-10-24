@@ -270,6 +270,8 @@ scripts/
 ├── standup_eval_artifact_crosscheck.py REPORT_ONLY；清单不得升 quality
 ├── walk_stability_preset_inventory.py still/speed/stand vs WalkingEngine；≠ competition-ready gait
 ├── competition_walk_allowlist_tighten.py 14-key 允许集；禁 silent Competition 改写
+├── policy_switch_hysteresis_enter_exit.py Default 1200/1800 vs Comp 900/1300；≠ live switch authorize
+├── maxacc_walk_kick_path_notes.py walk 读 maxAcc；kick 不读；禁 silent maxAcc 拷进 live
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -398,6 +400,8 @@ k1-switcher/
 ├── test_standup_eval_artifact_crosscheck.py
 ├── test_walk_stability_preset_inventory.py
 ├── test_competition_walk_allowlist_tighten.py
+├── test_policy_switch_hysteresis_enter_exit.py
+├── test_maxacc_walk_kick_path_notes.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -514,7 +518,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-ritv.json   上轮（拦截硬化 + 队通信负例 + 体积复扫）
 ├── contract-gate-20261024-kebi.json   上轮（KickEngine 请求/中止边 + 球任务隔离矩阵）
 ├── contract-gate-20261024-ghse.json   上轮（GetUp Force-walk 交接 + standup-eval 产物 REPORT_ONLY）
-├── contract-gate-20261024-wscd.json   本轮（walk-stability still/speed/stand 盘点 + Competition 14-key 允许集）
+├── contract-gate-20261024-wscd.json   上轮（walk-stability still/speed/stand 盘点 + Competition 14-key 允许集）
+├── contract-gate-20261024-psma.json   本轮（policySwitch 滞回 enter/exit + walk vs kick maxAcc 路径注记）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -603,6 +608,8 @@ k1-training/manifests/
 ├── standup-eval-artifact-crosscheck-latest.json REPORT_ONLY；清单不得升 quality
 ├── walk-stability-preset-inventory-latest.json still/speed/stand vs WalkingEngine；≠ competition-ready gait
 ├── competition-walk-allowlist-tighten-latest.json 14-key 允许集；禁 silent Competition 改写
+├── policy-switch-hysteresis-enter-exit-latest.json Default 1200/1800 vs Comp 900/1300；≠ live switch authorize
+├── maxacc-walk-kick-path-notes-latest.json walk 读 maxAcc；kick 不读；禁 silent maxAcc 拷进 live
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -612,6 +619,8 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| policySwitch 滞回 enter/exit 盘点 | `scripts/policy_switch_hysteresis_enter_exit.py` | Default 1200/1800 vs Competition 900/1300 对照 pin；PlayBall ≠ kickPolicy；PASS ≠ live switch authorize；stamp `20261024-psma` |
+| walk vs kick 路径 maxAcc 注记 | `scripts/maxacc_walk_kick_path_notes.py` | walk 步进棘轮读 maxAcc；kickPolicy 不读；禁 silent maxAcc 拷进 Default live cfg |
 | walk-stability still/speed/stand 盘点 | `scripts/walk_stability_preset_inventory.py` | still/speed/stand 对照 WalkingEngine；walk-*-stability-v1 不得改 plant；PASS ≠ competition-ready gait；stamp `20261024-wscd` |
 | Competition 允许集收紧 | `scripts/competition_walk_allowlist_tighten.py` | 文档化 **14-key** 允许集；Default / Competition 哈希钉死；禁 silent Competition cfg 改写；网槽仍 **344→13** |
 | GetUp → Force-walk 交接 | `scripts/getup_force_walk_handoff.py` | Force walk afterwards 不可跳过；standup **73→22** / fast **72→22** 隔离；返回 walk **344→13**；PASS ≠ field-ready standup；stamp `20261024-ghse` |
@@ -790,6 +799,8 @@ k1-training/manifests/
 | standup-eval 产物交叉核对 | `standup_eval_artifact_crosscheck.py` | 现有产物保持 REPORT_ONLY；清单不得升级 quality_verdict |
 | walk-stability still/speed/stand 盘点 | `walk_stability_preset_inventory.py` | still/speed/stand 对照 WalkingEngine；PASS ≠ competition-ready gait |
 | Competition 允许集收紧 | `competition_walk_allowlist_tighten.py` | **14-key** 允许集；哈希钉死；禁 silent Competition cfg 改写 |
+| policySwitch 滞回 enter/exit 盘点 | `policy_switch_hysteresis_enter_exit.py` | Default 1200/1800 vs Competition 900/1300；PlayBall ≠ kickPolicy；PASS ≠ live switch authorize |
+| walk vs kick 路径 maxAcc 注记 | `maxacc_walk_kick_path_notes.py` | walk 读 maxAcc；kickPolicy 不读；禁 silent maxAcc 拷进 live cfg |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
