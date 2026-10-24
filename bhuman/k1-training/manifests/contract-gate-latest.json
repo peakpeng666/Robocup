@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:43:32+00:00",
+  "generated_utc": "2026-10-24T08:47:42+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -59,7 +59,9 @@
     "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN",
     "getup_engine_snapshot": "GetUpEngine 22-D; match kick_standup; SKIP if missing",
     "walk_stability_presets_audit": "official walk-*-stability-v1 keys; draft-only excluded",
-    "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD; silent=red"
+    "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD; silent=red",
+    "official_sibling_tasks_audit": "K1_Ball/Stand_Up registered ≠ walk 344; no merge into 344",
+    "onnx_deploy_path_crosscheck": "CHECKPOINT-LAYOUT × WalkingEngine; missing SKIP; mismatch FAIL"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -165,6 +167,8 @@
       "GetUpEngine 22-D snapshot (match kick_standup; SKIP if missing) present",
       "official walk-*-stability-v1 audit (draft-only excluded) present",
       "forbidden regressions pack (silent refuse = gate red) present",
+      "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344) present",
+      "ONNX deploy path (CHECKPOINT-LAYOUT × WalkingEngine) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -729,7 +733,7 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 48 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 50 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
@@ -746,6 +750,8 @@
         "PASS test_kick_standup_joint_map.py",
         "PASS test_last_action_reset.py",
         "PASS test_obs_assembly.py",
+        "PASS test_official_sibling_tasks_audit.py",
+        "PASS test_onnx_deploy_path_crosscheck.py",
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_p1_draft_diff.py",
@@ -844,6 +850,14 @@
         },
         {
           "name": "test_obs_assembly.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_official_sibling_tasks_audit.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_onnx_deploy_path_crosscheck.py",
           "status": "PASS"
         },
         {
@@ -992,6 +1006,8 @@
         "test_kick_standup_joint_map.py",
         "test_last_action_reset.py",
         "test_obs_assembly.py",
+        "test_official_sibling_tasks_audit.py",
+        "test_onnx_deploy_path_crosscheck.py",
         "test_onnx_export_contract.py",
         "test_p1_draft_diff.py",
         "test_pd_domain_gap.py",
@@ -1548,10 +1564,52 @@
       "walk": "344→13",
       "trainable": false,
       "write_yaml": false
+    },
+    "official_sibling_tasks_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_siblings_frozen: default K1 344→13; siblings not baseline",
+        "K1_Ball 59→13 / K1_Stand_Up 73→22; not walk baseline",
+        "T1 / T1_Ball / T1_Stand_Up registered ≠ K1 walk",
+        "K1_fast_standup 72→22 deploy-only, not an Isaac task",
+        "negative: K1_Ball as walk baseline refused",
+        "negative: K1_Stand_Up as walk baseline refused",
+        "negative: T1 as walk baseline refused",
+        "negative: K1_fast_standup as walk baseline refused",
+        "negative: sibling concat-into-344 refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/official-sibling-tasks-audit-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
+    },
+    "onnx_deploy_path_crosscheck": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_paths_frozen: declarations cross-checked",
+        "WalkingEngine + CHECKPOINT-LAYOUT + WALK_SLOTS agree",
+        "missing onnx/pth → SKIP (not fake-green)",
+        "negative: T1_walk.onnx as K1 walk refused",
+        "negative: ONNX write refused",
+        "negative: K1.yaml write refused",
+        "wrote bhuman/k1-training/manifests/onnx-deploy-path-crosscheck-latest.json",
+        "official K1.yaml untouched"
+      ],
+      "warnings": [
+        "official walk onnx/pth absent (gitignored / local-only); declarations still cross-checked"
+      ],
+      "skipped": true,
+      "walk": "344→13",
+      "trainable": false,
+      "write_yaml": false
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T08:43:30+00:00",
+    "generated_utc": "2026-10-24T08:47:40+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1629,7 +1687,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "5bca94b619e069fd5e31280cfa80477fbbb4fa38",
+    "workspace_head": "ef8049cf0d0f3e1e5c451c3410581474f79d1dca",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -2005,7 +2063,8 @@
     "sim2sim stack: isaacsim-gui python missing",
     "sim2sim stack: official K1_walk.pth / K1_walk.onnx absent (gitignored)",
     "sim2sim live replay skipped (no mujoco/weights); skeleton only",
-    "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries"
+    "declared missing → SKIP: walk-reference-checkpoint-pth, gmr-k1-reference-action-library, kick-motion-clip, amp-motion-clip-binaries",
+    "official walk onnx/pth absent (gitignored / local-only); declarations still cross-checked"
   ],
   "notes": [
     "ActorCritic /workspace/bhuman/MachineLearning/IsaacGymRL/utils/model.py: Linear(num_obs,256) … Linear(128,num_act)",
@@ -2077,6 +2136,8 @@
     "GetUpEngine 22-D snapshot (match kick_standup; SKIP if missing) present",
     "official walk-*-stability-v1 audit (draft-only excluded) present",
     "forbidden regressions pack (silent refuse = gate red) present",
+    "official sibling tasks (K1_Ball/Stand_Up ≠ walk 344) present",
+    "ONNX deploy path (CHECKPOINT-LAYOUT × WalkingEngine) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -2378,7 +2439,7 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 48 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 50 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
@@ -2395,6 +2456,8 @@
     "PASS test_kick_standup_joint_map.py",
     "PASS test_last_action_reset.py",
     "PASS test_obs_assembly.py",
+    "PASS test_official_sibling_tasks_audit.py",
+    "PASS test_onnx_deploy_path_crosscheck.py",
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_p1_draft_diff.py",
@@ -2719,6 +2782,27 @@
     "negative: K1.yaml write refused",
     "official walk still 344→13",
     "official K1.yaml untouched",
+    "assert_siblings_frozen: default K1 344→13; siblings not baseline",
+    "K1_Ball 59→13 / K1_Stand_Up 73→22; not walk baseline",
+    "T1 / T1_Ball / T1_Stand_Up registered ≠ K1 walk",
+    "K1_fast_standup 72→22 deploy-only, not an Isaac task",
+    "negative: K1_Ball as walk baseline refused",
+    "negative: K1_Stand_Up as walk baseline refused",
+    "negative: T1 as walk baseline refused",
+    "negative: K1_fast_standup as walk baseline refused",
+    "negative: sibling concat-into-344 refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/official-sibling-tasks-audit-latest.json",
+    "official K1.yaml untouched",
+    "assert_paths_frozen: declarations cross-checked",
+    "WalkingEngine + CHECKPOINT-LAYOUT + WALK_SLOTS agree",
+    "missing onnx/pth → SKIP (not fake-green)",
+    "negative: T1_walk.onnx as K1 walk refused",
+    "negative: ONNX write refused",
+    "negative: K1.yaml write refused",
+    "wrote bhuman/k1-training/manifests/onnx-deploy-path-crosscheck-latest.json",
+    "official K1.yaml untouched",
+    "onnx_deploy_path_crosscheck: skipped (missing optional runtime)",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2785,6 +2869,10 @@
     "python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
     "python3 bhuman/k1-training/scripts/walk_stability_presets_audit.py",
     "python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
+    "python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py",
+    "python3 bhuman/k1-training/scripts/official_sibling_tasks_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py",
+    "python3 bhuman/k1-training/scripts/onnx_deploy_path_crosscheck.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
