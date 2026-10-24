@@ -254,6 +254,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/scripts/run_unit_tests_no_gym.py",
             "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft)",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/onnx_export_contract.py",
+            "ONNX export contract (walk 344→13 only; no real weights)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+            "GPU worker checklist (probe only; never train.py)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

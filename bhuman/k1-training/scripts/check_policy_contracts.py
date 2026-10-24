@@ -510,6 +510,18 @@ def check_gpu_free_shells(
             "k1_unit_tests_no_gym",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+            "onnx_export_contract",
+            "k1_onnx_export_contract",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+            "gpu_worker_checklist",
+            "k1_gpu_worker_checklist",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -546,9 +558,13 @@ def check_reserved_gpu(repo: Path, warnings: list[str], notes: list[str]) -> dic
     if report.get("skipped"):
         for reason in report.get("skip_reasons") or []:
             warnings.append(f"reserved GPU/bh-gym: {reason}")
+        missing = report.get("missing") or []
+        if missing:
+            warnings.append(f"GPU checklist missing: {', '.join(missing)}")
         warnings.append("reserved GPU/bh-gym worker not present; skip Isaac Gym / official walk replay")
     else:
-        notes.append("reserved GPU/bh-gym worker looks present; templates only (no auto-train)")
+        notes.append("reserved GPU/bh-gym worker looks present; 必须先告知用户，等明确开训")
+        notes.append("templates only (no auto-train / no train.py)")
     return report
 
 
@@ -950,6 +966,8 @@ def main() -> int:
             "p5_preview": "bhuman/docs/P5-PREVIEW.md; domain-gap/CTDE location; docs≠on-robot",
             "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
             "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
+            "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
+            "gpu_worker_checklist": "probe JSON; missing items; never train.py",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1011,6 +1029,8 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
             "python3 bhuman/sim2sim/test_overpass_contract.py",
             "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
+            "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
+            "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }

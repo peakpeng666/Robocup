@@ -109,6 +109,8 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] P5 预研（不碰真机）：[P5-PREVIEW.md](P5-PREVIEW.md)（文档/门禁就绪 ≠ 已上真机）。
 - [x] 无 Gym 一键测试：`scripts/run_unit_tests_no_gym.sh`（缺依赖 SKIP，不得假绿；默认 walk 344→13）。
 - [x] 新人五分钟地图：[README-RL.md](README-RL.md)。
+- [x] 官方 walk ONNX 导出合同：`k1-switcher/onnx_export_contract.py`（只许 344→13；无权重 SKIP；不热换；不写真权重）。
+- [x] GPU worker 就绪清单：`scripts/probe_reserved_gpu.sh`（checklist JSON；只探测，不启训；`ready=true` 必须先告知用户）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -230,6 +232,8 @@ python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
 python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 python3 bhuman/sim2sim/test_overpass_contract.py
+python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py
+python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

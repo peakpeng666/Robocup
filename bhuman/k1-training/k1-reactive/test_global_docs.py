@@ -94,6 +94,8 @@ REQUIRED_DOCS = {
         "P5-PREVIEW",
         "README-RL",
         "run_unit_tests_no_gym",
+        "onnx_export_contract",
+        "test_gpu_worker_checklist",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -116,6 +118,8 @@ REQUIRED_DOCS = {
         "P5-PREVIEW",
         "README-RL",
         "run_unit_tests_no_gym.sh",
+        "onnx_export_contract.py",
+        "probe_reserved_gpu.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -152,6 +156,9 @@ REQUIRED_DOCS = {
         "无 Gym",
         "交叉核对",
         "不离开",
+        "onnx_export_contract",
+        "用户批准",
+        "热换 ONNX",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -176,6 +183,8 @@ REQUIRED_DOCS = {
         "P5-PREVIEW",
         "README-RL",
         "run_unit_tests_no_gym",
+        "onnx_export_contract",
+        "gpu-worker-checklist",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -202,6 +211,8 @@ REQUIRED_DOCS = {
         "344→13",
         "run_unit_tests_no_gym",
         "README-RL",
+        "gpu-worker-checklist",
+        "必须先告知用户",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
         "344→13",
@@ -249,6 +260,11 @@ REQUIRED_DOCS = {
         "开训",
         "K1.yaml",
         "TRAINABLE=false",
+        "文档地图",
+        "onnx_export_contract",
+        "必须先告知用户",
+        "P3-PREVIEW",
+        "P4-PREVIEW",
     ),
 }
 

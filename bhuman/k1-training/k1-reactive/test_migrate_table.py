@@ -47,6 +47,8 @@ REQUIRED_ROWS = (
     "P5 预研",
     "无 Gym 一键测试",
     "新人五分钟地图",
+    "官方 walk ONNX 导出合同",
+    "GPU worker 就绪清单",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -77,6 +79,8 @@ REQUIRED_LANDINGS = (
     "P5-PREVIEW",
     "run_unit_tests_no_gym.sh",
     "README-RL",
+    "onnx_export_contract.py",
+    "probe_reserved_gpu.py",
 )
 
 

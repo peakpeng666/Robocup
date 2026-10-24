@@ -121,3 +121,18 @@ T5 单独走 `DeployCall.refuse_onnx_file_swap("walk","kick")`：技能边可以
 - 不连接机器人。`robot_connected` 不在本口出现。
 
 活测试：`python3 bhuman/k1-training/k1-switcher/test_deploy_call.py`。
+
+---
+
+## 6. 官方 walk ONNX 导出合同（不导出真权重）
+
+默认可导出路径只有官方 walk **344→13**（`--task K1`）。合同：`k1-switcher/onnx_export_contract.py`。
+
+| 条件 | 本 stub |
+|---|---|
+| 有 `K1_walk.pth` **且** 用户批准 | 仍 **SKIP**：`IMPLEMENTED=false`，不写 `.onnx` |
+| 本环境无权重 | **SKIP**（诚实缺依赖，不是已导出） |
+| 声明 kick / standup / reactive / 火神维为默认导出 | **拒** |
+| 「热换 ONNX 进官方 actor」 | **拒**（T5 仍成立） |
+
+活测试：`python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py`。大二进制不得推进仓库。

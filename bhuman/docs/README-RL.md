@@ -35,7 +35,9 @@
 | 估计器 | `bhuman/k1-training/k1-estimators/` | latent **不进** 344 |
 | P1 草稿 | `configs/draft-only/` | 不是 `config_patch` |
 | 过桥合同 | `bhuman/sim2sim/overpass_contract.py` | Isaac ≠ MuJoCo ≠ SimRobot |
-| P2–P5 预研 | `P2-ACCEPTANCE.md`、`P3-PREVIEW.md`、`P4-PREVIEW.md`、`P5-PREVIEW.md` | 文档就绪 ≠ 已训通 / 已上真机 |
+| ONNX 导出合同 | `k1-switcher/onnx_export_contract.py` | 只许 walk 344→13；无权重 SKIP；不热换 |
+| GPU 就绪清单 | `scripts/probe_reserved_gpu.sh` | 只探测；`ready=true` 仍须先告知用户 |
+| P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
 
@@ -61,9 +63,23 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 同时满足才谈 P1 真训（仍是官方 `--task K1` **344→13**）：
 
-1. `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh` 得到 `ready=true`（`bh-gym` + Isaac Gym + CUDA + `K1_walk.pth`）。
-2. **先告知用户** worker 已在、拟跑哪条命令。
-3. **等用户明确说开训。** 门禁 / 本 README **永不**自动 `train.py`。
-4. 第一训不是 reactive 64→15，不是改 `K1.yaml`。命令正文：[NEXT-P1-P2.md](NEXT-P1-P2.md)。
+1. `bash bhuman/k1-training/scripts/probe_reserved_gpu.sh` 得到 `ready=true`（CUDA + Isaac Gym 或批准替代 + 磁盘 + 看得到官方 `--task K1` + `K1_walk.pth`）。`ready=false` 时 JSON 的 `missing` 写明缺哪一项。
+2. **必须先告知用户，等明确开训。** 探测脚本本身不调用 `train.py`。
+3. 第一训不是 reactive 64→15，不是改 `K1.yaml`。命令正文：[NEXT-P1-P2.md](NEXT-P1-P2.md)。
+
+ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。见 [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) §6。
 
 真机只在 [P5-PREVIEW.md](P5-PREVIEW.md) 列清单。**文档 / 门禁就绪 ≠ 已上真机。**
+
+---
+
+## 5. 文档地图（已有预研，不再新增长文）
+
+| 文 | 读它当 |
+|---|---|
+| [P3-PREVIEW.md](P3-PREVIEW.md) | 方法对照；不换底座 |
+| [P4-PREVIEW.md](P4-PREVIEW.md) | 单机切换 + 六机；三道门 |
+| [P5-PREVIEW.md](P5-PREVIEW.md) | 真机前置；≠ 已上真机 |
+| [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍 + ONNX 导出合同 |
+| [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么读；**PASS ≠ 已训通** |
+| [PR4-INDEX.md](PR4-INDEX.md) | 文件树 |

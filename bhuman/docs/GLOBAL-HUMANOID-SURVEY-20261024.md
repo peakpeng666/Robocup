@@ -486,4 +486,6 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - P5 预研：[P5-PREVIEW.md](P5-PREVIEW.md)（文档/门禁就绪 ≠ 已上真机）
 - 新人地图：[README-RL.md](README-RL.md)
 - 无 Gym 一键测试：`scripts/run_unit_tests_no_gym.sh`（缺依赖 SKIP；默认 walk 344→13）
+- ONNX 导出合同：`k1-switcher/onnx_export_contract.py`（只许 walk 344→13；不写真权重）
+- GPU 就绪清单：`scripts/probe_reserved_gpu.sh`（checklist JSON；不启训）
 - CI 门禁草案：[CI-CONTRACT-GATE.md](CI-CONTRACT-GATE.md)（不改强制 CI）

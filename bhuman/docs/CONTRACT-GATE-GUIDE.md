@@ -85,6 +85,8 @@ bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 - 门禁记 WARN：`nvidia-smi not found` / `bh-gym interpreter missing`
 - 第一训命令只当模板留在探测 JSON 里，仍是官方 `--task K1` **344→13**
 
+探测现在写出 checklist JSON（`reserved-gpu-latest.json` 与 `gpu-worker-checklist-latest.json`）：CUDA / IsaacGym 或替代 / 磁盘 / 官方 `--task K1` / `K1_walk.pth`。`ready=false` 看 `missing`；`ready=true` 必须先告知用户，等明确开训。脚本不调用 `train.py`。
+
 worker 以后出现：先跑探测 → **告知用户** → 等明确说开训。见 ROADMAP §5。
 
 ---

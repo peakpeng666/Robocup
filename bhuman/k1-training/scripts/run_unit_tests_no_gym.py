@@ -44,6 +44,8 @@ REQUIRED_NAMES = (
     "test_skill_switch_map.py",
     "test_skill_switch_continuity.py",
     "test_unregistered_in_train_py.py",
+    "test_onnx_export_contract.py",
+    "test_gpu_worker_checklist.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

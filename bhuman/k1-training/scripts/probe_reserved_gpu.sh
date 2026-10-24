@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Reserved GPU / bh-gym hook. Never starts Isaac Gym by default.
+# Reserved GPU / bh-gym hook + readiness checklist JSON.
+# Never starts Isaac Gym / train.py by default.
 # Missing venv or CUDA → WARN and exit 0 so CI / cloud agents can continue.
+# Writes reserved-gpu-latest.json and gpu-worker-checklist-latest.json.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"

@@ -34,4 +34,6 @@ python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
 python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
 python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
+python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py
+python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py
 ```
