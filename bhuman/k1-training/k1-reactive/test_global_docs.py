@@ -95,6 +95,8 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -194,6 +196,8 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -286,6 +290,9 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist.py",
         "standup_policy_apply_dims.py",
         "fast_standup_isolation.py",
+        "getup_walk_handoff_chain.py",
+        "upload_run_artifacts.py",
+        "LOCAL-RUN-ARTIFACTS.md",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -368,6 +375,8 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -461,6 +470,8 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -538,6 +549,8 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -663,7 +676,19 @@ REQUIRED_DOCS = {
         "walk_phase_reset_allowlist",
         "standup_policy_apply_dims",
         "fast_standup_isolation",
+        "getup_walk_handoff_chain",
+        "upload_run_artifacts",
         "先看",
+    ),
+    "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
+        "344→13",
+        "TRAINABLE=false",
+        "artifacts/",
+        "Git LFS",
+        "即产生即上传",
+        "upload_run_artifacts",
+        "不自动开训",
+        "PR #4",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

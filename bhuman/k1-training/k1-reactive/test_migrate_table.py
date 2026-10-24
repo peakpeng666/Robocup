@@ -180,6 +180,9 @@ REQUIRED_LANDINGS = (
     "walk_phase_reset_allowlist.py",
     "standup_policy_apply_dims.py",
     "fast_standup_isolation.py",
+    "getup_walk_handoff_chain.py",
+    "upload_run_artifacts.py",
+    "LOCAL-RUN-ARTIFACTS.md",
 )
 
 

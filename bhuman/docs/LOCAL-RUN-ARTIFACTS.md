@@ -1,0 +1,50 @@
+# 本地实验产物即推 GitHub
+
+本机只做实验与测试。实验数据与产物（`runs/`、`logs/`、checkpoints、曲线图）须**即产生即上传 GitHub**，避免本地缓存堆积。云端合同仍进 [PR #4](https://github.com/peakpeng666/Robocup/pull/4)。
+
+默认 / 主路径仍是官方 B-Human walk **344→13**（`K1_walk.onnx`）。本脚手架 **TRAINABLE=false**，**不自动开训**，不调用 `train.py` / Isaac，不扫描 `$HOME`。
+
+---
+
+## 1. 本机角色
+
+| 放哪里 | 是什么 | 不是什么 |
+|---|---|---|
+| 本机 | 当前这一次实验 / 测试工作区 | 产物长期仓库、缓存堆 |
+| GitHub `bhuman/k1-training/artifacts/<run-id>/` | 小文本 / JSON / 图 / 清单 | 默默塞进 PR 的巨型二进制 |
+| Git LFS 或 GitHub Release | `*.pth` `*.pt` `*.onnx` `*.mp4` 与压缩包 | git 普通 blob |
+| PR #4 | 云端合同、门禁、只读审计 | 权重、真训日志、真机包 |
+
+官方可运行工作区（比赛仿真、MuJoCo sim2sim、训练主线源码）按仓库 `AGENTS.md` 保留；本页管的是**实验产物**，不是删源码。
+
+---
+
+## 2. 建议步骤（操作者本机）
+
+1. 只保留当前 run 工作区；不要并列堆多个未归档 `runs/`。
+2. 跑完立刻归档：
+
+```bash
+bash bhuman/k1-training/scripts/upload_run_artifacts.sh --dry-run --run-id <run-id>
+# 确认 dest = bhuman/k1-training/artifacts/<run-id>/
+# 复制 manifest / metrics.jsonl / config.yaml / 曲线图
+# 巨型权文件：git lfs track 或 gh release upload <tag> <file>
+git add bhuman/k1-training/artifacts/<run-id>
+git commit -m "Archive local run <run-id> products."
+git push
+```
+
+3. push 成功后清理本机已上传副本与一次性缓存（`__pycache__`、下载残片、重复 checkpoint）。留下当前工作区与官方源树。
+4. 云端合同变更仍开 / 更新 PR #4，**不要合并**，**不要**把巨型二进制默默 `git add` 进 PR。
+
+门禁只校验脚本存在与 `--help` / `--dry-run` 输出。本轮不在用户本机跑实验。
+
+---
+
+## 3. 硬约束
+
+- 默认 walk **344→13** 不改。`K1.yaml` / 官方 cfg 只读。
+- `TRAINABLE=false`。不自动开训。不连 GPU worker。
+- standup **73→22** / fast **72→22** 已钉，是旁路。
+- walk↔kick `resetHistoryData` 仍是 GAP（仅 draft）。
+- 不混 T1 / 火神 / HiFAR。

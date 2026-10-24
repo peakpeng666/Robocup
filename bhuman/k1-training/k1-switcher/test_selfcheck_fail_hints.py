@@ -76,6 +76,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_walk_phase_reset_allowlist.py",
         "test_standup_policy_apply_dims.py",
         "test_fast_standup_isolation.py",
+        "test_getup_walk_handoff_chain.py",
+        "test_upload_run_artifacts.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

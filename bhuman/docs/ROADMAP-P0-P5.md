@@ -155,7 +155,7 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] 128 vs 512 报文对照：`k1-switcher/teamcomm_128_vs_512.py` + [TEAMCOMM-128-VS-512.md](TEAMCOMM-128-VS-512.md)（用途不同、不得混用；不得用 512 覆盖官方 128；不得把 128 误标成 HSL 已满足；带宽 SKIP）。
 - [x] Force walk afterwards 合同：`scripts/force_walk_afterwards.py`（getup_done → walk **344→13** + last_action 13 个 0；不得停在 standup；不得直接 kick）。
 - [x] KickEngine 边界只读：`scripts/kick_engine_boundary.py`（无独立 KickEngine；活链 59→13 旁路 ≠ 换 walk 基线；缺源 SKIP）。
-- [x] 自检加速评估：无 Gym 串行约 2 s / 88 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
+- [x] 自检加速评估：无 Gym 串行约 2 s / 90 测；未开并行（快照写文件会竞态；收益不足；不打乱门禁顺序）。
 - [x] motorParameters 只读深化：`scripts/motor_parameters_audit.py`（regular 踝滚 **p25** vs 训侧 **p60** 对照表；Simulated 速度差分 ≠ PD 已闭合；拒写回）。
 - [x] Simulated 速度差分：`scripts/simulated_speed_diff.py`（14 个有意速度键；网槽仍 **344→13**；意外差分 FAIL）。
 - [x] standAnkleStiffness 对照：`scripts/stand_ankle_stiffness.py`（Default 60/80 vs Simulated 100/100 是 plant；≠ 训侧 p60→p25；≠ PD 闭合）。
@@ -177,7 +177,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] WalkPhase 延续 vs 新建 reset：`scripts/walk_phase_reset_allowlist.py`（仅构造 + 非延续新 WalkPhase 才 `resetHistoryData`；延续 = walk/stand + `WalkPhase*`；意外漂移 FAIL）。
 - [x] standup 调用点维数：`scripts/standup_policy_apply_dims.py`（常规 GetUp `policy.apply()` **73→22** / `K1.onnx`；进入 = fallen+(fall|playDead)；≠ walk 344 / kick 59；13-zero 交接已有合同）。
 - [x] fast standup 隔离：`scripts/fast_standup_isolation.py`（fast `policyFast.apply()` **72→22** / `K1_fast_standup.onnx`；≠ 常规 73 / walk / kick / Isaac；Simulated 强制 `fastActive=false`）。
-- [x] 禁令回归再扩：Simulated 速度差分当域差闭合 / 伪造 Competition getUp / standAnkle 冒充 PD 闭合 / Competition 差分改网槽 / policySwitch 当换网 / shiftBall 当改维 / kickPolicy 当默认 walk / maxAcc 差分当换网 / getNextTargetRequest 当热换训练图 / 速度档差分当换网 / 球网关当改维 / 拦截当默认 kick / 避障当热换训练图 / shouldStop 当默认 kick / stand 当改维 / 球未见当热换训练图 / 空 SkillRequest 当 kick / 滞回当改维 / kick 路径当 walk 344 / 策略切换当热换训练图 / Competition 滞回漂移 / walk 调用点当 59 / 切换保留陈旧 last_action / walk ONNX 占 kick 槽 / 缓冲跨维复用 / 声称 walk↔kick GAP 已闭合 / draft 缓解当 live / standup-zero 当 walk↔kick 修复 / 延续相位跳过必清零 / standup 当 walk 344 / fast 当常规 standup / GetUp 当热换训练图 / standup ONNX 占 kick 槽。
+- [x] GetUp→walk 端到端交接链：`scripts/getup_walk_handoff_chain.py`（fallen→`createPhase`→standup/fast apply→Force walk afterwards→walkPolicy **344→13**；跳步 / 进错网 FAIL；对照已有分段合同）。
+- [x] 本地产物即推 GitHub：`scripts/upload_run_artifacts.py` + [LOCAL-RUN-ARTIFACTS.md](LOCAL-RUN-ARTIFACTS.md)（本机只留当前 run；产物即上传 `artifacts/<run-id>/`；巨型文件 LFS/Release；`TRAINABLE=false`；不自动开训）。
+- [x] 禁令回归再扩：Simulated 速度差分当域差闭合 / 伪造 Competition getUp / standAnkle 冒充 PD 闭合 / Competition 差分改网槽 / policySwitch 当换网 / shiftBall 当改维 / kickPolicy 当默认 walk / maxAcc 差分当换网 / getNextTargetRequest 当热换训练图 / 速度档差分当换网 / 球网关当改维 / 拦截当默认 kick / 避障当热换训练图 / shouldStop 当默认 kick / stand 当改维 / 球未见当热换训练图 / 空 SkillRequest 当 kick / 滞回当改维 / kick 路径当 walk 344 / 策略切换当热换训练图 / Competition 滞回漂移 / walk 调用点当 59 / 切换保留陈旧 last_action / walk ONNX 占 kick 槽 / 缓冲跨维复用 / 声称 walk↔kick GAP 已闭合 / draft 缓解当 live / standup-zero 当 walk↔kick 修复 / 延续相位跳过必清零 / standup 当 walk 344 / fast 当常规 standup / GetUp 当热换训练图 / standup ONNX 占 kick 槽 / GetUp 跳过 Force walk / Force walk 落到 kick / standup 交接当 walk 344 观测 / 本地产物不上传。
 - [x] walkingEngine.cfg 只读审计：`scripts/walking_engine_cfg_audit.py`（walk **344→13** / `K1_walk.onnx`；kickModel ≠ walk 默认槽；T1 不得占 K1 walk；standup 不在此 cfg）。
 - [x] kick ONNX 命名对照：`scripts/kick_onnx_naming.py`（`K1_kick_inner.onnx` 与 CHECKPOINT-LAYOUT 交叉；占 Walk/ 默认槽 → FAIL；缺文件 SKIP）。
 - [x] getUpEngine.cfg 只读审计：`scripts/getup_engine_cfg_audit.py`（73→22 / `K1.onnx`；fast 72→22 仅部署、未注册 Isaac；不得覆盖 walk **344→13**；T1 getUp 不得当 K1；SimRobot 强制 `fastActive=false`）。
@@ -332,6 +334,8 @@ python3 bhuman/k1-training/k1-switcher/test_policy_switch_history_gap.py
 python3 bhuman/k1-training/k1-switcher/test_walk_phase_reset_allowlist.py
 python3 bhuman/k1-training/k1-switcher/test_standup_policy_apply_dims.py
 python3 bhuman/k1-training/k1-switcher/test_fast_standup_isolation.py
+python3 bhuman/k1-training/k1-switcher/test_getup_walk_handoff_chain.py
+python3 bhuman/k1-training/k1-switcher/test_upload_run_artifacts.py
 python3 bhuman/k1-training/k1-switcher/test_official_sibling_tasks_audit.py
 python3 bhuman/k1-training/k1-switcher/test_onnx_deploy_path_crosscheck.py
 python3 bhuman/k1-training/k1-switcher/test_t1_k1_isolation.py

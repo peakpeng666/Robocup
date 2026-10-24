@@ -232,6 +232,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/fast_standup_isolation.py",
         "hint": "先看 fast standup 是否仍是 72→22 / K1_fast_standup.onnx，而不是被写成常规 73 或 Isaac 任务",
     },
+    "test_getup_walk_handoff_chain.py": {
+        "look": "bhuman/k1-training/scripts/getup_walk_handoff_chain.py",
+        "hint": "先看 fallen→GetUp→force-walk→walk 344→13 相位链是否被跳步或接到 kick / 344 观测",
+    },
+    "test_upload_run_artifacts.py": {
+        "look": "bhuman/k1-training/scripts/upload_run_artifacts.py",
+        "hint": "先看上传脚手架是否仍是 TRAINABLE=false / dry-run，而不是自动开训或把产物只留本地",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

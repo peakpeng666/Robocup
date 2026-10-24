@@ -24,7 +24,10 @@ buffer cross-dim reuse, claim walk↔kick GAP closed,
 draft mitigation as live, standup-zero as walk↔kick fix,
 continue-phase skips required reset, standup as walk 344,
 fast as regular standup, GetUp as hot-swap train,
-standup ONNX as kick slot.
+standup ONNX as kick slot,
+GetUp skips Force walk, Force walk lands on kick,
+standup handoff as walk 344 obs,
+local artifacts kept without upload policy.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -92,6 +95,14 @@ from standup_policy_apply_dims import (  # noqa: E402
     refuse_standup_onnx_as_kick_slot,
 )
 from fast_standup_isolation import refuse_fast_as_regular_standup  # noqa: E402
+from getup_walk_handoff_chain import (  # noqa: E402
+    refuse_force_walk_lands_on_kick,
+    refuse_getup_skips_force_walk,
+    refuse_standup_handoff_as_walk_344_obs,
+)
+from upload_run_artifacts import (  # noqa: E402
+    refuse_local_artifacts_kept_without_upload_policy,
+)
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
 )
@@ -563,6 +574,44 @@ def _case_standup_onnx_as_kick_slot() -> None:
     )
 
 
+def _case_getup_skips_force_walk() -> None:
+    refuse_getup_skips_force_walk(
+        {
+            "getup_skips_force_walk": True,
+            "next": "walk_without_force",
+        }
+    )
+
+
+def _case_force_walk_lands_on_kick() -> None:
+    refuse_force_walk_lands_on_kick(
+        {
+            "force_walk_lands_on_kick": True,
+            "source": "force_walk",
+            "contract": "59→13",
+        }
+    )
+
+
+def _case_standup_handoff_as_walk_344_obs() -> None:
+    refuse_standup_handoff_as_walk_344_obs(
+        {
+            "standup_handoff_as_walk_344_obs": True,
+            "source": "standup",
+            "obs": 344,
+        }
+    )
+
+
+def _case_local_artifacts_kept_without_upload_policy() -> None:
+    refuse_local_artifacts_kept_without_upload_policy(
+        {
+            "local_artifacts_kept_without_upload_policy": True,
+            "keep_local_only": True,
+        }
+    )
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -621,6 +670,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("fast_as_regular_standup", _case_fast_as_regular_standup),
     ("getup_as_hot_swap_train", _case_getup_as_hot_swap_train),
     ("standup_onnx_as_kick_slot", _case_standup_onnx_as_kick_slot),
+    ("getup_skips_force_walk", _case_getup_skips_force_walk),
+    ("force_walk_lands_on_kick", _case_force_walk_lands_on_kick),
+    ("standup_handoff_as_walk_344_obs", _case_standup_handoff_as_walk_344_obs),
+    ("local_artifacts_kept_without_upload_policy", _case_local_artifacts_kept_without_upload_policy),
 )
 
 
