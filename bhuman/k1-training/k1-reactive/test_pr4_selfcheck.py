@@ -73,6 +73,8 @@ NEEDLES = (
     "test_walk_to_ball_engine_no_onnx.py",
     "test_local_bh_gym_dry_run.py",
     "test_bounded_walk_replay.py",
+    "test_bounded_standup_replay.py",
+    "test_walk_eval_metrics.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

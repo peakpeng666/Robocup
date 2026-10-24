@@ -6,6 +6,10 @@
 
 有界 walk 回放（操作者本机才跑）：`run_replay.sh K1` 默认 4 env / 500 step，上限 256 / 1000，超时 600 s，显存 12 GiB。产物只进 `runs/<id>/`，随即归档 `artifacts/<run-id>/`。机读合同：`scripts/bounded_walk_replay.py`。开训干跑本机路径：`scripts/local_bh_gym_dry_run.py`。
 
+有界 standup 回放（操作者本机才跑）：`run_replay.sh K1_Stand_Up` 建议 4 env / 300 step，脚本默认 4/500，上限 256 / 1000，超时 600 s，显存 12 GiB。**73→22**，不是 walk **344→13**。产物只进 `runs/<id>/`，随即归档 `artifacts/<run-id>/`。机读合同：`scripts/bounded_standup_replay.py`。walk↔kick **gap_closed=false**。
+
+walk 评估指标门禁只读：`run_walk_eval.sh` 默认 seed 2027 / 100 step / 8 env，上限 1000 / 64，超时 900 s。RMSE 允许 `tracking_rmse_settled_vx_vy_wz` / `tracking_rmse_full_vx_vy_wz`。**单次回放 PASS ≠ 比赛合格**。机读合同：`scripts/walk_eval_metrics.py`。本机 seed2027 摘要在 `artifacts/20261024_200640_281778_walk_eval_s2027/`（过程 PASS；质量未认证）。
+
 ---
 
 ## 1. 本机角色
@@ -48,5 +52,7 @@ git push
 - 默认 walk **344→13** 不改。`K1.yaml` / 官方 cfg 只读。
 - `TRAINABLE=false`。不自动开训。不连 GPU worker。
 - standup **73→22** / fast **72→22** 已钉，是旁路。
-- walk↔kick `resetHistoryData` 仍是 GAP（仅 draft）。
+- walk↔kick `resetHistoryData` 仍是 GAP（仅 draft；**gap_closed=false**）。
+- standup 回放是 **73→22**，不得写成 walk **344→13**。
+- walk 评估 `quality_verdict` 只报告；单次回放 PASS ≠ 比赛合格。
 - 不混 T1 / 火神 / HiFAR。

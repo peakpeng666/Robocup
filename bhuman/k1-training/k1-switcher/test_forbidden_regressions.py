@@ -119,6 +119,10 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "ready_gpu_true_without_checklist",
         "replay_writes_outside_runs",
         "local_compat_doc_claims_gap_closed",
+        "standup_replay_as_walk_344",
+        "walk_eval_pass_as_competition_ready",
+        "eval_writes_outside_runs",
+        "dry_run_doc_claims_gap_closed",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
@@ -157,7 +161,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
             "deploy-seq-draws-playball-as-kick-net / walk-to-ball-engine-applies-onnx / "
             "chain-a-equals-chain-b / deploy-doc-claims-gap-closed / "
             "dry-run-auto-starts-train / ready-gpu-true-without-checklist / "
-            "replay-writes-outside-runs / local-compat-doc-claims-gap-closed"
+            "replay-writes-outside-runs / local-compat-doc-claims-gap-closed / "
+            "standup-replay-as-walk-344 / walk-eval-pass-as-competition-ready / "
+            "eval-writes-outside-runs / dry-run-doc-claims-gap-closed"
         )
 
     try:

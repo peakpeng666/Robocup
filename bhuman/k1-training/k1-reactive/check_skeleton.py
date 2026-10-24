@@ -571,6 +571,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bounded run_replay.sh K1: 4/500 · 256/1000 · 600s / 12GiB; runs/ → artifacts/",
         ),
         (
+            "bhuman/k1-training/scripts/bounded_standup_replay.py",
+            "bounded run_replay.sh K1_Stand_Up 73→22; 4/300 · 256/1000; not walk 344",
+        ),
+        (
+            "bhuman/k1-training/scripts/walk_eval_metrics.py",
+            "walk-eval RMSE allowlist; replay PASS ≠ 比赛合格; runs/ only",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

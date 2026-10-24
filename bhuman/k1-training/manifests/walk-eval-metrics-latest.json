@@ -1,0 +1,59 @@
+{
+  "generated_utc": "2026-10-24T11:10:45+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "bash bhuman/k1-training/scripts/run_walk_eval.sh <operator-local K1_walk.pth> 2027 100 8",
+  "limits": {
+    "task": "K1",
+    "seed_default": 2027,
+    "seg_default": 100,
+    "seg_min": 10,
+    "seg_max": 1000,
+    "envs_default": 8,
+    "envs_min": 1,
+    "envs_max": 64,
+    "timeout_s": 900,
+    "vram_mib_max": 12288,
+    "runs_root": "bhuman/k1-training/runs/<stamp>_walk_eval_s<seed>/",
+    "artifacts_root": "bhuman/k1-training/artifacts/<run-id>/"
+  },
+  "rmse_allow": [
+    "tracking_rmse_settled_vx_vy_wz",
+    "tracking_rmse_full_vx_vy_wz",
+    "settled_rmse_vx"
+  ],
+  "quality_verdict": "REPORT_ONLY_QUALITY_NOT_CERTIFIED",
+  "competition_ready": false,
+  "writes": {
+    "runs": "bhuman/k1-training/runs/<stamp>_walk_eval_s<seed>/",
+    "upload": "bhuman/k1-training/artifacts/<run-id>/",
+    "outside_runs": false,
+    "home_scan": false
+  },
+  "will_exec_eval_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "siblings_referenced_not_reaudited": [
+    "run_walk_eval.sh",
+    "walk_eval_entry.py",
+    "evaluate_walk.py",
+    "upload_run_artifacts.py",
+    "bounded_walk_replay.py",
+    "local_bh_gym_dry_run.py"
+  ],
+  "walk_eval_pass_as_competition_ready": false,
+  "eval_writes_outside_runs": false,
+  "dry_run_doc_claims_gap_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "walk eval report-only: seed 2027 / 100 / 8, cap 1000 / 64, 900s / 12 GiB; RMSE allow settled+full vx/vy/wz; replay PASS ≠ 比赛合格; GAP open",
+  "trainable": false,
+  "auto_eval": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

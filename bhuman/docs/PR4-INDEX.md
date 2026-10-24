@@ -235,6 +235,8 @@ scripts/
 ├── walk_to_ball_engine_no_onnx.py WalkToBallAndKickEngine 只出位姿；无 CompiledNN / ONNX
 ├── local_bh_gym_dry_run.py      本机 bh-gym 干跑路径；print-only；ready_gpu 须 checklist 全真
 ├── bounded_walk_replay.py       run_replay.sh K1 4/500 · 256/1000 · 600s / 12GiB；runs/ → artifacts/
+├── bounded_standup_replay.py    run_replay.sh K1_Stand_Up 73→22 · 4/300 · 256/1000；≠ walk 344
+├── walk_eval_metrics.py         run_walk_eval RMSE 允许集；单次回放 PASS ≠ 比赛合格
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -328,6 +330,8 @@ k1-switcher/
 ├── test_walk_to_ball_engine_no_onnx.py
 ├── test_local_bh_gym_dry_run.py
 ├── test_bounded_walk_replay.py
+├── test_bounded_standup_replay.py
+├── test_walk_eval_metrics.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -430,7 +434,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-sbc.json    上轮（SkillBehaviorControl 写入链 + PR 索引分组/体积）
 ├── contract-gate-20261024-pbk.json    上轮（PlayBall ≠ kickPolicy 两条链 + reactive stub 硬化）
 ├── contract-gate-20261024-dseq.json   上轮（部署双链时序 + WalkToBallAndKickEngine 无 ONNX）
-├── contract-gate-20261024-ldry.json   本轮（本机 bh-gym 干跑路径 + 有界 walk 回放）
+├── contract-gate-20261024-ldry.json   上轮（本机 bh-gym 干跑路径 + 有界 walk 回放）
+├── contract-gate-20261024-srev.json   本轮（有界 standup 回放 + walk 评估指标门禁）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -489,6 +494,8 @@ k1-training/manifests/
 ├── walk-to-ball-engine-no-onnx-latest.json WalkToBallAndKickEngine 只出位姿；无 ONNX / CompiledNN
 ├── local-bh-gym-dry-run-latest.json     本机 bh-gym 干跑路径；print-only；ready_gpu 须 checklist 全真
 ├── bounded-walk-replay-latest.json      run_replay.sh K1 有界；runs/ → artifacts/<run-id>/
+├── bounded-standup-replay-latest.json   run_replay.sh K1_Stand_Up 73→22；≠ walk 344
+├── walk-eval-metrics-latest.json        run_walk_eval RMSE 允许集；PASS ≠ 比赛合格
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -498,6 +505,8 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| 有界 standup 回放入口 | `scripts/bounded_standup_replay.py` | `run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/` |
+| walk 评估指标门禁 | `scripts/walk_eval_metrics.py` | `run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格 |
 | 本机 bh-gym 开训干跑路径 | `scripts/local_bh_gym_dry_run.py` + [LOCAL-BH-GYM-COMPAT.md](LOCAL-BH-GYM-COMPAT.md) | 指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；不自动开训 |
 | 有界 walk 回放入口 | `scripts/bounded_walk_replay.py` | `run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/` |
 | 部署双链时序 | `scripts/deploy_two_chain_sequence.py` + [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 链 A 位姿 → walk **344→13**；链 B 仅 want_kick → kick **59→13**；禁止把链 A 画成 kick 网 |
@@ -606,6 +615,8 @@ k1-training/manifests/
 | WalkToBallAndKickEngine 无 ONNX | `walk_to_ball_engine_no_onnx.py` | 只出 kickPose / 轨迹；不 apply 任何 ONNX / CompiledNN；与 kick 槽隔离 |
 | 本机 bh-gym 开训干跑路径 | `local_bh_gym_dry_run.py` | 指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真 |
 | 有界 walk 回放入口 | `bounded_walk_replay.py` | `run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；`runs/<id>/` → `artifacts/<run-id>/` |
+| 有界 standup 回放入口 | `bounded_standup_replay.py` | `run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13** |
+| walk 评估指标门禁 | `walk_eval_metrics.py` | `run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格 |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

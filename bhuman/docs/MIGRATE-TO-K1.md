@@ -130,8 +130,10 @@
 | reactive / 旁路 stub 硬化 | §6.11 | `scripts/reactive_stub_hardening.py` | **P0 / P2 口** | 否 | 所有 reactive / 估计器 / draft stub `TRAINABLE=false`；不得标成默认 walk 基；stub 不得把 `ready_gpu` 翻 true | 上轮旁路 |
 | 部署双链时序 | §6.10 | `scripts/deploy_two_chain_sequence.py` + [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | **P0** | 否 | 链 A = PlayBall 位姿 → walkPolicy **344→13**；链 B = 仅 `want_kick` → kickPolicy **59→13**；禁止把链 A 画成 kick 网；**gap_closed=false** | 上轮双链时序 |
 | WalkToBallAndKickEngine 无 ONNX | §6.10 | `scripts/walk_to_ball_engine_no_onnx.py` | **P0** | 否 | 引擎只出 kickPose / 轨迹；不 `apply()` 任何 ONNX / CompiledNN；与 kickPolicy 槽隔离；意外 T1 → FAIL | 上轮引擎钉 |
-| 本机 bh-gym 开训干跑路径 | 门禁 | `scripts/local_bh_gym_dry_run.py` + [LOCAL-BH-GYM-COMPAT.md](LOCAL-BH-GYM-COMPAT.md) | **P0** | 否（打印）；真训要 | 干跑命令指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**；**gap_closed=false** | **本轮干跑路径** |
-| 有界 walk 回放入口 | 门禁 | `scripts/bounded_walk_replay.py` | **P0** | 否（合同）；回放要本机 GPU | `run_replay.sh K1` 默认 4/500、上限 256/1000、600 s / 12 GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`；本仓不 exec | **本轮回放钉** |
+| 本机 bh-gym 开训干跑路径 | 门禁 | `scripts/local_bh_gym_dry_run.py` + [LOCAL-BH-GYM-COMPAT.md](LOCAL-BH-GYM-COMPAT.md) | **P0** | 否（打印）；真训要 | 干跑命令指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**；**gap_closed=false** | 上轮干跑路径 |
+| 有界 walk 回放入口 | 门禁 | `scripts/bounded_walk_replay.py` | **P0** | 否（合同）；回放要本机 GPU | `run_replay.sh K1` 默认 4/500、上限 256/1000、600 s / 12 GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`；本仓不 exec | 上轮回放钉 |
+| 有界 standup 回放入口 | 门禁 | `scripts/bounded_standup_replay.py` | **P0** | 否（合同）；回放要本机 GPU | `run_replay.sh K1_Stand_Up` 建议 4/300、上限 256/1000、600 s / 12 GiB；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/` | **本轮 standup 回放** |
+| walk 评估指标门禁 | 门禁 | `scripts/walk_eval_metrics.py` | **P0** | 否（只读）；真评要本机 GPU | `run_walk_eval.sh` 默认 2027/100/8；RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false** | **本轮评估钉** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

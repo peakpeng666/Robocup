@@ -190,6 +190,8 @@ REQUIRED_LANDINGS = (
     "walk_to_ball_engine_no_onnx.py",
     "local_bh_gym_dry_run.py",
     "bounded_walk_replay.py",
+    "bounded_standup_replay.py",
+    "walk_eval_metrics.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

@@ -428,6 +428,8 @@ reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（reactive 
 WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出 kickPose / 轨迹；不 `apply()` 任何 ONNX / CompiledNN；与 kickPolicy 槽隔离；意外 T1 → FAIL）。  
 本机 bh-gym 开训干跑路径：`scripts/local_bh_gym_dry_run.py`（干跑指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**）。  
 有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 默认 4/500、上限 256/1000、600 s / 12 GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
+有界 standup 回放入口：`scripts/bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4/300、上限 256/1000；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
+walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval.sh` 默认 2027/100/8；RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

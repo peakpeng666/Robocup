@@ -53,7 +53,9 @@ reactive / 旁路 stub 硬化：`scripts/reactive_stub_hardening.py`（stub 全 
 部署双链时序：`scripts/deploy_two_chain_sequence.py`（链 A ≠ 链 B；禁止把 PlayBall 画成 kick 网；**status=GAP** / **gap_closed=false**）。  
 WalkToBallAndKickEngine 无 ONNX：`scripts/walk_to_ball_engine_no_onnx.py`（只出位姿/轨迹；不 `apply()` 任何 ONNX；与 kickPolicy 槽隔离）。  
 本机 bh-gym 开训干跑路径：`scripts/local_bh_gym_dry_run.py`（指向 `~/.venvs/bh-gym` 与 `~/Desktop/Robocup-pr4`；`ready_gpu` 仍 false 除非 checklist 全真；**不自动开训**）。  
-有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。
+有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 4/500 · 256/1000 · 600s / 12GiB；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
+有界 standup 回放入口：`scripts/bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4/300；**73→22** ≠ walk **344→13**；只写 `runs/<id>/` 再推 `artifacts/<run-id>/`）。  
+walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval` RMSE 允许 settled/full vx vy wz；单次回放 PASS ≠ 比赛合格；**gap_closed=false**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

@@ -105,6 +105,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -214,6 +216,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -316,6 +320,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx.py",
         "local_bh_gym_dry_run.py",
         "bounded_walk_replay.py",
+        "bounded_standup_replay.py",
+        "walk_eval_metrics.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -414,6 +420,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -517,6 +525,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -604,6 +614,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -739,6 +751,8 @@ REQUIRED_DOCS = {
         "walk_to_ball_engine_no_onnx",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -751,6 +765,8 @@ REQUIRED_DOCS = {
         "不自动开训",
         "PR #4",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -764,6 +780,8 @@ REQUIRED_DOCS = {
         "gap_closed=false",
         "local_bh_gym_dry_run",
         "bounded_walk_replay",
+        "bounded_standup_replay",
+        "walk_eval_metrics",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

@@ -272,6 +272,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/bounded_walk_replay.py",
         "hint": "先看 run_replay.sh K1 是否仍是 4/500 默认、256/1000 上限、600s / 12GiB，以及产物是否只进 runs/ 再推 artifacts/",
     },
+    "test_bounded_standup_replay.py": {
+        "look": "bhuman/k1-training/scripts/bounded_standup_replay.py",
+        "hint": "先看 run_replay.sh K1_Stand_Up 是否仍是 73→22、建议 4/300、上限 256/1000，以及是否被写成 walk 344→13",
+    },
+    "test_walk_eval_metrics.py": {
+        "look": "bhuman/k1-training/scripts/walk_eval_metrics.py",
+        "hint": "先看 run_walk_eval RMSE 允许集是否仍是 settled/full vx vy wz，或单次回放 PASS 是否被写成比赛合格",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

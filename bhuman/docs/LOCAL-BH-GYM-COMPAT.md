@@ -25,6 +25,10 @@ python3 bhuman/k1-training/scripts/print_train_dry_run.py
 
 有界 walk 回放入口：`scripts/bounded_walk_replay.py`（`run_replay.sh K1` 默认 4 env / 500 step，上限 256 / 1000，超时 600 s，显存 12 GiB；写入 `runs/<id>/`，即推 `artifacts/<run-id>/`）。本仓门禁**不** exec 回放。
 
+有界 standup 回放入口：`scripts/bounded_standup_replay.py`（`run_replay.sh K1_Stand_Up` 建议 4 env / 300 step，脚本默认 4/500，上限 256 / 1000，超时 600 s，显存 12 GiB；**73→22**；写入 `runs/<id>/`，即推 `artifacts/<run-id>/`）。standup 回放 ≠ walk **344→13**。本仓门禁**不** exec。
+
+walk 评估指标门禁只读：`scripts/walk_eval_metrics.py`（`run_walk_eval.sh` 默认 seed 2027 / 100 step / 8 env，上限 1000 / 64，超时 900 s；RMSE 允许 `tracking_rmse_settled_vx_vy_wz` / `tracking_rmse_full_vx_vy_wz`；**单次回放 PASS ≠ 比赛合格**；**gap_closed=false**）。
+
 ## 权重与网格（不进 Git）
 
 PR 工作树缺 `pre-trained/*.pth|onnx` 与 `resources/*/meshes`（gitignore / LFS）。从主仓软链：
@@ -45,3 +49,7 @@ ln -sfn ~/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/resources/K1/meshes 
 ## 本机有界 walk 回放（2026-10-24）
 
 `bash scripts/run_replay.sh K1 4 500` → PASS；GPU peak ~2.9 GiB；产物摘要在 `artifacts/20261024_195904_831891_replay_K1/`。
+
+## 本机 walk 评估（2026-10-24）
+
+`run_walk_eval.sh … 2027 100 8` → 过程 PASS（`execution_status`）；`quality_verdict` 仍是 `REPORT_ONLY_QUALITY_NOT_CERTIFIED`。**单次回放/评估 PASS ≠ 比赛合格**。产物摘要在 `artifacts/20261024_200640_281778_walk_eval_s2027/`。
