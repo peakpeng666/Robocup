@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:28:07+00:00",
+  "generated_utc": "2026-10-24T08:31:45+00:00",
   "verdict": "PASS",
   "walk": "344→13",
   "trainable": false,
@@ -14,7 +14,10 @@
     "print_train_dry_run.py",
     "env_registry_audit.py",
     "test_simrobot_acceptance.py",
-    "test_skill_request_map.py"
+    "test_skill_request_map.py",
+    "test_pd_domain_gap.py",
+    "test_teamcomm_budget.py",
+    "test_checkpoint_layout.py"
   ],
   "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker"
 }

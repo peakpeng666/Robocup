@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T08:28:06+00:00",
+  "generated_utc": "2026-10-24T08:31:44+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -50,7 +50,10 @@
     "print_train_dry_run": "print-only --task K1 draft; 干跑成功 ≠ 可训; never train.py",
     "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
     "simrobot_acceptance": "six-robot table; live SKIP without SimRobot; no fake-green",
-    "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused"
+    "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused",
+    "pd_domain_gap": "train ankle-roll p60 vs robot p25; no K1.yaml write-back",
+    "teamcomm_budget": "512 B / 10000+team; teammate not into 344; WLAN SKIP",
+    "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -146,6 +149,10 @@
       "SimRobot six-robot acceptance (no sim; live SKIP; no fake-green) present",
       "six-robot case table S6-1..S6-4 (default walk 344→13) present",
       "SkillRequest map (empty/unknown → walk; shoot/pass stay walk) present",
+      "PD domain-gap (train p60 vs robot p25; no K1.yaml write-back) present",
+      "TeamComm 512 B (teammate not into 344; WLAN SKIP) present",
+      "walk checkpoint layout (K1_walk.pth/onnx; missing SKIP) present",
+      "checkpoint layout checker (T1/reactive refused on walk path) present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -310,6 +317,7 @@
         "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
         "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
         "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md: required anchors present",
+        "bhuman/docs/CHECKPOINT-LAYOUT.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -709,10 +717,11 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 39 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 42 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_booster_joints_snapshot.py",
         "PASS test_bt_deploy_crosscheck.py",
+        "PASS test_checkpoint_layout.py",
         "PASS test_deploy_call.py",
         "PASS test_env_registry_audit.py",
         "PASS test_gait_frequency_contract.py",
@@ -725,10 +734,12 @@
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_p1_draft_diff.py",
+        "PASS test_pd_domain_gap.py",
         "PASS test_print_train_dry_run.py",
         "PASS test_standup_kick_hardening.py",
         "PASS test_switcher_integration_suite.py",
         "PASS test_switcher_sm.py",
+        "PASS test_teamcomm_budget.py",
         "PASS test_timeseries_contract.py",
         "PASS test_bt_skill_select.py",
         "PASS test_global_docs.py",
@@ -763,6 +774,10 @@
         },
         {
           "name": "test_bt_deploy_crosscheck.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_checkpoint_layout.py",
           "status": "PASS"
         },
         {
@@ -810,6 +825,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_pd_domain_gap.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_print_train_dry_run.py",
           "status": "PASS"
         },
@@ -823,6 +842,10 @@
         },
         {
           "name": "test_switcher_sm.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_teamcomm_budget.py",
           "status": "PASS"
         },
         {
@@ -914,6 +937,7 @@
         "test_blockers.py",
         "test_booster_joints_snapshot.py",
         "test_bt_deploy_crosscheck.py",
+        "test_checkpoint_layout.py",
         "test_deploy_call.py",
         "test_env_registry_audit.py",
         "test_gait_frequency_contract.py",
@@ -925,10 +949,12 @@
         "test_obs_assembly.py",
         "test_onnx_export_contract.py",
         "test_p1_draft_diff.py",
+        "test_pd_domain_gap.py",
         "test_print_train_dry_run.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
         "test_switcher_sm.py",
+        "test_teamcomm_budget.py",
         "test_timeseries_contract.py",
         "test_bt_skill_select.py",
         "test_global_docs.py",
@@ -1291,10 +1317,61 @@
         "official K1.yaml untouched 344→13"
       ],
       "walk": "344→13"
+    },
+    "pd_domain_gap": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_pd_gap_frozen: intentional p60 vs p25; read-only",
+        "recorded intentional open gap: train p60 vs robot p25",
+        "negative: train PD write-back p25 refused",
+        "negative: K1.yaml write refused",
+        "negative: unified PD ≠ closed domain gap",
+        "negative: train Ankle_Roll p25 refused",
+        "official K1.yaml untouched: 344→13 + Ankle_Roll p60"
+      ],
+      "walk": "344→13"
+    },
+    "teamcomm_budget": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_teamcomm_frozen: 512 B / 10000+队号; teammate not in 344",
+        "docs record 512 B TeamComm budget",
+        "port convention 10000+team_number",
+        "negative: payload >512 B refused",
+        "negative: teammate_into_344 refused",
+        "negative: concat_teammate refused",
+        "negative: includes_teammate refused",
+        "negative: MAPPO into walk refused",
+        "negative: teammate_dim on 344 refused",
+        "bandwidth measure SKIP (no robot / WLAN)",
+        "negative: fake WLAN PASS refused",
+        "official K1.yaml untouched 344→13"
+      ],
+      "skipped": true,
+      "walk": "344→13"
+    },
+    "checkpoint_layout": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "assert_layout_frozen: K1_walk.* slots; no write",
+        "CHECKPOINT-LAYOUT.md names K1_walk.pth / onnx",
+        "weights SKIP: missing 3 official slots",
+        "negative: T1 model.pth refused on walk default path",
+        "negative: T1_walk.pth refused on walk default path",
+        "negative: reactive refused on walk default path",
+        "negative: NUSim as K1_walk.pth refused on walk default path",
+        "negative: write K1_walk.pth refused",
+        "official K1.yaml untouched 344→13"
+      ],
+      "skipped": true,
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T08:28:04+00:00",
+    "generated_utc": "2026-10-24T08:31:42+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -1372,7 +1449,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "6a93963e0fab5d7f172091463bc1febdc81a5a5f",
+    "workspace_head": "0778bd67b52021b3e166a9a10cf0bbf7742e8429",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1809,6 +1886,10 @@
     "SimRobot six-robot acceptance (no sim; live SKIP; no fake-green) present",
     "six-robot case table S6-1..S6-4 (default walk 344→13) present",
     "SkillRequest map (empty/unknown → walk; shoot/pass stay walk) present",
+    "PD domain-gap (train p60 vs robot p25; no K1.yaml write-back) present",
+    "TeamComm 512 B (teammate not into 344; WLAN SKIP) present",
+    "walk checkpoint layout (K1_walk.pth/onnx; missing SKIP) present",
+    "checkpoint layout checker (T1/reactive refused on walk path) present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1858,6 +1939,7 @@
     "bhuman/docs/OBS-ASSEMBLY-344.md: required anchors present",
     "bhuman/docs/GPU-AFTER-ONLINE.md: required anchors present",
     "bhuman/docs/SIMROBOT-SIX-ROBOT-ACCEPTANCE.md: required anchors present",
+    "bhuman/docs/CHECKPOINT-LAYOUT.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -2109,10 +2191,11 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 39 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 42 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_booster_joints_snapshot.py",
     "PASS test_bt_deploy_crosscheck.py",
+    "PASS test_checkpoint_layout.py",
     "PASS test_deploy_call.py",
     "PASS test_env_registry_audit.py",
     "PASS test_gait_frequency_contract.py",
@@ -2125,10 +2208,12 @@
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_p1_draft_diff.py",
+    "PASS test_pd_domain_gap.py",
     "PASS test_print_train_dry_run.py",
     "PASS test_standup_kick_hardening.py",
     "PASS test_switcher_integration_suite.py",
     "PASS test_switcher_sm.py",
+    "PASS test_teamcomm_budget.py",
     "PASS test_timeseries_contract.py",
     "PASS test_bt_skill_select.py",
     "PASS test_global_docs.py",
@@ -2340,6 +2425,36 @@
     "BT doc still carries SkillRequest / walk discipline",
     "GLOBAL §6.10 points at skill_request_map",
     "official K1.yaml untouched 344→13",
+    "assert_pd_gap_frozen: intentional p60 vs p25; read-only",
+    "recorded intentional open gap: train p60 vs robot p25",
+    "negative: train PD write-back p25 refused",
+    "negative: K1.yaml write refused",
+    "negative: unified PD ≠ closed domain gap",
+    "negative: train Ankle_Roll p25 refused",
+    "official K1.yaml untouched: 344→13 + Ankle_Roll p60",
+    "assert_teamcomm_frozen: 512 B / 10000+队号; teammate not in 344",
+    "docs record 512 B TeamComm budget",
+    "port convention 10000+team_number",
+    "negative: payload >512 B refused",
+    "negative: teammate_into_344 refused",
+    "negative: concat_teammate refused",
+    "negative: includes_teammate refused",
+    "negative: MAPPO into walk refused",
+    "negative: teammate_dim on 344 refused",
+    "bandwidth measure SKIP (no robot / WLAN)",
+    "negative: fake WLAN PASS refused",
+    "official K1.yaml untouched 344→13",
+    "teamcomm_budget: skipped (missing optional runtime)",
+    "assert_layout_frozen: K1_walk.* slots; no write",
+    "CHECKPOINT-LAYOUT.md names K1_walk.pth / onnx",
+    "weights SKIP: missing 3 official slots",
+    "negative: T1 model.pth refused on walk default path",
+    "negative: T1_walk.pth refused on walk default path",
+    "negative: reactive refused on walk default path",
+    "negative: NUSim as K1_walk.pth refused on walk default path",
+    "negative: write K1_walk.pth refused",
+    "official K1.yaml untouched 344→13",
+    "checkpoint_layout: skipped (missing optional runtime)",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -2394,6 +2509,9 @@
     "python3 bhuman/k1-training/scripts/env_registry_audit.py",
     "python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
     "python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py",
+    "python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
+    "python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
+    "python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
     "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
