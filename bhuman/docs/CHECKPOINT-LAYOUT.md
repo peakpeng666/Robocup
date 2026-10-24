@@ -42,6 +42,8 @@ kick ONNX 与 walk 同目录 `Config/NeuralNets/Walk/`，文件名是 **`K1_kick
 
 kick ONNX 部署路径合同（只读）：`scripts/kick_onnx_deploy_path.py`。`K1_kick_inner.onnx` 与 `K1_walk.onnx` 同目录、不是 Walk/ 默认槽；59→13 不得当 walk 344→13；缺权诚实 **SKIP**，不得假绿。**TRAINABLE=false**。
 
+walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`。默认导出仍是 **K1_walk.onnx** 344→13 stub；`TRAINABLE=false` 时 `export_readiness` 保持诚实 **SKIP**（would_export=false）。导出清单 PASS ≠ competition deploy。
+
 活测试：`python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py`。  
 cfg / 命名：`python3 bhuman/k1-training/k1-switcher/test_walking_engine_cfg_audit.py`、`python3 bhuman/k1-training/k1-switcher/test_kick_onnx_naming.py`。
 

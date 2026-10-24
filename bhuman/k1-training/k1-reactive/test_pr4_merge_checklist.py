@@ -26,6 +26,11 @@ NEEDLES = (
     "阻塞",
     "权重",
     "真机",
+    "merge_readiness_blockers",
+    "ready_gpu=false",
+    "gap_closed=false",
+    "REPORT_ONLY",
+    "merge_ready=false",
 )
 
 

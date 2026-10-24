@@ -1,0 +1,196 @@
+{
+  "generated_utc": "2026-10-24T11:45:54+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/missing_weight_skip_honesty.py",
+  "paths": [
+    {
+      "id": "walk_replay",
+      "weight_rels": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+      ],
+      "missing_weights": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "walk_eval",
+      "weight_rels": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+      ],
+      "missing_weights": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "kick_replay",
+      "weight_rels": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth"
+      ],
+      "missing_weights": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "kick_eval",
+      "weight_rels": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth"
+      ],
+      "missing_weights": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_kick_inner.pth"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "standup_replay",
+      "weight_rels": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx"
+      ],
+      "missing_weights": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "standup_eval",
+      "weight_rels": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx"
+      ],
+      "missing_weights": [
+        "bhuman/k1-training/src/IsaacGymRL/pre-trained/GetUp/K1_stand_up.pt",
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    },
+    {
+      "id": "fast_replay",
+      "weight_rels": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx"
+      ],
+      "missing_weights": [
+        "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx"
+      ],
+      "missing": true,
+      "honesty": "SKIP",
+      "inventory_status": "PASS",
+      "fabricated": false,
+      "fail_closed": false,
+      "as_have_weights": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "walk_replay",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "walk_eval",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "kick_replay",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "kick_eval",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "standup_replay",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "standup_eval",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    },
+    {
+      "id": "fast_replay",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "missing_weight_skip": true,
+  "missing_weight_honesty": "SKIP",
+  "will_exec_replay_here": false,
+  "will_run_eval_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "missing_weight_as_fabricated_pass": false,
+  "missing_weight_fails_closed": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "missing-weight SKIP honesty across walk/kick/standup/fast replay+eval; inventory PASS without weights is OK; not fabricated PASS / not fail-closed; TRAINABLE=false",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "write_weights": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "standup": "73→22",
+  "fast": "72→22",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -201,6 +201,9 @@ REQUIRED_LANDINGS = (
     "kick_onnx_deploy_path.py",
     "standup_fast_isolation_matrix.py",
     "policy_switch_phase_draft.py",
+    "walk_onnx_export_dry_run.py",
+    "missing_weight_skip_honesty.py",
+    "merge_readiness_blockers.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

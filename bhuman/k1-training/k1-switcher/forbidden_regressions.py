@@ -45,7 +45,10 @@ kick-eval as live deploy, fast standup replay as walk 344,
 fast standup replay as regular 73, dual-chain dry-run claims GAP closed,
 kick ONNX path as walk 344, kick ONNX live without TRAINABLE,
 isolation matrix cross-wires slots, policy-switch draft as live,
-policy-switch draft skips Force walk, policy-switch draft claims GAP closed.
+policy-switch draft skips Force walk, policy-switch draft claims GAP closed,
+export PASS as competition deploy, export live without TRAINABLE,
+missing-weight as fabricated PASS, missing-weight fails closed,
+merge-readiness claims ready, merge flips ready_gpu.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -183,6 +186,18 @@ from policy_switch_phase_draft import (  # noqa: E402
     refuse_policy_switch_draft_as_live,
     refuse_policy_switch_draft_claims_gap_closed,
     refuse_policy_switch_draft_skips_force_walk,
+)
+from walk_onnx_export_dry_run import (  # noqa: E402
+    refuse_export_as_live_without_trainable,
+    refuse_export_pass_as_competition_deploy,
+)
+from missing_weight_skip_honesty import (  # noqa: E402
+    refuse_missing_weight_as_fabricated_pass,
+    refuse_missing_weight_fails_closed,
+)
+from merge_readiness_blockers import (  # noqa: E402
+    refuse_merge_flips_ready_flag,
+    refuse_merge_readiness_claims_ready,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1046,6 +1061,71 @@ def _case_policy_switch_draft_claims_gap_closed() -> None:
     )
 
 
+def _case_export_pass_as_competition_deploy() -> None:
+    refuse_export_pass_as_competition_deploy(
+        {
+            "export_pass_as_competition_deploy": True,
+            "status": "PASS",
+            "as_competition_deploy": True,
+        }
+    )
+
+
+def _case_export_as_live_without_trainable() -> None:
+    refuse_export_as_live_without_trainable(
+        {
+            "export_as_live_without_trainable": True,
+            "would_export": True,
+            "apply_to_live": True,
+        }
+    )
+
+
+def _case_missing_weight_as_fabricated_pass() -> None:
+    refuse_missing_weight_as_fabricated_pass(
+        {
+            "missing_weight_as_fabricated_pass": True,
+            "missing_weight": True,
+            "as_have_weights": True,
+            "status": "PASS",
+            "比赛合格": True,
+        }
+    )
+
+
+def _case_missing_weight_fails_closed() -> None:
+    refuse_missing_weight_fails_closed(
+        {
+            "missing_weight_fails_closed": True,
+            "fail_closed": True,
+            "missing_weight": True,
+            "because_missing": True,
+            "status": "FAIL",
+        }
+    )
+
+
+def _case_merge_readiness_claims_ready() -> None:
+    refuse_merge_readiness_claims_ready(
+        {
+            "merge_readiness_claims_ready": True,
+            "merge_ready": True,
+            "已可合并": True,
+        }
+    )
+
+
+def _case_merge_flips_ready_flag() -> None:
+    refuse_merge_flips_ready_flag(
+        {
+            "merge_flips_ready_flag": True,
+            "ready_gpu": True,
+            "write_reserved_gpu": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1154,6 +1234,12 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("policy_switch_draft_as_live", _case_policy_switch_draft_as_live),
     ("policy_switch_draft_skips_force_walk", _case_policy_switch_draft_skips_force_walk),
     ("policy_switch_draft_claims_gap_closed", _case_policy_switch_draft_claims_gap_closed),
+    ("export_pass_as_competition_deploy", _case_export_pass_as_competition_deploy),
+    ("export_as_live_without_trainable", _case_export_as_live_without_trainable),
+    ("missing_weight_as_fabricated_pass", _case_missing_weight_as_fabricated_pass),
+    ("missing_weight_fails_closed", _case_missing_weight_fails_closed),
+    ("merge_readiness_claims_ready", _case_merge_readiness_claims_ready),
+    ("merge_flips_ready_flag", _case_merge_flips_ready_flag),
 )
 
 

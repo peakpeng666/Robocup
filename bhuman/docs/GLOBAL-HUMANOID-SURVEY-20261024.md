@@ -439,6 +439,9 @@ kick 评估指标门禁只读：`scripts/kick_eval_metrics.py`（K1_Ball **59→
 kick ONNX 部署路径：`scripts/kick_onnx_deploy_path.py`（`K1_kick_inner.onnx` ≠ `K1_walk.onnx` 槽；缺权 **missing-weight SKIP**；**TRAINABLE=false**）。  
 standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`（**344→13** / **73→22** / **72→22**；无 live 串槽）。  
 策略切换相位草稿：`scripts/policy_switch_phase_draft.py`（last_action → resetHistoryData → Force walk；**apply_to_live=false**；**gap_closed=false**）。  
+walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`（344 stub；PASS ≠ competition deploy；**TRAINABLE=false**）。  
+缺权 SKIP 诚实：`scripts/missing_weight_skip_honesty.py`（walk/kick/standup/fast；缺权诚实 SKIP）。  
+合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

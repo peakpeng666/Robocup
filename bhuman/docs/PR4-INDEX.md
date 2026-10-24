@@ -246,6 +246,9 @@ scripts/
 ├── kick_onnx_deploy_path.py     K1_kick_inner ≠ K1_walk 槽；缺权 missing-weight SKIP；TRAINABLE=false
 ├── standup_fast_isolation_matrix.py 344→13 / 73→22 / 72→22 隔离表；无 live 串槽
 ├── policy_switch_phase_draft.py last_action → history reset → Force walk；apply_to_live=false
+├── walk_onnx_export_dry_run.py  walk 344 stub；kick/fast 不是默认导出；PASS ≠ competition deploy
+├── missing_weight_skip_honesty.py walk/kick/standup/fast 缺权诚实 SKIP；不得假绿 / fail-closed
+├── merge_readiness_blockers.py  merge_ready=false；ready_gpu=false；GAP / TRAINABLE / REPORT_ONLY
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -350,6 +353,9 @@ k1-switcher/
 ├── test_kick_onnx_deploy_path.py
 ├── test_standup_fast_isolation_matrix.py
 ├── test_policy_switch_phase_draft.py
+├── test_walk_onnx_export_dry_run.py
+├── test_missing_weight_skip_honesty.py
+├── test_merge_readiness_blockers.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -456,7 +462,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-srev.json   上轮（有界 standup 回放 + walk 评估指标门禁）
 ├── contract-gate-20261024-ke2e.json   上轮（有界 kick 回放 + standup 评估 REPORT_ONLY + e2e 干跑）
 ├── contract-gate-20261024-kfsd.json   上轮（kick 评估 REPORT_ONLY + fast-standup 回放 + 双链干跑）
-├── contract-gate-20261024-kspm.json   本轮（kick ONNX 部署路径 + standup/fast 隔离矩阵 + 相位草稿）
+├── contract-gate-20261024-kspm.json   上轮（kick ONNX 部署路径 + standup/fast 隔离矩阵 + 相位草稿）
+├── contract-gate-20261024-emrg.json   本轮（walk ONNX 导出干跑 + 缺权 SKIP 诚实 + 合并就绪阻塞）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -526,6 +533,9 @@ k1-training/manifests/
 ├── kick-onnx-deploy-path-latest.json    K1_kick_inner ≠ K1_walk 槽；缺权 missing-weight SKIP
 ├── standup-fast-isolation-matrix-latest.json 344→13 / 73→22 / 72→22；无 live 串槽
 ├── policy-switch-phase-draft-latest.json last_action → history reset → Force walk；apply_to_live=false
+├── walk-onnx-export-dry-run-latest.json walk 344 stub；would_export=false；PASS ≠ competition deploy
+├── missing-weight-skip-honesty-latest.json 7-path 缺权诚实 SKIP；不得假绿 / fail-closed
+├── merge-readiness-blockers-latest.json merge_ready=false；ready_gpu=false；GAP 仍开
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -535,6 +545,9 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| walk ONNX 导出干跑 | `scripts/walk_onnx_export_dry_run.py` | 344 stub；kick/fast 不是默认导出；PASS ≠ competition deploy；**TRAINABLE=false**；**gap_closed=false** |
+| 缺权 SKIP 诚实 | `scripts/missing_weight_skip_honesty.py` | walk/kick/standup/fast 回放+评估共用 helper；缺权诚实 SKIP；不得假绿 / fail-closed |
+| 合并就绪阻塞 | `scripts/merge_readiness_blockers.py` | **merge_ready=false**；**ready_gpu=false**；GAP / TRAINABLE / REPORT_ONLY 仍阻塞 |
 | kick ONNX 部署路径 | `scripts/kick_onnx_deploy_path.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false**；**gap_closed=false** |
 | standup / fast 隔离矩阵 | `scripts/standup_fast_isolation_matrix.py` | **344→13** / **73→22** / **72→22**；live cfg 无串槽；fast 不是 Isaac |
 | 策略切换相位草稿 | `scripts/policy_switch_phase_draft.py` | last_action → resetHistoryData → Force walk；**apply_to_live=false**；**gap_closed=false** |
@@ -665,6 +678,9 @@ k1-training/manifests/
 | kick ONNX 部署路径 | `kick_onnx_deploy_path.py` | `K1_kick_inner.onnx` ≠ Walk/ 默认槽；缺权 **missing-weight SKIP**；**TRAINABLE=false** |
 | standup / fast 隔离矩阵 | `standup_fast_isolation_matrix.py` | **344→13** / **73→22** / **72→22**；无 live 串槽 |
 | 策略切换相位草稿 | `policy_switch_phase_draft.py` | last_action → resetHistoryData → Force walk；**apply_to_live=false** |
+| walk ONNX 导出干跑 | `walk_onnx_export_dry_run.py` | 344 stub；kick/fast 不是默认导出；PASS ≠ competition deploy |
+| 缺权 SKIP 诚实 | `missing_weight_skip_honesty.py` | walk/kick/standup/fast 回放+评估；缺权诚实 SKIP |
+| 合并就绪阻塞 | `merge_readiness_blockers.py` | **merge_ready=false**；**ready_gpu=false**；GAP / TRAINABLE / REPORT_ONLY |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

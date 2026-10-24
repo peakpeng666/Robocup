@@ -28,6 +28,12 @@ standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`�
 
 策略切换相位草稿：`scripts/policy_switch_phase_draft.py`。顺序：`last_action` 清零点 → `resetHistoryData` 草稿点 → Force walk afterwards；**apply_to_live=false**。walk↔kick **gap_closed=false**。
 
+walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`。默认导出仍是 walk **344→13** stub；kick / fast 不是默认导出。`TRAINABLE=false` 时 would_export=false。导出清单 PASS ≠ **competition deploy** / 比赛合格。**gap_closed=false**。
+
+缺权 SKIP 诚实：`scripts/missing_weight_skip_honesty.py`。walk / kick / standup / fast 回放+评估共用 helper；缺权记 **missing-weight SKIP**，清单仍可 PASS，不得假绿 / fail-closed。**TRAINABLE=false**。**gap_closed=false**。
+
+合并就绪阻塞（仍未就绪）：`scripts/merge_readiness_blockers.py`。**merge_ready=false**；**ready_gpu=false**；`TRAINABLE=false`；质量仍 REPORT_ONLY。walk↔kick **gap_closed=false**。不要合并。
+
 ---
 
 ## 1. 本机角色

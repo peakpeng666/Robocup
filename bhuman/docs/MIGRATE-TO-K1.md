@@ -140,9 +140,12 @@
 | kick 评估指标门禁 | 门禁 | `scripts/kick_eval_metrics.py` | **P0** | 否（只读）；真评要本机 GPU | K1_Ball **59→13** REPORT_ONLY；**kick eval PASS ≠ 比赛合格** ≠ walk 344 ≠ live kick 部署；不要求 `evaluate_kick.py` | **上轮 kick 评估** |
 | 有界 fast-standup 回放 | 门禁 | `scripts/bounded_fast_standup_replay.py` | **P0** | 否（合同） | deploy-only **72→22** / `K1_fast_standup.onnx`；不是 Isaac；`run_replay.sh` 不接受该任务；≠ walk **344→13**；≠ 常规 **73→22** | **上轮 fast 回放** |
 | 双链切换干跑负例 | 门禁 | `scripts/dual_chain_switch_dry_run.py` | **P0** | 否 | PlayBall ≠ kickPolicy；官方 SkillRequest 无 `want_kick`；拒绝陈旧 last_action；Force walk 必须在 walk 344 前；**gap_closed=false** | **上轮双链干跑** |
-| kick ONNX 部署路径 | 门禁 | `scripts/kick_onnx_deploy_path.py` | **P0** | 否 | `K1_kick_inner.onnx` ≠ Walk/ 默认槽 `K1_walk.onnx`；59→13 不得当 walk **344→13**；缺权诚实 **missing-weight SKIP**；**TRAINABLE=false** | **本轮 kick-ONNX-path** |
-| standup / fast / walk 隔离矩阵 | 门禁 | `scripts/standup_fast_isolation_matrix.py` | **P0** | 否 | 一张表钉 **344→13** / **73→22** / **72→22**；live cfg 不得串槽；fast 不是 Isaac | **本轮 isolation-matrix** |
-| 策略切换相位草稿 | 门禁 | `scripts/policy_switch_phase_draft.py` | **P0** | 否 | last_action 清零点 → `resetHistoryData` 草稿点 → Force walk afterwards；**apply_to_live=false**；**gap_closed=false** | **本轮 phase-draft** |
+| kick ONNX 部署路径 | 门禁 | `scripts/kick_onnx_deploy_path.py` | **P0** | 否 | `K1_kick_inner.onnx` ≠ Walk/ 默认槽 `K1_walk.onnx`；59→13 不得当 walk **344→13**；缺权诚实 **missing-weight SKIP**；**TRAINABLE=false** | 上轮 kick-ONNX-path |
+| standup / fast / walk 隔离矩阵 | 门禁 | `scripts/standup_fast_isolation_matrix.py` | **P0** | 否 | 一张表钉 **344→13** / **73→22** / **72→22**；live cfg 不得串槽；fast 不是 Isaac | 上轮 isolation-matrix |
+| 策略切换相位草稿 | 门禁 | `scripts/policy_switch_phase_draft.py` | **P0** | 否 | last_action 清零点 → `resetHistoryData` 草稿点 → Force walk afterwards；**apply_to_live=false**；**gap_closed=false** | 上轮 phase-draft |
+| walk ONNX 导出干跑对齐 | 门禁 | `scripts/walk_onnx_export_dry_run.py` | **P0** | 否 | 默认 344→13 stub；kick/fast 不是默认导出；`TRAINABLE=false` 时 would_export=false；PASS ≠ competition deploy | **本轮 export-dry-run** |
+| 缺权 SKIP 诚实 | 门禁 | `scripts/missing_weight_skip_honesty.py` | **P0** | 否 | walk/kick/standup/fast 回放+评估共用 helper；缺权诚实 SKIP；不得假绿 / fail-closed | **本轮 missing-weight** |
+| 合并就绪阻塞 | 门禁 | `scripts/merge_readiness_blockers.py` | **P0** | 否 | **merge_ready=false**；阻塞 GAP / **ready_gpu=false** / **TRAINABLE=false** / REPORT_ONLY；不翻 ready | **本轮 merge-blockers** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

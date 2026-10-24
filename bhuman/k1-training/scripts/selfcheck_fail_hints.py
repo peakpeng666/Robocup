@@ -316,6 +316,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/policy_switch_phase_draft.py",
         "hint": "先看切换相位草稿是否仍是 last_action → history reset → Force walk，或 apply_to_live / gap_closed 是否被写成 true",
     },
+    "test_walk_onnx_export_dry_run.py": {
+        "look": "bhuman/k1-training/scripts/walk_onnx_export_dry_run.py",
+        "hint": "先看 walk ONNX 导出干跑是否仍是 344 stub / would_export=false，或导出 PASS 是否被写成 competition deploy",
+    },
+    "test_missing_weight_skip_honesty.py": {
+        "look": "bhuman/k1-training/scripts/missing_weight_skip_honesty.py",
+        "hint": "先看缺权是否仍记诚实 SKIP，或是否被写成 fabricated PASS / fail-closed",
+    },
+    "test_merge_readiness_blockers.py": {
+        "look": "bhuman/k1-training/scripts/merge_readiness_blockers.py",
+        "hint": "先看合并就绪是否仍是 merge_ready=false / ready_gpu=false，或 GAP / TRAINABLE / REPORT_ONLY 阻塞是否被翻掉",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

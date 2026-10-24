@@ -60,3 +60,18 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 
 审的是：默认 walk **344→13** 是否守住、T1 是否冒充 K1、负例沉默是否会红、缺依赖是否诚实 SKIP。**不要删文件、不要大重构**来「瘦身」——体积来自合同快照，不是实现膨胀。
 
+---
+
+## 5. 本轮仍未就绪（merge_readiness_blockers）
+
+**merge_ready=false。不要合并。** 本轮仍未就绪。阻塞：
+
+| 阻塞 | 现状 |
+|---|---|
+| walk↔kick resetHistoryData GAP | **gap_closed=false**（仅 draft） |
+| GPU | **ready_gpu=false** |
+| 训练门 | **TRAINABLE=false** |
+| 质量 | walk/kick/standup 评估仍 **REPORT_ONLY**；PASS ≠ 比赛合格 |
+
+机读：`scripts/merge_readiness_blockers.py`。不得把 ready 翻成 true。
+

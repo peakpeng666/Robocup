@@ -97,6 +97,9 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_kick_onnx_deploy_path.py",
         "test_standup_fast_isolation_matrix.py",
         "test_policy_switch_phase_draft.py",
+        "test_walk_onnx_export_dry_run.py",
+        "test_missing_weight_skip_honesty.py",
+        "test_merge_readiness_blockers.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

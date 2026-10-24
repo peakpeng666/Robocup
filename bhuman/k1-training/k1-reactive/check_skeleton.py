@@ -615,6 +615,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "policy-switch phase draft; last_action → history reset → Force walk",
         ),
         (
+            "bhuman/k1-training/scripts/walk_onnx_export_dry_run.py",
+            "walk ONNX export dry-run; 344 stub; PASS ≠ competition deploy",
+        ),
+        (
+            "bhuman/k1-training/scripts/missing_weight_skip_honesty.py",
+            "missing-weight SKIP honesty across walk/kick/standup/fast",
+        ),
+        (
+            "bhuman/k1-training/scripts/merge_readiness_blockers.py",
+            "merge-readiness blockers; merge_ready=false; ready_gpu stays false",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),
