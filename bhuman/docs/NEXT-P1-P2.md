@@ -170,6 +170,7 @@ python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
+python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 
@@ -187,5 +188,7 @@ HiFAR 与普通起身 73→22 / 快速起身 72→22 的边界：[HIFAR-VS-STAND
 
 全球调研与 P0–P5 取舍：[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md)、[MIGRATE-TO-K1.md](MIGRATE-TO-K1.md)、[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md)。
 P2 出门条：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（旁路技能，≠ 新步态基线）。
+P3 预研：[P3-PREVIEW.md](P3-PREVIEW.md)（不实现训练；默认仍 walk）。
+门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
 行为树口：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)。切换器骨架：[SWITCHER-SM.md](SWITCHER-SM.md)。部署一拍（默认 walk 344→13）：[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)。历史/力矩草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)。文件树：[PR4-INDEX.md](PR4-INDEX.md)。观测 schema：`schemas/obs-contract-v1.json`。
 research 分支入口：[RESEARCH-BRANCH.md](RESEARCH-BRANCH.md)。

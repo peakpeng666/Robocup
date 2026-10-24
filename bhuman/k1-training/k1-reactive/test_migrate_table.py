@@ -38,6 +38,9 @@ REQUIRED_ROWS = (
     "P1 draft 校验器",
     "观测 schema 负例",
     "开源方法可迁短表",
+    "门禁一键汇总",
+    "P3 预研",
+    "切换集成回归套件",
 )
 REQUIRED_LANDINGS = (
     "k1-estimators",
@@ -59,6 +62,9 @@ REQUIRED_LANDINGS = (
     "draft_validator.py",
     "refuse_walk_obs_dim",
     "forbidden_as_walk",
+    "CONTRACT-GATE-GUIDE",
+    "P3-PREVIEW",
+    "test_switcher_integration_suite",
 )
 
 

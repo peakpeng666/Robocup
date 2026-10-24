@@ -100,6 +100,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] P1 draft 校验器：`draft_only: true`；stability / config_patch 不读；live 奖励不被覆盖。
 - [x] 观测 schema 负例：拒 345/343、拒 kick/standup/reactive 当 walk、拒缺历史窗。
 - [x] 调研补强：GLOBAL §6.12 开源方法可迁点 vs 不可替换 walk。
+- [x] 门禁一键汇总：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（**PASS ≠ 已训通**）。
+- [x] P3 预研（不实现训练）：[P3-PREVIEW.md](P3-PREVIEW.md)（默认入口仍 walk 344→13）。
+- [x] 切换集成回归套件：`k1-switcher/test_switcher_integration_suite.py`（空上下文 → walk 344→13）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -144,6 +147,8 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 
 ### P3 · 方法对照（不换底座）
 
+预研（不实现训练）：[P3-PREVIEW.md](P3-PREVIEW.md)。**默认入口仍是官方 walk 344→13。**
+
 同一 K1 资产上比较：
 
 | 派 | 来源 | 问题 |
@@ -155,6 +160,10 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 对照实验必须自己的目录与指纹。谁赢都不许改官方 344。
 
 Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主线」。
+
+- [x] 预研三栏：可做 stub / 必须等 GPU / 必须等真机（[P3-PREVIEW.md](P3-PREVIEW.md)）。
+- [ ] Noisy Striker 对照目录真训 — **阻塞：GPU + scratch 解压**（ZIP 不入库）。
+- [ ] TeleHuman 渐进对照 — **阻塞：GPU / 对照仿真器**；不迁 Isaac Lab 主线。
 
 ### P4 · 切换 + sim2sim + 起身交接
 
@@ -203,6 +212,7 @@ python3 bhuman/k1-training/k1-reactive/test_hifar_boundary.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
 python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py
 python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py
+python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 bash bhuman/k1-training/scripts/probe_reserved_gpu.sh
 ```
 

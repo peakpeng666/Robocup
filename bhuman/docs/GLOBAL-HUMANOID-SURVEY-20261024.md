@@ -7,6 +7,21 @@
 
 **底座不可改写：** 官方 walk **344→13** / kick **59→13** / standup **73→22**（快速起身部署 72→22）。全球方法只允许平行扩展。
 
+## 目录
+
+| # | 节 |
+|---|---|
+| 0 | 怎么读 |
+| 1 | 对本仓的总判断 |
+| 2 | RoboCup 人形 |
+| 3 | 工业 / 通用人形平台 |
+| 4 | 开源训练与基准栈 |
+| 5 | 方法族（运动 / 估计 / sim2real） |
+| 6 | 足球专项（6.1 火神 … 6.12 可迁点 vs 不可迁点） |
+| 7 | 可迁移矩阵 |
+| 8 | 明确不迁 / 不声称 |
+| 9 | 引用速查 |
+
 ---
 
 ## 0. 怎么读
@@ -465,3 +480,5 @@ Booster Lab 在门 1 **之前**多了一圈植物校准，在 Webots **之后**�
 - 历史/力矩时间序列草案：[HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md)
 - P2 验收清单：[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)（reactive = 旁路技能，≠ 新步态基线）
 - 开源方法可迁短表：§6.12（旁路灵感 / 不可替换 B-Human walk）
+- 门禁怎么读：[CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md)（PASS ≠ 已训通）
+- P3 预研：[P3-PREVIEW.md](P3-PREVIEW.md)（对照，不换底座）

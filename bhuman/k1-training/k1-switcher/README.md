@@ -31,5 +31,7 @@ python3 bhuman/k1-training/k1-switcher/test_switcher_sm.py
 python3 bhuman/k1-training/k1-switcher/test_deploy_call.py
 python3 bhuman/k1-training/k1-switcher/test_timeseries_contract.py
 python3 bhuman/k1-training/k1-switcher/test_standup_kick_hardening.py
+python3 bhuman/k1-training/k1-switcher/test_bt_deploy_crosscheck.py
+python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py
 python3 bhuman/k1-training/k1-switcher/test_blockers.py
 ```

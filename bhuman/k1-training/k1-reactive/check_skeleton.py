@@ -240,6 +240,8 @@ def check(repo: Path | None = None) -> dict[str, Any]:
         ("bhuman/docs/HISTORY-TORQUE-TIMESERIES.md", "history/torque timeseries draft"),
         ("bhuman/docs/P2-ACCEPTANCE.md", "P2 acceptance (walk default; P2 does not change 344)"),
         ("bhuman/docs/HIFAR-VS-STANDUP.md", "HiFAR ≠ standup 73→22 / fast 72→22"),
+        ("bhuman/docs/CONTRACT-GATE-GUIDE.md", "contract-gate guide (PASS ≠ trained)"),
+        ("bhuman/docs/P3-PREVIEW.md", "P3 preview (no training; walk stays default)"),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

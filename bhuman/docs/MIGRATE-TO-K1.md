@@ -43,7 +43,10 @@
 | 阻塞项可执行清单 | ROADMAP §5 | §5.1–5.2 + `test_blockers.py` | **P0** | 否 | GPU 上线先告知用户；第一训仍 344→13 | 上轮清单 |
 | P1 draft 校验器 | P1 草稿 | `configs/draft-only/draft_validator.py` | **P1 口 / P0 门禁** | 否 | 不覆盖 live `still_proportion` / `action_rate` / `reference_mean_penalty` | **本轮校验** |
 | 观测 schema 负例 | 契约 v1 | `obs_schema.py`（`refuse_walk_obs_dim` / `forbidden_as_walk`） | **P0** | 否 | 不改 live obs；拒 343/345 / 外族维 / 缺历史窗 | **本轮负例** |
-| 开源方法可迁短表 | §6.12 | 只写 GLOBAL；不换底座 | **对照** | 否 | 旁路灵感 / **不可替换 B-Human walk** | **本轮调研** |
+| 开源方法可迁短表 | §6.12 | 只写 GLOBAL；不换底座 | **对照** | 否 | 旁路灵感 / **不可替换 B-Human walk** | 上轮调研 |
+| 门禁一键汇总 | ROADMAP P0 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | **P0** | 否 | **PASS ≠ 已训通**；缺 GPU 仍锁 344→13 | **本轮文档** |
+| P3 预研 | ROADMAP P3 | [P3-PREVIEW.md](P3-PREVIEW.md) | **P3 / P0 文档** | 否（预研）；对照训要 | 默认入口仍 walk；谁赢都不改 344 | **本轮预研** |
+| 切换集成回归套件 | ROADMAP P4 | `k1-switcher/test_switcher_integration_suite.py` | **P0** | 否 | 空上下文 → 官方 walk **344→13** | **本轮套件** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -94,6 +97,9 @@
 | 18 | P1 draft 校验器 | `draft_validator.py` | `python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py` |
 | 19 | 观测 schema 负例 | `obs_schema.py` | `python3 bhuman/k1-training/k1-reactive/test_obs_schema.py` |
 | 20 | 开源方法可迁短表 | survey §6.12 | `test_global_docs.py` 锚点 |
+| 21 | 门禁一键汇总 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | `test_global_docs.py` 锚点 |
+| 22 | P3 预研 | [P3-PREVIEW.md](P3-PREVIEW.md) | `test_global_docs.py` 锚点 |
+| 23 | 切换集成回归套件 | `test_switcher_integration_suite.py` | `python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

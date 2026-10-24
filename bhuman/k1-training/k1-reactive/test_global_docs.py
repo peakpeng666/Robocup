@@ -56,6 +56,9 @@ REQUIRED_DOCS = {
         "P2-ACCEPTANCE",
         "可迁点 vs 不可迁点",
         "不可替换 B-Human walk",
+        "## 目录",
+        "CONTRACT-GATE-GUIDE",
+        "P3-PREVIEW",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -79,6 +82,9 @@ REQUIRED_DOCS = {
         "可执行清单",
         "先告知用户",
         "SKIP→PASS",
+        "CONTRACT-GATE-GUIDE",
+        "P3-PREVIEW",
+        "test_switcher_integration_suite",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -149,6 +155,9 @@ REQUIRED_DOCS = {
         "test_hifar_boundary",
         "draft_validator",
         "§6.12",
+        "CONTRACT-GATE-GUIDE",
+        "P3-PREVIEW",
+        "test_switcher_integration_suite",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -165,6 +174,24 @@ REQUIRED_DOCS = {
         "不冒充实机",
         "旁路技能",
         "P2 不改",
+    ),
+    "bhuman/docs/CONTRACT-GATE-GUIDE.md": (
+        "run_contract_gate.sh",
+        "PASS ≠ 已训通",
+        "SKIP",
+        "WARN",
+        "reserved-gpu",
+        "344→13",
+    ),
+    "bhuman/docs/P3-PREVIEW.md": (
+        "344→13",
+        "可做 stub",
+        "必须等 GPU",
+        "必须等真机",
+        "不实现训练",
+        "默认",
+        "Noisy Striker",
+        "TeleHuman",
     ),
 }
 

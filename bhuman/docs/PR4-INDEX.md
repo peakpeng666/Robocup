@@ -36,7 +36,9 @@ bash bhuman/k1-training/scripts/run_contract_gate.sh
 | 6 | [DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md) | 部署一拍：BT → SM → 槽位图 |
 | 7 | [HISTORY-TORQUE-TIMESERIES.md](HISTORY-TORQUE-TIMESERIES.md) | 历史/力矩形状草案（连续性 SKIP） |
 | 8 | [P2-ACCEPTANCE.md](P2-ACCEPTANCE.md) | P2 出门条：切换 / 六机 / 不冒充实机；**不改 344→13** |
-| 9 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
+| 9 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | 门禁怎么跑；PASS / SKIP / WARN；**PASS ≠ 已训通** |
+| 10 | [P3-PREVIEW.md](P3-PREVIEW.md) | P3 预研：可做 stub / 等 GPU / 等真机；默认仍 walk |
+| 11 | [NEXT-P1-P2.md](NEXT-P1-P2.md) | 有 GPU 之后才跑的命令（本环境跳过） |
 
 ---
 
@@ -75,7 +77,9 @@ bhuman/sim2sim/run-mujoco.sh                官方 walk 344→13 过桥（操作
 ```
 bhuman/docs/
 ├── PR4-INDEX.md                         本页
-├── P2-ACCEPTANCE.md                     P2 出门条（本轮；不改 344→13）
+├── P2-ACCEPTANCE.md                     P2 出门条（不改 344→13）
+├── CONTRACT-GATE-GUIDE.md               门禁一键汇总（PASS ≠ 已训通）
+├── P3-PREVIEW.md                        P3 预研（不实现训练；默认 walk）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
 ├── ROADMAP-P0-P5.md                     P0 门禁 → P5 真机前置
@@ -134,6 +138,7 @@ k1-switcher/
 ├── test_bt_deploy_crosscheck.py BT × 部署交叉核对（默认 walk）
 ├── standup_kick_contract.py     kick/standup 旁路：fallen / getup_done / 禁 standup→kick
 ├── test_standup_kick_hardening.py
+├── test_switcher_integration_suite.py  一键：SM+deploy+standup/kick+BT；空→walk
 └── test_blockers.py             ROADMAP §5 可执行清单（先告知用户，不启训）
 ```
 
@@ -171,7 +176,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-p2.json     上轮（P2 验收 + reactive 硬化 + §6.11）
 ├── contract-gate-20261024-standup.json 上轮（standup/kick 硬化 + HiFAR 边界 + 阻塞项清单）
 ├── contract-gate-20261024-draft.json  上轮（draft 校验器 + schema 负例 + §6.12）
-├── contract-gate-20261024-isol.json   本轮（draft 全目录隔离 + forbidden_as_walk）
+├── contract-gate-20261024-isol.json   上轮（draft 全目录隔离 + forbidden_as_walk）
+├── contract-gate-20261024-p3.json     本轮（门禁指南 + P3 预研 + 切换套件）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
@@ -196,6 +202,9 @@ k1-training/manifests/
 | P1 draft 校验器 | `configs/draft-only/draft_validator.py` | 全目录 `draft_only:true`；stability / config_patch 隔离；禁覆盖 live 奖励 |
 | 观测 schema 负例 | `obs_schema.py` + `obs-contract-v1.json` `forbidden_as_walk` | 拒 345/343、拒外族当 walk、拒缺历史窗；不改 live obs |
 | 开源方法可迁短表 | GLOBAL §6.12 | 旁路灵感 / **不可**替换 B-Human walk |
+| 门禁一键汇总 | [CONTRACT-GATE-GUIDE.md](CONTRACT-GATE-GUIDE.md) | PASS / SKIP / WARN；**PASS ≠ 已训通** |
+| P3 预研 | [P3-PREVIEW.md](P3-PREVIEW.md) | 可做 stub / 等 GPU / 等真机；不实现训练 |
+| 切换集成回归套件 | `test_switcher_integration_suite.py` | 空上下文 → walk **344→13** |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |

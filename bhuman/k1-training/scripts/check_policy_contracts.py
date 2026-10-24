@@ -492,6 +492,12 @@ def check_gpu_free_shells(
             "k1_draft_validator",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
+            "switcher_integration_suite",
+            "k1_switcher_integration_suite",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -923,6 +929,9 @@ def main() -> int:
             "p1_draft": "draft-only factor comments; official rewards untouched",
             "draft_validator": "draft_only:true; stability/config_patch isolated; live rewards not overwritten",
             "obs_schema_negatives": "refuse 343/345, foreign skills as walk, missing history; no live-obs rewrite",
+            "contract_gate_guide": "bhuman/docs/CONTRACT-GATE-GUIDE.md (PASS ≠ trained)",
+            "p3_preview": "bhuman/docs/P3-PREVIEW.md; contrast only; default walk 344→13",
+            "switcher_integration_suite": "SM+deploy+standup/kick+BT; empty context → walk 344→13",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -981,6 +990,7 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_blockers.py",
             "python3 bhuman/k1-training/configs/draft-only/test_p1_draft.py",
             "python3 bhuman/k1-training/configs/draft-only/test_draft_validator.py",
+            "python3 bhuman/k1-training/k1-switcher/test_switcher_integration_suite.py",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],
     }
