@@ -388,6 +388,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/pr_volume_health_rescan.py",
         "hint": "先看体积复扫是否仍只记增长、不改历史、不删产物",
     },
+    "test_kick_engine_boundary_edges.py": {
+        "look": "bhuman/k1-training/scripts/kick_engine_boundary_edges.py",
+        "hint": "先看 request/abort 边是否仍 59↔344，或 KickEngine PASS 是否被写成 live RL kick 部署",
+    },
+    "test_ball_task_isolation_matrix.py": {
+        "look": "bhuman/k1-training/scripts/ball_task_isolation_matrix.py",
+        "hint": "先看 K1 / K1_Ball / K1_Stand_Up 三槽是否串线，或 ONNX 名是否占错槽",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

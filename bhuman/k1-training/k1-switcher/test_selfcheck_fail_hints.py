@@ -115,6 +115,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_reactive_intercept_bypass_hardening.py",
         "test_teamcomm_shape_negatives.py",
         "test_pr_volume_health_rescan.py",
+        "test_kick_engine_boundary_edges.py",
+        "test_ball_task_isolation_matrix.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

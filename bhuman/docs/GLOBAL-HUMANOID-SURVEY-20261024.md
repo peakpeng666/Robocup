@@ -457,6 +457,8 @@ SimRobot 六机验收缺口：`scripts/simrobot_six_robot_acceptance_gap.py`（�
 reactive 拦截旁路硬化：`scripts/reactive_intercept_bypass_hardening.py`（**TRAINABLE=false**；PlayBall ≠ kickPolicy；PASS ≠ live kick 部署）。  
 队通信形状负例：`scripts/teamcomm_shape_negatives.py`（官方 **128** ≠ HSL **512**；禁静默扩容）。  
 PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（记增长；**不改历史**；**不删产物**）。  
+KickEngine 请求/中止边：`scripts/kick_engine_boundary_edges.py`（request/abort vs kickPolicy **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署）。  
+球任务隔离矩阵：`scripts/ball_task_isolation_matrix.py`（`K1` / `K1_Ball` / `K1_Stand_Up` 三槽；禁跨槽接线）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

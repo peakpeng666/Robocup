@@ -1,0 +1,62 @@
+{
+  "generated_utc": "2026-10-24T12:38:53+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/kick_engine_boundary_edges.py",
+  "checklist": [
+    "request_edge_inventory",
+    "finish_abort_edges",
+    "playball_not_kick_policy",
+    "standalone_kickengine_not_fabricated",
+    "pass_not_live_rl_kick_deploy"
+  ],
+  "edges": [
+    {
+      "id": "request_kick_policy",
+      "needle": "wasKicking = true",
+      "selects": "kickPolicy",
+      "contract": "59→13"
+    },
+    {
+      "id": "abort_finish_walk",
+      "needle": "wasKicking = false",
+      "selects": "walkPolicy",
+      "contract": "344→13"
+    },
+    {
+      "id": "walk_stay_apply",
+      "needle": "engine.walkPolicy.apply()",
+      "selects": "walkPolicy",
+      "contract": "344→13"
+    },
+    {
+      "id": "kick_policy_apply",
+      "needle": "CompiledNN& policy = !isOldKick ? engine.kickPolicy",
+      "selects": "kickPolicy",
+      "contract": "59→13"
+    }
+  ],
+  "playball_is_kick_policy": false,
+  "standalone_kick_engine": {
+    "path": null,
+    "status": "SKIP",
+    "fabricated": false
+  },
+  "apply_to_live": false,
+  "kick_engine_pass_as_live_rl_kick_deploy": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "request/abort edges stay kickPolicy 59→13 vs walkPolicy 344→13; PlayBall ≠ kickPolicy; overlay PASS ≠ live RL kick deploy",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "kick": "59→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

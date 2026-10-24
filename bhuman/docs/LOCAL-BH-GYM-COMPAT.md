@@ -61,7 +61,9 @@ SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.p
 力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（(T,13) 目标偏置 ≠ 电流；(T,12) 窗；standup 22 不得当 walk；**T4** 仍 SKIP；序列 PASS ≠ live torque / 比赛合格；**TRAINABLE=false**；**gap_closed=false**）。  
 reactive 拦截旁路硬化：`scripts/reactive_intercept_bypass_hardening.py`（**TRAINABLE=false**；PlayBall ≠ kickPolicy；`shouldInterceptBall` 仍 walkPolicy；校验 PASS ≠ live kick 部署；**apply_to_live=false**；**gap_closed=false**）。  
 队通信形状负例：`scripts/teamcomm_shape_negatives.py`（官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP；**TRAINABLE=false**；**gap_closed=false**）。  
-PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（相对 pin 335/+191k 记增长；只建议日后可压缩的 stamp，**no_history_rewrite**；**do_not_delete_artifacts**；**TRAINABLE=false**；**gap_closed=false**）。
+PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（相对 pin 335/+191k 记增长；只建议日后可压缩的 stamp，**no_history_rewrite**；**do_not_delete_artifacts**；**TRAINABLE=false**；**gap_closed=false**）。  
+KickEngine 请求/中止边：`scripts/kick_engine_boundary_edges.py`（request → kickPolicy **59→13**；abort/finish → walkPolicy **344→13**；PlayBall ≠ kickPolicy；standalone KickEngine 不伪造；overlay PASS ≠ live RL kick 部署；**apply_to_live=false**；**TRAINABLE=false**；**gap_closed=false**）。  
+球任务隔离矩阵：`scripts/ball_task_isolation_matrix.py`（walk **K1_walk.onnx** **344→13** / kick `K1_Ball` **59→13** / standup **73→22** 三槽；禁跨槽接线；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 

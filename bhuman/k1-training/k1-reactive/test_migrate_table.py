@@ -219,6 +219,8 @@ REQUIRED_LANDINGS = (
     "reactive_intercept_bypass_hardening.py",
     "teamcomm_shape_negatives.py",
     "pr_volume_health_rescan.py",
+    "kick_engine_boundary_edges.py",
+    "ball_task_isolation_matrix.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

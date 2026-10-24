@@ -687,6 +687,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "PR volume re-scan; growth noted; no history rewrite; do not delete artifacts",
         ),
         (
+            "bhuman/k1-training/scripts/kick_engine_boundary_edges.py",
+            "KickEngine request/abort edges; PlayBall≠kickPolicy; PASS ≠ live RL kick deploy",
+        ),
+        (
+            "bhuman/k1-training/scripts/ball_task_isolation_matrix.py",
+            "ball-task isolation; K1 / K1_Ball / Stand_Up slots; no cross-slot wiring",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

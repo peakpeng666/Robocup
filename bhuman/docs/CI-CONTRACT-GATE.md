@@ -91,4 +91,4 @@ jobs:
 
 **不要**在 CI 里把 `merge_ready` 翻 true。**不要**把自检 PASS 写成可合并。
 
-同门禁无 Gym 增量：`domain_rand_disturbance_draft_validator` / `pd_gain_domain_gap_negatives` / `simrobot_six_robot_acceptance_gap` / `estimator_bypass_draft_contract` / `torque_effort_timeseries_contract` / `reactive_intercept_bypass_hardening` / `teamcomm_shape_negatives` / `pr_volume_health_rescan` 只盘点，不要求 GPU，不翻 `merge_ready`。
+同门禁无 Gym 增量：`domain_rand_disturbance_draft_validator` / `pd_gain_domain_gap_negatives` / `simrobot_six_robot_acceptance_gap` / `estimator_bypass_draft_contract` / `torque_effort_timeseries_contract` / `reactive_intercept_bypass_hardening` / `teamcomm_shape_negatives` / `pr_volume_health_rescan` / `kick_engine_boundary_edges` / `ball_task_isolation_matrix` 只盘点，不要求 GPU，不翻 `merge_ready`。

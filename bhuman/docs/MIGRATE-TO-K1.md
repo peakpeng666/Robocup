@@ -158,9 +158,11 @@
 | SimRobot 六机验收缺口 | 门禁 | `scripts/simrobot_six_robot_acceptance_gap.py` | **P0** | 否 | S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false** | 上轮 simrobot-gap |
 | 估计器旁路草案合同 | 门禁 | `scripts/estimator_bypass_draft_contract.py` | **P0** | 否 | `D_estimator_ab` + stub 只盘点；hooks 未接线；**apply_to_live=false**；PASS ≠ live estimator swap | 上轮 estimator-bypass |
 | 力矩 / effort 时间序列合同 | 门禁 | `scripts/torque_effort_timeseries_contract.py` | **P0** | 否 | (T,13)/(T,12) 形状；**T4** SKIP；序列 PASS ≠ live torque / 比赛合格 | 上轮 torque-series |
-| reactive 拦截旁路硬化 | 门禁 | `scripts/reactive_intercept_bypass_hardening.py` | **P0** | 否 | **TRAINABLE=false**；PlayBall ≠ kickPolicy；拦截写入链仍 walkPolicy；PASS ≠ live kick 部署 | **本轮 intercept-hardening** |
-| 队通信形状负例 | 门禁 | `scripts/teamcomm_shape_negatives.py` | **P0 / P5** | 否 | 官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP | **本轮 teamcomm-negatives** |
-| PR 体积健康复扫 | 门禁 | `scripts/pr_volume_health_rescan.py` | **P0** | 否 | 记增长；只建议日后可压缩 stamp；**不改历史**；**不删产物** | **本轮 volume-rescan** |
+| reactive 拦截旁路硬化 | 门禁 | `scripts/reactive_intercept_bypass_hardening.py` | **P0** | 否 | **TRAINABLE=false**；PlayBall ≠ kickPolicy；拦截写入链仍 walkPolicy；PASS ≠ live kick 部署 | 上轮 intercept-hardening |
+| 队通信形状负例 | 门禁 | `scripts/teamcomm_shape_negatives.py` | **P0 / P5** | 否 | 官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP | 上轮 teamcomm-negatives |
+| PR 体积健康复扫 | 门禁 | `scripts/pr_volume_health_rescan.py` | **P0** | 否 | 记增长；只建议日后可压缩 stamp；**不改历史**；**不删产物** | 上轮 volume-rescan |
+| KickEngine 请求/中止边 | 门禁 | `scripts/kick_engine_boundary_edges.py` | **P0** | 否 | request/abort vs kickPolicy **59→13**；PlayBall ≠ kickPolicy；PASS ≠ live RL kick 部署 | **本轮 kick-engine-edges** |
+| 球任务隔离矩阵 | 门禁 | `scripts/ball_task_isolation_matrix.py` | **P0** | 否 | walk **344→13** / `K1_Ball` **59→13** / `K1_Stand_Up` **73→22**；禁跨槽接线 | **本轮 ball-isolation** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

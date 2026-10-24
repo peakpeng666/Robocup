@@ -258,6 +258,12 @@ from teamcomm_shape_negatives import (  # noqa: E402
 from pr_volume_health_rescan import (  # noqa: E402
     refuse_volume_rescan_deletes_artifacts,
 )
+from kick_engine_boundary_edges import (  # noqa: E402
+    refuse_kick_engine_pass_as_live_rl_kick_deploy,
+)
+from ball_task_isolation_matrix import (  # noqa: E402
+    refuse_ball_task_cross_slot_wiring,
+)
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
     refuse_continue_phase_skips_required_reset,
@@ -1376,6 +1382,27 @@ def _case_volume_rescan_deletes_artifacts() -> None:
     )
 
 
+def _case_kick_engine_pass_as_live_rl_kick_deploy() -> None:
+    refuse_kick_engine_pass_as_live_rl_kick_deploy(
+        {
+            "kick_engine_pass_as_live_rl_kick_deploy": True,
+            "as_live_rl_kick_deploy": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_ball_task_cross_slot_wiring() -> None:
+    refuse_ball_task_cross_slot_wiring(
+        {
+            "ball_task_cross_slot_wiring": True,
+            "from": "K1_Ball",
+            "to": "K1",
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1509,6 +1536,8 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("reactive_pass_as_live_kick_deploy", _case_reactive_pass_as_live_kick_deploy),
     ("silent_teamcomm_size_upgrade", _case_silent_teamcomm_size_upgrade),
     ("volume_rescan_deletes_artifacts", _case_volume_rescan_deletes_artifacts),
+    ("kick_engine_pass_as_live_rl_kick_deploy", _case_kick_engine_pass_as_live_rl_kick_deploy),
+    ("ball_task_cross_slot_wiring", _case_ball_task_cross_slot_wiring),
 )
 
 

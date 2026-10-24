@@ -134,6 +134,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -272,6 +274,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -403,6 +407,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening.py",
         "teamcomm_shape_negatives.py",
         "pr_volume_health_rescan.py",
+        "kick_engine_boundary_edges.py",
+        "ball_task_isolation_matrix.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -530,6 +536,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -662,6 +670,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -781,6 +791,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -820,6 +832,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
         "run_pr4_selfcheck",
         "forbidden_regressions",
         "merge_ready=false",
@@ -957,6 +971,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -998,6 +1014,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -1040,6 +1058,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -1082,6 +1102,8 @@ REQUIRED_DOCS = {
         "reactive_intercept_bypass_hardening",
         "teamcomm_shape_negatives",
         "pr_volume_health_rescan",
+        "kick_engine_boundary_edges",
+        "ball_task_isolation_matrix",
     ),
     "bhuman/docs/OBS-ASSEMBLY-344.md": (
         "344→13",
