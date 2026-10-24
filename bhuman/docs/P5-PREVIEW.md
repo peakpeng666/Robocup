@@ -2,7 +2,7 @@
 
 2026-10-24。配套：[ROADMAP-P0-P5.md](ROADMAP-P0-P5.md) P5、[P4-PREVIEW.md](P4-PREVIEW.md)、[P2-ACCEPTANCE.md](P2-ACCEPTANCE.md)、[GLOBAL-HUMANOID-SURVEY-20261024.md](GLOBAL-HUMANOID-SURVEY-20261024.md) §6.7–6.9、[NEXT-P1-P2.md](NEXT-P1-P2.md)。
 
-底座与开训纪律：见 [README-RL.md](README-RL.md)。本文只预研真机前置，不改 walk **344→13** / `K1.yaml` 默认奖励。ASAP / 厂家 T–n / 带宽实测都不得回头改官方维。
+底座与开训纪律：见 [README-RL.md](README-RL.md)。本文只预研真机前置，不改 walk **344→13** / `K1.yaml` 默认奖励。ASAP / 厂家 T–n / 带宽实测都不得回头改官方维。只读合同：`pd_domain_gap_contract.py`（p60 vs p25）、`teamcomm_budget.py`（512 B；队友不进 344）、[CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md)。
 
 **不连接机器人，不跑安装 / 固件 / `booster_deploy`。**  
 **文档 / 门禁就绪 ≠ 已上真机。** 门禁 PASS、P5 预研成文，都不等于授权、不等于上过机、不等于可以写真机结论。

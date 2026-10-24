@@ -10,7 +10,8 @@
 # gait_frequency slot / boosterJoints snapshot / PR4 selfcheck /
 # deploy obs assembly 344 / last_action 13-zero reset /
 # print-only train dry-run / env registry audit /
-# SimRobot six-robot acceptance (no sim) / SkillRequest map.
+# SimRobot six-robot acceptance (no sim) / SkillRequest map /
+# PD domain-gap / TeamComm 512 B / checkpoint layout.
 # Skeleton YAML may exist; unregistered in train.py = PASS (negative fixture in
 # k1-reactive/test_unregistered_in_train_py.py). Skill-switch shells are empty.
 # Does not source env.sh: that file requires the operator bh-gym interpreter.

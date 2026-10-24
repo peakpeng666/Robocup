@@ -334,6 +334,22 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/k1-reactive/skill_request_map.py",
             "SkillRequest map (empty/unknown → walk; shoot/pass stay walk)",
         ),
+        (
+            "bhuman/k1-training/k1-switcher/pd_domain_gap_contract.py",
+            "PD domain-gap (train p60 vs robot p25; no K1.yaml write-back)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/teamcomm_budget.py",
+            "TeamComm 512 B (teammate not into 344; WLAN SKIP)",
+        ),
+        (
+            "bhuman/docs/CHECKPOINT-LAYOUT.md",
+            "walk checkpoint layout (K1_walk.pth/onnx; missing SKIP)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/checkpoint_layout.py",
+            "checkpoint layout checker (T1/reactive refused on walk path)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

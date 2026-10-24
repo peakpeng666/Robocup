@@ -128,6 +128,9 @@ B-Human 行为树 / 规则 / 正常视觉 / GameController     ← 保持（比�
 - [x] GPU 到位后步骤：[GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md)（probe → 告知用户 → 等「开训」→ dry-run → 才允许真训；本文档不执行真训）。
 - [x] SimRobot 六机验收脚手架：[SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) + `simrobot_acceptance/`（不跑仿真；缺 SimRobot 活回放诚实 SKIP）。
 - [x] SkillRequest 对照硬化：`k1-reactive/skill_request_map.py`（空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒）。
+- [x] PD 域差合同：`k1-switcher/pd_domain_gap_contract.py`（训侧踝滚 **p60** vs 真机 **p25** 有意域差；拒写回 `K1.yaml`；拒统一 PD 冒充已闭合）。
+- [x] 队通信 512 B stub：`k1-switcher/teamcomm_budget.py`（端口 `10000+队号`；队友状态 **不进** 344；无真机/WLAN 带宽 SKIP）。
+- [x] checkpoint 布局：[CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) + `checkpoint_layout.py`（官方 `K1_walk.pth`/onnx；T1/reactive 不得占 walk 默认路径；缺文件 SKIP）。
 - [ ] 完整切换器时间序列（P4；**阻塞：无录包**，不得把 SKIP 改 PASS）。
 - [ ] 可训练平行 env（**阻塞：GPU worker + 另开实验目录**；本 stub 永不冒充）。
 
@@ -212,6 +215,7 @@ Isaac Lab / unitree_rl_lab **只允许作为对照仿真器**，写明「非主�
 预研（不碰真机）：[P5-PREVIEW.md](P5-PREVIEW.md)。**默认入口仍是官方 walk 344→13。文档 / 门禁就绪 ≠ 已上真机。**
 
 - [x] 预研文档：域差闭合目标、带宽/CTDE 实测位置、默认仍 walk。
+- [x] PD 域差 / TeamComm 512 B / checkpoint 布局合同（只读；缺真机/权 SKIP）。
 
 - SDK/固件版本冲突（文档 1.7.1 vs deploy ≥1.7.2）必须实测。
 - ASAP：真机轨迹 → delta action → 再训。Booster Lab：真机 T–n / armature → 改仿真植物。两条都是 P5，都不得改 344。

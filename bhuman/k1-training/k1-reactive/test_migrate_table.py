@@ -51,6 +51,9 @@ REQUIRED_ROWS = (
     "GPU worker 就绪清单",
     "SimRobot 六机脚手架",
     "SkillRequest 对照硬化",
+    "PD 域差合同",
+    "队通信 512 B stub",
+    "checkpoint 布局",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -103,6 +106,9 @@ REQUIRED_LANDINGS = (
     "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
     "skill_request_map.py",
     "simrobot_acceptance",
+    "pd_domain_gap_contract.py",
+    "teamcomm_budget.py",
+    "CHECKPOINT-LAYOUT",
 )
 
 

@@ -113,6 +113,9 @@ REQUIRED_DOCS = {
         "GPU-AFTER-ONLINE",
         "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
         "skill_request_map",
+        "CHECKPOINT-LAYOUT",
+        "pd_domain_gap",
+        "teamcomm_budget",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -153,6 +156,9 @@ REQUIRED_DOCS = {
         "GPU-AFTER-ONLINE.md",
         "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
         "skill_request_map.py",
+        "CHECKPOINT-LAYOUT",
+        "pd_domain_gap_contract.py",
+        "teamcomm_budget.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -238,6 +244,9 @@ REQUIRED_DOCS = {
         "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
         "skill_request_map",
         "simrobot_acceptance",
+        "CHECKPOINT-LAYOUT",
+        "pd_domain_gap",
+        "teamcomm_budget",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -316,6 +325,9 @@ REQUIRED_DOCS = {
         "不连接机器人",
         "README-RL",
         "CompressedTeamCommunicationStreams",
+        "pd_domain_gap_contract",
+        "teamcomm_budget",
+        "CHECKPOINT-LAYOUT",
     ),
     "bhuman/docs/README-RL.md": (
         "344→13",
@@ -345,6 +357,9 @@ REQUIRED_DOCS = {
         "env_registry_audit",
         "SIMROBOT-SIX-ROBOT-ACCEPTANCE",
         "skill_request_map",
+        "CHECKPOINT-LAYOUT",
+        "pd_domain_gap",
+        "teamcomm_budget",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -396,6 +411,14 @@ REQUIRED_DOCS = {
         "不跑",
         "P2-ACCEPTANCE",
         "P4",
+    ),
+    "bhuman/docs/CHECKPOINT-LAYOUT.md": (
+        "344→13",
+        "K1_walk.pth",
+        "SKIP",
+        "T1",
+        "reactive",
+        "不入库",
     ),
 }
 

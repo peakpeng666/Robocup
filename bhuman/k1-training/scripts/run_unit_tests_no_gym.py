@@ -62,6 +62,9 @@ REQUIRED_NAMES = (
     "test_env_registry_audit.py",
     "test_simrobot_acceptance.py",
     "test_skill_request_map.py",
+    "test_pd_domain_gap.py",
+    "test_teamcomm_budget.py",
+    "test_checkpoint_layout.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

@@ -70,7 +70,10 @@
 | env 注册只读清单 | 门禁 | `scripts/env_registry_audit.py` | **P0** | 否 | 官方 K1 在册；k1-reactive / estimators / switcher **未**注册 | **本轮审计** |
 | GPU 到位后步骤 | ROADMAP §5 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | **P0** | 否（文档）；真训要 | probe → 告知用户 → 等「开训」→ dry-run → 才允许真训；本文档不执行真训 | 上轮短文 |
 | SimRobot 六机脚手架 | P2 / P4 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) + `simrobot_acceptance/` | **P4 / P2** | 否（脚手架）；活回放要本机栈 | 各机默认 **344→13**；禁 standup→kick；禁冒充 72→22；缺 SimRobot **SKIP** | **本轮 stub** |
-| SkillRequest 对照硬化 | §6.10 | `k1-reactive/skill_request_map.py` | **P0 / P2** | 否 | 空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒 | **本轮 stub** |
+| SkillRequest 对照硬化 | §6.10 | `k1-reactive/skill_request_map.py` | **P0 / P2** | 否 | 空/未知 → walk；`shoot`/`pass` 不得跳过 walk 纪律；外族拒 | 上轮 stub |
+| PD 域差合同 | §6.8 / P5 | `k1-switcher/pd_domain_gap_contract.py` | **P0 / P5** | 否 | 训侧踝滚 **p60** vs 真机 **p25** 有意域差；拒写回 `K1.yaml` | **本轮 stub** |
+| 队通信 512 B stub | §6.7 | `k1-switcher/teamcomm_budget.py` | **P4 / P5** | 否（声明）；实测要真机 | 512 B / `10000+队号`；队友 **不进** 344；WLAN SKIP | **本轮 stub** |
+| checkpoint 布局 | 部署 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | **P0** | 否 | 官方 `K1_walk.pth`/onnx；T1/reactive 不得占 walk 路径；缺文件 SKIP | **本轮约定** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
 | SimRobot vs Isaac 域差 | §6.8 | 三道门：Isaac 训 / MuJoCo 过桥 / SimRobot 比赛 | **P4 / P5** | 过桥否；训/真机要 | 过桥对象仍是 344→13；SimRobot 不是训练器 | **本轮调研** |
@@ -148,6 +151,9 @@
 | 45 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等开训 → dry-run；不执行真训 |
 | 46 | SimRobot 六机脚手架 | `simrobot_acceptance/acceptance.py` | `python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py` |
 | 47 | SkillRequest 对照硬化 | `skill_request_map.py` | `python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py` |
+| 48 | PD 域差合同 | `pd_domain_gap_contract.py` | `python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py` |
+| 49 | 队通信 512 B stub | `teamcomm_budget.py` | `python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py` |
+| 50 | checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

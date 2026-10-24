@@ -55,6 +55,9 @@
 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run |
 | SimRobot 六机脚手架 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) | 不跑仿真；表 PASS / 活回放 SKIP |
 | SkillRequest 对照表 | `k1-reactive/skill_request_map.py` | 空/未知 → walk；shoot/pass 不得跳过 walk |
+| PD 域差合同 | `k1-switcher/pd_domain_gap_contract.py` | 训侧 p60 vs 真机 p25；不写回 `K1.yaml` |
+| 队通信 512 B | `k1-switcher/teamcomm_budget.py` | 队友不进 344；无 WLAN SKIP |
+| checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `K1_walk.pth`/onnx；缺文件 SKIP |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---
@@ -110,3 +113,4 @@ ONNX 导出同样要 checkpoint + 用户批准；本环境无权重则 SKIP。�
 | [OBS-ASSEMBLY-344.md](OBS-ASSEMBLY-344.md) | 部署侧 344 拼装只读；不经 reactive concat |
 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | GPU 到位后：probe → 告知用户 → 等开训 → dry-run |
 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) | 六机脚手架；不跑仿真；活回放 SKIP |
+| [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | 官方 walk 权路径；T1/reactive 不得占用 |

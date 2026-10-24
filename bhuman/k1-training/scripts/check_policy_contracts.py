@@ -612,6 +612,24 @@ def check_gpu_free_shells(
             "k1_skill_request_map",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
+            "pd_domain_gap",
+            "k1_pd_domain_gap",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
+            "teamcomm_budget",
+            "k1_teamcomm_budget",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
+            "checkpoint_layout",
+            "k1_checkpoint_layout",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1073,6 +1091,9 @@ def main() -> int:
             "env_registry_audit": "official K1 in; k1-reactive/estimators/switcher not registered",
             "simrobot_acceptance": "six-robot table; live SKIP without SimRobot; no fake-green",
             "skill_request_map": "SkillRequest → walk default; shoot/pass cannot skip walk; foreign refused",
+            "pd_domain_gap": "train ankle-roll p60 vs robot p25; no K1.yaml write-back",
+            "teamcomm_budget": "512 B / 10000+team; teammate not into 344; WLAN SKIP",
+            "checkpoint_layout": "K1_walk.pth/onnx slots; missing SKIP; T1/reactive refused",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1153,6 +1174,9 @@ def main() -> int:
             "python3 bhuman/k1-training/scripts/env_registry_audit.py",
             "python3 bhuman/k1-training/simrobot_acceptance/test_simrobot_acceptance.py",
             "python3 bhuman/k1-training/k1-reactive/test_skill_request_map.py",
+            "python3 bhuman/k1-training/k1-switcher/test_pd_domain_gap.py",
+            "python3 bhuman/k1-training/k1-switcher/test_teamcomm_budget.py",
+            "python3 bhuman/k1-training/k1-switcher/test_checkpoint_layout.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

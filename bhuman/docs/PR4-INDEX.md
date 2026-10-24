@@ -90,6 +90,7 @@ bhuman/docs/
 ├── OBS-ASSEMBLY-344.md                  部署侧 walk 拼装 10×32+24=344（不经 reactive）
 ├── GPU-AFTER-ONLINE.md                  GPU 到位后：probe → 告知用户 → 等开训 → dry-run
 ├── SIMROBOT-SIX-ROBOT-ACCEPTANCE.md     六机脚手架（不跑仿真；活回放 SKIP）
+├── CHECKPOINT-LAYOUT.md                 官方 walk 权路径（缺文件 SKIP）
 ├── CI-CONTRACT-GATE.md                  CI 门禁草案（不改强制 CI）
 ├── DEPLOY-CALL-SEQUENCE.md              部署一拍时序
 ├── HISTORY-TORQUE-TIMESERIES.md         历史/力矩形状草案（连续性 SKIP）
@@ -163,6 +164,12 @@ k1-switcher/
 ├── gait_frequency_contract.py   action[12]=gait_frequency；≠ 第 13 路电机
 ├── obs_assembly.py              部署侧 10×32+24=344；不经 reactive concat
 ├── last_action_reset.py         standup→walk 13 个 0；拒 standup[:13]
+├── pd_domain_gap_contract.py    训侧踝滚 p60 vs 真机 p25；拒写回 K1.yaml
+├── teamcomm_budget.py           512 B / 10000+队号；队友不进 344；WLAN SKIP
+├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
+├── test_pd_domain_gap.py
+├── test_teamcomm_budget.py
+├── test_checkpoint_layout.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -236,7 +243,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-obs.json    上轮（观测拼装 + last_action 清零 + 清单刷新）
 ├── contract-gate-20261024-dry.json    上轮（开训干跑 + env 注册审计 + GPU 到位步骤）
 ├── contract-gate-20261024-qc.json     上轮（文档去重 QC）
-├── contract-gate-20261024-six.json    本轮（六机脚手架 + SkillRequest 对照）
+├── contract-gate-20261024-six.json    上轮（六机脚手架 + SkillRequest 对照）
+├── contract-gate-20261024-gap.json    本轮（PD 域差 + TeamComm 512 + checkpoint 布局）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -295,6 +303,9 @@ k1-training/manifests/
 | GPU 到位后步骤 | [GPU-AFTER-ONLINE.md](GPU-AFTER-ONLINE.md) | probe → 告知用户 → 等「开训」→ dry-run → 才允许真训 |
 | SimRobot 六机脚手架 | [SIMROBOT-SIX-ROBOT-ACCEPTANCE.md](SIMROBOT-SIX-ROBOT-ACCEPTANCE.md) + `simrobot_acceptance/` | 表 PASS；活回放缺 SimRobot **SKIP** |
 | SkillRequest 对照硬化 | `skill_request_map.py` | 空/未知 → walk；shoot/pass 不得跳过 walk；外族拒 |
+| PD 域差合同 | `pd_domain_gap_contract.py` | 训侧 p60 vs 真机 p25；拒写回 / 拒统一冒充已闭合 |
+| 队通信 512 B stub | `teamcomm_budget.py` | 队友 **不进** 344；无 WLAN 带宽 SKIP |
+| checkpoint 布局 | [CHECKPOINT-LAYOUT.md](CHECKPOINT-LAYOUT.md) | `K1_walk.pth`/onnx；T1/reactive 不得占用；缺文件 SKIP |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |
