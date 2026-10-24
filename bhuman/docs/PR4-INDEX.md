@@ -133,6 +133,7 @@ scripts/
 ├── settle_jitter_audit.py       draft_settle_* 新键；live 无对应键
 ├── estimator_ab_audit.py        估计器 A/B 旁路；不写 344；不注册 train.py
 ├── reference_penalty_anneal_audit.py live reference_mean_penalty 1.0 不改
+├── behavior_control_handoff.py  谁切 kick/standup；默认仍 walk；缺源 SKIP
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -178,6 +179,9 @@ k1-switcher/
 ├── last_action_reset.py         standup→walk 13 个 0；拒 standup[:13]
 ├── pd_domain_gap_contract.py    训侧踝滚 p60 vs 真机 p25；拒写回 K1.yaml
 ├── teamcomm_budget.py           512 B / 10000+队号；队友不进 344；WLAN SKIP
+├── compressed_teamcomm_shape.py HSL 512 / 官方容器；流式类型；不进 344；WLAN SKIP
+├── test_compressed_teamcomm_shape.py
+├── test_behavior_control_handoff.py
 ├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
 ├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
 ├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
@@ -372,6 +376,8 @@ k1-training/manifests/
 | 估计器 A/B 草案 | `estimator_ab_audit.py` | 旁路声明；不得写入 344 / 不得注册 train.py |
 | 参考惩罚退火草案 | `reference_penalty_anneal_audit.py` | live `reference_mean_penalty: 1.0` 不被改写 |
 | P1 五因素机器校验 | [P1-CONFIG-DIFF-DRAFT.md](P1-CONFIG-DIFF-DRAFT.md) | A–E 均 **已有机器校验**；与 `draft_validator` / `p1_draft_diff` 衔接 |
+| BehaviorControl 交接只读 | `behavior_control_handoff.py` | 谁切 kick/standup；默认仍 walk；与 `bt_skill_select` / `deploy_call` 交叉；缺源 SKIP |
+| CompressedTeamCommunication 形状 | `compressed_teamcomm_shape.py` | HSL 512 / 官方容器；队友 **不进** 344；无 WLAN 带宽 SKIP |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

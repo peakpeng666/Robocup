@@ -32,6 +32,8 @@ NEEDLES = (
     "test_settle_jitter_audit.py",
     "test_estimator_ab_audit.py",
     "test_reference_penalty_anneal_audit.py",
+    "test_behavior_control_handoff.py",
+    "test_compressed_teamcomm_shape.py",
     "test_selfcheck_fail_hints.py",
     "selfcheck_fail_hints.py",
     "先看",

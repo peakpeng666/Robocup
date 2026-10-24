@@ -2,7 +2,8 @@
 
 Each case MUST raise. If a refuse is silent, the gate goes red.
 Cases: T1 as walk, standup→kick, SimRobot as fast standup, latent into 344,
-draft overwrite live, unified PD as closed gap.
+draft overwrite live, unified PD as closed gap, sibling merge into 344,
+T1 ONNX as K1 walk, BehaviorControl replacing walk, TeamComm into 344.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -16,14 +17,19 @@ ROOT = Path(__file__).resolve().parent
 REACTIVE = ROOT.parent / "k1-reactive"
 ESTIMATORS = ROOT.parent / "k1-estimators"
 DRAFT = ROOT.parent / "configs" / "draft-only"
-for extra in (ROOT, REACTIVE, ESTIMATORS, DRAFT):
+SCRIPTS = ROOT.parent / "scripts"
+for extra in (ROOT, REACTIVE, ESTIMATORS, DRAFT, SCRIPTS):
     if str(extra) not in sys.path:
         sys.path.insert(0, str(extra))
 
+from behavior_control_handoff import refuse_behavior_replaces_walk  # noqa: E402
 from checkpoint_layout import refuse_foreign_on_walk_path  # noqa: E402
+from compressed_teamcomm_shape import refuse_teamcomm_into_344  # noqa: E402
 from draft_validator import refuse_overwrite_live_rewards  # noqa: E402
 from hifar_boundary import refuse_huoshen_obs_as_walk, refuse_t1_weight_on_k1_actor  # noqa: E402
 from hooks import refuse_concat_latent_onto_walk  # noqa: E402
+from official_sibling_tasks_audit import refuse_merge_sibling_into_344  # noqa: E402
+from onnx_deploy_path_crosscheck import refuse_t1_onnx_as_k1_walk  # noqa: E402
 from pd_domain_gap_contract import refuse_unified_pd_as_closed_gap  # noqa: E402
 from sm import LEGAL_EDGES, SwitcherSM  # noqa: E402
 from standup_kick_contract import refuse_simrobot_as_fast_standup  # noqa: E402
@@ -87,6 +93,22 @@ def _case_unified_pd_closed() -> None:
     refuse_unified_pd_as_closed_gap({"unified": True, "gap_closed": True})
 
 
+def _case_sibling_merge_into_344() -> None:
+    refuse_merge_sibling_into_344({"task": "K1_Ball", "concat_into": WALK_OBS})
+
+
+def _case_t1_onnx_as_k1_walk() -> None:
+    refuse_t1_onnx_as_k1_walk("T1_walk.onnx")
+
+
+def _case_behavior_replaces_walk() -> None:
+    refuse_behavior_replaces_walk({"replaces_walk": True, "default_skill": "kick"})
+
+
+def _case_teamcomm_into_344() -> None:
+    refuse_teamcomm_into_344({"compressed_into_344": True, "obs": WALK_OBS})
+
+
 CASES: tuple[tuple[str, CaseFn], ...] = (
     ("t1_as_walk", _case_t1_as_walk),
     ("huoshen_obs_as_walk", _case_huoshen_obs_as_walk),
@@ -96,6 +118,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("latent_into_344", _case_latent_into_344),
     ("draft_write_live", _case_draft_write_live),
     ("unified_pd_closed_fake_green", _case_unified_pd_closed),
+    ("sibling_merge_into_344", _case_sibling_merge_into_344),
+    ("t1_onnx_as_k1_walk", _case_t1_onnx_as_k1_walk),
+    ("behavior_replaces_walk", _case_behavior_replaces_walk),
+    ("teamcomm_into_344", _case_teamcomm_into_344),
 )
 
 

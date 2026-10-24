@@ -108,6 +108,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/reference_penalty_anneal_audit.py",
         "hint": "先看 live reference_mean_penalty 是否仍是 1.0",
     },
+    "test_behavior_control_handoff.py": {
+        "look": "bhuman/k1-training/scripts/behavior_control_handoff.py",
+        "hint": "先看谁切 kick/standup、默认是否仍 walk；缺源应 SKIP 不得伪造",
+    },
+    "test_compressed_teamcomm_shape.py": {
+        "look": "bhuman/k1-training/k1-switcher/compressed_teamcomm_shape.py",
+        "hint": "先看 HSL 512 / 官方容器是否被写成进 344，或缺源是否仍诚实 SKIP",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

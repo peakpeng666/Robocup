@@ -64,6 +64,8 @@ REQUIRED_DOCS = {
         "README-RL",
         "RESEARCH-MIGRATE-TABLE",
         "skill_request_map",
+        "behavior_control_handoff",
+        "compressed_teamcomm_shape",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -132,6 +134,8 @@ REQUIRED_DOCS = {
         "estimator_ab_audit",
         "reference_penalty_anneal",
         "已有机器校验",
+        "behavior_control_handoff",
+        "compressed_teamcomm_shape",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -192,6 +196,8 @@ REQUIRED_DOCS = {
         "settle_jitter_audit.py",
         "estimator_ab_audit.py",
         "reference_penalty_anneal_audit.py",
+        "behavior_control_handoff.py",
+        "compressed_teamcomm_shape.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -201,6 +207,7 @@ REQUIRED_DOCS = {
         "不离开",
         "skill_request_map",
         "SkillRequest",
+        "behavior_control_handoff",
     ),
     "bhuman/docs/schemas/obs-contract-v1.json": (
         "344",
@@ -240,6 +247,7 @@ REQUIRED_DOCS = {
         "onnx_export_contract",
         "用户批准",
         "热换 ONNX",
+        "behavior_control_handoff",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -302,6 +310,8 @@ REQUIRED_DOCS = {
         "estimator-ab-audit",
         "reference-penalty-anneal",
         "已有机器校验",
+        "behavior_control_handoff",
+        "compressed_teamcomm_shape",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -348,6 +358,8 @@ REQUIRED_DOCS = {
         "settle_jitter_audit",
         "estimator_ab_audit",
         "reference_penalty_anneal",
+        "behavior_control_handoff",
+        "compressed_teamcomm_shape",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -390,6 +402,7 @@ REQUIRED_DOCS = {
         "CompressedTeamCommunicationStreams",
         "pd_domain_gap_contract",
         "teamcomm_budget",
+        "compressed_teamcomm_shape",
         "CHECKPOINT-LAYOUT",
     ),
     "bhuman/docs/README-RL.md": (
@@ -440,6 +453,8 @@ REQUIRED_DOCS = {
         "settle_jitter_audit",
         "estimator_ab_audit",
         "reference_penalty_anneal",
+        "behavior_control_handoff",
+        "compressed_teamcomm_shape",
         "先看",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (

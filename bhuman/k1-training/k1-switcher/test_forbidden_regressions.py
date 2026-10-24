@@ -50,13 +50,20 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "latent_into_344",
         "draft_write_live",
         "unified_pd_closed_fake_green",
+        "sibling_merge_into_344",
+        "t1_onnx_as_k1_walk",
+        "behavior_replaces_walk",
+        "teamcomm_into_344",
     }
     present = {name for name, _fn in CASES}
     missing = sorted(required - present)
     if missing:
         errors.append(f"pack missing high-priority cases {missing}")
     else:
-        notes.append("high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD")
+        notes.append(
+            "high-priority cases present: T1 / standup→kick / SimRobot / latent / "
+            "draft / PD / sibling-merge / T1-onnx / BehaviorControl / TeamComm"
+        )
 
     try:
         frozen = assert_pack_frozen()
@@ -109,7 +116,7 @@ def main() -> int:
     report = run()
     print(
         f"[forbid-regress] {'PASS' if report['ok'] else 'FAIL'} "
-        "T1/standup→kick/SimRobot/latent/draft/PD; silent = red"
+        "T1/standup→kick/SimRobot/latent/draft/PD/sibling/T1-onnx; silent = red"
     )
     for item in report["errors"]:
         print(f"[error] {item}")

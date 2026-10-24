@@ -72,6 +72,8 @@ REQUIRED_ROWS = (
     "settle / 抖动新键",
     "估计器 A/B 草案",
     "参考惩罚退火草案",
+    "BehaviorControl 交接只读",
+    "CompressedTeamCommunication 形状 stub",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -143,6 +145,8 @@ REQUIRED_LANDINGS = (
     "settle_jitter_audit.py",
     "estimator_ab_audit.py",
     "reference_penalty_anneal_audit.py",
+    "behavior_control_handoff.py",
+    "compressed_teamcomm_shape.py",
 )
 
 

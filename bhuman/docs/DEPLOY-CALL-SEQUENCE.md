@@ -14,7 +14,8 @@
 | 槽位 / T5 | `k1-training/k1-reactive/skill_switch_map.py` | 第一拍 `last_action`；13==13 **不是** ONNX 热换许可 |
 | 引擎 | ONNX / C++ `WalkingEngine` / `GetUpEngine` | **本 stub 不调用** |
 
-编排口：`k1-training/k1-switcher/deploy_call.py`（`TRAINABLE=false`，无 Gym，无真机）。
+编排口：`k1-training/k1-switcher/deploy_call.py`（`TRAINABLE=false`，无 Gym，无真机）。  
+只读交接快照：`scripts/behavior_control_handoff.py`（谁切 kick/standup；默认仍 walk；缺源 SKIP）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

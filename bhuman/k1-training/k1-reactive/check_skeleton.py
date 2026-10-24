@@ -407,6 +407,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "reference-penalty anneal (live 1.0 intact)",
         ),
         (
+            "bhuman/k1-training/scripts/behavior_control_handoff.py",
+            "BehaviorControl handoff (kick/standup owners; default walk; missing SKIP)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/compressed_teamcomm_shape.py",
+            "CompressedTeamCommunication shape (HSL 512 / official container; not into 344)",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

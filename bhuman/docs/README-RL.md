@@ -73,6 +73,8 @@
 | settle / 抖动新键 | `scripts/settle_jitter_audit.py` | `draft_settle_*` 仅 proposed；live 无对应键；`action_rate` 不被覆盖 |
 | 估计器 A/B 草案 | `scripts/estimator_ab_audit.py` | 旁路声明；不得写入 344 / 不得注册 train.py；`TRAINABLE=false` |
 | 参考惩罚退火草案 | `scripts/reference_penalty_anneal_audit.py` | live `reference_mean_penalty: 1.0` 不被改写；差分进 manifest |
+| BehaviorControl 交接 | `scripts/behavior_control_handoff.py` | 谁切 kick/standup；默认仍 walk；缺源 SKIP |
+| TeamComm 形状 stub | `k1-switcher/compressed_teamcomm_shape.py` | HSL 512 / 官方容器；不进 344；无 WLAN SKIP |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

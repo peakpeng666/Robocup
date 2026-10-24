@@ -91,6 +91,8 @@
 | settle / 抖动新键 | 契约 / P1 | `scripts/settle_jitter_audit.py` | **P0 / P1** | 否 | `draft_settle_*` 仅 proposed；live 无对应键；`action_rate` 不被覆盖 | **本轮校验** |
 | 估计器 A/B 草案 | 契约 / P1 | `scripts/estimator_ab_audit.py` | **P0 / P1** | 否 | 旁路声明；不得写入 344 / 不得注册 `train.py` | **本轮校验** |
 | 参考惩罚退火草案 | 契约 / P1 | `scripts/reference_penalty_anneal_audit.py` | **P0 / P1** | 否 | live `reference_mean_penalty: 1.0` 不被改写 | **本轮校验** |
+| BehaviorControl 交接只读 | §6.10 | `scripts/behavior_control_handoff.py` | **P0 / P4** | 否 | 谁切 kick/standup；默认仍 walk **344→13**；与 `bt_skill_select` / `deploy_call` 交叉；缺源 SKIP | **本轮快照** |
+| CompressedTeamCommunication 形状 stub | §6.7 | `k1-switcher/compressed_teamcomm_shape.py` | **P4 / P5** | 否（声明）；实测要真机 | HSL 512 / 官方容器；队友 **不进** 344；无 WLAN 带宽 SKIP | **本轮 stub** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | **本轮 UX** |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |
@@ -190,6 +192,8 @@
 | 66 | settle / 抖动新键 | `settle_jitter_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_settle_jitter_audit.py` |
 | 67 | 估计器 A/B 草案 | `estimator_ab_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_estimator_ab_audit.py` |
 | 68 | 参考惩罚退火草案 | `reference_penalty_anneal_audit.py` | `python3 bhuman/k1-training/k1-switcher/test_reference_penalty_anneal_audit.py` |
+| 69 | BehaviorControl 交接只读 | `behavior_control_handoff.py` | `python3 bhuman/k1-training/k1-switcher/test_behavior_control_handoff.py` |
+| 70 | CompressedTeamCommunication 形状 stub | `compressed_teamcomm_shape.py` | `python3 bhuman/k1-training/k1-switcher/test_compressed_teamcomm_shape.py` |
 
 新模块仍 **TRAINABLE=false / implemented=false**，不注册 `train.py`，不改 `K1.yaml` 默认奖励。
 

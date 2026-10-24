@@ -79,6 +79,8 @@ REQUIRED_NAMES = (
     "test_settle_jitter_audit.py",
     "test_estimator_ab_audit.py",
     "test_reference_penalty_anneal_audit.py",
+    "test_behavior_control_handoff.py",
+    "test_compressed_teamcomm_shape.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
