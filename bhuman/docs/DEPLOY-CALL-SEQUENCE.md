@@ -71,7 +71,10 @@ walk ONNX 导出干跑：`scripts/walk_onnx_export_dry_run.py`（344 stub；对�
 本机 RTX 5090 开训前清单：`scripts/local_rtx5090_pretrain_checklist.py`（只盘点；**ready_gpu=false**；不启动 train.py）。  
 walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`（s2027 仍 **REPORT_ONLY**；清单不得升成比赛合格）。  
 kick / standup 开训干跑：`scripts/kick_standup_train_dry_run.py`（`K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；**would_train=false**）。  
-本地产物上传+清理清单：`scripts/local_artifact_upload_cleanup.py`（先推 GitHub 再清缓存；不得 rm Desktop）。
+本地产物上传+清理清单：`scripts/local_artifact_upload_cleanup.py`（先推 GitHub 再清缓存；不得 rm Desktop）。  
+奖励课程草案校验：`scripts/reward_curriculum_draft_validator.py`（**apply_to_live=false**；PASS ≠ live curriculum）。  
+观测历史窗合同：`scripts/obs_history_window_contract.py`（walk **344→13** / kick **59→13** / standup **73→22**；跨技能复用仍是 GAP）。  
+CI 门禁接线：`scripts/ci_gate_wiring.py`（自检 + forbidden 无 Gym/GPU；**merge_ready=false**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

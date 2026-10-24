@@ -52,7 +52,8 @@ merge-readiness claims ready, merge flips ready_gpu,
 silent train launch, flip ready_gpu without user,
 merge-readiness PASS as merge OK, walk-eval artifact as competition-ready,
 generated cmd as launch auth, leftover cache without upload note,
-destructive Desktop rm.
+destructive Desktop rm, validator PASS as live curriculum,
+cross-skill history reuse as closed, CI gate flips merge_ready.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -217,6 +218,15 @@ from kick_standup_train_dry_run import (  # noqa: E402
 from local_artifact_upload_cleanup import (  # noqa: E402
     refuse_destructive_desktop_rm,
     refuse_leftover_cache_without_upload_note,
+)
+from reward_curriculum_draft_validator import (  # noqa: E402
+    refuse_validator_pass_as_live_curriculum,
+)
+from obs_history_window_contract import (  # noqa: E402
+    refuse_cross_skill_history_reuse_as_closed,
+)
+from ci_gate_wiring import (  # noqa: E402
+    refuse_ci_gate_flips_merge_ready,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1216,6 +1226,35 @@ def _case_destructive_desktop_rm() -> None:
     )
 
 
+def _case_validator_pass_as_live_curriculum() -> None:
+    refuse_validator_pass_as_live_curriculum(
+        {
+            "validator_pass_as_live_curriculum": True,
+            "as_live_curriculum": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_cross_skill_history_reuse_as_closed() -> None:
+    refuse_cross_skill_history_reuse_as_closed(
+        {
+            "cross_skill_history_reuse_as_closed": True,
+            "gap_closed": True,
+        }
+    )
+
+
+def _case_ci_gate_flips_merge_ready() -> None:
+    refuse_ci_gate_flips_merge_ready(
+        {
+            "ci_gate_flips_merge_ready": True,
+            "merge_ready": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1337,6 +1376,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("generated_cmd_as_launch_auth", _case_generated_cmd_as_launch_auth),
     ("leftover_cache_without_upload_note", _case_leftover_cache_without_upload_note),
     ("destructive_desktop_rm", _case_destructive_desktop_rm),
+    ("validator_pass_as_live_curriculum", _case_validator_pass_as_live_curriculum),
+    ("cross_skill_history_reuse_as_closed", _case_cross_skill_history_reuse_as_closed),
+    ("ci_gate_flips_merge_ready", _case_ci_gate_flips_merge_ready),
 )
 
 

@@ -42,6 +42,12 @@ kick / standup 开训干跑（只打印，镜像 walk dry-run）：`scripts/kick
 
 本地产物上传+清理清单（只盘点）：`scripts/local_artifact_upload_cleanup.py`。跑完必须先推 GitHub `artifacts/<run-id>/`（巨型走 **Git LFS** / Release），再清本机已上传缓存。脚本只出清单/文档，**不得对用户 Desktop / `$HOME` 做破坏性 rm**。大缓存留下必须带上传说明。**TRAINABLE=false**。**gap_closed=false**。
 
+奖励课程草案校验：`scripts/reward_curriculum_draft_validator.py`。walk live `still_proportion` / tracking_* 冻结；kick/standup 只注记。**apply_to_live=false**。校验 PASS ≠ live curriculum。**TRAINABLE=false**。**gap_closed=false**。
+
+观测历史窗合同：`scripts/obs_history_window_contract.py`。walk **344→13** = **10×32+24**；kick **59→13** / standup **73→22** 无 walk 窗。跨技能复用未 reset 仍是开着的 GAP。**TRAINABLE=false**。**gap_closed=false**。
+
+CI 门禁接线：`scripts/ci_gate_wiring.py`。`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU 即可挂。**merge_ready=false**。**TRAINABLE=false**。**gap_closed=false**。本 PR 不创建 `.github/workflows/`。
+
 ---
 
 ## 1. 本机角色

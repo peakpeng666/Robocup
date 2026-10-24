@@ -50,7 +50,10 @@ walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`（344 stub�
 本机 RTX 5090 开训前清单（只盘点）：`scripts/local_rtx5090_pretrain_checklist.py`（胶合 `~/.venvs/bh-gym` / `third_party` / `meshes` 软链声明 + disk note + 已有 dry-run 生成器；**ready_gpu=false**；**TRAINABLE=false**；**gap_closed=false**；不启动 train.py）。  
 walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`（`artifacts/20261024_200640_281778_walk_eval_s2027/` 仍 **REPORT_ONLY**；清单 PASS 不得把 `quality_verdict` 升成比赛合格；**TRAINABLE=false**；**gap_closed=false**）。  
 kick / standup 开训干跑（只打印）：`scripts/kick_standup_train_dry_run.py`（`K1_Ball` **59→13** / `K1_Stand_Up` **73→22**；fast **72→22** 仅注记、不是 Isaac；**would_train=false**；打印命令 ≠ 开训授权；**TRAINABLE=false**；**gap_closed=false**）。  
-本地产物上传+清理清单：`scripts/local_artifact_upload_cleanup.py`（先推 `artifacts/<run-id>/` 再清已上传缓存；巨型走 **Git LFS** / Release；只盘点/文档；不得对用户 Desktop 做破坏性 rm；**TRAINABLE=false**；**gap_closed=false**）。
+本地产物上传+清理清单：`scripts/local_artifact_upload_cleanup.py`（先推 `artifacts/<run-id>/` 再清已上传缓存；巨型走 **Git LFS** / Release；只盘点/文档；不得对用户 Desktop 做破坏性 rm；**TRAINABLE=false**；**gap_closed=false**）。  
+奖励课程草案校验：`scripts/reward_curriculum_draft_validator.py`（walk live `still_proportion` / tracking_* 冻结；kick/standup 只注记；**apply_to_live=false**；校验 PASS ≠ live curriculum；**TRAINABLE=false**；**gap_closed=false**）。  
+观测历史窗合同：`scripts/obs_history_window_contract.py`（walk **344→13** = **10×32+24**；kick **59→13** / standup **73→22** 无 walk 窗；跨技能复用未 reset 仍是 GAP；**TRAINABLE=false**；**gap_closed=false**）。  
+CI 门禁接线：`scripts/ci_gate_wiring.py`（`run_pr4_selfcheck` + `forbidden_regressions` 无 Gym/GPU；**merge_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 

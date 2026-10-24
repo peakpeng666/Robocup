@@ -132,6 +132,9 @@
 | walk 评估产物交叉核对 | `scripts/walk_eval_artifact_crosscheck.py` | s2027 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 |
 | kick / standup 开训干跑 | `scripts/kick_standup_train_dry_run.py` | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；**would_train=false** |
 | 本地产物上传+清理清单 | `scripts/local_artifact_upload_cleanup.py` | 先推 GitHub 再清缓存；只盘点；不得 rm Desktop |
+| 奖励课程草案校验 | `scripts/reward_curriculum_draft_validator.py` | walk live 奖励冻结；**apply_to_live=false**；PASS ≠ live curriculum |
+| 观测历史窗合同 | `scripts/obs_history_window_contract.py` | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；跨技能复用仍是 GAP |
+| CI 门禁接线 | `scripts/ci_gate_wiring.py` | 自检 + forbidden 无 Gym/GPU；**merge_ready=false** |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

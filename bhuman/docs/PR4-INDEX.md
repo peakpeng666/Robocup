@@ -253,6 +253,9 @@ scripts/
 ├── walk_eval_artifact_crosscheck.py s2027 REPORT_ONLY；清单不得升成比赛合格
 ├── kick_standup_train_dry_run.py kick 59→13 / standup 73→22 只打印；would_train=false
 ├── local_artifact_upload_cleanup.py 先推 GitHub 再清缓存；不得 rm Desktop
+├── reward_curriculum_draft_validator.py walk live 奖励冻结；apply_to_live=false
+├── obs_history_window_contract.py walk 10×32+24 vs kick 59 vs standup 73；GAP 开
+├── ci_gate_wiring.py 自检+forbidden 无 Gym/GPU；merge_ready=false
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -364,6 +367,9 @@ k1-switcher/
 ├── test_walk_eval_artifact_crosscheck.py
 ├── test_kick_standup_train_dry_run.py
 ├── test_local_artifact_upload_cleanup.py
+├── test_reward_curriculum_draft_validator.py
+├── test_obs_history_window_contract.py
+├── test_ci_gate_wiring.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -473,7 +479,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-kspm.json   上轮（kick ONNX 部署路径 + standup/fast 隔离矩阵 + 相位草稿）
 ├── contract-gate-20261024-emrg.json   上轮（walk ONNX 导出干跑 + 缺权 SKIP 诚实 + 合并就绪阻塞）
 ├── contract-gate-20261024-lrtx.json   上轮（RTX 5090 开训前清单 + walk-eval 产物 REPORT_ONLY 交叉核对）
-├── contract-gate-20261024-kscl.json   本轮（kick/standup 开训干跑 + 上传+清理清单）
+├── contract-gate-20261024-kscl.json   上轮（kick/standup 开训干跑 + 上传+清理清单）
+├── contract-gate-20261024-rhci.json   本轮（奖励课程草案 + 历史窗 + CI 接线）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -550,6 +557,9 @@ k1-training/manifests/
 ├── walk-eval-artifact-crosscheck-latest.json s2027 REPORT_ONLY；清单 ≠ 比赛合格
 ├── kick-standup-train-dry-run-latest.json kick 59→13 / standup 73→22 只打印；would_train=false
 ├── local-artifact-upload-cleanup-latest.json 先推 GitHub 再清缓存；不得 rm Desktop
+├── reward-curriculum-draft-validator-latest.json walk live 奖励冻结；apply_to_live=false
+├── obs-history-window-contract-latest.json walk 10×32+24 vs kick 59 vs standup 73；GAP 开
+├── ci-gate-wiring-latest.json 自检+forbidden 无 Gym/GPU；merge_ready=false
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -559,6 +569,9 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| 奖励课程草案校验 | `scripts/reward_curriculum_draft_validator.py` | walk live 奖励冻结；kick/standup 只注记；**apply_to_live=false**；PASS ≠ live curriculum；stamp `20261024-rhci` |
+| 观测历史窗合同 | `scripts/obs_history_window_contract.py` | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；跨技能复用未 reset 仍是 GAP |
+| CI 门禁接线 | `scripts/ci_gate_wiring.py` | 自检 + forbidden 无 Gym/GPU；不创建 `.github/workflows`；**merge_ready=false** |
 | kick / standup 开训干跑 | `scripts/kick_standup_train_dry_run.py` | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；fast **72→22** 仅注记、不是 Isaac；**would_train=false**；打印命令 ≠ 开训授权；stamp `20261024-kscl` |
 | 本地产物上传+清理清单 | `scripts/local_artifact_upload_cleanup.py` | 先推 GitHub `artifacts/<run-id>/` 再清已上传缓存；只盘点/文档；不得 rm Desktop；大缓存留下必须带上传说明 |
 | 本机 RTX 5090 开训前清单 | `scripts/local_rtx5090_pretrain_checklist.py` | 胶合 bh-gym / 软链 / disk note / dry-run；**ready_gpu=false**；不启动 train.py；stamp `20261024-lrtx` |
@@ -703,6 +716,9 @@ k1-training/manifests/
 | walk 评估产物交叉核对 | `walk_eval_artifact_crosscheck.py` | s2027 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 |
 | kick / standup 开训干跑 | `kick_standup_train_dry_run.py` | `K1_Ball` **59→13** / `K1_Stand_Up` **73→22** 只打印；**would_train=false**；打印命令 ≠ 开训授权 |
 | 本地产物上传+清理清单 | `local_artifact_upload_cleanup.py` | 先推 GitHub 再清已上传缓存；只盘点；不得 rm Desktop |
+| 奖励课程草案校验 | `reward_curriculum_draft_validator.py` | walk live 奖励冻结；**apply_to_live=false**；PASS ≠ live curriculum |
+| 观测历史窗合同 | `obs_history_window_contract.py` | walk **344→13** = 10×32+24；kick **59→13** / standup **73→22**；GAP 开 |
+| CI 门禁接线 | `ci_gate_wiring.py` | 自检 + forbidden 无 Gym/GPU；**merge_ready=false** |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |

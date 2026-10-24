@@ -74,5 +74,5 @@ bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh
 | 质量 | walk/kick/standup 评估仍 **REPORT_ONLY**；PASS ≠ 比赛合格 |
 
 机读：`scripts/merge_readiness_blockers.py`。不得把 ready 翻成 true。  
-本轮清单：`local_rtx5090_pretrain_checklist` / `walk_eval_artifact_crosscheck` / `kick_standup_train_dry_run` / `local_artifact_upload_cleanup` 仍保持 **ready_gpu=false**，不得把 merge-readiness PASS 当成可合并，也不得把 walk_eval 产物 PASS 当成比赛合格。打印的 kick/standup 命令 ≠ 开训授权。不得对用户 Desktop 做破坏性 rm。
+本轮清单：`local_rtx5090_pretrain_checklist` / `walk_eval_artifact_crosscheck` / `kick_standup_train_dry_run` / `local_artifact_upload_cleanup` / `reward_curriculum_draft_validator` / `obs_history_window_contract` / `ci_gate_wiring` 仍保持 **ready_gpu=false** / **merge_ready=false**。校验 PASS ≠ live curriculum。跨技能历史复用未 reset 仍是 GAP。CI 接线不得把 merge_ready 翻 true。
 

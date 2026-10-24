@@ -208,6 +208,9 @@ REQUIRED_LANDINGS = (
     "walk_eval_artifact_crosscheck.py",
     "kick_standup_train_dry_run.py",
     "local_artifact_upload_cleanup.py",
+    "reward_curriculum_draft_validator.py",
+    "obs_history_window_contract.py",
+    "ci_gate_wiring.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

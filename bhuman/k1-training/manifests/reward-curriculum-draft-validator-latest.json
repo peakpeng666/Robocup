@@ -1,0 +1,72 @@
+{
+  "generated_utc": "2026-10-24T12:08:34+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/reward_curriculum_draft_validator.py",
+  "checklist": [
+    "walk_live_rewards_frozen",
+    "draft_only_schedule_keys",
+    "kick_standup_reward_note",
+    "apply_to_live_false",
+    "validator_pass_not_live"
+  ],
+  "live_rewards": {
+    "still_proportion": 0.1,
+    "tracking_lin_vel_x": 0.75,
+    "tracking_lin_vel_y": 0.75,
+    "tracking_ang_vel": 0.375,
+    "action_rate": -1.0,
+    "reference_mean_penalty": 1.0
+  },
+  "live_reward_keys": [
+    "still_proportion",
+    "tracking_lin_vel_x",
+    "tracking_lin_vel_y",
+    "tracking_ang_vel",
+    "action_rate",
+    "reference_mean_penalty"
+  ],
+  "draft_rel": "bhuman/k1-training/configs/draft-only/walk-p1-factors-v0.json",
+  "draft_only": true,
+  "apply_to_live": false,
+  "schedule_proposed_only": {
+    "commands.still_proportion": 0.25,
+    "schedule": [
+      "stand",
+      "forward",
+      "stop",
+      "reverse"
+    ]
+  },
+  "kick_note": {
+    "task": "K1_Ball",
+    "dims": "59→13",
+    "has_walk_still_proportion": false,
+    "has_action_rate": true,
+    "is_walk_curriculum": false,
+    "note": "kick rewards are a sibling; not the K1 walk curriculum"
+  },
+  "standup_note": {
+    "task": "K1_Stand_Up",
+    "dims": "73→22",
+    "has_walk_still_proportion": false,
+    "has_action_rate": true,
+    "is_walk_curriculum": false,
+    "note": "standup rewards are a sibling; not the K1 walk curriculum"
+  },
+  "validator_pass_as_live_curriculum": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "read-only draft reward/schedule keys; apply_to_live=false; validator PASS ≠ live curriculum",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

@@ -30,6 +30,8 @@
 残留风险（未显式清零）：kick→walk 后，walk 的 10 帧窗可能含踢球期 lastActions。  
 **禁止把「kick 不吃 walk 窗」写成 GAP 已闭合。**
 
+跨技能历史窗合同：`scripts/obs_history_window_contract.py`（walk **344→13** / kick **59→13** / standup **73→22**；未 reset 复用仍是 GAP；**gap_closed=false**）。
+
 ---
 
 ## 3. 谁才 `resetHistoryData`

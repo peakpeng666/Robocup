@@ -75,3 +75,18 @@ jobs:
 - 本 PR 不写 `.github/workflows/*`。
 - 草案不得覆盖 live `still_proportion` / `action_rate` / 官方维。
 - CI PASS 不得写成「P1/P2 已训通」或「六机 / 真机已过」。
+
+---
+
+## 4. 自检 + 禁令包如何挂到 CI（无 Gym / 无 GPU）
+
+`ci_gate_wiring.py` 只盘点接线：云端可跑 `run_pr4_selfcheck.sh`（内含 `forbidden_regressions`），不要求 Isaac Gym / CUDA。**merge_ready=false**。**TRAINABLE=false**。**gap_closed=false**。CI PASS ≠ 可合并。本 PR 不创建 `.github/workflows/`。
+
+接线：
+
+1. `run_contract_gate.sh` — 合同门禁（无 `source env.sh`）。
+2. `run_pr4_selfcheck.sh` — 串行自检；含 forbidden pack。
+3. `k1-switcher/test_forbidden_regressions.py` — 沉默拒绝 = 红。
+4. 草案 YAML 仍在 `configs/draft-only/`；人手审后再拷。
+
+**不要**在 CI 里把 `merge_ready` 翻 true。**不要**把自检 PASS 写成可合并。

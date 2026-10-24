@@ -344,6 +344,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/local_artifact_upload_cleanup.py",
         "hint": "先看上传+清理是否仍是先推 GitHub 再清缓存，或是否对 Desktop 做了破坏性 rm",
     },
+    "test_reward_curriculum_draft_validator.py": {
+        "look": "bhuman/k1-training/scripts/reward_curriculum_draft_validator.py",
+        "hint": "先看奖励课程草案是否仍 apply_to_live=false，或校验 PASS 是否被写成 live curriculum",
+    },
+    "test_obs_history_window_contract.py": {
+        "look": "bhuman/k1-training/scripts/obs_history_window_contract.py",
+        "hint": "先看 walk 10×32+24 / kick 59 / standup 73 是否漂移，或跨技能复用是否被写成 GAP 闭合",
+    },
+    "test_ci_gate_wiring.py": {
+        "look": "bhuman/k1-training/scripts/ci_gate_wiring.py",
+        "hint": "先看自检+forbidden 是否仍无 Gym/GPU 接线，或 CI 是否把 merge_ready 翻 true",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

@@ -643,6 +643,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "upload+cleanup checklist; push GitHub then clear caches; no Desktop rm",
         ),
         (
+            "bhuman/k1-training/scripts/reward_curriculum_draft_validator.py",
+            "reward-curriculum draft validator; apply_to_live=false; PASS ≠ live",
+        ),
+        (
+            "bhuman/k1-training/scripts/obs_history_window_contract.py",
+            "obs history-window; walk 10×32+24 vs kick 59 vs standup 73; GAP open",
+        ),
+        (
+            "bhuman/k1-training/scripts/ci_gate_wiring.py",
+            "CI gate wiring; selfcheck+forbidden without Gym/GPU; merge_ready=false",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

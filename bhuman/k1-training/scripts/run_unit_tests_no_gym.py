@@ -138,6 +138,9 @@ REQUIRED_NAMES = (
     "test_walk_eval_artifact_crosscheck.py",
     "test_kick_standup_train_dry_run.py",
     "test_local_artifact_upload_cleanup.py",
+    "test_reward_curriculum_draft_validator.py",
+    "test_obs_history_window_contract.py",
+    "test_ci_gate_wiring.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}

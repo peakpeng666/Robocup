@@ -1,0 +1,60 @@
+{
+  "generated_utc": "2026-10-24T12:08:34+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/obs_history_window_contract.py",
+  "checklist": [
+    "walk_344_10x32_24",
+    "kick_59_no_walk_window",
+    "standup_73_no_walk_window",
+    "cross_skill_reuse_is_gap",
+    "gap_closed_false"
+  ],
+  "windows": {
+    "walk": {
+      "task": "K1",
+      "obs": 344,
+      "act": 13,
+      "dims": "344→13",
+      "history_size": 10,
+      "frame": 32,
+      "tail": 24,
+      "formula": "10×32+24=344"
+    },
+    "kick": {
+      "task": "K1_Ball",
+      "obs": 59,
+      "act": 13,
+      "dims": "59→13",
+      "history_size": null,
+      "walk_window": false,
+      "note": "current-frame 59; does not eat walk 10×32 historyBuffer"
+    },
+    "standup": {
+      "task": "K1_Stand_Up",
+      "obs": 73,
+      "act": 22,
+      "dims": "73→22",
+      "history_size": null,
+      "walk_window": false,
+      "note": "current-frame 73; standup 13-zero ≠ this walk↔kick GAP"
+    }
+  },
+  "formula": "10×32+24=344",
+  "cross_skill_history_reuse_as_closed": false,
+  "walk_window_as_kick": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "walk 10×32+24=344 vs kick 59 vs standup 73; cross-skill reuse without reset is the open GAP",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}
