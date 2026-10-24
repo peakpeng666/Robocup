@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-24T07:20:48+00:00",
+  "generated_utc": "2026-10-24T07:24:06+00:00",
   "verdict": "PASS",
   "repo": "/workspace",
   "architecture": {
@@ -35,7 +35,10 @@
     "unit_tests_no_gym": "discover+run GPU-free tests; honest SKIP; walk 344→13",
     "readme_rl": "bhuman/docs/README-RL.md; 5-min map; two first commands",
     "onnx_export_contract": "walk 344→13 only; no real export; refuse hot-swap",
-    "gpu_worker_checklist": "probe JSON; missing items; never train.py"
+    "gpu_worker_checklist": "probe JSON; missing items; never train.py",
+    "k1_reward_audit": "read-only K1.yaml + official stability; no write-back",
+    "history_buffer_shape": "10×32+24=344; zeros ≠ continuity PASS",
+    "research_migrate_table": "bhuman/docs/RESEARCH-MIGRATE-TABLE.md; bypass ≠ replace walk"
   },
   "k1_contracts": {
     "walk": "344→13",
@@ -113,6 +116,9 @@
       "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
       "ONNX export contract (walk 344→13 only; no real weights) present",
       "GPU worker checklist (probe only; never train.py) present",
+      "K1 reward read-only audit (no yaml write-back) present",
+      "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
+      "research-inputs / GLOBAL short migrate table present",
       "skill_switch_map static T1/T2 slots PASS (no Gym)",
       "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
       "refuse_foreign_checkpoint blocks official walk weights",
@@ -272,6 +278,7 @@
         "bhuman/docs/CI-CONTRACT-GATE.md: required anchors present",
         "bhuman/docs/P5-PREVIEW.md: required anchors present",
         "bhuman/docs/README-RL.md: required anchors present",
+        "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
         "method_catalog.json: 21 entries cross-checked against survey",
         "CI workflow draft stays in draft-only (not .github)",
         "no live .github/workflows; cloud PASS+WARN documented only"
@@ -670,11 +677,13 @@
       "errors": [],
       "notes": [
         "default assert: official walk 344→13 + live rewards untouched",
-        "discovered 24 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+        "discovered 27 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
         "PASS test_blockers.py",
         "PASS test_bt_deploy_crosscheck.py",
         "PASS test_deploy_call.py",
         "PASS test_gpu_worker_checklist.py",
+        "PASS test_history_buffer_shape.py",
+        "PASS test_k1_reward_audit.py",
         "PASS test_onnx_export_contract.py",
         "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
         "PASS test_standup_kick_hardening.py",
@@ -687,6 +696,7 @@
         "PASS test_migrate_table.py",
         "PASS test_obs_schema.py",
         "PASS test_reactive_hardening.py",
+        "PASS test_research_migrate_table.py",
         "PASS test_skill_switch_continuity.py",
         "PASS test_skill_switch_map.py",
         "PASS test_unregistered_in_train_py.py",
@@ -713,6 +723,14 @@
         },
         {
           "name": "test_gpu_worker_checklist.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_history_buffer_shape.py",
+          "status": "PASS"
+        },
+        {
+          "name": "test_k1_reward_audit.py",
           "status": "PASS"
         },
         {
@@ -760,6 +778,10 @@
           "status": "PASS"
         },
         {
+          "name": "test_research_migrate_table.py",
+          "status": "PASS"
+        },
+        {
           "name": "test_skill_switch_continuity.py",
           "status": "PASS"
         },
@@ -801,6 +823,8 @@
         "test_bt_deploy_crosscheck.py",
         "test_deploy_call.py",
         "test_gpu_worker_checklist.py",
+        "test_history_buffer_shape.py",
+        "test_k1_reward_audit.py",
         "test_onnx_export_contract.py",
         "test_standup_kick_hardening.py",
         "test_switcher_integration_suite.py",
@@ -812,6 +836,7 @@
         "test_migrate_table.py",
         "test_obs_schema.py",
         "test_reactive_hardening.py",
+        "test_research_migrate_table.py",
         "test_skill_switch_continuity.py",
         "test_skill_switch_map.py",
         "test_unregistered_in_train_py.py",
@@ -873,10 +898,63 @@
         "checkpoint"
       ],
       "walk": "344→13"
+    },
+    "k1_reward_audit": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "live snapshot matches still_proportion 0.1 / tracking_* / action_rate -1. / ref 1.0",
+        "draft-only not used as an official source",
+        "reward item list: 31 scales",
+        "tampered snapshot still_proportion=0.25 refused",
+        "tampered snapshot tracking_lin_vel_x=1.0 refused",
+        "tampered snapshot action_rate=0.0 refused",
+        "tampered snapshot reference_mean_penalty=0.25 refused",
+        "write-back API refused",
+        "official K1.yaml untouched",
+        "reward scales (31): action_pos_limits, action_rate, actions_in_range, ang_vel_xy, base_height, collision, dof_acc, dof_pos_limits…",
+        "baseline still_proportion=0.1 tracking_* action_rate=-1. reference_mean_penalty=1.0",
+        "official K1.yaml trees agree; draft-only excluded",
+        "write-back of K1.yaml refused",
+        "K1.yaml sha256 unchanged (read-only)",
+        "wrote bhuman/k1-training/manifests/k1-reward-audit-latest.json"
+      ],
+      "trainable": false,
+      "write_yaml": false,
+      "walk": "344→13"
+    },
+    "history_buffer_shape": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "frozen construct/validate API: 10×32+24=344",
+        "synthetic all-zeros: shape PASS, continuity SKIP",
+        "refuse_continuity_pass_on_synthetic caught fake-green zeros",
+        "split/flatten round-trip stays 10×32+24=344",
+        "negative: 10×31 refused",
+        "negative: 343 refused as walk history",
+        "negative: kick 59 refused as walk history",
+        "claimed-recorded zeros still continuity SKIP",
+        "official K1.yaml still 344 (buffer stub did not edit it)"
+      ],
+      "trainable": false,
+      "continuity": "SKIP",
+      "walk": "344→13"
+    },
+    "research_migrate_table": {
+      "ok": true,
+      "errors": [],
+      "notes": [
+        "RESEARCH-MIGRATE-TABLE.md anchors present",
+        "research-inputs files: ['environment-audit-pasted.txt', 'research-pasted.txt']",
+        "every research-inputs file is cited",
+        "official walk still 344→13 (table is docs-only)"
+      ],
+      "walk": "344→13"
     }
   },
   "reserved_gpu": {
-    "generated_utc": "2026-10-24T07:20:47+00:00",
+    "generated_utc": "2026-10-24T07:24:05+00:00",
     "reserved": true,
     "ready": false,
     "skipped": true,
@@ -954,7 +1032,7 @@
     "note": "B-Human IsaacGymRL T1 family; not Huoshen T1 58+50→15"
   },
   "commits": {
-    "workspace_head": "cfafdbc4de664354c29d77401531d9f1d51a28a0",
+    "workspace_head": "09bb1a35757000ba7233cfe2971b17b1944f5e5e",
     "workspace_branch": "cursor/k1-rl-survey-p0-fac6",
     "last_touch_MachineLearning": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
     "last_touch_k1_training_isaac": "7bb281dfbad8e5d56451a01cbea979a9d5a3366a Archive K1 B-Human simulation and verified PPO diagnostics",
@@ -1373,6 +1451,9 @@
     "no-Gym unit-test runner (discover switcher/reactive/estimators/sim2sim/draft) present",
     "ONNX export contract (walk 344→13 only; no real weights) present",
     "GPU worker checklist (probe only; never train.py) present",
+    "K1 reward read-only audit (no yaml write-back) present",
+    "walk history buffer 10×32+24=344 (zeros ≠ continuity PASS) present",
+    "research-inputs / GLOBAL short migrate table present",
     "skill_switch_map static T1/T2 slots PASS (no Gym)",
     "DelayBuffer: 6 steps ≈ 116 ms at 50 Hz",
     "refuse_foreign_checkpoint blocks official walk weights",
@@ -1417,6 +1498,7 @@
     "bhuman/docs/CI-CONTRACT-GATE.md: required anchors present",
     "bhuman/docs/P5-PREVIEW.md: required anchors present",
     "bhuman/docs/README-RL.md: required anchors present",
+    "bhuman/docs/RESEARCH-MIGRATE-TABLE.md: required anchors present",
     "method_catalog.json: 21 entries cross-checked against survey",
     "CI workflow draft stays in draft-only (not .github)",
     "no live .github/workflows; cloud PASS+WARN documented only",
@@ -1667,11 +1749,13 @@
     "live run-mujoco.sh present and unread by this stub",
     "live sim README still names walk 344→13",
     "default assert: official walk 344→13 + live rewards untouched",
-    "discovered 24 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
+    "discovered 27 no-gym tests under switcher/reactive/estimators/sim2sim/draft",
     "PASS test_blockers.py",
     "PASS test_bt_deploy_crosscheck.py",
     "PASS test_deploy_call.py",
     "PASS test_gpu_worker_checklist.py",
+    "PASS test_history_buffer_shape.py",
+    "PASS test_k1_reward_audit.py",
     "PASS test_onnx_export_contract.py",
     "SKIP inside test_onnx_export_contract.py: optional runtime missing (honest SKIP, not fake-green)",
     "PASS test_standup_kick_hardening.py",
@@ -1684,6 +1768,7 @@
     "PASS test_migrate_table.py",
     "PASS test_obs_schema.py",
     "PASS test_reactive_hardening.py",
+    "PASS test_research_migrate_table.py",
     "PASS test_skill_switch_continuity.py",
     "PASS test_skill_switch_map.py",
     "PASS test_unregistered_in_train_py.py",
@@ -1721,6 +1806,34 @@
     "injected ready=true: 必须先告知用户，等明确开训 (no train.py)",
     "probe_reserved_gpu.sh does not call train.py",
     "official walk stays 344→13",
+    "live snapshot matches still_proportion 0.1 / tracking_* / action_rate -1. / ref 1.0",
+    "draft-only not used as an official source",
+    "reward item list: 31 scales",
+    "tampered snapshot still_proportion=0.25 refused",
+    "tampered snapshot tracking_lin_vel_x=1.0 refused",
+    "tampered snapshot action_rate=0.0 refused",
+    "tampered snapshot reference_mean_penalty=0.25 refused",
+    "write-back API refused",
+    "official K1.yaml untouched",
+    "reward scales (31): action_pos_limits, action_rate, actions_in_range, ang_vel_xy, base_height, collision, dof_acc, dof_pos_limits…",
+    "baseline still_proportion=0.1 tracking_* action_rate=-1. reference_mean_penalty=1.0",
+    "official K1.yaml trees agree; draft-only excluded",
+    "write-back of K1.yaml refused",
+    "K1.yaml sha256 unchanged (read-only)",
+    "wrote bhuman/k1-training/manifests/k1-reward-audit-latest.json",
+    "frozen construct/validate API: 10×32+24=344",
+    "synthetic all-zeros: shape PASS, continuity SKIP",
+    "refuse_continuity_pass_on_synthetic caught fake-green zeros",
+    "split/flatten round-trip stays 10×32+24=344",
+    "negative: 10×31 refused",
+    "negative: 343 refused as walk history",
+    "negative: kick 59 refused as walk history",
+    "claimed-recorded zeros still continuity SKIP",
+    "official K1.yaml still 344 (buffer stub did not edit it)",
+    "RESEARCH-MIGRATE-TABLE.md anchors present",
+    "research-inputs files: ['environment-audit-pasted.txt', 'research-pasted.txt']",
+    "every research-inputs file is cited",
+    "official walk still 344→13 (table is docs-only)",
     "research/01–06 live only on origin/research; not merged into main"
   ],
   "reproduce_walk_operator_machine": [
@@ -1758,6 +1871,9 @@
     "bash bhuman/k1-training/scripts/run_unit_tests_no_gym.sh",
     "python3 bhuman/k1-training/k1-switcher/test_onnx_export_contract.py",
     "python3 bhuman/k1-training/k1-switcher/test_gpu_worker_checklist.py",
+    "python3 bhuman/k1-training/scripts/k1_reward_audit.py",
+    "python3 bhuman/k1-training/k1-switcher/test_history_buffer_shape.py",
+    "python3 bhuman/k1-training/k1-reactive/test_research_migrate_table.py",
     "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh"
   ]
 }
