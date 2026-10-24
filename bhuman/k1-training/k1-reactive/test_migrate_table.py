@@ -57,6 +57,9 @@ REQUIRED_ROWS = (
     "kick / standup 关节图交叉",
     "参考运动只读清单",
     "自检人读摘要",
+    "GetUpEngine 只读快照",
+    "walk 稳定性预设审计",
+    "禁令回归包",
     "K1 奖励只读审计",
     "历史缓冲形状 stub",
     "research-inputs 可迁短表",
@@ -116,6 +119,9 @@ REQUIRED_LANDINGS = (
     "reference_motion_inventory.py",
     "render_selfcheck_summary.py",
     "PR4-SELFCHECK-LATEST",
+    "getup_engine_snapshot.py",
+    "walk_stability_presets_audit.py",
+    "test_forbidden_regressions.py",
 )
 
 

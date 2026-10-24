@@ -4,7 +4,9 @@
 # → print-only train dry-run → env registry audit
 # → SimRobot six-robot acceptance (no sim) → SkillRequest map
 # → PD domain-gap / TeamComm 512 B / checkpoint layout
-# → kick/standup joint map → reference-motion inventory → selfcheck summary.
+# → kick/standup joint map → reference-motion inventory
+# → GetUpEngine snapshot → walk stability presets → forbidden regressions
+# → selfcheck summary.
 # Never trains, never writes K1.yaml, never merges, never connects a robot.
 # Summary line: 基底 344→13 / TRAINABLE=false / ready_gpu=...
 set -euo pipefail
@@ -33,47 +35,56 @@ SUMMARY="$K1_TRAINING_ROOT/manifests/pr4-selfcheck-latest.json"
 
 echo "[pr4-selfcheck] repo=$REPO_ROOT"
 echo "[pr4-selfcheck] python=$PY"
-echo "[pr4-selfcheck] 1/15 contract gate"
+echo "[pr4-selfcheck] 1/18 contract gate"
 CONTRACT_GATE_STAMP="$STAMP" bash "$SCRIPT_DIR/run_contract_gate.sh" "$GATE_JSON"
 
-echo "[pr4-selfcheck] 2/15 no-Gym unit tests"
+echo "[pr4-selfcheck] 2/18 no-Gym unit tests"
 bash "$SCRIPT_DIR/run_unit_tests_no_gym.sh"
 
-echo "[pr4-selfcheck] 3/15 K1 reward audit (read-only)"
+echo "[pr4-selfcheck] 3/18 K1 reward audit (read-only)"
 "$PY" -B "$SCRIPT_DIR/k1_reward_audit.py"
 
-echo "[pr4-selfcheck] 4/15 official vs draft-only diff (read-only)"
+echo "[pr4-selfcheck] 4/18 official vs draft-only diff (read-only)"
 "$PY" -B "$SCRIPT_DIR/p1_draft_diff.py"
 
-echo "[pr4-selfcheck] 5/15 GPU worker checklist (probe only)"
+echo "[pr4-selfcheck] 5/18 GPU worker checklist (probe only)"
 bash "$SCRIPT_DIR/probe_reserved_gpu.sh"
 
-echo "[pr4-selfcheck] 6/15 first-train dry-run (print only; never spawn trainer)"
+echo "[pr4-selfcheck] 6/18 first-train dry-run (print only; never spawn trainer)"
 "$PY" -B "$SCRIPT_DIR/print_train_dry_run.py"
 
-echo "[pr4-selfcheck] 7/15 env registry audit (read-only)"
+echo "[pr4-selfcheck] 7/18 env registry audit (read-only)"
 "$PY" -B "$SCRIPT_DIR/env_registry_audit.py"
 
-echo "[pr4-selfcheck] 8/15 SimRobot six-robot acceptance (no sim; honest SKIP)"
+echo "[pr4-selfcheck] 8/18 SimRobot six-robot acceptance (no sim; honest SKIP)"
 "$PY" -B "$K1_TRAINING_ROOT/simrobot_acceptance/test_simrobot_acceptance.py"
 
-echo "[pr4-selfcheck] 9/15 SkillRequest map (empty/unknown → walk)"
+echo "[pr4-selfcheck] 9/18 SkillRequest map (empty/unknown → walk)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-reactive/test_skill_request_map.py"
 
-echo "[pr4-selfcheck] 10/15 PD domain-gap (p60 vs p25; read-only)"
+echo "[pr4-selfcheck] 10/18 PD domain-gap (p60 vs p25; read-only)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_pd_domain_gap.py"
 
-echo "[pr4-selfcheck] 11/15 TeamComm 512 B (teammate not into 344; WLAN SKIP)"
+echo "[pr4-selfcheck] 11/18 TeamComm 512 B (teammate not into 344; WLAN SKIP)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_teamcomm_budget.py"
 
-echo "[pr4-selfcheck] 12/15 checkpoint layout (missing weights honest SKIP)"
+echo "[pr4-selfcheck] 12/18 checkpoint layout (missing weights honest SKIP)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_checkpoint_layout.py"
 
-echo "[pr4-selfcheck] 13/15 kick/standup joint map (standup[12] motor ≠ walk freq)"
+echo "[pr4-selfcheck] 13/18 kick/standup joint map (standup[12] motor ≠ walk freq)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_kick_standup_joint_map.py"
 
-echo "[pr4-selfcheck] 14/15 reference-motion inventory (T1 ≠ official walk default)"
+echo "[pr4-selfcheck] 14/18 reference-motion inventory (T1 ≠ official walk default)"
 "$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_reference_motion_inventory.py"
+
+echo "[pr4-selfcheck] 15/18 GetUpEngine 22-D snapshot (match kick_standup or SKIP)"
+"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_getup_engine_snapshot.py"
+
+echo "[pr4-selfcheck] 16/18 walk stability presets audit (draft-only excluded)"
+"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_walk_stability_presets_audit.py"
+
+echo "[pr4-selfcheck] 17/18 forbidden regressions (silent refuse = red)"
+"$PY" -B "$K1_TRAINING_ROOT/k1-switcher/test_forbidden_regressions.py"
 
 READY="$("$PY" -B - <<PY
 import json
@@ -123,6 +134,9 @@ summary = {
         "test_checkpoint_layout.py",
         "test_kick_standup_joint_map.py",
         "test_reference_motion_inventory.py",
+        "test_getup_engine_snapshot.py",
+        "test_walk_stability_presets_audit.py",
+        "test_forbidden_regressions.py",
         "render_selfcheck_summary.py",
     ],
     "note": "PASS ≠ trained; ready_gpu=false is expected without a CUDA worker",
@@ -130,7 +144,7 @@ summary = {
 Path("$SUMMARY").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 PY
 
-echo "[pr4-selfcheck] 15/15 selfcheck markdown summary (PASS/SKIP/WARN)"
+echo "[pr4-selfcheck] 18/18 selfcheck markdown summary (PASS/SKIP/WARN)"
 "$PY" -B "$SCRIPT_DIR/render_selfcheck_summary.py"
 
 echo "[pr4-selfcheck] PASS 基底 344→13 / TRAINABLE=false / ready_gpu=${READY}"

@@ -648,6 +648,24 @@ def check_gpu_free_shells(
             "k1_render_selfcheck_summary",
             True,
         ),
+        (
+            "bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py",
+            "getup_engine_snapshot",
+            "k1_getup_engine_snapshot",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
+            "walk_stability_presets_audit",
+            "k1_walk_stability_presets_audit",
+            True,
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
+            "forbidden_regressions",
+            "k1_forbidden_regressions",
+            True,
+        ),
     )
     for rel, key, mod_name, pass_repo in specs:
         if not (repo / rel).is_file():
@@ -1115,6 +1133,9 @@ def main() -> int:
             "kick_standup_joint_map": "kick 59→13 shares walk exit; standup[12]=lHipYaw motor",
             "reference_motion_inventory": "declared ref/motion paths; missing SKIP; T1 ≠ walk default",
             "render_selfcheck_summary": "pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md PASS/SKIP/WARN",
+            "getup_engine_snapshot": "GetUpEngine 22-D; match kick_standup; SKIP if missing",
+            "walk_stability_presets_audit": "official walk-*-stability-v1 keys; draft-only excluded",
+            "forbidden_regressions": "T1/standup→kick/SimRobot/latent/draft/PD; silent=red",
         },
         "k1_contracts": {
             "walk": "344→13",
@@ -1202,6 +1223,11 @@ def main() -> int:
             "python3 bhuman/k1-training/k1-switcher/test_reference_motion_inventory.py",
             "python3 bhuman/k1-training/k1-switcher/test_render_selfcheck_summary.py",
             "python3 bhuman/k1-training/scripts/render_selfcheck_summary.py",
+            "python3 bhuman/k1-training/k1-switcher/test_getup_engine_snapshot.py",
+            "python3 bhuman/k1-training/scripts/getup_engine_snapshot.py",
+            "python3 bhuman/k1-training/k1-switcher/test_walk_stability_presets_audit.py",
+            "python3 bhuman/k1-training/scripts/walk_stability_presets_audit.py",
+            "python3 bhuman/k1-training/k1-switcher/test_forbidden_regressions.py",
             "bash bhuman/k1-training/scripts/run_pr4_selfcheck.sh",
             "bash bhuman/k1-training/scripts/probe_reserved_gpu.sh",
         ],

@@ -68,6 +68,9 @@ REQUIRED_NAMES = (
     "test_kick_standup_joint_map.py",
     "test_reference_motion_inventory.py",
     "test_render_selfcheck_summary.py",
+    "test_getup_engine_snapshot.py",
+    "test_walk_stability_presets_audit.py",
+    "test_forbidden_regressions.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}
 

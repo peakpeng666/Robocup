@@ -119,6 +119,9 @@ REQUIRED_DOCS = {
         "kick_standup_joint_map",
         "reference_motion_inventory",
         "PR4-SELFCHECK-LATEST",
+        "getup_engine_snapshot",
+        "walk_stability_presets_audit",
+        "forbidden_regressions",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -166,6 +169,9 @@ REQUIRED_DOCS = {
         "reference_motion_inventory.py",
         "render_selfcheck_summary.py",
         "PR4-SELFCHECK-LATEST",
+        "getup_engine_snapshot.py",
+        "walk_stability_presets_audit.py",
+        "test_forbidden_regressions.py",
     ),
     "bhuman/docs/BEHAVIOR-TREE-SKILL-SELECT.md": (
         "344→13",
@@ -257,6 +263,9 @@ REQUIRED_DOCS = {
         "kick_standup_joint_map",
         "reference-motion-inventory",
         "PR4-SELFCHECK-LATEST",
+        "getup-engine-standup22",
+        "walk-stability-presets-audit",
+        "forbidden_regressions",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -375,6 +384,9 @@ REQUIRED_DOCS = {
         "reference_motion_inventory",
         "PR4-SELFCHECK-LATEST",
         "render_selfcheck_summary",
+        "getup_engine_snapshot",
+        "walk_stability_presets_audit",
+        "forbidden_regressions",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",

@@ -61,6 +61,9 @@
 | kick / standup 关节图 | `k1-switcher/kick_standup_joint_map.py` | kick 共享 walk 13 出口；standup[12] 是电机 |
 | 参考运动清单 | `k1-switcher/reference_motion_inventory.py` | 缺文件 SKIP；T1 ≠ 官方 walk 默认 |
 | 自检人读摘要 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | PASS/SKIP/WARN 一览；`render_selfcheck_summary.py` |
+| GetUpEngine 快照 | `scripts/getup_engine_snapshot.py` | 22 维；与 kick_standup 交叉；缺源 SKIP |
+| walk 稳定性预设 | `scripts/walk_stability_presets_audit.py` | 官方 walk-*-stability-v1；draft-only 未污染 |
+| 禁令回归包 | `k1-switcher/test_forbidden_regressions.py` | 最高优先级负例；沉默拒绝 = 门禁红 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
 
 ---

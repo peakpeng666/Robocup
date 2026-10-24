@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""Forbidden-regression pack: silent refuse → FAIL (gate red)."""
+from __future__ import annotations
+
+import hashlib
+import sys
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from forbidden_regressions import (  # noqa: E402
+    CASES,
+    TRAINABLE,
+    WRITE_YAML,
+    assert_pack_frozen,
+    refuse_write_yaml,
+    run_case,
+    run_pack,
+)
+
+
+def _repo(explicit: Path | None = None) -> Path:
+    if explicit is not None:
+        return explicit
+    for candidate in (ROOT.parents[2], ROOT.parents[3], Path.cwd()):
+        if (candidate / "AGENTS.md").exists() and (candidate / "bhuman").is_dir():
+            return candidate
+    raise SystemExit("cannot locate Robocup workspace")
+
+
+def run(repo: Path | None = None) -> dict[str, Any]:
+    repo = _repo(repo)
+    errors: list[str] = []
+    notes: list[str] = []
+    if "gym" in sys.modules or "isaacgym" in sys.modules:
+        errors.append("forbidden-regressions imported Gym")
+    if TRAINABLE or WRITE_YAML:
+        errors.append("forbidden-regressions flags leaked")
+
+    yaml_path = repo / "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml"
+    before = hashlib.sha256(yaml_path.read_bytes()).hexdigest()
+
+    required = {
+        "t1_as_walk",
+        "standup_to_kick",
+        "simrobot_as_fast_standup",
+        "latent_into_344",
+        "draft_write_live",
+        "unified_pd_closed_fake_green",
+    }
+    present = {name for name, _fn in CASES}
+    missing = sorted(required - present)
+    if missing:
+        errors.append(f"pack missing high-priority cases {missing}")
+    else:
+        notes.append("high-priority cases present: T1 / standup→kick / SimRobot / latent / draft / PD")
+
+    try:
+        frozen = assert_pack_frozen()
+        notes.append(f"assert_pack_frozen: {len(frozen.get('results') or [])} cases refused")
+    except AssertionError as exc:
+        errors.append(str(exc))
+
+    pack = run_pack()
+    for row in pack.get("results") or []:
+        if row.get("refused"):
+            notes.append(f"negative: {row['id']} refused")
+        else:
+            errors.append(row.get("error") or f"{row['id']} silent")
+
+    leaked = run_case("unit_silent_fixture", lambda: None)
+    if leaked.get("refused") or leaked.get("status") != "FAIL":
+        errors.append("silent fixture must score FAIL (proves gate-red path)")
+    else:
+        notes.append("silent refuse scores FAIL (gate would go red)")
+
+    try:
+        refuse_write_yaml(yaml_path)
+        errors.append("refuse_write_yaml must raise")
+    except RuntimeError:
+        notes.append("negative: K1.yaml write refused")
+
+    walk = yaml_path.read_text(encoding="utf-8")
+    if "num_observations: 344" not in walk or "num_actions: 13" not in walk:
+        errors.append("official walk drifted")
+    else:
+        notes.append("official walk still 344→13")
+
+    after = hashlib.sha256(yaml_path.read_bytes()).hexdigest()
+    if before != after:
+        errors.append("K1.yaml changed during forbidden-regressions")
+    else:
+        notes.append("official K1.yaml untouched")
+
+    return {
+        "ok": not errors,
+        "errors": errors,
+        "notes": notes,
+        "walk": "344→13",
+        "trainable": False,
+        "write_yaml": False,
+    }
+
+
+def main() -> int:
+    report = run()
+    print(
+        f"[forbid-regress] {'PASS' if report['ok'] else 'FAIL'} "
+        "T1/standup→kick/SimRobot/latent/draft/PD; silent = red"
+    )
+    for item in report["errors"]:
+        print(f"[error] {item}")
+    for item in report["notes"]:
+        print(f"[note] {item}")
+    return 0 if report["ok"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

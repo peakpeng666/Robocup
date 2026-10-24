@@ -362,6 +362,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "bhuman/k1-training/scripts/render_selfcheck_summary.py",
             "selfcheck markdown summary (PASS/SKIP/WARN; not a new survey)",
         ),
+        (
+            "bhuman/k1-training/scripts/getup_engine_snapshot.py",
+            "GetUpEngine 22-D snapshot (match kick_standup; SKIP if missing)",
+        ),
+        (
+            "bhuman/k1-training/scripts/walk_stability_presets_audit.py",
+            "official walk-*-stability-v1 audit (draft-only excluded)",
+        ),
+        (
+            "bhuman/k1-training/k1-switcher/forbidden_regressions.py",
+            "forbidden regressions pack (silent refuse = gate red)",
+        ),
     ):
         if not (repo / rel).is_file():
             errors.append(f"missing {rel}")

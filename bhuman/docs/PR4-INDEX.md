@@ -124,6 +124,8 @@ scripts/
 ├── booster_joints_snapshot.py   WalkingEngine boosterJoints 只读快照
 ├── run_pr4_selfcheck.sh         全量自检（门禁+无 Gym+audit+diff+GPU+干跑+注册+关节图+清单）
 ├── render_selfcheck_summary.py  读 pr4-selfcheck JSON → PR4-SELFCHECK-LATEST.md
+├── getup_engine_snapshot.py     GetUpEngine 22 维只读快照；缺源 SKIP
+├── walk_stability_presets_audit.py 官方 walk-*-stability-v1 键审计
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
 ├── gpu-worker-checklist-latest.json  由探测写出：cuda/isaac/disk/K1/checkpoint
@@ -171,12 +173,16 @@ k1-switcher/
 ├── checkpoint_layout.py         K1_walk.pth/onnx；T1/reactive 不得占 walk 路径
 ├── kick_standup_joint_map.py    kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机
 ├── reference_motion_inventory.py 参考轨迹/clip 只读清单；缺文件 SKIP；T1 ≠ walk 默认
+├── forbidden_regressions.py     最高优先级负例包；沉默拒绝 = 门禁红
 ├── test_pd_domain_gap.py
 ├── test_teamcomm_budget.py
 ├── test_checkpoint_layout.py
 ├── test_kick_standup_joint_map.py
 ├── test_reference_motion_inventory.py
 ├── test_render_selfcheck_summary.py
+├── test_getup_engine_snapshot.py
+├── test_walk_stability_presets_audit.py
+├── test_forbidden_regressions.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -252,7 +258,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-qc.json     上轮（文档去重 QC）
 ├── contract-gate-20261024-six.json    上轮（六机脚手架 + SkillRequest 对照）
 ├── contract-gate-20261024-gap.json    上轮（PD 域差 + TeamComm 512 + checkpoint 布局）
-├── contract-gate-20261024-map.json    本轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
+├── contract-gate-20261024-map.json    上轮（kick/standup 关节图 + 参考运动清单 + 自检摘要）
+├── contract-gate-20261024-reg.json    本轮（GetUpEngine 快照 + stability 审计 + 禁令回归）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -262,6 +269,8 @@ k1-training/manifests/
 ├── env-registry-audit-latest.json     官方 K1 在册；k1-reactive / estimators / switcher 未注册
 ├── kick-standup-joint-map-latest.json kick 共享 walk 13 出口；standup[12]=lHipYaw
 ├── reference-motion-inventory-latest.json 参考/clip 声明；缺文件 SKIP；T1 ≠ walk 默认
+├── getup-engine-standup22-latest.json GetUpEngine 22 维；缺源 SKIP
+├── walk-stability-presets-audit-latest.json 官方 walk-*-stability-v1；draft-only 未污染
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu
 ```
 
@@ -319,6 +328,9 @@ k1-training/manifests/
 | kick / standup 关节图交叉 | `kick_standup_joint_map.py` | kick 59→13 共享 walk 出口；standup[12]=lHipYaw 电机 ≠ 步频；负例拒混淆 |
 | 参考运动只读清单 | `reference-motion-inventory-latest.json` | 声明路径；缺文件 SKIP；T1/GMR 不得标成官方 walk 默认 |
 | 自检人读摘要 | [PR4-SELFCHECK-LATEST.md](PR4-SELFCHECK-LATEST.md) | `render_selfcheck_summary.py` 读 JSON → PASS/SKIP/WARN；不新增长文 |
+| GetUpEngine 只读快照 | `getup_engine_snapshot.py` | 22 维与 kick_standup 交叉；缺源 SKIP，不伪造 |
+| walk 稳定性预设审计 | `walk_stability_presets_audit.py` | 官方 walk-*-stability-v1 键；`reference_mean_penalty=1.0`；draft-only 未污染 |
+| 禁令回归包 | `test_forbidden_regressions.py` | T1 当 walk / standup→kick / SimRobot 冒充 fast / latent 进 344 / draft 写 live / 统一 PD 假绿；沉默即红 |
 | BehaviorControl 对照 | GLOBAL §6.10 | 对照 ≠ 替换官方 walk |
 | Booster Lab / real-to-sim vs 三道门 | GLOBAL §6.9 → ROADMAP P4/P5 | `test_global_docs.py` 锚点 |
 | 本索引 | 本页 | 门禁检查文件存在且含 `344→13` |
