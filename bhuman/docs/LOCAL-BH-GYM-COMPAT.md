@@ -46,7 +46,9 @@ standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`�
 策略切换相位草稿：`scripts/policy_switch_phase_draft.py`（last_action → resetHistoryData → Force walk；**apply_to_live=false**；**gap_closed=false**）。  
 walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`（344 stub；PASS ≠ competition deploy；**TRAINABLE=false**；**gap_closed=false**）。  
 缺权 SKIP 诚实：`scripts/missing_weight_skip_honesty.py`（walk/kick/standup/fast；**missing-weight SKIP**；**TRAINABLE=false**；**gap_closed=false**）。  
-合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。
+合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。  
+本机 RTX 5090 开训前清单（只盘点）：`scripts/local_rtx5090_pretrain_checklist.py`（胶合 `~/.venvs/bh-gym` / `third_party` / `meshes` 软链声明 + disk note + 已有 dry-run 生成器；**ready_gpu=false**；**TRAINABLE=false**；**gap_closed=false**；不启动 train.py）。  
+walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`（`artifacts/20261024_200640_281778_walk_eval_s2027/` 仍 **REPORT_ONLY**；清单 PASS 不得把 `quality_verdict` 升成比赛合格；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 

@@ -119,6 +119,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/ROADMAP-P0-P5.md": (
         "P0",
@@ -242,6 +244,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/HIFAR-VS-STANDUP.md": (
         "73→22",
@@ -358,6 +362,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run.py",
         "missing_weight_skip_honesty.py",
         "merge_readiness_blockers.py",
+        "local_rtx5090_pretrain_checklist.py",
+        "walk_eval_artifact_crosscheck.py",
         "LOCAL-BH-GYM-COMPAT.md",
         "LOCAL-RUN-ARTIFACTS.md",
     ),
@@ -470,6 +476,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/PR4-INDEX.md": (
         "344→13",
@@ -587,6 +595,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/HISTORY-TORQUE-TIMESERIES.md": (
         "344→13",
@@ -688,6 +698,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
         "先看",
     ),
     "bhuman/docs/P3-PREVIEW.md": (
@@ -837,6 +849,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
         "先看",
     ),
     "bhuman/docs/LOCAL-RUN-ARTIFACTS.md": (
@@ -863,6 +877,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
         "local_bh_gym_dry_run",
         "runs/<id>",
     ),
@@ -890,6 +906,8 @@ REQUIRED_DOCS = {
         "walk_onnx_export_dry_run",
         "missing_weight_skip_honesty",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/RESEARCH-MIGRATE-TABLE.md": (
         "344→13",
@@ -917,6 +935,8 @@ REQUIRED_DOCS = {
         "权重",
         "真机",
         "merge_readiness_blockers",
+        "local_rtx5090_pretrain_checklist",
+        "walk_eval_artifact_crosscheck",
     ),
     "bhuman/docs/OBS-ASSEMBLY-344.md": (
         "344→13",

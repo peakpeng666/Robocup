@@ -80,6 +80,7 @@ def run(repo: Path | None = None) -> dict[str, Any]:
     if (
         snap.get("merge_readiness_claims_ready")
         or snap.get("merge_flips_ready_flag")
+        or snap.get("merge_readiness_pass_as_merge_ok")
         or snap.get("walk_kick_gap_closed")
         or snap.get("fabricated")
     ):
@@ -101,6 +102,17 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("merge_flips_ready_flag must raise")
     except ValueError:
         notes.append("negative: merge flips ready_gpu refused")
+    try:
+        mod.refuse_merge_readiness_pass_as_merge_ok(
+            {
+                "merge_readiness_pass_as_merge_ok": True,
+                "status": "PASS",
+                "as_merge_ok": True,
+            }
+        )
+        errors.append("merge_readiness_pass_as_merge_ok must raise")
+    except ValueError:
+        notes.append("negative: merge-readiness PASS as merge OK refused")
     try:
         mod.refuse_write_yaml(yaml_path)
         errors.append("refuse_write_yaml must raise")

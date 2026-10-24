@@ -34,6 +34,10 @@ walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`。默认导
 
 合并就绪阻塞（仍未就绪）：`scripts/merge_readiness_blockers.py`。**merge_ready=false**；**ready_gpu=false**；`TRAINABLE=false`；质量仍 REPORT_ONLY。walk↔kick **gap_closed=false**。不要合并。
 
+本机 RTX 5090 开训前清单（只盘点，不扫 `$HOME`、不开训）：`scripts/local_rtx5090_pretrain_checklist.py`。胶合 `~/.venvs/bh-gym` 解释器、`third_party` / `meshes` 软链声明、disk headroom note、已有 dry-run 命令生成器。**ready_gpu=false**。**TRAINABLE=false**。**gap_closed=false**。不启动 train.py。
+
+walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`。`artifacts/20261024_200640_281778_walk_eval_s2027/` 仍是 **REPORT_ONLY**；过程 PASS / 清单 PASS 不得把 `quality_verdict` 升成比赛合格。**TRAINABLE=false**。**gap_closed=false**。不改写该产物树。
+
 ---
 
 ## 1. 本机角色

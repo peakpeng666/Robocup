@@ -627,6 +627,14 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "merge-readiness blockers; merge_ready=false; ready_gpu stays false",
         ),
         (
+            "bhuman/k1-training/scripts/local_rtx5090_pretrain_checklist.py",
+            "RTX 5090 pre-train checklist; inventory-only; ready_gpu=false; never launch train",
+        ),
+        (
+            "bhuman/k1-training/scripts/walk_eval_artifact_crosscheck.py",
+            "walk-eval s2027 artifact REPORT_ONLY; checklist cannot upgrade quality",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

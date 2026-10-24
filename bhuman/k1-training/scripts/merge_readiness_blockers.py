@@ -137,6 +137,29 @@ def refuse_merge_flips_ready_flag(claim: dict[str, Any]) -> None:
         )
 
 
+def refuse_merge_readiness_pass_as_merge_ok(claim: dict[str, Any]) -> None:
+    if not isinstance(claim, dict):
+        raise ValueError("merge-readiness-pass-as-merge-ok claim must be a mapping")
+    status = str(claim.get("status") or "")
+    if (
+        claim.get("merge_readiness_pass_as_merge_ok")
+        or claim.get("inventory_pass_as_merge")
+        or claim.get("treat_pass_as_merge_ok")
+        or (
+            status == "PASS"
+            and (
+                claim.get("as_merge_ok")
+                or claim.get("will_merge")
+                or claim.get("merge_now")
+            )
+        )
+    ):
+        raise ValueError(
+            "merge-readiness PASS is inventory-only; "
+            "PASS ≠ merge OK; merge_ready stays false"
+        )
+
+
 def _require_needles(text: str, needles: tuple[str, ...], label: str) -> None:
     missing = [n for n in needles if n not in text]
     if missing:
@@ -209,6 +232,7 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         "will_merge": False,
         "merge_readiness_claims_ready": False,
         "merge_flips_ready_flag": False,
+        "merge_readiness_pass_as_merge_ok": False,
         "walk_kick_gap_closed": False,
         "gap_closed": False,
         "apply_to_live": False,
@@ -259,6 +283,7 @@ def assert_merge_readiness_blockers_frozen(repo: Path | None = None) -> dict[str
     if (
         snap.get("merge_readiness_claims_ready")
         or snap.get("merge_flips_ready_flag")
+        or snap.get("merge_readiness_pass_as_merge_ok")
         or snap.get("walk_kick_gap_closed")
         or snap.get("fabricated")
     ):
@@ -268,6 +293,17 @@ def assert_merge_readiness_blockers_frozen(repo: Path | None = None) -> dict[str
             {"merge_readiness_claims_ready": True, "merge_ready": True}
         )
         raise AssertionError("refuse_merge_readiness_claims_ready must raise")
+    except ValueError:
+        pass
+    try:
+        refuse_merge_readiness_pass_as_merge_ok(
+            {
+                "merge_readiness_pass_as_merge_ok": True,
+                "status": "PASS",
+                "as_merge_ok": True,
+            }
+        )
+        raise AssertionError("refuse_merge_readiness_pass_as_merge_ok must raise")
     except ValueError:
         pass
     try:
@@ -319,6 +355,17 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         errors.append("merge_flips_ready_flag must raise")
     except ValueError:
         notes.append("negative: merge flips ready_gpu refused")
+    try:
+        refuse_merge_readiness_pass_as_merge_ok(
+            {
+                "merge_readiness_pass_as_merge_ok": True,
+                "status": "PASS",
+                "will_merge": True,
+            }
+        )
+        errors.append("merge_readiness_pass_as_merge_ok must raise")
+    except ValueError:
+        notes.append("negative: merge-readiness PASS as merge OK refused")
     try:
         refuse_write_yaml(yaml_path)
         errors.append("refuse_write_yaml must raise")
@@ -376,6 +423,7 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "ready_gpu": False,
         "merge_readiness_claims_ready": False,
         "merge_flips_ready_flag": False,
+        "merge_readiness_pass_as_merge_ok": False,
     }
 
 

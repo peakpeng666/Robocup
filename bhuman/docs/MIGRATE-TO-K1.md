@@ -143,9 +143,11 @@
 | kick ONNX 部署路径 | 门禁 | `scripts/kick_onnx_deploy_path.py` | **P0** | 否 | `K1_kick_inner.onnx` ≠ Walk/ 默认槽 `K1_walk.onnx`；59→13 不得当 walk **344→13**；缺权诚实 **missing-weight SKIP**；**TRAINABLE=false** | 上轮 kick-ONNX-path |
 | standup / fast / walk 隔离矩阵 | 门禁 | `scripts/standup_fast_isolation_matrix.py` | **P0** | 否 | 一张表钉 **344→13** / **73→22** / **72→22**；live cfg 不得串槽；fast 不是 Isaac | 上轮 isolation-matrix |
 | 策略切换相位草稿 | 门禁 | `scripts/policy_switch_phase_draft.py` | **P0** | 否 | last_action 清零点 → `resetHistoryData` 草稿点 → Force walk afterwards；**apply_to_live=false**；**gap_closed=false** | 上轮 phase-draft |
-| walk ONNX 导出干跑对齐 | 门禁 | `scripts/walk_onnx_export_dry_run.py` | **P0** | 否 | 默认 344→13 stub；kick/fast 不是默认导出；`TRAINABLE=false` 时 would_export=false；PASS ≠ competition deploy | **本轮 export-dry-run** |
-| 缺权 SKIP 诚实 | 门禁 | `scripts/missing_weight_skip_honesty.py` | **P0** | 否 | walk/kick/standup/fast 回放+评估共用 helper；缺权诚实 SKIP；不得假绿 / fail-closed | **本轮 missing-weight** |
-| 合并就绪阻塞 | 门禁 | `scripts/merge_readiness_blockers.py` | **P0** | 否 | **merge_ready=false**；阻塞 GAP / **ready_gpu=false** / **TRAINABLE=false** / REPORT_ONLY；不翻 ready | **本轮 merge-blockers** |
+| walk ONNX 导出干跑对齐 | 门禁 | `scripts/walk_onnx_export_dry_run.py` | **P0** | 否 | 默认 344→13 stub；kick/fast 不是默认导出；`TRAINABLE=false` 时 would_export=false；PASS ≠ competition deploy | 上轮 export-dry-run |
+| 缺权 SKIP 诚实 | 门禁 | `scripts/missing_weight_skip_honesty.py` | **P0** | 否 | walk/kick/standup/fast 回放+评估共用 helper；缺权诚实 SKIP；不得假绿 / fail-closed | 上轮 missing-weight |
+| 合并就绪阻塞 | 门禁 | `scripts/merge_readiness_blockers.py` | **P0** | 否 | **merge_ready=false**；阻塞 GAP / **ready_gpu=false** / **TRAINABLE=false** / REPORT_ONLY；不翻 ready | 上轮 merge-blockers |
+| 本机 RTX 5090 开训前清单 | 门禁 | `scripts/local_rtx5090_pretrain_checklist.py` | **P0** | 否 | 胶合 `~/.venvs/bh-gym` / `third_party` / `meshes` + disk note + dry-run 生成器；**ready_gpu=false**；不启动 train.py | **本轮 pretrain-checklist** |
+| walk 评估产物交叉核对 | 门禁 | `scripts/walk_eval_artifact_crosscheck.py` | **P0** | 否 | `20261024_200640_281778_walk_eval_s2027` 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 | **本轮 walk-eval-artifact** |
 | 自检失败定位 | 门禁 | `scripts/selfcheck_fail_hints.py` | **P0** | 否 | FAIL 打印「先看」文件/测试；PASS 安静 | 上轮 UX |
 | Booster Lab / real-to-sim | §6.9 | 只写 GLOBAL / ROADMAP；不建厂家训练目录 | **P4 对齐 / P5 植物** | 否（文档）；校准/真机要 | 三道门仍锁 **344→13 / PD / 不冒充**；不改 `K1.yaml` | **本轮调研** |
 | 足球人形通信 / 非 CTDE | §6.7 | 保持 B-Human TeamComm；不建 MARL 目录 | **P4 验收 / P5 带宽** | 否（文档）；真机要 | **不把队友状态塞进 344**；MAPPO 不接官方 actor | **本轮调研** |

@@ -204,6 +204,8 @@ REQUIRED_LANDINGS = (
     "walk_onnx_export_dry_run.py",
     "missing_weight_skip_honesty.py",
     "merge_readiness_blockers.py",
+    "local_rtx5090_pretrain_checklist.py",
+    "walk_eval_artifact_crosscheck.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

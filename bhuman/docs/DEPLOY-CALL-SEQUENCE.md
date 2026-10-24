@@ -67,7 +67,9 @@ standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`�
 策略切换相位草稿：`scripts/policy_switch_phase_draft.py`（last_action 清零点 → history reset 草稿点 → Force walk afterwards；**apply_to_live=false**；walk↔kick GAP 仍开）。  
 walk ONNX 导出干跑：`scripts/walk_onnx_export_dry_run.py`（344 stub；对照 `onnx_export_contract`；PASS ≠ competition deploy）。  
 缺权 SKIP 诚实：`scripts/missing_weight_skip_honesty.py`（walk/kick/standup/fast；不得假绿 / fail-closed）。  
-合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。
+合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。  
+本机 RTX 5090 开训前清单：`scripts/local_rtx5090_pretrain_checklist.py`（只盘点；**ready_gpu=false**；不启动 train.py）。  
+walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`（s2027 仍 **REPORT_ONLY**；清单不得升成比赛合格）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

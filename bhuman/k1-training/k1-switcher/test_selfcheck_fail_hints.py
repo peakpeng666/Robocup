@@ -100,6 +100,8 @@ def run(repo: Path | None = None) -> dict[str, Any]:
         "test_walk_onnx_export_dry_run.py",
         "test_missing_weight_skip_honesty.py",
         "test_merge_readiness_blockers.py",
+        "test_local_rtx5090_pretrain_checklist.py",
+        "test_walk_eval_artifact_crosscheck.py",
         "test_selfcheck_fail_hints.py",
         "k1.yaml",
     )

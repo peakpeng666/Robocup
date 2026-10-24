@@ -442,6 +442,8 @@ standup / fast / walk 隔离矩阵：`scripts/standup_fast_isolation_matrix.py`�
 walk ONNX 导出干跑对齐：`scripts/walk_onnx_export_dry_run.py`（344 stub；PASS ≠ competition deploy；**TRAINABLE=false**）。  
 缺权 SKIP 诚实：`scripts/missing_weight_skip_honesty.py`（walk/kick/standup/fast；缺权诚实 SKIP）。  
 合并就绪阻塞：`scripts/merge_readiness_blockers.py`（**merge_ready=false**；**ready_gpu=false**；**gap_closed=false**）。  
+本机 RTX 5090 开训前清单：`scripts/local_rtx5090_pretrain_checklist.py`（只盘点；**ready_gpu=false**；不启动 train.py）。  
+walk 评估产物交叉核对：`scripts/walk_eval_artifact_crosscheck.py`（s2027 仍 **REPORT_ONLY**；清单不得升成比赛合格）。  
 映射文档：[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[DEPLOY-CALL-SEQUENCE.md](DEPLOY-CALL-SEQUENCE.md)、[POLICY-SWITCH-HISTORY-GAP.md](POLICY-SWITCH-HISTORY-GAP.md)。
 
 ---

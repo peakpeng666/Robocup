@@ -328,6 +328,14 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/merge_readiness_blockers.py",
         "hint": "先看合并就绪是否仍是 merge_ready=false / ready_gpu=false，或 GAP / TRAINABLE / REPORT_ONLY 阻塞是否被翻掉",
     },
+    "test_local_rtx5090_pretrain_checklist.py": {
+        "look": "bhuman/k1-training/scripts/local_rtx5090_pretrain_checklist.py",
+        "hint": "先看 RTX 5090 开训前清单是否仍是 print-only / ready_gpu=false，或是否静默启动了 train.py",
+    },
+    "test_walk_eval_artifact_crosscheck.py": {
+        "look": "bhuman/k1-training/scripts/walk_eval_artifact_crosscheck.py",
+        "hint": "先看 walk_eval_s2027 是否仍是 REPORT_ONLY，或清单 PASS 是否把 quality_verdict 升成比赛合格",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

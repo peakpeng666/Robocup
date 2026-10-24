@@ -1,0 +1,38 @@
+{
+  "generated_utc": "2026-10-24T11:53:32+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/walk_eval_artifact_crosscheck.py",
+  "artifact_rel": "bhuman/k1-training/artifacts/20261024_200640_281778_walk_eval_s2027",
+  "execution_status": "PASS",
+  "quality_verdict": "REPORT_ONLY_QUALITY_NOT_CERTIFIED",
+  "seed": 2027,
+  "num_envs": 8,
+  "seg_steps": 100,
+  "steps": [
+    {
+      "id": "walk_eval_metrics",
+      "status": "PASS",
+      "reason": null,
+      "fabricated": false
+    }
+  ],
+  "will_exec_eval_here": false,
+  "will_run_train_py": false,
+  "will_run_isaac_gym": false,
+  "write_artifact": false,
+  "walk_eval_artifact_as_competition_ready": false,
+  "checklist_upgrades_quality": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "walk_eval_s2027 stays REPORT_ONLY_QUALITY_NOT_CERTIFIED; execution PASS / checklist alone ≠ competition-ready",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+  "status_sha256": "65a006c694b74895c283e01ad1db156a061caf6ccf26576aa6c0ef6f89bfaf4f"
+}

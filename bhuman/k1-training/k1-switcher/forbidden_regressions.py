@@ -48,7 +48,9 @@ isolation matrix cross-wires slots, policy-switch draft as live,
 policy-switch draft skips Force walk, policy-switch draft claims GAP closed,
 export PASS as competition deploy, export live without TRAINABLE,
 missing-weight as fabricated PASS, missing-weight fails closed,
-merge-readiness claims ready, merge flips ready_gpu.
+merge-readiness claims ready, merge flips ready_gpu,
+silent train launch, flip ready_gpu without user,
+merge-readiness PASS as merge OK, walk-eval artifact as competition-ready.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -198,6 +200,14 @@ from missing_weight_skip_honesty import (  # noqa: E402
 from merge_readiness_blockers import (  # noqa: E402
     refuse_merge_flips_ready_flag,
     refuse_merge_readiness_claims_ready,
+    refuse_merge_readiness_pass_as_merge_ok,
+)
+from local_rtx5090_pretrain_checklist import (  # noqa: E402
+    refuse_flip_ready_gpu_without_user,
+    refuse_silent_train_launch,
+)
+from walk_eval_artifact_crosscheck import (  # noqa: E402
+    refuse_walk_eval_artifact_as_competition_ready,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1126,6 +1136,47 @@ def _case_merge_flips_ready_flag() -> None:
     )
 
 
+def _case_silent_train_launch() -> None:
+    refuse_silent_train_launch(
+        {
+            "silent_train_launch": True,
+            "will_run_train_py": True,
+            "this_pin": True,
+            "spawn_train": True,
+        }
+    )
+
+
+def _case_flip_ready_gpu_without_user() -> None:
+    refuse_flip_ready_gpu_without_user(
+        {
+            "flip_ready_gpu_without_user": True,
+            "ready_gpu": True,
+        }
+    )
+
+
+def _case_merge_readiness_pass_as_merge_ok() -> None:
+    refuse_merge_readiness_pass_as_merge_ok(
+        {
+            "merge_readiness_pass_as_merge_ok": True,
+            "status": "PASS",
+            "as_merge_ok": True,
+        }
+    )
+
+
+def _case_walk_eval_artifact_as_competition_ready() -> None:
+    refuse_walk_eval_artifact_as_competition_ready(
+        {
+            "walk_eval_artifact_as_competition_ready": True,
+            "execution_status": "PASS",
+            "as_competition_ready": True,
+            "quality_verdict": "PASS",
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1240,6 +1291,10 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("missing_weight_fails_closed", _case_missing_weight_fails_closed),
     ("merge_readiness_claims_ready", _case_merge_readiness_claims_ready),
     ("merge_flips_ready_flag", _case_merge_flips_ready_flag),
+    ("silent_train_launch", _case_silent_train_launch),
+    ("flip_ready_gpu_without_user", _case_flip_ready_gpu_without_user),
+    ("merge_readiness_pass_as_merge_ok", _case_merge_readiness_pass_as_merge_ok),
+    ("walk_eval_artifact_as_competition_ready", _case_walk_eval_artifact_as_competition_ready),
 )
 
 

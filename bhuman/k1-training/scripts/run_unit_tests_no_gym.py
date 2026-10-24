@@ -134,6 +134,8 @@ REQUIRED_NAMES = (
     "test_walk_onnx_export_dry_run.py",
     "test_missing_weight_skip_honesty.py",
     "test_merge_readiness_blockers.py",
+    "test_local_rtx5090_pretrain_checklist.py",
+    "test_walk_eval_artifact_crosscheck.py",
     "test_selfcheck_fail_hints.py",
 )
 SKIP_SELF = {"run_unit_tests_no_gym.py"}

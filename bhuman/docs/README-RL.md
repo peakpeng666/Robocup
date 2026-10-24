@@ -128,6 +128,8 @@
 | walk ONNX 导出干跑 | `scripts/walk_onnx_export_dry_run.py` | 344 stub；kick/fast 不是默认导出；PASS ≠ competition deploy |
 | 缺权 SKIP 诚实 | `scripts/missing_weight_skip_honesty.py` | walk/kick/standup/fast 回放+评估；缺权诚实 SKIP；不得假绿 / fail-closed |
 | 合并就绪阻塞 | `scripts/merge_readiness_blockers.py` | **merge_ready=false**；GAP / **ready_gpu=false** / **TRAINABLE=false** / REPORT_ONLY |
+| 本机 RTX 5090 开训前清单 | `scripts/local_rtx5090_pretrain_checklist.py` | 胶合 bh-gym / 软链 / disk note / dry-run；**ready_gpu=false**；不启动 train.py |
+| walk 评估产物交叉核对 | `scripts/walk_eval_artifact_crosscheck.py` | s2027 仍 **REPORT_ONLY**；清单 PASS 不得升成比赛合格 |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |
