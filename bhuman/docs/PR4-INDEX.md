@@ -152,6 +152,7 @@ k1-training/manifests/
 ├── contract-gate-20261024-global.json
 ├── contract-gate-20261024-migrate.json
 ├── contract-gate-20261024-switcher.json
+├── contract-gate-20261024-deploy.json 本轮（部署时序 + Booster Lab + PR4 索引）
 ├── contract-gate-latest.json          最近一次
 └── reserved-gpu-latest.json           skipped + WARN
 ```
