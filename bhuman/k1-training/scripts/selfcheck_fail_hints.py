@@ -376,6 +376,18 @@ HINTS: dict[str, dict[str, str]] = {
         "look": "bhuman/k1-training/scripts/torque_effort_timeseries_contract.py",
         "hint": "先看 (T,13)/(T,12) 是否漂移，或序列 PASS 是否被写成 live torque / 比赛合格",
     },
+    "test_reactive_intercept_bypass_hardening.py": {
+        "look": "bhuman/k1-training/scripts/reactive_intercept_bypass_hardening.py",
+        "hint": "先看拦截写入链是否仍 walkPolicy，或 reactive PASS 是否被写成 live kick 部署",
+    },
+    "test_teamcomm_shape_negatives.py": {
+        "look": "bhuman/k1-training/scripts/teamcomm_shape_negatives.py",
+        "hint": "先看 128≠512 是否漂移，或是否出现静默扩容声称",
+    },
+    "test_pr_volume_health_rescan.py": {
+        "look": "bhuman/k1-training/scripts/pr_volume_health_rescan.py",
+        "hint": "先看体积复扫是否仍只记增长、不改历史、不删产物",
+    },
     "test_selfcheck_fail_hints.py": {
         "look": "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
         "hint": "先看 HINTS 是否缺步，或 FAIL 路径是否不再打印先看",

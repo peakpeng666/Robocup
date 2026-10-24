@@ -140,6 +140,9 @@
 | SimRobot 六机验收缺口 | `scripts/simrobot_six_robot_acceptance_gap.py` | S6 脚手架在；活回放 SKIP；**field_ready=false** |
 | 估计器旁路草案合同 | `scripts/estimator_bypass_draft_contract.py` | `D_estimator_ab` + stub 只盘点；**apply_to_live=false**；PASS ≠ live swap |
 | 力矩 / effort 时间序列合同 | `scripts/torque_effort_timeseries_contract.py` | (T,13)/(T,12) 形状；**T4** SKIP；PASS ≠ live torque / 比赛合格 |
+| reactive 拦截旁路硬化 | `scripts/reactive_intercept_bypass_hardening.py` | **TRAINABLE=false**；PlayBall ≠ kickPolicy；PASS ≠ live kick 部署 |
+| 队通信形状负例 | `scripts/teamcomm_shape_negatives.py` | 官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP |
+| PR 体积健康复扫 | `scripts/pr_volume_health_rescan.py` | 记增长；只建议日后可压缩 stamp；**不改历史**；**不删产物** |
 | 自检失败定位 | `scripts/selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
 | P2–P5 预研 | 见下方文档地图 | 文档就绪 ≠ 已训通 / 已上真机 |

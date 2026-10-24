@@ -14,3 +14,5 @@ Walk 主路径仍是官方 **344→13**。队友 / 压缩报文不得写入 344�
 **带宽**实测：无机器人 / 无 WLAN → **SKIP**。SKIP ≠ 预算已满足，更 ≠ 可以把 128 和 512 当成同一个数。
 
 可测断言：`k1-switcher/teamcomm_128_vs_512.py`。形状 stub 仍见 `compressed_teamcomm_shape.py`。
+
+本轮加深（只读 overlay）：`scripts/teamcomm_shape_negatives.py`（**TRAINABLE=false**；**gap_closed=false**）。再钉 **128 ≠ 512** / CompressedTeamComm 类型界，并拒绝 `silent_teamcomm_size_upgrade`（不得把 `data[128]` 静默改成 `data[512]`，也不得把 128 标成 HSL 已满足）。带宽无机器人 / 无 WLAN 仍 SKIP。

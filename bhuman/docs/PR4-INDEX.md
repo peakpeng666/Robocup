@@ -261,6 +261,9 @@ scripts/
 ├── simrobot_six_robot_acceptance_gap.py S6 脚手架 ≠ field-ready
 ├── estimator_bypass_draft_contract.py D_estimator_ab + stub 盘点；PASS ≠ live swap
 ├── torque_effort_timeseries_contract.py (T,13)/(T,12) 形状；T4 SKIP；≠ live torque
+├── reactive_intercept_bypass_hardening.py TRAINABLE=false；PlayBall≠kick；≠ live kick
+├── teamcomm_shape_negatives.py  128≠512；禁静默扩容；带宽 SKIP
+├── pr_volume_health_rescan.py   记增长；no_history_rewrite；do_not_delete_artifacts
 ├── selfcheck_fail_hints.py      FAIL 打印先看文件/测试；PASS 安静
 ├── print_train_dry_run.py       只打印第一训 --task K1；干跑成功 ≠ 可训
 ├── env_registry_audit.py        官方 K1 在册；旁路未注册
@@ -380,6 +383,9 @@ k1-switcher/
 ├── test_simrobot_six_robot_acceptance_gap.py
 ├── test_estimator_bypass_draft_contract.py
 ├── test_torque_effort_timeseries_contract.py
+├── test_reactive_intercept_bypass_hardening.py
+├── test_teamcomm_shape_negatives.py
+├── test_pr_volume_health_rescan.py
 ├── test_onnx_export_contract.py
 ├── test_history_buffer_shape.py
 ├── test_joint_map_contract.py
@@ -492,7 +498,8 @@ k1-training/manifests/
 ├── contract-gate-20261024-kscl.json   上轮（kick/standup 开训干跑 + 上传+清理清单）
 ├── contract-gate-20261024-rhci.json   上轮（奖励课程草案 + 历史窗 + CI 接线）
 ├── contract-gate-20261024-dpsg.json   上轮（域随机草案 + PD 增益负例 + 六机缺口）
-├── contract-gate-20261024-ebts.json   本轮（估计器旁路草案 + 力矩/effort 序列）
+├── contract-gate-20261024-ebts.json   上轮（估计器旁路草案 + 力矩/effort 序列）
+├── contract-gate-20261024-ritv.json   本轮（拦截硬化 + 队通信负例 + 体积复扫）
 ├── contract-gate-latest.json          最近一次
 ├── reserved-gpu-latest.json           skipped + WARN + checklist
 ├── gpu-worker-checklist-latest.json   cuda / isaac / disk / K1 / checkpoint
@@ -572,6 +579,9 @@ k1-training/manifests/
 ├── reward-curriculum-draft-validator-latest.json walk live 奖励冻结；apply_to_live=false
 ├── obs-history-window-contract-latest.json walk 10×32+24 vs kick 59 vs standup 73；GAP 开
 ├── ci-gate-wiring-latest.json 自检+forbidden 无 Gym/GPU；merge_ready=false
+├── reactive-intercept-bypass-hardening-latest.json TRAINABLE=false；PlayBall≠kick；≠ live kick
+├── teamcomm-shape-negatives-latest.json 128≠512；禁静默扩容；带宽 SKIP
+├── pr-volume-health-rescan-latest.json 记增长；no_history_rewrite；do_not_delete_artifacts
 └── pr4-selfcheck-latest.json          自检一行：344→13 / TRAINABLE=false / ready_gpu + elapsed_s
 ```
 
@@ -581,6 +591,9 @@ k1-training/manifests/
 
 | 项 | 落点 | 验收 |
 |---|---|---|
+| reactive 拦截旁路硬化 | `scripts/reactive_intercept_bypass_hardening.py` | **TRAINABLE=false**；PlayBall ≠ kickPolicy；`shouldInterceptBall` 仍 walkPolicy；PASS ≠ live kick 部署；stamp `20261024-ritv` |
+| 队通信形状负例 | `scripts/teamcomm_shape_negatives.py` | 官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP |
+| PR 体积健康复扫 | `scripts/pr_volume_health_rescan.py` | 相对 pin 335/+191k 记增长；**no_history_rewrite**；**do_not_delete_artifacts** |
 | 估计器旁路草案合同 | `scripts/estimator_bypass_draft_contract.py` | `D_estimator_ab` + stub 只盘点；hooks 未接线；**apply_to_live=false**；PASS ≠ live estimator swap；stamp `20261024-ebts` |
 | 力矩 / effort 时间序列合同 | `scripts/torque_effort_timeseries_contract.py` | (T,13) 目标偏置 ≠ 电流；(T,12) 窗；**T4** SKIP；序列 PASS ≠ live torque / 比赛合格 |
 | 域随机 / 扰动草案校验 | `scripts/domain_rand_disturbance_draft_validator.py` | live `push_*` / friction / mass 冻结；kick/standup 只注记；**apply_to_live=false**；PASS ≠ live DR；stamp `20261024-dpsg` |
@@ -741,6 +754,9 @@ k1-training/manifests/
 | SimRobot 六机验收缺口 | `simrobot_six_robot_acceptance_gap.py` | S6 脚手架在；活回放 SKIP；**field_ready=false** |
 | 估计器旁路草案合同 | `estimator_bypass_draft_contract.py` | `D_estimator_ab` + stub 只盘点；**apply_to_live=false**；PASS ≠ live swap |
 | 力矩 / effort 时间序列合同 | `torque_effort_timeseries_contract.py` | (T,13)/(T,12) 形状；**T4** SKIP；PASS ≠ live torque / 比赛合格 |
+| reactive 拦截旁路硬化 | `reactive_intercept_bypass_hardening.py` | **TRAINABLE=false**；PlayBall ≠ kickPolicy；PASS ≠ live kick 部署 |
+| 队通信形状负例 | `teamcomm_shape_negatives.py` | 官方 **128** ≠ HSL **512**；禁静默扩容 |
+| PR 体积健康复扫 | `pr_volume_health_rescan.py` | 记增长；**no_history_rewrite**；**do_not_delete_artifacts** |
 | 自检失败定位 | `selfcheck_fail_hints.py` | FAIL 打印「先看」文件/测试；PASS 安静 |
 | MuJoCo 过桥负例 | `sim2sim/overpass_contract.py` | T1 365 / T1_Ball 62 / K1_Stand_Up 73 冒充 walk 过桥必须失败；缺 mujoco SKIP |
 | PR 体积健康 | [PR4-MERGE-CHECKLIST.md](PR4-MERGE-CHECKLIST.md) §4 | 文档+纯 Python 合同；无权重；审纪律不是曲线 |
@@ -772,5 +788,7 @@ k1-training/manifests/
 - **不删合同脚本** 来「瘦身」。
 - **不 force-push**、**不改历史**。
 - 审的是默认 walk **344→13** 是否守住，不是行数。
+
+后续合同/manifest 增长由 `scripts/pr_volume_health_rescan.py` 只读复扫（**no_history_rewrite**；**do_not_delete_artifacts**；日后可压缩的只是旧 `contract-gate-*.json` stamp，现在不改历史、不删产物）。
 
 机器校验：`scripts/pr4_index_nav.py`（分组导航 + 体积针脚 + **status=GAP** / **gap_closed=false**）。

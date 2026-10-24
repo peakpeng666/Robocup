@@ -675,6 +675,18 @@ def check(repo: Path | None = None) -> dict[str, Any]:
             "torque/effort series; (T,13)/(T,12); PASS ≠ live torque",
         ),
         (
+            "bhuman/k1-training/scripts/reactive_intercept_bypass_hardening.py",
+            "reactive intercept hardening; TRAINABLE=false; PASS ≠ live kick deploy",
+        ),
+        (
+            "bhuman/k1-training/scripts/teamcomm_shape_negatives.py",
+            "teamcomm shape negatives; 128≠512; silent size upgrade refused",
+        ),
+        (
+            "bhuman/k1-training/scripts/pr_volume_health_rescan.py",
+            "PR volume re-scan; growth noted; no history rewrite; do not delete artifacts",
+        ),
+        (
             "bhuman/k1-training/scripts/selfcheck_fail_hints.py",
             "selfcheck FAIL locator (先看 file/test; PASS quiet)",
         ),

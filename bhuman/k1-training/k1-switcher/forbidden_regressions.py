@@ -56,7 +56,9 @@ destructive Desktop rm, validator PASS as live curriculum,
 cross-skill history reuse as closed, CI gate flips merge_ready,
 validator PASS as live DR, silent cross-domain gain copy,
 SimRobot scaffold as field-ready, estimator PASS as live swap,
-series PASS as live torque, series PASS as competition-ready.
+series PASS as live torque, series PASS as competition-ready,
+reactive PASS as live kick deploy, silent teamcomm size upgrade,
+volume rescan deletes artifacts.
 
 Never writes K1.yaml. TRAINABLE=false.
 """
@@ -246,6 +248,15 @@ from estimator_bypass_draft_contract import (  # noqa: E402
 from torque_effort_timeseries_contract import (  # noqa: E402
     refuse_series_pass_as_live_torque,
     refuse_series_pass_as_competition_ready,
+)
+from reactive_intercept_bypass_hardening import (  # noqa: E402
+    refuse_reactive_pass_as_live_kick_deploy,
+)
+from teamcomm_shape_negatives import (  # noqa: E402
+    refuse_silent_teamcomm_size_upgrade,
+)
+from pr_volume_health_rescan import (  # noqa: E402
+    refuse_volume_rescan_deletes_artifacts,
 )
 from pr4_index_nav import refuse_pr_index_claims_gap_closed  # noqa: E402
 from walk_phase_reset_allowlist import (  # noqa: E402
@@ -1334,6 +1345,37 @@ def _case_series_pass_as_competition_ready() -> None:
     )
 
 
+def _case_reactive_pass_as_live_kick_deploy() -> None:
+    refuse_reactive_pass_as_live_kick_deploy(
+        {
+            "reactive_pass_as_live_kick_deploy": True,
+            "as_live_kick_deploy": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_silent_teamcomm_size_upgrade() -> None:
+    refuse_silent_teamcomm_size_upgrade(
+        {
+            "silent_teamcomm_size_upgrade": True,
+            "overwrite_128_with_512": True,
+            "this_pin": True,
+        }
+    )
+
+
+def _case_volume_rescan_deletes_artifacts() -> None:
+    refuse_volume_rescan_deletes_artifacts(
+        {
+            "volume_rescan_deletes_artifacts": True,
+            "delete_artifacts": True,
+            "rewrite_history": True,
+            "this_pin": True,
+        }
+    )
+
+
 def _case_local_compat_doc_claims_gap_closed() -> None:
     refuse_local_compat_doc_claims_gap_closed(
         {
@@ -1464,6 +1506,9 @@ CASES: tuple[tuple[str, CaseFn], ...] = (
     ("estimator_pass_as_live_swap", _case_estimator_pass_as_live_swap),
     ("series_pass_as_live_torque", _case_series_pass_as_live_torque),
     ("series_pass_as_competition_ready", _case_series_pass_as_competition_ready),
+    ("reactive_pass_as_live_kick_deploy", _case_reactive_pass_as_live_kick_deploy),
+    ("silent_teamcomm_size_upgrade", _case_silent_teamcomm_size_upgrade),
+    ("volume_rescan_deletes_artifacts", _case_volume_rescan_deletes_artifacts),
 )
 
 

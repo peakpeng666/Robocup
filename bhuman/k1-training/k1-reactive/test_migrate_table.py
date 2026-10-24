@@ -216,6 +216,9 @@ REQUIRED_LANDINGS = (
     "simrobot_six_robot_acceptance_gap.py",
     "estimator_bypass_draft_contract.py",
     "torque_effort_timeseries_contract.py",
+    "reactive_intercept_bypass_hardening.py",
+    "teamcomm_shape_negatives.py",
+    "pr_volume_health_rescan.py",
     "LOCAL-BH-GYM-COMPAT.md",
     "LOCAL-RUN-ARTIFACTS.md",
 )

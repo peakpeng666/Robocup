@@ -79,7 +79,10 @@ CI 门禁接线：`scripts/ci_gate_wiring.py`（自检 + forbidden 无 Gym/GPU�
 PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`（p60≠p25≠p65；禁静默跨域拷增益）。  
 SimRobot 六机验收缺口：`scripts/simrobot_six_robot_acceptance_gap.py`（脚手架 ≠ 上场就绪；**field_ready=false**）。  
 估计器旁路草案合同：`scripts/estimator_bypass_draft_contract.py`（**apply_to_live=false**；PASS ≠ live estimator swap）。  
-力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（**T4** SKIP；序列 PASS ≠ live torque / 比赛合格）。
+力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（**T4** SKIP；序列 PASS ≠ live torque / 比赛合格）。  
+reactive 拦截旁路硬化：`scripts/reactive_intercept_bypass_hardening.py`（**TRAINABLE=false**；PlayBall ≠ kickPolicy；PASS ≠ live kick 部署）。  
+队通信形状负例：`scripts/teamcomm_shape_negatives.py`（官方 **128** ≠ HSL **512**；禁静默扩容）。  
+PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（记增长；**不改历史**；**不删产物**）。
 
 配套：[SWITCHER-SM.md](SWITCHER-SM.md)、[BEHAVIOR-TREE-SKILL-SELECT.md](BEHAVIOR-TREE-SKILL-SELECT.md)、[SKILL-SWITCH-CONTINUITY.md](SKILL-SWITCH-CONTINUITY.md)。
 

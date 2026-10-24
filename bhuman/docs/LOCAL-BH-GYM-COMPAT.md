@@ -58,7 +58,10 @@ CI 门禁接线：`scripts/ci_gate_wiring.py`（`run_pr4_selfcheck` + `forbidden
 PD 增益域差负例：`scripts/pd_gain_domain_gap_negatives.py`（train **p60** ≠ Default **p25** ≠ Simulated hang-test **p65**；Competition 用 Default 电机；walk/kick 刚度只是注记；禁 `silent_cross_domain_gain_copy`；**TRAINABLE=false**；**gap_closed=false**）。  
 SimRobot 六机验收缺口钉死：`scripts/simrobot_six_robot_acceptance_gap.py`（S6-1..S6-4 脚手架在；活回放仍 SKIP；官方场景 5vs5；**field_ready=false**；**TRAINABLE=false**；**gap_closed=false**）。  
 估计器旁路草案合同：`scripts/estimator_bypass_draft_contract.py`（`D_estimator_ab` + `k1-estimators` stub 只盘点；hooks 未接线；latent 不进 344；**apply_to_live=false**；校验 PASS ≠ live estimator swap；**TRAINABLE=false**；**gap_closed=false**）。  
-力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（(T,13) 目标偏置 ≠ 电流；(T,12) 窗；standup 22 不得当 walk；**T4** 仍 SKIP；序列 PASS ≠ live torque / 比赛合格；**TRAINABLE=false**；**gap_closed=false**）。
+力矩 / effort 时间序列合同：`scripts/torque_effort_timeseries_contract.py`（(T,13) 目标偏置 ≠ 电流；(T,12) 窗；standup 22 不得当 walk；**T4** 仍 SKIP；序列 PASS ≠ live torque / 比赛合格；**TRAINABLE=false**；**gap_closed=false**）。  
+reactive 拦截旁路硬化：`scripts/reactive_intercept_bypass_hardening.py`（**TRAINABLE=false**；PlayBall ≠ kickPolicy；`shouldInterceptBall` 仍 walkPolicy；校验 PASS ≠ live kick 部署；**apply_to_live=false**；**gap_closed=false**）。  
+队通信形状负例：`scripts/teamcomm_shape_negatives.py`（官方 **128** ≠ HSL **512**；禁静默扩容；带宽 SKIP；**TRAINABLE=false**；**gap_closed=false**）。  
+PR 体积健康复扫：`scripts/pr_volume_health_rescan.py`（相对 pin 335/+191k 记增长；只建议日后可压缩的 stamp，**no_history_rewrite**；**do_not_delete_artifacts**；**TRAINABLE=false**；**gap_closed=false**）。
 
 ## 权重与网格（不进 Git）
 

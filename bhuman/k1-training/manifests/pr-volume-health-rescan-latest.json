@@ -1,0 +1,64 @@
+{
+  "generated_utc": "2026-10-24T12:30:19+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/pr_volume_health_rescan.py",
+  "checklist": [
+    "growth_noted",
+    "squash_docs_only",
+    "no_history_rewrite",
+    "no_artifact_delete",
+    "gap_closed_false"
+  ],
+  "growth": {
+    "pin_files": 335,
+    "pin_insertions": 191077,
+    "current_files": 463,
+    "current_insertions": 328757,
+    "shortstat": "463 files changed, 328757 insertions(+), 5 deletions(-)",
+    "latest_manifests": 89,
+    "contract_gate_stamps": 60,
+    "artifact_run_dirs": 3,
+    "growth_noted": true,
+    "note": "pr4_index_nav pin stays 335 files / +191077; later *-latest.json and contract-gate stamps grew; do not rewrite that pin; do not delete artifacts"
+  },
+  "safe_to_squash_later": [
+    {
+      "kind": "older_contract_gate_stamps",
+      "when": "after a matching *-latest.json exists",
+      "example": "contract-gate-20261024-*.json older than the current stamp",
+      "action": "docs-only suggestion; do not squash now; do not delete"
+    },
+    {
+      "kind": "duplicate_selfcheck_html_markdown",
+      "when": "if PR4-SELFCHECK-LATEST.md and an HTML twin are pure copies",
+      "example": "duplicate rendered selfcheck pages after latest exists",
+      "action": "docs-only suggestion; never delete artifacts/ trees"
+    }
+  ],
+  "never_squash": [
+    "artifacts/",
+    "official yaml/cfg",
+    "contract scripts"
+  ],
+  "no_history_rewrite": true,
+  "no_force_push": true,
+  "do_not_delete_artifacts": true,
+  "squash_now": false,
+  "volume_rescan_deletes_artifacts": false,
+  "apply_to_live": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "docs-only volume re-scan; pin 335/+191k stays; later stamps noted; do not rewrite history; do not delete artifacts",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}

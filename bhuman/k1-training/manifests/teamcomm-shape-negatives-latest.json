@@ -1,0 +1,66 @@
+{
+  "generated_utc": "2026-10-24T12:30:17+00:00",
+  "status": "PASS",
+  "skipped": false,
+  "reason": null,
+  "entry": "python3 bhuman/k1-training/scripts/teamcomm_shape_negatives.py",
+  "checklist": [
+    "official_128_vs_hsl_512",
+    "compressed_bounds",
+    "bandwidth_skip",
+    "silent_upgrade_forbidden",
+    "gap_closed_false"
+  ],
+  "official_container_b": 128,
+  "hsl_budget_b": 512,
+  "same_number": false,
+  "sources": {
+    "container": "bhuman/BHumanCodeRelease/Src/Tools/Communication/TeamMessageContainer.h",
+    "streams": "bhuman/BHumanCodeRelease/Src/Tools/Communication/CompressedTeamCommunicationStreams.h",
+    "doc": "bhuman/docs/TEAMCOMM-128-VS-512.md"
+  },
+  "compressed_types": [
+    "RecordType",
+    "ArrayType",
+    "BooleanType",
+    "IntegerType",
+    "AngleType",
+    "FloatType",
+    "TimestampType",
+    "EnumType",
+    "VectorType",
+    "MatrixType"
+  ],
+  "compressed_streams": [
+    "CompressedTeamCommunicationIn",
+    "CompressedTeamCommunicationOut"
+  ],
+  "bandwidth": {
+    "status": "SKIP",
+    "kind": "bandwidth",
+    "robot_connected": false,
+    "wlan": false,
+    "reason": "no robot / WLAN; bandwidth measure must not PASS",
+    "budget_b": 512,
+    "will_run_measure": false
+  },
+  "overwrite_128_with_512": false,
+  "label_128_as_hsl_satisfied": false,
+  "silent_teamcomm_size_upgrade": false,
+  "teammate_into_344": false,
+  "implemented": false,
+  "apply_to_live": false,
+  "would_train": false,
+  "will_run_train_py": false,
+  "ready_gpu": false,
+  "walk_kick_gap_closed": false,
+  "gap_closed": false,
+  "fabricated": false,
+  "note": "128 vs 512 stay different purposes; CompressedTeamComm bounds inventoried; bandwidth SKIP; silent size upgrade refused",
+  "trainable": false,
+  "write_yaml": false,
+  "write_cfg": false,
+  "walk": "344→13",
+  "walk_cfg_sha256": "c6fc603b80ee4347a17739ff592d1d9825b04da3987214b309450b9f1feb4611",
+  "yaml_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314"
+}
