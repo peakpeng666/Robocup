@@ -254,8 +254,14 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
     dry = build_dry_run(repo)
     if dry.get("will_run_train_py") or dry.get("trainable"):
         raise AssertionError("dry-run generator leaked train / TRAINABLE")
-    if dry.get("ready_gpu"):
-        raise AssertionError("dry-run generator leaked ready_gpu=true")
+    # Probe may honestly report ready_gpu=true on an operator machine when
+    # checklist items are all true. THIS pin still freezes ready_gpu=false
+    # (print-only; never launch). Probe truth is advisory, not a leak.
+    probe_ready = bool(dry.get("ready_gpu"))
+    if probe_ready and dry.get("missing"):
+        raise AssertionError(
+            "probe ready_gpu=true illegal while checklist missing items"
+        )
 
     steps = [
         _call_assert("local_bh_gym_dry_run", assert_local_dry_run_frozen, repo),
@@ -290,6 +296,8 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
             "walk": "344→13",
             "will_run_train_py": False,
             "trainable": False,
+            "probe_ready_gpu": probe_ready,
+            "pin_ready_gpu": False,
             "checklist_keys": list(CHECKLIST_KEYS),
             "tell_user": TELL_USER_BEFORE_TRAIN,
         },
@@ -305,7 +313,8 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         "fabricated": False,
         "note": (
             "RTX 5090 pre-train checklist: bh-gym / softlinks / disk note / "
-            "print-only dry-run; ready_gpu=false; never launch train"
+            "print-only dry-run; pin ready_gpu=false even if probe true; "
+            "never launch train"
         ),
         "trainable": False,
         "write_yaml": False,

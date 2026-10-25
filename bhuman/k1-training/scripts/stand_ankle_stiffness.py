@@ -1,9 +1,13 @@
-"""Read-only standAnkleStiffness contrast (Default vs Simulated).
+"""Read-only standAnkleStiffness allowlist (Default vs Simulated / Competition).
 
-WalkingEngine plant min/max 60/80 → 100/100 is not a rewrite of train
-ankle-roll p60 to robot p25, and does not close the PD domain gap.
-Cross-checks motorParameters / K1.yaml. Never writes cfg or YAML.
-TRAINABLE=false.
+WalkingEngine plant:
+  Default              {min=60, max=80}
+  SimulatedK1          {min=100, max=100}  allowlist: min 60→100, max 80→100
+  CompetitionWalk(/11) keep Default 60/80  (empty allowlist — no intentional diffs)
+
+Plant ≠ rewrite of train ankle-roll p60 to robot p25, and does not close
+the PD domain gap. Cross-checks motorParameters / K1.yaml. Never writes
+cfg or YAML. TRAINABLE=false.
 """
 from __future__ import annotations
 
@@ -54,6 +58,15 @@ COMP_WALK_RELS = (
 )
 DEFAULT_STAND = {"min": "60", "max": "80"}
 SIMULATED_STAND = {"min": "100", "max": "100"}
+# Frozen intentional standAnkleStiffness diffs vs Default.
+ALLOWED_SIM_STAND_ANKLE_DIFFS: frozenset[tuple[str, str, str]] = frozenset(
+    {
+        ("standAnkleStiffness.min", "60", "100"),
+        ("standAnkleStiffness.max", "80", "100"),
+    }
+)
+# Competition must keep Default — no intentional plant diffs.
+ALLOWED_COMP_STAND_ANKLE_DIFFS: frozenset[tuple[str, str, str]] = frozenset()
 
 
 def _repo(explicit: Path | None = None) -> Path:
@@ -107,6 +120,132 @@ def refuse_stand_ankle_as_pd_closed(claim: dict[str, Any]) -> None:
             "it does not rewrite train ankle-roll p60 to robot p25 "
             "and does not close the PD domain gap"
         )
+
+
+def refuse_stand_ankle_as_net_swap(claim: dict[str, Any]) -> None:
+    if not isinstance(claim, dict):
+        raise ValueError("standAnkle-as-net-swap claim must be a mapping")
+    source = str(claim.get("source") or claim.get("from") or "")
+    if (
+        claim.get("stand_ankle_as_net_swap")
+        or claim.get("standAnkleStiffness_swaps_actor")
+        or claim.get("plant_changes_walk_obs")
+        or claim.get("plant_changes_344_contract")
+        or (
+            source
+            in {
+                "standAnkleStiffness",
+                "stand_ankle",
+                "plant",
+                "standAnkleStiffness.min",
+                "standAnkleStiffness.max",
+            }
+            and (
+                claim.get("net_slot_diff")
+                or claim.get("swap_actor")
+                or claim.get("walk_obs") not in (None, WALK_OBS)
+                or claim.get("numInput") in {365, 59, 73, 72}
+            )
+        )
+    ):
+        raise ValueError(
+            "standAnkleStiffness is a walkingEngine plant ratchet; "
+            "it does not swap the walk net or change walk 344→13"
+        )
+
+
+def refuse_stand_ankle_allowlist_drift(claim: dict[str, Any]) -> None:
+    """Refuse Simulated/Competition standAnkle claiming the wrong allowlist."""
+    if not isinstance(claim, dict):
+        raise ValueError("standAnkle-allowlist-drift claim must be a mapping")
+    source = str(claim.get("source") or claim.get("from") or "")
+    pair = claim.get("pair") or claim.get("stand_ankle") or {}
+    sim_diffs = claim.get("sim_diffs")
+    comp_diffs = claim.get("comp_diffs")
+    if (
+        claim.get("stand_ankle_allowlist_drift")
+        or claim.get("simulated_matches_competition_stand_ankle")
+        or claim.get("competition_matches_simulated_stand_ankle")
+        or (
+            source in {"SimulatedK1", "Simulated"}
+            and pair
+            and pair != SIMULATED_STAND
+        )
+        or (
+            source in {"CompetitionWalk/K1", "Competition", "competition"}
+            and pair
+            and pair != DEFAULT_STAND
+        )
+        or (
+            source in {"CompetitionWalk11v11/K1", "11v11"}
+            and pair
+            and pair != DEFAULT_STAND
+        )
+        or (
+            source in {"Default", "default"}
+            and pair
+            and pair != DEFAULT_STAND
+        )
+        or (
+            isinstance(sim_diffs, (list, set, frozenset))
+            and set(map(tuple, sim_diffs)) != ALLOWED_SIM_STAND_ANKLE_DIFFS
+        )
+        or (
+            isinstance(comp_diffs, (list, set, frozenset))
+            and set(map(tuple, comp_diffs)) != ALLOWED_COMP_STAND_ANKLE_DIFFS
+        )
+    ):
+        raise ValueError(
+            "standAnkleStiffness allowlist: Default 60/80; Simulated "
+            "min 60→100 max 80→100; Competition keeps Default (empty diffs)"
+        )
+
+
+def refuse_competition_stand_as_sim(claim: dict[str, Any]) -> None:
+    """Refuse Competition claiming Simulated 100/100 plant."""
+    if not isinstance(claim, dict):
+        raise ValueError("competition-stand-as-sim claim must be a mapping")
+    source = str(claim.get("source") or claim.get("from") or "")
+    pair = claim.get("pair") or claim.get("stand_ankle") or {}
+    if (
+        claim.get("competition_stand_as_sim")
+        or claim.get("competition_uses_simulated_stand_ankle")
+        or (
+            source
+            in {
+                "CompetitionWalk/K1",
+                "CompetitionWalk11v11/K1",
+                "Competition",
+                "competition",
+            }
+            and pair == SIMULATED_STAND
+        )
+        or (
+            claim.get("matches_simulated")
+            and source
+            in {
+                "CompetitionWalk/K1",
+                "CompetitionWalk11v11/K1",
+                "Competition",
+                "competition",
+            }
+        )
+    ):
+        raise ValueError(
+            "Competition standAnkleStiffness must keep Default 60/80; "
+            "must not copy Simulated 100/100 plant"
+        )
+
+
+def _stand_diffs(left: dict[str, str], right: dict[str, str]) -> list[tuple[str, str, str]]:
+    rows: list[tuple[str, str, str]] = []
+    for axis in ("min", "max"):
+        lk = f"standAnkleStiffness.{axis}"
+        lv = left.get(axis) or ""
+        rv = right.get(axis) or ""
+        if lv != rv:
+            rows.append((lk, lv, rv))
+    return rows
 
 
 def _stand_pair(flat: dict[str, str]) -> dict[str, str]:
@@ -171,6 +310,13 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
     if default_stand == sim_stand:
         raise AssertionError("expected Default vs Simulated standAnkleStiffness contrast")
 
+    sim_diffs = _stand_diffs(default_stand, sim_stand)
+    if set(sim_diffs) != ALLOWED_SIM_STAND_ANKLE_DIFFS:
+        raise AssertionError(
+            f"Simulated standAnkle allowlist drifted: {sim_diffs} ≠ "
+            f"{sorted(ALLOWED_SIM_STAND_ANKLE_DIFFS)}"
+        )
+
     # Same numeral 60 in plant min and train Ankle_Roll p; different domains.
     if default_stand["min"] != "60" or TRAIN_ANKLE_ROLL_P != 60.0:
         raise AssertionError("expected coincidental 60 in plant min and train p")
@@ -178,6 +324,7 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         raise AssertionError("Simulated plant must not impersonate p25 or p60")
 
     competition_rows: list[dict[str, Any]] = []
+    comp_diffs_all: list[tuple[str, str, str]] = []
     for role, rel in COMP_WALK_RELS:
         path = repo / rel
         if not path.is_file():
@@ -185,7 +332,15 @@ def extract_snapshot(repo: Path | None = None) -> dict[str, Any]:
         pair = _stand_pair(flatten_cfg(path.read_text(encoding="utf-8")))
         if pair != DEFAULT_STAND:
             raise AssertionError(f"{role} standAnkleStiffness must stay Default 60/80: {pair}")
+        row_diffs = _stand_diffs(default_stand, pair)
+        if row_diffs:
+            raise AssertionError(f"{role} standAnkle diffs must be empty: {row_diffs}")
         competition_rows.append({"role": role, **pair, "matches_default": True})
+    if set(comp_diffs_all) != ALLOWED_COMP_STAND_ANKLE_DIFFS:
+        raise AssertionError(
+            f"Competition standAnkle allowlist drifted: {comp_diffs_all} ≠ "
+            f"{sorted(ALLOWED_COMP_STAND_ANKLE_DIFFS)}"
+        )
 
     return {
         "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),

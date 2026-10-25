@@ -237,16 +237,29 @@ def write_snapshot(repo: Path | None = None, dest: Path | None = None) -> Path:
     snapshot = extract_snapshot(repo)
     path = dest or (repo / SNAPSHOT_REL)
     name = path.name
-    dest_s = str(path).replace("\\", "/")
+    # Worktree may live under ~/Desktop/... — a path substring "Desktop"
+    # is NOT a destructive Desktop wipe. Only refuse official cfg/yaml
+    # targets or destinations outside repo manifests/.
+    try:
+        rel = path.resolve().relative_to(repo.resolve()).as_posix()
+    except ValueError:
+        rel = None
     if (
         path.suffix in {".yaml", ".yml", ".cfg"}
         or name in {"K1.yaml", "walkingEngine.cfg"}
-        or "Desktop" in dest_s
-        or "/home/" in dest_s
-        and ARTIFACT_ROOT_REL not in dest_s
+        or rel is None
+        or not (
+            rel == SNAPSHOT_REL
+            or rel.startswith("bhuman/k1-training/manifests/")
+        )
     ):
         refuse_destructive_desktop_rm(
-            {"destructive_desktop_rm": True, "path": dest_s, "this_pin": True, "rm": True}
+            {
+                "destructive_desktop_rm": True,
+                "path": str(path),
+                "this_pin": True,
+                "rm": True,
+            }
         )
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
