@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Start the K1 Forge control plane (loopback only). Must run from a desktop session (DISPLAY)
+# so that match jobs can render the normal B-Human cameras.
+set -euo pipefail
+here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONDONTWRITEBYTECODE=1
+exec "${FORGE_PYTHON:-$HOME/.venvs/forge/bin/python}" -B -m forge.server "$@"

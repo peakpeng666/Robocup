@@ -1,0 +1,234 @@
+官方 K1 1.6 完整运控接入 SimRobot：源码复核与实施边界
+2026-10-23，Asia/Tokyo
+
+阅读提示：第三、四、七节保留 15:35 的实施检查点；重启后的实际结果、当前范围与
+B-Human 方法对照见第八、九节。不能把历史“待实现”或“等待重启”当作当前状态。
+用户最后明确的“两套独立完整体系”目标及最新来源/验收结论以
+docs/TWO-TEAMS-OFFICIAL-REAL2SIM-20261023.txt 为准；本文保留实施历史。
+
+目标
+让官方 1.6 的完整 K1 运动控制逻辑在 SimRobot 的真实物理状态上闭环运行；
+最终将官方比赛程序与官方 1.6 运控通过共同接口切换仿真/真机后端，固定另一方的完整 B-Human。
+官方应用来源现固定到具体上游提交，本地改进版本保留为独立对照；详细来源见上述最新记录。
+目前借用 B-Human 正常渲染相机、感知、足球高层验证原厂运控，是中间实现。
+仿真与真机使用同一套运动请求语义和同一原厂控制核心，最终具备可核查的部署准备产物。
+“全量”指 K1 实际支持的控制模式、行走、保护、准备、起身、踢传、头臂控制与切换；
+不以替换三个网络或加载模块图计作完成，也不把电机电气/热保护等未建模硬件现象宣称为已复现。
+
+一、现有实现与来源，哪些保留、哪些不能当最终接入
+
+1. Forge 训练/导出/按队配置/队列/比赛/证据索引骨架可保留。
+   docs/PROGRESS.md 将初版集成归于 Opus；本地无这两天的 Git 提交，不能逐行可靠断言作者。
+   后续复核应按源码快照、实际产品哈希和运行时间戳归属，不按聊天中的口头完成声明归属。
+
+2. BoosterDeployWalkingEngine 与 1.6 forward/side/turn 权重的局部适配可保留作对照。
+   它依赖 B-Human MotionEngine、起身、踢球与相位处理，不满足完整原厂运动链目标。
+   三个 actor 属可选全身 AMP 行走，不能代表原厂 Humanlike、其他模式、恢复、踢传控制器。
+
+3. sim/vk1.py 是公开接口的行为建模和三 actor 孪生体。
+   它有明确列出的假设，并非原始固件控制器。现有 bridge 的通过结论不能迁移成完整 1.6 资格。
+   可继续作独立 sim2sim 对照；原始控制器闭环应是另一个显式后端。
+
+4. 本机 third_party/booster-deploy-7bb1462e2ac7 是公开部署代码，README 要求固件 >=1.7.2。
+   不能把它当作完整 1.6 控制器源码。SDK 提供请求/消息接口，也不等同于原厂内部运动实现。
+
+5. 真实 1.6.0.10 原包保留了 ARM mck、动态库、配置与模型。
+   当前没有一份可直接编译成等价 PC 完整 1.6 控制器的源码树。
+   可以原样运行 ARM 控制核心并替换 IO 边界，避免逐模式重写和混入 B-Human 动作。
+   Webots 0.0.1 PC runner 是较旧 TCN 栈，缺少本包新模块，不能作为完整 1.6 替代。
+
+二、当前运控中间实现
+
+B-Human 渲染相机 / 感知 / 足球高层
+        |
+        v
+统一原厂运动请求与状态适配（模式、m/s 速度、头臂、起身、踢传、视觉输入）
+        |
+        +-- SimRobot 后端：每个候选机器人一个隔离的原始 ARM mck / 模块图
+        |      QEMU + 原厂 RPC + 原始 500 Hz 控制器与真实原厂仿真时钟
+        |      串联状态 -> 原厂踝 IK/Jacobian -> 原始并联控制图
+        |      原始 MIT 命令 -> 电机域饱和 -> J^T 力矩 -> 串联 FullActuator
+        |      SimRobot 真实关节/IMU/接触状态返回下一物理周期
+        |
+        +-- 真机后端：Booster SDK / DDS 与原厂 Loco RPC -> 同一 1.6 原生控制器
+               仿真 interposer 和虚拟身份不进入真机硬件 IO 通路
+
+这条路线复用原厂模式、命令整形、状态估计、行走、保护、起身、踢传与动作叠加逻辑。
+QEMU 只解决架构执行；不把墙钟 500 Hz 或实时性能当作默认保证。
+仿真必须按物理 2 ms 锁步，允许整场比真实时间慢；原厂内部定时仍由原始 GetTime 驱动。
+
+三、本轮已做成并验证的接入基础
+
+- 修复 native/booster_fw16_rpc.cpp 的符号作用域错误：原厂 librsm_modules 以局部作用域加载，
+  现在通过明确的 RTLD_NOLOAD 句柄定位已经加载的原始 Init/HandleRequest，不启动额外硬件组件。
+- 在原始 1.6 mck 上 GetMode/GetStatus 成功，故障前的退出码 71 已消除。
+  阻尼状态下 RotateHead 返回 400；真实拒绝原样保留，不把请求被拒绝算成功动作。
+- 新增显式 wire v2：串联物理关节；原 wire v1 仍表示原始并联电机，二者不可静默混用。
+- 将已有原厂数学库转换实际接入 interposer：传感器在调用原 RsSdkOutput 前转换，
+  执行器在原 RsSdkInput 后转换；22 个关节输出附完整物理力矩包络。
+- 已有 FullActuator 使用 q/qd/tau/kp/kd/limit 独立通路，无将力矩伪装成位置目标的近似。
+- 原始模块图 + RPC + 串并联转换：500 个 2 ms 周期通过，阻尼 -> 准备原厂模式回读成功，
+  正常 STOP/ACK 结束。当前这份新证据仍是冻结状态，尚未验证实际物理运动。
+- 315 项测试和 5 个子测试通过，包含局部动态库作用域、域/版本拒绝、转换失败不输出命令；Ruff F 通过。
+- 本机仅解包 Ubuntu ARM GCC 的共享库 CRT 对象，校验包哈希；没有系统安装或执行包维护脚本。
+
+证据目录：runs/full-native-integration/20261023_151933_gpu-and-fw16/
+关键文件：native-rpc-integration.json、native-serial-integration.json、artifacts.json、pytest.xml。
+
+四、下一步必须实现的 SimRobot 完整 provider
+
+1. 在独立变体新增 BoosterNativeMotionProvider，整体替换候选机器人的低层运动输出。
+   接管 JointRequest、MotionInfo、OdometryData、ArmMotionInfo、HeadMotionInfo 的有效来源。
+   不让 WalkingEngine、GetUpEngine、踢球相位继续代管候选动作；官方队仍选官方 provider。
+   不能只给 WalkingEngine 新建一个子类后仍声称全量接入。
+
+2. 每个候选机器人有独立原厂进程、socket、模式、历史、输出序号和证据目录。
+   不共享原厂全局变量或模式管理器，防止 3v3 中机器人之间相互污染。
+   慢启动在仿真作业准备阶段完成；超时、取消和退出只结束本作业自己的进程树。
+
+3. 用 JointSensorData 的 physicsTick / physicsTime / physicsStepLength 绑定 IO。
+   同一物理 tick 再次调用 Motion 模块只复用同一份回复，不能推进第二个原厂 2 ms 周期。
+   若跳过了物理 tick，拒绝继续资格评测；不能用重复旧传感器补帧掩盖时序缺口。
+   FrameInfo/Motion 审计也使用同源物理时间，修复现有 60 physics / 61 Motion 采样的问题。
+
+4. 明确速度/步行目标的转换：直接速度用 m/s、rad/s；目标位姿使用同一导航适配器。
+   为球位置、头部目标、踢/传请求等建立来源与坐标系契约，接入原厂对应输入。
+   原厂 VisualKick 的视觉依赖必须实测；仅调用 start/version RPC 不等于复现视觉踢球。
+   不能偷偷使用球场真值替代 B-Human 的正常相机感知。
+
+5. 当前审计白名单只覆盖部分原厂 RPC，Custom=3 及完整 LowCmd 输入等仍需补齐和核对。
+   先按本机 SDK、原厂枚举/配置及实际响应建立所有 K1 模式/动作表，再开放对应本地接口。
+   对不支持或被原厂拒绝的动作明确返回结果，不用 B-Human 动作静默兜底。
+
+6. 停止、超时、NaN、掉线和未来/过期帧采用明确的失败状态。
+   停止时使用已验证的 STOP/ACK 边界，保留原始最后一帧，不执行厂商服务/安装脚本。
+
+五、全量验收矩阵：逐项产生新证据后才能打勾
+
+A. 来源一致：mck、全部实际加载的 .so、模型、原图配置与来源指纹；每台机器人运行身份。
+B. 时序和 22 关节：2 ms 同源时钟、编码器/IMU、串并联、q/qd/tau/kp/kd/限幅；过期/异常边界。
+C. 模式：阻尼、准备、行走、K1 支持的足球/Custom/其他模式；启动、停机、转换和拒绝条件。
+D. 行走：原厂各支持 gait，前后/左右/转向/复合/启停；跟踪误差、足滑、限位与力矩。
+E. 保护与恢复：主动前/后/侧倒、外推、姿态不安全；原厂保护/起身及重入行走。
+F. 踢传与头臂：原厂动作、视觉输入、动作阶段和实际球接触/位移，不能以请求次数代替成功。
+G. 集成：3 官方对 3 原厂完整控制器，正常渲染相机，主客/开球互换、多场和扰动分组。
+H. 部署准备：相同请求/状态适配器的 ARM 构建、实际模块选择、完整配置包与离线回读。
+I. 真机：固件/服务/DDS ABI、传感器与闭环资格仍待单独授权；仿真通过不替代真机结果。
+
+所有层分别报告“执行完成”“证据覆盖”“动作/性能结论”，不以单一 PASS 混淆。
+原厂全模块图加载只满足 A 的部分，冻结输入只能覆盖 B 的边界部分。
+
+六、先修的通用可靠性缺陷
+
+前轮验收的离线包忽略 pack.modules、桥接 NaN/缺项假通过、忽略非零退出码、
+training.run_managed 静默超时与历史 arena 身份迁移问题仍未全部修复。
+这些修复和实际原厂 ARM 构建/配置回读必须纳入 H，不能凭现有 bundle 成功声称可部署。
+不得重写历史报告补造通过；旧三 actor 包和全量原厂包必须不同身份、不同选择入口。
+
+七、GPU 恢复与重启续接
+
+本机驱动明确报告 Reboot：Xid31 / UVM global fatal / Xid154 Node Reboot Required。
+用户已同意保存当前代码工作后重启。没有重装驱动、杀桌面或更改官方训练环境。
+已准备一次性登录后验证：CUDA 实际矩阵计算、bh-gym GPU 计算、正常 CUDA 相机的官方 SimRobot 场景。
+验证完成或失败后自动禁用该次启动项，完整日志保留；不启动原厂控制器或连接机器人。
+结果：runs/full-native-integration/20261023_151933_gpu-and-fw16/gpu-after-reboot-latest.json。
+在该结果实际出现并通过前，GPU 只能标记为“等待重启验证”，不能标记已恢复。
+
+八、重启后的实际结果与性能，2026-10-23 17:20 JST
+
+GPU 恢复已实际确认：cuInit=0、现代 CUDA 计算、原训练环境计算及正常 CUDA 相机均通过；
+driver recovery action 为 None。汇总为：
+runs/full-native-integration/20261023_154209_673865_postboot-continuation/gpu-recovery-confirmed.json。
+
+- 独立 BoosterNativeMotionProvider、完整 22 关节原厂输出、真实传感器反馈及串并联物理桥已实现。
+  原厂 Rs 原始 IMU 的 FRD 与 SimRobot FLU 符号映射已依据原始汇编纠正；13 组 ARM 检查共 1,379 项通过。
+- 30 秒固定运动执行与质量 PASS：前进 5.421 m、侧移 0.511 m、转向 3.710 rad。
+  runs/native-simrobot/20261023_162740_372295/，其初始化后记录了 14,961 个连续 native 周期。
+- 60 秒前/后倒原厂起身执行与质量 PASS：30,000 个连续周期、两次原厂 GetUpWithMode 实际接受，
+  稳定确认耗时 11.5 / 10.5 秒（含 3 秒稳定窗口），非 B-Human 起身回退。
+  runs/native-simrobot/20261023_164328_829755/。
+- 120 秒 3v3 首次运行 FAIL：720.266 秒墙钟超时，最后完整物理回读推进约 81.8 秒，
+  每台候选有 40,919 个完整 IO 周期；中断无正常 STOP/ACK，不能算整场完成。
+  runs/native-simrobot/20261023_164955_824827/。不改写原始失败。
+- 共享扩展不启用原厂核心时，普通官方 30 秒场景用时 8.89 秒，与原版 8.63 秒接近；
+  原厂单机器人 30 / 60 秒场景分别用时 47.78 / 118.18 秒。
+- 新性能工具 tools/profile_native_replay.py 对只读历史传感器序列运行 5,000 个原厂周期；
+  这是性能回放，不是新物理验收。一次无绑核成功测量中循环 20.716 秒，交换等待 20.479 秒，
+  校验 0.074 秒、完整证据写盘 0.150 秒；QEMU 进程 CPU 增量为 22.97 秒，26 个线程。
+  约 99% 的主机循环墙钟在原厂进程交换中；没有证据表明删录像或删原始帧能解决主要减速。
+  runs/native-controller/20261023_171124_954063_performance-replay/result.json。
+  0..7 绑核样本循环 23.984 秒，没有展示加速收益，未将绑核改成生产默认。
+  首次无绑核样本在原厂启动时抛 std::system_error/Invalid argument、退出 134，原因未确定；
+  后续通过不等于已修复该启动问题。原始失败、原始成功均保留。
+  早期性能工具中的 native_cpu_s 实际只是 bwrap wait4 数值，不能解释为原厂 CPU；
+  新工具已改用 /proc 的实际 QEMU 进程 CPU 前后快照，旧报告不回写。
+
+截至原厂恢复里程碑，完整 Python 回归为 340 项及 5 个子测试通过；
+详见同续接目录 pytest-final.log / pytest-final.xml。未将后续纯性能或序列化探针计成动作资格。
+
+九、用户范围澄清：学习 B-Human 的仿真与真机共用方法
+
+用户所述 .run + SDK + RoboCupDemo 部署链成立：原厂 ARM 固件提供运控服务，
+比赛程序在 K1 编译后经 SDK/ROS 2 请求该服务。不需要重编译原厂内部运控源码才能开发或部署比赛程序。
+“缺少完整原厂 PC 可重编译源码”仅影响直接本机执行完整原厂运控，不能表述成缺少真机开发路径。
+
+应学习的机制：
+1. 共享应用/控制逻辑与模型，明确切换传感器、执行器后端；保留版本、单位、坐标系、采样率和状态语义。
+2. Real2sim：从设备资料、已有日志和后续经授权的实测校准模型质量/惯量/关节零位/限位、
+   执行器 kp/kd/限幅/延迟、相机内参外参、IMU 符号/噪声/滤波；真实日志回放复查闭环输入。
+3. Sim2sim：同输入记录、同应用/模型、同随机种子与请求，比较控制器输出和多物理后端轨迹。
+   同名 topic 或加载同一权重不足以证明行为等价；物理结果允许误差，但须有预先约定的量化门槛。
+4. Sim2real：同一应用构建 ARM 产物，完整回读配置、模型、接口/模式与依赖；
+   真机闭环验证与本地仿真结果分别记录。当前只做本地与离线准备。
+
+目标结构（用户再次澄清后的范围）：
+同一份选定的比赛程序（自己的或采用上游的感知、决策、裁判处理、配置与模型）
+    -> 相同 SDK / ROS 2 请求和状态契约
+       +-- 真机：现有官方 SDK / DDS -> 已安装的匹配版本 1.6 运控 -> K1 硬件
+       +-- SimRobot：对应仿真接口 -> 原厂控制参考或经过独立验收的仿真运控后端 -> K1 物理模型
+
+B-Human 自己拥有感知、策略、运动控制代码；它不是 RoboCupDemo 的 SimRobot 版本。
+其自有控制代码共同编译到 PC 与 ARM，并分别通过 SimulatedRobot3D 或 BoosterProvider 接 IO。
+RoboCupDemo 是另一套调用原厂运控的应用。研究它有助于理解原厂接口，不能因此推断
+用户要求把整套 Demo 作为本项目的上层比赛程序；也不把 B-Human 自有步态冒充官方 1.6。
+
+现有 ARM/QEMU 原厂核心保留为完整原厂行为的对照，不能把其运行速度当最终高速开发体验。
+快速后端要逐项对照原厂；若它是另写的状态机或控制器，应明确披露该事实与未覆盖项，
+不能仅因 API 一样就标成“完整原厂 1.6”。默认 B-Human 官方步态/相机保持原样。
+
+本地源码已直接核实：
+- booster/robocup_demo/src/brain/src/robot_client.cpp：Move=2001、RotateHead=2004、GetUp=2008、
+  ChangeMode=2000/kSoccer=4、VisualKick=2038；通过 LocoApiTopic[/robot_name]Req 发布。
+  其中 call() 返回 0 表示发布路径完成，不等于原厂接受、更不等于动作成功。
+- 同 Demo brain.cpp / brain/msg/Kick.msg：VisualKick 还有 /kick_ball 的球、目标方向、球门、
+  机器人朝向、power 与时间戳输入，不能只接 start/version RPC。
+- Demo 还依赖 /low_state、/odometer_state、/head_pose、fall_down_recovery_state、
+  正常渲染 RGB/深度/CameraInfo 与视觉输出、GameController、仿真时间。
+- robocup/src/brain/src/robot_client.cpp 是另一棵本地比赛代码，包含 100xxx 内部 API；
+  与 booster/robocup_demo 的公开 API 路线不同，需先固定目标版本，不能默认为二者等价。
+- booster/robocup_demo/README.md 对 VisualKick 标有 >=1.6.1、自动视觉踢球 >=1.6.2 要求；
+  与当前 1.6.0.10 发布包之间的版本映射/接口资格待实际核对，不仅依据“都是 1.6”。
+- B-Human 本地 Make/CMake/B-Human.cmake 共享模块、表征、线程源码；
+  SimulatedRobot.cmake 与 Booster.cmake 都链接 B-Human 对象库。
+  BoosterProvider 在机器人端 Custom 模式发送关节命令，SimulatedRobot3D 读写模拟传感器/执行器。
+
+新增最小双平台事实验证：native/probe_sdk_motion_contract.cpp 直接包含官方 SDK 参数头，
+同源码 x86_64 与 AArch64 编译、运行的 23 组模式/步态/速度/头部/起身/视觉踢球/查询请求完全一致；
+native wire 的 API、序号及 JSON 参数全部保持。没有初始化 DDS、运行安装脚本或接触硬件。
+证据：runs/full-native-integration/20261023_154209_673865_postboot-continuation/
+sdk-contract-20261023_171834_105930/verification.json。
+这只是序列化契约检查，不能当成 DDS、完整 Demo、动作或部署验收。
+
+当前真正缺口：选定比赛程序对应的运动/状态/图像/时钟/视觉踢球等完整通路仍未验收；
+RoboCupDemo 的完整 ROS 2/DDS 数据通路也尚未接入，但属于可选应用集成，不作为用户指定前提。
+原厂全动作矩阵与多机器人长场次未通过；快速后端、统一应用离线包与真机闭环尚未完成。
+当前 B-Human 高层 + 原厂完整电机图的测试，应按这个实际范围展示，不能叫官方整套 Demo 仿真。
+
+同环境性能补充：早先快速的变体 c 在当前环境复测 30 秒也需 31.118 秒，与 f 的 31.294 秒接近；
+证据 runs/motion/20261023_172651_402153_official-speed-old-extension/。
+目前没有显示 c -> f 引入普通官方路径的显著额外减速；运行环境整体下降的具体原因尚未完全隔离。
+
+参考：
+https://docs.b-human.de/coderelease2026/b-human-at-a-glance/
+https://docs.b-human.de/coderelease2026/getting-started/working-with-simrobot/
+https://docs.b-human.de/coderelease2026/changelog/2026/

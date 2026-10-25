@@ -1,0 +1,407 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "booster-fw16-body-0664e9c7e2",
+  "kind": "candidate",
+  "name": "booster-fw16-body",
+  "description": "Booster 官方 1.6.0.10 包 exported_policy_k1.bin 原始全身行走模型，经独立模块适配 SimRobot。正常视觉、足球战术、踢球和起身仍为 B-Human；候选踢球使用同队 regular PD。只接入此行走 actor，不声称复刻原厂侧向/转向模型切换、命令整形或整套固件。",
+  "components": {
+    "booster_fw16_walk": {
+      "file": "files/booster_fw16_walk.onnx",
+      "sha256": "d3526af7e5f5ab25ef6e8786f78ddb36c45d6dc0e4f06ad925bb66bd7662797d",
+      "contract": "booster.firmware.1.6.k1.amp.690x20",
+      "source_path": "/home/peakpeng/Desktop/Robocup/forge/runs/booster-firmware/20261022T150244Z/forward.onnx",
+      "onnx": {
+        "opset": 17,
+        "inputs": [
+          {
+            "name": "observations",
+            "dims": [
+              1,
+              690
+            ],
+            "elem_type": 1
+          }
+        ],
+        "outputs": [
+          {
+            "name": "actions",
+            "dims": [
+              1,
+              20
+            ],
+            "elem_type": 1
+          }
+        ],
+        "nodes": 7,
+        "ops": [
+          "Elu",
+          "Gemm"
+        ],
+        "parameters": 520596,
+        "ort_smoke": {
+          "batch": 4,
+          "max_abs_output": 5.180830955505371,
+          "runtime": "onnxruntime 1.31.0 CPU"
+        }
+      }
+    }
+  },
+  "cfg_patches": {
+    "motorParameters.cfg": {
+      "controlParameters.regular.lShoulderPitch.p": "20",
+      "controlParameters.regular.lShoulderPitch.d": "2.5",
+      "controlParameters.regular.lShoulderPitch.maxTorque": "10",
+      "controlParameters.regular.rShoulderPitch.p": "20",
+      "controlParameters.regular.rShoulderPitch.d": "2.5",
+      "controlParameters.regular.rShoulderPitch.maxTorque": "10",
+      "controlParameters.regular.lHipPitch.p": "100",
+      "controlParameters.regular.lHipPitch.d": "2",
+      "controlParameters.regular.lHipPitch.maxTorque": "35",
+      "controlParameters.regular.rHipPitch.p": "100",
+      "controlParameters.regular.rHipPitch.d": "2",
+      "controlParameters.regular.rHipPitch.maxTorque": "35",
+      "controlParameters.regular.lShoulderRoll.p": "20",
+      "controlParameters.regular.lShoulderRoll.d": "2.5",
+      "controlParameters.regular.lShoulderRoll.maxTorque": "10",
+      "controlParameters.regular.rShoulderRoll.p": "20",
+      "controlParameters.regular.rShoulderRoll.d": "2.5",
+      "controlParameters.regular.rShoulderRoll.maxTorque": "10",
+      "controlParameters.regular.lHipRoll.p": "100",
+      "controlParameters.regular.lHipRoll.d": "2",
+      "controlParameters.regular.lHipRoll.maxTorque": "25",
+      "controlParameters.regular.rHipRoll.p": "100",
+      "controlParameters.regular.rHipRoll.d": "2",
+      "controlParameters.regular.rHipRoll.maxTorque": "25",
+      "controlParameters.regular.lElbowPitch.p": "20",
+      "controlParameters.regular.lElbowPitch.d": "2.5",
+      "controlParameters.regular.lElbowPitch.maxTorque": "10",
+      "controlParameters.regular.rElbowPitch.p": "20",
+      "controlParameters.regular.rElbowPitch.d": "2.5",
+      "controlParameters.regular.rElbowPitch.maxTorque": "10",
+      "controlParameters.regular.lHipYaw.p": "100",
+      "controlParameters.regular.lHipYaw.d": "2",
+      "controlParameters.regular.lHipYaw.maxTorque": "25",
+      "controlParameters.regular.rHipYaw.p": "100",
+      "controlParameters.regular.rHipYaw.d": "2",
+      "controlParameters.regular.rHipYaw.maxTorque": "25",
+      "controlParameters.regular.lElbowYaw.p": "20",
+      "controlParameters.regular.lElbowYaw.d": "2.5",
+      "controlParameters.regular.lElbowYaw.maxTorque": "10",
+      "controlParameters.regular.rElbowYaw.p": "20",
+      "controlParameters.regular.rElbowYaw.d": "2.5",
+      "controlParameters.regular.rElbowYaw.maxTorque": "10",
+      "controlParameters.regular.lKneePitch.p": "100",
+      "controlParameters.regular.lKneePitch.d": "2",
+      "controlParameters.regular.lKneePitch.maxTorque": "50",
+      "controlParameters.regular.rKneePitch.p": "100",
+      "controlParameters.regular.rKneePitch.d": "2",
+      "controlParameters.regular.rKneePitch.maxTorque": "50",
+      "controlParameters.regular.lAnklePitch.p": "50",
+      "controlParameters.regular.lAnklePitch.d": "1",
+      "controlParameters.regular.lAnklePitch.maxTorque": "25",
+      "controlParameters.regular.rAnklePitch.p": "50",
+      "controlParameters.regular.rAnklePitch.d": "1",
+      "controlParameters.regular.rAnklePitch.maxTorque": "25",
+      "controlParameters.regular.lAnkleRoll.p": "50",
+      "controlParameters.regular.lAnkleRoll.d": "1",
+      "controlParameters.regular.lAnkleRoll.maxTorque": "25",
+      "controlParameters.regular.rAnkleRoll.p": "50",
+      "controlParameters.regular.rAnkleRoll.d": "1",
+      "controlParameters.regular.rAnkleRoll.maxTorque": "25"
+    },
+    "walkingEngine.cfg": {
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.fastWalkSpeed.maxSpeed.rotation": "1.8",
+      "configuredParameters.fastWalkSpeed.maxSpeedBackwards": "750",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.normalWalkSpeed.maxSpeed.rotation": "90deg",
+      "configuredParameters.normalWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.x": "750",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.slowWalkSpeed.maxSpeed.rotation": "54deg",
+      "configuredParameters.slowWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.rotation": "1.8",
+      "configuredParameters.maxPossibleSpeed.maxSpeedBackwards": "750",
+      "configuredParameters.maxSideAtMaxForward": "400",
+      "commonSpeedParameters.xTargetScaling.walkSpeed.max": "1250",
+      "commonSpeedParameters.yTargetScaling.walkSpeed.max": "400",
+      "commonSpeedParameters.rotationTargetScaling.walkSpeed.max": "1.8"
+    }
+  },
+  "modules": {
+    "BoosterDeployWalkingEngine": {
+      "replaces": "WalkingEngine",
+      "cfg": "boosterDeployWalkingEngine.cfg",
+      "params": {
+        "walkNeuronalNetworkParameters.numInput": "690",
+        "walkNeuronalNetworkParameters.numOutput": "20",
+        "walkNeuronalNetworkParameters.boosterMinVx": "-0.75",
+        "walkNeuronalNetworkParameters.boosterMaxVx": "1.25",
+        "walkNeuronalNetworkParameters.boosterMinVy": "-0.5",
+        "walkNeuronalNetworkParameters.boosterMaxVy": "0.4",
+        "walkNeuronalNetworkParameters.boosterMinWz": "-1.8",
+        "walkNeuronalNetworkParameters.boosterMaxWz": "1.8",
+        "walkNeuronalNetworkParameters.boosterRightElbowObservationOffset": "0"
+      }
+    }
+  },
+  "content_sha256": "0664e9c7e20948f136573fa41f1135fcac33f45729a1a7a818c87e60e4773698",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "firmware_version": "1.6.0.10",
+    "export": {
+      "schema": "forge.booster-firmware-export.v1",
+      "created_utc": "2026-10-22T15:02:44.757157+00:00",
+      "firmware_version": "1.6.0.10",
+      "official_source_url": "https://boosterobotics.s3.ap-southeast-1.amazonaws.com/ota_single/v1.6.0.10-release.global-01894-2026-04-14-22.04-aarch64-single.run",
+      "archive_sha256": "5e8c92c63d7c0017ab6f2fe55710148960e3011cc7d8fc28f45cea30200295bd",
+      "source_model": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/lib/motion/exported_policy_k1.bin",
+      "source_sha256": "15522febf70989f85b7b51086b509ae892e0bd213c06d1e3a5ab79621557dd6b",
+      "tensor_layout": [
+        {
+          "name": "actor.0.weight",
+          "shape": [
+            512,
+            690
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 26,
+          "bytes": 2826240,
+          "sha256": "cfa8f29cc300a83f10f11a3ac6dc5c86b08ae12fe2a41fa562d76b2d1cc5003f"
+        },
+        {
+          "name": "actor.0.bias",
+          "shape": [
+            512,
+            1
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 2826290,
+          "bytes": 4096,
+          "sha256": "1bca685da95cf8e0667010df720ef7f41129ba14b52d8d78d9661b59ab2a3718"
+        },
+        {
+          "name": "actor.2.weight",
+          "shape": [
+            256,
+            512
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 2830412,
+          "bytes": 1048576,
+          "sha256": "da0e08144d99beeae843c235bdf12607e40f8bd8905fcefd495b441c63756a99"
+        },
+        {
+          "name": "actor.2.bias",
+          "shape": [
+            256,
+            1
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 3879012,
+          "bytes": 2048,
+          "sha256": "713f427838769d9d8c837910791c6a8e4a63e867c969869278d2bad22c9f1d2e"
+        },
+        {
+          "name": "actor.4.weight",
+          "shape": [
+            128,
+            256
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 3881086,
+          "bytes": 262144,
+          "sha256": "8f2918ddb4d380d6ad2cc97ed3e7a2268ade8488a1e0f51c77f0b7c97923e8ab"
+        },
+        {
+          "name": "actor.4.bias",
+          "shape": [
+            128,
+            1
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4143254,
+          "bytes": 1024,
+          "sha256": "d23956764f5a5928ccb517caadf72e0aabd8c6beb1a91102af6c206960a625d2"
+        },
+        {
+          "name": "actor.6.weight",
+          "shape": [
+            20,
+            128
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4144304,
+          "bytes": 20480,
+          "sha256": "18565999cbebe9b67a664d7c7cdd9962bdfa4deb3a7399c5dace9cc21a8bbdf8"
+        },
+        {
+          "name": "actor.6.bias",
+          "shape": [
+            20,
+            1
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4164808,
+          "bytes": 160,
+          "sha256": "4527d8979635793166e3a5489a39f57e060a23839f05c9a27f3e212a046538a8"
+        },
+        {
+          "name": "obs_normalizer._mean",
+          "shape": [
+            1,
+            690
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4165000,
+          "bytes": 5520,
+          "sha256": "688a85efaf1630ff4c634b4c22e8539f34467489b3717c162ce23c5e8d8ad4db"
+        },
+        {
+          "name": "obs_normalizer._var",
+          "shape": [
+            1,
+            690
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4170551,
+          "bytes": 5520,
+          "sha256": "6986715c9d04d9ef7d47f90b343607b7231f54ff4cef79078dcfd50f5bbb0406"
+        },
+        {
+          "name": "obs_normalizer._std",
+          "shape": [
+            1,
+            690
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4176102,
+          "bytes": 5520,
+          "sha256": "6986715c9d04d9ef7d47f90b343607b7231f54ff4cef79078dcfd50f5bbb0406"
+        },
+        {
+          "name": "obs_normalizer.count",
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "float64-le",
+          "storage": "row-major",
+          "offset": 4181654,
+          "bytes": 8,
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+        }
+      ],
+      "parsed_bytes": 4181662,
+      "input_shape": [
+        1,
+        690
+      ],
+      "output_shape": [
+        1,
+        20
+      ],
+      "runtime_library_sha256": "62ffcc60cd7b11ca15e8d3e9cdced695f01e1b97e0c88a07ea5d0d12b76d72a0",
+      "static_evidence": [
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/ReadModelFile.asm.txt",
+          "sha256": "20e3391cd4bdd09c3f3e9127e3057bde476c25382ef9eb932fea78302fd5c82e"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/EigenMLP_Act.asm.txt",
+          "sha256": "7489af607f88e714dca72c314c92204029428bd5f7738be7a33cf9d83ae5ebda"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/EigenMLPHist_Act.asm.txt",
+          "sha256": "ca47332a2f7f953cdc221dcfe9009f3352bae5cece808de1b98e641743028490"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/ELU.asm.txt",
+          "sha256": "ad706337ac8a3da47612ad1e15ee73011d4d9a89600c2c5d0b0bb18ac9bd8c41"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/RMAAMPLabBodyControlK1_InferenceFunc.asm.txt",
+          "sha256": "1c9c9a58cd24a17be24c16b29d212c122366735c4e3918a6cc484a710198229f"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/PolicySwitcher_Inference.asm.txt",
+          "sha256": "c23ba8e5e6bd1fcaed75e96c72fb58a9195a425c48807b8e160b13b020059bec"
+        },
+        {
+          "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/MLPPolicyProcess_Inference.asm.txt",
+          "sha256": "01483a224de2db51cec9f88360eafa8a1a71b4def07176632f179b8dad9d48ce"
+        }
+      ],
+      "activations": {
+        "hidden": "ELU alpha=1",
+        "output": "linear",
+        "basis": "Official runtime EigenMLP/EigenMLPHist Act disassembly: four affine layers; negative branches use exp(x)-1; public Booster k1_walk TorchScript independently uses three ELU(alpha=1) layers."
+      },
+      "verified_full_body_call_chain": [
+        "RMAAMPLabBodyControlK1::InferenceFunc",
+        "PolicySwitcher::Inference",
+        "MLPPolicyProcess::Inference",
+        "EigenMLPHist::Act"
+      ],
+      "normalizer": {
+        "called": false,
+        "mean_is_zero": true,
+        "std_and_var_are_one": true,
+        "count_is_zero": true,
+        "basis": "MLPPolicyProcess::Inference copies the stacked observation, optionally mirrors it, and directly calls EigenMLPHist::Act. No learned-normalizer arithmetic in this call or Act; reject dumps with non-identity normalizer tensors. Sensor scaling remains an adapter responsibility."
+      },
+      "firmware_configuration": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/Gait/configs/K1/common_module_options.lua",
+        "sha256": "f164d0d2f30a7b48d5fcad9f7b3bd063b9f267b87d70d29044853400ad456d97",
+        "graph_path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/Gait/configs/K1/common_graph_define.lua",
+        "graph_sha256": "481186548f444b18de60965496f5accc725e272c070534df2512b86a28f3bcfa",
+        "section": "amp_locomotion_run",
+        "excerpt": "    amp_locomotion_run = {\n        is_serial = false,\n        rt_thread = false,\n\n        urdf_file = \"urdf_file\",\n        foot_adjust_distance = 0.23,\n\n        adjust_cooldown_ticks = 100,\n        adjust_min_zero_vel_ticks = 15,\n\n        max_vel_cmd = {1.25, 0.4, 1.8}, -- k1 amp\n        min_vel_cmd = {-0.75, -0.5, -1.8},\n\n        -- max_vel_cmd = {1.15, 0.55, 1.4}, -- k1 amp\n        -- min_vel_cmd = {-0.75, -0.34, -1.4},\n\n        max_vel_cmd_incre = {1.3, 1.2, 2.0},\n        max_vel_cmd_decre = {2.0, 1.2, 2.0},\n        vel_cmd_dead_zone = {0.2, 0.2, 0.1},\n\n        vel_cmd_dead_zone_start = {0.1, 0.1, 0.1},\n        vel_cmd_dead_zone_end = {0.9, 0.9, 0.9},\n\n        vel_cmd_map_start_pos = {0.4, 0.2, 0.2},\n        vel_cmd_map_end_pos = {1.25, 0.4, 1.8},\n        vel_cmd_map_start_neg = {0.2, 0.2, 0.2},\n        vel_cmd_map_end_neg = {0.75, 0.5, 1.8},\n\n        turn_threshold = 0.3;\n        dead_threshold = 0.8,\n        stop_cnt_threshold = 60,\n\n        mlp_model_file = \"lib/exported_policy_k1.bin\", -- 2025-12-03_11-23-39\n\n        mlp_g_offset_x = 0.0,\n        mlp_g_offset_y = 0.0,\n        mlp_vel_offset_x = 0.0,\n        mlp_vel_offset_y = 0.0,\n        mlp_clip_action = 100.0,\n        mlp_arm_action_fix_offset = 0.2,\n\n        mlp_action_filter = 0.8,\n        mlp_clip_observation = 100.0,\n\n        mlp_side_model_file = \"lib/exported_policy_k1_side.bin\", -- 2026-01-09_15-39-41\n\n        mlp_side_action_filter = 0.8,\n        mlp_side_clip_action = 100.0,\n\n        mlp_turn_model_file = \"lib/exported_policy_k1_turn.bin\", -- 2026-01-08_17-30-51\n\n        mlp_turn_action_filter = 0.8,\n        mlp_turn_clip_action = 100.0,\n\n        kp = {\n            20., 20.,\n            20., 20., 20., 20.,\n            20., 20., 20., 20.,\n            100., 100., 100., 100., 50., 50.,\n            100., 100., 100., 100., 50., 50.,\n        },\n        kd = {\n            2., 2.,\n            2.5, 2.5, 2.5, 2.5,\n            2.5, 2.5, 2.5, 2.5,\n            2.0, 2.0, 2.0, 2.0, 1., 1., --real\n            2.0, 2.0, 2.0, 2.0, 1., 1.,\n            -- 2., 2., 2., 2., 0.1, 0.1, --sim\n            -- 2., 2., 2., 2., 0.1, 0.1,\n        },\n        max_torque = {      -- for serial joints\n            7., 7.,\n            10., 10., 10., 10.,\n            10., 10., 10., 10.,\n            35., 25., 25., 50., 25., 25.,\n            35., 25., 25., 50., 25., 25.,\n        },\n        max_torque_ankle_motors = {50.0, 50.0, 50.0, 50.0},\n    },"
+      },
+      "precision": {
+        "source": "float64",
+        "onnx": "float32",
+        "max_weight_cast_error": 0.0
+      },
+      "numeric_validation": {
+        "reference": "independent NumPy float64 row-major MLP",
+        "samples": 81,
+        "seed": 16010,
+        "max_abs_error": 0.0006411424303962576,
+        "tolerance": "5e-4 + 2e-5*abs(reference)",
+        "passed": true
+      },
+      "output_path": "/home/peakpeng/Desktop/Robocup/forge/runs/booster-firmware/20261022T150244Z/forward.onnx",
+      "output_sha256": "d3526af7e5f5ab25ef6e8786f78ddb36c45d6dc0e4f06ad925bb66bd7662797d",
+      "limitations": [
+        "Actor export is not the entire firmware motion state machine.",
+        "Observation/history packing, multiple-policy selection, output offsets, filters, and motor dynamics require a separately validated adapter.",
+        "No robot connection and no firmware binary or installer execution."
+      ]
+    },
+    "adapter_settings_path": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261023_000411_442182_booster-firmware-codec-adapter/booster-deploy-walking.json",
+    "adapter_settings_sha256": "89dc68952a5bbaba6ee55c5e062ccc14f3904312856e3fde1b922ac3f2f56dd8",
+    "registration_tool_sha256": "00c635994423629d8b55e3256427e412b0b38f2fb063f7975aca7617a3d912c7",
+    "physics": "SimRobot serial-joint PD; no hardware installation",
+    "controller_scope": "single firmware actor within B-Human football stack"
+  },
+  "status": "experimental",
+  "created_at": "2026-10-23T00:07:42.298+09:00"
+}

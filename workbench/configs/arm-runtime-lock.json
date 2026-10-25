@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-10-21T01:18:13.173+09:00",
+  "source": "https://ports.ubuntu.com/ubuntu-ports/",
+  "architecture": "arm64",
+  "installed_on_host": false,
+  "signature_verifier": "gpgv Ubuntu archive keyring",
+  "packages": [
+    {
+      "package": "libtinyxml2-9",
+      "version": "9.0.0+dfsg-3",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/pool/universe/t/tinyxml2/libtinyxml2-9_9.0.0+dfsg-3_arm64.deb",
+      "sha256": "0c915575d956fce5e0e817a5643363f68cff53d3023fe496c368ce80ea4e3d60",
+      "bytes": 31934,
+      "required_soname": "libtinyxml2.so.9"
+    },
+    {
+      "package": "libssl3",
+      "version": "3.0.2-0ubuntu1.30",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/pool/main/o/openssl/libssl3_3.0.2-0ubuntu1.30_arm64.deb",
+      "sha256": "1c4b8cc736eed8a0caafc385f854fa6852382221d84be4795f1d19a52b9fec53",
+      "bytes": 1813678,
+      "required_soname": "libssl.so.3"
+    },
+    {
+      "package": "libc6",
+      "version": "2.35-0ubuntu3.15",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/pool/main/g/glibc/libc6_2.35-0ubuntu3.15_arm64.deb",
+      "sha256": "dd88cc85dcfbac19c0c9b606676b7b1b87f851d75afa5c830fc5ba1293a30833",
+      "bytes": 2709356,
+      "required_soname": "libdl.so.2"
+    },
+    {
+      "package": "libudev1",
+      "version": "249.11-0ubuntu3.23",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/pool/main/s/systemd/libudev1_249.11-0ubuntu3.23_arm64.deb",
+      "sha256": "23f6d546ce43012ddc5b24bf9428fd74be20e161f90058287af612f590e82731",
+      "bytes": 73462,
+      "required_soname": "libudev.so.1"
+    },
+    {
+      "package": "libusb-1.0-0",
+      "version": "2:1.0.25-1ubuntu2",
+      "url": "https://ports.ubuntu.com/ubuntu-ports/pool/main/libu/libusb-1.0/libusb-1.0-0_1.0.25-1ubuntu2_arm64.deb",
+      "sha256": "bb0303850b6a03173ff0a4dbda011b52dbdd55a0b29958e981ae568398bb1ba1",
+      "bytes": 52092,
+      "required_soname": "libusb-1.0.so.0"
+    }
+  ],
+  "closure_resolved": true
+}

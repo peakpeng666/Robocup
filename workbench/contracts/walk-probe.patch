@@ -1,0 +1,180 @@
+--- a/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp
++++ b/Src/Modules/MotionControl/WalkingEngine/WalkingEngine.cpp
+@@ -8,10 +8,51 @@
+ #include "Debugging/Plot.h"
+ #include "Math/Rotation.h"
+ #include "Platform/SystemCall.h"
++#include "Streaming/TypeRegistry.h"
+ #include "Tools/Motion/MotionUtilities.h"
+ #include "Tools/Modeling/BallPhysics.h"
+ #include "Tools/Motion/KickLengthConverter.h"
++#include <cstdio>
++#include <cstdlib>
+ #include <filesystem>
++#include <string>
++
++// [BH_WALK_PROBE] Read-only logging of the walk policy input/output contract.
++// Active only when the environment variable BH_WALK_PROBE names an existing
++// output directory; one CSV line per record is appended to
++// $BH_WALK_PROBE/walk-probe.csv. This never alters control or physics
++// behavior, it only observes values that are computed anyway.
++namespace
++{
++  struct WalkProbeState
++  {
++    FILE* file = nullptr;
++    unsigned long counter = 0; /**< Increments once per updateHistoryData() call; the policy call that triggered it reuses the id. */
++    bool metaWritten = false;
++
++    void open()
++    {
++      if(file)
++        return;
++      const char* dir = std::getenv("BH_WALK_PROBE");
++      if(!dir || !*dir)
++        return;
++      file = std::fopen((std::string(dir) + "/walk-probe.csv").c_str(), "w");
++    }
++
++    bool active()
++    {
++      open();
++      return file != nullptr;
++    }
++  };
++
++  WalkProbeState& walkProbeState()
++  {
++    static WalkProbeState state;
++    return state;
++  }
++}
+ 
+ MAKE_MODULE(WalkingEngine);
+ 
+@@ -97,6 +138,13 @@
+ void WalkingEngine::resetHistoryData()
+ {
+   historyBuffer.clear();
++  if(walkProbeState().active())
++  {
++    WalkProbeState& probe = walkProbeState();
++    const bool validAngles = theJointAngles.angles[0] != JointAngles::off && theJointAngles.angles[0] != JointAngles::ignore && theJointAngles.timestamp > 0;
++    std::fprintf(probe.file, "RESET,%u,%lu,%s\n", theFrameInfo.time, probe.counter, validAngles ? "valid" : "zero");
++    std::fflush(probe.file);
++  }
+   if(theJointAngles.angles[0] != JointAngles::off && theJointAngles.angles[0] != JointAngles::ignore && theJointAngles.timestamp > 0)
+   {
+     for(std::size_t i = 0; i < historyBuffer.capacity(); i++)
+@@ -130,6 +178,51 @@
+     nextDataPoint.lastActions = lastAction;
+ 
+   historyBuffer.push_front(nextDataPoint);
++
++  if(walkProbeState().active())
++  {
++    WalkProbeState& probe = walkProbeState();
++    const std::vector<Joints::Joint>& probeJoints = walkNeuronalNetworkParameters.useWaist ? boosterWaistJoints : boosterJoints;
++    if(!probe.metaWritten)
++    {
++      probe.metaWritten = true;
++      std::fprintf(probe.file, "META,jointList");
++      for(Joints::Joint j : probeJoints)
++        std::fprintf(probe.file, ",%s", TypeRegistry::getEnumName(j));
++      std::fprintf(probe.file, "\nMETA,offsets");
++      for(Joints::Joint j : probeJoints)
++        std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(offset.angles[j])));
++      std::fprintf(probe.file, "\nMETA,velocityFactor,%.9g\n", static_cast<double>(walkNeuronalNetworkParameters.velocityFactor));
++      std::fprintf(probe.file, "META,actionClipRange,%.9g,%.9g\n", static_cast<double>(walkNeuronalNetworkParameters.actionClipRange.min), static_cast<double>(walkNeuronalNetworkParameters.actionClipRange.max));
++      std::fprintf(probe.file, "META,frequencyClipRange,%.9g,%.9g\n", static_cast<double>(frequencyParametersWalk.clipRange.min), static_cast<double>(frequencyParametersWalk.clipRange.max));
++      std::fprintf(probe.file, "META,frequencyBase,%.9g\n", static_cast<double>(frequencyParametersWalk.base));
++      std::fprintf(probe.file, "META,numInput,%u\n", walkNeuronalNetworkParameters.numInput);
++      std::fprintf(probe.file, "META,numOutput,%u\n", walkNeuronalNetworkParameters.numOutput);
++      std::fprintf(probe.file, "META,historyCapacity,%u\n", static_cast<unsigned>(historyBuffer.capacity()));
++      std::fprintf(probe.file, "META,quaternionConvention,wxyz\n");
++      for(std::size_t i = 0; i < probeJoints.size(); i++)
++      {
++        const Joints::Joint j = probeJoints[i];
++        std::fprintf(probe.file, "LIMITS,%u,%s,%.9g,%.9g\n", static_cast<unsigned>(i), TypeRegistry::getEnumName(j),
++                     static_cast<double>(static_cast<float>(theJointLimits.limits[j].min)), static_cast<double>(static_cast<float>(theJointLimits.limits[j].max)));
++      }
++    }
++    const bool anglesValid = theJointAngles.angles[0] != JointAngles::off && theJointAngles.angles[0] != JointAngles::ignore;
++    const bool actionValid = lastAction.angles[0] != JointAngles::off && lastAction.angles[0] != JointAngles::ignore;
++    const Quaternionf& q = theInertialData.orientation3D;
++    std::fprintf(probe.file, "RAW,%u,%lu,%d,%.9g,%.9g,%.9g,%.9g,%.9g,%.9g,%.9g,%d",
++                 theFrameInfo.time, ++probe.counter, init ? 1 : 0,
++                 static_cast<double>(q.w()), static_cast<double>(q.x()), static_cast<double>(q.y()), static_cast<double>(q.z()),
++                 static_cast<double>(static_cast<float>(theInertialData.gyro.x())), static_cast<double>(static_cast<float>(theInertialData.gyro.y())), static_cast<double>(static_cast<float>(theInertialData.gyro.z())),
++                 anglesValid ? 1 : 0);
++    for(Joints::Joint j : probeJoints)
++      std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(theJointAngles.angles[j])));
++    std::fprintf(probe.file, ",%d", actionValid ? 1 : 0);
++    for(Joints::Joint j : probeJoints)
++      std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(lastAction.angles[j])));
++    std::fprintf(probe.file, "\n");
++    std::fflush(probe.file);
++  }
+ }
+ 
+ void WalkingEngine::compile()
+@@ -817,6 +910,39 @@
+     // Ball range
+     *input++ = 0;
+ 
++    if(walkProbeState().active())
++    {
++      WalkProbeState& probe = walkProbeState();
++      const unsigned long id = probe.counter; // id of the RAW record emitted by updateHistoryData() above
++      std::fprintf(probe.file, "CTX,%u,%lu,%d,%.9g,%.9g,%.9g,%.9g,%.9g",
++                   engine.theFrameInfo.time, id, type == MotionPhase::walk ? 1 : 0,
++                   static_cast<double>(step.translation.x()), static_cast<double>(step.translation.y()),
++                   static_cast<double>(static_cast<float>(step.rotation)),
++                   static_cast<double>(tBase), static_cast<double>(rawFrequency));
++      for(Joints::Joint j : jointList)
++        std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(engine.lastMeasurement.velocity[j])));
++      std::fputc('\n', probe.file);
++      for(std::size_t i = 0; i < engine.historyBuffer.capacity(); i++)
++      {
++        const WalkingEngine::HistoryData& data = engine.historyBuffer[i]; // index 0 is the newest entry
++        std::fprintf(probe.file, "HIST,%u,%lu,%u,%.9g,%.9g,%.9g,%.9g,%.9g,%.9g",
++                     engine.theFrameInfo.time, id, static_cast<unsigned>(i),
++                     static_cast<double>(data.gravity.x()), static_cast<double>(data.gravity.y()), static_cast<double>(data.gravity.z()),
++                     static_cast<double>(static_cast<float>(data.gyro.x())), static_cast<double>(static_cast<float>(data.gyro.y())), static_cast<double>(static_cast<float>(data.gyro.z())));
++        for(Joints::Joint j : jointList)
++          std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(data.measuredAngles.angles[j])));
++        for(Joints::Joint j : jointList)
++          std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(data.lastActions.angles[j])));
++        std::fputc('\n', probe.file);
++      }
++      const float* probeInput = engine.walkPolicy.input(0).data();
++      std::fprintf(probe.file, "IN,%u,%lu", engine.theFrameInfo.time, id);
++      for(unsigned i = 0; i < engine.walkNeuronalNetworkParameters.numInput; i++)
++        std::fprintf(probe.file, ",%.9g", static_cast<double>(probeInput[i]));
++      std::fputc('\n', probe.file);
++      std::fflush(probe.file);
++    }
++
+     // Run network.
+     STOPWATCH("module:WalkingEngine:apply")
+       engine.walkPolicy.apply();
+@@ -828,6 +954,19 @@
+ 
+     rawFrequency = engine.frequencyParametersWalk.clipRange.limit(*output++);
+     frequency = engine.frequencyParametersWalk.clipRange.limit(rawFrequency) + engine.frequencyParametersWalk.base;
++
++    if(walkProbeState().active())
++    {
++      WalkProbeState& probe = walkProbeState();
++      const float* probeOutput = engine.walkPolicy.output(0).data();
++      std::fprintf(probe.file, "OUT,%u,%lu", engine.theFrameInfo.time, probe.counter);
++      for(unsigned i = 0; i < engine.walkNeuronalNetworkParameters.numOutput; i++)
++        std::fprintf(probe.file, ",%.9g", static_cast<double>(probeOutput[i]));
++      for(Joints::Joint j : jointList)
++        std::fprintf(probe.file, ",%.9g", static_cast<double>(static_cast<float>(target.angles[j])));
++      std::fprintf(probe.file, ",%.9g,%.9g\n", static_cast<double>(rawFrequency), static_cast<double>(frequency));
++      std::fflush(probe.file);
++    }
+   }
+   else
+   {

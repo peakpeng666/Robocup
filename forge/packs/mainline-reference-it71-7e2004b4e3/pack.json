@@ -1,0 +1,153 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "mainline-reference-it71-7e2004b4e3",
+  "kind": "candidate",
+  "name": "mainline-reference-it71",
+  "description": "主线 reference 配方第 71 轮（70→71 完整恢复，4096 env）；此前评估整体接近官方、急停偏弱，未晋级",
+  "components": {
+    "walk": {
+      "file": "files/walk.onnx",
+      "sha256": "51ad7b7d76468057362c7484ce874a2dd6974b3559512ca019caca7b1199c021",
+      "contract": "k1.walk.344x13",
+      "source_path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_200525_267234_mainline-reference-it71/K1_actor.onnx",
+      "onnx": {
+        "opset": 11,
+        "inputs": [
+          {
+            "name": "input",
+            "dims": [
+              "batch_size",
+              344
+            ],
+            "elem_type": 1
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "dims": [
+              "batch_size",
+              13
+            ],
+            "elem_type": 1
+          }
+        ],
+        "nodes": 7,
+        "ops": [
+          "Elu",
+          "Gemm"
+        ],
+        "parameters": 139405,
+        "ort_smoke": {
+          "batch": 4,
+          "max_abs_output": 0.975515604019165,
+          "runtime": "onnxruntime 1.31.0 CPU"
+        }
+      }
+    }
+  },
+  "cfg_patches": {},
+  "content_sha256": "7e2004b4e3b1f109be928291db0e56592ba0f5785a81ab1e1c27d4771abaf3a4",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth",
+    "checkpoint_sha256": "261775b41cb3cef7b442e2ec6ce8452e54b82a18888556b9df1cdba49b72c16c",
+    "export_dir": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_200525_267234_mainline-reference-it71",
+    "export_manifest": {
+      "utc": "2026-10-22T11:05:26Z",
+      "task": "K1",
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth",
+      "checkpoint_sha256": "261775b41cb3cef7b442e2ec6ce8452e54b82a18888556b9df1cdba49b72c16c",
+      "load_mode": "actor",
+      "config_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+      "adaptation_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "torchscript": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_200525_267234_mainline-reference-it71/K1_actor.pt",
+        "sha256": "c8fb4fc1741d5f4124c4865fba7d822724184febdecbc5b10ab0b828b8a85fb3"
+      },
+      "onnx": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_200525_267234_mainline-reference-it71/K1_actor.onnx",
+        "sha256": "51ad7b7d76468057362c7484ce874a2dd6974b3559512ca019caca7b1199c021",
+        "opset": 11,
+        "input": "input: [batch, 344]",
+        "output": "output: [batch, 13]"
+      },
+      "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "tri_check": {
+        "atol": 1e-05,
+        "rtol": 0.0001,
+        "results": {
+          "random_batch1": {
+            "eager_vs_script_maxabs": 0.0,
+            "eager_vs_ort_maxabs": 1.430511474609375e-06,
+            "eager_vs_script_ok": true,
+            "eager_vs_ort_ok": true
+          },
+          "random_batch4": {
+            "eager_vs_script_maxabs": 0.0,
+            "eager_vs_ort_maxabs": 1.9073486328125e-06,
+            "eager_vs_script_ok": true,
+            "eager_vs_ort_ok": true
+          }
+        },
+        "verdict": "PASS",
+        "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+      }
+    },
+    "tri_check": {
+      "atol": 1e-05,
+      "rtol": 0.0001,
+      "results": {
+        "random_batch1": {
+          "eager_vs_script_maxabs": 0.0,
+          "eager_vs_ort_maxabs": 1.430511474609375e-06,
+          "eager_vs_script_ok": true,
+          "eager_vs_ort_ok": true
+        },
+        "random_batch4": {
+          "eager_vs_script_maxabs": 0.0,
+          "eager_vs_ort_maxabs": 1.9073486328125e-06,
+          "eager_vs_script_ok": true,
+          "eager_vs_ort_ok": true
+        }
+      },
+      "verdict": "PASS",
+      "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+    },
+    "note": "ONNX Runtime CPU parity; CompiledNN on the robot is a separate check",
+    "training_launch": {
+      "source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "entrypoint_sha256": "a955976c78a8cf494afcafbbd04adc908af6a26c7b5e5fe40e538f3188b2decf",
+      "command": [
+        "/home/peakpeng/.venvs/bh-gym/bin/python",
+        "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/train.py",
+        "--history",
+        "--task",
+        "K1",
+        "--num_envs",
+        "4096",
+        "--max_iterations",
+        "1",
+        "--save_interval",
+        "5",
+        "--seed",
+        "7",
+        "--headless",
+        "true",
+        "--checkpoint",
+        "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_140708_194144_walk_reference_full_s7/nn/model_final.pth",
+        "--load_mode",
+        "full",
+        "--config_patch",
+        "{\"basic\":{\"trace_updates\":true},\"algorithm\":{\"max_update_kl\":0.02,\"guard_min_lr\":1e-08,\"critic_warmup_iterations\":20,\"critic_warmup_lr\":0.0003,\"critic_learning_rate\":0.0003,\"reference_mean_penalty\":1.0,\"reference_action_std\":0.1353352832366127,\"reference_checkpoint\":\"/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth\",\"reference_sha256\":\"7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff\"}}",
+        "--output_dir",
+        "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7"
+      ],
+      "utc": "2026-10-20T13:06:31.622405+00:00"
+    }
+  },
+  "status": "experimental",
+  "created_at": "2026-10-22T20:05:27.604+09:00"
+}

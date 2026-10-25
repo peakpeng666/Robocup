@@ -1,0 +1,447 @@
+KIMI 执行提示词：RoboCup K1 本地训练、仿真、编译与部署准备工作台
+调研日期：2026-10-20，Asia/Tokyo。将全文交给具有本机终端与文件访问能力的 KIMI。
+
+你现在接手实际开发。请在现有项目上实现一个可运行的中文软件工作台，把 B-Human 2026 的训练、模型导出、MuJoCo sim2sim、正常视觉足球比赛仿真、桌面编译、离线 ARM 构建和验证证据连接起来。
+
+请先核查现状，再完成代码、启动程序、执行有界验收、修复发现的问题并交付。不能只交设计稿、静态页面、按钮占位、调研报告或下一轮提示词。设计选择可以根据本机事实调整，不要机械照搬旧路径、旧结论或外部安装教程。
+
+目标是尽量复用现有可靠成果，建立可追溯的训练到部署流程。当前不连接机器人，不修改硬件或电机固件，不冒充已经实现了物理世界的完全等价。
+
+一、授权范围和必须遵守的本地规则
+
+1. 工作根目录优先为 /home/peakpeng/Desktop/Robocup。先读此目录及适用父目录的 AGENTS.md。不同机器或目录搬迁时，通过现有文件和配置定位实际根目录，不要为了凑路径复制一整套环境。
+2. 三套可运行工作区必须留在本机：最新 B-Human 比赛仿真、MuJoCo sim2sim、训练主线。GitHub 是同步备份。不得删除、搬空工作区来节省磁盘。
+3. 保留官方 B-Human 步态、原有模型和正常渲染相机感知。新策略使用独立目录、明确模型选择和独立实验入口，不自动覆盖或自动晋级比赛模型。
+4. 不连接机器人；不执行 SSH/SCP 到机器人、DDS 实机发现/订阅/发布、机器人安装器、服务切换脚本、固件脚本、Install/installRobot 或原厂安装脚本。本任务中的部署是离线准备。
+5. 可进行本地软件开发、有限编译、仿真、训练链路冒烟、离线打包及已授权的 GitHub 同步。不要修改系统驱动、CUDA、现有训练环境的包版本、ROS 系统配置或 shell 全局环境。界面若需要少量新依赖，放在工作台自己的隔离环境中并锁版本；优先复用现有可用工具。大型环境迁移和长时间正式训练不属于工作台验收的默认动作。
+6. 不运行 git clean/reset --hard，不覆盖别人的未提交修改，不递归扫描整个硬盘。先用 rg/rg --files 进行项目范围搜索。
+7. 不读取凭证、SSH 私钥、浏览器数据或恢复密钥。特别禁止读取/发布 /home/peakpeng/.local/share/robocup-archive/recovery-key.txt。公开仓库不得上传凭证、原始私有 Git 历史或受限安装包。保留许可证及上游署名。
+8. 每次验收写入新的时间戳目录；保留原始日志及失败结果。已有缓存清理脚本 archive-tools/cleanup_local.py 已停用，不恢复其删除工作区能力。当前不做清理任务。
+9. 我已经授权上述本地实施，不要为可逆的常规开发反复询问。遇到缺项先完成不依赖它的工作，并提供可执行替代路径。必须如实区分已实现、已执行、已通过、尚未验证。
+
+二、先读的本机证据，按新旧顺序判断
+
+首先阅读：
+- /home/peakpeng/Desktop/Robocup/AGENTS.md
+- /home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md
+- /home/peakpeng/Desktop/Robocup/archive/local-restoration-20261020.json
+- /home/peakpeng/Desktop/Robocup/README.md 的当前恢复部分
+- /home/peakpeng/Desktop/Robocup/bhuman/k1-training/README.md
+- /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/REPORT-20261020-walk-diagnosis.md
+- /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/README.md
+- /home/peakpeng/Desktop/Robocup/bhuman/docs/policy-contract-v2.md
+- /home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/reviews/K1-CONTRACT.md
+
+随后按需阅读 baseline-v1.md、policy-contract-v1.md、gaps-and-plan-v1.md、起身报告、旧 A/B 报告和运行清单。它们是历史证据，不是永远有效的当前状态。
+
+关键纠错：
+- 旧报告对 KL、学习率和 critic/熵机制的归因已经被后续固定 rollout 实验修正。不要将“熵项已被证明是唯一根因”写入界面或算法。
+- 旧评估器读取不存在的 termination_flags，曾把空结果误报为零终止。后续评估已经改为实际 done/timeouts；旧 A/B 等报告中的零跌倒结论不能继续作为有效质量证据。
+- 当前稳定化方案为本机显式 reference 实验配方，不能叫 B-Human 官方内部配方。70 轮候选的整体均值接近公开基线，但急停和某些分段仍退化，未获比赛部署晋级。
+- full 恢复保存并校验模型、优化器、RNG、学习率和计数，但不包含 PhysX 全部内部状态，不能称为轨迹逐位精确恢复。
+- 三个评估种子不等于三个独立训练种子；进程退出 0 不等于策略质量通过。
+- 普通起身与快速起身分别对待；快速起身完整训练配方仍未在已核查公开版本中找到。网络结构不同本身不能证明训练框架来源。
+- 某些旧文件仅在历史 Release 中保留。先读当前恢复报告，不要因旧文档引用的中间产物不在本机，就错误判断整条链路未恢复。
+
+三、接手时的已知版本与实际安装情况，必须轻量复核
+
+本项目公开备份：https://github.com/peakpeng666/Robocup
+本次交接前主仓 HEAD：cca7bac19b3b140377b8db4dbc0b4842a609c604。
+本次交接前训练源码指纹：efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c。
+源码指纹算法在 k1-training/src/IsaacGymRL/utils/bh_common.py，按实际函数计算，别另造一个不兼容算法。
+
+以下是 2026-10-20 的本机元数据复查，不代表所有组件都执行了完整测试：
+
+A. 行走训练环境
+Python：/home/peakpeng/.venvs/bh-gym/bin/python，3.8.20。
+Isaac Gym Preview 4，Python 包版本 1.0rc4。
+PyTorch 发行元数据 2.3.0a0+git63d5e92，现有 CUDA 12.8 运行依赖/JIT 修复已用于实际训练。
+ONNX 1.17.0，ONNX Runtime 1.19.2。
+不得用“机器有新版 Isaac Lab”替代这套训练环境；不得为了做 Web 后端升级此环境。
+
+B. 当前 Python MuJoCo 环境
+Python：/home/peakpeng/.venvs/isaacsim-gui/bin/python，3.12.13。
+MuJoCo 3.8.0；PyTorch 2.11.0+cu130；另装 Isaac Sim 6.0.1.0。
+sim2sim 入口使用 CPU actor 和 MuJoCo，并不启动 Isaac Sim。
+环境中现有 fastapi 0.120.4、uvicorn 0.29.0；存在不等于建议将整个工作台与仿真放在同一进程。
+
+C. 已有 Isaac Lab 环境
+Python：/home/peakpeng/.venvs/isaaclab/bin/python，3.11.15。
+isaaclab 发行元数据 0.44.9，对应本地源码记录 v2.2.0；Isaac Sim 5.0.0.0；PyTorch 2.7.0+cu128。
+fastapi 0.115.7、uvicorn 0.29.0。
+/home/peakpeng/IsaacLab 有应保留的本地修改，不能 reset 或升级覆盖。
+已有其他任务成功记录不等于 B-Human K1 任务已适配到 Isaac Lab。
+
+D. 主机/构建能力
+Ubuntu 22.04.5，当前记录内核 6.8.0-138，24 逻辑 CPU，约 62 GiB 内存。
+RTX 5090 Laptop GPU，24463 MiB，驱动 595.99.02。占用随时间变化，以启动时查询为准。
+现有 Node.js v24.14.0、npm、系统 Python 3.10、CMake、Ninja、clang++、ld.mold、readelf。
+不要因没有 aarch64-linux-gnu-g++ 就宣布无法交叉编译：上游实际采用 clang++ --target=aarch64-linux-gnu 和随库 sysroot。
+不要将驱动的 CUDA 兼容上限、torch.version.cuda、NVRTC 版本、nvcc 安装情况混为一项。
+
+四、三条已有可运行链路：直接封装现有入口
+
+以下路径基于 ROOT=/home/peakpeng/Desktop/Robocup。将 ROOT 做成可配置的项目根，任务执行使用解析后的绝对路径。不要依赖 Web 服务恰好从某个 cwd 启动。
+
+1. B-Human 比赛与官方步态
+入口：ROOT/bhuman/start-bhuman.sh。
+实际编排：ROOT/bhuman/local-k1-validation-20261019/scripts/run-bhuman-k1.py。
+工作源码：ROOT/bhuman/local-k1-validation-20261019/bhuman-local。
+已编译程序：该工作源码下 Build/Linux/SimRobot/Release/SimRobot。
+构建入口：ROOT/bhuman/local-k1-validation-20261019/scripts/configure-desktop.sh --build。
+
+当前实际执行样例：
+bash /home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh match --seconds 120 --record --unthrottled --timeout 480
+bash /home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh gait --seconds 30 --record --unthrottled --timeout 240
+
+120 秒六机 3v3、正常相机感知的已验收运行：
+ROOT/bhuman/local-k1-validation-20261019/runs/20261020_220709_170921_bhuman_match
+实测墙钟 78.210 秒，约 1.534 倍实时；含启动和录制采集，不含后续 MP4 编码。
+30 秒官方步态运行：
+ROOT/bhuman/local-k1-validation-20261019/runs/20261020_221030_477446_bhuman_gait
+
+注意：
+- 这些是历史实测，不是对任意新机器/并发负载的实时速度保证。
+- Native SimRobotCore3 使用的 MuJoCo 为随工程提供的 3.3.5，与 Python MuJoCo 3.8.0 是不同运行组件。
+- 无窗口选项不等于不需要渲染环境；正常相机仍需要可用 X11/OpenGL，当前入口的 --headless 与 --record 不可混用，实际参数以源码为准。
+- 默认视觉为已验证的 CUDA FP32 路径，运动网络保留 CPU 推理；存在 CPU 视觉回退。不得悄悄降分辨率、抽掉视觉，或用物理真值代替机器人感知来提速。
+- 现有入口对官方 WalkingEngine、模型、配置、视觉等文件做哈希保护；保留这种保护。
+- 不把 Python ORT/桌面适配推理通过等同于 ARM 上原生 CompiledNN 或其他实际后端已通过。根据链接和运行证据识别实际后端，不能只看类名。
+
+2. MuJoCo sim2sim
+ROOT/bhuman/sim2sim/run-mujoco.sh
+ROOT/bhuman/sim2sim/mujoco_walk.py
+ROOT/bhuman/sim2sim/verify-policy.sh
+ROOT/bhuman/sim2sim/verify_policy.py
+
+样例：
+bash /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/run-mujoco.sh --seconds 120
+可选可视化：在上式后增加 --viewer --realtime，仍有时间上限。
+
+当前正式行走输入来源：
+ROOT/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth
+ROOT/bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml
+ROOT/bhuman/k1-training/src/IsaacGymRL/resources/K1/K1_locomotion.xml
+
+120 秒已验收 run：ROOT/bhuman/sim2sim/runs/20261020_220814_312153_mujoco_walk。
+60,000 物理步，6,000 次策略调用；本组有界测试零跌倒、非有限状态、数值警告、自动时间重置、测得关节越界。
+实际 6,000 条输入已与 Python 3.8 TorchScript 和比赛官方 ONNX 比较，最大绝对误差约 7.15e-7、1.43e-6。
+三方导出目录：ROOT/bhuman/k1-training/exports/restored-public-walk-20261020。
+
+默认严格加载 actor 的 8 个张量，避免公开 critic 359 输入与当前配置 360 输入不匹配。不要把回放加载和完整训练恢复统一成无条件 strict=False。
+仅验证了行走；不要给踢球、普通/快速起身自动打上 sim2sim 通过。
+
+3. 训练主线
+ROOT/bhuman/k1-training/scripts/env.sh
+ROOT/bhuman/k1-training/scripts/managed_run.py
+ROOT/bhuman/k1-training/scripts/run_env_check.sh
+ROOT/bhuman/k1-training/scripts/run_replay.sh
+ROOT/bhuman/k1-training/scripts/run_walk_stability.sh
+ROOT/bhuman/k1-training/scripts/run_walk_eval.sh
+ROOT/bhuman/k1-training/scripts/run_export.sh
+ROOT/bhuman/k1-training/scripts/verify_export.py
+
+样例命令：
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_env_check.sh
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_replay.sh K1 4 1000
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stability.sh 64 3 42 warm-start /home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth reference
+
+上面 3 轮暖启动只覆盖 critic 预热，不能把它写成 actor 更新或质量提升证据。
+已实测 actor 更新的 full 恢复检查点为：
+/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth
+其迭代为 71，从原第 70 轮完整恢复而来，采样步计数到 6,979,584。
+若它仍为当前已验证父检查点，可在同一 reference 配置/4096 环境下做 1 轮链路验收：
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stability.sh 4096 1 7 full /home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth reference
+先核查该路径和当前配置契约，若后来已有新版本，保留父子身份而非盲选文件名最新者。
+
+独立评估实际接口：
+run_walk_eval.sh POLICY_PTH [SEED] [SEG_STEPS] [ENVS] [--baseline results.json]
+例如官方 actor：
+bash /home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_eval.sh /home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth 2027 100 8
+
+导出实际接口：
+run_export.sh TASK CHECKPOINT NEW_OUTPUT_DIR [actor|torchscript] [observations.npy]
+NEW_OUTPUT_DIR 必须新建，不能复用覆盖。自动执行的三方校验与生产 C++/ARM 后端校验分开显示。
+
+现有训练保护须保留：
+- 更新后冻结 rollout 参考分布的真实 KL，分别记录 original/mirror。
+- 学习率下降分支不会反向抬高已经更低的 LR。
+- KL 拒绝的参数与相应 Adam 状态回滚；独立 critic LR/预热；固定公开 actor 参考均值惩罚。
+- done/timeouts 真实计数与超时张量别名修复。
+- v2 受限检查点加载，不回退为不受限 pickle。
+- 紧凑单行 config_patch JSON；本机 Gym 原生导入曾因含换行 argv 段错误。不要将美化 JSON 作为多行命令参数传给 Gym。
+- Gym 原生导入顺序及局部 LD_LIBRARY_PATH/JIT 设置通过现有脚本继承。不要让 Web 进程预先 import torch 再 import isaacgym。
+- 源码和配置指纹门不能通过改常量/删检查绕过。若确需改训练核心，先独立回归再追加证据，本工作台第一阶段应避免改训练核心。
+
+五、已完成的外部交叉调研及其适用边界
+
+所有远端 SHA 均为 2026-10-20 只读 git ls-remote HEAD 查询。接手时可重新查一次；有更新时先记录差异，不自动 pull 覆盖工作区。
+
+1. B-Human 比赛正式库
+https://github.com/bhuman/BHumanCodeRelease
+HEAD：2e3374ba896da8288607f9a1881b876642fe18b8，与本机固定版本一致。
+官方文档：
+https://docs.b-human.de/coderelease2026/getting-started/initial-setup/
+https://docs.b-human.de/coderelease2026/architecture/overview/
+https://docs.b-human.de/coderelease2026/simrobot/
+https://docs.b-human.de/coderelease2026/architecture/logging/
+官方已有 SimRobot、Booster、Tests 构建目标；共享大部分模块/表示，但平台绑定和宏不同。复用现有组织方式。
+官方架构说明相机 60Hz、关节命令 500Hz；这是设计文档，不是本机测得的真机 DDS 周期。
+不要调用 Remote.ros3 连接真机。可以研究 Replay.ros3 和已有日志回放能力，避免重写完整二进制日志解析器。
+
+2. B-Human 公开训练库
+https://github.com/bhuman/MachineLearning
+HEAD：c3fed817e6e8fd06418bea824b1f1ab0157379d2，与本机固定版本一致。
+固定 README：
+https://github.com/bhuman/MachineLearning/blob/c3fed817e6e8fd06418bea824b1f1ab0157379d2/IsaacGymRL/README.md
+它仍是 Isaac Gym Preview 4/Python 3.8 路线，包含训练、回放、导出和参考 C++；参考 C++ 不是独立部署程序，也不保证与比赛正式版逐字一致。
+保持正式比赛代码、模型、参数配套。不能拿 ML/pre-trained 参考副本覆盖正式 WalkingEngine。
+
+3. Booster SDK
+https://github.com/BoosterRobotics/booster_robotics_sdk
+查询到远端 HEAD：87a9a26d06a94ddd50968e7576f1170f6fa5a80f。
+本地已核对版本记录为 fw-1.6 @324946e7c885de6cd6d37220eca64ed4e0f8d418。
+SDK 分支名称不等于已经知道实物机器的固件版本。
+B-Human 自带 SDK 与独立 Booster SDK 有头文件/命名空间/库的差异，不混用头文件、静态库和 DDS ABI。远端更新不是升级理由。
+
+4. 新的 Booster 官方训练/部署/资产路线
+booster_train HEAD：8bb5b53824e0fbcfe69a5cb78a81f4bddb3e2a6e。
+https://github.com/BoosterRobotics/booster_train/blob/8bb5b53824e0fbcfe69a5cb78a81f4bddb3e2a6e/README.md
+它是 Isaac Lab/BeyondMimic 路线，README 已测试组合为 Isaac Lab 2.3.2 + Isaac Sim 5.1.0，与本机环境不同；不能直接标记本机兼容。
+
+booster_deploy HEAD：7bb1462e2ac742eba5c01659b815e2e99fbe617f。
+https://github.com/BoosterRobotics/booster_deploy/blob/7bb1462e2ac742eba5c01659b815e2e99fbe617f/README.md
+https://github.com/BoosterRobotics/booster_deploy/blob/7bb1462e2ac742eba5c01659b815e2e99fbe617f/booster_deploy/controllers/base_controller.py
+可借鉴 Policy、状态更新、控制输出和平台后端分离的接口。当前 README 前置条件写固件 >=1.7.2，正文另一处仍写 >=1.4；B-Human 安装文档写其测试镜像 1.7.1。存在文档版本口径差异，不能替用户升级固件来抹平。
+它对并联关节电机侧 damping 有特别说明；不能照抄仿真 Kd 到实物。
+
+booster_assets HEAD：12a97516f57469078707afb587a5f84c1cb110d1。
+https://github.com/BoosterRobotics/booster_assets/blob/12a97516f57469078707afb587a5f84c1cb110d1/README.md
+现在公开提供 K1 22DoF URDF/MJCF，不要延续“网上没有官方 K1 模型”的旧断言。
+但不能直接替换 B-Human 训练资产。固定版本比较关节序、轴、惯量、限位、碰撞、坐标、质量、执行器、timestep 后，另开资产 profile。官方当前 K1_22dof.xml 默认 timestep 为 1ms，本机 B-Human 行走链为 2ms；同名 K1 不等于相同物理配置。
+优先只读研究和做差异清单，这一轮无需把三个官方新项目都安装成本机运行依赖。
+
+5. 社区一手实现 NUbots/NUSim
+HEAD：2d6aa6286887eb52cd41b9bfddf29bef206f0a29。
+https://github.com/NUbots/NUSim/blob/2d6aa6286887eb52cd41b9bfddf29bef206f0a29/README.md
+https://github.com/NUbots/NUSim/blob/2d6aa6286887eb52cd41b9bfddf29bef206f0a29/mujoco/config/dds.yaml
+它给出 MuJoCo + Booster DDS 边界 + 渲染相机的实际参考，可用于研究离线替身接口。
+但该版本多机器人演示中附加机器人可能只是 PD 保持；不能把“场上有六个模型”当成六个机器人都在自主比赛。其默认 DDS domain 0，未实现 API 的默认返回码配置也不能视为完整行为语义实现。不得直接运行其联网默认配置替代我们已验证的六机比赛。
+
+外部 API 访问说明：本轮无认证 GitHub REST 查询遇到 403 限流，SHA 来自 git ls-remote，不是编造的 API 提交日期。不要为了这点去搜本机 token。网上 README 获取和本地已安装/已运行必须在界面上分列。
+
+六、推荐软件结构，做出可用系统后再扩展
+
+采用本机 Web 工作台，不默认开发 Electron、重型云平台或新的 ROS 总控。
+建议新代码目录 ROOT/workbench，若已有后来创建的工作台先检查并续做，避免重复项目。
+
+架构必须分为：
+用户界面 → 本地 API/作业编排 → 现有入口适配器 → 各自独立进程/解释器/构建目标。
+传感器—策略—执行器的实时闭环留在现有运行程序中。
+
+可以参考下列目录，但按实际实现调整：
+workbench/
+  README.md
+  backend/               API、清单发现、适配器、作业管理、证据索引
+  frontend/              中文界面、依赖图、任务表单、日志与回放
+  schemas/               能力清单、策略契约、作业/产物数据结构
+  configs/               项目路径、任务白名单、资源限制
+  contracts/             C++/Python 离线对照工具、输入样本和差异报告
+  scripts/               启动、预检、构建、验收、离线打包
+  tests/                 有意义的作业与契约测试
+  runs/                  新时间戳证据，按体积与公开规则管理
+
+技术选型：
+- 前端可用 TypeScript/React/Vite；如果依赖下载或维护成本不合适，少依赖的 HTML/CSS/JS 也可以。选择一种完成可用软件，不为框架重建仿真。
+- 后端采用轻量 Python API，优先让 Web 层不 import torch/isaacgym/isaacsim/mujoco。可用隔离的小 venv 或标准库方案，不向 bh-gym 里装 Web 依赖。
+- 任务持久化可用 SQLite；记录运行身份和状态，别引入分布式调度集群。
+- API 默认仅绑定 127.0.0.1；任务启动校验本地请求来源/会话，防止浏览器外站触发命令。提供列举后的任务类型和参数，不提供任意 shell 执行接口。
+- 使用 subprocess 参数数组、明确 cwd、最小化进程环境增量；不要 shell=True 拼接用户输入。
+- 不在 Web 后端运行 500Hz 控制循环，不通过浏览器逐关节发实时命令，不把所有 Python 环境合并。
+- 系统启动仅加载元数据和证据，不自动运行训练、仿真、GPU 算子或机器人接口。
+
+七、界面必须解决的实际工作
+
+1. 项目总览与可点击依赖图
+显示项目源码 → 配置/模型 → 解释器/环境 → 构建程序 → 仿真/训练 → 验证结果 → 离线产物的有向关系。
+节点可展开真实绝对路径、版本、文件哈希/源码指纹、上游 SHA、依赖者、最后验收时间、验证范围和日志。
+默认显示三条主链；Isaac Lab、Isaac Sim、Booster 官方新路线和其他已有 RoboCup/ROS 工具作为独立能力节点，按需展开。
+依赖图必须来自机器可读发现结果，不是写死几张绿色卡片。
+按需对关键资产哈希并缓存；不要每隔一秒扫描几 GB 文件。发现和启动前校验分开。
+
+2. 环境和编译
+区分目录存在、Python 包安装、解释器可执行、动态库就绪、历史运行通过、当前指纹下运行通过。
+显示桌面 Release/Develop、ARM 构建、SDK/sysroot、实际推理后端、硬件利用率和当前任务。
+GPU 查询是轻量状态，不自动升级为 GPU 压力测试。
+缺失项给出具体失败项和替代方案，不把整个系统标成不可用。
+
+3. 三条主要工作流
+- 比赛：默认官方 gait + 正常相机，有限时间、录像、查看真实运动/感知/行为指标。
+- sim2sim：官方策略默认，显式候选选择，CPU/可选窗口，查看轨迹、关节、力矩、超调和策略数值比较。
+- 训练：明确 warm-start/full/actor-only 回放语义、任务、种子、环境数、迭代和预算；显示 actor/critic 是否更新、父检查点、有效配置和拒绝更新统计。
+用户执行前可看解析后的命令、输入和预算；不能通过界面把默认官方模型切成“最新文件”。
+
+4. 模型注册与比较
+四种策略分别建契约，禁止仅按 .onnx/.pth 扩展名判断通用兼容：
+行走 344→13；踢球 59→13；普通起身 73→22；快速起身 72→22。
+行走 actor 为 344→256→128→128→13，ELU；13 输出是 12 腿动作与步态频率，不是 13 个电机。
+官方行走 pth SHA256：7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff。
+官方比赛行走 ONNX SHA256：9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f。
+显示 source checkpoint、导出器版本、opset、输入名称/形状/dtype、输出解码、归一化、历史布局、单位、关节顺序、动作幅值/限位、配置 profile 和验证证据。
+当前 reference 候选标为实验候选；没有质量通过记录不得标为比赛可部署。
+
+5. 作业与日志
+状态至少区分 queued/running/succeeded/failed/cancelled/timed_out/interrupted。
+另外单独记录质量 verdict：PASS/FAIL/INSUFFICIENT/NOT_EVALUATED，不能让 succeeded 自动等于策略质量 PASS。
+持久化 job_id、argv、cwd、开始/结束时间、退出码、资源锁、环境身份、源码和模型哈希、有效配置、父子检查点、产物位置。
+现有 managed_run 产生的 launch/execution/result/metrics 是事实来源；工作台建立索引和适配，不另写一份与底层矛盾的 PASS。
+通过 SSE/WebSocket 或合理轮询显示增量日志/进度，日志滚动有界；控制线程不阻塞服务器。
+任务由工作台创建的进程组管理，取消只停止自己的组，超时后回收子进程。禁止全局 pkill python/SimRobot。
+重启后仍可看旧任务；不能只因 PID 存在就判为同一任务，更不能自动重启上一次正式训练。
+GPU 训练与 GPU 视觉比赛默认互斥，构建任务也应有资源上限，避免性能验收互相污染。沿用已有 .bhuman-sim.lock，不绕过其互斥。
+
+6. 回放和证据
+直接查看已生成 MP4、结果 JSON、训练曲线、关节/力矩曲线、场地状态和测试失败项。
+现有 ROOT/robocup/tools/telemetry_viewer 可复用部分界面和录像/回放逻辑，但其 UDP JSON 协议不是 B-Human 审计日志协议。必须做显式 adapter 与坐标/单位/时间校验。
+viewer_server.py 的 UDP 默认绑定 0.0.0.0:15000，不能直接启动其默认联网接收器。优先离线文件回放，确需本机消息通道时仅本机绑定且与实机隔离。
+区分比赛渲染相机、观赛视频、MuJoCo 观察者相机、机器人感知结果和仿真真值。真值可以用于诊断显示，不得暗中进入比赛策略感知链。
+原始 B-Human 二进制 .log 优先调用已存在的 SimRobot 回放/转换工具，不能伪装为所有格式都已解析。
+
+八、“仿真编译与真机等价”的工程定义和必须补的验证
+
+用户希望尽量使用同一套代码，但不能把不同 CPU 架构编译成同一个二进制，也不能用未上机的仿真宣称物理等价。请实现并展示以下分层矩阵：
+
+L0 资产身份：源码/模型/配置/依赖哈希明确，原版和实验 profile 可区分。
+L1 网络数值：同一真实输入上，PyTorch/TorchScript/ORT/实际 C++ 推理后端输出在已声明误差内。
+L2 输入输出契约：同一原始状态和历史下，生产 C++ 观测构造、历史更新、归一化、动作解码、限位与 Python 对照。
+L3 调度与控制语义：策略门控、低层周期、PD/力矩模式、限幅、串并联映射和失效处理明确并离线验证。
+L4 离线目标构建：实际 ARM64 ELF + 配套模型/配置/动态依赖和许可证可验证，目标 ABI/固件假设明确。
+L5 真机闭环：需要后续单独授权与实物实验；本任务固定显示未验证，不因 L0-L4 通过自动打勾。
+
+已有 MuJoCo 6000 输入的网络数值对照属于 L1 的一部分，不自动覆盖 L2-L5。
+不同物理引擎的轨迹不要求逐位相同；必须先统一输入语义，再用行为和误差指标比较，不能把不一致轨迹直接当网络错误。
+
+A. 最小生产 C++ 契约验收，先完成行走
+必须让一项实际生产 C++ 行走编码/解码路径参与测试；不能只写一份“看起来一样”的新 C++ 或两份 Python 代码互证。
+先检查能否通过已有 SimRobot 表示、离线回放、可选审计探针或链接现有代码构造测试入口。必要的小幅纯函数抽取/插桩放在独立实验适配中，并保留官方基线目录和启动入口。
+不要为了让探针通过删掉官方哈希保护。若核心哈希因改动必须变化，实验构建与 baseline 分开，并记录行为不变的回归证据后再讨论接入。
+用带唯一值和边界值的关节/IMU/命令序列，覆盖历史填充、10帧历史顺序、上一动作、相位、prepare、停止/转向、重置和时间门控。
+先对齐同一输入快照/序列，再比较编码张量；报告每段索引 [start,end)、最大误差及首个不一致字段。
+比较网络输出后的目标关节、频率解释、限幅和最终控制输出。为映射错误、mm/m、deg/rad、四元数 xyzw/wxyz、左右/轴方向各准备能失败的反例。
+无法从现有生产路径导出某字段时，明确列为未覆盖并继续做可覆盖部分，不能换成自写同名函数后宣称生产契约通过。
+
+B. 控制时序和关节语义
+正常物理步/低层名义 2ms，策略名义 20ms，prepare 等分支以源码为准。
+记录模拟时间、墙钟、策略调用数、控制更新数、观测时间戳、过期输入和 deadline 指标。加速运行不应改变模拟 dt。
+已有某些力矩/关节指标只按 50Hz 末子步采样，不能把它们当 500Hz 全子步最坏值；标出采样率和已知盲区，有需要再加入有界降采样/极值汇总插桩。
+目标限幅和测得关节超调分开；需求力矩、限幅后施加力矩、反馈估计分开，显示峰值与饱和占比的定义。
+B-Human SERIAL 模式关节 q/dq 与 SDK 并联 Crank 电机状态不同，不能直接互换；实际串并联力矩转换/执行器特性仍有未验证项。
+不要为求数值“统一”把训练 PD、B-Human regular、SimulatedK1 覆盖、fast low 档改成同一套值。
+快速起身网络输出经解码并切换控制模式，不可直接把 22 输出标成 Nm。
+
+C. 离线 ARM 构建
+优先检查并复用本机已有：
+ROOT/bhuman/local-k1-validation-20261019/bhuman-local/Make/CMake/BoosterToolchain.cmake
+ROOT/bhuman/local-k1-validation-20261019/bhuman-local/Make/CMake/Booster.cmake
+ROOT/bhuman/local-k1-validation-20261019/bhuman-local/Util/Buildchain/Booster/{include,lib}
+ROOT/bhuman/local-k1-validation-20261019/bhuman-local/Util/BoosterRoboticsSDK/lib/LinuxArm64/libbooster_robotics_sdk.a
+本轮已查到 crt1.o、libstdc++.so.6.0.30、libc.so.6、C++11 vector 头、约39.8MB SDK 静态库实际存在；这只证明材料存在，尚无本轮 ARM 编译 PASS。
+按 CMake 源码选择 BUILD_BOOSTER、Booster 目标和独立 build 目录；检查实际产物输出路径，避免覆盖已有程序。不要调用部署/安装目标。
+使用 file/readelf 验证 AArch64、ELF interpreter、NEEDED、符号版本、SDK/推理库/RealSense 等目标依赖。不要拿 x86 主机 ldd 的失败当 ARM 库缺失结论，也不要尝试直接执行 ARM 主程序连接 SDK。
+记录编译器版本、sysroot/SDK 身份、宏差异、CPU 架构、产物哈希和完整编译日志。
+若缺依赖，先给精确清单和基于已有 clang/sysroot 的可行修复，继续完成其余工作；不得靠把桌面 ELF 改名为 bhuman 来假装交叉编译完成。
+
+D. 离线产物与 .run
+先实现可验证的离线 bundle：实际 ARM 程序（如果成功构建）、配套官方模型/配置、manifest、依赖清单、许可证和校验工具。
+需要 .run 时只生成离线可检查/可解包产物，提供 --info/--verify/--extract 到新目录；不自动安装、不修改服务、不包含固件操作。
+没有 ARM 程序时，UI 明确只有桌面/资源包，不以“可真机部署”命名。缺失上机依赖和固件兼容性列为待验项。
+不把整个开发 venv、NVIDIA Gym 安装包或密钥塞进 .run。
+
+九、状态、证据和失效规则
+
+能力状态建议：NOT_FOUND、PRESENT、INSTALLED、VERIFIED、STALE、UNVERIFIED、BLOCKED，并给出清楚含义；无需拘泥英文枚举名，但不能混为绿色“已就绪”。
+保留每条证据的 created_at、source_fingerprint、config_hash、model_hash、runtime、scope、verdict、artifact_ref。
+历史验证通过但当前模型/配置/代码变了，应显示历史通过且当前待重验，不悄悄沿用旧 PASS。
+文件 mtime 不能独立证明身份；状态必须能追溯到日志/哈希。模型换了即使形状相同，也不能继承原策略质量通过。
+对未来才有的能力显示具体缺项，不能用空图表和虚构数值占位。
+环境导出清单只收集相关版本和白名单路径，环境变量/日志要避免泄露凭证。
+前端下载/预览产物使用已登记 ID 和限定目录解析，拒绝目录穿越及 symlink 指向敏感路径。
+
+十、实施顺序，要求连续推进到可运行交付
+
+阶段 0：核查与冻结
+先确认 Git 状态、AGENTS、三个入口、解释器、当前指纹、可用磁盘和 GPU 占用；不启动完整 Isaac Sim/Isaac Lab 作环境发现。
+记录当前官方模型哈希、现有本地修改和最近可用检查点。列出必要适配点后直接开工，别写长方案后停止。
+输出机器可读初始 capability 清单和一份简短 ADR，说明为何不合并环境、为何采用工作台编排。
+
+阶段 1：打通最小纵向功能
+完成可启动 API、中文界面、真实能力发现、一个真实任务执行、日志流、状态持久化和结果查看。
+立刻接入现有三条主链，默认只读展示历史证据，点击运行才新建作业。
+先实现关键操作完整闭环，再补美化依赖图。第一版就有项目总览、工作流、作业详情、模型/契约、证据与离线产物入口。
+
+阶段 2：补关键可追溯与等价验证
+实现依赖图和真实状态失效、模型注册、基线/候选隔离、负例、行走生产 C++ 输入输出对照。
+利用现有 6000 条 MuJoCo 输入和已有导出复验网络数值；注明哪部分是历史/复验/新增。
+完成桌面增量编译，再尝试真正的离线 ARM 构建。构建失败先修能修的原因，保留诊断，不因 ARM 单点阻塞界面、比赛、训练和 MuJoCo。
+
+阶段 3：通过工作台端到端验收
+下列顺序串行进行，保持预算，不把 GPU 训练与视觉比赛同时跑：
+1) 环境只读发现。界面显示各解释器真实版本，Isaac Gym/Sim/Lab 三者不混淆。
+2) 桌面编译实际成功，记录现有源码和工具链身份；编译之后实际启动验证。
+3) 官方 gait 30 秒；正常视觉比赛 120 秒且录像，读取底层 result 的实际检查项。性能只报本次条件下测值。
+4) MuJoCo 行走 120 秒，并核对实际输入对应 TorchScript/比赛 ONNX，至少复用既有 tolerance，额外后端单独报告。
+5) Gym 官方回放（4环境×1000步）；若资源紧张先减少有界步数并明确验收覆盖变化。
+6) 64环境×3轮 warm-start 验证新训练入口，标明仅 critic 预热；另做兼容的第71轮父检查点 4096环境×1轮 full 恢复验证实际 actor 更新。若当前父检查点发生变化先解析契约，不改成新初始化冒充恢复。
+7) 用当前评估器评估一个明确候选并与同条件官方基线比较。若候选不达标，软件的正确行为是显示失败/不足并继续保护官方基线。
+8) 行走生产 C++ 契约对照；必备反例被拒绝；ARM 构建和离线包核验按实际可完成状态呈现。
+9) 浏览器实际操作环境图、启动任务、滚动日志、查看视频/指标、取消和重启后任务查询；不能只跑 API 单元测试当成 UI 验收。
+
+具体预算：沿用现有 900 秒训练单次上限和脚本参数约束；界面短训默认 64环境/3轮，不用原脚本4096/25默认值误启动大实验。4096×1 full 验收必须显式参数。
+长时/扰动/多训练种子能力可以提供任务配置，但软件开发验收默认不启动无人值守正式长训。
+磁盘不足先保留所有可运行工作区，降低新录像或测试产物预算，禁止删除检查点来给 Web 前端腾空间。
+
+阶段 4：交付与 GitHub 同步
+交付一个命令启动、明确 URL、正确退出/停止方法、依赖锁定清单、启动脚本、使用说明和实际验收报告。
+使用工作台本身展示验收证据；报告给出 run_id、命令、退出码、质量判定、模型/源码指纹、限制。
+依据此前授权同步到现有公开 https://github.com/peakpeng666/Robocup。先检查差异、许可、敏感内容和大文件；小源码/配置/报告正常 Git，需保存的大模型/程序沿用经过校验的 Release 方式。
+不改写/删除已有备份，不公开原始 Git 历史，不把本机可运行工作区当上传后的可删除副本。
+如果远端或认证暂时失败，保留本地完整交付与确切失败原因，不能宣称已经同步。
+
+十一、必须真实通过的反例与边界检查
+
+- 将 59→13 踢球模型选进行走任务：执行前拒绝，不能自动猜测适配。
+- 模型维度相同但 SHA 改了：L0/相关旧结果失效，不能自动宣称质量相同。
+- 缺 DISPLAY/渲染条件：比赛任务报明确前提，不能静默换成真值感知或低保真无视觉模式。
+- full 恢复缺优化器/RNG、配置不兼容或父指纹不兼容：使用现有规则拒绝，不能回退 warm-start 后仍标 full。
+- 外层进程成功但底层质量 FAIL/INSUFFICIENT：前端不得展示质量绿色通过。
+- 任务超时/手动取消/服务器重启：状态正确，自己启动的子进程处理合理，其他仿真/训练进程不受影响。
+- 请求任意命令、非法路径、未登记产物或敏感 symlink：拒绝。
+- SDK/推理后端没有实际执行证据：状态保持 UNVERIFIED，不能因库文件存在就判真机可用。
+- 用户开启浏览器看板但不点运行：不应启动训练、仿真和 DDS。
+
+不要为每个 CSS 样式写镜像测试。测试集中于上述会影响正确性、可恢复性和用户资产的真实行为。
+
+十二、明确不做的大范围改造
+
+本任务不重写 PPO，不重训官方 gait，不把现有训练迁移到 Isaac Lab，不并入全新的 NUSim/ROS2/Booster deploy 全栈，不重新实现 B-Human 比赛逻辑。
+不要把“可视化结合依赖”理解为把所有库装进一个 venv；它的含义是版本、路径、依赖关系、调用方式与证据可视化统一管理。
+不要把“代码等价”理解为把 ARM/x86 编译差异、平台宏差异、PD差异、串并联执行器差异和真实固件都忽略。
+不要把“已开源”理解为 B-Human 内部环境、快速起身完整训练配方和所有硬件细节都已公开。
+
+十三、最终汇报格式
+
+先给出本机启动命令和 URL，并说明实际做成哪些用户可用功能。
+然后列一张表：功能｜实际执行入口/run_id｜执行状态｜质量/等价层级｜证据位置｜未覆盖项。
+必须分别回答：
+1) 官方步态和正常视觉是否原样保留，哈希证据是什么？
+2) 比赛、MuJoCo、训练三条链是否从工作台真实启动成功？
+3) 环境是否被修改，有哪些新增隔离依赖，如何重现？
+4) 生产 C++ 编码/解码具体覆盖了哪些字段和边界，有哪些差异仍未对齐？
+5) ARM 目标是否真正编译成功，ELF和依赖证据是什么？
+6) L0-L5 各层当前到底到哪里，哪些仍需未来真机授权？
+7) 是否同步 GitHub，提交 SHA/Release 校验是什么？
+8) 本地三个可运行工作区、继续训练检查点及环境是否仍保留？
+
+如果某项未完成，说明已经尝试的具体命令/失败原因、仍然可用的替代路径及下一项最小动作；不要把未完成项藏在总 PASS 里。完成已授权的可行工作后再汇报，不要只返回这份计划的复述。
+
+——提示词结束——

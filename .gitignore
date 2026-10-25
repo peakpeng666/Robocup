@@ -36,3 +36,28 @@
 **/frames/
 **/.bhuman-sim.lock
 bhuman/local-k1-validation-20261019/runtime/
+
+# Local tools, generated indexes, and auxiliary checkouts are not source exports.
+.claude/
+_local/
+robocup-1/
+robocup-2/
+**/.ruff_cache/
+**/node_modules/
+*.tsbuildinfo
+*.zip
+**/summaries/
+
+# Timestamped run data is preserved in verified Releases; tracked reports stay tracked.
+bhuman/k1-training/runs/
+bhuman/k1-training/exports/
+bhuman/local-k1-validation-20261019/runs/
+bhuman/sim2sim/runs/
+archive/evidence-offload/**/*.files.jsonl
+archive/evidence-offload/**/removed-files*.jsonl
+
+# Restored, pinned upstream runtime trees are backed up as release artifacts.
+# Already tracked source overlays remain tracked and must still be reviewed.
+bhuman/BHumanCodeRelease/
+bhuman/local-k1-validation-20261019/bhuman-local/
+bhuman/k1-training/src/Util/BoosterRoboticsSDK/

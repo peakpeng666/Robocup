@@ -1,0 +1,45 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "original-fw16-complete-motor-bac-4840f07653",
+  "kind": "candidate",
+  "name": "Original FW16 complete motor backend",
+  "description": "Original 1.6 ARM mck and complete graph at physical IO. Not the three-actor B-Human hybrid. Local simulation backend; action fidelity not yet qualified.",
+  "components": {},
+  "cfg_patches": {},
+  "modules": {
+    "BoosterNativeMotionProvider": {
+      "replaces": "MotionEngine",
+      "cfg": "boosterNativeMotionProvider.cfg",
+      "base_cfg": "boosterNativeMotionProvider.cfg",
+      "params": {
+        "gait": "0"
+      },
+      "native_backend": {
+        "schema": "forge.original-fw16-backend/1",
+        "firmware": "1.6.0.10",
+        "controller_sha256": "648854b5d74c1e12ce5817047177338de636637ac8e5cf6442670a79adb9ce31",
+        "qemu_sha256": "92c4aeb8dd898de7152c184370ab22f09ae7c5b7279fd300081c76cee3f78a80",
+        "motion_libraries_and_models_sha256": "153a1ff60a8a5e9b1796802776a6d964539a89961a5d0a6e73e0adabfe25e8a9",
+        "original_config_sha256": "fd5ed4c8305b0706b21f392f75a06ae519476b004ba99b4b879c27e1168315d2",
+        "runtime_sha256": "7e334fd8f15f42e158a46e95cf5c8ea0e1bfc6d852576ea7c3af8eeb1c19df7a",
+        "vendor_dependencies_sha256": "7c252b02cbeffd888522e1008dce046ab70fe42402a32b4111baa373c2458bbf",
+        "adapters": {
+          "io": "03ad1ecfcdb15ce668c00886cff5224418853035aa7b6f2e6af90197e84e2890",
+          "rpc": "8604522062743cb4451a54a49750e5107436dc26a9b117cea0c5feea26010376",
+          "physics": "81d2282fd64ef7177f46d3cd5d55da6d1b3a7f7cc84c56693d78da53e7bb2b0b"
+        }
+      }
+    }
+  },
+  "content_sha256": "4840f07653c551a9390b3c0c28e4a35497f8d554289f046f903e01849a110dd7",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "controller": "official 1.6.0.10",
+    "mck_sha256": "648854b5d74c1e12ce5817047177338de636637ac8e5cf6442670a79adb9ce31",
+    "real_robot_backend": "not enabled"
+  },
+  "status": "experimental",
+  "created_at": "2026-10-23T16:27:46.837+09:00"
+}

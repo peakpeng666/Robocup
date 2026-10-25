@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "workbench job record",
+  "comment": "文档级 schema；运行时以 SQLite jobs 表为准，本文件描述语义契约。",
+  "type": "object",
+  "required": ["job_id", "type", "status", "quality_verdict", "created_at"],
+  "properties": {
+    "job_id": {"type": "string", "pattern": "^[0-9]{8}_[0-9]{6}_[0-9]{6}_[0-9a-f]{8}$"},
+    "type": {"type": "string", "description": "登记的任务类型白名单之一"},
+    "params_json": {"type": "string", "description": "校验后的参数 JSON"},
+    "argv_json": {"type": "string", "description": "实际执行的 argv 数组 JSON"},
+    "status": {"enum": ["queued", "running", "succeeded", "failed", "cancelled", "timed_out", "interrupted"]},
+    "quality_verdict": {"enum": ["PASS", "FAIL", "INSUFFICIENT", "NOT_EVALUATED"],
+                        "description": "来自底层 result/evaluation JSON；succeeded 不蕴含 PASS"},
+    "exit_code": {"type": ["integer", "null"]},
+    "run_dir": {"type": ["string", "null"], "description": "底层工具的实际输出目录"},
+    "timeout_s": {"type": "integer"},
+    "resources_json": {"type": "string", "description": "资源锁声明，如 gpu/simlock/cpu_heavy"}
+  }
+}

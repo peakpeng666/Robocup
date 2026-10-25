@@ -1,0 +1,229 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "booster-open-k1-isolated-e0b3c05ea2",
+  "kind": "candidate",
+  "name": "booster-open-k1-isolated",
+  "description": "Booster 官方开源 booster_deploy 7bb1462e2ac7 的 K1 行走 actor（非固件 1.6），经编译模块按上游 LocomotionPolicy 契约接入 SimRobot；行走显式使用 low PD 表，取 booster_deploy k1_walk 任务的 joint_stiffness / joint_damping / effort_limit；regular 表保持官方，供准备、踢球与常规起身使用。规划速度上限与固件 1.6 包相同，适配层按 booster_deploy 的速度范围钳位。正常视觉、足球战术、踢球与起身仍为 B-Human。",
+  "components": {
+    "booster_walk": {
+      "file": "files/booster_walk.onnx",
+      "sha256": "492cf511c5acb01c6d9f618ced9958213c7bef89aa935ebff39ca4203753526e",
+      "contract": "booster.deploy.k1.walk.690x20",
+      "source_path": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261022_booster-deploy-export/booster_walk.onnx",
+      "onnx": {
+        "opset": 17,
+        "inputs": [
+          {
+            "name": "observation",
+            "dims": [
+              "batch",
+              690
+            ],
+            "elem_type": 1
+          }
+        ],
+        "outputs": [
+          {
+            "name": "action",
+            "dims": [
+              "batch",
+              20
+            ],
+            "elem_type": 1
+          }
+        ],
+        "nodes": 7,
+        "ops": [
+          "Elu",
+          "Gemm"
+        ],
+        "parameters": 520596,
+        "ort_smoke": {
+          "batch": 4,
+          "max_abs_output": 2.7482237815856934,
+          "runtime": "onnxruntime 1.31.0 CPU"
+        }
+      }
+    }
+  },
+  "cfg_patches": {
+    "motorParameters.cfg": {
+      "controlParameters.low.headYaw.p": "10",
+      "controlParameters.low.headYaw.d": "1.2",
+      "controlParameters.low.headYaw.maxTorque": "7",
+      "controlParameters.low.headPitch.p": "10",
+      "controlParameters.low.headPitch.d": "1.2",
+      "controlParameters.low.headPitch.maxTorque": "7",
+      "controlParameters.low.lShoulderPitch.p": "20",
+      "controlParameters.low.lShoulderPitch.d": "2",
+      "controlParameters.low.lShoulderPitch.maxTorque": "14",
+      "controlParameters.low.lShoulderRoll.p": "20",
+      "controlParameters.low.lShoulderRoll.d": "2",
+      "controlParameters.low.lShoulderRoll.maxTorque": "14",
+      "controlParameters.low.lElbowPitch.p": "20",
+      "controlParameters.low.lElbowPitch.d": "2",
+      "controlParameters.low.lElbowPitch.maxTorque": "14",
+      "controlParameters.low.lElbowYaw.p": "20",
+      "controlParameters.low.lElbowYaw.d": "2",
+      "controlParameters.low.lElbowYaw.maxTorque": "14",
+      "controlParameters.low.rShoulderPitch.p": "20",
+      "controlParameters.low.rShoulderPitch.d": "2",
+      "controlParameters.low.rShoulderPitch.maxTorque": "14",
+      "controlParameters.low.rShoulderRoll.p": "20",
+      "controlParameters.low.rShoulderRoll.d": "2",
+      "controlParameters.low.rShoulderRoll.maxTorque": "14",
+      "controlParameters.low.rElbowPitch.p": "20",
+      "controlParameters.low.rElbowPitch.d": "2",
+      "controlParameters.low.rElbowPitch.maxTorque": "14",
+      "controlParameters.low.rElbowYaw.p": "20",
+      "controlParameters.low.rElbowYaw.d": "2",
+      "controlParameters.low.rElbowYaw.maxTorque": "14",
+      "controlParameters.low.waistYaw.p": "0",
+      "controlParameters.low.waistYaw.d": "0.0",
+      "controlParameters.low.waistYaw.maxTorque": "0",
+      "controlParameters.low.lHipPitch.p": "100",
+      "controlParameters.low.lHipPitch.d": "2",
+      "controlParameters.low.lHipPitch.maxTorque": "30",
+      "controlParameters.low.lHipRoll.p": "100",
+      "controlParameters.low.lHipRoll.d": "2",
+      "controlParameters.low.lHipRoll.maxTorque": "20",
+      "controlParameters.low.lHipYaw.p": "100",
+      "controlParameters.low.lHipYaw.d": "2",
+      "controlParameters.low.lHipYaw.maxTorque": "15",
+      "controlParameters.low.lKneePitch.p": "100",
+      "controlParameters.low.lKneePitch.d": "2",
+      "controlParameters.low.lKneePitch.maxTorque": "35",
+      "controlParameters.low.lAnklePitch.p": "65",
+      "controlParameters.low.lAnklePitch.d": "1",
+      "controlParameters.low.lAnklePitch.maxTorque": "24",
+      "controlParameters.low.lAnkleRoll.p": "65",
+      "controlParameters.low.lAnkleRoll.d": "1",
+      "controlParameters.low.lAnkleRoll.maxTorque": "15",
+      "controlParameters.low.rHipPitch.p": "100",
+      "controlParameters.low.rHipPitch.d": "2",
+      "controlParameters.low.rHipPitch.maxTorque": "30",
+      "controlParameters.low.rHipRoll.p": "100",
+      "controlParameters.low.rHipRoll.d": "2",
+      "controlParameters.low.rHipRoll.maxTorque": "20",
+      "controlParameters.low.rHipYaw.p": "100",
+      "controlParameters.low.rHipYaw.d": "2",
+      "controlParameters.low.rHipYaw.maxTorque": "15",
+      "controlParameters.low.rKneePitch.p": "100",
+      "controlParameters.low.rKneePitch.d": "2",
+      "controlParameters.low.rKneePitch.maxTorque": "35",
+      "controlParameters.low.rAnklePitch.p": "65",
+      "controlParameters.low.rAnklePitch.d": "1",
+      "controlParameters.low.rAnklePitch.maxTorque": "24",
+      "controlParameters.low.rAnkleRoll.p": "65",
+      "controlParameters.low.rAnkleRoll.d": "1",
+      "controlParameters.low.rAnkleRoll.maxTorque": "15"
+    },
+    "walkingEngine.cfg": {
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.fastWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.fastWalkSpeed.maxSpeed.rotation": "1.8",
+      "configuredParameters.fastWalkSpeed.maxSpeedBackwards": "750",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.normalWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.normalWalkSpeed.maxSpeed.rotation": "90deg",
+      "configuredParameters.normalWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.x": "750",
+      "configuredParameters.slowWalkSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.slowWalkSpeed.maxSpeed.rotation": "54deg",
+      "configuredParameters.slowWalkSpeed.maxSpeedBackwards": "500",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.translation.x": "1250",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.translation.y": "400",
+      "configuredParameters.maxPossibleSpeed.maxSpeed.rotation": "1.8",
+      "configuredParameters.maxPossibleSpeed.maxSpeedBackwards": "750",
+      "configuredParameters.maxSideAtMaxForward": "400",
+      "commonSpeedParameters.xTargetScaling.walkSpeed.max": "1250",
+      "commonSpeedParameters.yTargetScaling.walkSpeed.max": "400",
+      "commonSpeedParameters.rotationTargetScaling.walkSpeed.max": "1.8"
+    }
+  },
+  "modules": {
+    "BoosterDeployWalkingEngine": {
+      "replaces": "WalkingEngine",
+      "cfg": "boosterDeployWalkingEngine.cfg",
+      "params": {
+        "walkNeuronalNetworkParameters.numInput": "690",
+        "walkNeuronalNetworkParameters.numOutput": "20",
+        "walkNeuronalNetworkParameters.boosterMinVx": "-0.3",
+        "walkNeuronalNetworkParameters.boosterMaxVx": "1.6",
+        "walkNeuronalNetworkParameters.boosterMinVy": "-0.3",
+        "walkNeuronalNetworkParameters.boosterMaxVy": "0.3",
+        "walkNeuronalNetworkParameters.boosterMinWz": "-1.8",
+        "walkNeuronalNetworkParameters.boosterMaxWz": "1.8",
+        "walkNeuronalNetworkParameters.boosterRightElbowObservationOffset": "0",
+        "walkNeuronalNetworkParameters.boosterUseFirmwareSwitcher": "false",
+        "walkNeuronalNetworkParameters.boosterUseLowStiffnessMapping": "true"
+      }
+    }
+  },
+  "content_sha256": "e0b3c05ea2fa8b20f1a23bee5dabe7c5d93d7eafaf7adb991493168527144e93",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "upstream": "BoosterRobotics/booster_deploy@7bb1462e2ac742eba5c01659b815e2e99fbe617f",
+    "export": {
+      "schema": "forge.booster-deploy-export/1",
+      "status": "PASS",
+      "upstream_commit": "7bb1462e2ac742eba5c01659b815e2e99fbe617f",
+      "upstream_url": "https://github.com/BoosterRobotics/booster_deploy",
+      "firmware_version": null,
+      "is_firmware_1_6": false,
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/robots/k1/models/k1_walk.pt",
+      "checkpoint_sha256": "2d860167ed827e8d44cd65abd4c27f474904352bcb98c0cfa97c078f63e2fea5",
+      "onnx": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261022_booster-deploy-export/booster_walk.onnx",
+      "onnx_sha256": "492cf511c5acb01c6d9f618ced9958213c7bef89aa935ebff39ca4203753526e",
+      "selected_module": "actor",
+      "obs_normalizer_applied": false,
+      "inputs": [
+        {
+          "name": "observation",
+          "shape": [
+            "batch",
+            690
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "action",
+          "shape": [
+            "batch",
+            20
+          ]
+        }
+      ],
+      "samples": 64,
+      "seed": 20261022,
+      "max_abs_error": 4.0531158447265625e-06,
+      "torch": "2.11.0+cu130",
+      "onnxruntime": "1.31.0",
+      "scope": "Export numerical equivalence only; no gait or soccer qualification."
+    },
+    "export_dir": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261022_booster-deploy-export",
+    "checkpoint": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/robots/k1/models/k1_walk.pt",
+    "adapter_settings_path": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261023_002815_071107_booster-recovery-isolation/booster-deploy-walking.json",
+    "adapter_settings_sha256": "8a1117a447dc5aa995f454878ffcdfa67b7fd218ebfeac60020ac2114a4cb589",
+    "registration_tool_sha256": "f4c70d0286c80a5c242bacc2c16444b22cc10d050bc0bd7b4a6e44ff60640052",
+    "pd_source": "booster_deploy tasks/locomotion/robots/k1 K1WalkControllerCfg (ast-parsed)",
+    "velocity_limits": {
+      "vx_forward_max": 1.6,
+      "vx_backward_max": 0.3,
+      "vy_max": 0.3,
+      "vyaw_max": 1.8
+    },
+    "motor_control": {
+      "foreign_gait_mapping": "low",
+      "regular_mapping_modified": false,
+      "official_regular_source": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/motorParameters.cfg",
+      "official_regular_source_sha256": "9dd2a3d1030b3729c5acc8f53c34d1126f9c0d0f9c72e5e131b8879f604b1948"
+    },
+    "bridge": "运控桥 SimRobot 交叉对照（同一策略：booster_deploy 自身 MuJoCo / 虚拟 K1 真机代码路径 / SimRobot）"
+  },
+  "status": "experimental",
+  "created_at": "2026-10-23T10:37:20.292+09:00"
+}

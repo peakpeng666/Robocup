@@ -1,0 +1,68 @@
+{
+  "comment": "RoboCup 工作台项目配置。root 默认取 workbench/ 的上一级；可用环境变量 ROBOCUP_ROOT 覆盖。所有任务执行均使用解析后的绝对路径。",
+  "host": "127.0.0.1",
+  "port": 8901,
+  "interpreters": {
+    "system_python": "/usr/bin/python3",
+    "bh_gym": "/home/peakpeng/.venvs/bh-gym/bin/python",
+    "isaacsim_gui": "/home/peakpeng/.venvs/mujoco-sim2sim/bin/python",
+    "isaaclab": "/home/peakpeng/.venvs/isaaclab/bin/python"
+  },
+  "chains": {
+    "bhuman": {
+      "label": "B-Human 比赛与官方步态",
+      "entry": "bhuman/start-bhuman.sh",
+      "orchestrator": "bhuman/local-k1-validation-20261019/scripts/run-bhuman-k1.py",
+      "source": "bhuman/local-k1-validation-20261019/bhuman-local",
+      "official_source": "bhuman/BHumanCodeRelease",
+      "official_upstream_sha": "2e3374ba896da8288607f9a1881b876642fe18b8",
+      "binary_release": "bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+      "binary_develop": "bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Develop/SimRobot",
+      "build_script": "bhuman/local-k1-validation-20261019/scripts/configure-desktop.sh",
+      "runs_dir": "bhuman/local-k1-validation-20261019/runs",
+      "lock_file": "bhuman/local-k1-validation-20261019/.bhuman-sim.lock"
+    },
+    "sim2sim": {
+      "label": "MuJoCo sim2sim",
+      "entry": "bhuman/sim2sim/run-mujoco.sh",
+      "script": "bhuman/sim2sim/mujoco_walk.py",
+      "verify_entry": "bhuman/sim2sim/verify-policy.sh",
+      "verify_script": "bhuman/sim2sim/verify_policy.py",
+      "runs_dir": "bhuman/sim2sim/runs",
+      "interpreter": "isaacsim_gui"
+    },
+    "training": {
+      "label": "训练主线 (Isaac Gym)",
+      "root": "bhuman/k1-training",
+      "src": "bhuman/k1-training/src/IsaacGymRL",
+      "env_script": "bhuman/k1-training/scripts/env.sh",
+      "runs_dir": "bhuman/k1-training/runs",
+      "exports_dir": "bhuman/k1-training/exports",
+      "interpreter": "bh_gym",
+      "upstream_sha": "c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "source_fingerprint": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "fingerprint_module": "bhuman/k1-training/src/IsaacGymRL/utils/bh_common.py"
+    }
+  },
+  "models": {
+    "walk_pth": "bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+    "walk_onnx_match": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_walk.onnx",
+    "kick_onnx_match": "bhuman/BHumanCodeRelease/Config/NeuralNets/Walk/K1_kick_inner.onnx",
+    "getup_onnx_match": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1.onnx",
+    "getup_fast_onnx_match": "bhuman/BHumanCodeRelease/Config/NeuralNets/GetUpEngine/K1_fast_standup.onnx",
+    "walk_export_dir": "bhuman/k1-training/exports/restored-public-walk-20261020",
+    "resume_checkpoint_iter71": "bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth"
+  },
+  "expected_hashes": {
+    "walk_pth_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+    "walk_onnx_match_sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f"
+  },
+  "hardware": {
+    "gpu_name": "RTX 5090 Laptop",
+    "gpu_total_mib": 24463
+  },
+  "other_capabilities": {
+    "isaaclab": {"path": "/home/peakpeng/IsaacLab", "interpreter": "isaaclab", "note": "本地修改保留；B-Human K1 任务尚未适配"},
+    "telemetry_viewer": {"path": "robocup/tools/telemetry_viewer", "note": "UDP JSON 协议与 B-Human 审计协议不同；仅离线文件回放，不启动 0.0.0.0:15000 接收器"}
+  }
+}

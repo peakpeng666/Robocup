@@ -12,8 +12,8 @@ bash /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/run-mujoco.sh --seconds 120
 bash /home/peakpeng/Desktop/Robocup/bhuman/sim2sim/run-mujoco.sh --seconds 120 --viewer --realtime
 ```
 
-复用 `/home/peakpeng/.venvs/isaacsim-gui/bin/python`：Python 3.12.13、MuJoCo
-3.8.0、PyTorch 2.11.0；actor 和物理均在 CPU 执行，不启动 Isaac Sim。
+复用 `/home/peakpeng/.venvs/mujoco-sim2sim/bin/python`：Python 3.12.13、MuJoCo
+3.8.0、PyTorch CPU；actor 和物理均在 CPU 执行，不启动 Isaac Sim。
 训练继续使用独立的 `bh-gym` / Python 3.8.20 / Isaac Gym Preview 4。
 
 上游参考是 `../k1-training/src/IsaacGymRL/play_mujoco_walk_history.py`。

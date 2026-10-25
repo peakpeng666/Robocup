@@ -1,0 +1,36 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "bhuman-official",
+  "kind": "baseline",
+  "name": "B-Human 官方运控",
+  "description": "BHumanCodeRelease 2026 官方 K1 行走/踢球网络与 SimulatedK1 原配置；刷写即恢复原样。",
+  "components": {
+    "walk": {
+      "file": null,
+      "official_file": "Config/NeuralNets/Walk/K1_walk.onnx",
+      "sha256": "9d1ec18504cb9d05ec708b9430783a2331cabf5415fc0db81c6318472e948e8f",
+      "contract": "k1.walk.344x13"
+    },
+    "kick": {
+      "file": null,
+      "official_file": "Config/NeuralNets/Walk/K1_kick_inner.onnx",
+      "sha256": "7fb9ea33c36e14332861025f22e92f2f4a7ae7681f4532bdd6e1e78975fe3452",
+      "contract": "k1.kick.59x13"
+    },
+    "kick_soft": {
+      "file": null,
+      "official_file": "Config/NeuralNets/Walk/K1_kick_inner_soft.onnx",
+      "sha256": "7943b41c76c841b663d84024168be5ef4ef0af4f5a3524415a40f8665f028da2",
+      "contract": "k1.kick.59x13"
+    }
+  },
+  "cfg_patches": {},
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "source": "bhuman/BHumanCodeRelease@2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "status": "baseline",
+  "created_at": "2026-10-22T19:31:33.012+09:00"
+}

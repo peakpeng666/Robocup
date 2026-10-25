@@ -1,0 +1,199 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "thu-amp-s42-it400-5650b21712",
+  "kind": "candidate",
+  "name": "thu-amp-s42-it400",
+  "description": "由流水线从 model_final.pth 导出",
+  "components": {
+    "walk": {
+      "file": "files/walk.onnx",
+      "sha256": "d8f706ece063dfe9624568817609d74bc1b27c8f003e37b33f088ac2106fc37c",
+      "contract": "k1.walk.344x13",
+      "source_path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_202231_291362_thu-amp-s42-it400/K1_actor.onnx",
+      "onnx": {
+        "opset": 11,
+        "inputs": [
+          {
+            "name": "input",
+            "dims": [
+              "batch_size",
+              344
+            ],
+            "elem_type": 1
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "dims": [
+              "batch_size",
+              13
+            ],
+            "elem_type": 1
+          }
+        ],
+        "nodes": 7,
+        "ops": [
+          "Elu",
+          "Gemm"
+        ],
+        "parameters": 139405,
+        "ort_smoke": {
+          "batch": 4,
+          "max_abs_output": 0.8059971928596497,
+          "runtime": "onnxruntime 1.31.0 CPU"
+        }
+      }
+    }
+  },
+  "cfg_patches": {},
+  "modules": {},
+  "content_sha256": "5650b217122998c1dd60311f143da694114fc7892a4fb430705572ec3cef89c1",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "checkpoint": "/home/peakpeng/Desktop/Robocup/forge/runs/train/20261022_193901_567116_forge-thu_thu-amp_s42/nn/model_final.pth",
+    "checkpoint_sha256": "31fb64ebec29af0bb0014ad5b6419dd40e7347928640a8735ee85c69d332ddf6",
+    "export_dir": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_202231_291362_thu-amp-s42-it400",
+    "export_manifest": {
+      "utc": "2026-10-22T11:22:32Z",
+      "task": "K1",
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/forge/runs/train/20261022_193901_567116_forge-thu_thu-amp_s42/nn/model_final.pth",
+      "checkpoint_sha256": "31fb64ebec29af0bb0014ad5b6419dd40e7347928640a8735ee85c69d332ddf6",
+      "load_mode": "actor",
+      "config_sha256": "8f2eb1fa4172ec192cbc861d1502e824eaaf386c72ac13d0e103d434491c2314",
+      "adaptation_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "torchscript": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_202231_291362_thu-amp-s42-it400/K1_actor.pt",
+        "sha256": "fe0ec97de50fd72e51f9460eeae84167181afa27790b97ed6bd8a9cf9ed9cdf8"
+      },
+      "onnx": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/exports/20261022_202231_291362_thu-amp-s42-it400/K1_actor.onnx",
+        "sha256": "d8f706ece063dfe9624568817609d74bc1b27c8f003e37b33f088ac2106fc37c",
+        "opset": 11,
+        "input": "input: [batch, 344]",
+        "output": "output: [batch, 13]"
+      },
+      "source_id": "bhuman/MachineLearning@c3fed817e6e8fd06418bea824b1f1ab0157379d2",
+      "tri_check": {
+        "atol": 1e-05,
+        "rtol": 0.0001,
+        "results": {
+          "random_batch1": {
+            "eager_vs_script_maxabs": 0.0,
+            "eager_vs_ort_maxabs": 3.337860107421875e-06,
+            "eager_vs_script_ok": true,
+            "eager_vs_ort_ok": true
+          },
+          "random_batch4": {
+            "eager_vs_script_maxabs": 0.0,
+            "eager_vs_ort_maxabs": 1.6689300537109375e-06,
+            "eager_vs_script_ok": true,
+            "eager_vs_ort_ok": true
+          }
+        },
+        "verdict": "PASS",
+        "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+      }
+    },
+    "tri_check": {
+      "atol": 1e-05,
+      "rtol": 0.0001,
+      "results": {
+        "random_batch1": {
+          "eager_vs_script_maxabs": 0.0,
+          "eager_vs_ort_maxabs": 3.337860107421875e-06,
+          "eager_vs_script_ok": true,
+          "eager_vs_ort_ok": true
+        },
+        "random_batch4": {
+          "eager_vs_script_maxabs": 0.0,
+          "eager_vs_ort_maxabs": 1.6689300537109375e-06,
+          "eager_vs_script_ok": true,
+          "eager_vs_ort_ok": true
+        }
+      },
+      "verdict": "PASS",
+      "note": "ONNX Runtime CPU pass does not imply the official CompiledNN engine is verified"
+    },
+    "note": "ONNX Runtime CPU parity; CompiledNN on the robot is a separate check",
+    "training_launch": {
+      "schema": "forge.train/1",
+      "recipe": "forge-thu",
+      "preset": "thu-amp",
+      "label": "火神 AMP（官方步态为风格先验，无逐点锚定）",
+      "envs": 4096,
+      "iterations": 400,
+      "seed": 42,
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+      "checkpoint_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+      "entry_sha256": "15e62a62c05771c622b85ef2028cc54eb518225d892d1f572b391c870c87fa7e",
+      "mainline_env_sh_sha256": "649d72b5c0fb67321ad421d51873ba5540cf395c672e7aaf7bb7ae450a228079",
+      "command": [
+        "bash",
+        "-c",
+        "source \"$0\" && exec \"$BH_PY\" -B \"$@\"",
+        "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/env.sh",
+        "/home/peakpeng/Desktop/Robocup/forge/trainers/forge_thu/forge_thu_train.py",
+        "--task",
+        "K1",
+        "--num_envs",
+        "4096",
+        "--max_iterations",
+        "400",
+        "--save_interval",
+        "50",
+        "--seed",
+        "42",
+        "--headless",
+        "true",
+        "--checkpoint",
+        "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+        "--load_mode",
+        "warm-start",
+        "--config_patch",
+        "{\"basic\":{\"trace_updates\":false},\"algorithm\":{\"max_update_kl\":0.02,\"guard_min_lr\":1e-08,\"critic_warmup_iterations\":20,\"critic_warmup_lr\":0.0003,\"critic_learning_rate\":0.0003,\"reference_mean_penalty\":0.0}}",
+        "--forge_recipe",
+        "{\"advantage_coef\":[2.0,1.0],\"reconstruction_coef\":1.0,\"amp_reward_coef\":0.3}",
+        "--output_dir",
+        "/home/peakpeng/Desktop/Robocup/forge/runs/train/20261022_193901_567116_forge-thu_thu-amp_s42"
+      ],
+      "cwd": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL",
+      "load_semantics": "warm-start: actor strictly loaded; critics, decoder, discriminator, logstd, optimizer fresh",
+      "at": "2026-10-22T19:39:01.570+09:00",
+      "robot_connected": false
+    },
+    "training_forge_recipe": {
+      "recipe": {
+        "advantage_coef": [
+          2.0,
+          1.0
+        ],
+        "reconstruction_coef": 1.0,
+        "amp_coef": 1.0,
+        "grad_pen_coef": 5.0,
+        "amp_reward_coef": 0.3,
+        "discriminator_lr": 0.0001,
+        "expert_horizons": 4,
+        "amp_batch": 32768,
+        "decoder_lr": 0.0003,
+        "expert_action_std": 0.1353352832366127
+      },
+      "recipe_file": "/home/peakpeng/Desktop/Robocup/forge/trainers/forge_thu/forge_thu_train.py",
+      "recipe_sha256": "15e62a62c05771c622b85ef2028cc54eb518225d892d1f572b391c870c87fa7e",
+      "mainline_source_sha256": "efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c",
+      "expert_checkpoint": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/src/IsaacGymRL/pre-trained/WalkAndKick/K1_walk.pth",
+      "expert_sha256": "7daa13e4184602bbeca4b15f0b803f8351d98209815fd07d14202c8e457ba0ff",
+      "task_terms": [
+        "tracking_lin_vel_x",
+        "tracking_lin_vel_y",
+        "tracking_ang_vel",
+        "terminate"
+      ],
+      "amp_features": "gravity3 linvel3 angvel3 jointOffset12 jointVel12x0.1 feetInBase6"
+    }
+  },
+  "status": "experimental",
+  "created_at": "2026-10-22T20:22:33.604+09:00"
+}

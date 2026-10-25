@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "capability entry",
+  "comment": "能力清单条目。status 不允许混为单一“已就绪”。",
+  "type": "object",
+  "required": ["id", "label", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "label": {"type": "string"},
+    "status": {"enum": ["NOT_FOUND", "PRESENT", "INSTALLED", "VERIFIED", "STALE", "UNVERIFIED", "BLOCKED"]},
+    "path": {"type": ["string", "null"]},
+    "probe": {"type": ["object", "null"],
+              "description": "主动探测结果：版本/哈希/identity_match/probed_at"},
+    "note": {"type": ["string", "null"]}
+  },
+  "status_semantics": {
+    "NOT_FOUND": "路径不存在",
+    "PRESENT": "路径存在，未验证内容",
+    "INSTALLED": "版本/元数据已读取",
+    "VERIFIED": "当前身份（哈希/指纹）下有通过证据",
+    "STALE": "历史通过但身份已变化，当前待重验",
+    "UNVERIFIED": "存在但无运行证据",
+    "BLOCKED": "明确缺项或探测失败"
+  }
+}

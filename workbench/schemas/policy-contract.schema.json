@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "policy contract",
+  "comment": "策略契约按语义区分；禁止仅按 .onnx/.pth 扩展名判断兼容。",
+  "type": "object",
+  "required": ["id", "input_dim", "output_dim"],
+  "properties": {
+    "id": {"enum": ["walk", "kick", "getup", "getup_fast"]},
+    "input_dim": {"type": "integer"},
+    "output_dim": {"type": "integer"},
+    "output_meaning": {"type": "string"},
+    "actor_arch": {"type": ["string", "null"]},
+    "history": {"type": ["string", "null"]},
+    "decode": {"type": ["string", "null"]},
+    "official_pth_sha256": {"type": ["string", "null"]},
+    "official_onnx_sha256": {"type": ["string", "null"]},
+    "load_mode": {"enum": ["actor", "torchscript", "warm-start", "full", null]},
+    "note": {"type": ["string", "null"]}
+  },
+  "dimensions": {"walk": "344→13", "kick": "59→13", "getup": "73→22", "getup_fast": "72→22"}
+}

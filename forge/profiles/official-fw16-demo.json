@@ -1,0 +1,15 @@
+{
+  "schema": "forge.real2sim.profile/1",
+  "name": "Official 1.6.0.10 + pinned RoboCupDemo on K1 platform port v1",
+  "simulator_variant": "official-team-application-20261024-i",
+  "application_variant": "official-real2sim-platform-20261024-i",
+  "controller": {
+    "backend": "official-fw16",
+    "artifacts": {
+      "io": "runs/full-native-integration/20261023_174356_314369_two-independent-teams/application-io-final-v2/libforge_booster_fw16_io.so",
+      "rpc": "runs/native-controller/20261024_001413_860601_application-rpc-build/libforge_booster_fw16_rpc.so",
+      "physics": "runs/full-native-integration/20261023_154209_673865_postboot-continuation/physics-imu-flu-v1/libforge_booster_fw16_physics.so"
+    }
+  },
+  "qualification": "Local simulation only; full match, full action coverage and hardware equivalence are not qualified."
+}

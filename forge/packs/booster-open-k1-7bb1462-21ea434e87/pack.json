@@ -1,0 +1,324 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "booster-open-k1-7bb1462-21ea434e87",
+  "kind": "candidate",
+  "name": "booster-open-k1-7bb1462",
+  "description": "Public booster_deploy 7bb1462e2ac7 K1 policy; NOT firmware 1.6. Head, kicks and recovery use B-Human. Candidate regular PD also applies during kicks; low get-up PD is unchanged.",
+  "components": {
+    "booster_walk": {
+      "file": "files/booster_walk.onnx",
+      "sha256": "492cf511c5acb01c6d9f618ced9958213c7bef89aa935ebff39ca4203753526e",
+      "contract": "booster.deploy.k1.walk.690x20",
+      "source_path": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261022_booster-deploy-export/booster_walk.onnx",
+      "onnx": {
+        "opset": 17,
+        "inputs": [
+          {
+            "name": "observation",
+            "dims": [
+              "batch",
+              690
+            ],
+            "elem_type": 1
+          }
+        ],
+        "outputs": [
+          {
+            "name": "action",
+            "dims": [
+              "batch",
+              20
+            ],
+            "elem_type": 1
+          }
+        ],
+        "nodes": 7,
+        "ops": [
+          "Elu",
+          "Gemm"
+        ],
+        "parameters": 520596,
+        "ort_smoke": {
+          "batch": 4,
+          "max_abs_output": 2.7482237815856934,
+          "runtime": "onnxruntime 1.31.0 CPU"
+        }
+      }
+    }
+  },
+  "cfg_patches": {
+    "motorParameters.cfg": {
+      "controlParameters.regular.lShoulderPitch.p": "20",
+      "controlParameters.regular.lShoulderPitch.d": "2",
+      "controlParameters.regular.lShoulderPitch.maxTorque": "14",
+      "controlParameters.regular.rShoulderPitch.p": "20",
+      "controlParameters.regular.rShoulderPitch.d": "2",
+      "controlParameters.regular.rShoulderPitch.maxTorque": "14",
+      "controlParameters.regular.lHipPitch.p": "100",
+      "controlParameters.regular.lHipPitch.d": "2",
+      "controlParameters.regular.lHipPitch.maxTorque": "30",
+      "controlParameters.regular.rHipPitch.p": "100",
+      "controlParameters.regular.rHipPitch.d": "2",
+      "controlParameters.regular.rHipPitch.maxTorque": "30",
+      "controlParameters.regular.lShoulderRoll.p": "20",
+      "controlParameters.regular.lShoulderRoll.d": "2",
+      "controlParameters.regular.lShoulderRoll.maxTorque": "14",
+      "controlParameters.regular.rShoulderRoll.p": "20",
+      "controlParameters.regular.rShoulderRoll.d": "2",
+      "controlParameters.regular.rShoulderRoll.maxTorque": "14",
+      "controlParameters.regular.lHipRoll.p": "100",
+      "controlParameters.regular.lHipRoll.d": "2",
+      "controlParameters.regular.lHipRoll.maxTorque": "20",
+      "controlParameters.regular.rHipRoll.p": "100",
+      "controlParameters.regular.rHipRoll.d": "2",
+      "controlParameters.regular.rHipRoll.maxTorque": "20",
+      "controlParameters.regular.lElbowPitch.p": "20",
+      "controlParameters.regular.lElbowPitch.d": "2",
+      "controlParameters.regular.lElbowPitch.maxTorque": "14",
+      "controlParameters.regular.rElbowPitch.p": "20",
+      "controlParameters.regular.rElbowPitch.d": "2",
+      "controlParameters.regular.rElbowPitch.maxTorque": "14",
+      "controlParameters.regular.lHipYaw.p": "100",
+      "controlParameters.regular.lHipYaw.d": "2",
+      "controlParameters.regular.lHipYaw.maxTorque": "15",
+      "controlParameters.regular.rHipYaw.p": "100",
+      "controlParameters.regular.rHipYaw.d": "2",
+      "controlParameters.regular.rHipYaw.maxTorque": "15",
+      "controlParameters.regular.lElbowYaw.p": "20",
+      "controlParameters.regular.lElbowYaw.d": "2",
+      "controlParameters.regular.lElbowYaw.maxTorque": "14",
+      "controlParameters.regular.rElbowYaw.p": "20",
+      "controlParameters.regular.rElbowYaw.d": "2",
+      "controlParameters.regular.rElbowYaw.maxTorque": "14",
+      "controlParameters.regular.lKneePitch.p": "100",
+      "controlParameters.regular.lKneePitch.d": "2",
+      "controlParameters.regular.lKneePitch.maxTorque": "35",
+      "controlParameters.regular.rKneePitch.p": "100",
+      "controlParameters.regular.rKneePitch.d": "2",
+      "controlParameters.regular.rKneePitch.maxTorque": "35",
+      "controlParameters.regular.lAnklePitch.p": "65",
+      "controlParameters.regular.lAnklePitch.d": "1",
+      "controlParameters.regular.lAnklePitch.maxTorque": "24",
+      "controlParameters.regular.rAnklePitch.p": "65",
+      "controlParameters.regular.rAnklePitch.d": "1",
+      "controlParameters.regular.rAnklePitch.maxTorque": "24",
+      "controlParameters.regular.lAnkleRoll.p": "65",
+      "controlParameters.regular.lAnkleRoll.d": "1",
+      "controlParameters.regular.lAnkleRoll.maxTorque": "15",
+      "controlParameters.regular.rAnkleRoll.p": "65",
+      "controlParameters.regular.rAnkleRoll.d": "1",
+      "controlParameters.regular.rAnkleRoll.maxTorque": "15"
+    }
+  },
+  "modules": {
+    "BoosterDeployWalkingEngine": {
+      "replaces": "WalkingEngine",
+      "cfg": "boosterDeployWalkingEngine.cfg",
+      "params": {
+        "walkNeuronalNetworkParameters.numInput": "690",
+        "walkNeuronalNetworkParameters.numOutput": "20",
+        "walkNeuronalNetworkParameters.boosterMinVx": "-0.3",
+        "walkNeuronalNetworkParameters.boosterMaxVx": "1.6",
+        "walkNeuronalNetworkParameters.boosterMinVy": "-0.3",
+        "walkNeuronalNetworkParameters.boosterMaxVy": "0.3",
+        "walkNeuronalNetworkParameters.boosterMinWz": "-1.8",
+        "walkNeuronalNetworkParameters.boosterMaxWz": "1.8"
+      }
+    }
+  },
+  "content_sha256": "21ea434e874d9567721ad8e0818fbb19f80f1b970d100382f2070bc56613b3b6",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "source": {
+      "schema": "forge.booster-deploy-export/1",
+      "status": "PASS",
+      "upstream_commit": "7bb1462e2ac742eba5c01659b815e2e99fbe617f",
+      "upstream_url": "https://github.com/BoosterRobotics/booster_deploy",
+      "firmware_version": null,
+      "is_firmware_1_6": false,
+      "checkpoint": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/robots/k1/models/k1_walk.pt",
+      "checkpoint_sha256": "2d860167ed827e8d44cd65abd4c27f474904352bcb98c0cfa97c078f63e2fea5",
+      "onnx": "/home/peakpeng/Desktop/Robocup/forge/runs/vendor-adaptation/20261022_booster-deploy-export/booster_walk.onnx",
+      "onnx_sha256": "492cf511c5acb01c6d9f618ced9958213c7bef89aa935ebff39ca4203753526e",
+      "selected_module": "actor",
+      "obs_normalizer_applied": false,
+      "inputs": [
+        {
+          "name": "observation",
+          "shape": [
+            "batch",
+            690
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "action",
+          "shape": [
+            "batch",
+            20
+          ]
+        }
+      ],
+      "samples": 64,
+      "seed": 20261022,
+      "max_abs_error": 4.0531158447265625e-06,
+      "torch": "2.11.0+cu130",
+      "onnxruntime": "1.31.0",
+      "scope": "Export numerical equivalence only; no gait or soccer qualification."
+    },
+    "adapter_settings": {
+      "module": "BoosterDeployWalkingEngine",
+      "slot": "booster_walk",
+      "inputs": 690,
+      "outputs": 20,
+      "modules": {
+        "BoosterDeployWalkingEngine": {
+          "replaces": "WalkingEngine",
+          "cfg": "boosterDeployWalkingEngine.cfg",
+          "params": {
+            "walkNeuronalNetworkParameters.numInput": "690",
+            "walkNeuronalNetworkParameters.numOutput": "20",
+            "walkNeuronalNetworkParameters.boosterMinVx": "-0.3",
+            "walkNeuronalNetworkParameters.boosterMaxVx": "1.6",
+            "walkNeuronalNetworkParameters.boosterMinVy": "-0.3",
+            "walkNeuronalNetworkParameters.boosterMaxVy": "0.3",
+            "walkNeuronalNetworkParameters.boosterMinWz": "-1.8",
+            "walkNeuronalNetworkParameters.boosterMaxWz": "1.8"
+          }
+        }
+      },
+      "cfg_patches": {
+        "motorParameters.cfg": {
+          "controlParameters.regular.lShoulderPitch.p": "20",
+          "controlParameters.regular.lShoulderPitch.d": "2",
+          "controlParameters.regular.lShoulderPitch.maxTorque": "14",
+          "controlParameters.regular.rShoulderPitch.p": "20",
+          "controlParameters.regular.rShoulderPitch.d": "2",
+          "controlParameters.regular.rShoulderPitch.maxTorque": "14",
+          "controlParameters.regular.lHipPitch.p": "100",
+          "controlParameters.regular.lHipPitch.d": "2",
+          "controlParameters.regular.lHipPitch.maxTorque": "30",
+          "controlParameters.regular.rHipPitch.p": "100",
+          "controlParameters.regular.rHipPitch.d": "2",
+          "controlParameters.regular.rHipPitch.maxTorque": "30",
+          "controlParameters.regular.lShoulderRoll.p": "20",
+          "controlParameters.regular.lShoulderRoll.d": "2",
+          "controlParameters.regular.lShoulderRoll.maxTorque": "14",
+          "controlParameters.regular.rShoulderRoll.p": "20",
+          "controlParameters.regular.rShoulderRoll.d": "2",
+          "controlParameters.regular.rShoulderRoll.maxTorque": "14",
+          "controlParameters.regular.lHipRoll.p": "100",
+          "controlParameters.regular.lHipRoll.d": "2",
+          "controlParameters.regular.lHipRoll.maxTorque": "20",
+          "controlParameters.regular.rHipRoll.p": "100",
+          "controlParameters.regular.rHipRoll.d": "2",
+          "controlParameters.regular.rHipRoll.maxTorque": "20",
+          "controlParameters.regular.lElbowPitch.p": "20",
+          "controlParameters.regular.lElbowPitch.d": "2",
+          "controlParameters.regular.lElbowPitch.maxTorque": "14",
+          "controlParameters.regular.rElbowPitch.p": "20",
+          "controlParameters.regular.rElbowPitch.d": "2",
+          "controlParameters.regular.rElbowPitch.maxTorque": "14",
+          "controlParameters.regular.lHipYaw.p": "100",
+          "controlParameters.regular.lHipYaw.d": "2",
+          "controlParameters.regular.lHipYaw.maxTorque": "15",
+          "controlParameters.regular.rHipYaw.p": "100",
+          "controlParameters.regular.rHipYaw.d": "2",
+          "controlParameters.regular.rHipYaw.maxTorque": "15",
+          "controlParameters.regular.lElbowYaw.p": "20",
+          "controlParameters.regular.lElbowYaw.d": "2",
+          "controlParameters.regular.lElbowYaw.maxTorque": "14",
+          "controlParameters.regular.rElbowYaw.p": "20",
+          "controlParameters.regular.rElbowYaw.d": "2",
+          "controlParameters.regular.rElbowYaw.maxTorque": "14",
+          "controlParameters.regular.lKneePitch.p": "100",
+          "controlParameters.regular.lKneePitch.d": "2",
+          "controlParameters.regular.lKneePitch.maxTorque": "35",
+          "controlParameters.regular.rKneePitch.p": "100",
+          "controlParameters.regular.rKneePitch.d": "2",
+          "controlParameters.regular.rKneePitch.maxTorque": "35",
+          "controlParameters.regular.lAnklePitch.p": "65",
+          "controlParameters.regular.lAnklePitch.d": "1",
+          "controlParameters.regular.lAnklePitch.maxTorque": "24",
+          "controlParameters.regular.rAnklePitch.p": "65",
+          "controlParameters.regular.rAnklePitch.d": "1",
+          "controlParameters.regular.rAnklePitch.maxTorque": "24",
+          "controlParameters.regular.lAnkleRoll.p": "65",
+          "controlParameters.regular.lAnkleRoll.d": "1",
+          "controlParameters.regular.lAnkleRoll.maxTorque": "15",
+          "controlParameters.regular.rAnkleRoll.p": "65",
+          "controlParameters.regular.rAnkleRoll.d": "1",
+          "controlParameters.regular.rAnkleRoll.maxTorque": "15"
+        }
+      },
+      "scope": "Public booster_deploy 7bb1462e2ac7 K1 policy; NOT firmware 1.6. Head, kicks and recovery use B-Human. Candidate regular PD also applies during kicks; low get-up PD is unchanged.",
+      "joint_order": [
+        "lShoulderPitch",
+        "rShoulderPitch",
+        "lHipPitch",
+        "rHipPitch",
+        "lShoulderRoll",
+        "rShoulderRoll",
+        "lHipRoll",
+        "rHipRoll",
+        "lElbowPitch",
+        "rElbowPitch",
+        "lHipYaw",
+        "rHipYaw",
+        "lElbowYaw",
+        "rElbowYaw",
+        "lKneePitch",
+        "rKneePitch",
+        "lAnklePitch",
+        "rAnklePitch",
+        "lAnkleRoll",
+        "rAnkleRoll"
+      ],
+      "default_position": [
+        0.2,
+        0.2,
+        -0.15,
+        -0.15,
+        -1.25,
+        1.25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.5,
+        0.5,
+        0.3,
+        0.3,
+        -0.15,
+        -0.15,
+        0,
+        0
+      ],
+      "policy_dt": 0.02,
+      "history_length": 10,
+      "action_scale": 0.25,
+      "action_filter_new": 0.8,
+      "command_limits": {
+        "vx": [
+          -0.3,
+          1.6
+        ],
+        "vy": [
+          -0.3,
+          0.3
+        ],
+        "wz": [
+          -1.8,
+          1.8
+        ]
+      }
+    }
+  },
+  "status": "experimental",
+  "created_at": "2026-10-22T23:56:49.380+09:00"
+}

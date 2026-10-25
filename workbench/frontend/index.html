@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoboCup B-Human 工作台</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>RoboCup B-Human 本机工作台</h1>
+  <div id="header-status"></div>
+</header>
+<nav id="tabs">
+  <button data-tab="overview" class="active">项目总览</button>
+  <button data-tab="workflows">工作流</button>
+  <button data-tab="jobs">作业与日志</button>
+  <button data-tab="models">模型与契约</button>
+  <button data-tab="evidence">证据与回放</button>
+  <button data-tab="matrix">等价矩阵 L0–L5</button>
+  <button data-tab="env">环境与编译</button>
+  <button data-tab="offline">离线产物</button>
+</nav>
+<main>
+  <section id="tab-overview" class="tab active">
+    <div class="bar">
+      <button id="btn-refresh-graph">刷新依赖图</button>
+      <span class="hint">依赖关系来自机器可读发现结果；节点可点击展开路径/哈希/证据。</span>
+    </div>
+    <div id="graph-wrap"><svg id="graph" width="1200" height="560"></svg></div>
+    <div id="node-detail" class="panel hidden"></div>
+    <h2>三条主链</h2>
+    <div id="chain-cards" class="cards"></div>
+  </section>
+
+  <section id="tab-workflows" class="tab">
+    <div class="bar"><span class="hint">任务执行前可见解析后的命令、输入与预算；默认不改动官方模型。GPU 训练与 GPU 视觉比赛串行互斥。</span></div>
+    <div id="task-list" class="cards"></div>
+    <div id="task-form-wrap" class="panel hidden">
+      <h3 id="task-form-title"></h3>
+      <p id="task-form-desc" class="hint"></p>
+      <form id="task-form"></form>
+      <div class="bar">
+        <button id="btn-preview" type="button">预览解析命令</button>
+        <button id="btn-run" type="button" class="primary">启动任务</button>
+      </div>
+      <pre id="task-preview" class="code hidden"></pre>
+    </div>
+  </section>
+
+  <section id="tab-jobs" class="tab">
+    <div class="bar"><button id="btn-refresh-jobs">刷新</button>
+      <span class="hint">状态与质量判定分离：succeeded ≠ 质量 PASS。重启后历史任务仍可查询。</span></div>
+    <table id="jobs-table"><thead><tr>
+      <th>job_id</th><th>类型</th><th>状态</th><th>质量判定</th><th>退出码</th><th>创建时间</th><th>操作</th>
+    </tr></thead><tbody></tbody></table>
+    <div id="job-detail" class="panel hidden">
+      <h3 id="job-detail-title"></h3>
+      <div id="job-meta"></div>
+      <div class="bar">
+        <button id="btn-cancel" class="danger">取消任务</button>
+        <button id="btn-load-result">查看结果 JSON</button>
+      </div>
+      <pre id="job-result" class="code hidden"></pre>
+      <h4>日志（增量）</h4>
+      <pre id="job-log" class="code log"></pre>
+    </div>
+  </section>
+
+  <section id="tab-models" class="tab">
+    <div class="bar"><span class="hint">四种策略契约按语义区分，禁止仅按扩展名判断兼容；身份以 SHA256 为准。</span></div>
+    <div id="models-wrap"></div>
+  </section>
+
+  <section id="tab-evidence" class="tab">
+    <div class="bar">
+      <button id="btn-refresh-evidence">重新扫描证据</button>
+      <span class="hint">索引来自底层工具的 result/execution JSON；工作台不改写底层判定。</span>
+    </div>
+    <table id="evidence-table"><thead><tr>
+      <th>链</th><th>run</th><th>判定</th><th>退出码</th><th>墙钟(s)</th><th>时间</th><th>产物</th>
+    </tr></thead><tbody></tbody></table>
+    <div id="evidence-detail" class="panel hidden"></div>
+  </section>
+
+  <section id="tab-matrix" class="tab">
+    <div class="bar"><span class="hint">仿真到真机的分层等价定义；L5 本任务固定未验证，不随 L0–L4 自动打勾。</span></div>
+    <table id="matrix-table"><thead><tr>
+      <th>层级</th><th>定义</th><th>当前状态</th><th>证据</th><th>未覆盖项</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section id="tab-env" class="tab">
+    <div class="bar">
+      <button id="btn-probe">主动探测（版本/哈希/GPU 轻量查询）</button>
+      <span class="hint">启动时仅加载元数据；主动探测不运行训练/仿真/GPU 算子。</span>
+    </div>
+    <table id="caps-table"><thead><tr>
+      <th>能力</th><th>状态</th><th>路径/版本</th><th>说明</th>
+    </tr></thead><tbody></tbody></table>
+  </section>
+
+  <section id="tab-offline" class="tab">
+    <div class="bar"><span class="hint">离线构建与打包；不连接机器人、不执行安装器。无 ARM 程序时明确只有桌面/资源包。</span></div>
+    <div id="offline-wrap"></div>
+  </section>
+</main>
+<footer>
+  <span id="footer-info"></span>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

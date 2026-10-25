@@ -1,5 +1,9 @@
 # Robocup · K1 / B-Human 2026
 
+**当前入口（2026-10-24）**：先看 [工作区索引](WORKSPACE-INDEX.txt) 和 [常用入口](workspace-nav/00-常用入口/)。稳定 B-Human 比赛、训练主线、MuJoCo 继续本机保留；历史大体积证据已完成核验并转存 [GitHub 证据归档](https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621)，各运行目录的 `REMOTE-EVIDENCE.json` 提供恢复入口。Forge 当前配置见 [official-fw16-demo.json](forge/profiles/official-fw16-demo.json)。最新应用 i 的 36 秒记录为接口/运行 PASS、视觉踢球动作 FAIL；应用 f/g 各有一次动作通过，三次均未获得完整比赛/Real2sim 资格。训练工作台保留 71 轮默认，72 轮为最新续训输出，不据时间判定最佳。下文保留原历史总览，最新入口和证据边界以索引为准。
+
+**证据整理已完成**：47 组记录已无损压缩加密上传，439 个分卷通过远端 SHA-256/大小核验，并通过实际下载恢复测试。证据清理释放 36.02 GiB，连同前次缓存/重复文件清理累计 42.72 GiB；完成时本机可用约 49.5 GiB。运行工程、模型、检查点和五套环境继续保留。见 [恢复说明](archive/evidence-offload/20261024_022621/RESTORE.txt) 与 [最终核验](archive/evidence-offload/20261024_022621/final-verification.json)。
+
 原装 Booster K1 的 B-Human 比赛仿真、公开策略复现与本机强化学习工作区。此仓库整理了截至 **2026-10-20** 的代码、配置、补丁、调研、训练与仿真证据。没有连接机器人；自训练候选未替换官方步态与正常视觉。
 
 ## 本机当前状态（2026-10-20 恢复后）
@@ -12,6 +16,12 @@
 - 常规清理只限缓存和核验后的重复产物；保留工作区规则已写入 `AGENTS.md`，旧整工作区删除脚本已停用。
 
 入口和证据见 [本地恢复验收](LOCAL-RESTORE-20261020.md)、[MuJoCo 使用说明](bhuman/sim2sim/README.md)。
+
+**2026-10-22 新增 [K1 Forge 运控工坊](forge/README.md)**（[架构设计](forge/docs/DESIGN.md)）：以 B-Human 开源代码为底座，
+把步态训练（B-Human 环境 × 清华火神 Sci. Robot. 2026 算法层，导出仍是 344→13）、运控包、**按队伍刷运控**
+（每队 scenario 覆盖 + 三层回读）、编译 SDK 代码（同一源码变体编 SimRobot 与 Booster AArch64 程序，逐位可复现）、
+SimRobot 全自动队伍对抗、MuJoCo Warp 批量跨引擎评测和晋级门连成一个本机系统（`bash forge/bin/forge-server`）。
+官方步态、正常视觉与三套原有工作区不变。
 新的 [本机运行包](https://github.com/peakpeng666/Robocup/releases/tag/local-runtime-20261020) 包含当前源码、模型、Release 编译程序和可续训检查点；下方 `snapshot-20261020` 保留完整历史归档。
 
 ## 归档时成果

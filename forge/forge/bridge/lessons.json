@@ -1,0 +1,686 @@
+{
+  "schema": "forge.bridge-lessons/1",
+  "description": "运控桥经验库：每条经验写明证据与状态。status: verified_in_sim（虚拟 K1 或 SimRobot 实测）、static_evidence（源码/配置静态证据）、assumption（推断或建模假设，未验证）、needs_real_robot（必须在真机或受控硬件条件下确认）。bridge 证据指向最新一次已分析的运控桥运行中的同名实验。",
+  "lessons": [
+    {
+      "id": "contract-joint-order",
+      "title": "22 关节串联顺序在四个来源中一致；踝关节在 SDK 中以并联曲柄命名",
+      "category": "contract",
+      "stacks": [
+        "bhuman",
+        "booster_deploy",
+        "firmware",
+        "forge"
+      ],
+      "status": "static_evidence",
+      "summary": "Booster SDK JointIndexK1、B-Human boosterProvider.cfg 的 jointMapping、booster_deploy 的 joint_names、B-Human K1 MuJoCo 模型的关节与执行器顺序完全一致。SDK 把 14/15/20/21 命名为 CrankUp/CrankDown（并联域），在 SERIAL 命令中它们是踝 pitch/roll；固件 Lua 的 joint_idx_parallel_/joint_idx_serial_ 也是 {14,15,20,21}。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "booster/booster_robotics_sdk/include/booster/robot/b1/b1_api_const.hpp",
+          "note": "enum class JointIndexK1"
+        },
+        {
+          "kind": "config",
+          "path": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/boosterProvider.cfg",
+          "note": "jointMapping"
+        },
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/robots/k1.py",
+          "note": "K1_CFG.joint_names"
+        },
+        {
+          "kind": "audit",
+          "check": "orders"
+        }
+      ],
+      "action": "跨栈只按名称经 forge/bridge/lowlevel.py 的规范名映射；契约审计在任何来源漂移时给出 critical。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "bhuman-ankle-roll-sim-vs-real",
+      "title": "B-Human 踝 roll 刚度：训练 60、SimRobot 65、真机 25",
+      "category": "gains",
+      "stacks": [
+        "bhuman"
+      ],
+      "status": "static_evidence",
+      "summary": "B-Human 对同一网络在三处使用不同的踝 roll P 增益（K1.yaml 60，SimulatedK1 regular 65，真机 Default/K1 regular 25），其他关节真机与 SimRobot 表一致。这是有意的仿真/真机分表。虚拟 K1 用串联踝建模时，真机表与训练表的行走裕度几乎相同，说明串联模型解释不了为什么真机要降到 25——原因更可能在并联踝传动与电机侧增益换算。",
+      "evidence": [
+        {
+          "kind": "config",
+          "path": "bhuman/BHumanCodeRelease/Config/Robots/Default/K1/motorParameters.cfg",
+          "note": "lAnkleRoll p = 25"
+        },
+        {
+          "kind": "config",
+          "path": "bhuman/BHumanCodeRelease/Config/Robots/SimulatedK1/motorParameters.cfg",
+          "note": "lAnkleRoll p = 65"
+        },
+        {
+          "kind": "config",
+          "path": "bhuman/k1-training/src/IsaacGymRL/envs/K1.yaml",
+          "note": "Ankle_Roll: 60"
+        },
+        {
+          "kind": "audit",
+          "check": "gain-bhuman_sim_regular-vs-bhuman_real_regular"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "gaps",
+          "controllers": [
+            "bhuman-training",
+            "bhuman-real-gains"
+          ]
+        }
+      ],
+      "action": "仿真与真机增益分表维护；要解释或迁移踝关节增益，需要并联踝模型（固件 Lua 已给出几何）或真机数据，不能只在串联模型里调。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "firmware-ankle-kd-real-vs-sim",
+      "title": "原厂步态踝 kd：真机 1.0，仿真 0.1（固件配置注释保留）",
+      "category": "gains",
+      "stacks": [
+        "firmware",
+        "booster_deploy"
+      ],
+      "status": "static_evidence",
+      "summary": "固件 1.6.0.10 amp_locomotion_run 的 kd 行标注 --real，踝为 1.0；紧接着被注释掉的 --sim 行踝为 0.1。booster_deploy README 同样警告并联关节的 joint_damping 直接下发到电机，不能沿用训练仿真里的 Kd，应按 Kd = 2·ζ·J_eq·(2π·f_n) 计算。",
+      "evidence": [
+        {
+          "kind": "config",
+          "path": "forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/Gait/configs/K1/common_module_options.lua",
+          "note": "amp_locomotion_run kd --real / --sim"
+        },
+        {
+          "kind": "doc",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/README.md",
+          "note": "PD damping (Kd) on the real robot"
+        },
+        {
+          "kind": "audit",
+          "check": "firmware-ankle-kd-real-vs-sim"
+        }
+      ],
+      "action": "迁移任何策略到真机前单独确定并联踝 Kd；虚拟 K1 的 kd_low/kd_high 轴给出各步态对阻尼失配的容忍度。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "deploy-sim2sim-effort-clip",
+      "title": "booster_deploy 的 MuJoCo sim2sim 按 effort_limit 钳位力矩，真机路径不下发该钳位",
+      "category": "contract",
+      "stacks": [
+        "booster_deploy"
+      ],
+      "status": "verified_in_sim",
+      "summary": "MujocoController 每个物理步把 PD 力矩钳到任务的 effort_limit（12 个腿关节低于电机能力），真机控制器只下发 q/kp/kd。在 30 s 温和指令下，虚拟 K1 用 effort_limit 与用电机上限的结果相同（力矩没有触及钳位）；强指令或扰动时两者会分叉。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/controllers/mujoco_controller.py",
+          "note": "ctrl_limit = self.robot.effort_limit"
+        },
+        {
+          "kind": "audit",
+          "check": "deploy-effort-clip"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "identity",
+          "stack": "booster_deploy"
+        }
+      ],
+      "action": "把 sim2sim 的钳位视为与训练对齐的仿真设定；评估真机风险时看虚拟 K1 在电机上限下的饱和比例。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "sdk-ros2-wire-compatible",
+      "title": "Booster SDK（B-Human 用）与 ROS 2（booster_deploy 用）在 DDS 线协议上互通",
+      "category": "contract",
+      "stacks": [
+        "bhuman",
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "static_evidence",
+      "summary": "B-Human 链接的 Booster SDK 静态库注册的 DDS 类型名是 booster_interface::msg::dds_::LowState_ / LowCmd_ / MotorCmd_，正是 ROS 2 rmw_fastrtps 的命名约定；SDK 话题 rt/low_state、rt/joint_ctrl 就是 ROS 2 的 /low_state、/joint_ctrl。所以同一个 DDS 版虚拟机器人可以同时服务 B-Human 真机程序和 booster_deploy。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "booster/booster_robotics_sdk/include/booster/robot/b1/b1_api_const.hpp",
+          "note": "kTopicLowState / kTopicJointCtrl"
+        },
+        {
+          "kind": "audit",
+          "check": "sdk-ros2-wire-compatible"
+        }
+      ],
+      "action": "建 DDS 网关时只做一套 booster_interface 类型；网关必须运行在只有回环的网络命名空间里，杜绝与真机发现。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "custom-weight-ignored",
+      "title": "Custom 模式下 MotorCmd.weight 看来不起作用（推断）",
+      "category": "contract",
+      "stacks": [
+        "bhuman",
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "assumption",
+      "summary": "B-Human 的 BoosterProvider 每帧发 weight=1，booster_deploy 初始化为 0 之后从不赋值；两者都是官方真机路径且都能工作，因此虚拟 K1 在 Custom 模式忽略 weight。weight 更可能用于步态模式下的上肢混合。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "bhuman/BHumanCodeRelease/Src/Modules/Infrastructure/BoosterProvider/BoosterProvider.cpp",
+          "note": "motorCmd.weight(1.f)"
+        },
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/controllers/booster_robot_controller.py",
+          "note": "motor_cmd_buf[i].weight = 0.0"
+        },
+        {
+          "kind": "audit",
+          "check": "custom-weight-ignored"
+        }
+      ],
+      "action": "在真机确认前不要依赖 weight 实现混合控制。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "bhuman-tau-from-parallel",
+      "title": "B-Human 的关节力矩读自并联域",
+      "category": "contract",
+      "stacks": [
+        "bhuman"
+      ],
+      "status": "static_evidence",
+      "summary": "BoosterProvider 的角度/角速度来自 motor_state_serial，力矩来自 motor_state_parallel；踝关节对应的是曲柄电机力矩而不是踝 pitch/roll 力矩。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "bhuman/BHumanCodeRelease/Src/Modules/Infrastructure/BoosterProvider/BoosterProvider.cpp",
+          "note": "motor_state_parallel()[joint].tau_est()"
+        }
+      ],
+      "action": "不要把 JointSensorData.torque 的踝值当作串联关节力矩用于估计或学习。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "deploy-prime-before-custom",
+      "title": "进入 Custom 前先发一帧保持命令；首个策略命令约 120 ms 后才到",
+      "category": "modes",
+      "stacks": [
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "verified_in_sim",
+      "summary": "booster_deploy 先按 prepare_state 增益发一帧当前姿态保持命令，sleep 0.1 s，再 ChangeMode(3) 并用 GetStatus 确认。两次实时会话中预置命令到第一个策略命令分别相隔 118 ms 与 124 ms（sleep、RPC、fork、加载模型），期间机器人只执行保持 PD；它依赖固件跨模式保留最后一帧命令。准备策略切到任务策略时没有出现命令空档（最大间隔约 20 ms）。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/controllers/booster_robot_controller.py",
+          "note": "_prime_custom_command / start_custom_mode_conditionally"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "session"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "protocol",
+          "scenario": "P1-normal-session"
+        }
+      ],
+      "action": "任何自研 Custom 控制器都应先发保持命令再切模式；固件“保留最后命令”的行为需在真机（吊装/支撑）下确认。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "deploy-fall-exits-to-walking",
+      "title": "booster_deploy 策略检测到摔倒后切到的是 Walking，不是 Damping",
+      "category": "safety",
+      "stacks": [
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "verified_in_sim",
+      "summary": "LocomotionPolicy 在投影重力 z > -0.5 时调用 controller.stop()；_safety_abort 只在按 X 时的姿态检查里置位，所以摔倒后 portal 仍按配置的 exit_mode（默认 walking）切换，把倒地的机器人交给原厂步态。虚拟 K1 的 P3 场景复现了这一行为。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/locomotion.py",
+          "note": "enable_safety_fallback -> controller.stop()"
+        },
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/controllers/booster_robot_controller.py",
+          "note": "exit_mode = damping if self._safety_abort else cfg.booster.exit_mode"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "protocol",
+          "scenario": "P3-fall-during-custom"
+        }
+      ],
+      "action": "早期真机试验显式使用 --exit-mode damping；原厂步态在倒地时如何响应需在真机确认。不修改上游代码，保留为上游问题记录。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "deploy-posture-refusal",
+      "title": "姿态不安全时 booster_deploy 拒绝进入行走准备并切阻尼",
+      "category": "safety",
+      "stacks": [
+        "booster_deploy"
+      ],
+      "status": "verified_in_sim",
+      "summary": "倒地状态下按 X，start_custom_mode_conditionally 检测到投影重力 z > -0.5，记录 _safety_abort，请求 ChangeMode(0)，不发送任何关节命令。",
+      "evidence": [
+        {
+          "kind": "bridge",
+          "experiment": "protocol",
+          "scenario": "P2-unsafe-posture"
+        }
+      ],
+      "action": "保持该检查；自研控制器也应在接管前做姿态检查。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "onboard-vs-offboard-latency",
+      "title": "外部控制器的往返延迟预算：60 ms 内可行走，80–100 ms 跌倒",
+      "category": "timing",
+      "stacks": [
+        "bhuman",
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "verified_in_sim",
+      "summary": "虚拟 K1 上 B-Human 步态（两种增益表）与 booster_deploy 在 60 ms 往返延迟下全部 4 个重复不跌倒，80 ms 起跌倒（booster_deploy 80 ms 为 1/4，100 ms 全部）；±16 ms 周期抖动与 30% 以上的丢帧都能承受。原厂步态在机载控制环内运行，不受这些传输因素影响。",
+      "evidence": [
+        {
+          "kind": "bridge",
+          "experiment": "gaps",
+          "axes": [
+            "latency_ms",
+            "jitter_ms",
+            "loss"
+          ]
+        }
+      ],
+      "action": "把控制器部署在机器人本机（本地 DDS），不要经 Wi-Fi 闭环；往返延迟预算按 < 40 ms 规划。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "bhuman-velocity-filter",
+      "title": "B-Human 训练端 PD 的速度滤波与真机电机侧速度不同，但步态对此不敏感",
+      "category": "gains",
+      "stacks": [
+        "bhuman"
+      ],
+      "status": "verified_in_sim",
+      "summary": "B-Human 训练与 mujoco_walk 的 D 项用 0.22/0.78 滤波后的有限差分速度；真机上 kd 下发给电机，由驱动器用自己的速度。虚拟 K1 一致性实验中两种语义与 B-Human 自身 sim2sim 的分段世界系位移速度差为 0.0045 / 0.0134 m/s，30 s 轨迹差 2.9 cm / 8.4 cm。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "bhuman/sim2sim/mujoco_walk.py",
+          "note": "filtered_velocity = velocity*.22 + filtered_velocity*.78"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "identity",
+          "stack": "bhuman"
+        }
+      ],
+      "action": "可以用电机侧原始速度语义评估 B-Human 步态；如需更高保真，需要真机驱动器速度估计参数。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "lateral-push-margins",
+      "title": "侧推冲量裕度：booster_deploy 40 N·s，原厂步态 30 N·s，B-Human 20 N·s",
+      "category": "robustness",
+      "stacks": [
+        "bhuman",
+        "booster_deploy",
+        "firmware"
+      ],
+      "status": "verified_in_sim",
+      "summary": "前进 0.5 m/s 时施加 0.1 s 侧向冲量。虚拟 K1（B-Human 的 K1 MuJoCo 模型）中 B-Human 步态在 30 N·s 时 4/4 跌倒，原厂步态 40 N·s 1/4、50 N·s 4/4，booster_deploy 50 N·s 才开始失效。结论限于该孪生模型。",
+      "evidence": [
+        {
+          "kind": "bridge",
+          "experiment": "gaps",
+          "axes": [
+            "push_ns"
+          ]
+        }
+      ],
+      "action": "B-Human 步态的抗侧推是三者中最弱的一项，可作为 Forge 训练（推扰课程或 AMP）的明确目标，并用鲁棒性图谱的 push 轴复核。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "mjcf-limits-wider-than-firmware",
+      "title": "MuJoCo 模型有 7 个关节的限位比固件宽",
+      "category": "model",
+      "stacks": [
+        "bhuman",
+        "forge"
+      ],
+      "status": "static_evidence",
+      "summary": "肘 yaw 宽约 0.61 rad，膝上限宽 0.116 rad，肩 roll、头 pitch 也略宽。仿真中可达的姿态在真机会被固件 q_min/q_max 限制。虚拟 K1 统计超出固件限位的步数。",
+      "evidence": [
+        {
+          "kind": "audit",
+          "check": "limits-sim-wider"
+        },
+        {
+          "kind": "config",
+          "path": "forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/Gait/configs/K1/common_module_options.lua",
+          "note": "command_manager q_min/q_max"
+        }
+      ],
+      "action": "训练与评测使用固件限位；虚拟 K1 运行结果里关注 limit_violation_fraction。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "regular-pd-table-coupling",
+      "title": "把外来步态的 PD 写进 B-Human 的 regular 表会破坏 B-Human 起身",
+      "category": "gains",
+      "stacks": [
+        "bhuman",
+        "firmware",
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "SimRobot 常规起身走 regular 表（仿真模式下 fastActive 被强制为 false）。旧候选把固件行走 PD 写入 regular，导致两台候选机器人长时间起身失败；改为独立 low 表后前/后倒恢复与官方一致。",
+      "evidence": [
+        {
+          "kind": "doc",
+          "path": "forge/docs/BOOSTER_FW16_SIMROBOT.md",
+          "note": "起身故障与 PD 隔离修正"
+        },
+        {
+          "kind": "code",
+          "path": "bhuman/BHumanCodeRelease/Src/Modules/MotionControl/GetUpEngine/GetUpEngine.cpp",
+          "note": "simulatedRobot -> fastActive=false"
+        }
+      ],
+      "action": "外来步态一律使用独立刚度映射；刷运控包时检查 regular 表是否被改写。",
+      "origin": "2026-10-23 原厂 1.6 适配"
+    },
+    {
+      "id": "motion-vs-physics-clock",
+      "title": "SimRobot 中 Motion 循环计数与物理 tick 不是同一时钟",
+      "category": "timing",
+      "stacks": [
+        "bhuman",
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "一场 120 秒 3v3 中两者最多相差约 500 帧，导致恢复评估证据不足而不是通过。",
+      "evidence": [
+        {
+          "kind": "doc",
+          "path": "forge/docs/PROGRESS.md",
+          "note": "Motion 循环计数与 physics tick 不是统一时钟"
+        }
+      ],
+      "action": "跨来源对齐事件时统一使用仿真时间戳；虚拟 K1 所有事件都以物理步计时。",
+      "origin": "2026-10-23 原厂 1.6 适配"
+    },
+    {
+      "id": "fw16-switcher-thresholds",
+      "title": "原厂选模阈值是硬编码 0.1/0.2，配置里的 turn_threshold=0.3 不参与选择",
+      "category": "contract",
+      "stacks": [
+        "firmware"
+      ],
+      "status": "static_evidence",
+      "summary": "side：|vy|>0.1 且 |vx|<0.2 且 |wz|<0.2；turn：|wz|>0.1 且 |vx|<0.1 且 |vy|<0.1；否则 forward。虚拟 K1 原厂步态与 SimRobot 适配模块使用同一规则。",
+      "evidence": [
+        {
+          "kind": "doc",
+          "path": "forge/docs/BOOSTER_FW16_SIMROBOT.md",
+          "note": "命令选模"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "protocol",
+          "scenario": "P4-firmware-gait-rpc"
+        }
+      ],
+      "action": "比较原厂与开源步态时按实际选模规则设计侧移/转向指令。",
+      "origin": "2026-10-23 原厂 1.6 适配"
+    },
+    {
+      "id": "elbow-action-offset",
+      "title": "右肘动作偏置：输出端有效 -0.05 rad，观测端为 0",
+      "category": "contract",
+      "stacks": [
+        "firmware",
+        "booster_deploy"
+      ],
+      "status": "static_evidence",
+      "summary": "booster_deploy 与固件都在缩放前从右肘 pitch 动作减 0.2，再乘 0.25；固件观测代码中的中间 +0.2 写入被后续重排覆盖。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/locomotion.py",
+          "note": "arm_action_fix_offset"
+        },
+        {
+          "kind": "doc",
+          "path": "forge/docs/BOOSTER_FW16_SIMROBOT.md",
+          "note": "右肘偏置"
+        }
+      ],
+      "action": "移植 690→20 策略到任何后端时保留该偏置。",
+      "origin": "2026-10-23 原厂 1.6 适配"
+    },
+    {
+      "id": "no-base-linear-velocity-on-robot",
+      "title": "真机路径没有基座线速度；K1 历史帧首帧重复填满",
+      "category": "contract",
+      "stacks": [
+        "booster_deploy"
+      ],
+      "status": "static_evidence",
+      "summary": "booster_deploy 真机 low_state 处理把 root_lin_vel_w 置零，K1 步态观测也不含线速度；K1 历史窗口用首帧重复初始化（T1 为 9 帧零加首帧）。MuJoCo 自由关节 qvel[0:3] 是世界系速度，sim2sim 中被命名为 _b，K1 策略不使用它。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/booster_deploy/controllers/booster_robot_controller.py",
+          "note": "root_lin_vel_w zeros"
+        },
+        {
+          "kind": "code",
+          "path": "forge/third_party/booster-deploy-7bb1462e2ac7/tasks/locomotion/locomotion.py",
+          "note": "history_init"
+        }
+      ],
+      "action": "设计新策略时不要依赖线速度观测，除非同时提供真机上的估计器。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "model-substitution",
+      "title": "booster_assets 不在本机：Booster 侧 sim2sim 用的是 B-Human 的 K1 模型",
+      "category": "model",
+      "stacks": [
+        "booster_deploy",
+        "forge"
+      ],
+      "status": "assumption",
+      "summary": "两侧使用同一模型保证了一致性实验只检验接口与代码路径；开源策略原本在 booster_assets K1_22dof.xml 上验证，模型差异（质量、碰撞几何、电枢）带来的差距尚未量化。 跨仿真器对照已经量化到差异：同一网络、同一指令下，虚拟 K1 与 SimRobot 的位移有 4–97% 的差别（见 crosssim-model-gap）。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/sim/rosshim/booster_assets/__init__.py",
+          "note": "placeholder"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "crosssim"
+        }
+      ],
+      "action": "取得 booster_assets 后把它作为第二个孪生模型，对同一控制器做跨模型一致性对照。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "parallel-ankle-not-modelled",
+      "title": "并联踝机构尚未进入虚拟 K1",
+      "category": "model",
+      "stacks": [
+        "firmware",
+        "forge"
+      ],
+      "status": "needs_real_robot",
+      "summary": "固件明文配置给出了曲柄 41 mm、长短连杆 158/82 mm、零位与 Custom 模式串联 PD→力矩（上限 40 N·m）→并联电机的转换；虚拟 K1 目前把踝当作理想串联关节，motor_state_parallel 与 serial 相同。",
+      "evidence": [
+        {
+          "kind": "config",
+          "path": "forge/third_party/booster-k1-1.6.0.10/selected-payload/booster/Gait/configs/K1/common_module_options.lua",
+          "note": "parallel_mech_input_custom_mode"
+        },
+        {
+          "kind": "audit",
+          "check": "custom-mode-ankle"
+        }
+      ],
+      "action": "下一步按明文几何实现并联踝正逆解与力矩映射，再与 B-Human 的真机踝增益表一起验证；最终仍需真机数据标定。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "replicates-must-differ",
+      "title": "确定性仿真里的“重复”必须真的不同",
+      "category": "process",
+      "stacks": [
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "第一次扫描中多数轴的不同种子给出逐位相同的轨迹，“2/2 跌倒”其实只有一次试验。现在每个种子有初始关节噪声、随机朝向和随机起步相位。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/sim/bridge.py",
+          "note": "run_lockstep(replicate=True)"
+        }
+      ],
+      "action": "任何统计结论先检查重复之间是否独立。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "gap-onset-after-startup",
+      "title": "测步态容差要在控制器接管之后施加差距",
+      "category": "process",
+      "stacks": [
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "差距从一开始就施加时，40 ms 执行器滞后会先让固件准备模式（350 kp 的保持 PD）振荡倒地，扫描测到的是启动过渡而不是步态。现在差距在零指令站立结束、控制器已运行后接入；启动与模式切换由协议场景单独检验。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/sim/bridge.py",
+          "note": "GAP_ONSET_S"
+        }
+      ],
+      "action": "设计鲁棒性实验时把“启动/切换”和“稳态步态”分成两类场景。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "lockstep-zero-time-handshake",
+      "title": "锁步运行中握手不占仿真时间：已到达的命令要先交付再切模式",
+      "category": "process",
+      "stacks": [
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "booster_deploy 的预置命令在锁步中与 ChangeMode 发生在同一仿真时刻；若命令只在下一物理步才交付，会误报“进入 Custom 时没有命令”。虚拟 K1 在模式切换前先交付已到达的命令；实时会话检验真实时序。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/sim/vk1.py",
+          "note": "_deliver_due before _change_mode"
+        }
+      ],
+      "action": "锁步与实时两类运行互补：前者保证确定性，后者检验并发与时序。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "velocity-sampling-alias",
+      "title": "按控制周期采样的瞬时速度会被步态混叠：用位移算速度",
+      "category": "process",
+      "stacks": [
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "轨迹每 20 ms（恰在控制 tick）记录一次，和步态锁相；步内强烈的偏航角速度振荡被混叠成稳定偏差。v2 中 booster_deploy 前进时的“偏航 −0.12 rad/s”就是这样测出来的，按姿态积分实际只有 +0.03 rad / 8 s。v3 起所有分段速度、失速判定与一致性比较都改用位移（0.5 s 子区间或整段世界系位移）。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/sim/bridge.py",
+          "note": "displacement_velocities"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "identity"
+        }
+      ],
+      "action": "评价步态时用位移/积分量；需要瞬时量时按物理步而不是控制步采样。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "crosssim-model-gap",
+      "title": "同一网络、同一指令：虚拟 K1 与 SimRobot 的步态位移差到 4–97%",
+      "category": "model",
+      "stacks": [
+        "booster_deploy",
+        "firmware",
+        "bhuman",
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "SimRobot 的运行时审计确认两侧策略输入的指令完全相同（0.4375 m/s、0.12 m/s、0.45 rad/s，50 Hz），权重哈希也一致。booster_deploy：前进 2.72 对 2.84 m（−4%），转向 4.10 对 3.62 rad（+13%），侧移 0.79 对 0.40 m（+97%）。原厂步态：转向 3.37 对 3.37 rad，前进 2.29 对 3.59 m（−36%），侧移 0.14 对 0.31 m（−56%）。地面摩擦假设已排除：MuJoCo 取两几何摩擦的较大值，脚底本来就是 1.0。差异来自两个 K1 模型与执行器实现。",
+      "evidence": [
+        {
+          "kind": "bridge",
+          "experiment": "crosssim"
+        },
+        {
+          "kind": "code",
+          "path": "forge/forge/scenarios.py",
+          "note": "motion-basic-v1 / motion_metrics"
+        }
+      ],
+      "action": "单一孪生模型的绝对位移不能直接当真机预期；需要第二个 K1 模型（booster_assets 或 SimRobot 场景导出）定位差异来源，并在真机获得授权后用实测标定。",
+      "origin": "2026-10-23 运控桥"
+    },
+    {
+      "id": "booster-open-in-simrobot-isolated-pd",
+      "title": "Booster 开源运控在 SimRobot 中用隔离 PD 运行：运动与起身都通过",
+      "category": "gains",
+      "stacks": [
+        "booster_deploy",
+        "bhuman",
+        "forge"
+      ],
+      "status": "verified_in_sim",
+      "summary": "booster_deploy 7bb1462e2ac7 的 k1_walk 经编译模块接入 SimRobot。行走使用 low 表并写入 booster_deploy 任务自己的 PD 与力矩上限，regular 表保持官方。单机器人固定指令：前进 2.84 m、侧移 0.40 m、转向 3.62 rad，停止漂移 0.6 mm，没有跌倒。主动前/后倒：恢复时延 10.5 / 11.0 s，与官方一致。运行时审计确认加载的是该包的网络（codec 修订 7bb1462e2ac7、映射 low）。",
+      "evidence": [
+        {
+          "kind": "code",
+          "path": "forge/tools/register_booster_deploy.py",
+          "note": "隔离 PD 注册"
+        },
+        {
+          "kind": "bridge",
+          "experiment": "crosssim"
+        }
+      ],
+      "action": "任何外来步态接入 B-Human 栈都沿用独立刚度映射；新包先过单机运动与主动跌倒两个场景，再上比赛。",
+      "origin": "2026-10-23 运控桥"
+    }
+  ]
+}

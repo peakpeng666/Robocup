@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# K1 Forge CLI. Runs in the isolated control-plane venv; never touches training/MuJoCo environments.
+set -euo pipefail
+here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONDONTWRITEBYTECODE=1
+exec "${FORGE_PYTHON:-$HOME/.venvs/forge/bin/python}" -B -m forge.cli "$@"

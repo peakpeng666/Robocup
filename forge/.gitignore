@@ -1,0 +1,16 @@
+# Generated or large local state stays on this machine (GitHub is a backup, see ../AGENTS.md).
+arena/
+variants/
+runs/
+run/
+third_party/
+web/node_modules/
+web/dist/
+forge.db
+forge.db-*
+packs/*/files/
+packs/*.staging/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+web/*.tsbuildinfo

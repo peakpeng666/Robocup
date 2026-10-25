@@ -1,0 +1,276 @@
+两套完整体系对阵：固定 B-Human 与官方 1.6 Real2sim
+2026-10-23 / Asia/Tokyo
+
+当前状态更新（2026-10-24，具体证据优先于下文的历史阶段说明）
+
+B 方官方应用桥已实现并运行：原 RoboCupDemo Vision/Brain/行为树/队内通信 -> 原 SDK 请求
+与视觉踢球消息 -> 原 1.6.0.10 ARM mck 完整控制图 -> 22 路执行器 -> SimRobot 物理与相机。
+SDK 保留请求与实际响应，500 Hz 运控、100 Hz Brain、25 Hz 图像、10 Hz 队内通信按仿真时钟推进。
+4 个并联踝电机通过原厂运动学转换到串联关节，其余 18 路 MIT 参数直接传递。
+A 方代码/配置/原控制器/渲染相机不变。下文“只允许 sdk_fixture”“应用桥尚未完成”是早期快照。
+
+已验证运行：forge/runs/official-application/20261024_011509_150162。
+authenticity-audit-v2.json 核验 .run、原 mck、17 个实际加载原厂模块、155 项运动资源、
+每台 69 个原图配置文件，3 台各 30,000 周期及 3,960 条实际电机施加样本。
+camera-integrity-audit.json 核验全部 4,503 组渲染 RGB/深度与深度原始字节 CRC32。
+visual-kick-episode-audit.json 确认一次连续右脚触球：49.708 秒、原厂 planner=22、
+峰值球速 2.020 m/s、其他机器人介入前位移 1.406 m。连续多次碰撞回调只算一次动作。
+match.mp4 保留完整 60 秒；visual-kick-47-52s.mp4 为便于查看的短片。
+
+这次通过的是有明确范围的动作和链路验收，完整 Real2sim 资格仍为 false：
+60 秒需 186.142 秒墙钟，未达到原生 B-Human 速度；尚未完成完整比赛、所有动作、
+关节限位/动力学等价和实机部署验证。原舞蹈缺失资产及配置警告仍保留，不应称所有功能通过。
+视觉使用官方仿真 ONNX，尚未证明与真机 TensorRT 权重相同；相机/场地/定位需显式校准。
+原 Demo 必需兼容修复单独存 firmware16-compatibility.patch（SDK version、近球角度、模式确认）；
+rgbd-grounded 是显式选用的独立感知补丁，以渲染深度和原头部 FK 排除离地假球，不接入世界真值。
+不将这些修改描述成“整个官方应用逐字节未改”。硬件原目录和上游基线均保留。
+
+复跑该已验证配置（在 forge/ 下；仅本机仿真）：
+/home/peakpeng/.venvs/forge/bin/python tools/run_official_application.py \
+  --variant official-team-application-20261024-f \
+  --app-variant official-real2sim-platform-20261024-f \
+  --artifacts runs/full-native-integration/20261023_233149_227439_official-application-bridge/artifacts-c.json \
+  --scenario official-visual-kick --locator-min-markers 3 --perception-profile rgbd-grounded \
+  --seconds 60 --timeout 600
+
+默认运行器是有界验证程序，60 秒到期后正常退出，不能把它当永久比赛窗口。
+2026-10-24 的进一步模式交接修复、验收与目录整理详情在 forge/docs/PROGRESS.md。
+
+本次明确目标
+
+A 方是已经适配好的完整 B-Human：代码、配置、模型、感知、战术、运动控制和部署路径均保持原样。
+B 方是要接入的官方真机体系：官方比赛程序、SDK/ROS 2、匹配版本 1.6 运控及物理机器人描述。
+学习 A 方在真机与 SimRobot 之间切换 IO 的实际做法，为 B 方建立对应的仿真 IO。
+不是在两方都运行 B-Human 感知/战术的前提下，仅替换 B 方几个运动网络。
+也不是把两边都改成新的比赛程序，或仅做一个看起来相似的官方运控行为模型。
+
+上轮“上层程序可独立选择”是架构的一般性质，不能替代本次 B 方官方真机部署代码的目标。
+官方应用基线现固定为 BoosterRobotics/robocup_demo 的提交
+fa4f31ccb4428a9e60e90b4f54eb80499caeb0ca，保存于
+forge/third_party/robocup-demo-fa4f31ccb442，330 个上游文件逐一通过 Git blob 摘要核对。
+本地 booster/robocup_demo 和 robocup/ 均完整保留，分别作为本地改进版与另一棵含内部 API 的比赛代码。
+本地 Demo 与上述提交有 33 个已有文件字节不同，包括算法、行为树、配置、裁判接口；
+这不是对改动作者或历史起点的判定，不能把本地改进版的构建直接称为纯上游构建。
+所有资格结论必须固定各组件的具体来源、哈希和兼容范围。
+
+一、A 方究竟怎样把真机代码用于仿真
+
+本地源码给出的实际路径：
+
+Make/CMake/B-Human.cmake：同一组 Modules、Representations、Threads、Tools 组成 B-Human 对象库。
+Make/CMake/Booster.cmake：机器人程序链接 B-Human + Booster SDK，按 ARM 目标构建。
+Make/CMake/SimulatedRobot.cmake：仿真控制器同样链接 B-Human，在 PC 本机执行。
+
+  B-Human 感知 -> 世界建模 -> 战术/技能 -> MotionRequest -> 自有完整 MotionEngine
+       +-- 真机：BoosterProvider / CameraProvider / SDK DDS -> K1 传感器与电机
+       +-- 仿真：LocalConsole / SimulatedRobot3D -> 渲染相机、关节/IMU与物理执行器
+
+BoosterProvider 读取 LowState、使用 Custom 模式并发布自身算出的 LowCmd。
+SimulatedRobot3D 读取模拟关节/IMU和相机，将同一运动代码的目标与电机参数交给 SimRobot。
+这就是共享控制实现、切换 IO；不是把 RoboCupDemo 当成 B-Human 的上层。
+
+二、B 方需要对应建立的路径
+
+  官方比赛应用（vision / brain / 裁判与队间通信，沿用真机算法、模型和行为树）
+       -> 原有 SDK/ROS 2 请求、反馈、时间与坐标契约
+       -> 官方 1.6 运控（模式、状态估计、行走、起身、保护、踢传、头臂等）
+       -> 仿真硬件 IO -> B 方 K1 物理模型
+
+真机时继续使用原来的 SDK/DDS 和已安装的匹配 1.6 固件。
+仿真时替换硬件、传感器、通信与时钟后端，尽量保持其余程序不变。
+不能因为缺少原厂 PC 可重编译源码，就推断原来的真机应用不能部署。
+当前原厂 ARM/QEMU 核心作为完整原厂行为的参照；执行速度很慢，需要独立解决。
+任何另外实现的快速后端均需披露来源并逐项对照，不能因接口相同就叫原厂全部实现。
+
+三、本轮已经验证的独立边界
+
+新增：
+- native/simrobot/OfficialTeamPlugin.cpp：独立候选插件；候选不创建 B-Human Cognition/Motion。
+- tools/make_official_team_patch.py：只新增候选插件与共用物理执行器扩展，不改动原 B-Human 源树。
+- tools/run_official_team_fixture.py：独立工作目录、场景、状态与证据，显式 SDK 测试指令。
+- tests/test_independent_official_team.py：旧接口编译的客户端调用扩展执行器的实际机器码测试；
+  场景中每台机器人恰好归属一方、原始场景未改动的检查。
+
+同一场景的 A 方：RoboCup.robots.robot1/2/3，原始 libSimulatedRobot.so。
+同一场景的 B 方：RoboCup.officialRobots.robot21/22/23，独立 libOfficialTeam.so，
+每台分别运行原始 ARM mck、原图、原始库和模型，按 Scene 的 2 ms 物理边界处理完整 22 关节。
+
+候选插件仅复用 SimulatedRobot3D 作为现有裁判的几何/放置接口，
+从不调用它的 getAndSetJointData 或 setJointRequest 来控制候选。
+候选关节与 IMU 直接读取物理端口；输出由原厂图产生，通过独立完整执行器通路应用。
+共用场地、渲染、物理引擎和裁判属于仿真设施，不借用 A 方的识球、定位、策略或步态算法。
+
+重要的基础设施区别：
+- A 方程序/控制器二进制、源码、配置与模型没有重编译或修改，前后全目录摘要一致。
+- 本轮共用 libSimRobotCore3.so 是单独构建的仿真基础设施扩展，不能说所有加载二进制都逐字节未变。
+  原完整执行器补丁在旧虚函数前插入接口，会使旧控制器 ABI 不兼容；本轮改为在旧接口末尾追加。
+  原所有虚函数槽位保持原位置，默认物理分支不启用完整执行器。
+  原程序对旧接口的实际编译调用测试通过，运行时也核对各 ELF 的真实加载路径和哈希。
+  该新核心只在本次独立目录选择；原 B-Human 可运行目录、原 Core3 和既有 main/codelab 均保留。
+
+验证：runs/official-team-fixture/20261023_175506_019021/
+- status=PASS，仅表示“控制权隔离/原厂电机 IO”这一场景的检查通过。
+- A 方全 Src/Config 摘要、控制器及程序哈希前后相同，19 个受保护文件一致。
+- 原始 B-Human 正常 CUDA 相机、Cognition 与 Motion 运行，只属于 T5。
+- 三台候选均无 B-Human Cognition/Motion，分别记录 3,000 连续原厂周期、动态反馈和 STOP/ACK。
+- 6 秒仿真，60 张原帧和录像哈希完整；墙钟 126.152 秒，不能当成高速性能达标。
+- 当前指令是明确标注的 SDK_FIXTURE；official_application_connected=false，
+  full_real2sim_complete=false。不是完整官方比赛程序闭环。
+- 旧 B-Human 的 AUDIT game robots=3 统计其自身管理列表；另三台由独立插件登记并管理，
+  不能据该字段误判场景只有三台，也不能把旧 Motion 调用次数当原厂物理 tick。
+
+四、官方应用已做到哪里
+
+最早五包构建使用的是未被本轮修改的本地 Demo；其证据仍保留为
+runs/full-native-integration/20261023_174356_314369_two-independent-teams/official-application-build.json。
+其中“official”名称沿用当时来源假定，不能据此声称与固定的上游提交相同。
+
+随后新建纯上游来源的独立编译副本 official-application-upstream-fa4f31c-20261023-a：
+booster_interface、booster_msgs、game_controller_interface、vision_interface、brain、vision、game_controller
+七个包实际编译通过，程序哈希见同证据目录 pinned-official-application-build.json。
+上游算法源码、行为树未改；构建仅去掉 vision 的未使用硬件 SDK 静态库链接，并将两个 LFS 指针
+替换为同提交官方 sim_data_det_0126.onnx / sim_data_seg_0126.onnx 的真实模型。
+两个模型分别按上游 LFS SHA-256 和长度核对通过，模型清单位于 official-vision-models/manifest.json。
+保留 brain_data.cpp:43 的 markerType 可能未初始化告警。
+这是 x86_64 构建，没有执行任何官方安装/启动服务脚本，也不是 ARM 全栈构建或真机资格。
+
+尚未运行并连接完整官方应用。编译、反馈通路、算法运行、比赛结果分别验收，不能混同。
+
+SDK 来源记录另作更正：早期 build.json 中 sdk_commit=cca7bac... 实为外层 Robocup 备份仓库 HEAD，
+不是独立 SDK 的上游提交。旧文件不回写；新构建器核对 git 根目录，独立 SDK 提交未确认时记 null，
+同时保存完整 SDK 头文件清单与外层仓库身份。新旧产物二进制 SHA 一致。
+当前官方 SDK main 87a9a26d06a94ddd50968e7576f1170f6fa5a80f 也已只读比对；
+字节差异不等于接口不兼容（例如 Request 只增加注释），需要按具体 API/ABI 核对，不能盲目替换版本。
+
+五、下一阶段的具体接入契约
+
+1. 请求：LocoApiTopic[/robot_name]Req 的 api_id、JSON body、UUID 与真实原厂响应对应。
+   原样保留 SDK 请求，不能重新借助 B-Human MotionRequest 来生成另一套动作。
+   call() 的 publish 返回 0 不等于原厂接受，原厂接受也不等于动作完成。
+2. 反馈：500 Hz LowState 的串联/并联关节与 IMU、原厂里程计、头部姿态、恢复与模式状态。
+   明确哪一项来自物理传感器、原厂估计或标定；禁止把球/场地真值冒充正常感知。
+3. 视觉：从候选自己的 SimRobot CameraColor 与 CameraDepth 提供正常 RGB/深度、CameraInfo 和外参，
+   运行官方 vision；候选不得消费 A 方 BallModel、定位结果或策略输出。
+   原有 K1 场景已包含 544x448 RGB 与深度传感器，不需要把场地真值当视觉输入。
+4. 视觉踢球：除 VisualKick(start,version) 外，还需完整 /kick_ball 球、方向、球门、朝向、power 和时间戳。
+5. 时间：所有原厂电机周期、相机/反馈时间戳、ROS /clock 与应用频率使用同一个仿真时间基准。
+   官方 brain/main.cpp 当前在 tick 后用 std::this_thread::sleep_for(10 ms) 睡墙钟；
+   只设置 use_sim_time 不能改变该睡眠。需要明确的时钟后端适配，并保留真机运行时的对应路径。
+6. 裁判与通信：按各自原协议读取同一世界的比赛数据，为每台候选隔离话题/状态/历史与通信身份。
+7. 完整性：模式、各 gait、启停/倒地/保护、起身、头臂、踢传和真实球接触逐项产生新证据。
+8. 部署准备：保持官方 SDK 与 ARM/Jetson 构建路径，核对 .run、SDK、比赛代码、模型、ROS/DDS ABI 的版本组合。
+   Demo 文档的 1.6.1/1.6.2 功能要求与本机 1.6.0.10 包之间的命名/功能映射仍需实测。
+
+六、验收原则
+
+A 侧：全目录/模型/程序指纹保持；正常渲染相机与原有完整算法；变更的共用设施另列审计。
+B 侧：真实运行身份证明是官方比赛应用和官方 1.6 控制链；无 A 方算法兜底。
+共用世界：相同时间、场地/碰撞/裁判规则，明确各机器人模型及执行器参数。
+判定：构建、请求/响应、控制执行、动作结果、物理误差、性能及部署准备分别报告。
+最新完整回归 346 项与 5 个子测试通过，Ruff F 通过；这些不替代上面的完整应用/动作资格。
+当前全量 Real2sim 尚未完成，不把新的 SDK_FIXTURE 或之前混合上层的结果迁移成全量通过。
+
+七、后续运行复核与尚未解决的失败
+
+第二次独立场景 runs/official-team-fixture/20261023_181050_423468/ FAIL：
+robot22 原厂进程在第一帧前抛 std::system_error / Invalid argument，退出 134。
+只读异常诊断将实际未捕获栈定位到原厂 libutils_thread_pool.so 的 LastingThreadFunc::operator()，
+其 std::mutex::lock 分支返回错误。根因未确定；不改变原厂策略或异常结果来掩盖它。
+有诊断层的 18 次及原 IO 的后续 9 次短启动通过，仍不足以证明偶发问题已修复。
+诊断产物单独保存，未选作正常默认；所有失败日志保留。
+
+新增原厂应用反馈适配器 native/booster_fw16_application.cpp：
+- 调用原始 MotionStatePublisher::Update 和原始 IDL getter，读取串/并联关节、IMU、
+  原厂估计里程计、原厂 FK 头部位姿及恢复/模式状态，不写私有估计或控制变量。
+- 字段位置与原库 DWARF 匹配，构建器限定原发布库 SHA-256；新反馈为显式 840 字节 TLV。
+- 外部 SDK 入口独立于旧请求调度器，保留 JSON 原字节、RPC 序号及原厂响应/拒绝。
+  原有中间方案的 v7 主机会话源码单独保留，重生成补丁摘要仍完全一致。
+- 四周期冻结输入实际测试 PASS；其中不带 version 的 VisualKick(false) 得到原厂状态 400。
+  这里只证明拒绝被原样运输，未隔离其参数/模式原因，不能声称视觉踢球可用或参数错误已定位。
+
+新变体 e 的实际场景 runs/official-team-fixture/20261023_185258_475782/ PASS（SDK_FIXTURE）：
+A 方全目录与原控制器哈希前后一致，仍使用正常 CUDA 相机与原有 Cognition/Motion；
+B 方各 2,000 个连续物理/原厂周期、动态反馈、正常 STOP/ACK，三个原厂进程均正常退出。
+4 秒仿真需 89.877 秒；40 张原始帧完整保留。
+共用 Core3 的源码与 d 逐文件相同，因此复用 d 的已编译核心，e 仅编译独立候选插件。
+
+独立逐帧复核三台共 6,000 组原厂发布反馈通过，840 字节 TLV、样本序号、有限值、四元数均检查；
+原厂串联关节 q 与物理输入最大差约 1.48e-6 rad，未替换成世界真值。
+证据 fixture-e-publisher-feedback-audit.json 保存原始 wire 与场景结果哈希。
+但本场头部原厂 FK 的高度约 0.867..1.403 m，尚未与实际相机安装/模型/参考帧联合标定；
+日志仍有缺失 vision.yaml、robot_config.yaml 和虚拟 robot_info 解析警告。
+原厂单轨迹模块引用的一个旧 dance 模型也未在当前 .run 清单中找到。
+上述均须保留为完整性/标定缺口，不能因读取成功就把这些反馈认定为已达真机等价精度。
+
+当前完整性判定仍为未通过：官方 vision/brain 实际连接、相机与反馈坐标标定、/kick_ball、
+完整裁判/队间通信与仿真时钟、全部动作与球接触、长场与启动稳定性、性能、ARM 离线包均待验收。
+
+八、从 A 方源码落实“真机到仿真的桥”（2026-10-23 补充核对）
+
+用户指出的路线成立：先识别 A 方已有的平台边界，再为 B 方实现对应后端。
+桥的职责是使原来的控制程序使用模拟传感器、执行器和时间；不需要另外发明一套比赛策略或步态。
+弄清桥给出实现方法；接口逐项实现、原程序实际运行及物理标定共同决定完成程度。
+
+以下 A 方路径均相对 bhuman/local-k1-validation-20261019/bhuman-local/：
+
+1. 共用核心与两个构建入口
+   Make/CMake/B-Human.cmake:3,64 收集 Modules、Representations、Threads、Tools，形成 B-Human 对象库。
+   Make/CMake/Booster.cmake:15 将其链接进真机 bhuman；SimulatedRobot.cmake:38 将其链接进仿真控制器。
+   CMakeLists.txt:30 为 BUILD_BOOSTER 选择交叉编译工具链。两端共享算法源码，分别为 ARM/桌面编译。
+   这不是同一个 ARM 可执行文件直接加载到 PC，也不意味着所有平台分支和参数逐字节一致。
+
+2. 明确的输入替换开关
+   Config/Scenes/K1/BHumanLocalMatch.con:1 -> Game3v3M.con:1 -> Includes/Normal.con:3
+   -> Includes/NormalWithJPEG.con:13，使用 mr 把 CameraImage/CameraInfo/FrameInfo、
+   JointSensorData、InertialSensorData 等输入的提供者切换为 LogDataProvider。
+   名字虽然含 Log，这里也承担实时仿真输入，并不表示回放一段录像。
+   Src/Libs/SimulatedRobot/LocalConsole.cpp:85,98 打包 Motion/Color 帧；
+   Src/Modules/Infrastructure/LogDataProvider/LogDataProvider.cpp:91 把消息读进相同的 Representation。
+   Src/Threads/Motion.cpp:24 通过完整帧检查启动原运动模块计算。
+   正常配置保留 BallModel=BallStateEstimator、RobotPose=SelfLocator；额外 GroundTruth 表示可用于
+   调试比较，不能因存在它们就说正常识球/定位来自真值。也不能把 Fast/PerceptOracle 当正常相机模式。
+
+3. 同一运动输出的两个去向
+   真机 Src/Modules/Infrastructure/BoosterProvider/BoosterProvider.cpp:144 读取 LowState，
+   :374 将 JointRequest/MotorParameters 转为 LowCmd，:420 通过 DDS 发给硬件；
+   相机由 X5CameraProvider 等硬件提供者负责。
+   仿真 Includes/DebugResponses.con:7,9 请求 JointRequest/MotorParameters，
+   Src/Libs/SimulatedRobot/RobotConsole.cpp:649,675 收取原算法输出，LocalConsole.cpp:239
+   交给 SimulatedRobot3D.cpp:275，读取模拟关节并写目标角、PD 参数与力矩上限。
+   该文件 :231 读取渲染相机，:328 读取模拟 IMU。运动生成仍来自共用 MotionEngine。
+   真机包含独立力矩/保护分支；不能把源码共用误写成硬件与仿真执行器数学上完全相同。
+
+4. 同一逻辑时间下的闭环
+   NormalWithJPEG.con:4 开启 st on；Src/Libs/Platform/Time.cpp:47,59,67 切换和推进模拟时间；
+   Src/Libs/SimulatedRobot/RoboCupCtrl.cpp:434 按物理步长推进。
+   LocalConsole 按时间安排图像/关节输入，完整帧驱动对应线程。
+   不能机械地把 B-Human 的每个线程频率搬给 B 方；要保留官方程序自身的控制周期和时序契约。
+
+对应 B 方的实施边界：
+
+  A 方共用 B-Human 算法库        -> B 方原官方 vision/brain/行为树及完整原厂 1.6 运控
+  A 方相机/传感器 Representation -> B 方既有 RGB/深度/CameraInfo、LowState、odom、head_pose 消息
+  A 方 LocalConsole 消息桥       -> B 方独立 ROS/SDK 网关，保留 API、JSON、UUID、响应和状态的语义
+  A 方 SimulatedRobot3D 电机 IO  -> B 方原厂 RsSdk IO 与完整关节执行器适配
+  A 方 Time/完整帧调度           -> B 方场景步长、原厂 SimulationTimer、ROS 时钟及应用周期适配
+  A 方日志/真机编译入口          -> B 方同源数据回放、ARM 应用构建与匹配版本的部署材料
+
+B 方公开程序的现有接缝已经具体定位：
+- src/brain/src/robot_client.cpp:10,16 发布 LocoApiTopic[/robot_name]Req，保留 api_id/body/uuid 接原厂 API。
+- src/brain/src/brain.cpp:189 起订阅视觉、LowState、里程计、头部位姿及恢复反馈。
+- src/vision/src/vision_node.cpp:262 起订阅图像/深度，:299 订阅 head_pose；图像进入原官方视觉算法。
+- src/brain/src/main.cpp:22 是需要平台化的 100 Hz 调度入口；仅设置 ROS use_sim_time 不会改掉墙钟 sleep_for。
+这些 B 方源码位于 forge/third_party/robocup-demo-fa4f31ccb442/，保持独立上游基线。
+
+原厂运动包已有可用的 RsSdkInput/RsSdkOutput 和 SimulationTimer 边界；
+forge/native/booster_fw16_interposer.cpp:240,275,289 已在原始函数周围实现逐物理周期交换与原时钟核对。
+因此当前的底层闭环是在补 B 方这座桥。仍缺的主体是上面的应用消息、相机和应用调度接入：
+forge/native/simrobot/OfficialTeamPlugin.cpp:71 当前明确只允许 sdk_fixture，整套桥尚未完成。
+
+执行架构另外记录：A 方桌面算法为本机编译；本机现有 B 方原厂核心是 ARM 二进制、经 QEMU 执行。
+这是一项实际工程差异，不能推论桥接方法不可行。可重编译源码或兼容本机控制库若可获得，
+可以在保持同一 IO 契约的条件下另行验证；当前没有据此假称已获得该产物或已实现本机高速运控。
+
+本节是源码链路核对和实施对应表，没有新增运行资格。A 方源码/配置/二进制本轮未改动。
+官方架构文档亦明确 SimulatedRobot 链接 B-Human 对象库、Core3 提供传感器与执行器：
+https://docs.b-human.de/coderelease2026/simrobot/#architecture

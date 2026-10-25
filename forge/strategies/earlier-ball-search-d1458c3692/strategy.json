@@ -1,0 +1,15 @@
+{
+  "schema": "forge.strategy/1",
+  "id": "earlier-ball-search-d1458c3692",
+  "name": "earlier-ball-search",
+  "kind": "candidate",
+  "description": "仅缩短丢球后的搜球等待；实验配置，不预设效果更好。",
+  "cfg_patches": {
+    "behaviorParameters.cfg": {
+      "ballSearchThresholdNoTeam": "1500",
+      "ballSearchThresholdTeam": "5000"
+    }
+  },
+  "content_sha256": "d1458c3692be4ff883d5313df21f86310c522206e5b8c9c8ffcc3fbee38d2888",
+  "at": "2026-10-22T22:13:49.026+09:00"
+}

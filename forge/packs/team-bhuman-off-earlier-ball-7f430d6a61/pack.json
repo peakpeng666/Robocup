@@ -1,0 +1,28 @@
+{
+  "schema": "forge.motion-pack/1",
+  "id": "team-bhuman-off-earlier-ball-7f430d6a61",
+  "kind": "candidate",
+  "name": "team-bhuman-off-earlier-ball",
+  "description": "SimRobot 验证组合：独立选择运控与策略",
+  "components": {},
+  "cfg_patches": {
+    "behaviorParameters.cfg": {
+      "ballSearchThresholdNoTeam": "1500",
+      "ballSearchThresholdTeam": "5000"
+    }
+  },
+  "modules": {},
+  "content_sha256": "7f430d6a61caceb88bbb5e69555aa3986f2cc7465261e1cedbf27e4606772834",
+  "base": {
+    "BHumanCodeRelease": "2e3374ba896da8288607f9a1881b876642fe18b8"
+  },
+  "provenance": {
+    "composition": {
+      "motion_pack_id": "bhuman-official",
+      "strategy_id": "earlier-ball-search-d1458c3692",
+      "strategy_sha256": "d1458c3692be4ff883d5313df21f86310c522206e5b8c9c8ffcc3fbee38d2888"
+    }
+  },
+  "status": "experimental",
+  "created_at": "2026-10-22T22:13:49.314+09:00"
+}
