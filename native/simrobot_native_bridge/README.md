@@ -1,7 +1,14 @@
 # SimRobot native 1.7 bridge (Booster K1)
 
-Branch: `local/simrobot-native-bridge` (local only; do not merge to main or push
-without the owner's explicit approval and a listed file scope).
+Branch: `local/simrobot-native-bridge`. Under the owner's 2026-10-26 cleanup and
+backup instruction, source is synchronized to `codex/native17-foundation-20261026`
+on GitHub. The experiment remains separate from the mainline.
+
+Completed-run bulk data is preserved in the encrypted
+[`foundation-data-20261026_012348` release](https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348).
+`REMOTE-DATA-20261026.json` files identify the removed data and restore index in
+the main local workspace. Source, the baseline executable variant, configurations,
+models and installed environments remain local.
 
 ## Goal
 
@@ -115,9 +122,8 @@ native/simrobot_native_bridge/
   to the legacy PD).
 - Evidence: original data read-only; every validation run gets a fresh
   timestamped directory; failures are kept.
-- Commits are local only; pushing to GitHub requires the owner's confirmation
-  of branch and file scope. No credentials, recovery keys, vendor firmware or
-  private weights are ever committed.
+- Source backups use the named experiment branch. No credentials, recovery keys,
+  vendor firmware or private weights are committed.
 
 ## Base lines
 

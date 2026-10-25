@@ -1,0 +1,22 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/stderr.log",
+      "size": 4968,
+      "sha256": "bc5d4116025bfe35b1b188174a2c3146c1d42e69d56a94ce43e112e0b3a0cb84",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    }
+  ]
+}

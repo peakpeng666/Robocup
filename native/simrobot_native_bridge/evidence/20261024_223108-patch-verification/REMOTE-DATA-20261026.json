@@ -1,0 +1,36 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/delay-ring.log",
+      "size": 82,
+      "sha256": "f07d1ae67f5a8db781dfcf91c50b624d6b7e9816d42065b6500affdca1b4e00d",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/hybrid-actuator.log",
+      "size": 218,
+      "sha256": "f7b489d377be6e7888ba07b58d6eda06e4dbb138899cafbbb5c7c48b24fd5e98",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/referee-frame-export-clean-baseline.log",
+      "size": 370,
+      "sha256": "2f118a7b5c9ff4d9d2339fb435c433264edc26610b52efb9fe4506fb0509cdd9",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/referee-frame-export.log",
+      "size": 656,
+      "sha256": "5a074b6e991fd63fd9afd2f498a3b7d52f6577a5668f15f2a0ca16958dc34f91",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    }
+  ]
+}

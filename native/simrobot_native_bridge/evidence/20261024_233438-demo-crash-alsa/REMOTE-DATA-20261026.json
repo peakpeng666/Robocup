@@ -1,0 +1,15 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_233438-demo-crash-alsa/stderr.log",
+      "size": 8398,
+      "sha256": "ebca444fbe28a9871d62b535f7f71bc6d027fb77e521011a226b9dffe9e91d6c",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "native17-workspace"
+    }
+  ]
+}
