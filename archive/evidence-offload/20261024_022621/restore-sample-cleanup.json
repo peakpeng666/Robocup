@@ -1,0 +1,6 @@
+{
+  "reason": "Remove verified temporary download/restore sample; originals retained in verified remote archive",
+  "files": 12,
+  "bytes": 691997,
+  "sha256_rechecked": true
+}

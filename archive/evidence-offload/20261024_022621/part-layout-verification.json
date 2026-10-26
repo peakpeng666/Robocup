@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "fresh",
+      "part_MiB": [
+        32,
+        32,
+        32,
+        32,
+        9
+      ],
+      "combined_sha256_matches": true
+    },
+    {
+      "case": "legacy",
+      "part_MiB": [
+        128,
+        9
+      ],
+      "combined_sha256_matches": true
+    }
+  ]
+}

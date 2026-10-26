@@ -1,0 +1,7 @@
+bhuman/k1-training/README.md:3:2026-10-20 本地恢复复核：主线已恢复到原路径，环境与源码指纹不变。官方行走回放、新实验暖启动（64 env×3，仅 critic 预热）、原4096 env检查点完整恢复（70→71轮）、普通起身有限回放和公开 actor 三方导出检查均通过。当前可续训检查点为 `runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth`。本机必须保留此工作区；GitHub 是备份。详见仓库根目录 `LOCAL-RESTORE-20261020.md`。部分下文历史 smoke 检查点和导出文件保存在旧 Release，没有逐个恢复到本地；当前可运行入口与新检查点以上述恢复报告为准。
+RESTORE-ROBOCUP.md:3:当前比赛仿真、MuJoCo sim2sim 和训练主线均保留在 `/home/peakpeng/Desktop/Robocup`，实测证据及入口见 [本地恢复验收](LOCAL-RESTORE-20261020.md)。
+README.md:14:入口和证据见 [本地恢复验收](LOCAL-RESTORE-20261020.md)、[MuJoCo 使用说明](bhuman/sim2sim/README.md)。
+archive/training-kit-files.jsonl:1310:{"path": "TRAINING-KIT-README.md", "type": "file", "size": 648, "sha256": "d898832eb573bc01f476529e82767fb54222ebe8dd4e0ed3dbca7ab96a40c943", "mode": 420, "mtime_ns": 0}
+bhuman/docs/KIMI-WORKBENCH-IMPLEMENTATION-20261020.txt:26:- /home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md
+archive-tools/restore.py:34:    if r in ('RESTORE-ROBOCUP.md','REMOTE-VERIFIED.json','TRAINING-KIT-README.md'):continue
+archive-tools/training_kit.py:14:new={'path':'TRAINING-KIT-README.md','type':'file','size':len(readme),'sha256':hashlib.sha256(readme).hexdigest(),'mode':420,'mtime_ns':0}

@@ -1,0 +1,99 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/baseline-before-codex.zip",
+      "size": 146947,
+      "sha256": "07f61fbc16cd373d31ee166e4ff35c9f61d017c8837d16248cee59e1940ae8e1",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/fixed-early-criticwarm20.log",
+      "size": 2548,
+      "sha256": "191386c58879bb222a546a8f268c63ba0790520df7afa3194b2996749333dcb3",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/public-eval-2029.log",
+      "size": 2728,
+      "sha256": "d9e9f29868ea5623604a4f73e224b64e90cb34b851fe2d1037be6099f45564d9",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/public-eval-2027-current.log",
+      "size": 2729,
+      "sha256": "4e6cef5ac61aa39993643b22514c4db284564d1d6325b976b71a9f4ee8eab7c5",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/source-C-D-6f41e1141926.zip",
+      "size": 109469,
+      "sha256": "b7ddc76f0388ce389632b5a261a04b997ba2c9cd82260cebcfb8c75112955207",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/reference70-eval-2029.log",
+      "size": 2779,
+      "sha256": "c8cbc50cb2f6b3db554090032e05f7cc86f31bbf6b3989d8805966aab07a2f2a",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/public-eval-2028.log",
+      "size": 2727,
+      "sha256": "fc7b5dc4f7ab21c672870a534793b1c992738275f68e1bc569727a03464a3186",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/fixed-command-boundary.log",
+      "size": 2428,
+      "sha256": "e0fa34bffad356dd19a2fe393aa609a48e13139007846cd36272334a569a31f7",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/standup-regression-warm.log",
+      "size": 4106,
+      "sha256": "8d2e4d9d0c6979d76037512914f69517b7074bc9c1fab90cd5872712a4d7ac30",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/source-E-F-1ede05ccb7a5.zip",
+      "size": 110187,
+      "sha256": "6222df1f85d68edd466d2006ea781c6218ffc04376730fbd6608647d87ed533a",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/standup-regression-full.log",
+      "size": 3250,
+      "sha256": "a9be102a1887d33f89c441b2e7571a057018c29fdd325b6ea3ef3666d3796bdc",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/reference70-eval-2028.log",
+      "size": 2767,
+      "sha256": "3014e7bf79bf47ee81d9f63ac37b757689776d590ae87efdf77740739993b9bf",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/experiments/walk-diagnosis-20261020/fixed-early-v2.log",
+      "size": 5028,
+      "sha256": "6a70fa8386f3440ab9d20e1d2e3256c8bab464069ddf44eabcbcf5aa811a37ed",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    }
+  ]
+}

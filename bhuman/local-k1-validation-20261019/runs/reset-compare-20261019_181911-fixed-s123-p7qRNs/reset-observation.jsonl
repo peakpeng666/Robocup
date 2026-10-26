@@ -1,7 +1,0 @@
-{"step": 0, "env_ids": [0, 1, 2, 3], "gravity_error": [0.0, 0.0, 0.0, 0.0], "angular_velocity_error": [0.0, 0.0, 0.0, 0.0], "dof_history_error": [0.0, 0.0, 0.0, 0.0], "custom_dof_velocity_absmax": [26.028907775878906, 12.721776008605957, 8.084892272949219, 9.991228103637695], "variant": "fixed"}
-{"step": 121, "env_ids": [2], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [12.008886337280273], "variant": "fixed"}
-{"step": 138, "env_ids": [3], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [9.74482250213623], "variant": "fixed"}
-{"step": 170, "env_ids": [1], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [37.62615203857422], "variant": "fixed"}
-{"step": 215, "env_ids": [0], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [17.514942169189453], "variant": "fixed"}
-{"step": 254, "env_ids": [3], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [12.301265716552734], "variant": "fixed"}
-{"step": 266, "env_ids": [2], "gravity_error": [0.0], "angular_velocity_error": [0.0], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [14.862162590026855], "variant": "fixed"}

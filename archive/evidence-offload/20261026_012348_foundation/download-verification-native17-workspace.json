@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "group": "native17-workspace",
+  "downloaded_parts": 4,
+  "verified_objects": 6356,
+  "selected_files": 30,
+  "restored_files": [
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/delay-ring.log",
+      "sha256": "f07d1ae67f5a8db781dfcf91c50b624d6b7e9816d42065b6500affdca1b4e00d"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/hybrid-actuator.log",
+      "sha256": "f7b489d377be6e7888ba07b58d6eda06e4dbb138899cafbbb5c7c48b24fd5e98"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/referee-frame-export-clean-baseline.log",
+      "sha256": "2f118a7b5c9ff4d9d2339fb435c433264edc26610b52efb9fe4506fb0509cdd9"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/referee-frame-export.log",
+      "sha256": "5a074b6e991fd63fd9afd2f498a3b7d52f6577a5668f15f2a0ca16958dc34f91"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223108-patch-verification/report.json",
+      "sha256": "9b2cb790c060741d29634ad56b13a335f1ce766a6c02072af8db6b389b85bc01"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223611-verify-package-selftest/report.json",
+      "sha256": "06f3324f9c992dbaef86d7fc5afc8a2cf8bef002e8b9f2062a34eb4a1057f97b"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223640-verify-package-selftest/report.json",
+      "sha256": "5dbb9fc7864756cc80e3160d78f5eb4e77dae826288dc34c6529cf84ae212e73"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740-verify-package-selftest/report.json",
+      "sha256": "1d8c513c1858c32117de09ba6cbcf1d01e046893f7fa562b7d5e642bccc8e63e"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_090651-selftest-package-verification/package-verification.json",
+      "sha256": "89c26083f276cb47a8b1e3b8228764643cfaa4b45263e79e2c0cd3dd039c0da1"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_115895-selftest-package-verification/package-verification.json",
+      "sha256": "3f0bb829ae38089a1d93385bfc57f924d3ef1e571d1cd57f0afcee825517b3fa"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_141673-selftest-package-verification/package-verification.json",
+      "sha256": "768ff0b4b3bf1407300abb6c9c277bbad6964e7c35cf2b03ab1eddb7161f8733"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_169538-selftest-package-verification/package-verification.json",
+      "sha256": "04fb40b03f9b299788fb9f992d6c19c4a26b031266e5e5e4049bb7a2e096253e"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_193603-selftest-package-verification/package-verification.json",
+      "sha256": "fece7600fd5c0d74777efe2025241e45d7e6acd380a8f654d18d23368b25c572"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_216023-selftest-package-verification/package-verification.json",
+      "sha256": "8c952f08309cc982bf835aee833354d32870b3403613ff2ea90437be12f81839"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_237975-selftest-package-verification/package-verification.json",
+      "sha256": "87478e4dc904b04d67b3aa87bdcfa9b1bfc31852cb22a611278b15737d2d10ef"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_223740_264071-selftest-package-verification/package-verification.json",
+      "sha256": "f5511d1e10b66781ca7b4b534b1933b4fc9e12f404fefe7c774103a5f83d5273"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_224912-build-variant-20261024_baseline/build.json",
+      "sha256": "eb92b8206b30c145de8c03b6545f47d62195e77c886814663b7ea1e4aee5ab41"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_224912-build-variant-20261024_baseline/console-tail.log",
+      "sha256": "17a4c76e334b5b844f61689a61eb887ade38b74b116269ab42ef6153654a6d24"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/exit.txt",
+      "sha256": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/report.json",
+      "sha256": "ab71c9e25b34669cf392e6a79f99854c89ef17cdfdb9464c2be71740dc73e7b4"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/stderr.log",
+      "sha256": "bc5d4116025bfe35b1b188174a2c3146c1d42e69d56a94ce43e112e0b3a0cb84"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_225156-baseline-smoke/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_233438-demo-crash-alsa/report.json",
+      "sha256": "39d7834b9596005785e6a9fc182008d1769ddd159d255b93fb02c32d33db7cc3"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_233438-demo-crash-alsa/stderr.log",
+      "sha256": "ebca444fbe28a9871d62b535f7f71bc6d027fb77e521011a226b9dffe9e91d6c"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_233601-demo-60s/report.json",
+      "sha256": "a1ee88e45ecedb0e50937e5688b24d4b4680196f083a2c6ecdb815d141746450"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/20261024_233601-demo-60s/stderr.log",
+      "sha256": "5b5346eb29b754649bdf83acdb7afe739c21486b33f0ba782fbf44a64c122e01"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/selftest-20261024_223611-package-verification/package-verification.json",
+      "sha256": "16b7aca0f68eda0bcafd731e7435130d5b363e3b8d1939b6fc2f1860fc3fe260"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/selftest-20261024_223612-package-verification/package-verification.json",
+      "sha256": "f3272f441fc77fa33e00d351e88b23fd3de71e9dabfad66f1c594b0ee5d72841"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/selftest-20261024_223640-package-verification/package-verification.json",
+      "sha256": "53f06dcb71ebb94ade3adecc874053b135739e3703a52e4cf307959959a3f2cc"
+    },
+    {
+      "path": "robocup-1/native/simrobot_native_bridge/evidence/selftest-20261024_223701-package-verification/package-verification.json",
+      "sha256": "bd0baa5004778f890341e9396d5a1b169903d35d38aa9b7ae99acdad416e1cbb"
+    }
+  ],
+  "verify_only": false
+}

@@ -1,0 +1,45 @@
+{
+  "name": "native17-workspace",
+  "status": "VERIFIED",
+  "archive_sha256": "9f3fac86ac0f8140704b210e5a413d9129ff0fde74826ebccabc7b213b19c054",
+  "archive_bytes": 115561830,
+  "manifest": "native17-workspace.files.jsonl",
+  "original_files": 7326,
+  "unique_objects": 6356,
+  "parts": [
+    {
+      "name": "native17-workspace.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "8b021c1a809ec5463d4ced67f53bce08afe8ef3e4fcba001145a9f26a44d7cff",
+      "id": 675563005,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "native17-workspace.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "eb35436988093cc1cf7f9eae113009021ceffc79621ddfd61049005ae9198b29",
+      "id": 675563029,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "native17-workspace.tar.zst.gpg.part0002",
+      "size": 33554432,
+      "sha256": "1dfa0da46834c2b013133faeb5dc01aba01f884c2748c625616ba4a3dcbd01bc",
+      "id": 675563026,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "native17-workspace.tar.zst.gpg.part0003",
+      "size": 14898534,
+      "sha256": "322c8f1a76962bbfacf7a2aaa135d1655508cdafdb131545a05687a78566fb89",
+      "id": 675563067,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0003",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 107.82401831100015
+}

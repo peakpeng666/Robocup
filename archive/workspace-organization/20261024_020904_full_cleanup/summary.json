@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "finished_jst": "2026-10-24T02:16:25.391803+09:00",
+  "removed_files": 1838,
+  "reclaimed_allocated_bytes": 7193796608,
+  "categories": {
+    "verified_duplicate_download_chunk": {
+      "files": 188,
+      "bytes": 3147460608
+    },
+    "apt_generated_index": {
+      "files": 41,
+      "bytes": 241930240
+    },
+    "cuda_jit_cache": {
+      "files": 470,
+      "bytes": 3574726656
+    },
+    "graphics_font_cache": {
+      "files": 969,
+      "bytes": 226963456
+    },
+    "python_tool_cache": {
+      "files": 27,
+      "bytes": 147456
+    },
+    "python_bytecode_cache": {
+      "files": 143,
+      "bytes": 2568192
+    }
+  },
+  "disk_free_before_bytes": 7280173056,
+  "disk_free_after_bytes": 14487826432,
+  "navigation": "workspace-nav/00-常用入口",
+  "index": "WORKSPACE-INDEX.txt",
+  "preserved_file_identity_checks": 350667,
+  "protected_file_hash_checks": 25,
+  "navigation_links_verified": 34,
+  "runtime_preflight": "PASS",
+  "new_simulation_training_or_robot_connection": false
+}

@@ -1,0 +1,85 @@
+{
+  "name": "forge-matches",
+  "status": "VERIFIED",
+  "archive_sha256": "82be42c1c6579948f85c8255585c32e2098afe83c40c9ad94e9a7ad75424a085",
+  "archive_bytes": 1088953592,
+  "manifest": "forge-matches.files.jsonl",
+  "original_files": 12028,
+  "unique_objects": 11844,
+  "parts": [
+    {
+      "name": "forge-matches.tar.zst.gpg.part0000",
+      "size": 134217728,
+      "sha256": "d3e3b12affa90c15e28cdef030139594ee535c387745790644e5b9454d3c2d6c",
+      "id": 669871249,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0001",
+      "size": 134217728,
+      "sha256": "2abce6ab24dea659ffe39931ac70b376fc586c70248e578ebf4089de721791f9",
+      "id": 669871263,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0002",
+      "size": 134217728,
+      "sha256": "09e7cf37e733d321bf134ee7d7f93675d30ecb9f2eebe773faf6bec903d1f63c",
+      "id": 669871278,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0003",
+      "size": 134217728,
+      "sha256": "06f3f88643febc6bf9bea48ec9cd9c3ad7aab78dcfcf22bd6645516c69842fbb",
+      "id": 669875083,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0004",
+      "size": 134217728,
+      "sha256": "98f7ef71f5ca8c84dc0487f66a18f454eb57674c91dabe5e84d3614eda28dba1",
+      "id": 669875085,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0004",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0005",
+      "size": 134217728,
+      "sha256": "5b7ea710957d8575aaf506b74c0af1a100e76d715d5848becbab78afcb76bbb7",
+      "id": 669875079,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0005",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0006",
+      "size": 134217728,
+      "sha256": "45f1ef1d79aa8318bc2545cba3d9b3c96c34e541dc87518dbbfba04d68bbd871",
+      "id": 669891724,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0006",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0007",
+      "size": 134217728,
+      "sha256": "2acc7b8e9eb18c66281b3a5be628fd467eb5fb13bd8b05844853000ac34eabf6",
+      "id": 669891773,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0007",
+      "verified": true
+    },
+    {
+      "name": "forge-matches.tar.zst.gpg.part0008",
+      "size": 15211768,
+      "sha256": "ea50d2ad48c51f301e752b9c2841755eec8cc29eb3a9e64c0dc012be63f6b828",
+      "id": 669891755,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-matches.tar.zst.gpg.part0008",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 251.46764144000008
+}

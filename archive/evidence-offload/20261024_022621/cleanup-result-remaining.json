@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "groups": [
+    "bhuman-local-k1-validation-20261019-runs",
+    "bhuman-sim2sim-runs",
+    "forge-official-team-fixture",
+    "official-application-20261024_000105_664125",
+    "official-application-20261024_000849_586701",
+    "official-application-20261024_002120_394395",
+    "official-application-20261024_002948_567424"
+  ],
+  "removed_files": 15780,
+  "reclaimed_allocated_bytes": 3189248000,
+  "retained_canonical_runtime_files_verified": 0,
+  "disk_after": {
+    "total": 283676618752,
+    "used": 216425795584,
+    "free": 52766318592
+  }
+}

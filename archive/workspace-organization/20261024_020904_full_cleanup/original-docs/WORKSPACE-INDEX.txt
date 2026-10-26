@@ -1,0 +1,78 @@
+Robocup 本机工程索引
+整理日期：2026-10-24；根目录：/home/peakpeng/Desktop/Robocup
+
+先从哪里开始
+  当前工作：forge/，正在接入独立官方 1.6 运控、Demo 与 SimRobot。
+  进度事实：forge/docs/PROGRESS.md
+  双队结构：forge/docs/TWO-TEAMS-OFFICIAL-REAL2SIM-20261023.txt
+  最新运行指针：forge/run/official-application-last-run.txt
+  文件夹导航：workspace-nav/（七组目录快捷入口，原工程保留在原路径）。
+
+当前目标与入口
+  A 方 B-Human：bhuman/local-k1-validation-20261019/bhuman-local/
+    本机入口：bhuman/start-bhuman.sh
+    说明：bhuman/BHUMAN-K1-运行说明.md
+    保留原步态与正常渲染相机感知。
+
+  B 方官方 1.6：forge/
+    本机应用运行入口：forge/tools/run_official_application.py
+    固定官方 Demo：forge/third_party/robocup-demo-fa4f31ccb442/
+    原厂内容：forge/third_party/booster-k1-1.6.0.10/
+    独立编译变体：forge/variants/
+    实际运行证据：forge/runs/official-application/
+    原 ARM 控制器证据：forge/runs/native-controller/
+    具体候选与参数查当前进度、运行 launch.json；链路通过、视觉踢球动作通过
+    和完整比赛资格应分别查看，目录名称与进程成功不能代替动作验收。
+
+  训练与 sim2sim：
+    训练主线：bhuman/k1-training/；先读该目录 README.md 与 scripts/env.sh。
+    继续训练检查点和新输出均在该主线保留，不移入资料归档。
+    CPU MuJoCo：bhuman/sim2sim/；入口 run-mujoco.sh，说明 README.md。
+    Forge 的 GPU 批量评测与候选实验：forge/；查 forge/README.md。
+    B-Human 上游参考：bhuman/BHumanCodeRelease/、bhuman/MachineLearning/。
+
+  两个本机界面：
+    forge/：当前运控与两队验证工坊；说明 forge/README.md。
+    workbench/：既有 B-Human 训练、比赛和离线构建工作台；说明 workbench/README.md。
+    整理过程没有启动界面、训练、仿真，也没有改动正在运行的进程。
+
+  其他源码与配置：
+    booster/booster_robotics_sdk/：本地 SDK 源码。
+    booster/robocup_demo/：已有本地改动的 Demo 工作副本，保留原样。
+    robocup/：既有 ROS2 RoboCup 工作区，不是整个 Robocup 根目录。
+    25game_controller/、26game_controller/：对应年份的裁判配置、README 与许可。
+
+环境位置
+  environment/ 保存环境清单、硬件记录和 IsaacLab 本地配置。
+  实际环境保留在 /home/peakpeng/.venvs/：
+    forge           控制平面、应用工具与验收
+    bh-gym          原 Isaac Gym 训练、导出、评估
+    forge-mjlab     GPU MuJoCo/Warp 批量实验
+    isaacsim-gui    原 CPU MuJoCo 与既有 Isaac Sim 环境
+  具体解释器与依赖以各工作区入口为准；不要移动环境或把安装目录当缓存。
+
+资料、证据和归档放在哪里
+  forge/docs/、bhuman/docs/、workbench/docs/：对应工程的说明和进度。
+  bhuman/research-materials-20261019/、research-inputs/：既有调研与原始交接资料。
+  各工程 runs/：原时间戳证据继续原位保留，失败记录也保留。
+  archive/：原成果哈希、上游身份、历史恢复和远端核验记录。
+  archive-tools/：原归档恢复工具；整理没有执行下载、上传或历史恢复。
+  archive/workspace-organization/：本次目录整理、目标核验和撤销记录。
+  forge/runs/cleanup/20261024_0125_depth_lossless/：已完成深度无损归档清单、
+    全量 SHA 验证与恢复说明；RGB、wire 和其他原证据保留。
+
+根目录为什么仍保留几个说明文件
+  README.md：原项目总览，包含 2026-10-20 历史验收与来源；本次未覆盖。
+  LOCAL-RESTORE-20261020.md：已被 README、训练说明和交接文档引用。
+  RESTORE-ROBOCUP.md、REMOTE-VERIFIED.json、TRAINING-KIT-README.md：
+    原恢复工具/恢复包约定的根目录条目，移动会改变既有恢复布局。
+  AGENTS.md：本机保留和授权规则。
+  .git、.claude、.v2c、.video_agent 等隐藏目录原位保留。
+
+导航和后续放置约定
+  workspace-nav/ 只提供目录符号链接，指向同一份本地文件，不复制模型/源码。
+  在导航下编辑会改到原文件；执行脚本请使用本索引的原始路径。
+  新代码、模型、变体和运行证据继续写入负责工程既有目录。
+  新交接原文放 research-inputs/；资料整理记录放 archive/workspace-organization/。
+  原可运行工程、编译程序、模型、检查点和配置环境保留在本机；GitHub 是备份。
+  当前授权限本机仿真/训练，不连接机器人或执行机器人安装/固件/服务脚本。

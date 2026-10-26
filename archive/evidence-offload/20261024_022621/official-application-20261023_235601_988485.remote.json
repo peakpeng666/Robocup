@@ -1,0 +1,21 @@
+{
+  "name": "official-application-20261023_235601_988485",
+  "status": "VERIFIED",
+  "archive_sha256": "fe5dd458246cc5d65347c78c3e3b78272c9696ec4287bc6403e5a79c9978c250",
+  "archive_bytes": 9730210,
+  "manifest": "official-application-20261023_235601_988485.files.jsonl",
+  "original_files": 189,
+  "unique_objects": 166,
+  "parts": [
+    {
+      "name": "official-application-20261023_235601_988485.tar.zst.gpg.part0000",
+      "size": 9730210,
+      "sha256": "fe5dd458246cc5d65347c78c3e3b78272c9696ec4287bc6403e5a79c9978c250",
+      "id": 670054331,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261023_235601_988485.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 14.418454270999064
+}

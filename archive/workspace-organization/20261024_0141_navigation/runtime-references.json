@@ -1,0 +1,16 @@
+{
+  "references": [],
+  "inspection_limitations": [
+    {
+      "pid": 1282,
+      "process": "(sd-pam)",
+      "unreadable": [
+        "cwd",
+        "exe",
+        "fd",
+        "maps"
+      ]
+    }
+  ],
+  "action": "All originals retained; no runtime path moved or unlinked"
+}

@@ -1,0 +1,11 @@
+{
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "receipt": "/home/peakpeng/Desktop/Robocup/archive/evidence-offload/20261024_022621",
+  "staging": "/home/peakpeng/.cache/robocup-evidence-upload-20261024_022621",
+  "repository": "peakpeng666/Robocup",
+  "tag": "evidence-20261024_022621",
+  "key_path": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt",
+  "local_policy": "Retain runnable workspaces, required artifacts and continuation checkpoints; remove only verified remotely backed-up bulk evidence and exact vendor snapshot duplicates.",
+  "release_id": 422127803,
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621"
+}

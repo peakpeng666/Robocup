@@ -1,0 +1,21 @@
+{
+  "name": "forge-pipelines",
+  "status": "VERIFIED",
+  "archive_sha256": "0a1cebaba37dda6ccfd2c4bb10d15f371acca6c1770488cca6315e1d3f65fd1d",
+  "archive_bytes": 1291,
+  "manifest": "forge-pipelines.files.jsonl",
+  "original_files": 2,
+  "unique_objects": 2,
+  "parts": [
+    {
+      "name": "forge-pipelines.tar.zst.gpg.part0000",
+      "size": 1291,
+      "sha256": "0a1cebaba37dda6ccfd2c4bb10d15f371acca6c1770488cca6315e1d3f65fd1d",
+      "id": 670054347,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-pipelines.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.45863961699979
+}

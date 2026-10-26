@@ -1,3 +1,16 @@
+2026-10-26 工程基础整理已完成
+  源码、实际程序、环境、模型、配置与续训检查点继续本机保留。
+  历史运行数据及冗余下载/安装包经逐文件、远端分卷和恢复核验后上云。
+  本轮按逐项收据主动释放 17.54 GiB；恢复临时副本和审计压缩收益另计。
+  清理报告：archive/workspace-organization/20261026_012348_foundation-cleanup/清理结果.txt
+  新恢复索引：archive/evidence-offload/20261026_012348_foundation/remote-index.json
+  旧回收站恢复：同目录 retired-trash.remote-index.json（独立的 tar.zst.gpg 格式）。
+  训练审查源码工作树：_local/worktrees/rl-contracts/（原桌面 Robocup-pr4）。
+  原生 1.7 实验：robocup-1/native/simrobot_native_bridge/。
+  两个源码备份分支：codex/rl-contracts-foundation-20261026、codex/native17-foundation-20261026。
+  原安装包需用于新建环境或完整固件审计时，先按索引恢复；不执行机器人安装脚本。
+  下方保留 2026-10-24 的工程事实与历史验收，不构成本轮新实验结论。
+
 Robocup 本机工程索引
 整理日期：2026-10-24；根目录：/home/peakpeng/Desktop/Robocup
 

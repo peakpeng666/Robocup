@@ -1,0 +1,21 @@
+{
+  "name": "forge-gates",
+  "status": "VERIFIED",
+  "archive_sha256": "b6ce612c8f3b54136103de204d253dad77cda2d85e432c144afe64a6053bbd44",
+  "archive_bytes": 18360,
+  "manifest": "forge-gates.files.jsonl",
+  "original_files": 3,
+  "unique_objects": 3,
+  "parts": [
+    {
+      "name": "forge-gates.tar.zst.gpg.part0000",
+      "size": 18360,
+      "sha256": "b6ce612c8f3b54136103de204d253dad77cda2d85e432c144afe64a6053bbd44",
+      "id": 670053342,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-gates.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.498456810999414
+}

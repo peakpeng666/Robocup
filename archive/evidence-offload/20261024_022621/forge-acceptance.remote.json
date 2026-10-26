@@ -1,0 +1,37 @@
+{
+  "name": "forge-acceptance",
+  "status": "VERIFIED",
+  "archive_sha256": "f890f0e50c25bb7d2eb5860e93391f2b80f16bf7c7543126e2cd1a84d0b96c0c",
+  "archive_bytes": 68980649,
+  "manifest": "forge-acceptance.files.jsonl",
+  "original_files": 483,
+  "unique_objects": 462,
+  "parts": [
+    {
+      "name": "forge-acceptance.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "46640a090d40f4c161bd56e3110988d74d48ca06417e3d37f2efa603721a03cf",
+      "id": 670050576,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-acceptance.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-acceptance.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "c712410e28e12deaea4e387ab82d18ff1f9a72492ebde6d5f93048af9181550a",
+      "id": 670050591,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-acceptance.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-acceptance.tar.zst.gpg.part0002",
+      "size": 1871785,
+      "sha256": "04dc2389e683ddf7663cd1ea5a624a74bf59a8e6a11040d61250e4b8a8890eb3",
+      "id": 670050561,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-acceptance.tar.zst.gpg.part0002",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 40.392225505998795
+}

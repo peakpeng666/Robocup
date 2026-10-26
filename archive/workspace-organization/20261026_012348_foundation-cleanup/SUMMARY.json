@@ -1,0 +1,64 @@
+{
+  "schema": "robocup.foundation-cleanup/1",
+  "status": "PASS",
+  "primary_reclaimed_allocated_bytes": 18835480576,
+  "primary_reclaimed_gib": 17.54,
+  "receipts": [
+    {
+      "receipt": "cache-cleanup-result.json",
+      "reclaimed_allocated_bytes": 9937125376
+    },
+    {
+      "receipt": "drive-roundtrip-result.json",
+      "reclaimed_allocated_bytes": 3497209856
+    },
+    {
+      "receipt": "duplicate-clone-cleanup-result.json",
+      "reclaimed_allocated_bytes": 189358080
+    },
+    {
+      "receipt": "historical-data-cleanup-result.json",
+      "reclaimed_allocated_bytes": 661274624
+    },
+    {
+      "receipt": "installer-cleanup-result.json",
+      "reclaimed_allocated_bytes": 4550512640
+    }
+  ],
+  "new_remote_groups": 6,
+  "new_verified_remote_parts_including_retired_tree": 208,
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348",
+  "primary_restore_index": "archive/evidence-offload/20261026_012348_foundation/remote-index.json",
+  "retired_tree_restore_index": "archive/evidence-offload/20261026_012348_foundation/retired-trash.remote-index.json",
+  "source_branches": [
+    "main",
+    "codex/rl-contracts-foundation-20261026",
+    "codex/native17-foundation-20261026"
+  ],
+  "tests": {
+    "forge_tests": 381,
+    "forge_subtests": 5,
+    "workbench_tests": 34,
+    "readonly_training_contract_checks": 3,
+    "typescript": "PASS",
+    "training_environment_packages": 60,
+    "cpu_mujoco_import": "PASS",
+    "compressed_manifest_roundtrip": "PASS"
+  },
+  "preservation": {
+    "status": "PASS",
+    "counts": {
+      "document_or_audit_state": 364,
+      "retained_identity_unchanged": 251996,
+      "authorized_removed": 15488,
+      "lossless_audit_compaction": 54
+    },
+    "unexpected_missing": [],
+    "unexpected_metadata_changes": []
+  },
+  "core_runtime_components_sha256_unchanged": 6,
+  "continuation_checkpoints_retained": 2,
+  "owner_recovery_key_retained_local": true,
+  "disk_free_bytes_at_report": 107691638784,
+  "retired_trash_note": "Full encrypted backup and actual restore passed; source was already absent at final pre-removal check. It is not counted as deleted by this cleanup or in reclaimed bytes."
+}

@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "group": "official-application-20261023_235930_688936",
+  "downloaded_parts": 1,
+  "verified_objects": 208,
+  "selected_files": 12,
+  "restored_files": [
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/1.depth-f32-byteplanes.gz",
+      "sha256": "33a88f97d16ea40deb6066cfd50e501ffd4a0ff5cf959474d94953233b101bd0"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/1.png",
+      "sha256": "11d82bf9aeec32fe870a1dfbcf840fe45b97447b1b95d895858510bca59c944a"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/100.depth-f32-byteplanes.gz",
+      "sha256": "9672d75176085d2e8b14b502e822c14f06620ba3cfa87537387115c67298861e"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/100.png",
+      "sha256": "0f5cefa3d5ffe6e412661e094d845cc1d2744bcbaa82b7ce71c24167b4eff97c"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/20.depth-f32-byteplanes.gz",
+      "sha256": "c99277c15509d2b2463191c6b8aeef829d641d9996e9da1ad16c45fa6d1dc478"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/20.png",
+      "sha256": "ae50fc1b5f3579732509b119564965cb277c6b829b15ff9338fa3713c4a0a1de"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/40.depth-f32-byteplanes.gz",
+      "sha256": "bdac655f0562dd8130d656ce0f28574b342f298c6de018fa7390dbb03f8b09b2"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/40.png",
+      "sha256": "6174dc7aba152f4a1742e1079ff0dc06e39475c1ddd9d7c5b000040657af0279"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/60.depth-f32-byteplanes.gz",
+      "sha256": "5873d0f0f96f70eac86055978c50ece015a495b64980de237d51b930a4f2b84c"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/60.png",
+      "sha256": "ca78786c29cbde7a028851a8010c02ba7fb55def6907461c6852a85a1f539423"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/80.depth-f32-byteplanes.gz",
+      "sha256": "4b62375ab4cbb15ac8e37e736437a24099323094b0343a63defe26d33bb08d62"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/robot21/camera/80.png",
+      "sha256": "5473ed1fa4c779f38904d02c22115252ac5e32cbc96dee3df583523646ee804b"
+    }
+  ],
+  "verify_only": false
+}

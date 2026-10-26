@@ -1,0 +1,21 @@
+{
+  "name": "engineering-records",
+  "status": "VERIFIED",
+  "archive_sha256": "9ea6af505fdb3ba2cb6d4c7e16533fd85ff69df60be4d1702bde8b0ecb9fe102",
+  "archive_bytes": 901954,
+  "manifest": "engineering-records.files.jsonl",
+  "original_files": 121,
+  "unique_objects": 119,
+  "parts": [
+    {
+      "name": "engineering-records.tar.zst.gpg.part0000",
+      "size": 901954,
+      "sha256": "9ea6af505fdb3ba2cb6d4c7e16533fd85ff69df60be4d1702bde8b0ecb9fe102",
+      "id": 675563279,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-records.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 9.74486156399962
+}

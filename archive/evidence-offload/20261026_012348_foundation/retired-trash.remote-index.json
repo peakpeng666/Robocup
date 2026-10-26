@@ -1,0 +1,181 @@
+{
+  "schema": "robocup.retired-tree-remote/1",
+  "repository": "peakpeng666/Robocup",
+  "tag": "foundation-data-20261026_012348",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348",
+  "format": "tar.zst.gpg",
+  "archive_sha256": "825514c62f4bdb0db83ff28f6a9a5b239247440b36c2e23affddbe9de6ca19e4",
+  "archive_bytes": 704257393,
+  "parts": [
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "05c9b8253cf0fa40b8736ae7ff84dcc7a20854ba66f22e34de8acfeb87f5c163",
+      "id": 675629983,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "184bf55ce272f95339f3b508287ca5bb6227e8aa36338f297174e69207b00190",
+      "id": 675629989,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0002",
+      "size": 33554432,
+      "sha256": "521ec7367cc3b05c053b016afe86f656e9b7254f342cfe5cb01a50476a4ccdb5",
+      "id": 675629988,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0003",
+      "size": 33554432,
+      "sha256": "ac46a69c4abfaa9d496d977f09882f507f04b076d6de9e4e36d8f10228ac0162",
+      "id": 675629993,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0004",
+      "size": 33554432,
+      "sha256": "943d03e6a29b67435c3bb454b1c7438c92278d0b8bd8c6139b4c58e105563153",
+      "id": 675629981,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0004",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0005",
+      "size": 33554432,
+      "sha256": "433151c61e6e3240ddf4552b7b3625613f177764dedfb48702ec39bcab1a89b1",
+      "id": 675630001,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0005",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0006",
+      "size": 33554432,
+      "sha256": "470125969fb80be91e1ed8aea83eee3d94d8b4e487cc8bbac5f0f64be1b54d70",
+      "id": 675632831,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0006",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0007",
+      "size": 33554432,
+      "sha256": "4f99bdd50dc1f306f392e95f6f20227b307ca315186903db3febe901ba8965bf",
+      "id": 675632832,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0007",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0008",
+      "size": 33554432,
+      "sha256": "7b31defd5a0727d33a610943417070b2a9e00517166bf7b754705d204d7cdbb5",
+      "id": 675632843,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0008",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0009",
+      "size": 33554432,
+      "sha256": "3b64d0f437affe772f4e625c96eb7a0471c6d2c1c56521463217bfe4c13a6eae",
+      "id": 675632847,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0009",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0010",
+      "size": 33554432,
+      "sha256": "1edbb4e33e117f565790b4a3bb4232be0b250fb6c2af263917c2752c989b9c92",
+      "id": 675632833,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0010",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0011",
+      "size": 33554432,
+      "sha256": "bba5d9ee4f1bf0d104c6bcf56d7d06b71c209ccb699d45754a7a359d4ea9828c",
+      "id": 675632836,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0011",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0012",
+      "size": 33554432,
+      "sha256": "f6f5490ea772b223897920328f41e5ee6177a457a9916bfdff093b8e87b78d03",
+      "id": 675642286,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0012",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0013",
+      "size": 33554432,
+      "sha256": "329bcb45939b2f2790109aaaec8fac674c0c9cd15ca60ed7de1a6a305617d805",
+      "id": 675642319,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0013",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0014",
+      "size": 33554432,
+      "sha256": "2459dfd00c63cbf4a050a83aba1fd66dcc6324d7a2a9cc82a130355f6a4b3c2e",
+      "id": 675642316,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0014",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0015",
+      "size": 33554432,
+      "sha256": "fe0f57a6cb528af96f0910295cff8a95874b43ec7c6a5b149ae57e22b3f21580",
+      "id": 675642289,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0015",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0016",
+      "size": 33554432,
+      "sha256": "feebef5780925bd010a7138b0a7ff890ee62b7c0194849f9cc5728264ac051f1",
+      "id": 675642313,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0016",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0017",
+      "size": 33554432,
+      "sha256": "8c77859003e11ab97bee72e17bd5e054032bccd630180032ea4089b0683151b2",
+      "id": 675642292,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0017",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0018",
+      "size": 33554432,
+      "sha256": "9988257689ce821cd0fc3afa391d74e0de4b3f8564eaa1d164092d0ece52f4af",
+      "id": 675644034,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0018",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0019",
+      "size": 33554432,
+      "sha256": "08c52232cb6bff8581d4d6db64501bbe11cf551b552b7e83b18725f4f6a9ffb8",
+      "id": 675644033,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0019",
+      "verified": true
+    },
+    {
+      "name": "retired-qh-robocup.tar.zst.gpg.part0020",
+      "size": 33168753,
+      "sha256": "368f3f663858d7762077500e0f40489edd1955b63626e09d7919468ebd2bdcf2",
+      "id": 675644039,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/retired-qh-robocup.tar.zst.gpg.part0020",
+      "verified": true
+    }
+  ],
+  "original_entries": 801,
+  "restore": "Concatenate verified parts, decrypt with the local owner recovery key, decompress with zstd, and extract into a NEW EMPTY directory. Original files are below data/qh_robocup/. Never execute archived scripts during restore."
+}

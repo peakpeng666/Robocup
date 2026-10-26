@@ -1,0 +1,3786 @@
+[
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-log/latest_build",
+    "target": "build_2026-10-23_18-40-24"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-log/latest",
+    "target": "latest_build"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-log/latest_build",
+    "target": "build_2026-10-23_17-45-47"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-log/latest",
+    "target": "latest_build"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-adapted-log/latest_build",
+    "target": "build_2026-10-23_18-30-26"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-adapted-log/latest",
+    "target": "latest_build"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-adapted-install/vision/share/vision/model",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/official-vision-models"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-ros2-log/latest_build",
+    "target": "build_2026-10-23_18-25-58"
+  },
+  {
+    "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-ros2-log/latest",
+    "target": "latest_build"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/frame_work",
+    "target": "/vendor/frame_work"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/lib",
+    "target": "/vendor-extra/booster/lib"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/configs/K1",
+    "target": "/opt/booster/Gait/configs/K1"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/Gait/robot_info.txt",
+    "target": "/opt/booster/robot_info.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/Gait/version.txt",
+    "target": "/opt/booster/version.txt"
+  },
+  {
+    "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/controller/booster/Gait/lib",
+    "target": "/vendor/lib/motion"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_013900_951649/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-d/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002120_394395/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003808_419696/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_003308_420422/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-b/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-b/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235601_988485/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000105_664125/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_010001_676855/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_000849_586701/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-e/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002948_567424/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-b/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-b/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_233524_567950/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-i/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-i/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_020115_889044/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-d/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_002418_894919/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261023-c/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261023_235930_688936/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-f/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-application/20261024_011509_150162/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_175506_019021/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_181050_423468/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Behavior",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Behavior"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Sounds",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Sounds"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Logs",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Logs"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/NeuralNets",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/NeuralNets"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Scenarios",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Scenarios"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Locations",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Locations"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/Robots",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/Robots"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/teams.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teams.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/teamList.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/teamList.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/workspace/Config/settings.cfg",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Config/settings.cfg"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/SimRobot",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/libSimRobotCore2D.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotCore2D.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/libOfficialTeam.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-e/Build/Linux/SimRobot/Release/libOfficialTeam.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/libSimRobotCore3.so",
+    "target": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-e/Build/Linux/SimRobot/Release/libSimRobotCore3.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/libSimulatedRobot.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so"
+  },
+  {
+    "path": "forge/runs/official-team-fixture/20261023_185258_475782/bin/libSimRobotEditor.so",
+    "target": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimRobotEditor.so"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "archived_files": 72,
+  "excluded": [
+    {
+      "name": "retired-clone-config.private",
+      "reason": "local private state"
+    }
+  ],
+  "group": "cleanup-audit",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348",
+  "download_restore_gzip_roundtrip": "PASS"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "groups": [
+    "forge-native-controller",
+    "official-application-20261023_235930_688936"
+  ],
+  "removed_files": 8025,
+  "reclaimed_allocated_bytes": 14916837376,
+  "retained_canonical_runtime_files_verified": 71,
+  "disk_after": {
+    "total": 283676618752,
+    "used": 241065816064,
+    "free": 28126298112
+  }
+}

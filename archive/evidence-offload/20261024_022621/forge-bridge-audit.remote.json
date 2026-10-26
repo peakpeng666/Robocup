@@ -1,0 +1,21 @@
+{
+  "name": "forge-bridge-audit",
+  "status": "VERIFIED",
+  "archive_sha256": "bbb471bd840b15ff8ba811c5b5b58ecb54c0f208896cda7268da56a1fe057592",
+  "archive_bytes": 2936,
+  "manifest": "forge-bridge-audit.files.jsonl",
+  "original_files": 1,
+  "unique_objects": 1,
+  "parts": [
+    {
+      "name": "forge-bridge-audit.tar.zst.gpg.part0000",
+      "size": 2936,
+      "sha256": "bbb471bd840b15ff8ba811c5b5b58ecb54c0f208896cda7268da56a1fe057592",
+      "id": 670052598,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-bridge-audit.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.572993506000785
+}

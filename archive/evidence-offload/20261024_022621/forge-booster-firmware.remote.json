@@ -1,0 +1,21 @@
+{
+  "name": "forge-booster-firmware",
+  "status": "VERIFIED",
+  "archive_sha256": "5841644f85e2c79001cd09f2500824e3ba11c8906617a085423f0b2944a96486",
+  "archive_bytes": 5826987,
+  "manifest": "forge-booster-firmware.files.jsonl",
+  "original_files": 9,
+  "unique_objects": 8,
+  "parts": [
+    {
+      "name": "forge-booster-firmware.tar.zst.gpg.part0000",
+      "size": 5826987,
+      "sha256": "5841644f85e2c79001cd09f2500824e3ba11c8906617a085423f0b2944a96486",
+      "id": 670051762,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-booster-firmware.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 20.199816706001002
+}

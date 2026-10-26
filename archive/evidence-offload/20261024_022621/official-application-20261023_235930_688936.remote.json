@@ -1,0 +1,21 @@
+{
+  "name": "official-application-20261023_235930_688936",
+  "status": "VERIFIED",
+  "archive_sha256": "d353f05349a2f1566461b15c3cfda0837dded14e26693b3bd97a04dce5a49f2a",
+  "archive_bytes": 12110908,
+  "manifest": "official-application-20261023_235930_688936.files.jsonl",
+  "original_files": 231,
+  "unique_objects": 208,
+  "parts": [
+    {
+      "name": "official-application-20261023_235930_688936.tar.zst.gpg.part0000",
+      "size": 12110908,
+      "sha256": "d353f05349a2f1566461b15c3cfda0837dded14e26693b3bd97a04dce5a49f2a",
+      "id": 669866478,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/official-application-20261023_235930_688936.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 15.143395484001303
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "removed_files": 1170,
+  "reclaimed_allocated_bytes": 661274624,
+  "remote_parts_reverified_before_removal": 433,
+  "restore_markers": 406,
+  "runnable_programs_models_checkpoints_removed": 0
+}

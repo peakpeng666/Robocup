@@ -1,0 +1,11 @@
+Historical local simulation evidence backup (2026-10-24 JST)
+
+This release stores the owner’s historical RoboCup simulation evidence as encrypted, content-deduplicated archives. The original per-file SHA-256, relative path, permissions and timestamps are retained in each archive. Each unique object is independently decrypted and verified before upload. This is a storage backup, not a new robot or performance qualification.
+
+The owner recovery key remains on the local computer and is not uploaded. Credentials, environment snapshots and raw Git histories are excluded. Existing project licenses and upstream attribution remain applicable; this release grants no new rights to third-party materials.
+
+Local runnable workspaces, actual runtime dependencies and continuation checkpoints remain on the computer. Bulk historical evidence is removed locally only after all remote part sizes/SHA-256 digests and an independent download/restore test pass.
+
+Restore with the attached restore_evidence.py and remote-index.json; use --list to see groups, then --group NAME. The owner’s recovery key is required.
+
+Backup is in progress. Only the groups listed in remote-index.json are complete and verified; more verified groups will be added.

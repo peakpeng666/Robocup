@@ -1,0 +1,21 @@
+{
+  "name": "forge-official-team-fixture",
+  "status": "VERIFIED",
+  "archive_sha256": "c0d10bd3f6b1e6e2a4815ba2b73e06283a05963601193cc2636569947143a0a4",
+  "archive_bytes": 20075975,
+  "manifest": "forge-official-team-fixture.files.jsonl",
+  "original_files": 614,
+  "unique_objects": 279,
+  "parts": [
+    {
+      "name": "forge-official-team-fixture.tar.zst.gpg.part0000",
+      "size": 20075975,
+      "sha256": "c0d10bd3f6b1e6e2a4815ba2b73e06283a05963601193cc2636569947143a0a4",
+      "id": 670049466,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-official-team-fixture.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 31.012189905000923
+}

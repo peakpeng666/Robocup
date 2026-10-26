@@ -1,0 +1,21 @@
+{
+  "name": "forge-series",
+  "status": "VERIFIED",
+  "archive_sha256": "a70f509a406ea5eaa20dde6ed1ef065d3fbe471b22083ff427b9d71150ee723d",
+  "archive_bytes": 1285,
+  "manifest": "forge-series.files.jsonl",
+  "original_files": 1,
+  "unique_objects": 1,
+  "parts": [
+    {
+      "name": "forge-series.tar.zst.gpg.part0000",
+      "size": 1285,
+      "sha256": "a70f509a406ea5eaa20dde6ed1ef065d3fbe471b22083ff427b9d71150ee723d",
+      "id": 670054834,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-series.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 10.787695603999964
+}

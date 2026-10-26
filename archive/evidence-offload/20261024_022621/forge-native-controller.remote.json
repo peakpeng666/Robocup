@@ -1,0 +1,53 @@
+{
+  "name": "forge-native-controller",
+  "status": "VERIFIED",
+  "archive_sha256": "539fb6253fa4be3faaacc06d359b6a21c438b292fc5f2c0831c61b2c8712835f",
+  "archive_bytes": 618295435,
+  "manifest": "forge-native-controller.files.jsonl",
+  "original_files": 9113,
+  "unique_objects": 420,
+  "parts": [
+    {
+      "name": "forge-native-controller.tar.zst.gpg.part0000",
+      "size": 134217728,
+      "sha256": "cb76eb37fc488398d5abcf6961ac11fec3308fd590e9b50e6f60fd70306c47fe",
+      "id": 669865576,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/forge-native-controller.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-native-controller.tar.zst.gpg.part0001",
+      "size": 134217728,
+      "sha256": "a682ecd4d23b3af5e5cca89aac68f642868be98fba5dac21e34a94f9f380c24f",
+      "id": 669865574,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/forge-native-controller.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-native-controller.tar.zst.gpg.part0002",
+      "size": 134217728,
+      "sha256": "9e68ac1124e1c5c40d981be24b88443a50d3906cf92fc180c004fb3f97631038",
+      "id": 669865579,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/forge-native-controller.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "forge-native-controller.tar.zst.gpg.part0003",
+      "size": 134217728,
+      "sha256": "01f0c89b73b6702d7e3b414f29619fdc5b280e11b200c408829507868c54cc12",
+      "id": 669868701,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/forge-native-controller.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "forge-native-controller.tar.zst.gpg.part0004",
+      "size": 81424523,
+      "sha256": "f341a6e0bde89c42d4e2066462e06c4a167e715bde3948bb8238bdd84fbda859",
+      "id": 669868711,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/untagged-5ca422bc347b76b3c6ed/forge-native-controller.tar.zst.gpg.part0004",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 142.73707073600053
+}

@@ -1,0 +1,21 @@
+{
+  "name": "bhuman-k1-training-runs",
+  "status": "VERIFIED",
+  "archive_sha256": "0db57f83062152769143303d7b01955224557655df9ba40351c34863ee95775d",
+  "archive_bytes": 28276632,
+  "manifest": "bhuman-k1-training-runs.files.jsonl",
+  "original_files": 536,
+  "unique_objects": 436,
+  "parts": [
+    {
+      "name": "bhuman-k1-training-runs.tar.zst.gpg.part0000",
+      "size": 28276632,
+      "sha256": "0db57f83062152769143303d7b01955224557655df9ba40351c34863ee95775d",
+      "id": 670055383,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-k1-training-runs.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 21.195061779000753
+}

@@ -1,0 +1,29 @@
+{
+  "name": "forge-bundles",
+  "status": "VERIFIED",
+  "archive_sha256": "170d5796d940ec87d9db70f9549861a2907074816df462ce562090460843dd82",
+  "archive_bytes": 55607026,
+  "manifest": "forge-bundles.files.jsonl",
+  "original_files": 243,
+  "unique_objects": 235,
+  "parts": [
+    {
+      "name": "forge-bundles.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "5b8a05d94d00888da7478edef70617f2f107f0f66833d41c648ab949cdaf931c",
+      "id": 670052789,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-bundles.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-bundles.tar.zst.gpg.part0001",
+      "size": 22052594,
+      "sha256": "84f2bb1884b66e4104a58b603b1bb8d9fd099f5956a4f3e510214aa603dc922c",
+      "id": 670052781,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-bundles.tar.zst.gpg.part0001",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 39.51848200399945
+}

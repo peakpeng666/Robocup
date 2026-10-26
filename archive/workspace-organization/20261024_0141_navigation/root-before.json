@@ -1,0 +1,148 @@
+{
+  "entries": [
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.claude",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 14851173
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.git",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13260137
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.gitignore",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13774029
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.pytest_cache",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 17044697
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.ruff_cache",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 17062954
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.v2c",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 15337538
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.video_agent",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 15337527
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/25game_controller",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13767734
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/26game_controller",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13767756
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/AGENTS.md",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13774028
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13774042
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/README.md",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13772760
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/REMOTE-VERIFIED.json",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13766085
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/RESTORE-ROBOCUP.md",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13766091
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/TRAINING-KIT-README.md",
+      "kind": "file",
+      "device": 66310,
+      "inode": 13764194
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13767797
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13767781
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 15497578
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/booster",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13769987
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/environment",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 14819074
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/forge",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13767565
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/research-inputs",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 14819095
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/robocup",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 14819098
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/workbench",
+      "kind": "directory",
+      "device": 66310,
+      "inode": 13766244
+    }
+  ]
+}

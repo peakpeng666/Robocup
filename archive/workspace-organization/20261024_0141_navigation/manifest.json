@@ -1,0 +1,339 @@
+{
+  "schema": "robocup.workspace-navigation/1",
+  "created_utc": "2026-10-23T16:44:11.640771+00:00",
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "mode": "add-only directory navigation",
+  "moved_originals": [],
+  "deleted_originals": [],
+  "links": [
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/01-当前开发/forge",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge",
+      "link_target": "../../forge",
+      "link_target_sha256": "95f04bf06d0d4cc97c6edd5eaf90b76246e218d50cc4d55edd4d1e874ddef876",
+      "target_exists": true,
+      "purpose": "官方 1.6 接入、独立两队、调试与验收",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/比赛工作区",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019",
+      "link_target": "../../bhuman/local-k1-validation-20261019",
+      "link_target_sha256": "9fe49183e68af69313dd5627003eb6a057480fe5fc81680d0b11c3038b95469b",
+      "target_exists": true,
+      "purpose": "本机比赛工作副本与正常相机感知",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/上游比赛源码",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease",
+      "link_target": "../../bhuman/BHumanCodeRelease",
+      "link_target_sha256": "69b6b381039527b4c323d8e182af6dc4dc753884a7841f871745aba4d7b23a6f",
+      "target_exists": true,
+      "purpose": "保留的 B-Human 上游比赛代码",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/上游学习源码",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/MachineLearning",
+      "link_target": "../../bhuman/MachineLearning",
+      "link_target_sha256": "7e92576bfaf3d7897460e1c86b27cfe52da22067598803278069fdd53c1a4917",
+      "target_exists": true,
+      "purpose": "保留的 B-Human 上游学习代码",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/03-训练与sim2sim/训练主线",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training",
+      "link_target": "../../bhuman/k1-training",
+      "link_target_sha256": "1051e8b00a8affb8451229e3a0ffae07d715b91bc146ea1c7abc47b138518243",
+      "target_exists": true,
+      "purpose": "配置、继续训练检查点、导出与评估",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/03-训练与sim2sim/MuJoCo-sim2sim",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim",
+      "link_target": "../../bhuman/sim2sim",
+      "link_target_sha256": "f4da70dff72327a952be3a076c2a4c8cdfa2a47b345eacd5e28d24aec973ac26",
+      "target_exists": true,
+      "purpose": "原 CPU MuJoCo 回放与数值对照",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Booster-SDK",
+      "original_path": "/home/peakpeng/Desktop/Robocup/booster/booster_robotics_sdk",
+      "link_target": "../../booster/booster_robotics_sdk",
+      "link_target_sha256": "300a7c54e32ffa2b3190904664095123237f9ca1cc18cfd9ea035c4d97de7fee",
+      "target_exists": true,
+      "purpose": "本地 SDK 参考代码",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Demo-本地工作副本",
+      "original_path": "/home/peakpeng/Desktop/Robocup/booster/robocup_demo",
+      "link_target": "../../booster/robocup_demo",
+      "link_target_sha256": "0b3e155e75275de9f1f9cf0a2226862e17810c437b3a0976e1b87b402344ccd4",
+      "target_exists": true,
+      "purpose": "已有本地改动的 Demo，保留原样",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Demo-固定官方基线",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/third_party/robocup-demo-fa4f31ccb442",
+      "link_target": "../../forge/third_party/robocup-demo-fa4f31ccb442",
+      "link_target_sha256": "293f4502da20a71e19366571d9021983ae127d0e74f4a24e6083b14a24ca1deb",
+      "target_exists": true,
+      "purpose": "固定官方 fa4f31c 基线",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/原厂1.6-payload",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/selected-payload/booster",
+      "link_target": "../../forge/third_party/booster-k1-1.6.0.10/selected-payload/booster",
+      "link_target_sha256": "e6878e57035b689c79964556334189c1f9f444d923d0d2403be575f9d0954030",
+      "target_exists": true,
+      "purpose": "保留的原厂 ARM 固件内容，仅浏览",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/既有ROS2工作区",
+      "original_path": "/home/peakpeng/Desktop/Robocup/robocup",
+      "link_target": "../../robocup",
+      "link_target_sha256": "bcc3f7a6a0a28ab480336e754401bcc0d77555f98b5c4a2f36795bb236b4ca86",
+      "target_exists": true,
+      "purpose": "原 RoboCup ROS2 源码和配置",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/BHuman-Web工作台",
+      "original_path": "/home/peakpeng/Desktop/Robocup/workbench",
+      "link_target": "../../workbench",
+      "link_target_sha256": "c1bb289f2bd4a010c7853c3cbe90c53e2d7a21f14b1da95438c04aa14012c8c2",
+      "target_exists": true,
+      "purpose": "原训练、比赛、离线构建工作台",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/环境记录",
+      "original_path": "/home/peakpeng/Desktop/Robocup/environment",
+      "link_target": "../../environment",
+      "link_target_sha256": "f2cfdcc5fe4af88fedc7b22d2bccb09c6aef3a2bc205d2b90b6d143c4c8159ac",
+      "target_exists": true,
+      "purpose": "包清单、硬件记录、IsaacLab 本地配置",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/2025裁判配置",
+      "original_path": "/home/peakpeng/Desktop/Robocup/25game_controller/game_controller",
+      "link_target": "../../25game_controller/game_controller",
+      "link_target_sha256": "7a2baa12aade60bc9943d091bd09a302ca939488a1a23cadb9521f5dae014c2e",
+      "target_exists": true,
+      "purpose": "保留的 2025 裁判配置、README 与许可",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/2026裁判配置",
+      "original_path": "/home/peakpeng/Desktop/Robocup/26game_controller/game_controller",
+      "link_target": "../../26game_controller/game_controller",
+      "link_target_sha256": "88ae6d3c9a8e18fcd8371fa74e2b57ecda238c67bc354a75196e5988328f7595",
+      "target_exists": true,
+      "purpose": "保留的 2026 裁判配置、README 与许可",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/Forge文档",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/docs",
+      "link_target": "../../forge/docs",
+      "link_target_sha256": "cf0d6233a10b62ca321fc79a7ed28d19afc676d4c8cbfd81482f0c91fb27915b",
+      "target_exists": true,
+      "purpose": "当前进度、双队适配与验证说明",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/BHuman文档",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/docs",
+      "link_target": "../../bhuman/docs",
+      "link_target_sha256": "ff28fec87df5c52f52cb98fe124fce18f861428be8cec1226581376977d6c4fb",
+      "target_exists": true,
+      "purpose": "训练交接、接口契约与历史设计",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/BHuman调研材料",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019",
+      "link_target": "../../bhuman/research-materials-20261019",
+      "link_target_sha256": "e31d1bf926b5bbd1c50ee07509c4d3981f88447ea1da410fc68b1995e1c3ba70",
+      "target_exists": true,
+      "purpose": "已有调研与原始材料",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/原始交接输入",
+      "original_path": "/home/peakpeng/Desktop/Robocup/research-inputs",
+      "link_target": "../../research-inputs",
+      "link_target_sha256": "f37fb4045a0e7d18fb43202a23f57cd4e19a817cb6ecd356093ffaa2c91a77ec",
+      "target_exists": true,
+      "purpose": "原始粘贴交接文本",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/工作台说明",
+      "original_path": "/home/peakpeng/Desktop/Robocup/workbench/docs",
+      "link_target": "../../workbench/docs",
+      "link_target_sha256": "7c8fa16aace6226ee13e2e6bbccd0b115ec4f25ba56d104a521eb5ecf0abf106",
+      "target_exists": true,
+      "purpose": "旧工作台设计与验收记录",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/Forge运行证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/runs",
+      "link_target": "../../forge/runs",
+      "link_target_sha256": "87ff30a928aaeff8c91c0155ff98afe630c46953d0465ab5b9d326ea97850ed0",
+      "target_exists": true,
+      "purpose": "各时间戳原始运行、失败与验证证据",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/BHuman比赛证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs",
+      "link_target": "../../bhuman/local-k1-validation-20261019/runs",
+      "link_target_sha256": "94c9f0eda1f20324fafb7a9dd32667eb99ce6db6b81d64cfeb313866f43b61db",
+      "target_exists": true,
+      "purpose": "B-Human 本机比赛及步态记录",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/训练证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs",
+      "link_target": "../../bhuman/k1-training/runs",
+      "link_target_sha256": "a40b5946ff6b40647c0c075c43f307e0f4035917ad6c07c3d3fd78901da653d6",
+      "target_exists": true,
+      "purpose": "训练过程、恢复检查点、评估与报告",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/sim2sim证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/runs",
+      "link_target": "../../bhuman/sim2sim/runs",
+      "link_target_sha256": "38715e1e41ba9f1777af315e25f2a4a738daf8c9ccfcd351c20a1c2a261cee53",
+      "target_exists": true,
+      "purpose": "MuJoCo 实际运行与策略对照",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/归档恢复清单",
+      "original_path": "/home/peakpeng/Desktop/Robocup/archive",
+      "link_target": "../../archive",
+      "link_target_sha256": "f8d474c7d283a108fed1fd1ff4b52ef00320adc34adb99806a5e162535c9dcd3",
+      "target_exists": true,
+      "purpose": "原归档、远端核验与本机恢复证据",
+      "original_moved": false
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/归档恢复工具",
+      "original_path": "/home/peakpeng/Desktop/Robocup/archive-tools",
+      "link_target": "../../archive-tools",
+      "link_target_sha256": "87c9489274439b3002c6e8a9b82e5362fad5bc66570a13ad3db26604a494b4d1",
+      "target_exists": true,
+      "purpose": "原本机归档和恢复工具",
+      "original_moved": false
+    }
+  ],
+  "generated_files": [
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/WORKSPACE-INDEX.txt",
+      "sha256": "113f82d8e9157676833674c2c927dbbbc7aed1f9a731e186319299e405632738"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/workspace-nav/README.txt",
+      "sha256": "776f2a27716adab1ebe26d6b372977227be38542c5d5af00a100b2e21e00739b"
+    }
+  ],
+  "created_directories": [
+    "/home/peakpeng/Desktop/Robocup/workspace-nav",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/01-当前开发",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/03-训练与sim2sim",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明",
+    "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档"
+  ],
+  "protected_originals": [
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/AGENTS.md",
+      "sha256": "e75b8095a329f91f0a1e19c7d64ca960c97ad0d7f681cf07ee3ebf900c63c0ed"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/README.md",
+      "sha256": "d1e53e668d866ca109cbf91cff6391dc7dd0245fcb2f4a185134df0825ecf0bc"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md",
+      "sha256": "b968f9620555dedf97e0115fb92b8f45b4a0fc1866cfd714be77ea603d5fd433"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/RESTORE-ROBOCUP.md",
+      "sha256": "3fd452f05e62254cedf4c320126cb677b9c699d7054471dfa0fc9cb3d59e4902"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/TRAINING-KIT-README.md",
+      "sha256": "d898832eb573bc01f476529e82767fb54222ebe8dd4e0ed3dbca7ab96a40c943"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/REMOTE-VERIFIED.json",
+      "sha256": "a7bc6202991c49f7e3e4c6f080ebd31b7f50ee216feecb74e49941f7cffd3db1"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.gitignore",
+      "sha256": "7502ba5e5d30e1f3cd317358b90167c3b65a8426ef362c85bde2a131a485078b"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh",
+      "sha256": "df7d8530a37d1e8836cfad25bd382d60e582ab8e6667bf471c52dc7dc477a51c"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/run-bhuman-k1.py",
+      "sha256": "8fc24ce1acdab8da078d49f06a09a1d4f7aeee573adb1d20a9e4cf2e20201945"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+      "sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so",
+      "sha256": "15e312c82a84bae3033f3b16eb9d06e368731e2e13b153d006c471e5fc2a71a5"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/run-mujoco.sh",
+      "sha256": "94d014c9b23cecbbcfac881f7aa749daa2adda43b9868f2b772d4e66fb289060"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/mujoco_walk.py",
+      "sha256": "2f503a333177b81ae6600245bf051595eb55174853e9aa70636f4cb0feb17d74"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/env.sh",
+      "sha256": "649d72b5c0fb67321ad421d51873ba5540cf395c672e7aaf7bb7ae450a228079"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stability.sh",
+      "sha256": "3cdbd4cf4db6d9b9744b1b9a90f130e28597bdff8e61034a205a8b3b6bd0b1f1"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/workbench/README.md",
+      "sha256": "2eabee0cc8c6991be50f8badf602090a25b1ce81107c790517bad9ba6a88a046"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools/restore.py",
+      "sha256": "a5c4c34662e17c53078a265f0d5ab4830d4515049ff192d5fa1121309a666e09"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools/training_kit.py",
+      "sha256": "bd71c9f4f554c6af88e7b17b400ba652e183b83dadb8154c8761b7873bb28e58"
+    }
+  ],
+  "notes": "Directory contents remain live; hashes protect unchanged original entrypoints, not active whole trees."
+}

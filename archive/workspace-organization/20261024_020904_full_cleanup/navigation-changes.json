@@ -1,0 +1,104 @@
+{
+  "schema": "robocup.navigation-changes/1",
+  "created_at": "2026-10-24T02:13:04.457167+09:00",
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "scope": "Only three navigation documents, one new directory and eight relative symlinks; existing project and evidence contents untouched.",
+  "modified_documents": [
+    {
+      "path": "WORKSPACE-INDEX.txt",
+      "before_sha256": "113f82d8e9157676833674c2c927dbbbc7aed1f9a731e186319299e405632738",
+      "after_sha256": "05cdcd40a05e70fefa7531cfccf7054cece7d0ba90084ce25fad27d07977c6e9",
+      "backup": "archive/workspace-organization/20261024_020904_full_cleanup/original-docs/WORKSPACE-INDEX.txt"
+    },
+    {
+      "path": "workspace-nav/README.txt",
+      "before_sha256": "776f2a27716adab1ebe26d6b372977227be38542c5d5af00a100b2e21e00739b",
+      "after_sha256": "948d006435d7b65be12d8cc15469bcf2437c970e0693369b94273d5f557885b3",
+      "backup": "archive/workspace-organization/20261024_020904_full_cleanup/original-docs/workspace-nav/README.txt"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "d1e53e668d866ca109cbf91cff6391dc7dd0245fcb2f4a185134df0825ecf0bc",
+      "after_sha256": "50fae7ccb33888fdf841d81732051905230954db8c1ad532cb5bb7db8fcd2dfb",
+      "backup": "archive/workspace-organization/20261024_020904_full_cleanup/original-docs/README.md"
+    }
+  ],
+  "added_paths": [
+    {
+      "path": "workspace-nav/00-常用入口",
+      "type": "directory"
+    },
+    {
+      "path": "workspace-nav/00-常用入口/01-稳定BHuman比赛",
+      "type": "symlink",
+      "target": "../../bhuman/local-k1-validation-20261019/bhuman-local",
+      "resolved_path": "bhuman/local-k1-validation-20261019/bhuman-local",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/02-训练主线",
+      "type": "symlink",
+      "target": "../../bhuman/k1-training",
+      "resolved_path": "bhuman/k1-training",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/03-MuJoCo-sim2sim",
+      "type": "symlink",
+      "target": "../../bhuman/sim2sim",
+      "resolved_path": "bhuman/sim2sim",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/04-Forge当前profile.json",
+      "type": "symlink",
+      "target": "../../forge/profiles/official-fw16-demo.json",
+      "resolved_path": "forge/profiles/official-fw16-demo.json",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/05-最新接口证据-020115",
+      "type": "symlink",
+      "target": "../../forge/runs/official-application/20261024_020115_889044",
+      "resolved_path": "forge/runs/official-application/20261024_020115_889044",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/06-最近视觉踢球-013900",
+      "type": "symlink",
+      "target": "../../forge/runs/official-application/20261024_013900_951649",
+      "resolved_path": "forge/runs/official-application/20261024_013900_951649",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/07-较强踢球证据-011509",
+      "type": "symlink",
+      "target": "../../forge/runs/official-application/20261024_011509_150162",
+      "resolved_path": "forge/runs/official-application/20261024_011509_150162",
+      "target_exists": true
+    },
+    {
+      "path": "workspace-nav/00-常用入口/08-工作区索引.txt",
+      "type": "symlink",
+      "target": "../../WORKSPACE-INDEX.txt",
+      "resolved_path": "WORKSPACE-INDEX.txt",
+      "target_exists": true
+    }
+  ],
+  "verification": {
+    "new_relative_symlinks": 8,
+    "all_navigation_symlinks": 34,
+    "broken_links": [],
+    "readme_original_content_preserved": true
+  },
+  "source_evidence": [
+    "forge/profiles/official-fw16-demo.json",
+    "forge/runs/official-application/20261024_020115_889044/result.json",
+    "forge/runs/official-application/20261024_020115_889044/port-contract-audit.json",
+    "forge/runs/official-application/20261024_013900_951649/visual-kick-audit.json",
+    "forge/runs/official-application/20261024_011509_150162/visual-kick-episode-audit.json",
+    "bhuman/k1-training/manifests/last_walk_reference_full_s7.json",
+    "workbench/configs/project.json",
+    "bhuman/local-k1-validation-20261019/scripts/runtime_env.py"
+  ]
+}

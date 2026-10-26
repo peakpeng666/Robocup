@@ -1,0 +1,298 @@
+{
+  "status": "PASS",
+  "group": "cleanup-audit",
+  "downloaded_parts": 1,
+  "verified_objects": 68,
+  "selected_files": 72,
+  "restored_files": [
+    {
+      "path": "_local/offload/cleanup-audit/Robocup-pr4.diff.gz",
+      "sha256": "e233acaf9a71b9fbdc6688f0d342fc7dcb06b7a1c638e28c0a9d54c8318601ff"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/Robocup-pr4.status.z.gz",
+      "sha256": "f93ba6f95a787e42d2d476dcd525c3f23f59845f9a6c29b1605c70f6134f2017"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/Robocup.diff.gz",
+      "sha256": "0e36f5d4fb724b0d3d080b609efcddacf18011173e0fefc371e9af12ab86d87a"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/Robocup.status.z.gz",
+      "sha256": "faf5f871be7c473caa1980c665efd8edfa7a33fef40d5d9e2dc8d4e884ed9ceb"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/apply_data_cleanup.py.gz",
+      "sha256": "8e1be419f3985f4561890a0e05d6a6ad214b46fb9a75766f2ee73b28d36eaa4b"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/archive_retired_trash.py.gz",
+      "sha256": "17116eda55b8415ccfb81bb02cfaa65fb79d3b9f30ccfee6edcfb6201fd0c35b"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/audit-compaction-result.json.gz",
+      "sha256": "b2d500542444ef0219e6ccd452f5c373bba67e77c193e919bfa82b43fc5dc75a"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cache-cleanup-result.json.gz",
+      "sha256": "f540b455c5b7e90ba2369a9b5be4f31a78d196b338272de65927329ff29b887b"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cache-runtime-check.json.gz",
+      "sha256": "9b114ca2b2ef85e7eac06996125c82fc798c67e8a7a38dfe5bdbc338c66f5f11"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/caches.json.gz",
+      "sha256": "33504f1056b6828cd0e812873c4b17da5390ccc911608856f06e6915917aa881"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cleanup_common.py.gz",
+      "sha256": "7898d8b15342d2c86c910865ef65ec6802a3c7cb9d9b4a07f1dd188b614ade2d"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cleanup_installers.py.gz",
+      "sha256": "9e3aaa3639b5b77a8d727d7168f7c9d6315693dd2a6eb7dfc26e087aad8352ec"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cloud-backup-retry.log.gz",
+      "sha256": "043df255aa9e0cd05ba60a0d13936b578215afbe9934aa6b55cf8147c8fe52c6"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cloud-backup.log.gz",
+      "sha256": "8fa154748f684b879f5e16d04f0f351a0bed7b3ec753c59f0570ad2385f93331"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/cmake_intermediates.json.gz",
+      "sha256": "e5a4df890a96f5798493663221862394d566e7f04a7f65bed0cd693b18ac7d97"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/drive-roundtrip-before-removal.json.gz",
+      "sha256": "26496544b26cf88264c5517463fdbf16a0c471e402a63f1d6bcb58a87dd1b086"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/drive-roundtrip-result.json.gz",
+      "sha256": "f529c5e6e4485c7fa7ff78b1e497e6e865639352d0ab3a9ba8ea0e9bfab79fb5"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-before-removal.json.gz",
+      "sha256": "92375df036e8dd2a42bc138b32f45bb19c7674d2135a1eccef1f848eb18463c0"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-cleanup-result.json.gz",
+      "sha256": "2b30f03c24dfc9816b15ec59f10790e2f5784211bb3645fa861b456a08b7a419"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-files-verified.jsonl.gz",
+      "sha256": "ead4a3b03ea0534a857543ec2fd57fb9cfbd06ec420f0265da7806df965ef847"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-git-check.json.gz",
+      "sha256": "a9dda73059a2b7b7f1de078e9cdfe4663f7946f99a6edbaac8dc18a4ed91bc87"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-git-retained.json.gz",
+      "sha256": "eb6d5283eef0d948b7330bc7ad8c760fa03fd8b0452e5068a7111fee6839ee16"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-runtime-check.json.gz",
+      "sha256": "d7d6cf886113acb06c4adb781016fa42011737ec8c6719dde00fdf5ae8502971"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/duplicate-clone-source-verification.json.gz",
+      "sha256": "2c5c83848ec87bc2805de4ea745237d9d08399eb4486cefbf7daa9b2229eab27"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/existing-cloud-present-files.jsonl.gz",
+      "sha256": "c2e9c23ff26a35aadece137fcde771dffc7796d36dddc96e43d6f8b5379ffc19"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/existing-release-reverification.json.gz",
+      "sha256": "bdcac144b2915c583955e8bd6afe89354cf398cf9df85bb318f7011d556c0adc"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/final-foundation-verification.json.gz",
+      "sha256": "9470ac99d08b239d9c5501a4039505ce984a8d0c8148feb3c0d80ca725942a98"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/final-remote-verification.json.gz",
+      "sha256": "d02d1970e6af40202f4598d648017147cdf5ea95f4bd450baaa67a1bfa29c878"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/forge-tests-correct-entry.log.gz",
+      "sha256": "4a3480cfb719d1f9ab8d0c7e192f6b5338d27a7da7a463410c55825103cdd733"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/forge-tests.log.gz",
+      "sha256": "58437afebcfce3d699a3b11d7412e54b960442c0ab0a64d80b132ca02a684d4a"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/historical-data-cleanup-result.json.gz",
+      "sha256": "7935cd6429431c551e13d1b645769928b3ff8d130a7e23f395041665419cfc5b"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/historical-data-removal-plan.jsonl.gz",
+      "sha256": "c0cbc60fb9082864e6b25a670ca608e2860c87e6d662c05e5896313a8cbfb4d1"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/removed-historical-data.jsonl.gz",
+      "sha256": "c0cbc60fb9082864e6b25a670ca608e2860c87e6d662c05e5896313a8cbfb4d1"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/historical-data-removal-summary.json.gz",
+      "sha256": "2b3e51652ee8c37e4d17a8f4ad0ca514fcec9ea9fcbcd80bd64b919c735d2532"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/historical-data-runtime-check.json.gz",
+      "sha256": "e9a6dc1e397bef13b91d2216f0809500e454d2f8e1788a66655216f646729109"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/historical_bulk_data.json.gz",
+      "sha256": "d153271c49f3a1776c711984723b5066fdbd799b69bff934c01bac2849ed4172"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/installer-cleanup-result.json.gz",
+      "sha256": "4d6c53e1af325d9096fb33deaea39a39290e319b475d7de932fd92662e02668a"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/installer-runtime-check.json.gz",
+      "sha256": "fac8f92e5fb94e23324bce7372ffffa01f0a02b11163c5bd2f1fee2504f83ab4"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/installers_and_archives.json.gz",
+      "sha256": "0ad69d5b127dd260f68a475de91c41c8b980df7696cb84e9cb1380dcee022cd2"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/inventory.jsonl.gz",
+      "sha256": "e70932627cb160a74974b2eefea8d1e0eba52cbb2bd8c67c988f792abade07d2"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/main-staged-files.json.gz",
+      "sha256": "0b03a162c4446c633ff43ed2e62415d4dcfe717478abf6f86ff52daee7009d84"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/native17-publication-review.json.gz",
+      "sha256": "bef85322e133c47f2ff7778bd9e3215674f4744b63ba53d0ab13b843523a1dfa"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/navigation-and-download-organization.json.gz",
+      "sha256": "6a769a0833371c7c057ebaf86edfaf42ed9c7bf08d404861bcc015f4e43a1cad"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/post-cleanup-training-environment.log.gz",
+      "sha256": "045f63debcc50d0f29d8cb5457f0fcb761748b92cab17a64885a358f23ad9269"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/pr4-readonly-checks.log.gz",
+      "sha256": "e9743cd83613ad83fef2df5149001ee58e8da9ca7960f8ca97b3a1fa64769183"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/prepare_data_cleanup.py.gz",
+      "sha256": "36d3fe9bb76908bfb44641ed99063aef5c1f8e40a0d472b0ffb72e454b5205db"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/prepare_remote_archive.py.gz",
+      "sha256": "74eb7817f7ef60e7cfd88cf35e18731390e2b44e8dd0df1734726d44632fd3bc"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/python_test_lint_cache.json.gz",
+      "sha256": "7ca205f7ac12e391bd0b6af1c4feef817939b7705703c2a03d0a7124a9b7809d"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/release-notes.md.gz",
+      "sha256": "4c6d66bf81e25ceec17ef9d001df8fbe5f4f7dc63830aad995d3caf868558bfc"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/removed-cache-files.jsonl.gz",
+      "sha256": "34272227a2ca50bea4aa76fe31e513b102b81ad0fd671eab413db54e7890b108"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/removed-installers.jsonl.gz",
+      "sha256": "a5b8809f85ba74f843ec823ad882e8aec020380e6189402d0643f5997c8b49b9"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-crypto.log.gz",
+      "sha256": "ea696735057dc3307956a425ac3ec442dc755b169833040ceb824d628aed58fe"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-final-observation.json.gz",
+      "sha256": "b98e79e9cef79b30039ad23ecc5a38102750db8fc838388ea350745b44c19925"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-manifest.json.gz",
+      "sha256": "a7de2dcfafe9fe12f16dfcbf55f83e3bb2500addbc4826769d4d67dfc00298ae"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-offload-retry.log.gz",
+      "sha256": "98d2f7de743ec3cd53919d2abd4965a28078cc3fb4b9d8dc2ccbd0b001896e89"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-offload.log.gz",
+      "sha256": "a93021e2fef8884ec0369b5f456f2319437e7220f1f5e7ae80424b33d8428995"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/retired-trash-runtime-check.json.gz",
+      "sha256": "81222fd4b960f4d7dc4fc9f6dea512ae897493192b9b779f7564b2f078bb3d89"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/rl-contracts-staged-files.json.gz",
+      "sha256": "911636312ba081e3e1655eb3962e18b4bf26fc5fca1e3156b29c8909b17e28ed"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/robocup-1.diff.gz",
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/robocup-1.status.z.gz",
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/robocup-2.diff.gz",
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/robocup-2.status.z.gz",
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/source-publication-review.json.gz",
+      "sha256": "18710ec5dd8e719f9fe4b24ef80aa7f966a39209a0c8689de098cf69550758da"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/source-validation.json.gz",
+      "sha256": "ce7f91e33f6decc8f3d53535afd1a5ab2aef51969779a9f9b57e43ce8b1a70be"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/summary.json.gz",
+      "sha256": "8965e532c3c5dba9e7bce53d9b6e6928af8a49a800a5a12460bc9f0275cc6640"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/symlinks.json.gz",
+      "sha256": "9d890f0f20974acdd127c9059c00e7f0ad4d4890a04a22c04a5eec641f38563b"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/temporary-transfer-cleanup.json.gz",
+      "sha256": "0d4c4bfef8539236c702f9f20d8960d92438dc284a4d08bb44cf53d296833fd5"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/temporary-transfer-runtime-check.json.gz",
+      "sha256": "8d398c0a7a17561b069fbc0a153d6179547c078b7c77adf7a01959e8980b5ba9"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/upload-connection-retries.jsonl.gz",
+      "sha256": "7bf6477e2087127aa9c796a851d2d681faad4e4946ae8ed12b1a90d8a336a92f"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/whole-workspace-preservation-check.json.gz",
+      "sha256": "fe3e04536de170fcc8642e36ff72bd98f206e6098a9d9089147cde56201407f1"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/workbench-tests.log.gz",
+      "sha256": "2c23bec721e1fa31c774e2c40dc5cb14fdfc6e5b5b9d0eae31acd237210b33f5"
+    },
+    {
+      "path": "_local/offload/cleanup-audit/worktree-runtime-check.json.gz",
+      "sha256": "0c4bd3778d64f13d9fc3b0b92b18fc3513c3c1f59a02f836e5b3603de828c19a"
+    }
+  ],
+  "verify_only": false
+}

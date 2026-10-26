@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "profile_components_match_precleanup_receipt": true,
+  "profile_contract": {
+    "schema": "forge.real2sim.run-contract/1",
+    "port_contract": {
+      "schema": "forge.real2sim.application-port/1",
+      "transport": "local-unix-framed-json-plus-pixels/1",
+      "clock": {
+        "step_ns": 2000000,
+        "brain_every_steps": 5,
+        "camera_every_steps": 20,
+        "team_every_steps": 50,
+        "start_step": 1
+      },
+      "camera": {
+        "width": 544,
+        "height": 448,
+        "color": "RGB8",
+        "depth": "float32le-metres",
+        "optical_axes": "right-down-forward",
+        "intrinsics_and_extrinsics": "explicit-calibrated-scene"
+      },
+      "feedback": {
+        "joints": 22,
+        "domain": "K1-serial-plus-original-parallel",
+        "angle": "radian",
+        "velocity": "radian/second",
+        "torque": "Nm",
+        "body_axes": "FLU",
+        "pose_source": "native-odometry-and-head-FK"
+      },
+      "referee": {
+        "schema": "forge.referee/1",
+        "ownership_preserved": true
+      },
+      "commands": {
+        "sdk": "original-api-id-uuid-json-and-actual-response",
+        "visual_input": "original-stamped-kick-message"
+      },
+      "ground_truth_to_algorithms": false
+    },
+    "negotiation_required": true,
+    "legacy_replay": false,
+    "components": {
+      "application": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-real2sim-platform-20261024-i/sim-build/official_application",
+        "sha256": "c8d32f9d158cda2fb06b9e8e542eb1e6d5a280fb665d16d2f55ecaa1809dde36"
+      },
+      "simulator_port": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-i/Build/Linux/SimRobot/Release/libOfficialTeam.so",
+        "sha256": "aac337eb1f91593c3058ced07123c5706595f70cc174ce96fe8dbd4f8226bda9"
+      },
+      "physics_core": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so",
+        "sha256": "c4ce565a7b206b41259207c8c4e4fbbc33ce0b938dcc64cb40ad110a8b032efb"
+      },
+      "io": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/application-io-final-v2/libforge_booster_fw16_io.so",
+        "sha256": "6b0496c12e851f2f94643b39d6efea2f0dfbdd2d11d7a1d59415a9aeec4cba53"
+      },
+      "rpc": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/native-controller/20261024_001413_860601_application-rpc-build/libforge_booster_fw16_rpc.so",
+        "sha256": "3705965797ae01e9b8b511eef8d76f3eb430ef22a76d22cbd71b0faa65e660e1"
+      },
+      "physics": {
+        "path": "/home/peakpeng/Desktop/Robocup/forge/runs/full-native-integration/20261023_154209_673865_postboot-continuation/physics-imu-flu-v1/libforge_booster_fw16_physics.so",
+        "sha256": "81d2282fd64ef7177f46d3cd5d55da6d1b3a7f7cc84c56693d78da53e7bb2b0b"
+      }
+    },
+    "controller_backend": "official-fw16",
+    "application_upstream": "fa4f31ccb4428a9e60e90b4f54eb80499caeb0ca",
+    "shared_compatibility_patch": "/home/peakpeng/Desktop/Robocup/forge/variants/official-real2sim-platform-20261024-i/firmware16-compatibility.patch",
+    "platform_patch": "/home/peakpeng/Desktop/Robocup/forge/variants/official-real2sim-platform-20261024-i/platform.patch",
+    "optional_perception_patch": "/home/peakpeng/Desktop/Robocup/forge/variants/official-real2sim-platform-20261024-i/depth-ball-consistency.patch",
+    "motor_port": {
+      "schema": "forge.fw16-serial-actuator/2",
+      "joints": 22,
+      "step_ns": 2000000,
+      "sensor_fields": [
+        "q",
+        "qd",
+        "estimated_tau",
+        "IMU_rpy",
+        "IMU_gyro",
+        "IMU_acc"
+      ],
+      "command_fields": [
+        "q_target",
+        "qd_target",
+        "tau_ff",
+        "kp",
+        "kd",
+        "torque_limit"
+      ],
+      "ankle_conversion": "original parallel kinematics/Jacobian; four ankle motors only",
+      "sequence_and_simulation_time_checked_every_cycle": true
+    },
+    "full_real2sim_qualified": false,
+    "robot_connected": false
+  },
+  "bhuman_cuda_runtime": {
+    "onnxruntime_gpu": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runtime/onnxruntime-gpu-1.22.0/lib",
+    "cuda_libraries_reused_from": "/home/peakpeng/.venvs/isaaclab/lib/python3.11/site-packages/nvidia",
+    "precision": "FP32; TF32 disabled; motion policies remain on CPU"
+  },
+  "environment_interpreters_exist": {
+    "forge": true,
+    "forge-mjlab": true,
+    "bh-gym": true,
+    "isaacsim-gui": true,
+    "isaaclab": true
+  },
+  "simulation_or_training_started": false
+}

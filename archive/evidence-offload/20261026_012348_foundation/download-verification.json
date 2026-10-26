@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "status": "PASS",
+      "group": "historical-data-delta",
+      "downloaded_parts": 1,
+      "verified_objects": 193,
+      "selected_files": 193,
+      "verify_only": false,
+      "files_written_and_verified": 193
+    },
+    {
+      "status": "PASS",
+      "group": "native17-workspace",
+      "downloaded_parts": 4,
+      "verified_objects": 6356,
+      "selected_files": 30,
+      "verify_only": false,
+      "files_written_and_verified": 30
+    }
+  ],
+  "original_sources_not_modified": true
+}

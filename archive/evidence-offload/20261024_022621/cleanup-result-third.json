@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "groups": [
+    "official-application-20261024_011509_150162",
+    "official-application-20261024_013900_951649"
+  ],
+  "removed_files": 19212,
+  "reclaimed_allocated_bytes": 4351213568,
+  "retained_canonical_runtime_files_verified": 0,
+  "disk_after": {
+    "total": 283676618752,
+    "used": 244221378560,
+    "free": 24970735616
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "robocup.remote-evidence/1",
+  "repository": "peakpeng666/Robocup",
+  "tag": "evidence-20261024_022621",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621",
+  "encryption": "GPG AES256; owner recovery key remains local",
+  "complete": true,
+  "groups": [
+    {
+      "name": "evidence-audit-records",
+      "status": "VERIFIED",
+      "archive_sha256": "da67108efe54fc1e279cdade05fd920b6b249a3af52ce497f7dd6ebc56bac56d",
+      "archive_bytes": 21589551,
+      "manifest": "evidence-audit-records.files.jsonl",
+      "original_files": 313,
+      "unique_objects": 222,
+      "parts": [
+        {
+          "name": "evidence-audit-records.tar.zst.gpg.part0000",
+          "size": 21589551,
+          "sha256": "da67108efe54fc1e279cdade05fd920b6b249a3af52ce497f7dd6ebc56bac56d",
+          "id": 670069361,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/evidence-audit-records.tar.zst.gpg.part0000",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 16.586883336000028
+    }
+  ],
+  "original_bytes": 102948475,
+  "files": 313,
+  "scope": "Cleanup receipts, before inventories, depth lossless manifests and restoration tool snapshots. No original run bulk data or owner recovery key."
+}

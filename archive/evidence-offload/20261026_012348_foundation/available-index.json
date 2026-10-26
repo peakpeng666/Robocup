@@ -1,0 +1,1586 @@
+{
+  "schema": "robocup.remote-evidence/1",
+  "repository": "peakpeng666/Robocup",
+  "tag": "foundation-data-20261026_012348",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348",
+  "encryption": "GPG AES256; owner recovery key remains local",
+  "complete": true,
+  "groups": [
+    {
+      "name": "historical-data-delta",
+      "status": "VERIFIED",
+      "archive_sha256": "d9da062acfba862b9b40d2cf3d584309cc82d00093fbddf513fabe89aeeb36d6",
+      "archive_bytes": 1527563,
+      "manifest": "historical-data-delta.files.jsonl",
+      "original_files": 193,
+      "unique_objects": 193,
+      "parts": [
+        {
+          "name": "historical-data-delta.tar.zst.gpg.part0000",
+          "size": 1527563,
+          "sha256": "d9da062acfba862b9b40d2cf3d584309cc82d00093fbddf513fabe89aeeb36d6",
+          "id": 675562926,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/historical-data-delta.tar.zst.gpg.part0000",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 8.750133043999995
+    },
+    {
+      "name": "engineering-records",
+      "status": "VERIFIED",
+      "archive_sha256": "9ea6af505fdb3ba2cb6d4c7e16533fd85ff69df60be4d1702bde8b0ecb9fe102",
+      "archive_bytes": 901954,
+      "manifest": "engineering-records.files.jsonl",
+      "original_files": 121,
+      "unique_objects": 119,
+      "parts": [
+        {
+          "name": "engineering-records.tar.zst.gpg.part0000",
+          "size": 901954,
+          "sha256": "9ea6af505fdb3ba2cb6d4c7e16533fd85ff69df60be4d1702bde8b0ecb9fe102",
+          "id": 675563279,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-records.tar.zst.gpg.part0000",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 9.74486156399962
+    },
+    {
+      "name": "native17-workspace",
+      "status": "VERIFIED",
+      "archive_sha256": "9f3fac86ac0f8140704b210e5a413d9129ff0fde74826ebccabc7b213b19c054",
+      "archive_bytes": 115561830,
+      "manifest": "native17-workspace.files.jsonl",
+      "original_files": 7326,
+      "unique_objects": 6356,
+      "parts": [
+        {
+          "name": "native17-workspace.tar.zst.gpg.part0000",
+          "size": 33554432,
+          "sha256": "8b021c1a809ec5463d4ced67f53bce08afe8ef3e4fcba001145a9f26a44d7cff",
+          "id": 675563005,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0000",
+          "verified": true
+        },
+        {
+          "name": "native17-workspace.tar.zst.gpg.part0001",
+          "size": 33554432,
+          "sha256": "eb35436988093cc1cf7f9eae113009021ceffc79621ddfd61049005ae9198b29",
+          "id": 675563029,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0001",
+          "verified": true
+        },
+        {
+          "name": "native17-workspace.tar.zst.gpg.part0002",
+          "size": 33554432,
+          "sha256": "1dfa0da46834c2b013133faeb5dc01aba01f884c2748c625616ba4a3dcbd01bc",
+          "id": 675563026,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0002",
+          "verified": true
+        },
+        {
+          "name": "native17-workspace.tar.zst.gpg.part0003",
+          "size": 14898534,
+          "sha256": "322c8f1a76962bbfacf7a2aaa135d1655508cdafdb131545a05687a78566fb89",
+          "id": 675563067,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/native17-workspace.tar.zst.gpg.part0003",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 107.82401831100015
+    },
+    {
+      "name": "forge-runtime-foundation",
+      "status": "VERIFIED",
+      "archive_sha256": "d663cc05db4cbb6ac10200d214a2c2b7d56fed23041d335fcf6c2b5de137929f",
+      "archive_bytes": 1489066732,
+      "manifest": "forge-runtime-foundation.files.jsonl",
+      "original_files": 175233,
+      "unique_objects": 9846,
+      "parts": [
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0000",
+          "size": 33554432,
+          "sha256": "31cba52cd0f6e7805cd7436cdfa675b91933fbdff9416ee8321fa9055111f913",
+          "id": 675563273,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0000",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0001",
+          "size": 33554432,
+          "sha256": "9cf2bddb9816b6d1e62ffd032a9ee2687fbc5436c8031b20aad7a469d879d387",
+          "id": 675563275,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0001",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0002",
+          "size": 33554432,
+          "sha256": "6a138482e9c67aced336aa70efe8b756c1d9330dca86c70bb3d60d247b2d885e",
+          "id": 675563291,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0002",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0003",
+          "size": 33554432,
+          "sha256": "fd14c5b3f27a89d6d5c6098be09da8e2a058497ca585676961823b9c372cb63e",
+          "id": 675563278,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0003",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0004",
+          "size": 33554432,
+          "sha256": "774bdfd3c3256d1913f422c46e6be49cdba02d14c46a3ff52d7dfc9a453e4805",
+          "id": 675563299,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0004",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0005",
+          "size": 33554432,
+          "sha256": "35554656db9fdc93385151dc6876091aafedc98e621472520bd594f5e33a7848",
+          "id": 675563285,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0005",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0006",
+          "size": 33554432,
+          "sha256": "8e4ad57ff46ee3308b5727d61baeca075186c72220e119516d4ef291f154633a",
+          "id": 675569419,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0006",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0007",
+          "size": 33554432,
+          "sha256": "6dbcf5bca1b92051e86f035b15582961c9720a2974d972561c0ec93b80eea4f7",
+          "id": 675569416,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0007",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0008",
+          "size": 33554432,
+          "sha256": "a9ddfdef1572511de69c4e67a2b6f50d369e75bce75706d0ec9678f39a59dd54",
+          "id": 675569391,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0008",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0009",
+          "size": 33554432,
+          "sha256": "fffc489e5174890301e6ff65d1edb95c69365f35edf521e79c4a1f79f48bcdcc",
+          "id": 675569393,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0009",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0010",
+          "size": 33554432,
+          "sha256": "290012925fa38eccaa40eda9f42113db692e53826120978e4a3c1379b9ce7334",
+          "id": 675569409,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0010",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0011",
+          "size": 33554432,
+          "sha256": "21614f0226efbed39d62431e4954c1e30929dc77c43faa8ad3d1601cdc2bee29",
+          "id": 675569401,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0011",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0012",
+          "size": 33554432,
+          "sha256": "2f96e55e4085e29a92ce150f6507afb3dd0ccf1c19e8873674eb0bbdbaf4bcc8",
+          "id": 675571973,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0012",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0013",
+          "size": 33554432,
+          "sha256": "6037eaf6974c4b67fa55456b38db5f3a3d9fae3f0efd58f4b9865c43f13fd5ea",
+          "id": 675572018,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0013",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0014",
+          "size": 33554432,
+          "sha256": "b9f8ac027b5db0b1e0e93117c1006ce4b84d11b0ac144d208e1ca794f9a931f3",
+          "id": 675571982,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0014",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0015",
+          "size": 33554432,
+          "sha256": "3f7e9fa20207d3a930d8f2009250d0efcd33602d45494283e37cdbf395697156",
+          "id": 675571995,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0015",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0016",
+          "size": 33554432,
+          "sha256": "4bee24a7e32b12a04b04a278e5f5af4e50f0a047c56e2b8e7ceb96e88fa59e47",
+          "id": 675572032,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0016",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0017",
+          "size": 33554432,
+          "sha256": "37e4ef63324768ce4933cd25bdaa005fb509ec117b0c07846cf34c8385c7e1ce",
+          "id": 675572019,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0017",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0018",
+          "size": 33554432,
+          "sha256": "d1f854b3bba708e7902c70728550779bc2a3e258a3f48eb3da33e5f049ee42e5",
+          "id": 675574661,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0018",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0019",
+          "size": 33554432,
+          "sha256": "48dc08ba3a101122aa0e9928f73c681292e8be21b22b8a415b80d89bae36140f",
+          "id": 675574660,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0019",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0020",
+          "size": 33554432,
+          "sha256": "4f4eb751494417e38fba0160674f162bf279791d6ab48c632e295c582c3f999e",
+          "id": 675574683,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0020",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0021",
+          "size": 33554432,
+          "sha256": "23b2c7000cd1a3cd71586a4953eac812950fb380a6f582c0aa4da73f95757118",
+          "id": 675574671,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0021",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0022",
+          "size": 33554432,
+          "sha256": "c6c6faf888ba0d78f4b80c0b0ac7ab15649f8b6dcaf200876f9059ba8c53dd18",
+          "id": 675574669,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0022",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0023",
+          "size": 33554432,
+          "sha256": "42adccbc8fb83989140050032f4991f9ff6f79c8fff47a3fd2187d46ea4d2e20",
+          "id": 675574717,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0023",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0024",
+          "size": 33554432,
+          "sha256": "36543118ad40297fd81938e1e8ae4054f0ab73ccafacef1be87419cc6bb36c27",
+          "id": 675577087,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0024",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0025",
+          "size": 33554432,
+          "sha256": "cdcb64110d0e3f7b5cfcd595cd95228f40e81a4e6b38bc4b043b00957cdcb366",
+          "id": 675577094,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0025",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0026",
+          "size": 33554432,
+          "sha256": "6c7d5ddad720c391f989c7509e05609b333cd6f7dba9f8aa31433acd561663b6",
+          "id": 675577096,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0026",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0027",
+          "size": 33554432,
+          "sha256": "f9e26d266408037593c60c82da9ca2a1787667419e153d83076686d2262115e1",
+          "id": 675577098,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0027",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0028",
+          "size": 33554432,
+          "sha256": "cfd467ea1f2120e2ae9da74517e3183b4ea83a954454f97a0886abcad6214f5d",
+          "id": 675577089,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0028",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0029",
+          "size": 33554432,
+          "sha256": "2eadee82f1b1681815010a1e763d036fa28ca01c55f62cf0dd9e6eed46f79177",
+          "id": 675577099,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0029",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0030",
+          "size": 33554432,
+          "sha256": "19e2875431a58175ebd2e0f7d87960988e4a1fd80de8f7ce529dd10c1ef312c1",
+          "id": 675579288,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0030",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0031",
+          "size": 33554432,
+          "sha256": "9922a164db3057cd2cc904a08fc1720c9e42d2703f592588f648f993ec709b1b",
+          "id": 675579339,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0031",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0032",
+          "size": 33554432,
+          "sha256": "121653a849718245e10cdb2e6b4974050cb26a9802d590f4e2053686586cd9e5",
+          "id": 675579299,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0032",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0033",
+          "size": 33554432,
+          "sha256": "718b15fb484fffafb2b44f8250a517bf5f4f05af1a6000e9961c8597937a377d",
+          "id": 675579302,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0033",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0034",
+          "size": 33554432,
+          "sha256": "94190dfbe8ee08c33d94b69d8c1810c818e12a3e36b04370c7c639c765f2f0cc",
+          "id": 675579290,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0034",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0035",
+          "size": 33554432,
+          "sha256": "464bec70783d7ed4b6a2939c55a8911739f298598543d271edc4a466c2604281",
+          "id": 675579298,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0035",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0036",
+          "size": 33554432,
+          "sha256": "e96b9b6d9f6647e7a21e3f5466dbbc35a985669b69d20b690887cecb8758d10a",
+          "id": 675581908,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0036",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0037",
+          "size": 33554432,
+          "sha256": "dbd53c5f7e899a96bfcba38310c4e355e666f7d533340ea1505de8cc92759141",
+          "id": 675581925,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0037",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0038",
+          "size": 33554432,
+          "sha256": "198a2f033d09301f2c3a2293614519641573cb41da64e65e5a3263ea8cb4dd7d",
+          "id": 675581921,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0038",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0039",
+          "size": 33554432,
+          "sha256": "02c58346578c06dbf030e74927c6f67b6ac5fc626c53863d0f2e64d444e50f6a",
+          "id": 675581916,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0039",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0040",
+          "size": 33554432,
+          "sha256": "343c80588c6b1aa2e9de42d96676719c2910e04bd82817f484890edaf70978ba",
+          "id": 675581924,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0040",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0041",
+          "size": 33554432,
+          "sha256": "14c90f1afeab6147e434a45178b042ca90f1377859bac8f4a36f56debb8d887e",
+          "id": 675581920,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0041",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0042",
+          "size": 33554432,
+          "sha256": "c6edd3001d82a2f5f8a6aab3eb28f6be7dc26f41e842ac15a2a7ede98ba834a8",
+          "id": 675584357,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0042",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0043",
+          "size": 33554432,
+          "sha256": "0cce267f21a94d16fdda65abc9a0e1f00acd49ffbb6fc38e48092e306b3d4c5a",
+          "id": 675584352,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0043",
+          "verified": true
+        },
+        {
+          "name": "forge-runtime-foundation.tar.zst.gpg.part0044",
+          "size": 12671724,
+          "sha256": "628dc91cde9a9f193ed6d1485f67c209bc7df55d77c9cc9ff985fd2871b25963",
+          "id": 675584346,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0044",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 627.3999069689999
+    },
+    {
+      "name": "engineering-installers",
+      "status": "VERIFIED",
+      "archive_sha256": "431fef52588437896c4aa929421c6a65c32dff194849aba2be88c1a9fbd873c9",
+      "archive_bytes": 4503162474,
+      "manifest": "engineering-installers.files.jsonl",
+      "original_files": 5,
+      "unique_objects": 5,
+      "parts": [
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0000",
+          "size": 33554432,
+          "sha256": "1099f361989a29125f27769796b9ea79863711f7b765a3aac0f58793ec9fbf1a",
+          "id": 675563502,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0000",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0001",
+          "size": 33554432,
+          "sha256": "fd37248fc41154dbe2f90a9d55979aef312316c7b80d3fd8564fdaeea8623197",
+          "id": 675563549,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0001",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0002",
+          "size": 33554432,
+          "sha256": "fb6c50ac04f24388e5da9fe23c18aaf78323368a5209ab2fbe4671bb9e705d16",
+          "id": 675563552,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0002",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0003",
+          "size": 33554432,
+          "sha256": "e241d462eae662844136b794a341138493944eaf19aa96a66c548f1745069d4d",
+          "id": 675563564,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0003",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0004",
+          "size": 33554432,
+          "sha256": "52fe21928711bd4290ac151de8e6a5b8ee29058d7ddf6fbea2e328848edbb07d",
+          "id": 675563541,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0004",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0005",
+          "size": 33554432,
+          "sha256": "251252c120296486d45a7690cc2b50b636bfc7a2c278c664efdd870009566c98",
+          "id": 675563597,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0005",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0006",
+          "size": 33554432,
+          "sha256": "e4828532465749993d355b38715ef32ce423edf4672c61e7169556e57e09e296",
+          "id": 675566636,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0006",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0007",
+          "size": 33554432,
+          "sha256": "cb86c15583b5cb7ba322fca77d23cf7f43f5a9429854a8a2aa5b286bc8c210e7",
+          "id": 675566668,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0007",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0008",
+          "size": 33554432,
+          "sha256": "ae0fe7928cff439591d639832d4e9e45979b0154c6672bd73f2ad44873a0cc33",
+          "id": 675566682,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0008",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0009",
+          "size": 33554432,
+          "sha256": "a83cb6c4d1d75d1e776a81ea492d4f28d5d709f75cd956d809d6aa4125348556",
+          "id": 675566635,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0009",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0010",
+          "size": 33554432,
+          "sha256": "945bc388c7bc5063f5289355e6ea65828f64770f650605d716c89ed764437d29",
+          "id": 675566637,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0010",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0011",
+          "size": 33554432,
+          "sha256": "35d20ec182927fcedd8b690614e500cb2735a7d6d622d28f7ae23030c96de501",
+          "id": 675566639,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0011",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0012",
+          "size": 33554432,
+          "sha256": "33e93c02fee8e56780cb078d7eb89cd33413913a3f77198cbcf50c2499276939",
+          "id": 675568628,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0012",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0013",
+          "size": 33554432,
+          "sha256": "883e2b82fce5f88fad7c590ca845a6c47f7b4927934f9b39b0be5032dad57400",
+          "id": 675568631,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0013",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0014",
+          "size": 33554432,
+          "sha256": "bcb390f47f9dffdb5147eeeeec6936b753c921d9f5883ad6fbb286ea2ac055fb",
+          "id": 675568626,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0014",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0015",
+          "size": 33554432,
+          "sha256": "d7d697d0445cf0f321fc9698bb12b991a56f7c2f333976cc7edda1671a14b2b1",
+          "id": 675568660,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0015",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0016",
+          "size": 33554432,
+          "sha256": "7c77e2fdfb402fab66d79bf4f7c449038cc5ca7597700ba73aee4bb7a91a9d8f",
+          "id": 675568699,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0016",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0017",
+          "size": 33554432,
+          "sha256": "fb56a6bafd984d32bcde8b87b26c6d9d67b4f3783372f01f2372aeea13987d54",
+          "id": 675568650,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0017",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0018",
+          "size": 33554432,
+          "sha256": "563cdb524234e24e724c0e2799b97ed1231f89b05752552431252337982e2676",
+          "id": 675571602,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0018",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0019",
+          "size": 33554432,
+          "sha256": "49fe35eca69b048d387f4dd3df91bb72ddab6034f318cc06e12346bcdba2e273",
+          "id": 675571596,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0019",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0020",
+          "size": 33554432,
+          "sha256": "94d472446b5dbd16091996d5d225945e2d0e4ee76a0f28d1bd5a0706a7f617b7",
+          "id": 675571609,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0020",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0021",
+          "size": 33554432,
+          "sha256": "d39ac44734aa64af216f06b929416fdd34da83ffac131d0c23c00786bb61fdd7",
+          "id": 675571641,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0021",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0022",
+          "size": 33554432,
+          "sha256": "1149f0ef79d8be36c1c26415298d8015ae54ec8a92212427ca7341dcb999ad5f",
+          "id": 675571632,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0022",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0023",
+          "size": 33554432,
+          "sha256": "bd16bc6a00c8974e0cb219f6ec2fe0508bd153e9f81ff748b99c8917d4ea1861",
+          "id": 675571628,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0023",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0024",
+          "size": 33554432,
+          "sha256": "d039c5dcc07429eb61e8dbd98ee0f5b92da973dc70a61546aaca7cce9397f728",
+          "id": 675574345,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0024",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0025",
+          "size": 33554432,
+          "sha256": "aa3666bec8ca09f18ae470a9cba49b50cc647436f4f951a87d25dcb84c8774a2",
+          "id": 675574355,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0025",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0026",
+          "size": 33554432,
+          "sha256": "4e923ecbb69141445d5fdc48073ea5a39dff7d2c346951b86b851c2a02c89f98",
+          "id": 675574348,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0026",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0027",
+          "size": 33554432,
+          "sha256": "98f4358ee7c1ec31f86d74e4e7c7210852a3252db9d19146f53c88bb07d0bf40",
+          "id": 675574415,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0027",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0028",
+          "size": 33554432,
+          "sha256": "b38d00fda0732e6421c250ff4fea025abebc927219e995850ca5d9a33864d839",
+          "id": 675574353,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0028",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0029",
+          "size": 33554432,
+          "sha256": "4c4c22345c970ab88461cda9d3a732c889727a4ffeea6cbf06668d8cd0a22792",
+          "id": 675574358,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0029",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0030",
+          "size": 33554432,
+          "sha256": "97f03915bc4d7acf60cfb0fbee238e67fc6dc5d4a654cc2c518a4b207ed21050",
+          "id": 675577992,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0030",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0031",
+          "size": 33554432,
+          "sha256": "81b2fa06c049ecbc3641763b38abc7985ebd5172be382888d7ef3138a7381a12",
+          "id": 675578000,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0031",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0032",
+          "size": 33554432,
+          "sha256": "b4a0e96b320b4d1d5aef994e27a42339d66bad05e5eb19bd76c69d550f9d443f",
+          "id": 675578033,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0032",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0033",
+          "size": 33554432,
+          "sha256": "0bbed7ebde111b1475a40c0609beb04127a5dd1d3875e7e19a001713f9b885c4",
+          "id": 675577999,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0033",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0034",
+          "size": 33554432,
+          "sha256": "ecc9b25d0da36507ecd5ee5d207d63bf07aaf6f3594e0d1cbf187cc4a8a5e045",
+          "id": 675578032,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0034",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0035",
+          "size": 33554432,
+          "sha256": "c237cc60e9c8f4f0062cbd7ff35a5f122fd6fb1bd8d322a089b77cb6654f4e68",
+          "id": 675578043,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0035",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0036",
+          "size": 33554432,
+          "sha256": "7804891b73e0dec620b4700a83942a285b2a0d3cb6a81fc98bd263dfbd7b40be",
+          "id": 675579390,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0036",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0037",
+          "size": 33554432,
+          "sha256": "40ef63074df770a4f7224be1420f06dcaa28bccae41e24ed6148164331d14e9e",
+          "id": 675579439,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0037",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0038",
+          "size": 33554432,
+          "sha256": "438948b72a163c9ba22aa0af828aab0edb2450b6845a37b21ef36446c9de0c6c",
+          "id": 675579404,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0038",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0039",
+          "size": 33554432,
+          "sha256": "e9c75d8bf332ac88c55e4079b35c0c018d5639a0b7c4161aa9561febd876f96d",
+          "id": 675579394,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0039",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0040",
+          "size": 33554432,
+          "sha256": "4613f9d474aaa1af9e2cc72bef21fc4fba78ea2a6cad01f5d0635fd56a7cd053",
+          "id": 675579431,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0040",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0041",
+          "size": 33554432,
+          "sha256": "af52af70d8ac978ada239e9512c3ea93f9f3cd41254528660f849ef1653790e1",
+          "id": 675579403,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0041",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0042",
+          "size": 33554432,
+          "sha256": "417e97943363c775f8a4e73f8d593680ba0c583820fb30b7351fe724df5aa052",
+          "id": 675581962,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0042",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0043",
+          "size": 33554432,
+          "sha256": "1c7864b529fde859f0256e334abf1f824540376fb1bb6ccffb02da8bcc072cb5",
+          "id": 675581997,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0043",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0044",
+          "size": 33554432,
+          "sha256": "3e46a58fb008c5fbc0c350181d252bccebdc325ea8e4188ce48e9202d2b0b05e",
+          "id": 675581951,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0044",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0045",
+          "size": 33554432,
+          "sha256": "b3c1373a31c4f0d6841a886b3cf4e4870c9526b0d96840d8f875732e4dd83679",
+          "id": 675581978,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0045",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0046",
+          "size": 33554432,
+          "sha256": "c12854a1b16aff1a43c1cf0238a086b767d1a81fdb1b26fccaec0232c1388c99",
+          "id": 675581975,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0046",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0047",
+          "size": 33554432,
+          "sha256": "001270593ec647e1edf3b062ca0fd3b56da15a1311efad7f8a6943885243d2ec",
+          "id": 675581952,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0047",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0048",
+          "size": 33554432,
+          "sha256": "288b689594726519024aae203f8b3b9de74655e5109f6437fb7862de8a02d881",
+          "id": 675585898,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0048",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0049",
+          "size": 33554432,
+          "sha256": "be57145322e1df3365488213470fd207204114c1e18dd150299b3c45a08f6010",
+          "id": 675585896,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0049",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0050",
+          "size": 33554432,
+          "sha256": "e6d685190566fe3f0d2dfaf5d3b7725792c0c4ed7d3e5b76e6e92cb6632ab878",
+          "id": 675585897,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0050",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0051",
+          "size": 33554432,
+          "sha256": "cead10d1ba76987f5c2796d07413e1d5442c4f2b61867e357230c3cb2240a1d1",
+          "id": 675585905,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0051",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0052",
+          "size": 33554432,
+          "sha256": "7292c5cebe55576533a0c8015a6b37823a17657555c76c2a93bd775d8ca286d1",
+          "id": 675585906,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0052",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0053",
+          "size": 33554432,
+          "sha256": "a571d29d62fd05ef4d72bfcbcb1dd1b2a63e673679594e7d3e00e784b699d8a0",
+          "id": 675585901,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0053",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0054",
+          "size": 33554432,
+          "sha256": "8e971a5451e66537f0726518d69bfa3f137d1e849284f30c2d17665ed32e4ec4",
+          "id": 675587337,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0054",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0055",
+          "size": 33554432,
+          "sha256": "6fc6422eee4113c171b7f58bb5cea36fa6191ac81186e08902d617852ab2e846",
+          "id": 675587338,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0055",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0056",
+          "size": 33554432,
+          "sha256": "777aa459fb70bfa09904074cfd9f524e1a348eddf104d6e29ceefcc9bbbab657",
+          "id": 675587345,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0056",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0057",
+          "size": 33554432,
+          "sha256": "754e0b9cde94fa9107f6ecc95a726335adc9a8a85c762c9dbf9ec2376de0b166",
+          "id": 675587353,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0057",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0058",
+          "size": 33554432,
+          "sha256": "8637d0aabc52edfecb4c73f768a4bc9c054d0a8d2e59877454ad15d4ee842cec",
+          "id": 675587339,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0058",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0059",
+          "size": 33554432,
+          "sha256": "a609d3e3c39fa4c344d80b5fc2e8aa33fcec6fa93331d4621cf5287fff57e952",
+          "id": 675587352,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0059",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0060",
+          "size": 33554432,
+          "sha256": "c1f54a0e508ce20cc57cec4fbccf509dbadf437f832c6797a403d7c62c0f16b7",
+          "id": 675589013,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0060",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0061",
+          "size": 33554432,
+          "sha256": "9b4d9a296de4dfa57159872f556d9eb00327cf53606c5a1d309a307d5715c864",
+          "id": 675588992,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0061",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0062",
+          "size": 33554432,
+          "sha256": "a8f82f211c3c06226478da8a740e4d7536c0e58a3cfe493449af71a8acb46486",
+          "id": 675589006,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0062",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0063",
+          "size": 33554432,
+          "sha256": "f3c042fec7f63532046a688630cb41de03aad7449afff6dc1ab0eadad6bc9451",
+          "id": 675589012,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0063",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0064",
+          "size": 33554432,
+          "sha256": "e633a6dc6b694b6e76081638dbe099dbfc3570c7f3ec79d800d7f7bb545b907c",
+          "id": 675589019,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0064",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0065",
+          "size": 33554432,
+          "sha256": "aab463b6f23c7cbb18416041a9013bc92d0d08555cabc549eccf599d5aac0bc5",
+          "id": 675589014,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0065",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0066",
+          "size": 33554432,
+          "sha256": "a24d1649a793ec20d03811de1136fb7c263b20742dd5d818b5aabbb2f9db7fce",
+          "id": 675590726,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0066",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0067",
+          "size": 33554432,
+          "sha256": "fb2de07b9b1ddde352cb06a841dabc763af5ffc797eaa011ccccd08126322e49",
+          "id": 675590711,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0067",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0068",
+          "size": 33554432,
+          "sha256": "7eb6c4b945265227d71ec70ea7ca038a26e067a782974a34a977e98be2f51183",
+          "id": 675590712,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0068",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0069",
+          "size": 33554432,
+          "sha256": "651ded2d95eab9f3d6c3423e86fcf559a6d7e35293a794c70ec27ffbe184acfa",
+          "id": 675590710,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0069",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0070",
+          "size": 33554432,
+          "sha256": "4071614deaeef9601975e48903846f01a1543142f952442ef69eb626a1694895",
+          "id": 675590750,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0070",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0071",
+          "size": 33554432,
+          "sha256": "df25383a1ffcd2e18d88430da4195fb3ea1ad625bd344bb5671db13479052dc2",
+          "id": 675590751,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0071",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0072",
+          "size": 33554432,
+          "sha256": "f54bffb479b172d03751e1c972efe391e110b5a6c9db453d95bcb80b1d7bef5f",
+          "id": 675592546,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0072",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0073",
+          "size": 33554432,
+          "sha256": "3448bb92ab6738093c4d46cff4c0fd19165f83637da8c7ddac4dd0f4e8789f4d",
+          "id": 675592538,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0073",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0074",
+          "size": 33554432,
+          "sha256": "e299274f1ea44402b75a45ba750a85177682a29dc41e601e4bfd8d2b24e101ae",
+          "id": 675592540,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0074",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0075",
+          "size": 33554432,
+          "sha256": "5fe219867b92e06a1e366521b62800d088bba87ba27f158e5a331f133c47dfea",
+          "id": 675592539,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0075",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0076",
+          "size": 33554432,
+          "sha256": "c961f796f3470e8b1c661e71ff7c7bfac08af30aa1c673fca56d9a8374944f6b",
+          "id": 675592544,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0076",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0077",
+          "size": 33554432,
+          "sha256": "7fd515253963c8395f89c7c1ab64e59dc6b97ce49a5cd09d235f3f4161d95902",
+          "id": 675592542,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0077",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0078",
+          "size": 33554432,
+          "sha256": "b8b75db5be6271a27bd039439554595a2fcf0b733ac765dafe664c1bb17bbaa5",
+          "id": 675594704,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0078",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0079",
+          "size": 33554432,
+          "sha256": "a08209470cef2cdf3bb073b665e56c27b23713d709b89155a369264202a2b08f",
+          "id": 675594713,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0079",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0080",
+          "size": 33554432,
+          "sha256": "5d942a8e2a55742b133ac0bdfa58c4bd0218dc949c4c8027076aeaf204fe1a7b",
+          "id": 675594711,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0080",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0081",
+          "size": 33554432,
+          "sha256": "f5927d31da724fa885aa0b48a9f32faee881657caa4f3af83e5e202bfec19b9e",
+          "id": 675594728,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0081",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0082",
+          "size": 33554432,
+          "sha256": "470ae5a2a7e37c5c033ffa04ab42f652551cc59a0ba57180b421e5ca8873a459",
+          "id": 675594720,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0082",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0083",
+          "size": 33554432,
+          "sha256": "d479e960a6715900bd3045cda0eebc246b0b4c2bc3961c228286167dba76dd75",
+          "id": 675594723,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0083",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0084",
+          "size": 33554432,
+          "sha256": "c10c4038b09bdc90b5e132cc973ccf2f596411f441b4a7e64011db52c6f146d5",
+          "id": 675596871,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0084",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0085",
+          "size": 33554432,
+          "sha256": "8693254d91ea801e37e677e13326bcdf92f717e8b0dad574a675f805002788d3",
+          "id": 675596891,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0085",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0086",
+          "size": 33554432,
+          "sha256": "05f9cba206ec3eaa72c9332318f5950f51c059fe576489ac2496351b7a74ec5a",
+          "id": 675596890,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0086",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0087",
+          "size": 33554432,
+          "sha256": "ce87a115a4313874b0ee24bc0b9741972d38a5add2cc4c60792d882b01344349",
+          "id": 675596880,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0087",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0088",
+          "size": 33554432,
+          "sha256": "3f7d10363d8c2980ee02f8daf07afced8cbd40599c7dcc336e6a23d6e8ef1ac9",
+          "id": 675596867,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0088",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0089",
+          "size": 33554432,
+          "sha256": "c94124ce3988bf57614c43e372c6ae1ba20afb6452a06faaaf38a020f64b41a7",
+          "id": 675596879,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0089",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0090",
+          "size": 33554432,
+          "sha256": "7dcb482426fac0ab862c704ace9f765af6a3dd25b8373ddeaf174692a0c6560d",
+          "id": 675598725,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0090",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0091",
+          "size": 33554432,
+          "sha256": "73abf4269d6ebdf71a658b70f57dd67ce32151d70693ab1bf15363739f67eba0",
+          "id": 675598740,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0091",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0092",
+          "size": 33554432,
+          "sha256": "3498347ff2d3f91a391111eaddefe88f3f5abe9d15b12ef1baff0c40b9af6ff5",
+          "id": 675598735,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0092",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0093",
+          "size": 33554432,
+          "sha256": "3836f8ede979252fa58b060894f9e89b5c39e4057f2927fbb25db35a881f2cb4",
+          "id": 675598731,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0093",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0094",
+          "size": 33554432,
+          "sha256": "b9f0bec2769cc8fc530045731c80f491970a7956696477927ca01ab056dc5b12",
+          "id": 675598730,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0094",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0095",
+          "size": 33554432,
+          "sha256": "93607edf426d9848d6275b66e825d96cdab8502aff48c37147a13658ab80c6d3",
+          "id": 675598724,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0095",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0096",
+          "size": 33554432,
+          "sha256": "6add5ea06ba33e7d9c9d3236743e5d4153595d900c7977394e516cd55ef8ff11",
+          "id": 675629933,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0096",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0097",
+          "size": 33554432,
+          "sha256": "6f3cbbee02f0cf90e23b0e8c9771adba875f9817329998600153e4c5e0bcbe5a",
+          "id": 675629929,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0097",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0098",
+          "size": 33554432,
+          "sha256": "85d862ec1e91aba4113816e13c445a2e1b233ab55755988125ad02b7a0b5814b",
+          "id": 675629743,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0098",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0099",
+          "size": 33554432,
+          "sha256": "23ae62ff5c45c1810aecbc8b4b39fb6564dd86b249067ace9680b35c46e08395",
+          "id": 675629736,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0099",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0100",
+          "size": 33554432,
+          "sha256": "3611fae1df05685909c74ab5c911be8aa16d996546b6177618c9947a85aee9d7",
+          "id": 675600553,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0100",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0101",
+          "size": 33554432,
+          "sha256": "566d838b687a07e7e12616d304f456643c6270db4241da55518ee3ffb553e7d2",
+          "id": 675629740,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0101",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0102",
+          "size": 33554432,
+          "sha256": "fb52ad41424e0a7bae8aea5f1a869378761d0345d3a3389fd82868947f58c0bc",
+          "id": 675632242,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0102",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0103",
+          "size": 33554432,
+          "sha256": "b8ae000ce9dc214038105e2dfd1b4d51fd9a05b55a70aad2a97a903496ac44e7",
+          "id": 675632263,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0103",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0104",
+          "size": 33554432,
+          "sha256": "5d0cf748dcb11211d2b13d73a44e8dd6a25cbd0af442dd26564e83785c5df0fc",
+          "id": 675632259,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0104",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0105",
+          "size": 33554432,
+          "sha256": "861d020955205d95d551a27254e56d41015c88b3fd72a06a60c204f25c793a9b",
+          "id": 675632273,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0105",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0106",
+          "size": 33554432,
+          "sha256": "028887516508ab1b370e53b2800d420e49adcd06f4ab6bc3a7738a81507ed943",
+          "id": 675632270,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0106",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0107",
+          "size": 33554432,
+          "sha256": "23e49b9e7f7eb26724f0c1561554c655755f247afd9f751239f1a72821e20b89",
+          "id": 675632267,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0107",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0108",
+          "size": 33554432,
+          "sha256": "0cac8afddefda1d598892117b5fe2cf80dc39f4e7b5373cf59b81b3f490690b1",
+          "id": 675641791,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0108",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0109",
+          "size": 33554432,
+          "sha256": "facff8a99cde7942b2368bb5f8ea28f035e140f4501913f4e4219e2b69448fed",
+          "id": 675641790,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0109",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0110",
+          "size": 33554432,
+          "sha256": "b62c7fcba6c2a3cafc9d968e0d46f3a1d883b48fc827b250f993ca4167ff49e7",
+          "id": 675641803,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0110",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0111",
+          "size": 33554432,
+          "sha256": "996b84f500d80134d32fd93e6519521f26eb7727d3c85169f1d82c702fb66f6f",
+          "id": 675634779,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0111",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0112",
+          "size": 33554432,
+          "sha256": "bfbf60db28ccb8053c52ef1a8006ef11080788902b1e9379f27c67dd7c3cb47a",
+          "id": 675641806,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0112",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0113",
+          "size": 33554432,
+          "sha256": "1f9faf4f8fecac21170674e31bc6fe697a1aa77e19e2b491c1b6ea3987e6246d",
+          "id": 675641802,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0113",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0114",
+          "size": 33554432,
+          "sha256": "15a3bbb403d6c89c5421cba7e6105992084c3c72e5b20614cd2dece864b402c9",
+          "id": 675644019,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0114",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0115",
+          "size": 33554432,
+          "sha256": "54e06d178cf9542c7b2ae4b718846a79d302a9f4804ff86e5dfb6f584f0f15fc",
+          "id": 675644030,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0115",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0116",
+          "size": 33554432,
+          "sha256": "6b1def28e680e8207c97058649ebb1aa40350ac60c27847b8af7e96ad17edb31",
+          "id": 675644027,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0116",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0117",
+          "size": 33554432,
+          "sha256": "fb9db82ab103cdd6229aaccb56384e0beb06adf43133621046dcfe35d961c657",
+          "id": 675644024,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0117",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0118",
+          "size": 33554432,
+          "sha256": "642c2af5230bb1865e7441ab4c5a448cfe8bd87296ab17c8df6780247b300a07",
+          "id": 675644031,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0118",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0119",
+          "size": 33554432,
+          "sha256": "7895425ca2a2e98a5d022645f0624aed57f67164d874c11f11703f0aaeda241f",
+          "id": 675644040,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0119",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0120",
+          "size": 33554432,
+          "sha256": "ef33f44f468aae43b2ffcc7c948dde4c6ae1a7774243e9a8af8f54287a8c5efb",
+          "id": 675646300,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0120",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0121",
+          "size": 33554432,
+          "sha256": "97574a6f63c678bff15a66d22210ab18fd37caddc413790969b1b20a857a93c9",
+          "id": 675646299,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0121",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0122",
+          "size": 33554432,
+          "sha256": "ae94cbd718c97a9c179f11ca029acf36e9d8c3edd0ef8737a6bb27ccb7418a67",
+          "id": 675646306,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0122",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0123",
+          "size": 33554432,
+          "sha256": "8f23d2a2279cb400a16aab187799b32b70aa22e868253c92a1f4962e0afa12bc",
+          "id": 675646314,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0123",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0124",
+          "size": 33554432,
+          "sha256": "3cadbd1ab203bbf233cfebdc6c1720127b9f8f4b6d7620742687f74f0f6e90a1",
+          "id": 675646308,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0124",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0125",
+          "size": 33554432,
+          "sha256": "58fe15c07481b47f7687f50281c242b1049148ca8990f75bb9e7801bbd435f75",
+          "id": 675646335,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0125",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0126",
+          "size": 33554432,
+          "sha256": "58a5e4c30d2f4eeb2aa4cc0659169dd92d7cafa21576c76303e652fecc662557",
+          "id": 675648222,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0126",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0127",
+          "size": 33554432,
+          "sha256": "c5c470b5d7bc69ae293928ab071e0918e613ec0d8d4f818b2737e3364881b9ae",
+          "id": 675648218,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0127",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0128",
+          "size": 33554432,
+          "sha256": "7bfc72d8c248a3da60738d51b2aef88904915724a8c22e69f13772904e918ed6",
+          "id": 675648223,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0128",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0129",
+          "size": 33554432,
+          "sha256": "27deadca0fa3df6b0f8f2c4ee8f7af36b992458b34d2b2bbce9f9a846b7d7688",
+          "id": 675648234,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0129",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0130",
+          "size": 33554432,
+          "sha256": "16156c5020c1734731e23da79ade19f241595874c4ed28dd719858b135424d95",
+          "id": 675648220,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0130",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0131",
+          "size": 33554432,
+          "sha256": "32040929c795da295ceef1d802d06beb9b7be6c26ffcb5509362b77d7484ef69",
+          "id": 675648235,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0131",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0132",
+          "size": 33554432,
+          "sha256": "3ba1523f8fc71e3f2c2dee29b209b2c5aeb81ef03c16cfef2d766382e87e0e8a",
+          "id": 675652182,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0132",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0133",
+          "size": 33554432,
+          "sha256": "3cd619b349ff7554f726dfc8d113ae688d62a784ad385038088a2f2b58cb1547",
+          "id": 675652188,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0133",
+          "verified": true
+        },
+        {
+          "name": "engineering-installers.tar.zst.gpg.part0134",
+          "size": 6868586,
+          "sha256": "2f3e155118943a324aa128573048425104734a285e685ce61a1bc69d61e69713",
+          "id": 675652200,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/engineering-installers.tar.zst.gpg.part0134",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 2503.6381920579997
+    },
+    {
+      "name": "cleanup-audit",
+      "status": "VERIFIED",
+      "archive_sha256": "f9dd6b7b8368fe5b67353c90f5e272b75332b3924003d5049515e21d4812d04d",
+      "archive_bytes": 7372850,
+      "manifest": "cleanup-audit.files.jsonl",
+      "original_files": 72,
+      "unique_objects": 68,
+      "parts": [
+        {
+          "name": "cleanup-audit.tar.zst.gpg.part0000",
+          "size": 7372850,
+          "sha256": "f9dd6b7b8368fe5b67353c90f5e272b75332b3924003d5049515e21d4812d04d",
+          "id": 677869433,
+          "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/cleanup-audit.tar.zst.gpg.part0000",
+          "verified": true
+        }
+      ],
+      "independent_full_archive_verification": "PASS",
+      "seconds": 10.099185806000037
+    }
+  ],
+  "original_bytes": 19409986138,
+  "files": 182950
+}

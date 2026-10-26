@@ -1,0 +1,21 @@
+{
+  "name": "forge-validations",
+  "status": "VERIFIED",
+  "archive_sha256": "379335eacdfe1e9b645ce59f92ee4177e13253a60b761bda25e904e529d972fb",
+  "archive_bytes": 93005,
+  "manifest": "forge-validations.files.jsonl",
+  "original_files": 4,
+  "unique_objects": 4,
+  "parts": [
+    {
+      "name": "forge-validations.tar.zst.gpg.part0000",
+      "size": 93005,
+      "sha256": "379335eacdfe1e9b645ce59f92ee4177e13253a60b761bda25e904e529d972fb",
+      "id": 670054965,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-validations.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.59424304300046
+}

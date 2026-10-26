@@ -1,0 +1,373 @@
+{
+  "name": "forge-runtime-foundation",
+  "status": "VERIFIED",
+  "archive_sha256": "d663cc05db4cbb6ac10200d214a2c2b7d56fed23041d335fcf6c2b5de137929f",
+  "archive_bytes": 1489066732,
+  "manifest": "forge-runtime-foundation.files.jsonl",
+  "original_files": 175233,
+  "unique_objects": 9846,
+  "parts": [
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "31cba52cd0f6e7805cd7436cdfa675b91933fbdff9416ee8321fa9055111f913",
+      "id": 675563273,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "9cf2bddb9816b6d1e62ffd032a9ee2687fbc5436c8031b20aad7a469d879d387",
+      "id": 675563275,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0002",
+      "size": 33554432,
+      "sha256": "6a138482e9c67aced336aa70efe8b756c1d9330dca86c70bb3d60d247b2d885e",
+      "id": 675563291,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0003",
+      "size": 33554432,
+      "sha256": "fd14c5b3f27a89d6d5c6098be09da8e2a058497ca585676961823b9c372cb63e",
+      "id": 675563278,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0004",
+      "size": 33554432,
+      "sha256": "774bdfd3c3256d1913f422c46e6be49cdba02d14c46a3ff52d7dfc9a453e4805",
+      "id": 675563299,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0004",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0005",
+      "size": 33554432,
+      "sha256": "35554656db9fdc93385151dc6876091aafedc98e621472520bd594f5e33a7848",
+      "id": 675563285,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0005",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0006",
+      "size": 33554432,
+      "sha256": "8e4ad57ff46ee3308b5727d61baeca075186c72220e119516d4ef291f154633a",
+      "id": 675569419,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0006",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0007",
+      "size": 33554432,
+      "sha256": "6dbcf5bca1b92051e86f035b15582961c9720a2974d972561c0ec93b80eea4f7",
+      "id": 675569416,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0007",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0008",
+      "size": 33554432,
+      "sha256": "a9ddfdef1572511de69c4e67a2b6f50d369e75bce75706d0ec9678f39a59dd54",
+      "id": 675569391,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0008",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0009",
+      "size": 33554432,
+      "sha256": "fffc489e5174890301e6ff65d1edb95c69365f35edf521e79c4a1f79f48bcdcc",
+      "id": 675569393,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0009",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0010",
+      "size": 33554432,
+      "sha256": "290012925fa38eccaa40eda9f42113db692e53826120978e4a3c1379b9ce7334",
+      "id": 675569409,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0010",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0011",
+      "size": 33554432,
+      "sha256": "21614f0226efbed39d62431e4954c1e30929dc77c43faa8ad3d1601cdc2bee29",
+      "id": 675569401,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0011",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0012",
+      "size": 33554432,
+      "sha256": "2f96e55e4085e29a92ce150f6507afb3dd0ccf1c19e8873674eb0bbdbaf4bcc8",
+      "id": 675571973,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0012",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0013",
+      "size": 33554432,
+      "sha256": "6037eaf6974c4b67fa55456b38db5f3a3d9fae3f0efd58f4b9865c43f13fd5ea",
+      "id": 675572018,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0013",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0014",
+      "size": 33554432,
+      "sha256": "b9f8ac027b5db0b1e0e93117c1006ce4b84d11b0ac144d208e1ca794f9a931f3",
+      "id": 675571982,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0014",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0015",
+      "size": 33554432,
+      "sha256": "3f7e9fa20207d3a930d8f2009250d0efcd33602d45494283e37cdbf395697156",
+      "id": 675571995,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0015",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0016",
+      "size": 33554432,
+      "sha256": "4bee24a7e32b12a04b04a278e5f5af4e50f0a047c56e2b8e7ceb96e88fa59e47",
+      "id": 675572032,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0016",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0017",
+      "size": 33554432,
+      "sha256": "37e4ef63324768ce4933cd25bdaa005fb509ec117b0c07846cf34c8385c7e1ce",
+      "id": 675572019,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0017",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0018",
+      "size": 33554432,
+      "sha256": "d1f854b3bba708e7902c70728550779bc2a3e258a3f48eb3da33e5f049ee42e5",
+      "id": 675574661,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0018",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0019",
+      "size": 33554432,
+      "sha256": "48dc08ba3a101122aa0e9928f73c681292e8be21b22b8a415b80d89bae36140f",
+      "id": 675574660,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0019",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0020",
+      "size": 33554432,
+      "sha256": "4f4eb751494417e38fba0160674f162bf279791d6ab48c632e295c582c3f999e",
+      "id": 675574683,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0020",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0021",
+      "size": 33554432,
+      "sha256": "23b2c7000cd1a3cd71586a4953eac812950fb380a6f582c0aa4da73f95757118",
+      "id": 675574671,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0021",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0022",
+      "size": 33554432,
+      "sha256": "c6c6faf888ba0d78f4b80c0b0ac7ab15649f8b6dcaf200876f9059ba8c53dd18",
+      "id": 675574669,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0022",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0023",
+      "size": 33554432,
+      "sha256": "42adccbc8fb83989140050032f4991f9ff6f79c8fff47a3fd2187d46ea4d2e20",
+      "id": 675574717,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0023",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0024",
+      "size": 33554432,
+      "sha256": "36543118ad40297fd81938e1e8ae4054f0ab73ccafacef1be87419cc6bb36c27",
+      "id": 675577087,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0024",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0025",
+      "size": 33554432,
+      "sha256": "cdcb64110d0e3f7b5cfcd595cd95228f40e81a4e6b38bc4b043b00957cdcb366",
+      "id": 675577094,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0025",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0026",
+      "size": 33554432,
+      "sha256": "6c7d5ddad720c391f989c7509e05609b333cd6f7dba9f8aa31433acd561663b6",
+      "id": 675577096,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0026",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0027",
+      "size": 33554432,
+      "sha256": "f9e26d266408037593c60c82da9ca2a1787667419e153d83076686d2262115e1",
+      "id": 675577098,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0027",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0028",
+      "size": 33554432,
+      "sha256": "cfd467ea1f2120e2ae9da74517e3183b4ea83a954454f97a0886abcad6214f5d",
+      "id": 675577089,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0028",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0029",
+      "size": 33554432,
+      "sha256": "2eadee82f1b1681815010a1e763d036fa28ca01c55f62cf0dd9e6eed46f79177",
+      "id": 675577099,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0029",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0030",
+      "size": 33554432,
+      "sha256": "19e2875431a58175ebd2e0f7d87960988e4a1fd80de8f7ce529dd10c1ef312c1",
+      "id": 675579288,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0030",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0031",
+      "size": 33554432,
+      "sha256": "9922a164db3057cd2cc904a08fc1720c9e42d2703f592588f648f993ec709b1b",
+      "id": 675579339,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0031",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0032",
+      "size": 33554432,
+      "sha256": "121653a849718245e10cdb2e6b4974050cb26a9802d590f4e2053686586cd9e5",
+      "id": 675579299,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0032",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0033",
+      "size": 33554432,
+      "sha256": "718b15fb484fffafb2b44f8250a517bf5f4f05af1a6000e9961c8597937a377d",
+      "id": 675579302,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0033",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0034",
+      "size": 33554432,
+      "sha256": "94190dfbe8ee08c33d94b69d8c1810c818e12a3e36b04370c7c639c765f2f0cc",
+      "id": 675579290,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0034",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0035",
+      "size": 33554432,
+      "sha256": "464bec70783d7ed4b6a2939c55a8911739f298598543d271edc4a466c2604281",
+      "id": 675579298,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0035",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0036",
+      "size": 33554432,
+      "sha256": "e96b9b6d9f6647e7a21e3f5466dbbc35a985669b69d20b690887cecb8758d10a",
+      "id": 675581908,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0036",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0037",
+      "size": 33554432,
+      "sha256": "dbd53c5f7e899a96bfcba38310c4e355e666f7d533340ea1505de8cc92759141",
+      "id": 675581925,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0037",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0038",
+      "size": 33554432,
+      "sha256": "198a2f033d09301f2c3a2293614519641573cb41da64e65e5a3263ea8cb4dd7d",
+      "id": 675581921,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0038",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0039",
+      "size": 33554432,
+      "sha256": "02c58346578c06dbf030e74927c6f67b6ac5fc626c53863d0f2e64d444e50f6a",
+      "id": 675581916,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0039",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0040",
+      "size": 33554432,
+      "sha256": "343c80588c6b1aa2e9de42d96676719c2910e04bd82817f484890edaf70978ba",
+      "id": 675581924,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0040",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0041",
+      "size": 33554432,
+      "sha256": "14c90f1afeab6147e434a45178b042ca90f1377859bac8f4a36f56debb8d887e",
+      "id": 675581920,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0041",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0042",
+      "size": 33554432,
+      "sha256": "c6edd3001d82a2f5f8a6aab3eb28f6be7dc26f41e842ac15a2a7ede98ba834a8",
+      "id": 675584357,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0042",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0043",
+      "size": 33554432,
+      "sha256": "0cce267f21a94d16fdda65abc9a0e1f00acd49ffbb6fc38e48092e306b3d4c5a",
+      "id": 675584352,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0043",
+      "verified": true
+    },
+    {
+      "name": "forge-runtime-foundation.tar.zst.gpg.part0044",
+      "size": 12671724,
+      "sha256": "628dc91cde9a9f193ed6d1485f67c209bc7df55d77c9cc9ff985fd2871b25963",
+      "id": 675584346,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/forge-runtime-foundation.tar.zst.gpg.part0044",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 627.3999069689999
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "anonymous_download": true,
+  "asset": "remote-index.json",
+  "bytes": 51721,
+  "sha256": "c76eaa50fd9001cf6681dd6dc4885830a57a89a5b4b4b3fb48ae833fecadafe7",
+  "verified_groups_in_download": 7,
+  "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/remote-index.json"
+}

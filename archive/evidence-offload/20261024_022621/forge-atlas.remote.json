@@ -1,0 +1,21 @@
+{
+  "name": "forge-atlas",
+  "status": "VERIFIED",
+  "archive_sha256": "efc20f72cd57a895a3c9d5819ec21f1c9ad18abe491e99c0a0fbde9d9285fdd3",
+  "archive_bytes": 3923808,
+  "manifest": "forge-atlas.files.jsonl",
+  "original_files": 20,
+  "unique_objects": 17,
+  "parts": [
+    {
+      "name": "forge-atlas.tar.zst.gpg.part0000",
+      "size": 3923808,
+      "sha256": "efc20f72cd57a895a3c9d5819ec21f1c9ad18abe491e99c0a0fbde9d9285fdd3",
+      "id": 670050926,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-atlas.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 15.253473217999272
+}

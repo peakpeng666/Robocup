@@ -1,0 +1,21 @@
+{
+  "name": "forge-bridge",
+  "status": "VERIFIED",
+  "archive_sha256": "4b9c11e92f7ce581cf8539c685fdc10dbb16c34a5451af3a38733df3bfa3682e",
+  "archive_bytes": 7175383,
+  "manifest": "forge-bridge.files.jsonl",
+  "original_files": 60,
+  "unique_objects": 40,
+  "parts": [
+    {
+      "name": "forge-bridge.tar.zst.gpg.part0000",
+      "size": 7175383,
+      "sha256": "4b9c11e92f7ce581cf8539c685fdc10dbb16c34a5451af3a38733df3bfa3682e",
+      "id": 670052383,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-bridge.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 15.918389159000071
+}

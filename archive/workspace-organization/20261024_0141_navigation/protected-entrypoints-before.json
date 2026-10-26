@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/AGENTS.md",
+      "sha256": "e75b8095a329f91f0a1e19c7d64ca960c97ad0d7f681cf07ee3ebf900c63c0ed"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/README.md",
+      "sha256": "d1e53e668d866ca109cbf91cff6391dc7dd0245fcb2f4a185134df0825ecf0bc"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md",
+      "sha256": "b968f9620555dedf97e0115fb92b8f45b4a0fc1866cfd714be77ea603d5fd433"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/RESTORE-ROBOCUP.md",
+      "sha256": "3fd452f05e62254cedf4c320126cb677b9c699d7054471dfa0fc9cb3d59e4902"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/TRAINING-KIT-README.md",
+      "sha256": "d898832eb573bc01f476529e82767fb54222ebe8dd4e0ed3dbca7ab96a40c943"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/REMOTE-VERIFIED.json",
+      "sha256": "a7bc6202991c49f7e3e4c6f080ebd31b7f50ee216feecb74e49941f7cffd3db1"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.gitignore",
+      "sha256": "7502ba5e5d30e1f3cd317358b90167c3b65a8426ef362c85bde2a131a485078b"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/start-bhuman.sh",
+      "sha256": "df7d8530a37d1e8836cfad25bd382d60e582ab8e6667bf471c52dc7dc477a51c"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/scripts/run-bhuman-k1.py",
+      "sha256": "8fc24ce1acdab8da078d49f06a09a1d4f7aeee573adb1d20a9e4cf2e20201945"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/SimRobot",
+      "sha256": "cc35a1ae01f9ee784d5bfc9fbf8dc2694ab76c8bcebdb337716220c80b7ce157"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/bhuman-local/Build/Linux/SimRobot/Release/libSimulatedRobot.so",
+      "sha256": "15e312c82a84bae3033f3b16eb9d06e368731e2e13b153d006c471e5fc2a71a5"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/run-mujoco.sh",
+      "sha256": "94d014c9b23cecbbcfac881f7aa749daa2adda43b9868f2b772d4e66fb289060"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/mujoco_walk.py",
+      "sha256": "2f503a333177b81ae6600245bf051595eb55174853e9aa70636f4cb0feb17d74"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/env.sh",
+      "sha256": "649d72b5c0fb67321ad421d51873ba5540cf395c672e7aaf7bb7ae450a228079"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/scripts/run_walk_stability.sh",
+      "sha256": "3cdbd4cf4db6d9b9744b1b9a90f130e28597bdff8e61034a205a8b3b6bd0b1f1"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/workbench/README.md",
+      "sha256": "2eabee0cc8c6991be50f8badf602090a25b1ce81107c790517bad9ba6a88a046"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools/restore.py",
+      "sha256": "a5c4c34662e17c53078a265f0d5ab4830d4515049ff192d5fa1121309a666e09"
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools/training_kit.py",
+      "sha256": "bd71c9f4f554c6af88e7b17b400ba652e183b83dadb8154c8761b7873bb28e58"
+    }
+  ]
+}

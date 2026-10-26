@@ -1,0 +1,21 @@
+{
+  "name": "bhuman-sim2sim-runs",
+  "status": "VERIFIED",
+  "archive_sha256": "14296bf526b0da11b7e155fb272c42a8475aa9477f3b317bdb69f0dd32bf9183",
+  "archive_bytes": 9437253,
+  "manifest": "bhuman-sim2sim-runs.files.jsonl",
+  "original_files": 23,
+  "unique_objects": 14,
+  "parts": [
+    {
+      "name": "bhuman-sim2sim-runs.tar.zst.gpg.part0000",
+      "size": 9437253,
+      "sha256": "14296bf526b0da11b7e155fb272c42a8475aa9477f3b317bdb69f0dd32bf9183",
+      "id": 670048939,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-sim2sim-runs.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 29.502989855000123
+}

@@ -1,0 +1,21 @@
+{
+  "name": "forge-backend-maintenance",
+  "status": "VERIFIED",
+  "archive_sha256": "ce142ed97d7b8f407220da9348f628bd8c451be4502ce24cf0682c144e89c02f",
+  "archive_bytes": 89932,
+  "manifest": "forge-backend-maintenance.files.jsonl",
+  "original_files": 46,
+  "unique_objects": 37,
+  "parts": [
+    {
+      "name": "forge-backend-maintenance.tar.zst.gpg.part0000",
+      "size": 89932,
+      "sha256": "ce142ed97d7b8f407220da9348f628bd8c451be4502ce24cf0682c144e89c02f",
+      "id": 670051064,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-backend-maintenance.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 12.445983649000482
+}

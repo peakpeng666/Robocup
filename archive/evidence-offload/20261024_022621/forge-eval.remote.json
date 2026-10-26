@@ -1,0 +1,21 @@
+{
+  "name": "forge-eval",
+  "status": "VERIFIED",
+  "archive_sha256": "501b826ad688a468f3326115cb615c54a6b7b14c692f602abf3e9bc70feb1716",
+  "archive_bytes": 9131,
+  "manifest": "forge-eval.files.jsonl",
+  "original_files": 3,
+  "unique_objects": 3,
+  "parts": [
+    {
+      "name": "forge-eval.tar.zst.gpg.part0000",
+      "size": 9131,
+      "sha256": "501b826ad688a468f3326115cb615c54a6b7b14c692f602abf3e9bc70feb1716",
+      "id": 670052935,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-eval.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 10.8394058089998
+}

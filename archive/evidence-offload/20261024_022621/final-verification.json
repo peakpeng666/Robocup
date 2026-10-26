@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "verified_remote_parts": 439,
+  "verified_remote_groups": 47,
+  "archived_original_files": 128792,
+  "archived_original_bytes": 40732162628,
+  "removed_local_files": 110324,
+  "reclaimed_allocated_bytes": 38681337856,
+  "retained_evidence_and_runtime_files_hashed": 18468,
+  "retained_evidence_and_runtime_bytes": 2283486510,
+  "retained_canonical_runtime_files_hashed": 71,
+  "whole_workspace_preserved_file_identity_checks": 242684,
+  "protected_files_hashed": 24,
+  "profile_components_unchanged": 6,
+  "configured_environments_retained": [
+    "forge",
+    "forge-mjlab",
+    "bh-gym",
+    "isaacsim-gui",
+    "isaaclab"
+  ],
+  "navigation_links_valid": 35,
+  "unexpected_original_changes": [],
+  "remaining_temporary_upload_files": [],
+  "disk_after": {
+    "total": 283676618752,
+    "used": 216016982016,
+    "free": 53175132160
+  },
+  "new_simulation_training_or_robot_connection": false
+}

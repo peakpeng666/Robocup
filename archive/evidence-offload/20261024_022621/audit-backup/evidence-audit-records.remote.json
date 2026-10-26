@@ -1,0 +1,21 @@
+{
+  "name": "evidence-audit-records",
+  "status": "VERIFIED",
+  "archive_sha256": "da67108efe54fc1e279cdade05fd920b6b249a3af52ce497f7dd6ebc56bac56d",
+  "archive_bytes": 21589551,
+  "manifest": "evidence-audit-records.files.jsonl",
+  "original_files": 313,
+  "unique_objects": 222,
+  "parts": [
+    {
+      "name": "evidence-audit-records.tar.zst.gpg.part0000",
+      "size": 21589551,
+      "sha256": "da67108efe54fc1e279cdade05fd920b6b249a3af52ce497f7dd6ebc56bac56d",
+      "id": 670069361,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/evidence-audit-records.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 16.586883336000028
+}

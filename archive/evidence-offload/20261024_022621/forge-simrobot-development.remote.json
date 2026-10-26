@@ -1,0 +1,21 @@
+{
+  "name": "forge-simrobot-development",
+  "status": "VERIFIED",
+  "archive_sha256": "2abfa0f96e0cbc1a2551e42c93739f72cad113b2430fd970454a78b1ba3e9dec",
+  "archive_bytes": 188092,
+  "manifest": "forge-simrobot-development.files.jsonl",
+  "original_files": 107,
+  "unique_objects": 82,
+  "parts": [
+    {
+      "name": "forge-simrobot-development.tar.zst.gpg.part0000",
+      "size": 188092,
+      "sha256": "2abfa0f96e0cbc1a2551e42c93739f72cad113b2430fd970454a78b1ba3e9dec",
+      "id": 670054853,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-simrobot-development.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.269407191000937
+}

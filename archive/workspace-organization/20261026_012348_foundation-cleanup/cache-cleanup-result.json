@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "removed_files": 8202,
+  "reclaimed_allocated_bytes": 9937125376,
+  "categories": {
+    "cmake_intermediates": 7975,
+    "python_test_lint_cache": 227
+  },
+  "skipped": [],
+  "runnable_programs_models_sources_removed": 0
+}

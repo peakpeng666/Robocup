@@ -1,0 +1,11 @@
+{
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "receipt": "/home/peakpeng/Desktop/Robocup/archive/evidence-offload/20261026_012348_foundation",
+  "staging": "/home/peakpeng/.cache/robocup-foundation-upload-20261026_012348",
+  "repository": "peakpeng666/Robocup",
+  "tag": "foundation-data-20261026_012348",
+  "key_path": "/home/peakpeng/.local/share/robocup-archive/recovery-key.txt",
+  "release_id": 423524979,
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348",
+  "local_policy": "Retain runnable engineering foundation. Offload only audited historical bulk data and redundant downloaded installers after verification."
+}

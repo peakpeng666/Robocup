@@ -1,0 +1,21 @@
+{
+  "name": "historical-data-delta",
+  "status": "VERIFIED",
+  "archive_sha256": "d9da062acfba862b9b40d2cf3d584309cc82d00093fbddf513fabe89aeeb36d6",
+  "archive_bytes": 1527563,
+  "manifest": "historical-data-delta.files.jsonl",
+  "original_files": 193,
+  "unique_objects": 193,
+  "parts": [
+    {
+      "name": "historical-data-delta.tar.zst.gpg.part0000",
+      "size": 1527563,
+      "sha256": "d9da062acfba862b9b40d2cf3d584309cc82d00093fbddf513fabe89aeeb36d6",
+      "id": 675562926,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/foundation-data-20261026_012348/historical-data-delta.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 8.750133043999995
+}

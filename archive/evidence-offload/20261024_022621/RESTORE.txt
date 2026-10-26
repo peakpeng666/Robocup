@@ -1,0 +1,48 @@
+历史运行证据恢复说明（2026-10-24）
+
+保存位置
+  GitHub Release: https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621
+  本地索引: archive/evidence-offload/20261024_022621/remote-index.json
+  原始路径、时间戳、权限和 SHA-256 随每组加密归档保存；相同内容只存一份。
+  成功与失败的历史记录均保留；本次存储整理不改变实验结论。
+
+从 Robocup 根目录查看可恢复的组
+  python3 archive-tools/restore_evidence.py --index archive/evidence-offload/20261024_022621/remote-index.json --list
+
+恢复指定运行的相机证据（示例；--output 指定恢复工作区根目录）
+  python3 archive-tools/restore_evidence.py --index archive/evidence-offload/20261024_022621/remote-index.json --group official-application-20261023_235930_688936 --prefix forge/runs/official-application/20261023_235930_688936/robot21/camera --output /home/peakpeng/Desktop/Robocup
+
+  可移除 --prefix 恢复整个组；按前缀恢复仍需下载并核验整个组。
+  各已转存运行目录的 REMOTE-EVIDENCE.json 内含该运行的精确命令。
+  仅校验而不写回原始文件：添加 --verify-only。
+  脚本核对全部分卷及归档哈希、完整解密并逐对象验证后才写回所选文件。
+  不会覆盖目标位置已有的不同内容。符号链接保留在本机；原链接另有元数据清单。
+
+依赖与密钥
+  需要已有 Python 3、gh、gpg、zstd 和网络；无需启动仿真、训练或机器人服务。
+  所有者恢复密钥: /home/peakpeng/.local/share/robocup-archive/recovery-key.txt
+  密钥保留本机，权限 0600，未上传。没有密钥无法解密本次证据归档。
+  GitHub Release 同时提供恢复脚本和索引；请将两者放在自选目录后显式指定 --output。
+
+本机保留范围
+  比赛、MuJoCo、训练主线、Forge/Workbench 的源码、配置、模型、编译程序、
+  实际动态库、训练检查点及配置环境继续保留；报告、日志和观看录像保留。
+  只清理远端验证通过的原始帧/深度/录制数组/wire 与存在原厂唯一副本的重复快照。
+  深度文件可能为此前无损生成的 .depth-f32-byteplanes.gz，恢复保留归档时原格式。
+  原深度无损还原规则与 SHA 在 forge/runs/cleanup/20261024_0125_depth_lossless/。
+
+验证记录
+  inventory.json: 原始清单范围；*.files.jsonl: 完整原路径及哈希。
+  *.remote.json: 每组全部 GitHub 分卷的大小、SHA-256、URL。
+  download-verification.json: 实际从 GitHub 下载并恢复原始相机文件的结果。
+  cleanup-result-*.json、removed-files-*.jsonl: 删除与释放空间收据。
+  runtime-before-removal-*.json: 清理前进程引用检查及系统辅助进程的检查限制。
+
+归档已完成：47 组、439 个分卷；释放 36.02 GiB，原始文件保留于 GitHub 加密归档。
+最终结果见 archive-summary.json 和 final-verification.json。
+
+辅助校验资料
+  Release 中的 audit-index.json 用于恢复旧深度无损归档清单、本次原始文件清单、
+  清理收据、验证报告与恢复工具快照。使用同一恢复脚本：
+  python3 archive-tools/restore_evidence.py --index audit-index.json --group evidence-audit-records --output /tmp/robocup-audit-review
+  辅助包不包含恢复密钥；原始大数据仍通过 remote-index.json 恢复。

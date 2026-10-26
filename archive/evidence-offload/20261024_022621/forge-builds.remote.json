@@ -1,0 +1,21 @@
+{
+  "name": "forge-builds",
+  "status": "VERIFIED",
+  "archive_sha256": "265f558b2881e0fc3e57ec694e3f94689a2c4613e3f0b0fadc09f1c95ccd2203",
+  "archive_bytes": 89936,
+  "manifest": "forge-builds.files.jsonl",
+  "original_files": 29,
+  "unique_objects": 29,
+  "parts": [
+    {
+      "name": "forge-builds.tar.zst.gpg.part0000",
+      "size": 89936,
+      "sha256": "265f558b2881e0fc3e57ec694e3f94689a2c4613e3f0b0fadc09f1c95ccd2203",
+      "id": 670052605,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-builds.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.653112971000155
+}

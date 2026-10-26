@@ -1,0 +1,21 @@
+{
+  "name": "forge-exports",
+  "status": "VERIFIED",
+  "archive_sha256": "24395160382f7d0c1c4f53f45047e959d0feab8f1e3e3f89e417d5d63f784024",
+  "archive_bytes": 1036645,
+  "manifest": "forge-exports.files.jsonl",
+  "original_files": 15,
+  "unique_objects": 13,
+  "parts": [
+    {
+      "name": "forge-exports.tar.zst.gpg.part0000",
+      "size": 1036645,
+      "sha256": "24395160382f7d0c1c4f53f45047e959d0feab8f1e3e3f89e417d5d63f784024",
+      "id": 670052941,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-exports.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 12.028017163000186
+}

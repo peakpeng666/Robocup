@@ -1,5 +1,0 @@
-{"step": 0, "env_ids": [0, 1, 2, 3], "gravity_error": [0.0982372835278511, 0.1682973951101303, 1.0119866132736206, 1.6922681331634521], "angular_velocity_error": [4.178347587585449, 9.562202453613281, 3.2668955326080322, 4.977400302886963], "dof_history_error": [0.0, 0.0, 0.0, 0.0], "custom_dof_velocity_absmax": [0.0, 0.0, 0.0, 0.0], "variant": "cache"}
-{"step": 111, "env_ids": [1], "gravity_error": [0.9690868854522705], "angular_velocity_error": [2.173337697982788], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [0.0], "variant": "cache"}
-{"step": 113, "env_ids": [0], "gravity_error": [0.9698801636695862], "angular_velocity_error": [2.1567165851593018], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [0.0], "variant": "cache"}
-{"step": 147, "env_ids": [3], "gravity_error": [1.113215684890747], "angular_velocity_error": [1.6890859603881836], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [0.0], "variant": "cache"}
-{"step": 242, "env_ids": [2], "gravity_error": [1.7267662286758423], "angular_velocity_error": [1.6425509452819824], "dof_history_error": [0.0], "custom_dof_velocity_absmax": [0.0], "variant": "cache"}

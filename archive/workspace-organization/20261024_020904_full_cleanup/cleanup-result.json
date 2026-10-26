@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "deleted_files": 1838,
+  "allocated_bytes_reclaimed": 7193796608,
+  "logical_bytes_removed": 7189033974,
+  "retained_original_sha256": "5e8c92c63d7c0017ab6f2fe55710148960e3011cc7d8fc28f45cea30200295bd",
+  "removed_directories": 0,
+  "disk_after": {
+    "total": 283676618752,
+    "used": 254703312896,
+    "free": 14488801280
+  }
+}

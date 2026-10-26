@@ -1,0 +1,37 @@
+{
+  "name": "forge-train",
+  "status": "VERIFIED",
+  "archive_sha256": "5247acc2ef1bc2c0b6af96ec4d41737e7380dc5ac772517b2873fb8ce9828fa6",
+  "archive_bytes": 72125032,
+  "manifest": "forge-train.files.jsonl",
+  "original_files": 24,
+  "unique_objects": 24,
+  "parts": [
+    {
+      "name": "forge-train.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "38df22106e6045e31c395399c7497b79fba5a8f3f09efb9369f12911e7416b1b",
+      "id": 670054983,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-train.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-train.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "f532910c964747ec5dea4a5f5c4a3e1ee25dd0bcc5451fc63188f9f94149d427",
+      "id": 670055012,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-train.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-train.tar.zst.gpg.part0002",
+      "size": 5016168,
+      "sha256": "f23339cbaa899b78209619405230c78cd241955e141bd4ded13433c3a48c0271",
+      "id": 670055006,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-train.tar.zst.gpg.part0002",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 34.80034352900111
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "counts": {
+    "document_or_audit_state": 364,
+    "retained_identity_unchanged": 251996,
+    "authorized_removed": 15488,
+    "lossless_audit_compaction": 54
+  },
+  "unexpected_missing": [],
+  "unexpected_metadata_changes": []
+}

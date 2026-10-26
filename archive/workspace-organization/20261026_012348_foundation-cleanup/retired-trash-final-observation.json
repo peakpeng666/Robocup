@@ -1,0 +1,15 @@
+{
+  "status": "VERIFIED_BACKUP_SOURCE_ALREADY_ABSENT",
+  "archive_bytes": 704257393,
+  "download_restore_test": {
+    "status": "PASS",
+    "entries_verified": 801,
+    "files_verified": 611,
+    "symlinks_verified": 0,
+    "actual_restore": true
+  },
+  "source_absent": true,
+  "deleted_by_this_cleanup_script": false,
+  "counted_in_reclaimed_bytes": false,
+  "note": "The source was already absent when the final pre-removal identity check ran; the archive and full restore verification succeeded. No deletion receipt was produced."
+}

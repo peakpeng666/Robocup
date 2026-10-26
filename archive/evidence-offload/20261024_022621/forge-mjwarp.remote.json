@@ -1,0 +1,21 @@
+{
+  "name": "forge-mjwarp",
+  "status": "VERIFIED",
+  "archive_sha256": "c8412a81c2664717f20c757ad3f6ff3da87b8f0ac8a1f38e75a197f9dc99aeca",
+  "archive_bytes": 2859,
+  "manifest": "forge-mjwarp.files.jsonl",
+  "original_files": 5,
+  "unique_objects": 5,
+  "parts": [
+    {
+      "name": "forge-mjwarp.tar.zst.gpg.part0000",
+      "size": 2859,
+      "sha256": "c8412a81c2664717f20c757ad3f6ff3da87b8f0ac8a1f38e75a197f9dc99aeca",
+      "id": 670053816,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-mjwarp.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.213415947000613
+}

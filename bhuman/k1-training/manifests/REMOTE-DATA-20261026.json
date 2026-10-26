@@ -1,0 +1,15 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "bhuman/k1-training/manifests/pre-standup-v3-20261019_191302.zip",
+      "size": 106157,
+      "sha256": "d721fc97e477b5d7b5e863d114786b7f543e59efe7ccfb2fbb401e9e34c0e565",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    }
+  ]
+}

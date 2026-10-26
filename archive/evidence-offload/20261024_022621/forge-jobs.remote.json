@@ -1,0 +1,21 @@
+{
+  "name": "forge-jobs",
+  "status": "VERIFIED",
+  "archive_sha256": "9e2219c5103e7b368ca9fb70dfecd25c8ea905bf23cac4705f5fb0f7cc95d940",
+  "archive_bytes": 3971,
+  "manifest": "forge-jobs.files.jsonl",
+  "original_files": 8,
+  "unique_objects": 8,
+  "parts": [
+    {
+      "name": "forge-jobs.tar.zst.gpg.part0000",
+      "size": 3971,
+      "sha256": "9e2219c5103e7b368ca9fb70dfecd25c8ea905bf23cac4705f5fb0f7cc95d940",
+      "id": 670053707,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-jobs.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.637989254999411
+}

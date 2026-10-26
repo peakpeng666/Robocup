@@ -1,0 +1,21 @@
+{
+  "name": "forge-native-simrobot",
+  "status": "VERIFIED",
+  "archive_sha256": "055f1c6529532d65a663b78d70e0846d3dc9e1bd904eb01c27a07e8cacf4f59c",
+  "archive_bytes": 79905,
+  "manifest": "forge-native-simrobot.files.jsonl",
+  "original_files": 29,
+  "unique_objects": 29,
+  "parts": [
+    {
+      "name": "forge-native-simrobot.tar.zst.gpg.part0000",
+      "size": 79905,
+      "sha256": "055f1c6529532d65a663b78d70e0846d3dc9e1bd904eb01c27a07e8cacf4f59c",
+      "id": 670054321,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-native-simrobot.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 11.330049489000885
+}

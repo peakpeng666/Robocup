@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "scripts_parse": true,
+  "unsafe_restore_targets_rejected": [
+    "/tmp/outside",
+    "../outside",
+    "linked/file"
+  ],
+  "removable_original_files": 110324,
+  "unique_file_inodes": 110324,
+  "duplicate_inode_reclaim_overcount": false
+}

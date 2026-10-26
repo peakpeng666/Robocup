@@ -1,0 +1,21 @@
+{
+  "name": "forge-booster-integration",
+  "status": "VERIFIED",
+  "archive_sha256": "55a33751d963e2b22fc9eedf7c7eb87bd2a67f5d997e7998df7c5941b732ec53",
+  "archive_bytes": 505903,
+  "manifest": "forge-booster-integration.files.jsonl",
+  "original_files": 118,
+  "unique_objects": 118,
+  "parts": [
+    {
+      "name": "forge-booster-integration.tar.zst.gpg.part0000",
+      "size": 505903,
+      "sha256": "55a33751d963e2b22fc9eedf7c7eb87bd2a67f5d997e7998df7c5941b732ec53",
+      "id": 670051738,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-booster-integration.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 14.015959854999892
+}

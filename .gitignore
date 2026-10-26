@@ -55,6 +55,8 @@ bhuman/local-k1-validation-20261019/runs/
 bhuman/sim2sim/runs/
 archive/evidence-offload/**/*.files.jsonl
 archive/evidence-offload/**/removed-files*.jsonl
+archive/evidence-offload/**/*.jsonl
+archive/evidence-offload/**/*.lock
 
 # Restored, pinned upstream runtime trees are backed up as release artifacts.
 # Already tracked source overlays remain tracked and must still be reviewed.

@@ -1,0 +1,455 @@
+{
+  "schema": "robocup.evidence-backup/1",
+  "groups": [
+    {
+      "name": "forge-native-controller",
+      "manifest": "forge-native-controller.files.jsonl",
+      "files": 9113,
+      "logical_bytes": 15036029213,
+      "unique_bytes": 7629927535,
+      "removable_bytes": 14914207744
+    },
+    {
+      "name": "forge-matches",
+      "manifest": "forge-matches.files.jsonl",
+      "files": 12028,
+      "logical_bytes": 2717190853,
+      "unique_bytes": 2717097060,
+      "removable_bytes": 2662612992
+    },
+    {
+      "name": "forge-motion",
+      "manifest": "forge-motion.files.jsonl",
+      "files": 6766,
+      "logical_bytes": 1424179561,
+      "unique_bytes": 1419903422,
+      "removable_bytes": 1425272832
+    },
+    {
+      "name": "forge-recovery",
+      "manifest": "forge-recovery.files.jsonl",
+      "files": 4765,
+      "logical_bytes": 1039262601,
+      "unique_bytes": 1037931799,
+      "removable_bytes": 1042567168
+    },
+    {
+      "name": "official-application-20261024_010001_676855",
+      "manifest": "official-application-20261024_010001_676855.files.jsonl",
+      "files": 11404,
+      "logical_bytes": 3843633860,
+      "unique_bytes": 3843603712,
+      "removable_bytes": 3789639680
+    },
+    {
+      "name": "official-application-20261024_013900_951649",
+      "manifest": "official-application-20261024_013900_951649.files.jsonl",
+      "files": 9806,
+      "logical_bytes": 2238248393,
+      "unique_bytes": 2238218245,
+      "removable_bytes": 2186817536
+    },
+    {
+      "name": "official-application-20261024_011509_150162",
+      "manifest": "official-application-20261024_011509_150162.files.jsonl",
+      "files": 9813,
+      "logical_bytes": 2218712705,
+      "unique_bytes": 2218682557,
+      "removable_bytes": 2164396032
+    },
+    {
+      "name": "official-application-20261024_003308_420422",
+      "manifest": "official-application-20261024_003308_420422.files.jsonl",
+      "files": 9802,
+      "logical_bytes": 2126281430,
+      "unique_bytes": 2126251282,
+      "removable_bytes": 2075512832
+    },
+    {
+      "name": "official-application-20261024_003808_419696",
+      "manifest": "official-application-20261024_003808_419696.files.jsonl",
+      "files": 9802,
+      "logical_bytes": 2105715974,
+      "unique_bytes": 2105685826,
+      "removable_bytes": 2054955008
+    },
+    {
+      "name": "official-application-20261024_002418_894919",
+      "manifest": "official-application-20261024_002418_894919.files.jsonl",
+      "files": 8744,
+      "logical_bytes": 1927788304,
+      "unique_bytes": 1927725895,
+      "removable_bytes": 1877180416
+    },
+    {
+      "name": "official-application-20261024_020115_889044",
+      "manifest": "official-application-20261024_020115_889044.files.jsonl",
+      "files": 5965,
+      "logical_bytes": 1347596675,
+      "unique_bytes": 1347566527,
+      "removable_bytes": 1296297984
+    },
+    {
+      "name": "official-application-20261024_002120_394395",
+      "manifest": "official-application-20261024_002120_394395.files.jsonl",
+      "files": 5002,
+      "logical_bytes": 1029590629,
+      "unique_bytes": 1029541099,
+      "removable_bytes": 982663168
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs",
+      "manifest": "bhuman-local-k1-validation-20261019-runs.files.jsonl",
+      "files": 5661,
+      "logical_bytes": 1006398363,
+      "unique_bytes": 1004152817,
+      "removable_bytes": 979488768
+    },
+    {
+      "name": "official-application-20261024_000849_586701",
+      "manifest": "official-application-20261024_000849_586701.files.jsonl",
+      "files": 2400,
+      "logical_bytes": 475940095,
+      "unique_bytes": 475909947,
+      "removable_bytes": 430125056
+    },
+    {
+      "name": "official-application-20261024_002948_567424",
+      "manifest": "official-application-20261024_002948_567424.files.jsonl",
+      "files": 2122,
+      "logical_bytes": 459162910,
+      "unique_bytes": 459132762,
+      "removable_bytes": 413048832
+    },
+    {
+      "name": "official-application-20261024_000105_664125",
+      "manifest": "official-application-20261024_000105_664125.files.jsonl",
+      "files": 1799,
+      "logical_bytes": 332682186,
+      "unique_bytes": 332654812,
+      "removable_bytes": 286572544
+    },
+    {
+      "name": "bhuman-sim2sim-runs",
+      "manifest": "bhuman-sim2sim-runs.files.jsonl",
+      "files": 23,
+      "logical_bytes": 74436987,
+      "unique_bytes": 56882669,
+      "removable_bytes": 74412032
+    },
+    {
+      "name": "forge-official-team-fixture",
+      "manifest": "forge-official-team-fixture.files.jsonl",
+      "files": 614,
+      "logical_bytes": 164815567,
+      "unique_bytes": 70942615,
+      "removable_bytes": 22937600
+    },
+    {
+      "name": "official-application-20261023_235930_688936",
+      "manifest": "official-application-20261023_235930_688936.files.jsonl",
+      "files": 231,
+      "logical_bytes": 49614364,
+      "unique_bytes": 49586310,
+      "removable_bytes": 2629632
+    },
+    {
+      "name": "forge-acceptance",
+      "manifest": "forge-acceptance.files.jsonl",
+      "files": 483,
+      "logical_bytes": 108487045,
+      "unique_bytes": 102206724,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-atlas",
+      "manifest": "forge-atlas.files.jsonl",
+      "files": 20,
+      "logical_bytes": 19818272,
+      "unique_bytes": 18668194,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-backend-maintenance",
+      "manifest": "forge-backend-maintenance.files.jsonl",
+      "files": 46,
+      "logical_bytes": 328856,
+      "unique_bytes": 302669,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-booster-firmware",
+      "manifest": "forge-booster-firmware.files.jsonl",
+      "files": 9,
+      "logical_bytes": 8375571,
+      "unique_bytes": 6292234,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-booster-integration",
+      "manifest": "forge-booster-integration.files.jsonl",
+      "files": 118,
+      "logical_bytes": 4097315,
+      "unique_bytes": 4097315,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-bridge",
+      "manifest": "forge-bridge.files.jsonl",
+      "files": 60,
+      "logical_bytes": 30570208,
+      "unique_bytes": 17550248,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-bridge-audit",
+      "manifest": "forge-bridge-audit.files.jsonl",
+      "files": 1,
+      "logical_bytes": 7709,
+      "unique_bytes": 7709,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-builds",
+      "manifest": "forge-builds.files.jsonl",
+      "files": 29,
+      "logical_bytes": 1544194,
+      "unique_bytes": 1544194,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-bundles",
+      "manifest": "forge-bundles.files.jsonl",
+      "files": 243,
+      "logical_bytes": 66092628,
+      "unique_bytes": 66062318,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-duels",
+      "manifest": "forge-duels.files.jsonl",
+      "files": 1,
+      "logical_bytes": 20477,
+      "unique_bytes": 20477,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-eval",
+      "manifest": "forge-eval.files.jsonl",
+      "files": 3,
+      "logical_bytes": 34182,
+      "unique_bytes": 34182,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-exports",
+      "manifest": "forge-exports.files.jsonl",
+      "files": 15,
+      "logical_bytes": 3400724,
+      "unique_bytes": 2273391,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-flash-history",
+      "manifest": "forge-flash-history.files.jsonl",
+      "files": 372,
+      "logical_bytes": 572684,
+      "unique_bytes": 137432,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-full-native-integration",
+      "manifest": "forge-full-native-integration.files.jsonl",
+      "files": 9735,
+      "logical_bytes": 260320814,
+      "unique_bytes": 195447921,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-gates",
+      "manifest": "forge-gates.files.jsonl",
+      "files": 3,
+      "logical_bytes": 70349,
+      "unique_bytes": 70349,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-jobs",
+      "manifest": "forge-jobs.files.jsonl",
+      "files": 8,
+      "logical_bytes": 10132,
+      "unique_bytes": 10132,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-mjwarp",
+      "manifest": "forge-mjwarp.files.jsonl",
+      "files": 5,
+      "logical_bytes": 11485,
+      "unique_bytes": 11485,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-native-simrobot",
+      "manifest": "forge-native-simrobot.files.jsonl",
+      "files": 29,
+      "logical_bytes": 3498491,
+      "unique_bytes": 3498491,
+      "removable_bytes": 0
+    },
+    {
+      "name": "official-application-20261023_233524_567950",
+      "manifest": "official-application-20261023_233524_567950.files.jsonl",
+      "files": 177,
+      "logical_bytes": 46963880,
+      "unique_bytes": 46936264,
+      "removable_bytes": 0
+    },
+    {
+      "name": "official-application-20261023_235601_988485",
+      "manifest": "official-application-20261023_235601_988485.files.jsonl",
+      "files": 189,
+      "logical_bytes": 47013015,
+      "unique_bytes": 46985467,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-pipelines",
+      "manifest": "forge-pipelines.files.jsonl",
+      "files": 2,
+      "logical_bytes": 2771,
+      "unique_bytes": 2771,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-series",
+      "manifest": "forge-series.files.jsonl",
+      "files": 1,
+      "logical_bytes": 3702,
+      "unique_bytes": 3702,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-simrobot-development",
+      "manifest": "forge-simrobot-development.files.jsonl",
+      "files": 107,
+      "logical_bytes": 839302,
+      "unique_bytes": 671173,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-train",
+      "manifest": "forge-train.files.jsonl",
+      "files": 24,
+      "logical_bytes": 80108937,
+      "unique_bytes": 80108937,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-validations",
+      "manifest": "forge-validations.files.jsonl",
+      "files": 4,
+      "logical_bytes": 1168390,
+      "unique_bytes": 1168390,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-vendor-adaptation",
+      "manifest": "forge-vendor-adaptation.files.jsonl",
+      "files": 125,
+      "logical_bytes": 12502461,
+      "unique_bytes": 11014035,
+      "removable_bytes": 0
+    },
+    {
+      "name": "bhuman-k1-training-runs",
+      "manifest": "bhuman-k1-training-runs.files.jsonl",
+      "files": 536,
+      "logical_bytes": 42515288,
+      "unique_bytes": 38866057,
+      "removable_bytes": 0
+    },
+    {
+      "name": "workbench-runs",
+      "manifest": "workbench-runs.files.jsonl",
+      "files": 587,
+      "logical_bytes": 376503076,
+      "unique_bytes": 286478991,
+      "removable_bytes": 0
+    }
+  ],
+  "excluded": [
+    {
+      "path": "forge/runs/acceptance/20261023_145557_two-day-full/server-state/session-token",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/booster_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/booster_msgs/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/brain/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/game_controller_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/vision_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/booster_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/booster_msgs/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/brain/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/game_controller/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/game_controller_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/vision_interface/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-adapted-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-ros2-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "credential/environment snapshot retained locally"
+    }
+  ],
+  "repository": "peakpeng666/Robocup",
+  "tag": "evidence-20261024_022621",
+  "files": 128792,
+  "original_bytes": 40732162628,
+  "unique_bytes": 33021868143,
+  "candidate_reclaimed_bytes": 38681337856,
+  "disk_before": {
+    "total": 283676618752,
+    "used": 254803746816,
+    "free": 14388367360
+  },
+  "local_retention": "All checkpoint/model files, active build outputs, source/configuration, reports, logs, licenses and runtime environments. Only raw bulk evidence and exact local vendor duplicates are removable."
+}

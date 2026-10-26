@@ -1,0 +1,669 @@
+{
+  "name": "official-application-20261024_010001_676855",
+  "status": "VERIFIED",
+  "archive_sha256": "866fa93b73756ad650664c672222311128f58b5bd3bf12fd28fd760e75f5d0b4",
+  "archive_bytes": 3635878687,
+  "manifest": "official-application-20261024_010001_676855.files.jsonl",
+  "original_files": 11404,
+  "unique_objects": 11381,
+  "parts": [
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0000",
+      "size": 134217728,
+      "sha256": "8beea4dfbfd9f85acbc7358647070fb37d999ad6ab45c6196d4c1f50f6a8221f",
+      "id": 669892345,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0001",
+      "size": 134217728,
+      "sha256": "df46d5db1d1c9ae87121e57fcf497afa1549c04acec9a389ecf077e60ea42e69",
+      "id": 669892367,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0002",
+      "size": 134217728,
+      "sha256": "de6e2400493d825e9b7d745bc3c5e58fd47a5323b72ddc13e156890fe1427d86",
+      "id": 669892372,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0003",
+      "size": 134217728,
+      "sha256": "ca9b81f3b60f41dd30d9ad3d3a6026254062eee1160bebcdc2299b823a1b5d8e",
+      "id": 669901112,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0004",
+      "size": 134217728,
+      "sha256": "23a6bddb774f4d934ecfee9b8c24c8a3040dd603dbae79a783bdcdb1e0306dc8",
+      "id": 669901091,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0004",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0005",
+      "size": 134217728,
+      "sha256": "7487e858b9e8919dc0bfc5d306c7049c78524a5b1b96211fbfed648ed89c50d9",
+      "id": 669901103,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0005",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0006",
+      "size": 134217728,
+      "sha256": "05f543dd02c18a51c2b3b4a4e271f5fc9a7a2646d053287e3c2763ee5fbf60fb",
+      "id": 669938897,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0006",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0007",
+      "size": 134217728,
+      "sha256": "f692a8e845929ce7f20885a2f1d376527a1d87e84085aef41ee47499959c0cbd",
+      "id": 669938756,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0007",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0008",
+      "size": 134217728,
+      "sha256": "4fd5c96349c434e93d426bcef532c57c8bd11cd6096b000af5bcfe9bd98d1d81",
+      "id": 669938784,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0008",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0009",
+      "size": 33554432,
+      "sha256": "f0487ed0b4f048dfe6bdf466066b8dd2808c9e679690e71e94a28c44c0451027",
+      "id": 669972239,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0009",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0010",
+      "size": 33554432,
+      "sha256": "4977264d47d88f4e5956a72302ea64573d36ef27cda276d7251f33184f385e87",
+      "id": 669972238,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0010",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0011",
+      "size": 33554432,
+      "sha256": "6a60fc00114f7e4387fff5c74b423fc8707cc8a4a58d1c132aa3ba5014bc4a0b",
+      "id": 669972237,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0011",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0012",
+      "size": 33554432,
+      "sha256": "86a115fcb86f7b3b88c90a5df50489e15fb180dce76fdc5c8166e09f30b614a2",
+      "id": 669976191,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0012",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0013",
+      "size": 33554432,
+      "sha256": "2f5c30aa70f55139449247a0c86c8ea53300008530a5e422869fa9dc19ebb6ac",
+      "id": 669976189,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0013",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0014",
+      "size": 33554432,
+      "sha256": "c26fccd80f522b511ca5dbc7bba1c578f1773ff1789b5ddc0101fb6452e765cb",
+      "id": 669976198,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0014",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0015",
+      "size": 33554432,
+      "sha256": "f74c7fa50a69a6207627b2c0368a2669f6bd83a4fcd9b1ee4d07a2241d8a760b",
+      "id": 669976190,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0015",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0016",
+      "size": 33554432,
+      "sha256": "a47598ae70f88c11d9f2ffa377558affd1dd8897b62806c422da1829e2da0c10",
+      "id": 669976200,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0016",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0017",
+      "size": 33554432,
+      "sha256": "7209f221bc0517f5a864e20588dd5740d66d4a9fd4a0234f346f573a16d392cc",
+      "id": 669976206,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0017",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0018",
+      "size": 33554432,
+      "sha256": "9266401fec4ff98d228611facf2f70cd75b423e46bb8482ac2d9a4cb57b5fea2",
+      "id": 669980889,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0018",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0019",
+      "size": 33554432,
+      "sha256": "1a80d905a1e1248c18687117a98a1615e59387df878b9865483e41097107fcad",
+      "id": 669980884,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0019",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0020",
+      "size": 33554432,
+      "sha256": "46b43e19beb803e70872855b0e73105c4d5e665c9c886bd1037d1b6ff274294f",
+      "id": 669980915,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0020",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0021",
+      "size": 33554432,
+      "sha256": "81c1fd5e0a400cd3416f86ea64a9c8a3e5ab75507653981b3e8c2768c6d4a126",
+      "id": 669980881,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0021",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0022",
+      "size": 33554432,
+      "sha256": "bd930ed102b8b8e9284bf7531f234386092678330ef57cf0984733eab4917d8a",
+      "id": 669980883,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0022",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0023",
+      "size": 33554432,
+      "sha256": "6b73a6df30081c65a54ae1fb6acd9e909db079c43445802fe132ebdec1beb3b2",
+      "id": 669980898,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0023",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0024",
+      "size": 33554432,
+      "sha256": "fb181f58cb7802ad19894570579cfda86859dc66435fe225d2a2b3f5b322669a",
+      "id": 669987385,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0024",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0025",
+      "size": 33554432,
+      "sha256": "1b54189fbfdb729b9cfc38dfbbf1f3b0eb0440c31b4c801e1b2c8f8ff3d87812",
+      "id": 669987374,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0025",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0026",
+      "size": 33554432,
+      "sha256": "745f8d5bb1c32fbc73a7c43736af60f07eef2bb4b5b95ee59820763377bb8f82",
+      "id": 669987388,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0026",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0027",
+      "size": 33554432,
+      "sha256": "6a2f7646f74126bb6ab53abaed48c410388041b1efd0da12c4b2760d42e667af",
+      "id": 669987372,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0027",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0028",
+      "size": 33554432,
+      "sha256": "3ab0d1f10bda585d2026b2bb1cf8f76e4663e3fa640e6f0f08c19910f1cba3e5",
+      "id": 669987397,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0028",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0029",
+      "size": 33554432,
+      "sha256": "8da5944e6b286d7bce823f729900831cca4c5dc5d9f47876e905912e145a1bee",
+      "id": 669987387,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0029",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0030",
+      "size": 33554432,
+      "sha256": "dfd1a03a094f6c3ab5edd015f06a52673473594a09f5251bed9106ad9485bdba",
+      "id": 669993176,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0030",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0031",
+      "size": 33554432,
+      "sha256": "0e55dcb1c3ffc824519e0130f6ded09081b49469557852948168f03d9a8ff54f",
+      "id": 669993180,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0031",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0032",
+      "size": 33554432,
+      "sha256": "27421cc363c0f78ab08f5a1c0af2a5a19658b2bfe2906b472adb461344161173",
+      "id": 669993185,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0032",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0033",
+      "size": 33554432,
+      "sha256": "5043a2389c223876d4326de7a2e79a1e994bee90db53702b0ac3301f31bc07d7",
+      "id": 669993166,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0033",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0034",
+      "size": 33554432,
+      "sha256": "e2f1fd89152d6763c1a836339d3fbe6bb604d8321d2845a017dcd6e1611fcfac",
+      "id": 669993190,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0034",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0035",
+      "size": 33554432,
+      "sha256": "14b757c8a097c0c2dc859fd89a7d1e6b141887f58da8ea237261ac059d2ee52c",
+      "id": 669993193,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0035",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0036",
+      "size": 33554432,
+      "sha256": "823d0318112babf3dca1f1fb576a23452190590d0c534b3e8214050b69e68f83",
+      "id": 669998651,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0036",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0037",
+      "size": 33554432,
+      "sha256": "d499522e4dd0c2daf46dc6f561c3515b845639e9df735007df084bdc7d94633d",
+      "id": 669998589,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0037",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0038",
+      "size": 33554432,
+      "sha256": "631483778e255cdee83d6afea4a2113c850d0e2d260317b861573fc83f9d1686",
+      "id": 669998654,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0038",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0039",
+      "size": 33554432,
+      "sha256": "8abdd6169cb0be3989e8f0433527ec3a91f69ab2bd732ab31d532772a1778078",
+      "id": 669998585,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0039",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0040",
+      "size": 33554432,
+      "sha256": "c2a42812cd020b93d85cf7d3114f75f8e4ee58acb1047c83c90056110332b900",
+      "id": 669998598,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0040",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0041",
+      "size": 33554432,
+      "sha256": "6efe95ae6a9a2fbf357d4021ed1d76679e5f515a50678b82d395715f942e8899",
+      "id": 669998614,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0041",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0042",
+      "size": 33554432,
+      "sha256": "43436ebf0c47c3b44caac2f2c0f035e145267023841a869e38ca067728e0a730",
+      "id": 670003883,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0042",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0043",
+      "size": 33554432,
+      "sha256": "bc2934155158c536b6332235200b464c9c2ea1bc439c31ea820cb9ef8d904b3e",
+      "id": 670003855,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0043",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0044",
+      "size": 33554432,
+      "sha256": "d5842ea9b274c14695624d4cfc053e3ff70b1f6cb254d1d0fd1d8782158e4079",
+      "id": 670003852,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0044",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0045",
+      "size": 33554432,
+      "sha256": "634c208f079135fb31f7fe1c854dc7784f84a7d799517ddb4d1087e0838b1dfc",
+      "id": 670003857,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0045",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0046",
+      "size": 33554432,
+      "sha256": "183574c6d3992c1c89469cb7cd89c47f0619eb251a661e3afedfc2e258c15439",
+      "id": 670003854,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0046",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0047",
+      "size": 33554432,
+      "sha256": "17fe494074a629c5e560fa970acaf31f9fe0607388cca3f7f06d3e53d37fc798",
+      "id": 670003885,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0047",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0048",
+      "size": 33554432,
+      "sha256": "774a78cad58fcc0407bcb40ec7e8dbf86034286977d22bb3fa1fd9906f406054",
+      "id": 670007792,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0048",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0049",
+      "size": 33554432,
+      "sha256": "707381fe26ac5167dedfd7203ae33930807272bd01c31247792b0fd1124e2268",
+      "id": 670007775,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0049",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0050",
+      "size": 33554432,
+      "sha256": "fe8f8aa45696ec55afc419489e78fe26ead224488c24116d3d4a57f02ebab148",
+      "id": 670007787,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0050",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0051",
+      "size": 33554432,
+      "sha256": "d82042ab974c9153ed83c897a42abbd0e172510de31c44e5d3bdfb0ccca336f9",
+      "id": 670007782,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0051",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0052",
+      "size": 33554432,
+      "sha256": "2ce2c512594578dbb8fa8f0730577f5e9424847e2da40b8ede427655ec548f09",
+      "id": 670007785,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0052",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0053",
+      "size": 33554432,
+      "sha256": "dfbff87177a48191691e80c6d2a4323dc81277e94b5544475e67bd4183fc3563",
+      "id": 670007836,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0053",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0054",
+      "size": 33554432,
+      "sha256": "d497208d2fa1cc5296369a61a7288547d04ece00298c19f21b7df6af7fe0a725",
+      "id": 670013666,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0054",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0055",
+      "size": 33554432,
+      "sha256": "18910b7c1dc603ea4c71835c8310b65ff28d8e48a8b2b9dd652cc09b029f2b63",
+      "id": 670013668,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0055",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0056",
+      "size": 33554432,
+      "sha256": "59bcd61561d6c1533f34e4697c1e72effc0e4658c465ba36429cc484f56bcb71",
+      "id": 670013665,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0056",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0057",
+      "size": 33554432,
+      "sha256": "789cdcc63b14c5c582a0bbccd119d5fa7283efa02e3955123435588ad51b6df7",
+      "id": 670013683,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0057",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0058",
+      "size": 33554432,
+      "sha256": "b0895a796701afa3b8428f60c00a9e7d925e8e4fece38430baa0f3ba62ec4444",
+      "id": 670013658,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0058",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0059",
+      "size": 33554432,
+      "sha256": "2f1dbaf78999227e0fa6e8dbf91bcb12dc8ea05bfc36d7de590a897e384d76dc",
+      "id": 670013657,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0059",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0060",
+      "size": 33554432,
+      "sha256": "c77c02b3a2d398d3192003a855314c89cef4081f4a2977d38eb0f5ed02634743",
+      "id": 670019330,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0060",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0061",
+      "size": 33554432,
+      "sha256": "2d334ac3f419a98edcff2f0d9736f7296b6e74791110006ceb3edf3b1eea765e",
+      "id": 670019331,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0061",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0062",
+      "size": 33554432,
+      "sha256": "f173540a412291d78336f4a756628292c9fe1130679f8416a2f718da330f2eed",
+      "id": 670019324,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0062",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0063",
+      "size": 33554432,
+      "sha256": "e95a809b7723ab3c4e33123257ede14412b70d68603f6bc072180fdc10217b86",
+      "id": 670019332,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0063",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0064",
+      "size": 33554432,
+      "sha256": "ece392230f577250277fb77456598dec2b8ebd52f978112d9e45e86ab3db325d",
+      "id": 670019352,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0064",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0065",
+      "size": 33554432,
+      "sha256": "f1310f3a27cf861b19c017ad4b1be64de77aea54d4ec6288196457186f540be4",
+      "id": 670019335,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0065",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0066",
+      "size": 33554432,
+      "sha256": "ec0068dd9e79bcda6713eaff03b92d961afcd69f62678871137c1f8f5490697d",
+      "id": 670024150,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0066",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0067",
+      "size": 33554432,
+      "sha256": "265ab22800eaed073d8427642bc8c3a3dbdb19e01ee4eefbcde65507694de62f",
+      "id": 670024153,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0067",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0068",
+      "size": 33554432,
+      "sha256": "5c65e1b6d9862593808bed1a2d77b87faf5497c1563671656ab48fbfb687bbce",
+      "id": 670024147,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0068",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0069",
+      "size": 33554432,
+      "sha256": "9451e0d5da47637147007e3361007e0c54cc28c8f36cbbf70d7a36f704691fbc",
+      "id": 670024208,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0069",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0070",
+      "size": 33554432,
+      "sha256": "026624b1215031b4ac4dde7b23b67f1c57cf4255edb69f08347d0f3088bd76e3",
+      "id": 670024145,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0070",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0071",
+      "size": 33554432,
+      "sha256": "f897daab96eeb333a91b10652e36784b4510405f6fd5a70a8ab1f5a8f1fe1b03",
+      "id": 670024160,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0071",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0072",
+      "size": 33554432,
+      "sha256": "9aaeb5f3c5a678743b82291aa2b00e7d513fdeca1ab1b4176168ce1ca321d4ef",
+      "id": 670030622,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0072",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0073",
+      "size": 33554432,
+      "sha256": "2f2f6b6ef26ad559fa7efe78be8d214daf62b913b8a7e62177b4c388dc310913",
+      "id": 670030638,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0073",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0074",
+      "size": 33554432,
+      "sha256": "d3f273c4b6d8a1a15f03e623cd388850ae6d8fc5509e7bb56be5cd5c0e342e68",
+      "id": 670030632,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0074",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0075",
+      "size": 33554432,
+      "sha256": "4775fcbc1a877b839067d8298ef93b3b69be8d71f048eb2015990770115aee1a",
+      "id": 670030634,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0075",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0076",
+      "size": 33554432,
+      "sha256": "68612e31a7f42f6e7cf0ebbef5525c5e73c97f1ac9b84bba821bcc1a22955d86",
+      "id": 670030664,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0076",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0077",
+      "size": 33554432,
+      "sha256": "76a5e4774c035e579c589535704a52fbe5dfc6a3b89617dffb556b3295aa2331",
+      "id": 670030695,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0077",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0078",
+      "size": 33554432,
+      "sha256": "b991733624fbe2dcf3803e67cc7b33cb18983a86c2c80b02e162abdf4b2421a6",
+      "id": 670035998,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0078",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0079",
+      "size": 33554432,
+      "sha256": "ee40e950c6bd75b4119ef54f90b06d59fe196f4b4519868f19b81478def56a69",
+      "id": 670036014,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0079",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0080",
+      "size": 33554432,
+      "sha256": "52ef335fd8a8a0bb5cd4809430971ff15ca245b6474057a2f41e4b0ed8bf8df4",
+      "id": 670036007,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0080",
+      "verified": true
+    },
+    {
+      "name": "official-application-20261024_010001_676855.tar.zst.gpg.part0081",
+      "size": 12000031,
+      "sha256": "b4b0b89a7efd8c28ff1b90c3749dbd786a540114b0076be6b6ca8e87f2439a64",
+      "id": 670036003,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/official-application-20261024_010001_676855.tar.zst.gpg.part0081",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 1593.0930691489993
+}

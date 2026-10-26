@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "profile_components": [
+    {
+      "name": "application",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-real2sim-platform-20261024-i/sim-build/official_application",
+      "sha256": "c8d32f9d158cda2fb06b9e8e542eb1e6d5a280fb665d16d2f55ecaa1809dde36",
+      "unchanged": true
+    },
+    {
+      "name": "simulator_port",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-application-20261024-i/Build/Linux/SimRobot/Release/libOfficialTeam.so",
+      "sha256": "aac337eb1f91593c3058ced07123c5706595f70cc174ce96fe8dbd4f8226bda9",
+      "unchanged": true
+    },
+    {
+      "name": "physics_core",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/variants/official-team-independent-20261023-d/Build/Linux/SimRobot/Release/libSimRobotCore3.so",
+      "sha256": "c4ce565a7b206b41259207c8c4e4fbbc33ce0b938dcc64cb40ad110a8b032efb",
+      "unchanged": true
+    },
+    {
+      "name": "io",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/application-io-final-v2/libforge_booster_fw16_io.so",
+      "sha256": "6b0496c12e851f2f94643b39d6efea2f0dfbdd2d11d7a1d59415a9aeec4cba53",
+      "unchanged": true
+    },
+    {
+      "name": "rpc",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/runs/native-controller/20261024_001413_860601_application-rpc-build/libforge_booster_fw16_rpc.so",
+      "sha256": "3705965797ae01e9b8b511eef8d76f3eb430ef22a76d22cbd71b0faa65e660e1",
+      "unchanged": true
+    },
+    {
+      "name": "physics",
+      "path": "/home/peakpeng/Desktop/Robocup/forge/runs/full-native-integration/20261023_154209_673865_postboot-continuation/physics-imu-flu-v1/libforge_booster_fw16_physics.so",
+      "sha256": "81d2282fd64ef7177f46d3cd5d55da6d1b3a7f7cc84c56693d78da53e7bb2b0b",
+      "unchanged": true
+    }
+  ],
+  "continuation_checkpoints": [
+    {
+      "path": "bhuman/k1-training/runs/20261020_220631_608556_walk_reference_full_s7/nn/model_final.pth",
+      "exists": true,
+      "sha256": "261775b41cb3cef7b442e2ec6ce8452e54b82a18888556b9df1cdba49b72c16c"
+    },
+    {
+      "path": "bhuman/k1-training/runs/20261021_011413_129111_walk_reference_full_s7/nn/model_final.pth",
+      "exists": true,
+      "sha256": "573c46278ff612f8c5d1eecb1329f3f1fe2077fee6c3d968e684958a9960f4f0"
+    }
+  ],
+  "owner_recovery_key_local_and_mode_0600": true
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "path": "/home/peakpeng/Desktop/Robocup/robocup-2",
+  "verified_source_files": 6107,
+  "all_git_objects_retained": 10589,
+  "reclaimed_allocated_bytes": 189358080,
+  "retained_source_repository": "/home/peakpeng/Desktop/Robocup",
+  "remote_commit": "cca7bac19b3b140377b8db4dbc0b4842a609c604",
+  "runnable_simulator_or_environment_removed": false,
+  "removed": true
+}

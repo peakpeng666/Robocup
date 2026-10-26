@@ -1,0 +1,45 @@
+{
+  "name": "forge-motion",
+  "status": "VERIFIED",
+  "archive_sha256": "1ca861e372778e404c78f86df1a1a8d18a3efa5c2284192117d4674a87e42f16",
+  "archive_bytes": 487422939,
+  "manifest": "forge-motion.files.jsonl",
+  "original_files": 6766,
+  "unique_objects": 6641,
+  "parts": [
+    {
+      "name": "forge-motion.tar.zst.gpg.part0000",
+      "size": 134217728,
+      "sha256": "41e7c1aa3d6eac10f0d11f283e909d34ec8b8e769bdc7fd36c33ada92778ba13",
+      "id": 669891537,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-motion.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-motion.tar.zst.gpg.part0001",
+      "size": 134217728,
+      "sha256": "2d8357ca43feb0b2120577f491426c62c60b85ee1a33c2f70f865465c4fa5251",
+      "id": 669891634,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-motion.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-motion.tar.zst.gpg.part0002",
+      "size": 134217728,
+      "sha256": "e9c289a498d087c4d50d2ca18afa53206c3165c26b5cbe12a8aaa1f55504db24",
+      "id": 669891628,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-motion.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "forge-motion.tar.zst.gpg.part0003",
+      "size": 84769755,
+      "sha256": "75f7255da0436f3a34da598835163aa751e2354679e4a9df02f02c206e4ccd75",
+      "id": 669901761,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-motion.tar.zst.gpg.part0003",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 384.8773856610005
+}

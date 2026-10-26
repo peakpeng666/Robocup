@@ -1,5 +1,7 @@
 # Robocup · K1 / B-Human 2026
 
+**工程基础整理（2026-10-26）**：源码已提交并同步，历史数据及冗余安装包完成核验上云；本轮按清理收据主动释放 **17.54 GiB**。本机保留比赛、MuJoCo、训练主线、运行依赖、模型与续训检查点。见 [清理结果](archive/workspace-organization/20261026_012348_foundation-cleanup/清理结果.txt)、[新增加密备份](https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348) 和 [恢复索引](archive/evidence-offload/20261026_012348_foundation/remote-index.json)。大型审计清单已无损 gzip 压缩，归档工具兼容读取。额外训练审查工作树归入 `_local/worktrees/rl-contracts/`；原生 1.7 实验保留在 `robocup-1/`，两个实验分支独立同步。
+
 **当前入口（2026-10-24）**：先看 [工作区索引](WORKSPACE-INDEX.txt) 和 [常用入口](workspace-nav/00-常用入口/)。稳定 B-Human 比赛、训练主线、MuJoCo 继续本机保留；历史大体积证据已完成核验并转存 [GitHub 证据归档](https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621)，各运行目录的 `REMOTE-EVIDENCE.json` 提供恢复入口。Forge 当前配置见 [official-fw16-demo.json](forge/profiles/official-fw16-demo.json)。最新应用 i 的 36 秒记录为接口/运行 PASS、视觉踢球动作 FAIL；应用 f/g 各有一次动作通过，三次均未获得完整比赛/Real2sim 资格。训练工作台保留 71 轮默认，72 轮为最新续训输出，不据时间判定最佳。下文保留原历史总览，最新入口和证据边界以索引为准。
 
 **证据整理已完成**：47 组记录已无损压缩加密上传，439 个分卷通过远端 SHA-256/大小核验，并通过实际下载恢复测试。证据清理释放 36.02 GiB，连同前次缓存/重复文件清理累计 42.72 GiB；完成时本机可用约 49.5 GiB。运行工程、模型、检查点和五套环境继续保留。见 [恢复说明](archive/evidence-offload/20261024_022621/RESTORE.txt) 与 [最终核验](archive/evidence-offload/20261024_022621/final-verification.json)。

@@ -1,0 +1,29 @@
+{
+  "name": "forge-full-native-integration",
+  "status": "VERIFIED",
+  "archive_sha256": "b3ee90d2e7a3edf894e56415aac3bb628ca5a192d9bdb86ccfefa1b34460aba5",
+  "archive_bytes": 43672036,
+  "manifest": "forge-full-native-integration.files.jsonl",
+  "original_files": 9735,
+  "unique_objects": 4730,
+  "parts": [
+    {
+      "name": "forge-full-native-integration.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "855f1b1d9545008355a02f582c36ed0cb89fed4a36c42b6e0f9dfcc42bf141a0",
+      "id": 670053372,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-full-native-integration.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-full-native-integration.tar.zst.gpg.part0001",
+      "size": 10117604,
+      "sha256": "5412a8ef44ab9e736cd02dcd1e12a392bdf0cd071c8a84591945a59fd3c1bd82",
+      "id": 670053349,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-full-native-integration.tar.zst.gpg.part0001",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 23.92726315300024
+}

@@ -1,0 +1,62 @@
+{
+  "scans": [
+    {
+      "time_utc": "2026-10-23T18:29:36.685724+00:00",
+      "run": "/home/peakpeng/Desktop/Robocup/forge/runs/official-application/20261024_011509_150162",
+      "same_uid_processes": 188,
+      "references": [],
+      "permission_denied": [],
+      "uninspectable_system_session_helpers": [
+        {
+          "pid": 1282,
+          "name": "(sd-pam)",
+          "parent_pid": 1281,
+          "parent_name": "systemd"
+        }
+      ],
+      "uninspectable_system_crypto_helpers": [
+        {
+          "pid": 86917,
+          "name": "gpg-agent --supervised",
+          "parent": "systemd",
+          "scope": "system key-agent; archive data handled by separate gpg processes"
+        },
+        {
+          "pid": 92602,
+          "name": "ssh-agent -D (GNOME keyring socket)",
+          "parent": "gnome-keyring-d",
+          "scope": "desktop authentication helper; not a simulation or evidence reader"
+        }
+      ]
+    },
+    {
+      "time_utc": "2026-10-23T18:29:36.718277+00:00",
+      "run": "/home/peakpeng/Desktop/Robocup/forge/runs/official-application/20261024_013900_951649",
+      "same_uid_processes": 188,
+      "references": [],
+      "permission_denied": [],
+      "uninspectable_system_session_helpers": [
+        {
+          "pid": 1282,
+          "name": "(sd-pam)",
+          "parent_pid": 1281,
+          "parent_name": "systemd"
+        }
+      ],
+      "uninspectable_system_crypto_helpers": [
+        {
+          "pid": 86917,
+          "name": "gpg-agent --supervised",
+          "parent": "systemd",
+          "scope": "system key-agent; archive data handled by separate gpg processes"
+        },
+        {
+          "pid": 92602,
+          "name": "ssh-agent -D (GNOME keyring socket)",
+          "parent": "gnome-keyring-d",
+          "scope": "desktop authentication helper; not a simulation or evidence reader"
+        }
+      ]
+    }
+  ]
+}

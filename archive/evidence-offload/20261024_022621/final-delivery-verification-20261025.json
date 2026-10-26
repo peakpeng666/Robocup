@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621",
+  "draft": false,
+  "metadata_assets_verified": [
+    {
+      "name": "audit-index.json",
+      "bytes": 1362,
+      "sha256": "eb5b45018dc78c7fcb7aee5d66fb03b98cc25a9a344b5516a055601bc30d1688"
+    },
+    {
+      "name": "archive-summary.json",
+      "bytes": 858,
+      "sha256": "b5a910eb31ecc7ef5951d85db3d686cecc68002630b3cd7c4a9426460aee35e4"
+    },
+    {
+      "name": "final-verification.json",
+      "bytes": 922,
+      "sha256": "aac831eb6ae063ec1a1f0b6e1e1c01a35c59916f729e2a20ef58b1ae9f0ea91c"
+    },
+    {
+      "name": "RESTORE.txt",
+      "bytes": 3399,
+      "sha256": "5105098e6a9160e3ae51c02efb0b5f1d5ae2af9b08512dd0d7f7cca87328980d"
+    },
+    {
+      "name": "remote-index.json",
+      "bytes": 212696,
+      "sha256": "b90527090782f74318d9eb1a7c76f9cf15177caa4740a0572e5483c5ccc7952b"
+    },
+    {
+      "name": "restore_evidence.py",
+      "bytes": 7739,
+      "sha256": "aef86f659474b6b4c845a1a55cee3640109419593b848452de4fc9dd4651d367"
+    }
+  ],
+  "anonymous_index_downloads": [
+    {
+      "name": "remote-index.json",
+      "groups": 47,
+      "sha256": "b90527090782f74318d9eb1a7c76f9cf15177caa4740a0572e5483c5ccc7952b"
+    },
+    {
+      "name": "audit-index.json",
+      "groups": 1,
+      "sha256": "eb5b45018dc78c7fcb7aee5d66fb03b98cc25a9a344b5516a055601bc30d1688"
+    }
+  ],
+  "auxiliary_download_restore_verification": {
+    "status": "PASS",
+    "group": "evidence-audit-records",
+    "downloaded_parts": 1,
+    "verified_objects": 222,
+    "selected_files": 313,
+    "restored_files": [],
+    "verify_only": true
+  },
+  "recovery_key_mode": "0o600"
+}

@@ -1,0 +1,20 @@
+{
+  "timestamp_jst": "20261024_020904",
+  "root": "/home/peakpeng/Desktop/Robocup",
+  "inventory_excludes": [
+    ".git",
+    "archive/workspace-organization/20261024_020904_full_cleanup"
+  ],
+  "counts": {
+    "files": 352508,
+    "dirs": 41935,
+    "symlinks": 2343,
+    "logical_bytes": 79716608780,
+    "unique_allocated_bytes": 80592195584
+  },
+  "disk_usage": {
+    "total": 283676618752,
+    "used": 261911941120,
+    "free": 7280173056
+  }
+}

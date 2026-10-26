@@ -1,0 +1,109 @@
+{
+  "name": "bhuman-local-k1-validation-20261019-runs",
+  "status": "VERIFIED",
+  "archive_sha256": "6281341ead7f5637c5a773812fc228ff315928ed841dd2dc667d2a6e018b96c2",
+  "archive_bytes": 395562919,
+  "manifest": "bhuman-local-k1-validation-20261019-runs.files.jsonl",
+  "original_files": 5661,
+  "unique_objects": 5463,
+  "parts": [
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0000",
+      "size": 33554432,
+      "sha256": "dfda1c096c7a379bfb05e28c8a915b846f608d94840567adb19850d62d81b87f",
+      "id": 670038303,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0001",
+      "size": 33554432,
+      "sha256": "dd44f74a926db5567cbd5b915cce61b7f89472af252c5fe58dd6103e9a277588",
+      "id": 670038290,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0002",
+      "size": 33554432,
+      "sha256": "10377c7e8a349ebf9fa284c714ec48246a6fe96d760feacf2ac2adc7b4e5e185",
+      "id": 670038281,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0002",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0003",
+      "size": 33554432,
+      "sha256": "48aaf2ec0dc0b486f7720576cdf38697a3f089f629d5ca66f3a53e0d3cba921c",
+      "id": 670038278,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0003",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0004",
+      "size": 33554432,
+      "sha256": "edde4e6f654bcc69153e47a5dcabf43bcbf69ce47304375b9f3195c8e5627be6",
+      "id": 670038300,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0004",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0005",
+      "size": 33554432,
+      "sha256": "8a18985e1d9fcdec710efd60d4e29eaf945749fd57e3d45062054491283edb3a",
+      "id": 670038283,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0005",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0006",
+      "size": 33554432,
+      "sha256": "46f08cfb2dbb701f0a081c0de97c7f9ca37116ac62f57768bd8f2e805f3557b9",
+      "id": 670042602,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0006",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0007",
+      "size": 33554432,
+      "sha256": "94a277d1057e7df0ed338f339ff0d340f1fcd295527da1aefc51be66fd35aa87",
+      "id": 670042576,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0007",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0008",
+      "size": 33554432,
+      "sha256": "742e15a629f20678a0480d3f0245413f3c3661fdef1feebac348797910a3d2cf",
+      "id": 670042603,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0008",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0009",
+      "size": 33554432,
+      "sha256": "47c42d1332fb1025988c70e437708850ce9ed0d3767db6181d10b1ee5084d25c",
+      "id": 670042575,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0009",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0010",
+      "size": 33554432,
+      "sha256": "cb77242ae3c2f8d0eeacf05b5ce27614a789687e537e0c7683928a7b95f8e539",
+      "id": 670042613,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0010",
+      "verified": true
+    },
+    {
+      "name": "bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0011",
+      "size": 26464167,
+      "sha256": "3367647d89ec34e4127708be6efc47cec3bb788f33ba676745e0792cea087329",
+      "id": 670042601,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/bhuman-local-k1-validation-20261019-runs.tar.zst.gpg.part0011",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 220.59803820600064
+}

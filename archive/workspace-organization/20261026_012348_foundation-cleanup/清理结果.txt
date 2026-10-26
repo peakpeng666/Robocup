@@ -1,0 +1,45 @@
+RoboCup 工程基础清理结果 · 2026-10-26（Asia/Tokyo）
+
+已完成，并按逐项清理收据确认主动释放 17.54 GiB。
+临时下载回测副本、审计压缩收益和已经不存在的旧回收站目录不计入上述数值。
+记录时磁盘可用约 100.3 GiB；其他程序可能继续改变磁盘占用。
+
+本机保留
+- B-Human 比赛程序、原官方步态和正常渲染相机感知。
+- MuJoCo sim2sim、训练源码、配置、运行依赖及原有模型。
+- 71 轮默认检查点及 72 轮续训检查点；没有切换官方默认策略。
+- Forge 和 workbench 的实际程序、动态库、模型、配置及现有环境。
+- 原生 1.7 桥接实验工作区 robocup-1/native/simrobot_native_bridge/。
+- 训练审查源码工作树已从桌面 Robocup-pr4 归入 _local/worktrees/rl-contracts/。
+- 紧凑报告、恢复索引及本机所有者恢复密钥；密钥不上传。
+
+清理及上云
+- 8,202 个编译中间文件、Python/测试/检查缓存已清理。
+- 1,170 份历史运行日志、数组、录像和旧打包输出已核验转存，并留下恢复标记。
+- 8 份冗余下载/安装归档已核验转存；实际安装的运行库、环境和模型保留。
+- K1 1.7.1.1 原始包在 Google 云盘完成完整下载回测后，已删除本机下载重复副本。
+- robocup-2 是无运行程序、无独有工作改动的源码重复副本；6,107 个文件经 GitHub 下载核验，10,589 个 Git 对象及原有引用保留在主仓库后移除。
+- 59 份大型审计清单无损 gzip 压缩；归档工具支持直接读取压缩清单，逐字节回读及记录数检查通过。
+- 旧回收站工程已加密归档，801 条目录/文件记录、611 个文件实际恢复核验通过；最终检查时原目录已不存在，未将其计入本轮主动删除量。
+
+云端
+https://github.com/peakpeng666/Robocup/releases/tag/foundation-data-20261026_012348
+当前新增对象备份共 6 组；连同旧回收站加密包，共 208 个分卷。
+历史大体积数据仍保存在 evidence-20261024_022621 Release。
+恢复主索引：archive/evidence-offload/20261026_012348_foundation/remote-index.json
+旧回收站恢复索引：archive/evidence-offload/20261026_012348_foundation/retired-trash.remote-index.json
+恢复工具：archive-tools/restore_evidence.py。
+例：python3 archive-tools/restore_evidence.py --index archive/evidence-offload/20261026_012348_foundation/remote-index.json --list
+需要新建环境、重新解包厂商文件或核验完整原始固件时，先按索引恢复相应安装包。
+不要执行归档内的机器人安装、服务或固件脚本。
+
+源码同步
+main；codex/rl-contracts-foundation-20261026；codex/native17-foundation-20261026。
+实验分支保持独立，没有合并进官方默认控制策略。
+
+核验
+Forge 381 项及 5 个子测试、工作台 34 项、三项只读训练契约检查通过。
+前端类型检查、训练环境 60 包依赖检查、MuJoCo CPU 导入检查通过。
+6 个当前运行组件 SHA-256 与整理前一致，两个续训检查点保留。
+全工作区原条目核对无未解释的丢失或改变，详见 SUMMARY.json。
+本轮没有新训练、比赛仿真或真机结论。

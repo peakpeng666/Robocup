@@ -35,6 +35,15 @@ def save(path,data):
         json.dump(data,handle,ensure_ascii=False,indent=2);handle.write('\n');handle.flush();os.fsync(handle.fileno())
     os.replace(temp,path)
 
+def manifest_rows(path):
+    """Read retained audit manifests before or after lossless gzip compaction."""
+    if not path.exists() and path.with_name(path.name+'.gz').is_file():
+        path=path.with_name(path.name+'.gz')
+    opener=gzip.open if path.suffix=='.gz' else open
+    with opener(path,'rt',encoding='utf-8') as handle:
+        for line in handle:
+            if line.strip():yield json.loads(line)
+
 def api(endpoint):
     last=None
     for attempt in range(4):
@@ -144,7 +153,7 @@ class CheckedReader:
         data=self.handle.read(size);self.hash.update(data);self.count+=len(data);return data
 
 def package(state,out,group):
-    rows=[json.loads(line) for line in (out/group['manifest']).read_text().splitlines()]
+    rows=list(manifest_rows(out/group['manifest']))
     unique={}
     for row in rows:unique.setdefault(row['sha256'],row)
     target=Path(state['staging'])/(group['name']+'.tar.zst.gpg')
@@ -293,7 +302,7 @@ def cleanup(state,out):
     spec=importlib.util.spec_from_file_location('depth_archive',ROOT/'forge/tools/archive_depth_evidence.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     rows=[]
     for group in selected:
-        rows.extend(json.loads(line) for line in (out/group['manifest']).read_text().splitlines() if json.loads(line)['remove_local'])
+        rows.extend(row for row in manifest_rows(out/group['manifest']) if row['remove_local'])
     scopes=sorted({str(Path(r['path']).parent) for r in rows})
     # One process inventory per top-level run scope, with full paths but no arguments disclosed.
     scopes=sorted({str(Path(*Path(r['path']).parts[:4])) if r['path'].startswith('forge/runs/') else str(Path(*Path(r['path']).parts[:4])) for r in rows})

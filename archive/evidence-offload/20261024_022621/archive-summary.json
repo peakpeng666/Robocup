@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "release_url": "https://github.com/peakpeng666/Robocup/releases/tag/evidence-20261024_022621",
+  "run_groups": 47,
+  "original_files": 128792,
+  "original_bytes": 40732162628,
+  "encrypted_archive_bytes": 20257890946,
+  "remote_parts": 439,
+  "evidence_reclaimed_gib": 36.02,
+  "total_cleanup_reclaimed_gib": 42.72,
+  "free_gib_after": 49.52,
+  "removed_bulk_evidence_files": 110324,
+  "preserved_workspace_file_identity_checks": 242684,
+  "retained_runtime_and_evidence_files_sha256_checked": 18468,
+  "current_profile_components_unchanged": 6,
+  "configured_environments_retained": [
+    "forge",
+    "forge-mjlab",
+    "bh-gym",
+    "isaacsim-gui",
+    "isaaclab"
+  ],
+  "download_restore_test": "PASS",
+  "public_index_download_test": "PASS",
+  "temporary_upload_files": 0,
+  "unexpected_changes": 0,
+  "robot_connected": false
+}

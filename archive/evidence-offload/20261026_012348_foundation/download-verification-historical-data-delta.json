@@ -1,0 +1,782 @@
+{
+  "status": "PASS",
+  "group": "historical-data-delta",
+  "downloaded_parts": 1,
+  "verified_objects": 193,
+  "selected_files": 193,
+  "restored_files": [
+    {
+      "path": "forge/runs/matches/20261022_221349_539909_r1-candidate-t5-kickoff-t5/REMOTE-EVIDENCE.json",
+      "sha256": "71df843004635ccdb4ebc740c8c2739a1bf2f8270e903581761e10418e986b60"
+    },
+    {
+      "path": "forge/runs/matches/20261022_221511_491372_r1-candidate-t70-kickoff-t5/REMOTE-EVIDENCE.json",
+      "sha256": "5c0e2569b30d18c1072ecb11393fde4bacc9665d98dd195194e7c3b2f1af8ab6"
+    },
+    {
+      "path": "forge/runs/matches/20261022_221646_963879_r1-candidate-t70-kickoff-t70/REMOTE-EVIDENCE.json",
+      "sha256": "0cb3ac43bccd90e189927dbb05a9d1eb9d536696f84156ffa97eada4d3fb63cf"
+    },
+    {
+      "path": "forge/runs/matches/20261022_221826_550670_r1-candidate-t5-kickoff-t70/REMOTE-EVIDENCE.json",
+      "sha256": "d3c964d8394202240bb71b03e1188adda9f15d5c93ef351a6595397bf06ce51f"
+    },
+    {
+      "path": "forge/runs/matches/20261023_001040_326781_official-vs-booster-fw16/REMOTE-EVIDENCE.json",
+      "sha256": "e5ed85093764b8b98815eebcd33708218be512526e1a1ab316b033d25d7b030a"
+    },
+    {
+      "path": "forge/runs/matches/20261023_003450_622147_official-vs-fw16-three-actor/REMOTE-EVIDENCE.json",
+      "sha256": "e9ba4ff0c64f1163a399ba45d112678d7758042c19b5bd3175ac620d9681cdf5"
+    },
+    {
+      "path": "forge/runs/matches/20261023_021154_342202_duel-p1-cand-t5-ko5/REMOTE-EVIDENCE.json",
+      "sha256": "07e24a2229d32aaa7e8383ae09a0897bc84de4c81e4893cbfa7ce4999848ee12"
+    },
+    {
+      "path": "forge/runs/matches/20261023_021316_344857_duel-p1-cand-t70-ko5/REMOTE-EVIDENCE.json",
+      "sha256": "539f2f625350932a8ee515a92ef5e67f5ebe4d207843c6ec57dbe9a5f7341157"
+    },
+    {
+      "path": "forge/runs/matches/20261023_150646_030803_accept-official_vs_three_actor_m/REMOTE-EVIDENCE.json",
+      "sha256": "b4716646ff43c7477223fc16696813aa19edc6da05039866a9106eb12bc6d56f"
+    },
+    {
+      "path": "forge/runs/matches/20261023_165009_940695_original-fw16-native-match/REMOTE-EVIDENCE.json",
+      "sha256": "fac965c5d6f8f77e99a6b4f27f4125c9e1df5c391879151f4b68d6a22a081cc0"
+    },
+    {
+      "path": "forge/runs/motion/20261022_220713_585960_motion-baseline-readback/REMOTE-EVIDENCE.json",
+      "sha256": "ee0220d770bf22d0f988f6de997cee1c4268d4f22afc71aca9e7087d17bc6859"
+    },
+    {
+      "path": "forge/runs/motion/20261022_221142_219977_r1-baseline/REMOTE-EVIDENCE.json",
+      "sha256": "91be4fd232bdd4c25f00e11498931474072dcc927a085eae561ece0458a50a84"
+    },
+    {
+      "path": "forge/runs/motion/20261022_221152_909582_r1-candidate/REMOTE-EVIDENCE.json",
+      "sha256": "58250732ee1fcf0f3cbdd4213419d250ce7f5f9950ed8283c6d8d83211c6009e"
+    },
+    {
+      "path": "forge/runs/motion/20261022_222832_098649_r1-baseline/REMOTE-EVIDENCE.json",
+      "sha256": "29f9d170d01470859d45fe52b12dfc912d89652e0f9fdedf77ea9a35a9d34a82"
+    },
+    {
+      "path": "forge/runs/motion/20261022_222843_064614_r1-candidate/REMOTE-EVIDENCE.json",
+      "sha256": "2fa2c70927028786a96b6a522be251c734b040eb2de20e63b464f6e2b670e3c2"
+    },
+    {
+      "path": "forge/runs/motion/20261022_223209_199826_r1-baseline/REMOTE-EVIDENCE.json",
+      "sha256": "ccf68e783842021b62c595b1d88945b13ac2a3f5d71762a67886613da03edbd6"
+    },
+    {
+      "path": "forge/runs/motion/20261022_223220_569252_r1-candidate/REMOTE-EVIDENCE.json",
+      "sha256": "21ca2ad21b44bf3c5a913ee889f9170c3bfce518cdff1119d457e37df6e34ee3"
+    },
+    {
+      "path": "forge/runs/motion/20261022_235650_090765_booster-open-interface-smoke/REMOTE-EVIDENCE.json",
+      "sha256": "52c941ff94fe6ccebed1495c8f9ee32cb142630e9dd37e7de5939a8917932558"
+    },
+    {
+      "path": "forge/runs/motion/20261023_000800_694214_booster-fw16-motion/REMOTE-EVIDENCE.json",
+      "sha256": "f367c09fdb330868b47e20fc5647783d9af1047da7025196f5d429f63948d7ef"
+    },
+    {
+      "path": "forge/runs/motion/20261023_003347_297524_booster-fw16-three-actors/REMOTE-EVIDENCE.json",
+      "sha256": "e210f66dec3ee28dc87f209b065b634765756702e61175020640171303dae050"
+    },
+    {
+      "path": "forge/runs/motion/20261023_103811_822492_booster-open-isolated-motion-202/REMOTE-EVIDENCE.json",
+      "sha256": "548dd0f9c9db873a4b217983728656fcc7b4121c9276e63ac8d09b126c7c3af8"
+    },
+    {
+      "path": "forge/runs/motion/20261023_150347_217228_accept-full_default_off_official/REMOTE-EVIDENCE.json",
+      "sha256": "2991beb17c74f1bd9d89b167df1139b1b6e49c5f4591cc3ff506679b9172eb5b"
+    },
+    {
+      "path": "forge/runs/motion/20261023_150425_198031_accept-mixed_binary_official/REMOTE-EVIDENCE.json",
+      "sha256": "1656126dcfda7de4767a7272948ea8683d674e91240de6807939979f866a4dee"
+    },
+    {
+      "path": "forge/runs/motion/20261023_150503_943068_accept-three_actor_motion/REMOTE-EVIDENCE.json",
+      "sha256": "43ed24e6820e46a4f69b6b7c2623eeb2e8795b04b93f12a8738c18c4b8e5e742"
+    },
+    {
+      "path": "forge/runs/motion/20261023_153956_156145_gpu-recovery-official/REMOTE-EVIDENCE.json",
+      "sha256": "5f75e77dfa28bb38d9768c35254daa44ac1bbe3a357e3c741ae82d137fba5dca"
+    },
+    {
+      "path": "forge/runs/motion/20261023_160304_401191_native-disabled-official/REMOTE-EVIDENCE.json",
+      "sha256": "cdb9a5e7dd44a8efe01701d3cbecadf4c47986882e376e41ee714cc4315652be"
+    },
+    {
+      "path": "forge/runs/motion/20261023_160448_091337_original-fw16-native-motion/REMOTE-EVIDENCE.json",
+      "sha256": "8d6ac8585a002b00fab7d6f970b38a6ec7e398ce0cb281b2e7fc69b0286c0835"
+    },
+    {
+      "path": "forge/runs/motion/20261023_160528_091020_native-dispatch-debug/REMOTE-EVIDENCE.json",
+      "sha256": "3be29bc6b06c6faab010a36fbbbfb553e81ec2a77a6143c6be7d267ba9541fee"
+    },
+    {
+      "path": "forge/runs/motion/20261023_161305_647070_native-clock-official/REMOTE-EVIDENCE.json",
+      "sha256": "bfa21fad0be6b8ce8748f66e480c891c447f301ca9a88ad430d407958ebe809c"
+    },
+    {
+      "path": "forge/runs/motion/20261023_161343_328173_original-fw16-native-motion/REMOTE-EVIDENCE.json",
+      "sha256": "99fa840b5aa7ccbba3862e1ae765c6b1f01c12d0d45c97f21b0a22e82e2a1af2"
+    },
+    {
+      "path": "forge/runs/motion/20261023_161936_418023_original-fw16-native-motion/REMOTE-EVIDENCE.json",
+      "sha256": "7c4bbcd50cb5de87233d5313deebd6a83f851cbccbea8920d81b5d38ff6988f1"
+    },
+    {
+      "path": "forge/runs/motion/20261023_162752_084942_original-fw16-native-motion/REMOTE-EVIDENCE.json",
+      "sha256": "aaebefea0dfed9ad7f0d9905717e56888396499854860eff4ea65d38b9700031"
+    },
+    {
+      "path": "forge/runs/motion/20261023_172236_519824_official-speed-under-cpu-load/REMOTE-EVIDENCE.json",
+      "sha256": "469ffb956ffb758545b790086265fb1089d56e7a9eb875451feba9bb1c0fa7a5"
+    },
+    {
+      "path": "forge/runs/motion/20261023_172449_560428_official-speed-cpus0-7/REMOTE-EVIDENCE.json",
+      "sha256": "3155e6a14299495cf0018202faf7b7fe093393d806f8c4444631e0e2329837c7"
+    },
+    {
+      "path": "forge/runs/motion/20261023_172651_402153_official-speed-old-extension/REMOTE-EVIDENCE.json",
+      "sha256": "ed73ed0445675e554db90a90b1d6147e06d4a30d9a3be1b4a9805dbb60392acc"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_005956_893853_dependencies/REMOTE-EVIDENCE.json",
+      "sha256": "3546214725612786893bf87969739bfa37248c583aba0335df507b67277edc68"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_010016_779964_dependencies/REMOTE-EVIDENCE.json",
+      "sha256": "5075bbd21caa92085ce60ab7677704c60e6b00a953860dcdb7500eeee563952e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_010023_810757_help/REMOTE-EVIDENCE.json",
+      "sha256": "ed602ef7a25fca91041c668fceeb45a11565fdd8bc8330d3d99daf5cead17551"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011013_621580_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "624f2ecd09dedd137838ac749148afce03a2bf99fdc7868b06d3a1a8cd9c0208"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011029_828075_parallel-probe/REMOTE-EVIDENCE.json",
+      "sha256": "e530713ae723f77a934a8739d5b73f776bae04998240ed5747dd834ece653496"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011042_364332_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "a139f6ef342b6a3db9aa3d59678e3ba540d4c596e4c3ce22505a0a55fabebaf3"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011054_459206_parallel-probe/REMOTE-EVIDENCE.json",
+      "sha256": "4ecf7119a27508e08def45cd906605d31e3f1fee0fb5d006ac197a468d4cc859"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011153_076868_parallel-probe/REMOTE-EVIDENCE.json",
+      "sha256": "4e278b170d329c949cc12c9ebe8e38d0ed3d2b4d46e9b2d6a2ed86383c7c0197"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_011333_687715_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "8f1271aaaf5a97f2f1a92eb38ddfd9a4dbcc7b28ebaedd3d40fd8390a2570711"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_012113_931456_physics-v2-test/REMOTE-EVIDENCE.json",
+      "sha256": "dd194d7397b873066d01ca98bde3cfa5765a9c02f8fb757f79cd0994d8bcc9f6"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_012140_878573_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "df52def8fc71e02e507921fa1a040fc6ebf7aa0e3a65b83c2e4a36917ca0c327"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_150007_282493_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "d1dfc694b27524ee41ece2124bdf0c2cea9590cf1e09f4a965c19697f25d6e5f"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_150015_024676_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "d50a8d1c2e5b4673c97b27f66a9eb92780c501de235c38b8b251c666c0cd6e7e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_152208_395757_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "96a8f6e4312611c0b3f8c477a5562aeb0d689bff153a31c88b809366d0c1df15"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_152659_017267_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "44bcc1fa9768751551fa04c11bebf1100510f8aed30cf7c92e8cf3ae01ec2363"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_160442_879907_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "ea56d52297e72d12449b28b5cd6fda51bc96d48828c1a719c6ba00daf33e0e8f"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_161338_144684_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "c505fe27c9aacd7ba7c6b3f8d67a08501b88a23980317c44196c028793ba1984"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_161701_745354_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "24f0233f0f0ef891909c824f3c44fa3efcbac01b9f5c9dde1e8c6887c6de057c"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_161931_559060_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "5dd094c4f81b3bab6a6dd55a475463fc009e648c2bf776f2160a1c9d3c0061cd"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_162746_990929_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "77fda0f361faa689b7bafcd31578e5aef2ada74e6e9386f2c1d24a222d701639"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_163105_687725_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "6fa94fddeea2f8be8a780134656645b5340f7b146f426207ca1e4aecabe11984"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_164335_725955_simrobot-robot5/REMOTE-EVIDENCE.json",
+      "sha256": "340265a7c58ece006390009d8934b6a0e9c38029f32aa451e205031663d1007e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_165003_276059_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "afc2e81d52a726b0d47eccedd57455b714cc42d5556f7f4188d44f36a0cb1b83"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_165003_339278_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "b146d3374cd26e409dabd1a45ef189d6871b7d1b2347672ead9ed2cbf19676a0"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_165003_401348_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "5dc50eddf7a8eedd7a186d5495ced97e3ae461c817fb0f7919e38e94de6b569a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_170545_503082_performance-replay/REMOTE-EVIDENCE.json",
+      "sha256": "7e1e5e8784279ff715c3c1040386727258961fd7f0f5e59ed7d13e5cc0c40bcc"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_170713_060021_performance-replay/REMOTE-EVIDENCE.json",
+      "sha256": "b58be7a35c2e1fb9d16ed4f73f37f4bfefc65b7901a3a4231c79c3952d5e2dee"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_171124_954063_performance-replay/REMOTE-EVIDENCE.json",
+      "sha256": "a9197d2262cee47e8a7b36c0658fe82681292dad87b4df927dd8d03fd3383417"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_171949_143331_sdk-contract-probe/REMOTE-EVIDENCE.json",
+      "sha256": "563ef3a63012bbfb3f51567c608d21f11e0c959155a35a611160614ad2f3fe0a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_175506_471234_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "f8180d8f91d0e540e6fca2078f891e3efae73ad136d4c4aa2ab8cb76a624849a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_175506_590687_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "b58bd4eed89de2a154de3e44b75ab1eaf15d6ec5683fc4325c32ec9c58963d32"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_175506_689375_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "97c4d82ba9e76f123a97767f3c5965e4a2f5b0ab2f4bed40b9d8519144187017"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181050_658685_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "6a0c86ad911043e4ea8fec66e3ff2d29cfaa900095d3f5a1606204d5e5cd36cf"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181050_801692_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "84d2b1f575cdc12f30052c648eb0bc9d0b60f3d9e0173baec99c99032629c4b7"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181050_916068_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "92b64b79361edce47ee69eb31d295d8f7969851181af84ddccaa830cef3dd6c2"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181523_607988_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "5ef7f0592adefa1742b1d6be6b76df806162225c3ff98b93f4b94be3e6bc1801"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181523_611541_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "c8e15b2527453e5908a4707b11333509992433e4f10e8fbec65dc348a62b54f0"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_181523_653808_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "8c4ac4d3f860274f076cdd660b7d45f3275f097115837abc201dde19cc3ca829"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182415_350202_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "5cfed72d8c8ba9fe2ac956b73cded71a3f703321dbcea161951a220a462bb765"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182415_351399_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "5b4f5a2074d3581340cb57f7d9ec4551622bf8c8f2a73ce3b3a004938a5737f0"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182415_381361_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "ad9498e6587931c76dbf6d6c3fbb09f9e36f2be2a633e6fd505a3b2bf19db916"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182436_307114_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "a5e4b7e936ce3482dea02d2c7be35d346514d3c2f7617849bf92337a0e35cc01"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182436_382277_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "18124ecf90ca80bd1740742d35fc25af169de12dd32aa36dea5259b7d96dc2c3"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182436_411641_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "33e5d9aefac31171941d8b594003179f9fe2ed3f71a4fdb19c20b8709c0c55f3"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182512_673053_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "15e030de6461c905ee00b6ba01029428199e118321decd286021d04a1db1916d"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182512_685721_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "ad9fd9f4538955001a3e7919f89e2aba12f1c4b9ae733a2229ff960d506a9ca9"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182512_704164_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "190019013f2ed3a92d92c9ae187153d5ae1cd6009344ccb60d7befff10227e51"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182611_295099_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "2fd991b3a781e97469a0f0c5292134baf2cbbc9b742ad7206682160ed7844354"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182611_307934_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "29da5420843a92db43f79fe9f7a4bb8358c5d381ac8f25ab96e69034c1ad859d"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182611_316560_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "b86382e2b6dc40d357261f2773672acd83abcc2719bef90bd2303c689103e837"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182622_875363_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "5a18442b0140fb0b264b251c8e15885b854a94485e54bc6a4fde7498df971f97"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182624_641200_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "348041785c1920542cb34e740d4361ce29fd590fb9d500096b7ad9946248becb"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182624_913826_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "d373d7ba68d6656aea996ad22c400164f6d5118307d9bc070a0d1eb5bec1590a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182635_567808_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "ec1611e42305d88699a1c24eeecac45908cd29f9cf9582a266415715d9e7c88e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182636_983171_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "d18a23824613df7a767ee4f2b5334c74366cf9b0dfbd8f647e4bc0a71a52d110"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182639_603241_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "7bc8e7783eb0a64187b4d40368861ae0fffd2baa7764bb5a3a5a958a46040a31"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182720_748451_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "6437e8417339fad8090419d992238091e2fb8c90ce19e39c8f510193411cd826"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182720_788579_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "1f694bbbfe48bcbb96abee1a461f29c25ee5173e94e9614372b56e073e0cfb4e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182720_802680_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "8992f0a24989d8d4ee2b8f16680652a672ca8cdac8dfead68ed4e0df168f5c8c"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182731_273420_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "77e802a5a6711e33e439045c88375a40fb8c41d3a660e09f312c0d40fe9c35e0"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182732_328711_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "eb83d5d26f7212dd1b1c5858ffe982f24740bcf7b43d4ce1dba73f8f78cb8c50"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_182742_782639_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "2d54b8f6861bcbe71f7201faaf4e4e6b553cc6ff29c4b61924c24f49eadd07d1"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183027_341892_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "b5a08ea6e0955699e6d9435d0f1513e482a6bf0513ab7a6ea10b53c40ab5258c"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183027_355276_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "9bb3239eb2f500f32f9f4487d9708366dc7370701e307e35d8c8bf7558731e86"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183027_381891_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "262781cbcc9bf11dd6ed5f6c4aaac274fdb0fe1ca7a19943226e0899a9eb3519"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183036_579362_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "e769b64ac16e4cc615ec415b08d092fdda14829e97e20f4d197031c3796da291"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183038_768368_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "bf3b38d9e1e931334f855d518a00cd1109d91b907f6747841877e35657317a38"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183042_386587_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "90ad33a6313571d71dc518189b6015124a34481b376bb9729e5be80dadc114b7"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183051_651380_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "03817e7c0acf0ac05c539033b22a59030306b16a7b2da8eb873d344b7c65c1b4"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183054_416709_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "132ae93733e032bdc1ede5df42c68b73f0d25dcb2ff02531c914bb60c03ccc34"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183106_237846_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "28a4d93e7b1df0e27b893e7f40f2c3bd3fd2b67d47e0cb15a09ada1ac781119e"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_183618_738397_frozen-parallel-io/REMOTE-EVIDENCE.json",
+      "sha256": "c8bb6a3312bc621910ec47b470640ead1d5f7394561c3133de98f179702de621"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_184928_002528_sdk-application-feedback-contract/REMOTE-EVIDENCE.json",
+      "sha256": "c14863454c0a1ee9d7513856f99bbfccdd9faf8391813d8d7728fd5b4afc792f"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_185258_668081_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "c3ab37cf4ff3b41988fdd736b0d2271526432d0ab159a57f2088de9e4bafc6f4"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_185258_744204_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "257d5553cf46a2402c184c7d8db2dd77ef8d5831d43ab0299f56c123db2bc3c5"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_185258_826180_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "50c455be4bc49115911fc3af904d7cebf84d1e620b01babf9c31ac2a4dfdde03"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_235702_921440_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "e897282976e5bc4d6843fdc08b88b7c3cef33b05933e0d3ffb594e79f21f9978"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_235703_142176_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "ecc9bc38389eb8163d77d777c5a06e8de64be33ca586c06059e260b4d9cb4d14"
+    },
+    {
+      "path": "forge/runs/native-controller/20261023_235703_268182_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "c7a15a6a12285590bd49fbef1be7b4aae63f20e4c814a038a414b2180b117315"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000017_842964_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "b312193c13cd57b9390815a19ad7a42fda5a17fad0bc1143f47c711286fa157a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000017_961397_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "bf38b3266312356f15254b961bf6827d1bbea7d830aeeed111ccb5511cea09b2"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000018_079404_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "31452d46806d5a5420dde6013a27417b911c3c0893036d600fc09d102b96c7cf"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000203_587021_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "5909cd597002a48c5513944be0946d2677d522ee0f3e5dfea6db5d0cc6ae4499"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000203_689844_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "5e01e18c85190f3a17295475cacd11f559710c7c74a1daa41085e261555519d8"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000203_800039_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "00ba975452aed8caf831ead40ac778376df7cebaf2038c8d9558a10dc5a387b9"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000915_204016_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "9115725bf8efd516b4b942a9653980a6c05ed3f51fa5e868ce62cafcd4da504a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000915_255165_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "6c6f687d423e1ba58f03ebf6ba817fc6388ad450db4cccb3d29e142b5bf8f277"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000915_310917_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "fcc31c8846952688e57f0dee64fa18b545c41d086d26b1a1e44a0afbf2b722ac"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_000924_020393_visual-kick-original-handler-contract/REMOTE-EVIDENCE.json",
+      "sha256": "134dc18cc5f3355f53105794039e02c8306f76518311698154cb807fafc8ad79"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_001046_454571_visual-kick-original-handler-contract/REMOTE-EVIDENCE.json",
+      "sha256": "c8e4284f37ec9315c6b3963586062a2df688b5744cc420fd258dd4a914be4dc1"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_001702_142236_visual-kick-original-handler-contract/REMOTE-EVIDENCE.json",
+      "sha256": "eb4790ed0391636ccbc3f49907c0ea62fac08aab16e7b0503bdca51602d1300b"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002146_633521_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "65e57b81256cb7c37e8c5117593aa500436ec29040218d6c635b15a7015ec010"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002146_693106_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "e53444275dbd7ea205370835488779a3361efc681da9f29d2e740c1883e09817"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002146_752720_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "d836b62d07e0dc4500b74ad751d9829d2efae0507b8c60e218cf9f9fd6c1a3a5"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002444_538530_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "a7bc1e98946974e0c468aee2b53131b388977b0119202f7cd8802326bd4b585d"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002444_590363_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "e8ceaf09a9d3d509e779333b3fc28077e4400a1dd23cc855a37252b2f7f48d5c"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002444_641921_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "340bfba1c9122ed3f82bde23c3f76f133f74c30655cda7c70cc7a8e93a23291f"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_002524_581122_visual-kick-original-handler-contract/REMOTE-EVIDENCE.json",
+      "sha256": "84cf0b919646b57501db70cffe2c628c86bcc0028c68e1f03ed55d8ca47ff422"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003014_879255_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "d0ba9d8c785f20c4e4cf9b89b177e2cd4721a755ae4ddcc86a0800175793dac2"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003014_930056_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "78c17d0249336390425f37379b0188c5ae40dc6412784ac0db55045641d9cdf1"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003014_981243_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "cb8eb7296af88522d91af7d7a94275a330d178832c0b635705e536935978ed2f"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003332_840715_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "7e97146637b435103c2f31b7d396542b1dfe9f73887b98c5322c7764369c0586"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003332_890919_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "da6a7df5ea9a7031058cfb0b380f71c38348c5f5945c9e7fa7e405f9f630fb8a"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003332_942039_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "1a12ec5fd4b659580e271c468bc5d077e248308491a38de34b441d21cf765390"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003834_146194_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "81a90e94bd83ae989c6ead8b15f58bf28aca5199837863bf3314b4071c4f7a04"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003834_287826_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "a19ffd30ffaab1e417b668f631a0f0b289a09e8479ea2a26c58501e3f55b3d03"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_003834_432334_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "a085944fffad9bacd8e5f3dba364eb700355e2d30f52ab56056c7d6e426e4e68"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_010027_211890_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "edffca28f12e6b9e96ff36f771b1a27f320ecefd9e6aac67d2339b3cd2b4acdc"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_010027_357959_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "e6590ee689c92dfe354c08dd4b7c0b5175da814c217272dbd501df79e4b5d0dd"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_010027_506613_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "80df04da62a95c599473c5e14a1abd26b40981e74bfe3ebc8b4aed0035e5c656"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_011533_787246_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "67d94292caa93d1c8e650c0d912aa1d9d197e996c65fb94db4755e474da51ed9"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_011533_934145_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "ccac08d52ad502226ebce536b53db2fe81320474187925ecd5d7b776a178082d"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_011534_078550_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "dcc565087226e661db43deedfb545b52aae2344cd86af71a61b1434a1ae159a9"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_013926_672900_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "3d23468b98f42e946e59de68764465b5e29ca38b576c6ef3876f5c8a23df8df6"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_013926_821359_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "488c3f7981195862b3aebe89aaccb9e35fc6f0d8318af9878051d7a4433bd202"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_013926_964386_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "1185d2a49dc3d64dde5ed8e2dc325504634c5a673e19fb81e517077d61769316"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_020141_441213_simrobot-robot21/REMOTE-EVIDENCE.json",
+      "sha256": "fd08630e3498b7ba0a51dea7483c66dff4147fad8964822358045f5b0e69cfb8"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_020141_582910_simrobot-robot22/REMOTE-EVIDENCE.json",
+      "sha256": "709fb6bd031078328dfb161b25f8cc8e9199bce9fb2b71cfed46d5d121507dec"
+    },
+    {
+      "path": "forge/runs/native-controller/20261024_020141_727544_simrobot-robot23/REMOTE-EVIDENCE.json",
+      "sha256": "26c2989ecf6d44c6538d02082f815d1f54fe9065c8144201254a4c173ab4791d"
+    },
+    {
+      "path": "forge/runs/official-application/20261023_235930_688936/REMOTE-EVIDENCE.json",
+      "sha256": "8e113f758f1a6ca4c73ff1115f36df2265e090c20b36ff299da509a0c750d76d"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_000105_664125/REMOTE-EVIDENCE.json",
+      "sha256": "e0696c2a0219d57064a31938b1642eb936ade6ab42127e45aae6d62437cf6ce3"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_000849_586701/REMOTE-EVIDENCE.json",
+      "sha256": "9afcefc36697a1d9499e093f55c52d7e7651d75cf8e2b174cd68093251b1acda"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_002120_394395/REMOTE-EVIDENCE.json",
+      "sha256": "92ef6d821050e676126c17aa4b233655919d6280c7c81cfb706e200e2160f48a"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_002418_894919/REMOTE-EVIDENCE.json",
+      "sha256": "be209c40ca8ae8d3baf9035e570185ccff84da50ccc3ec943c4bc1c0d4dd9471"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_002948_567424/REMOTE-EVIDENCE.json",
+      "sha256": "0524a0aa13aa12ac8f4eb3e5661f151f44c838b761f24a0ddd1cf7e372085319"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_003308_420422/REMOTE-EVIDENCE.json",
+      "sha256": "4b5c9725ee32114fb3491130314f08b4902cbbab31152108758a03342163884b"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_003808_419696/REMOTE-EVIDENCE.json",
+      "sha256": "0dd72a18549d7943759b5411049e2e1c8781a7f7bae6d57684081af5a3593288"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_010001_676855/REMOTE-EVIDENCE.json",
+      "sha256": "7c7b17fed056322997927d14458072087c1d1967b4ee0d31a03700f49c1d8011"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_011509_150162/REMOTE-EVIDENCE.json",
+      "sha256": "ad5aa5639e31bea4a88c9eb783beb6d752153a87d4f8f59167f26908190afa4d"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_013900_951649/REMOTE-EVIDENCE.json",
+      "sha256": "8ee9985219a9c298eb083244b795efde2759468fead9f696894b6454e893afd3"
+    },
+    {
+      "path": "forge/runs/official-application/20261024_020115_889044/REMOTE-EVIDENCE.json",
+      "sha256": "638a2b9c9e1783273388968f6da43fc224ca5d407e1272f4d5b2f2ca3709f6d7"
+    },
+    {
+      "path": "forge/runs/official-team-fixture/20261023_175506_019021/REMOTE-EVIDENCE.json",
+      "sha256": "44fee32ef7877642d95844319b0aca5cb5088f643199dd466a2635ff82be303e"
+    },
+    {
+      "path": "forge/runs/official-team-fixture/20261023_185258_475782/REMOTE-EVIDENCE.json",
+      "sha256": "a2bfde5b7885756a2c58ee0885ade2fd3a64742a7e22eba5b773dd3a614f3f78"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_003206_702429_recovery-official/REMOTE-EVIDENCE.json",
+      "sha256": "57f755c2ef8f9b2ca18d0ef91261144367d5643d4f25aa39fb7b6a8484c622d7"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_003227_376428_recovery-old-pd/REMOTE-EVIDENCE.json",
+      "sha256": "762877f660dca2226f159be540bda3b8b2019360db26095b29ce59b6ec0fa3c3"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_003244_515979_recovery-isolated-pd/REMOTE-EVIDENCE.json",
+      "sha256": "860ed84a7b418771047a432ba9ac89312d47d9fcae6ead52c10bd32928b381c9"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_003306_577826_recovery-three-actors/REMOTE-EVIDENCE.json",
+      "sha256": "541a0fd874b6aa4b60ee949c1a02beaeab81327cccd141db694c9140c1beccd7"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_103846_746995_booster-open-isolated-recovery-2/REMOTE-EVIDENCE.json",
+      "sha256": "b7dcc3636de0509ecb4110aae927f5afab6dce7e0f147b9e331ec77638b73684"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_150543_943929_accept-three_actor_forced_recove/REMOTE-EVIDENCE.json",
+      "sha256": "1068555608125a4acc14664eaa68881b5493cf8d6774e57127e84702439b0736"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_163110_799607_original-fw16-native-recovery/REMOTE-EVIDENCE.json",
+      "sha256": "546dd314f7b242e0e8c5813164edcbeb3ffb67399d509e3a548603369c747b31"
+    },
+    {
+      "path": "forge/runs/recovery/20261023_164341_682876_original-fw16-native-recovery/REMOTE-EVIDENCE.json",
+      "sha256": "154090a845106d1418c18de0270ac73e9c5a84fa1b9cea5957baffd4eeff533e"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261020_220709_170921_bhuman_match/REMOTE-EVIDENCE.json",
+      "sha256": "8f3ca3ffed8d3a3340f11d6507f7f8ec9c70124336e1668ee1d5a1b84adbfe1b"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261020_221030_477446_bhuman_gait/REMOTE-EVIDENCE.json",
+      "sha256": "edae7b57e2eceab8f687a828c06990c4faee87e1d1d9a1c02b65e85f47b81cde"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_003027_375111_bhuman_gait/REMOTE-EVIDENCE.json",
+      "sha256": "49d343e7150b34b3cc385110028d1476ed4db7d1840775b09d6e6a697899f677"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_003038_289734_bhuman_match/REMOTE-EVIDENCE.json",
+      "sha256": "9262c87e59517cf401c6f506e17a0e35fd7b4d2e96f5a8da24e77b59cc9a67a5"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_011100_743019_bhuman_gait/REMOTE-EVIDENCE.json",
+      "sha256": "5f9bf09de06d695f4359a4a5183a196ab93ac9fd6c93b8ff22d1363e2a6d8e27"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_011110_668390_bhuman_match/REMOTE-EVIDENCE.json",
+      "sha256": "b2780d9f70c46e771fd818dc0efaa508099e1b0bdd04a31d874aaf2c571f5f12"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_011159_467621_bhuman_gait/REMOTE-EVIDENCE.json",
+      "sha256": "da3dbea749910fdeab7caff859bb117af2b9fe95d2f87a655417c1ec34730f21"
+    },
+    {
+      "path": "bhuman/local-k1-validation-20261019/runs/20261021_011209_145438_bhuman_match/REMOTE-EVIDENCE.json",
+      "sha256": "d7f0b4bbc5b50933c3cec530e091953231fd4a3106a15c04e522d02df44c8cad"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261020_220600_781428_mujoco_walk/REMOTE-EVIDENCE.json",
+      "sha256": "ab0f50e572367fc991ed9515a0f4788b719d052b303a2b5e3938375bf7c2720f"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261020_220814_312153_mujoco_walk/REMOTE-EVIDENCE.json",
+      "sha256": "2bb0252749866cc0b86e5fa8e96c5d46446f39e7b864c826d4efc66a164881a4"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261021_003159_791930_mujoco_walk/REMOTE-EVIDENCE.json",
+      "sha256": "7583756aab6f403d8327c996ebc13b5c8ff8b5968fa5315904f2b45c00591c6c"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261021_004421_840596_mujoco_walk/REMOTE-EVIDENCE.json",
+      "sha256": "1cabc8dadac6f6106b0761933271f1aa4d78a4c061ef64f0790e0837a2a0ea7a"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261021_011325_041326_mujoco_walk/REMOTE-EVIDENCE.json",
+      "sha256": "a2cc5a59b05cda8b729beeec0e6f97d833c27f68c293d4e97243cd075da132bc"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261024_202357_528156_mujoco_walk/launch.json",
+      "sha256": "fe4731a4c049e6c9bbca4f1370994f4ac9f2ef71464bea4ab03177bc82dfeaaf"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261024_202357_528156_mujoco_walk/observations.npy",
+      "sha256": "1c6f17ddd8fde07994953cf4d1cea9f96b87b3bf2e1aaafe2b0890b82cf3f24c"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261024_202357_528156_mujoco_walk/result.json",
+      "sha256": "ce1a5575e1dc34507446d808be473213bda9fba9e81235aa99cefb01ebe1117b"
+    },
+    {
+      "path": "bhuman/sim2sim/runs/20261024_202357_528156_mujoco_walk/trajectory.npz",
+      "sha256": "8d0b9c23edafc757b3f66f09eaec0dc95fdbada02e15f3635865ec862c89cbfd"
+    }
+  ],
+  "verify_only": false
+}

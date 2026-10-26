@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "groups": [
+    "forge-matches",
+    "forge-motion",
+    "forge-recovery"
+  ],
+  "removed_files": 22573,
+  "reclaimed_allocated_bytes": 5130452992,
+  "retained_canonical_runtime_files_verified": 0,
+  "disk_after": {
+    "total": 283676618752,
+    "used": 254811623424,
+    "free": 14380490752
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "files": 59,
+  "reclaimed_allocated_bytes": 115597312,
+  "raw_gzip_roundtrip_and_reader_compatibility_verified": true
+}

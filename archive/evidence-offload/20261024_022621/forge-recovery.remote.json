@@ -1,0 +1,37 @@
+{
+  "name": "forge-recovery",
+  "status": "VERIFIED",
+  "archive_sha256": "846d3ce288e039476f1c1f1172ba9eabe3e13a703a3af0fdd9738711544166d3",
+  "archive_bytes": 328456660,
+  "manifest": "forge-recovery.files.jsonl",
+  "original_files": 4765,
+  "unique_objects": 4735,
+  "parts": [
+    {
+      "name": "forge-recovery.tar.zst.gpg.part0000",
+      "size": 134217728,
+      "sha256": "80dabe1bf0b43c13cd901c35811f8ddcc4985d5074d3ff4d96a399a279887263",
+      "id": 669891462,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-recovery.tar.zst.gpg.part0000",
+      "verified": true
+    },
+    {
+      "name": "forge-recovery.tar.zst.gpg.part0001",
+      "size": 134217728,
+      "sha256": "1be8f230c350ce534e895cfbab6de183eacaf78ee27eca835ca690b55f21fa47",
+      "id": 669891490,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-recovery.tar.zst.gpg.part0001",
+      "verified": true
+    },
+    {
+      "name": "forge-recovery.tar.zst.gpg.part0002",
+      "size": 60021204,
+      "sha256": "82bffce0320a8da95f5656b1df57f74a6ab13f27970c3378a9e230b507d1c970",
+      "id": 669891479,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-recovery.tar.zst.gpg.part0002",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 248.91911128899847
+}

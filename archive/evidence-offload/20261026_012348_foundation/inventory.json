@@ -1,0 +1,120 @@
+{
+  "schema": "robocup.evidence-backup/1",
+  "groups": [
+    {
+      "name": "engineering-installers",
+      "manifest": "engineering-installers.files.jsonl",
+      "files": 5,
+      "logical_bytes": 4511197562,
+      "unique_bytes": 4511197562,
+      "removable_bytes": 0
+    },
+    {
+      "name": "forge-runtime-foundation",
+      "manifest": "forge-runtime-foundation.files.jsonl",
+      "files": 175233,
+      "logical_bytes": 14508899674,
+      "unique_bytes": 4197503782,
+      "removable_bytes": 0
+    },
+    {
+      "name": "historical-data-delta",
+      "manifest": "historical-data-delta.files.jsonl",
+      "files": 193,
+      "logical_bytes": 8943163,
+      "unique_bytes": 8943163,
+      "removable_bytes": 0
+    },
+    {
+      "name": "native17-workspace",
+      "manifest": "native17-workspace.files.jsonl",
+      "files": 7326,
+      "logical_bytes": 369779156,
+      "unique_bytes": 368688611,
+      "removable_bytes": 0
+    },
+    {
+      "name": "engineering-records",
+      "manifest": "engineering-records.files.jsonl",
+      "files": 121,
+      "logical_bytes": 3730454,
+      "unique_bytes": 2603121,
+      "removable_bytes": 0
+    },
+    {
+      "name": "cleanup-audit",
+      "manifest": "cleanup-audit.files.jsonl",
+      "files": 72,
+      "logical_bytes": 7436129,
+      "unique_bytes": 7361831,
+      "removable_bytes": 0
+    }
+  ],
+  "excluded": [
+    {
+      "path": "forge/runs/acceptance/20261023_145557_two-day-full/server-state/session-token",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/booster_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/booster_msgs/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/brain/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/game_controller_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/ros2-build/vision_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/booster_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/booster_msgs/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/brain/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/game_controller/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/game_controller_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/upstream-app-build/vision_interface/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-adapted-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    },
+    {
+      "path": "forge/runs/full-native-integration/20261023_174356_314369_two-independent-teams/vision-ros2-build/vision/colcon_command_prefix_build.sh.env",
+      "reason": "local credential or environment state"
+    }
+  ],
+  "files": 182950,
+  "original_bytes": 19409986138,
+  "unique_bytes": 9096298070,
+  "prepared_at": "2026-10-26T01:37:05.567239+09:00",
+  "policy": "All runtime foundation files remain local. Remove only separately audited historical bulk data and downloaded installers after remote verification and restore testing."
+}

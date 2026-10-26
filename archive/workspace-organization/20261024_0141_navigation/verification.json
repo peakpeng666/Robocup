@@ -1,0 +1,251 @@
+{
+  "status": "PASS",
+  "completed_utc": "2026-10-23T16:46:14.470967+00:00",
+  "navigation_groups": 7,
+  "verified_directory_links": 26,
+  "original_root_entries_unchanged_identity": 24,
+  "protected_original_file_hashes_unchanged": 18,
+  "moved_originals": 0,
+  "deleted_originals": 0,
+  "started_or_stopped_processes": 0,
+  "manifest_sha256": "8ec06532f111ff8101cb9bb956e3fd7876d484badea59bab8eefb74ab2c08c76",
+  "index_sha256": "113f82d8e9157676833674c2c927dbbbc7aed1f9a731e186319299e405632738",
+  "undo_dry_run": {
+    "status": "DRY_RUN",
+    "navigation_links": 26,
+    "generated_files": 2,
+    "original_targets_removed": 0,
+    "receipts_preserved": "/home/peakpeng/Desktop/Robocup/archive/workspace-organization/20261024_0141_navigation",
+    "nonempty_directories_preserved": []
+  },
+  "directory_links": [
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/01-当前开发/forge",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/比赛工作区",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/上游比赛源码",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/BHumanCodeRelease",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/02-A方-BHuman/上游学习源码",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/MachineLearning",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/03-训练与sim2sim/训练主线",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/03-训练与sim2sim/MuJoCo-sim2sim",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Booster-SDK",
+      "original_path": "/home/peakpeng/Desktop/Robocup/booster/booster_robotics_sdk",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Demo-本地工作副本",
+      "original_path": "/home/peakpeng/Desktop/Robocup/booster/robocup_demo",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/Demo-固定官方基线",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/third_party/robocup-demo-fa4f31ccb442",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/原厂1.6-payload",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/third_party/booster-k1-1.6.0.10/selected-payload/booster",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/04-B方官方与旧工作区/既有ROS2工作区",
+      "original_path": "/home/peakpeng/Desktop/Robocup/robocup",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/BHuman-Web工作台",
+      "original_path": "/home/peakpeng/Desktop/Robocup/workbench",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/环境记录",
+      "original_path": "/home/peakpeng/Desktop/Robocup/environment",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/2025裁判配置",
+      "original_path": "/home/peakpeng/Desktop/Robocup/25game_controller/game_controller",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/05-界面裁判与环境/2026裁判配置",
+      "original_path": "/home/peakpeng/Desktop/Robocup/26game_controller/game_controller",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/Forge文档",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/docs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/BHuman文档",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/docs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/BHuman调研材料",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/research-materials-20261019",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/原始交接输入",
+      "original_path": "/home/peakpeng/Desktop/Robocup/research-inputs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/06-资料与说明/工作台说明",
+      "original_path": "/home/peakpeng/Desktop/Robocup/workbench/docs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/Forge运行证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/forge/runs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/BHuman比赛证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/local-k1-validation-20261019/runs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/训练证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/k1-training/runs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/sim2sim证据",
+      "original_path": "/home/peakpeng/Desktop/Robocup/bhuman/sim2sim/runs",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/归档恢复清单",
+      "original_path": "/home/peakpeng/Desktop/Robocup/archive",
+      "exists": true
+    },
+    {
+      "navigation_path": "/home/peakpeng/Desktop/Robocup/workspace-nav/07-证据与归档/归档恢复工具",
+      "original_path": "/home/peakpeng/Desktop/Robocup/archive-tools",
+      "exists": true
+    }
+  ],
+  "original_root_entries": [
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.claude",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.git",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.gitignore",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.pytest_cache",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.ruff_cache",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.v2c",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/.video_agent",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/25game_controller",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/26game_controller",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/AGENTS.md",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/LOCAL-RESTORE-20261020.md",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/README.md",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/REMOTE-VERIFIED.json",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/RESTORE-ROBOCUP.md",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/TRAINING-KIT-README.md",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/archive-tools",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/bhuman",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/booster",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/environment",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/forge",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/research-inputs",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/robocup",
+      "same_identity": true
+    },
+    {
+      "path": "/home/peakpeng/Desktop/Robocup/workbench",
+      "same_identity": true
+    }
+  ]
+}

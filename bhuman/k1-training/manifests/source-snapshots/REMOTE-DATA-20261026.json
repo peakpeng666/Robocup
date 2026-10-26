@@ -1,0 +1,50 @@
+{
+  "schema": "robocup.remote-data/1",
+  "status": "VERIFIED_REMOTE",
+  "policy": "Historical data is remote; local source, configuration, programs, models, and checkpoints are retained.",
+  "restore_tool": "archive-tools/restore_evidence.py",
+  "removed_files": [
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/f94b3e1c6fdf8fca2a7961082cbad97f070ec4c58bf4a2e5aa61ef452c0810bd.zip",
+      "size": 100730,
+      "sha256": "072fa831241da04f4412cf87d8bb0d55bc71bf4e1310a5cfe97e1d6baa6bb614",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/39fa46c22c087c291d35070ee7e66613006029ef3f35637d2b6f411ce3e68848.zip",
+      "size": 100997,
+      "sha256": "a38eb98eb4cb045ee5cb307ea7ef01ec813e8d4e88811ca0030d803c2e21d561",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/5bc4e94fa29a6d9ed3aeaf2aa28e0f0bf4a0be707140d1d76b1d9253edb47053.zip",
+      "size": 100793,
+      "sha256": "11f80b2af78ff7e7a3d127db8ca2d0f0fbd4a2740f5dc161c5f8a1280d0e39ca",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/9fa44d843686932852ca019db8f142f530bd5d908a1d13f441d6a2558277e112.zip",
+      "size": 101664,
+      "sha256": "97e2ede92e465e2056e162a06bda9a5298ccd4a6f0af9b68a4573b2bc2b5b07a",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/efd4263eec489211e1266760e72df219c4bd405431047bf2001679632af5844c.zip",
+      "size": 106161,
+      "sha256": "2c937f398379c9ae4a5e2451e914d011ec2fa769f949ae07f13f8c1e4a9f98be",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    },
+    {
+      "path": "bhuman/k1-training/manifests/source-snapshots/17ea9e9668851fb32dc4c7cf97863aacc7976aa0e1102ed5281d55b0762d33dc.zip",
+      "size": 105552,
+      "sha256": "2e55c417056fbeba91ef1370dc47b9fb655ad7020b21297efad67585b0f2f9f5",
+      "index": "archive/evidence-offload/20261026_012348_foundation/available-index.json",
+      "group": "engineering-records"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "forge-vendor-adaptation",
+  "status": "VERIFIED",
+  "archive_sha256": "ec62bed0bb67318f1765da0e654bff24853e3beb71004c3b50ff78ff5b9a67f1",
+  "archive_bytes": 2914686,
+  "manifest": "forge-vendor-adaptation.files.jsonl",
+  "original_files": 125,
+  "unique_objects": 115,
+  "parts": [
+    {
+      "name": "forge-vendor-adaptation.tar.zst.gpg.part0000",
+      "size": 2914686,
+      "sha256": "ec62bed0bb67318f1765da0e654bff24853e3beb71004c3b50ff78ff5b9a67f1",
+      "id": 670055308,
+      "url": "https://github.com/peakpeng666/Robocup/releases/download/evidence-20261024_022621/forge-vendor-adaptation.tar.zst.gpg.part0000",
+      "verified": true
+    }
+  ],
+  "independent_full_archive_verification": "PASS",
+  "seconds": 13.803636599999663
+}
