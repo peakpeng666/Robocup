@@ -1,6 +1,7 @@
 """Emit a portable, path-free record of an official match attempt."""
 import argparse
 import json
+import math
 from pathlib import Path
 import re
 
@@ -20,10 +21,25 @@ def summarize(folder):
     if result.get('matchId')!=key: raise ValueError('result belongs to a different match')
     if result.get('isFinal') is not True or result.get('endReason')!='time_expired':
         return out
+    reported = []
+    for section in ('game', 'timing'):
+        record = result.get(section)
+        if record is None:
+            continue
+        if not isinstance(record, dict):
+            raise ValueError(f'invalid referee {section}')
+        if 'regularDurationSeconds' in record:
+            value = record['regularDurationSeconds']
+            if type(value) not in (int, float) or (type(value) is float and not math.isfinite(value)) or value <= 0:
+                raise ValueError(f'invalid referee {section} regulation duration')
+            reported.append(value)
+    if not reported or any(value != duration for value in reported):
+        raise ValueError('referee regulation duration missing or inconsistent with run manifest')
     score=result['score']
     if any(type(score.get(side)) is not int or score[side]<0 for side in ('home','away')):
         raise ValueError('invalid score')
-    out.update(stage='reported_time_expired',score={side:score[side] for side in ('home','away')})
+    out.update(stage='reported_time_expired', referee_regulation_seconds=int(reported[0]),
+               score={side:score[side] for side in ('home','away')})
     return out
 
 if __name__=='__main__':
